@@ -745,7 +745,7 @@ function ScenarioBuilderTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Preset Buttons */}
       <div className="flex flex-wrap gap-2">
         <span className="text-xs text-muted-foreground self-center mr-2">Quick Presets:</span>
@@ -761,7 +761,7 @@ function ScenarioBuilderTab() {
             key={key}
             variant="outline"
             size="sm"
-            className="h-7 text-xs border-border hover:border-muted-foreground"
+            className="h-7 text-xs text-muted-foreground border-border hover:border-muted-foreground"
             onClick={() => setParams(presets[key])}
           >
             {label}
@@ -770,7 +770,7 @@ function ScenarioBuilderTab() {
         <Button
           variant="outline"
           size="sm"
-          className="h-7 text-xs border-border hover:border-muted-foreground ml-auto"
+          className="h-7 text-xs text-muted-foreground border-border hover:border-muted-foreground ml-auto"
           onClick={() => setParams(defaultParams)}
         >
           <RefreshCw className="w-3 h-3 mr-1" />
@@ -778,7 +778,7 @@ function ScenarioBuilderTab() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Sliders */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
@@ -854,7 +854,7 @@ function ScenarioBuilderTab() {
                   <button
                     key={sc}
                     onClick={() => setActiveScenario(sc)}
-                    className={`text-xs px-2.5 py-1 rounded-full transition-colors ${
+                    className={`text-xs text-muted-foreground px-2.5 py-1 rounded-full transition-colors ${
                       activeScenario === sc
                         ? sc === "bull"
                           ? "bg-emerald-600 text-foreground"
@@ -882,7 +882,7 @@ function ScenarioBuilderTab() {
                 const barPct = Math.min(Math.abs(val) / 25, 1) * 100;
                 return (
                   <div key={a.ticker} className="space-y-0.5">
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <div className="flex items-center gap-1.5">
                         <span className="text-muted-foreground font-mono w-8">{a.ticker}</span>
                         <span className="text-muted-foreground">{a.asset}</span>
@@ -943,7 +943,7 @@ function ScenarioBuilderTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground font-medium pr-4">Asset</th>
@@ -1043,7 +1043,7 @@ function HistoricalStressTab() {
                       {portfolioPnl.toFixed(1)}%
                     </span>
                     <span
-                      className={`text-xs font-mono ${pnlColor(dollarPnl)}`}
+                      className={`text-xs text-muted-foreground font-mono ${pnlColor(dollarPnl)}`}
                     >
                       ({dollarPnl >= 0 ? "+" : ""}$
                       {Math.abs(dollarPnl).toLocaleString("en-US", {
@@ -1087,7 +1087,7 @@ function HistoricalStressTab() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="text-left py-2 text-muted-foreground pr-3">Crisis</th>
@@ -1136,7 +1136,7 @@ function HistoricalStressTab() {
                   <div key={hs.name} className="flex items-center gap-1">
                     <span className="text-xs text-muted-foreground">{hs.year}:</span>
                     <span
-                      className={`text-xs font-mono font-medium ${
+                      className={`text-xs text-muted-foreground font-mono font-medium ${
                         hs.vix > 60 ? "text-red-400" : hs.vix > 35 ? "text-orange-400" : "text-yellow-400"
                       }`}
                     >
@@ -1167,7 +1167,7 @@ function TailRiskTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Controls */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
@@ -1260,7 +1260,7 @@ function TailRiskTab() {
                   : "text-yellow-400";
               return (
                 <div key={sc.sector} className="space-y-0.5">
-                  <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground w-32">{sc.sector}</span>
                     <span className="text-muted-foreground font-mono">
                       {sc.weight.toFixed(1)}% wgt
@@ -1300,7 +1300,7 @@ function TailRiskTab() {
 
 function MacroSensitivityTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <p className="text-xs text-muted-foreground">
         Single-factor sensitivity analysis: estimated portfolio impact from each macro shock in
         isolation. Bars show directional impact per asset class.
@@ -1327,7 +1327,7 @@ function MacroSensitivityTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground">Factor</th>
@@ -1408,7 +1408,7 @@ function MacroSensitivityTab() {
               { maturity: "IG Corp (7Y)", duration: 6.2, dv01: -6.0, shock100: -6.0 },
               { maturity: "HY Corp (5Y)", duration: 3.8, dv01: -3.6, shock100: -3.6 },
             ].map((row) => (
-              <div key={row.maturity} className="flex items-center gap-3 text-xs">
+              <div key={row.maturity} className="flex items-center gap-3 text-xs text-muted-foreground">
                 <span className="w-36 text-muted-foreground">{row.maturity}</span>
                 <span className="w-16 text-muted-foreground font-mono">Dur {row.duration}y</span>
                 <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
@@ -1483,7 +1483,7 @@ function ReverseStressTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <p className="text-xs text-muted-foreground">
         Reverse engineering: what macro/market conditions would produce each loss level?
         Identifies non-linear risks and path-dependent scenarios.
@@ -1517,12 +1517,12 @@ function ReverseStressTab() {
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <p className="text-xs text-muted-foreground">Portfolio Loss</p>
-                  <p className={`text-2xl font-bold font-mono ${lossColor.split(" ")[0]}`}>
+                  <p className={`text-lg font-medium font-mono ${lossColor.split(" ")[0]}`}>
                     -{path.lossLevel}%
                   </p>
                 </div>
                 <div className="text-right">
-                  <Badge className={`text-xs ${liquidityColor(path.liquidityRisk)}`}>
+                  <Badge className={`text-xs text-muted-foreground ${liquidityColor(path.liquidityRisk)}`}>
                     {path.liquidityRisk} Liquidity Risk
                   </Badge>
                   <p className="text-xs text-muted-foreground mt-1">{path.timeframe}</p>
@@ -1582,7 +1582,7 @@ function ReverseStressTab() {
             {liquidityScenarios.map((ls) => (
               <div key={ls.name} className="bg-muted/50 rounded-lg p-3">
                 <p className="text-xs font-medium text-foreground mb-1.5">{ls.name}</p>
-                <div className="flex gap-3 text-xs mb-1.5">
+                <div className="flex gap-3 text-xs text-muted-foreground mb-1.5">
                   <div>
                     <p className="text-muted-foreground">Normal</p>
                     <p className="text-emerald-400 font-mono">{ls.normal}</p>
@@ -1734,23 +1734,23 @@ export default function ScenarioAnalysisPage() {
         <Tabs defaultValue="builder" className="h-full flex flex-col">
           <div className="flex-shrink-0 px-6 pt-3 border-b border-border">
             <TabsList className="bg-card border border-border h-8">
-              <TabsTrigger value="builder" className="text-xs h-6 data-[state=active]:bg-primary">
+              <TabsTrigger value="builder" className="text-xs text-muted-foreground h-6 data-[state=active]:bg-primary">
                 <TrendingUp className="w-3 h-3 mr-1" />
                 Scenario Builder
               </TabsTrigger>
-              <TabsTrigger value="stress" className="text-xs h-6 data-[state=active]:bg-primary">
+              <TabsTrigger value="stress" className="text-xs text-muted-foreground h-6 data-[state=active]:bg-primary">
                 <AlertTriangle className="w-3 h-3 mr-1" />
                 Historical Stress
               </TabsTrigger>
-              <TabsTrigger value="tail" className="text-xs h-6 data-[state=active]:bg-primary">
+              <TabsTrigger value="tail" className="text-xs text-muted-foreground h-6 data-[state=active]:bg-primary">
                 <BarChart3 className="w-3 h-3 mr-1" />
                 Tail Risk
               </TabsTrigger>
-              <TabsTrigger value="sensitivity" className="text-xs h-6 data-[state=active]:bg-primary">
+              <TabsTrigger value="sensitivity" className="text-xs text-muted-foreground h-6 data-[state=active]:bg-primary">
                 <Zap className="w-3 h-3 mr-1" />
                 Macro Sensitivity
               </TabsTrigger>
-              <TabsTrigger value="reverse" className="text-xs h-6 data-[state=active]:bg-primary">
+              <TabsTrigger value="reverse" className="text-xs text-muted-foreground h-6 data-[state=active]:bg-primary">
                 <TrendingDown className="w-3 h-3 mr-1" />
                 Reverse Stress
               </TabsTrigger>
@@ -1758,19 +1758,19 @@ export default function ScenarioAnalysisPage() {
           </div>
 
           <div className="flex-1 min-h-0 overflow-y-auto">
-            <TabsContent value="builder" className="p-6 data-[state=inactive]:hidden">
+            <TabsContent value="builder" className="p-4 data-[state=inactive]:hidden">
               <ScenarioBuilderTab />
             </TabsContent>
-            <TabsContent value="stress" className="p-6 data-[state=inactive]:hidden">
+            <TabsContent value="stress" className="p-4 data-[state=inactive]:hidden">
               <HistoricalStressTab />
             </TabsContent>
-            <TabsContent value="tail" className="p-6 data-[state=inactive]:hidden">
+            <TabsContent value="tail" className="p-4 data-[state=inactive]:hidden">
               <TailRiskTab />
             </TabsContent>
-            <TabsContent value="sensitivity" className="p-6 data-[state=inactive]:hidden">
+            <TabsContent value="sensitivity" className="p-4 data-[state=inactive]:hidden">
               <MacroSensitivityTab />
             </TabsContent>
-            <TabsContent value="reverse" className="p-6 data-[state=inactive]:hidden">
+            <TabsContent value="reverse" className="p-4 data-[state=inactive]:hidden">
               <ReverseStressTab />
             </TabsContent>
           </div>

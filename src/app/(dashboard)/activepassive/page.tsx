@@ -174,7 +174,7 @@ function SPIVAChart() {
         % of active funds underperforming their benchmark (SPIVA Scorecard, S&P Global)
       </p>
       <div className="overflow-x-auto">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="border-b border-border">
               <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Category</th>
@@ -293,7 +293,7 @@ function EvidenceTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* SPIVA Scorecard */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
@@ -470,7 +470,7 @@ function IndexMechanicsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Market Cap Weighting */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
@@ -560,7 +560,7 @@ function IndexMechanicsTab() {
               <div className="w-40 text-xs text-muted-foreground shrink-0">{item.source}</div>
               <div className="flex-1 flex items-center gap-2">
                 <div
-                  className="h-5 rounded flex items-center px-1.5 text-xs font-mono font-medium"
+                  className="h-5 rounded flex items-center px-1.5 text-xs text-muted-foreground font-mono font-medium"
                   style={{
                     width: `${Math.abs(item.bps) * 12 + 30}px`,
                     backgroundColor: item.bps < 0 ? "#10b98133" : "#6366f133",
@@ -731,7 +731,7 @@ function FactorTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Factor Overview */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
@@ -861,7 +861,7 @@ function FactorTab() {
                 { pro: false, text: "Higher fee (0.20% vs 0.03%)" },
                 { pro: false, text: "Poor liquidity in small constituents" },
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-2 text-xs">
+                <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                   {item.pro
                     ? <CheckCircle className="w-3 h-3 text-green-400 shrink-0" />
                     : <XCircle className="w-3 h-3 text-red-400 shrink-0" />}
@@ -880,7 +880,7 @@ function FactorTab() {
                 { pro: false, text: "Momentum bias: buys high, trims low" },
                 { pro: false, text: "Concentration: top 10 stocks = 35%+" },
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-2 text-xs">
+                <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                   {item.pro
                     ? <CheckCircle className="w-3 h-3 text-green-400 shrink-0" />
                     : <XCircle className="w-3 h-3 text-red-400 shrink-0" />}
@@ -1079,7 +1079,7 @@ function FeeImpactTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Fee Drag Chart */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
@@ -1158,18 +1158,18 @@ function FeeImpactTab() {
             <div key={item.type} className={cn("p-4 rounded-md border bg-card/50", item.color)}>
               <div className="flex items-center justify-between mb-3">
                 <p className="font-medium text-foreground text-sm">{item.type}</p>
-                <span className={cn("text-xs font-medium", item.badgeColor)}>{item.badge}</span>
+                <span className={cn("text-xs text-muted-foreground font-medium", item.badgeColor)}>{item.badge}</span>
               </div>
               <div className="space-y-1.5 mb-3">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Turnover</span>
                   <span className="text-muted-foreground">{item.turnover}</span>
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Cap Gains Dist.</span>
                   <span className="text-muted-foreground">{item.capitalGainsDist}</span>
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Annual Tax Drag</span>
                   <span className="text-muted-foreground">{item.taxDrag}</span>
                 </div>

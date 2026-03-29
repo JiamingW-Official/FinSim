@@ -545,7 +545,7 @@ export default function CurrencyMarketsPage() {
   const selectedCrisisData = selectedCrisis !== null ? CRISES[selectedCrisis] : null;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
@@ -650,7 +650,7 @@ export default function CurrencyMarketsPage() {
                   <MarketHoursWheel />
                   <div className="grid grid-cols-2 gap-2 mt-3">
                     {SESSIONS.map((sess) => (
-                      <div key={sess.name} className="flex items-center gap-2 text-xs">
+                      <div key={sess.name} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: sess.color }} />
                         <span className="text-muted-foreground">{sess.name}</span>
                         <span className="text-muted-foreground ml-auto">{sess.startHour.toString().padStart(2,"0")}–{sess.endHour.toString().padStart(2,"0")}</span>
@@ -1004,7 +1004,7 @@ export default function CurrencyMarketsPage() {
                     { reason: "Peso Problem", desc: "Rare crash events are not reflected in sample means — historical data underweights tail risk." },
                     { reason: "Behavioral Bias", desc: "Momentum and trend-following by institutional investors create persistent deviations." },
                   ].map((item) => (
-                    <div key={item.reason} className="flex gap-2 text-xs">
+                    <div key={item.reason} className="flex gap-2 text-xs text-muted-foreground">
                       <span className="text-primary font-medium whitespace-nowrap">{item.reason}:</span>
                       <span className="text-muted-foreground">{item.desc}</span>
                     </div>
@@ -1036,7 +1036,7 @@ export default function CurrencyMarketsPage() {
                     { pair: "GBP/USD", taylorGap: 0.3, dir: "GBP slightly favored" },
                     { pair: "AUD/USD", taylorGap: -0.5, dir: "USD favored" },
                   ].map((item) => (
-                    <div key={item.pair} className="flex items-center justify-between text-xs bg-foreground/[0.02] rounded px-2 py-1.5">
+                    <div key={item.pair} className="flex items-center justify-between text-xs text-muted-foreground bg-foreground/[0.02] rounded px-2 py-1.5">
                       <span className="font-mono text-foreground">{item.pair}</span>
                       <span className={cn("font-mono", item.taylorGap > 0 ? "text-amber-400" : "text-primary")}>
                         {item.taylorGap > 0 ? "+" : ""}{item.taylorGap}%
@@ -1191,7 +1191,7 @@ export default function CurrencyMarketsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="space-y-3">
                   <div className="text-muted-foreground text-xs font-medium">First-Generation Model (Krugman 1979)</div>
                   <p className="text-muted-foreground text-xs leading-relaxed">
@@ -1199,7 +1199,7 @@ export default function CurrencyMarketsPage() {
                   </p>
                   <div className="space-y-1">
                     {["Fiscal imbalance → money printing", "Inflation differential vs peg anchor", "Reserve depletion over time", "Speculative attack when reserves critical", "Peg collapses → sharp devaluation"].map((step, i) => (
-                      <div key={step} className="flex items-center gap-2 text-xs">
+                      <div key={step} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
                         <span className="text-muted-foreground">{step}</span>
                       </div>
@@ -1214,7 +1214,7 @@ export default function CurrencyMarketsPage() {
                   </p>
                   <div className="space-y-1">
                     {["Peg sustainable at current beliefs", "Speculative pressure increases hedging cost", "Defense requires painful rate hikes", "Government weighs defense cost vs credibility", "Self-fulfilling exit if confidence breaks"].map((step, i) => (
-                      <div key={step} className="flex items-center gap-2 text-xs">
+                      <div key={step} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
                         <span className="text-muted-foreground">{step}</span>
                       </div>

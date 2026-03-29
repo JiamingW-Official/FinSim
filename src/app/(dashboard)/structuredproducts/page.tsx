@@ -502,7 +502,7 @@ function AbsMbsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <MetricCard label="US ABS Market" value="$1.7T" sub="Outstanding (2025)" color="sky" />
@@ -526,7 +526,7 @@ function AbsMbsTab() {
       <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>ABS / MBS Asset Classes</SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Type", "Collateral", "Avg Life", "Prepay Risk", "Rating Range"].map(
@@ -838,7 +838,7 @@ function CmosTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <MetricCard label="CMO Market" value="$1.2T" sub="Agency CMO outstanding" color="sky" />
         <MetricCard label="IO Duration" value="Negative" sub="Price falls as rates fall" color="red" />
@@ -912,7 +912,7 @@ function CmosTab() {
       <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>CMBS: Conduit vs Single-Asset Single-Borrower (SASB)</SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 pr-3 text-foreground/40 font-medium">Feature</th>
@@ -1172,7 +1172,7 @@ function EquityNotesTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <MetricCard label="US Structured Notes" value="$80B" sub="Annual issuance (2025)" color="sky" />
         <MetricCard label="Typical Tenor" value="1–5 yr" sub="Most common 2–3 yr" color="emerald" />
@@ -1243,7 +1243,7 @@ function EquityNotesTab() {
                   {n.name}
                 </span>
                 <p className="text-xs text-foreground/60">{n.mechanics}</p>
-                <div className="flex gap-4 text-xs">
+                <div className="flex gap-4 text-xs text-muted-foreground">
                   <span className="text-emerald-400/70">Return: {n.participation}</span>
                   <span className="text-red-400/70">Risk: {n.risk}</span>
                 </div>
@@ -1257,7 +1257,7 @@ function EquityNotesTab() {
       <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Cost of Structuring (Typical)</SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 pr-3 text-foreground/40 font-medium">Cost Item</th>
@@ -1395,7 +1395,7 @@ function StructuredCreditTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <MetricCard label="CLO Market" value="$1.1T" sub="US outstanding (2025)" color="sky" />
         <MetricCard label="CLO AAA" value="SOFR+140" sub="Typical new-issue spread" color="emerald" />
@@ -1407,7 +1407,7 @@ function StructuredCreditTab() {
       <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>CDO vs CLO: Anatomy Comparison</SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 pr-3 text-foreground/40 font-medium">Feature</th>

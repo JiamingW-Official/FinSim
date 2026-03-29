@@ -506,7 +506,7 @@ function ComplexityBadge({ level }: { level: "Low" | "Medium" | "High" }) {
       ? "bg-yellow-900/40 text-yellow-400 border-yellow-700/50"
       : "bg-red-900/40 text-red-400 border-red-700/50";
   return (
-    <span className={`text-xs px-2 py-0.5 rounded border font-medium ${cls}`}>{level}</span>
+    <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium ${cls}`}>{level}</span>
   );
 }
 
@@ -574,7 +574,7 @@ export default function AlgoExecutionPage() {
   const implicitTotal = TC_DATA.filter((d) => d.type === "implicit").reduce((a, b) => a + b.bps, 0);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -822,7 +822,7 @@ export default function AlgoExecutionPage() {
                 </CardHeader>
                 <CardContent>
                   <TCBreakdownChart data={TC_DATA} />
-                  <div className="flex gap-4 mt-3 text-xs">
+                  <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
                     <div className="flex items-center gap-1.5">
                       <div className="w-3 h-3 rounded bg-primary/60" />
                       <span className="text-muted-foreground">Explicit: {explicitTotal.toFixed(1)} bps</span>
@@ -844,10 +844,10 @@ export default function AlgoExecutionPage() {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {TC_DATA.map((d) => (
-                    <div key={d.category} className="flex items-start gap-2 text-xs">
+                    <div key={d.category} className="flex items-start gap-2 text-xs text-muted-foreground">
                       <Badge
                         variant="outline"
-                        className={`flex-shrink-0 text-xs px-1.5 py-0 ${
+                        className={`flex-shrink-0 text-xs text-muted-foreground px-1.5 py-0 ${
                           d.type === "explicit"
                             ? "border-border text-primary"
                             : "border-yellow-700/50 text-yellow-400"
@@ -891,7 +891,7 @@ export default function AlgoExecutionPage() {
                     <CardTitle className="text-base font-medium">{selectedAlgoData.fullName}</CardTitle>
                     <div className="flex items-center gap-2">
                       <ComplexityBadge level={selectedAlgoData.complexity} />
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs text-muted-foreground">
                         {selectedAlgoData.typicalSlippage}
                       </Badge>
                     </div>
@@ -940,7 +940,7 @@ export default function AlgoExecutionPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left pb-2 text-muted-foreground font-medium">Algo</th>
@@ -986,7 +986,7 @@ export default function AlgoExecutionPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
                   {[
                     {
                       scenario: "Large order, passive mandate",
@@ -1054,7 +1054,7 @@ export default function AlgoExecutionPage() {
                 </CardHeader>
                 <CardContent>
                   <VenueChart data={venueData} />
-                  <div className="flex gap-3 mt-2 text-xs flex-wrap">
+                  <div className="flex gap-3 mt-2 text-xs text-muted-foreground flex-wrap">
                     {[
                       { type: "Exchange", color: "bg-primary/60" },
                       { type: "Dark Pool", color: "bg-primary/60" },
@@ -1079,7 +1079,7 @@ export default function AlgoExecutionPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left pb-2 text-muted-foreground font-medium">Venue</th>
@@ -1194,7 +1194,7 @@ export default function AlgoExecutionPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
                   {[
                     { step: "1", label: "Price Check", desc: "Find best bid/offer across all venues via NBBO sweep", color: "bg-primary" },
                     { step: "2", label: "Dark Sweep", desc: "Check dark pools for resting liquidity at midpoint", color: "bg-primary" },

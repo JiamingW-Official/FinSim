@@ -460,7 +460,7 @@ const CONTRACT_SPECS: ContractSpec[] = [
 
 function ChgBadge({ v, suffix = "%" }: { v: number; suffix?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-semibold tabular-nums", chgCls(v), chgBg(v))}>
+    <span className={cn("inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs text-muted-foreground font-semibold tabular-nums", chgCls(v), chgBg(v))}>
       {up(v) ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
       {up(v) ? "+" : ""}{v.toFixed(2)}{suffix}
     </span>
@@ -475,7 +475,7 @@ function DataRow({ label, value, valueClass }: { label: string; value: string | 
   return (
     <div className="flex justify-between items-center py-0.5">
       <span className="text-xs text-muted-foreground">{label}</span>
-      <span className={cn("text-xs font-medium tabular-nums", valueClass)}>{value}</span>
+      <span className={cn("text-xs text-muted-foreground font-medium tabular-nums", valueClass)}>{value}</span>
     </div>
   );
 }
@@ -503,7 +503,7 @@ function EquityFuturesTab() {
             key={r}
             onClick={() => setRegionFilter(r)}
             className={cn(
-              "rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors",
+              "rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground font-medium transition-colors",
               regionFilter === r
                 ? "border-primary bg-primary/10 text-primary"
                 : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground",
@@ -547,12 +547,12 @@ function EquityFuturesTab() {
                       </td>
                       <td className="px-3 py-2.5 text-xs text-muted-foreground max-w-[160px] truncate">{f.name}</td>
                       <td className="px-3 py-2.5">
-                        <Badge variant="outline" className="text-xs py-0">{f.region}</Badge>
+                        <Badge variant="outline" className="text-xs text-muted-foreground py-0">{f.region}</Badge>
                       </td>
-                      <td className="px-3 py-2.5 tabular-nums text-xs font-medium">{fmtPrice(f.spotPrice)}</td>
+                      <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground font-medium">{fmtPrice(f.spotPrice)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{fmtPrice(f.futuresPrice)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">{fmtPrice(f.fairValue)}</td>
-                      <td className="px-3 py-2.5 tabular-nums text-xs">
+                      <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">
                         <span className={cn("font-medium", chgCls(f.premium))}>
                           {up(f.premium) ? "+" : ""}{fmt(premPct, 3)}%
                         </span>
@@ -560,7 +560,7 @@ function EquityFuturesTab() {
                       <td className="px-3 py-2.5 text-xs text-muted-foreground tabular-nums">{fmtLarge(f.volume)}</td>
                       <td className="px-3 py-2.5 text-xs text-muted-foreground tabular-nums">{fmtLarge(f.oi)}</td>
                       <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.expiry}</td>
-                      <td className="px-3 py-2.5 text-xs tabular-nums">
+                      <td className="px-3 py-2.5 text-xs text-muted-foreground tabular-nums">
                         <span className="text-amber-400">{f.rollSpread > 0 ? "+" : ""}{f.rollSpread.toFixed(2)}</span>
                       </td>
                     </motion.tr>
@@ -585,7 +585,7 @@ function EquityFuturesTab() {
               <div key={f.symbol} className="rounded-lg border border-border bg-muted/20 p-2.5">
                 <div className="flex items-center justify-between mb-1">
                   <span className={cn("text-xs font-bold", regionColors[f.region] ?? "text-foreground")}>{f.symbol}</span>
-                  <Badge variant="outline" className="text-xs py-0">{f.expiry}</Badge>
+                  <Badge variant="outline" className="text-xs text-muted-foreground py-0">{f.expiry}</Badge>
                 </div>
                 <div className="text-xs text-muted-foreground">Roll spread</div>
                 <div className="text-sm font-medium tabular-nums text-amber-400">
@@ -623,9 +623,9 @@ function EquityFuturesTab() {
                   return (
                     <tr key={s.ticker} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
                       <td className="px-3 py-2.5 font-medium text-xs text-primary">{s.ticker}</td>
-                      <td className="px-3 py-2.5 tabular-nums text-xs font-medium">{fmtPrice(s.spotPrice)}</td>
+                      <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground font-medium">{fmtPrice(s.spotPrice)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{fmtPrice(s.futuresPrice)}</td>
-                      <td className="px-3 py-2.5 tabular-nums text-xs">
+                      <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">
                         <span className={cn("font-medium", chgCls(premPct))}>{up(premPct) ? "+" : ""}{premPct.toFixed(3)}%</span>
                       </td>
                       <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">{fmtLarge(s.volume)}</td>
@@ -689,10 +689,10 @@ function InterestRateFuturesTab() {
                     <td className="px-3 py-2.5 font-medium text-xs text-green-400">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.name}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{f.price.toFixed(3)}</td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs">
+                    <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">
                       <span className={chgCls(-f.yield_)}>{f.yield_.toFixed(3)}%</span>
                     </td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs">
+                    <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">
                       <ChgBadge v={f.change} suffix=" pts" />
                     </td>
                     <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">{f.duration.toFixed(1)}</td>
@@ -771,7 +771,7 @@ function InterestRateFuturesTab() {
         </CardHeader>
         <CardContent className="px-4 pb-4">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Meeting", "Implied Rate", "P(Hike)", "P(Hold)", "P(Cut)"].map((h) => (
@@ -827,11 +827,11 @@ function InterestRateFuturesTab() {
                     <td className="px-3 py-2.5 font-medium text-xs text-primary">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.name}</td>
                     <td className="px-3 py-2.5">
-                      <Badge variant="outline" className="text-xs py-0">{f.country}</Badge>
+                      <Badge variant="outline" className="text-xs text-muted-foreground py-0">{f.country}</Badge>
                     </td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs font-medium">{f.price.toFixed(3)}</td>
+                    <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground font-medium">{f.price.toFixed(3)}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs text-amber-400">{f.yield_.toFixed(3)}%</td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs">
+                    <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">
                       <ChgBadge v={f.change} suffix=" pts" />
                     </td>
                   </tr>
@@ -892,13 +892,13 @@ function CurrencyCryptoTab() {
                     <td className="px-3 py-2.5 font-medium text-xs text-primary">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs font-medium text-foreground">{f.pair}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{fmtPrice(f.price)}</td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs">
+                    <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">
                       <span className={chgCls(f.change)}>
                         {up(f.change) ? "+" : ""}{fmtPrice(Math.abs(f.change))}
                       </span>
                     </td>
                     <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">{fmtLarge(f.volume)}</td>
-                    <td className="px-3 py-2.5 tabular-nums text-xs">
+                    <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground">
                       <span className={cn("text-xs", f.rollCost < 0 ? "text-emerald-400" : "text-red-400")}>
                         {f.rollCost > 0 ? "+" : ""}{fmtPrice(f.rollCost)}
                       </span>
@@ -1056,7 +1056,7 @@ function VolatilityTab() {
         <Card className="bg-card border-border">
           <CardContent className="p-4">
             <div className="text-xs text-muted-foreground mb-1">VVIX (Vol of Vol)</div>
-            <div className={cn("text-2xl font-bold tabular-nums", vvix < 100 ? "text-emerald-400" : "text-amber-400")}>
+            <div className={cn("text-lg font-medium tabular-nums", vvix < 100 ? "text-emerald-400" : "text-amber-400")}>
               {vvix.toFixed(1)}
             </div>
             <div className="text-xs text-muted-foreground mt-0.5">VIX of VIX options</div>
@@ -1065,14 +1065,14 @@ function VolatilityTab() {
         <Card className="bg-card border-border">
           <CardContent className="p-4">
             <div className="text-xs text-muted-foreground mb-1">UVXY (2× VIX)</div>
-            <div className="text-2xl font-bold tabular-nums text-red-400">8.42</div>
+            <div className="text-lg font-medium tabular-nums text-red-400">8.42</div>
             <ChgBadge v={-3.2} />
           </CardContent>
         </Card>
         <Card className="bg-card border-border">
           <CardContent className="p-4">
             <div className="text-xs text-muted-foreground mb-1">SVIX (Short VIX)</div>
-            <div className="text-2xl font-bold tabular-nums text-emerald-400">42.18</div>
+            <div className="text-lg font-medium tabular-nums text-emerald-400">42.18</div>
             <ChgBadge v={1.4} />
           </CardContent>
         </Card>
@@ -1090,7 +1090,7 @@ function VolatilityTab() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border bg-muted/20">
                   {["Contract", "Price", "Chg", "OI"].map((h) => (
@@ -1155,7 +1155,7 @@ function VolatilityTab() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border bg-muted/20">
                   <th className="px-3 py-2 text-left font-medium text-muted-foreground" colSpan={2}>Call</th>
@@ -1207,7 +1207,7 @@ function VolatilityTab() {
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">Implied Variance (var vega × 10k)</div>
                   <Progress value={(v.impliedVar / 80)} className="h-2 mb-1" />
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Implied Vol: {v.impliedVol.toFixed(2)}%</span>
                     <span className="text-amber-400">{v.impliedVar.toFixed(1)} vv</span>
                   </div>
@@ -1215,7 +1215,7 @@ function VolatilityTab() {
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">Realized Variance</div>
                   <Progress value={(v.realizedVar / 80)} className="h-2 mb-1" />
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Realized Vol: {v.realizedVol.toFixed(2)}%</span>
                     <span className="text-emerald-400">{v.realizedVar.toFixed(1)} vv</span>
                   </div>
@@ -1332,7 +1332,7 @@ function MarginOrderTab() {
                 key={spec.symbol}
                 onClick={() => handleContractChange(spec)}
                 className={cn(
-                  "rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors",
+                  "rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground font-medium transition-colors",
                   selectedSpec.symbol === spec.symbol
                     ? "border-primary bg-primary/10 text-primary"
                     : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground",
@@ -1458,7 +1458,7 @@ function MarginOrderTab() {
                     key={amt}
                     onClick={() => setAccountSize(amt)}
                     className={cn(
-                      "rounded border px-2 py-0.5 text-xs font-medium transition-colors",
+                      "rounded border px-2 py-0.5 text-xs text-muted-foreground font-medium transition-colors",
                       accountSize === amt ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-primary/40",
                     )}
                   >
@@ -1467,14 +1467,14 @@ function MarginOrderTab() {
                 ))}
               </div>
             </div>
-            <Button size="sm" variant="outline" className="h-7 text-xs mt-4" onClick={addPosition}>
+            <Button size="sm" variant="outline" className="h-7 text-xs text-muted-foreground mt-4" onClick={addPosition}>
               + Add {selectedSpec.symbol}
             </Button>
           </div>
 
           {/* Margin progress */}
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Portfolio Margin Used</span>
               <span className={cn("font-medium", portfolioMarginPct > 80 ? "text-red-400" : portfolioMarginPct > 50 ? "text-amber-400" : "text-emerald-400")}>
                 ${portfolioMargin.toLocaleString()} / ${accountSize.toLocaleString()} ({portfolioMarginPct.toFixed(1)}%)
@@ -1498,7 +1498,7 @@ function MarginOrderTab() {
             </p>
           ) : (
             <div className="rounded-lg border border-border overflow-hidden">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border bg-muted/20">
                     {["Contract", "Qty", "Init Margin", "Maint Margin", "Margin Call @ Price", ""].map((h) => (
@@ -1635,7 +1635,7 @@ export default function FuturesPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 rounded px-3 py-1.5 text-xs font-medium flex-1 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              className="flex items-center gap-1.5 rounded px-3 py-1.5 text-xs font-medium flex-1 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:"
             >
               {t.icon}
               <span className="hidden sm:inline">{t.label}</span>

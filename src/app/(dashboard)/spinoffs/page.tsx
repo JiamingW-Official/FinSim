@@ -328,7 +328,7 @@ function SpinoffMechanicsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-foreground mb-1">Corporate Restructuring Methods</h2>
@@ -351,7 +351,7 @@ function SpinoffMechanicsTab() {
               <div className="flex items-center gap-3">
                 <span className={tx.color}>{tx.icon}</span>
                 <span className="font-semibold text-foreground">{tx.label}</span>
-                <span className={cn("text-xs px-2 py-0.5 rounded-full border", tx.bgColor, tx.borderColor, tx.color)}>
+                <span className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded-full border", tx.bgColor, tx.borderColor, tx.color)}>
                   {tx.taxTreatment.split("—")[0].trim()}
                 </span>
               </div>
@@ -896,18 +896,18 @@ function HistoricalPerformanceTab() {
         </div>
         <div className="rounded-md border border-border bg-primary/10 p-4 text-center">
           <div className="text-xs text-primary mb-1">Avg Parent 1Y Return</div>
-          <div className="text-2xl font-bold text-primary">+{avgParent1Y.toFixed(1)}%</div>
+          <div className="text-lg font-medium text-primary">+{avgParent1Y.toFixed(1)}%</div>
         </div>
         <div className="rounded-md border border-border bg-foreground/5 p-4 text-center">
           <div className="text-xs text-foreground/40 mb-1">Avg S&P 500 1Y</div>
-          <div className="text-2xl font-bold text-foreground">+{avgSP1Y.toFixed(1)}%</div>
+          <div className="text-lg font-medium text-foreground">+{avgSP1Y.toFixed(1)}%</div>
         </div>
       </div>
 
       {/* Table */}
       <div className="rounded-md border border-border bg-foreground/5 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-4 py-3 text-foreground/40 font-medium">Parent → SpinCo</th>
@@ -1162,7 +1162,7 @@ function InvestingStrategyTab() {
                     </ul>
                   </div>
                 </div>
-                <div className={cn("text-xs font-medium px-2 py-1 rounded-md inline-block", colorMap[strat.color], labelMap[strat.color])}>
+                <div className={cn("text-xs text-muted-foreground font-medium px-2 py-1 rounded-md inline-block", colorMap[strat.color], labelMap[strat.color])}>
                   Verdict: {strat.verdict}
                 </div>
               </div>

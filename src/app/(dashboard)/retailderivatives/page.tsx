@@ -287,7 +287,7 @@ function RiskBadge({ level }: { level: AlternativeProduct["riskLevel"] }) {
     High: "bg-orange-500/20 text-orange-400 border-orange-500/30",
     "Very High": "bg-red-500/20 text-red-400 border-red-500/30",
   };
-  return <span className={cn("px-2 py-0.5 rounded-full text-xs border font-medium", colors[level])}>{level}</span>;
+  return <span className={cn("px-2 py-0.5 rounded-full text-xs text-muted-foreground border font-medium", colors[level])}>{level}</span>;
 }
 
 // ─── Tab 1: Exchange-Traded Options ──────────────────────────────────────────
@@ -314,7 +314,7 @@ function ExchangeTradedOptionsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <InfoCard title="CBOE Daily Volume" value="~45M contracts" sub="All products combined" color="border-border bg-muted/50" />
@@ -389,7 +389,7 @@ function ExchangeTradedOptionsTab() {
                 key={f}
                 onClick={() => setFilterType(f)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-xs font-medium transition-colors",
+                  "px-3 py-1 rounded-full text-xs text-muted-foreground font-medium transition-colors",
                   filterType === f ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 )}
               >
@@ -399,7 +399,7 @@ function ExchangeTradedOptionsTab() {
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left px-4 py-2.5">Ticker</th>
@@ -428,7 +428,7 @@ function ExchangeTradedOptionsTab() {
                   <td className="px-4 py-2.5">
                     <span
                       className={cn(
-                        "px-2 py-0.5 rounded-full text-xs",
+                        "px-2 py-0.5 rounded-full text-xs text-muted-foreground",
                         row.type === "Equity" ? "bg-primary/20 text-primary" : row.type === "ETF" ? "bg-primary/20 text-primary" : "bg-emerald-500/20 text-emerald-400"
                       )}
                     >
@@ -586,7 +586,7 @@ function LeveragedETFsTab() {
   }, [selected]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Warning Banner */}
       <div className="rounded-md border border-red-500/40 bg-red-500/10 p-4 flex items-start gap-3">
         <AlertTriangle size={16} className="text-red-400 mt-0.5 flex-shrink-0" />
@@ -625,7 +625,7 @@ function LeveragedETFsTab() {
             <h3 className="text-base font-medium text-foreground">{selected.name}</h3>
             <p className="text-sm text-muted-foreground">{selected.ticker} · {selected.leverage > 0 ? "+" : ""}{selected.leverage}× Daily · {selected.underlying}</p>
           </div>
-          <div className="flex gap-3 text-xs">
+          <div className="flex gap-3 text-xs text-muted-foreground">
             <div className="text-center">
               <p className="text-muted-foreground">AUM</p>
               <p className="text-foreground font-medium">${selected.aum}B</p>
@@ -649,7 +649,7 @@ function LeveragedETFsTab() {
               key={d}
               onClick={() => setDays(d)}
               className={cn(
-                "px-2.5 py-1 rounded text-xs font-medium transition-colors",
+                "px-2.5 py-1 rounded text-xs text-muted-foreground font-medium transition-colors",
                 days === d ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
@@ -724,7 +724,7 @@ function LeveragedETFsTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div className="space-y-2 text-muted-foreground">
             <p>For a 2× daily leveraged ETF, over two days with +10% then −10%:</p>
-            <div className="rounded-lg bg-card p-3 font-mono text-xs space-y-1">
+            <div className="rounded-lg bg-card p-3 font-mono text-xs text-muted-foreground space-y-1">
               <p className="text-muted-foreground">// Underlying returns</p>
               <p>Day 1: +10% → 100 × 1.10 = <span className="text-foreground">110.00</span></p>
               <p>Day 2: −10% → 110 × 0.90 = <span className="text-foreground">99.00</span></p>
@@ -737,7 +737,7 @@ function LeveragedETFsTab() {
           </div>
           <div className="space-y-2">
             <p className="text-muted-foreground text-sm">Key formula: Daily compounding introduces negative convexity proportional to variance:</p>
-            <div className="rounded-lg bg-card p-3 font-mono text-xs">
+            <div className="rounded-lg bg-card p-3 font-mono text-xs text-muted-foreground">
               <p className="text-muted-foreground">// Annual decay approximation</p>
               <p className="text-foreground">{"decay ≈ −0.5 × (L² − L) × σ²"}</p>
               <p className="text-muted-foreground mt-1">L = leverage, σ = daily vol</p>
@@ -767,7 +767,7 @@ function StructuredNotesTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
@@ -812,7 +812,7 @@ function StructuredNotesTab() {
               key={f}
               onClick={() => setFilterType(f)}
               className={cn(
-                "px-3 py-1 rounded-full text-xs font-medium transition-colors",
+                "px-3 py-1 rounded-full text-xs text-muted-foreground font-medium transition-colors",
                 filterType === f ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
@@ -821,7 +821,7 @@ function StructuredNotesTab() {
           ))}
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left px-4 py-2.5">ID</th>
@@ -852,7 +852,7 @@ function StructuredNotesTab() {
                   <td className="px-4 py-2.5 font-mono text-muted-foreground">{note.id}</td>
                   <td className="px-4 py-2.5 text-foreground max-w-[200px] truncate">{note.name}</td>
                   <td className="px-4 py-2.5">
-                    <span className={cn("px-2 py-0.5 rounded-full text-xs border", typeColors[note.type])}>
+                    <span className={cn("px-2 py-0.5 rounded-full text-xs text-muted-foreground border", typeColors[note.type])}>
                       {note.type === "Principal-Protected" ? "PP" : note.type === "Leveraged" ? "Lev" : "RevCon"}
                     </span>
                   </td>
@@ -887,7 +887,7 @@ function StructuredNotesTab() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div className="space-y-2">
                 <p className="text-muted-foreground">Embedded Option Decomposition</p>
-                <div className="rounded-lg bg-card p-3 text-xs space-y-1.5 font-mono">
+                <div className="rounded-lg bg-card p-3 text-xs text-muted-foreground space-y-1.5 font-mono">
                   <p className="text-muted-foreground">// Structural decomposition</p>
                   <p className="text-foreground">Option leg: <span className="text-primary">{selected.embeddedOption}</span></p>
                   <p className="text-foreground">Funding: <span className="text-muted-foreground">ZCB + note issuance proceeds</span></p>
@@ -942,7 +942,7 @@ function WarrantsRightsTab() {
   const [expandDiff, setExpandDiff] = useState(false);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <InfoCard title="Typical Term" value="3–7 years" sub="Longer than listed options" color="border-border bg-muted/50" />
@@ -957,7 +957,7 @@ function WarrantsRightsTab() {
           <h3 className="text-sm font-medium text-foreground">Sample Warrant Universe</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left px-4 py-2.5">Company</th>
@@ -1004,7 +1004,7 @@ function WarrantsRightsTab() {
           <DollarSign size={15} className="text-emerald-400" /> Dilution Impact: How Warrants Affect Existing Shareholders
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-          <div className="rounded-lg bg-card p-4 space-y-2 font-mono text-xs">
+          <div className="rounded-lg bg-card p-4 space-y-2 font-mono text-xs text-muted-foreground">
             <p className="text-muted-foreground">// Example: 100M shares outstanding</p>
             <p className="text-foreground">{"Pre-exercise shares:  100,000,000"}</p>
             <p className="text-foreground">{"Warrants outstanding:  15,000,000"}</p>
@@ -1018,7 +1018,7 @@ function WarrantsRightsTab() {
           </div>
           <div className="space-y-3 text-sm text-muted-foreground">
             <p>Warrants are <span className="text-foreground font-medium">company-issued</span> — unlike listed options which are contracts between investors. When exercised, new shares are created, diluting existing holders.</p>
-            <div className="space-y-1.5 text-xs">
+            <div className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 ["Issued by", "Warrant: Company | Option: Exchange/counterparty"],
                 ["New shares created", "Warrant: Yes (dilutive) | Option: No"],
@@ -1058,7 +1058,7 @@ function WarrantsRightsTab() {
             >
               <div className="px-4 pb-4 space-y-3 text-sm">
                 <p className="text-muted-foreground">Subscription rights give existing shareholders the right to buy new shares at a discount to market price. They typically expire in 2–4 weeks and are tradable on exchanges during that window.</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
                   {[
                     { title: "Standby Rights", desc: "Underwriter commits to purchasing all unsubscribed shares. Reduces risk for the issuer.", color: "border-emerald-500/30" },
                     { title: "Renounceable Rights", desc: "Shareholders can sell their rights on the open market. Valuable if subscription price is below market.", color: "border-border" },
@@ -1096,7 +1096,7 @@ function RetailAlternativesTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Info Banner */}
       <div className="rounded-md border border-border bg-primary/5 p-4 flex items-start gap-3">
         <Info size={16} className="text-primary mt-0.5 flex-shrink-0" />
@@ -1107,7 +1107,7 @@ function RetailAlternativesTab() {
       </div>
 
       {/* Structure Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs text-muted-foreground">
         {([
           { type: "Interval Fund", desc: "Registered closed-end fund. Quarterly redemptions (typically 5%). Daily NAV.", access: "All investors", icon: <Layers size={13} />, color: "border-primary/40" },
           { type: "Non-Traded REIT", desc: "Real estate income. Monthly/quarterly liquidity. SEC-registered.", access: "All investors", icon: <BarChart2 size={13} />, color: "border-primary/40" },
@@ -1134,7 +1134,7 @@ function RetailAlternativesTab() {
               key={f}
               onClick={() => setFilterType(f)}
               className={cn(
-                "px-3 py-1 rounded-full text-xs font-medium transition-colors",
+                "px-3 py-1 rounded-full text-xs text-muted-foreground font-medium transition-colors",
                 filterType === f ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
@@ -1143,7 +1143,7 @@ function RetailAlternativesTab() {
           ))}
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left px-4 py-2.5">Name</th>
@@ -1171,7 +1171,7 @@ function RetailAlternativesTab() {
                     <p className="truncate">{p.name}</p>
                   </td>
                   <td className="px-4 py-2.5">
-                    <span className={cn("px-2 py-0.5 rounded-full text-xs", typeColors[p.type])}>
+                    <span className={cn("px-2 py-0.5 rounded-full text-xs text-muted-foreground", typeColors[p.type])}>
                       {p.type}
                     </span>
                   </td>
@@ -1228,7 +1228,7 @@ function RetailAlternativesTab() {
               className="overflow-hidden"
             >
               <div className="px-4 pb-4 space-y-4 text-sm">
-                <div className="rounded-lg bg-card p-3 text-xs">
+                <div className="rounded-lg bg-card p-3 text-xs text-muted-foreground">
                   <p className="text-muted-foreground mb-2">Current SEC Definition (as of 2023 updates):</p>
                   <p className="text-foreground">Income {">"} $200K/yr (individual) or $300K (joint) for 2+ years, OR net worth {">"} $1M (excl. primary residence), OR certain professional certifications (Series 7/65/82)</p>
                 </div>
@@ -1282,7 +1282,7 @@ function RetailAlternativesTab() {
           <Users size={15} className="text-amber-400" /> Crowdfunding Limits (Reg CF vs Reg A+)
         </h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 pr-4">Feature</th>
@@ -1319,7 +1319,7 @@ function RetailAlternativesTab() {
 export default function RetailDerivativesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

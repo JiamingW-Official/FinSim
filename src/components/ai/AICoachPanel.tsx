@@ -165,7 +165,7 @@ function ScoreGauge({ score, bias }: { score: number; bias: string }) {
 
       {/* Label + context */}
       <div className="flex-1 min-w-0 space-y-0.5">
-        <div className={cn("text-[11px] font-bold leading-none", textColor)}>{label}</div>
+        <div className={cn("text-[11px] font-semibold leading-none", textColor)}>{label}</div>
         <div className="text-[10px] text-muted-foreground">Composite: {score > 0 ? "+" : ""}{score} / 100</div>
       </div>
     </div>
@@ -488,7 +488,7 @@ function MultiTimeframePanel({ barIndex, bias }: { barIndex: number; bias: strin
       className="rounded-md border border-border/40 bg-background/30 px-2 py-2 space-y-1.5"
     >
       <div className="flex items-center justify-between">
-        <div className="text-[11px] font-bold text-foreground/50">
+        <div className="text-[11px] font-medium text-foreground/50">
           Multi-TF Confluence
         </div>
         <span className={cn("text-[11px] font-bold", confluenceColor)}>
@@ -586,7 +586,7 @@ function StrategyConfidenceMeter({ result, currentPrice }: { result: AnalysisRes
       className="rounded-md border border-border/40 bg-background/30 px-2 py-2 space-y-1"
     >
       <div className="flex items-center justify-between">
-        <div className="text-[11px] font-bold text-foreground/50">
+        <div className="text-[11px] font-medium text-foreground/50">
           Confidence Check
         </div>
         <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none", badgeColor)}>
@@ -595,7 +595,7 @@ function StrategyConfidenceMeter({ result, currentPrice }: { result: AnalysisRes
       </div>
       <div className="grid grid-cols-1 gap-0.5">
         {factors.map((f) => (
-          <div key={f.label} className="flex items-center gap-1.5 text-[8.5px]">
+          <div key={f.label} className="flex items-center gap-1.5 text-[10px]">
             <span className={f.met ? "text-emerald-400" : "text-muted-foreground/40"}>
               {f.met ? "✓" : "✗"}
             </span>
@@ -641,7 +641,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
     <div
       className="rounded-md border border-border/40 bg-muted/30 px-2 py-2 space-y-1"
     >
-      <div className="text-[11px] font-bold text-foreground/50">
+      <div className="text-[11px] font-medium text-foreground/50">
         Suggested Plan
       </div>
       <div className="text-[11px] text-muted-foreground/50 -mt-0.5">
@@ -688,7 +688,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
 
       {/* Position Sizing */}
       <div className="border-t border-border/30 pt-1 space-y-0.5">
-        <div className="text-[11px] font-bold text-foreground/40">
+        <div className="text-[11px] font-medium text-foreground/40">
           Position Sizing (2% risk)
         </div>
         <div className="flex justify-between text-[11px]">
@@ -705,7 +705,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
         </div>
       </div>
 
-      <p className="text-[8.5px] text-muted-foreground/60 leading-tight border-t border-border/30 pt-1">
+      <p className="text-[10px] text-muted-foreground/60 leading-tight border-t border-border/30 pt-1">
         {plan.rationale}
       </p>
     </div>
@@ -794,7 +794,7 @@ function LivePositionCoach({
       )}
     >
       <div className="flex items-center justify-between">
-        <span className="text-[11px] font-bold text-foreground/50">
+        <span className="text-[11px] font-medium text-foreground/50">
           Live Position
         </span>
         <span
@@ -813,7 +813,7 @@ function LivePositionCoach({
           <span className="font-mono text-amber-400">${atrTrailingStop.toFixed(2)}</span>
         </div>
       )}
-      <p className="text-[8.5px] text-muted-foreground/80 leading-tight">{alignmentMsg}</p>
+      <p className="text-[10px] text-muted-foreground/80 leading-tight">{alignmentMsg}</p>
     </div>
   );
 }
@@ -1178,7 +1178,7 @@ export function AICoachPanel() {
                     }}
                     title={m.desc}
                     className={cn(
-                      "flex-1 rounded px-1 py-1 text-[8.5px] font-bold transition-all leading-tight min-w-0",
+                      "flex-1 rounded px-1 py-1 text-[10px] font-semibold transition-all leading-tight min-w-0",
                       mode === m.value
                         ? "bg-primary/15 text-primary border border-primary/30"
                         : "text-muted-foreground hover:text-foreground hover:bg-accent border border-transparent",

@@ -109,7 +109,7 @@ function SliderRow({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <div className="flex justify-between text-xs">
+      <div className="flex justify-between text-xs text-muted-foreground">
         <span className="text-muted-foreground">{label}</span>
         <span className="text-foreground font-mono">{format(value)}</span>
       </div>
@@ -173,8 +173,8 @@ function BSLab() {
   const cellW = W / 11, cellH = H / 11;
 
   return (
-    <div className="flex flex-col gap-6 p-4">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div className="flex flex-col gap-3 p-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Sliders */}
         <div className="lg:col-span-1 bg-card rounded-md border border-border p-4 flex flex-col gap-4">
           <h3 className="text-sm font-semibold text-muted-foreground">Parameters</h3>
@@ -324,7 +324,7 @@ function BinomialTree() {
   };
 
   return (
-    <div className="flex flex-col gap-6 p-4">
+    <div className="flex flex-col gap-3 p-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-1 bg-card rounded-md border border-border p-4 flex flex-col gap-4">
           <h3 className="text-sm font-medium text-muted-foreground">Parameters (N=4 steps)</h3>
@@ -342,7 +342,7 @@ function BinomialTree() {
           <div className="flex gap-2 mt-2">
             {(["call", "put"] as const).map(t => (
               <button key={t} onClick={() => setOptType(t)}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                className={`flex-1 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-colors ${
                   optType === t ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 }`}>
                 {t.toUpperCase()}
@@ -499,7 +499,7 @@ function MonteCarlo() {
   const maxHist = Math.max(...hist);
 
   return (
-    <div className="flex flex-col gap-6 p-4">
+    <div className="flex flex-col gap-3 p-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-1 bg-card rounded-md border border-border p-4 flex flex-col gap-4">
           <h3 className="text-sm font-medium text-muted-foreground">Parameters (100 paths)</h3>
@@ -516,7 +516,7 @@ function MonteCarlo() {
           <div className="flex gap-2">
             {(["call", "put"] as const).map(t => (
               <button key={t} onClick={() => setOptType(t)}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                className={`flex-1 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-colors ${
                   optType === t ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 }`}>
                 {t.toUpperCase()}
@@ -538,7 +538,7 @@ function MonteCarlo() {
           {/* Convergence table */}
           <div className="mt-2">
             <div className="text-xs text-muted-foreground mb-2">Convergence vs # Paths</div>
-            <table className="w-full text-xs font-mono">
+            <table className="w-full text-xs text-muted-foreground font-mono">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left pb-1 text-muted-foreground">N</th>
@@ -698,7 +698,7 @@ function ExoticOptions() {
   ];
 
   return (
-    <div className="flex flex-col gap-6 p-4">
+    <div className="flex flex-col gap-3 p-4">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div className="bg-card rounded-md border border-border p-4 flex flex-col gap-4">
           <h3 className="text-sm font-medium text-muted-foreground">Parameters (MC 2000 paths)</h3>
@@ -738,7 +738,7 @@ function ExoticOptions() {
                       <td className="py-2 text-foreground text-xs font-medium">{row.name}</td>
                       <td className="py-2 text-muted-foreground font-mono text-xs">{row.formula}</td>
                       <td className="py-2 text-right font-mono font-medium text-foreground">${row.price.toFixed(4)}</td>
-                      <td className="py-2 text-right font-mono text-xs">
+                      <td className="py-2 text-right font-mono text-xs text-muted-foreground">
                         {diff !== null ? (
                           <span className={diff >= 0 ? "text-amber-400" : "text-emerald-400"}>
                             {diff >= 0 ? "+" : ""}{diff.toFixed(4)}
@@ -839,7 +839,7 @@ function InterestRateModels() {
   const colors = ["#6366f1", "#34d399", "#f59e0b", "#f87171", "#a78bfa", "#38bdf8", "#fb923c", "#4ade80"];
 
   return (
-    <div className="flex flex-col gap-6 p-4">
+    <div className="flex flex-col gap-3 p-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="bg-card rounded-md border border-border p-4 flex flex-col gap-4">
           <h3 className="text-sm font-medium text-muted-foreground">Vasicek Model Parameters</h3>
@@ -973,19 +973,19 @@ export default function DerivativesPricingPage() {
         {/* Tabs */}
         <Tabs defaultValue="bs" className="w-full mt-8">
           <TabsList className="bg-card border border-border mb-4 flex flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="bs" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="bs" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <FlaskConical className="w-3.5 h-3.5" />Black-Scholes Lab
             </TabsTrigger>
-            <TabsTrigger value="binomial" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="binomial" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <GitBranch className="w-3.5 h-3.5" />Binomial Tree
             </TabsTrigger>
-            <TabsTrigger value="mc" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="mc" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <BarChart2 className="w-3.5 h-3.5" />Monte Carlo
             </TabsTrigger>
-            <TabsTrigger value="exotic" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="exotic" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Layers className="w-3.5 h-3.5" />Exotic Options
             </TabsTrigger>
-            <TabsTrigger value="rates" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="rates" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <TrendingUp className="w-3.5 h-3.5" />Interest Rate Models
             </TabsTrigger>
           </TabsList>

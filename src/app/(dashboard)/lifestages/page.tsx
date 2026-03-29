@@ -287,7 +287,7 @@ function ChecklistCard({ items }: { items: ChecklistItem[] }) {
     <Card className="p-4 bg-card border-border">
       <div className="flex items-center justify-between mb-3">
         <p className="font-semibold text-sm text-foreground">Action Checklist</p>
-        <Badge variant="outline" className="text-xs">
+        <Badge variant="outline" className="text-xs text-muted-foreground">
           {checked.size}/{items.length}
         </Badge>
       </div>
@@ -321,7 +321,7 @@ function ChecklistCard({ items }: { items: ChecklistItem[] }) {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-xs shrink-0",
+                    "text-xs text-muted-foreground shrink-0",
                     item.priority === "high" && "border-red-500/40 text-red-400",
                     item.priority === "medium" && "border-amber-500/40 text-amber-400",
                     item.priority === "low" && "border-green-500/40 text-green-400"
@@ -427,7 +427,7 @@ function Tab20s() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="space-y-6"
+      className="space-y-4"
     >
       <SectionHeader
         icon={<GraduationCap className="w-6 h-6" />}
@@ -439,7 +439,7 @@ function Tab20s() {
       {/* sliders */}
       <Card className="p-5 bg-card border-border">
         <p className="font-semibold text-sm mb-4 text-foreground">Your Situation</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Annual Salary</label>
@@ -640,7 +640,7 @@ function Tab30s() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="space-y-6"
+      className="space-y-4"
     >
       <SectionHeader
         icon={<Home className="w-6 h-6" />}
@@ -651,7 +651,7 @@ function Tab30s() {
 
       <Card className="p-5 bg-card border-border">
         <p className="font-medium text-sm mb-4 text-foreground">Rent vs. Buy Calculator</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Home Price</label>
@@ -808,7 +808,7 @@ function Tab40s() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="space-y-6"
+      className="space-y-4"
     >
       <SectionHeader
         icon={<Briefcase className="w-6 h-6" />}
@@ -819,7 +819,7 @@ function Tab40s() {
 
       <Card className="p-5 bg-card border-border">
         <p className="font-medium text-sm mb-4 text-foreground">Your Financial Inputs</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Annual Salary</label>
@@ -1000,7 +1000,7 @@ function Tab50s() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="space-y-6"
+      className="space-y-4"
     >
       <SectionHeader
         icon={<Calendar className="w-6 h-6" />}
@@ -1011,7 +1011,7 @@ function Tab50s() {
 
       <Card className="p-5 bg-card border-border">
         <p className="font-medium text-sm mb-4 text-foreground">Retirement Planning Inputs</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Current Portfolio</label>
@@ -1193,7 +1193,7 @@ function Tab60s() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="space-y-6"
+      className="space-y-4"
     >
       <SectionHeader
         icon={<TreePine className="w-6 h-6" />}
@@ -1204,7 +1204,7 @@ function Tab60s() {
 
       <Card className="p-5 bg-card border-border">
         <p className="font-medium text-sm mb-4 text-foreground">Retirement Income Inputs</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Portfolio at Retirement</label>
@@ -1348,8 +1348,8 @@ export default function LifeStagesPage() {
   const [tab, setTab] = useState("20s");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      <div className="max-w-5xl mx-auto space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+      <div className="max-w-5xl mx-auto space-y-4">
         {/* Header */}
         <div>
           <h1 className="text-2xl font-bold text-foreground">Life-Stage Financial Planning</h1>
@@ -1374,8 +1374,8 @@ export default function LifeStagesPage() {
               <div className="w-8 h-8 rounded-full bg-current/10 flex items-center justify-center opacity-80">
                 {t.icon}
               </div>
-              <span className="text-xs font-medium">{t.label}</span>
-              <span className="text-xs opacity-70 hidden sm:block">{t.subtitle}</span>
+              <span className="text-xs text-muted-foreground font-medium">{t.label}</span>
+              <span className="text-xs text-muted-foreground opacity-70 hidden sm:block">{t.subtitle}</span>
               {i < TABS.length - 1 && (
                 <div className="hidden" />
               )}

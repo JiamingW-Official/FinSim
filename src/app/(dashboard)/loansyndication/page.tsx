@@ -507,7 +507,7 @@ function PipelineTab() {
   const activeDealCount = SYNDICATION_DEALS.filter((d) => d.status === "Active" || d.status === "Pricing").length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard icon={Briefcase} label="Total Pipeline" value={fmtM(totalPipeline)} sub="across 5 deals" color="text-primary" />
         <StatCard icon={Star} label="Bookrunning" value={`${bookrunningCount} deals`} sub="lead arranger" color="text-primary" />
@@ -542,8 +542,8 @@ function PipelineTab() {
                       </div>
                       <div className="flex items-center gap-2 shrink-0 ml-4">
                         <span className="text-sm font-semibold text-foreground">{fmtM(deal.sizeM)}</span>
-                        <Badge className={`text-xs px-2 py-0.5 border ${roleColor(deal.role)}`}>{deal.role}</Badge>
-                        <Badge className={`text-xs px-2 py-0.5 border ${statusColor(deal.status)}`}>{deal.status}</Badge>
+                        <Badge className={`text-xs text-muted-foreground px-2 py-0.5 border ${roleColor(deal.role)}`}>{deal.role}</Badge>
+                        <Badge className={`text-xs text-muted-foreground px-2 py-0.5 border ${statusColor(deal.status)}`}>{deal.status}</Badge>
                         {expanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                       </div>
                     </div>
@@ -653,7 +653,7 @@ function BookBuildingTab() {
   const scaledCount = investors.filter((i) => i.scaled).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Deal Selector */}
       <Card className="bg-card border-border">
         <CardContent className="pt-4">
@@ -772,7 +772,7 @@ function PricingGridTab() {
   const maxSpread = Math.max(...PRICING_GRID.map((t) => t.spreadBps));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Interactive selector */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -926,7 +926,7 @@ function SecondaryMarketTab() {
   const avgYtm = SECONDARY_LOANS.reduce((a, l) => a + l.ytm, 0) / SECONDARY_LOANS.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard icon={BarChart3} label="Loans Tracked" value="6" sub="secondary trades" color="text-primary" />
         <StatCard icon={AlertTriangle} label="Distressed" value={`${distressedCount} loans`} sub="< 90 pts" color="text-red-400" />
@@ -1042,7 +1042,7 @@ function CovenantTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-3 gap-4">
         <StatCard icon={AlertTriangle} label="High Risk Gaps" value={`${riskCounts.High}`} sub="cov-lite vs full" color="text-red-400" />
         <StatCard icon={Shield} label="Medium Risk" value={`${riskCounts.Medium}`} sub="partial protections" color="text-amber-400" />
@@ -1087,7 +1087,7 @@ function CovenantTab() {
                       onClick={() => setExpandedRow(isExpanded ? null : COVENANT_COMPARISONS.indexOf(cov))}
                     >
                       <div className="flex items-center gap-3">
-                        <span className={`text-xs font-medium px-2 py-0.5 rounded ${
+                        <span className={`text-xs text-muted-foreground font-medium px-2 py-0.5 rounded ${
                           cov.riskLevel === "High" ? "bg-red-500/20 text-red-400"
                             : cov.riskLevel === "Medium" ? "bg-amber-500/20 text-amber-400"
                             : "bg-emerald-500/20 text-emerald-400"
@@ -1134,7 +1134,7 @@ function LeagueTableTab() {
   const totalDeals = LEAGUE_TABLE.reduce((a, e) => a + e.deals, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <StatCard icon={Building2} label="Top 8 Arrangers" value="$2.31T" sub="combined volume" color="text-primary" />
         <StatCard icon={Award} label="Total Deals" value={`${totalDeals.toLocaleString()}`} sub="LTM syndicated" color="text-primary" />
@@ -1194,7 +1194,7 @@ function LeagueTableTab() {
                     <td className="py-3 pr-4 text-right font-medium text-foreground">{entry.volumeB.toFixed(1)}</td>
                     <td className="py-3 pr-4 text-right text-muted-foreground">{entry.sharePercent}%</td>
                     <td className="py-3 text-right">
-                      <span className={`text-xs font-medium flex items-center justify-end gap-0.5 ${
+                      <span className={`text-xs text-muted-foreground font-medium flex items-center justify-end gap-0.5 ${
                         entry.yoyChange >= 0 ? "text-emerald-400" : "text-red-400"
                       }`}>
                         {entry.yoyChange >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
@@ -1219,7 +1219,7 @@ function LeagueTableTab() {
           )}
 
           {/* SVG donut-style market share visualization */}
-          <div className="mt-6 flex items-center gap-6">
+          <div className="mt-6 flex items-center gap-3">
             <div className="shrink-0">
               <svg width="120" height="120" viewBox="0 0 120 120">
                 {(() => {
@@ -1273,7 +1273,7 @@ export default function LoanSyndicationPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-background text-foreground p-4 md:p-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-4"
     >
       {/* Header */}
       <div className="mb-6">
@@ -1281,7 +1281,7 @@ export default function LoanSyndicationPage() {
           <div className="p-2 rounded-lg bg-primary/10">
             <Briefcase className="w-5 h-5 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Loan Syndication & Leveraged Finance</h1>
+          <h1 className="text-lg font-medium text-foreground">Loan Syndication & Leveraged Finance</h1>
         </div>
         <p className="text-sm text-muted-foreground ml-12">
           Primary syndication pipeline, book building, pricing grids, secondary trading and covenant analysis.

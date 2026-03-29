@@ -178,7 +178,7 @@ function StructureTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Dual Recourse Diagram */}
       <SectionCard title="Dual Recourse Structure" icon={<Shield size={16} />}>
         <div className="relative w-full overflow-x-auto">
@@ -250,7 +250,7 @@ function StructureTab() {
               <div className="w-16 text-xs text-muted-foreground shrink-0">LTV {d.ltv}</div>
               <div className="w-20 text-right">
                 <span className={cn(
-                  "text-xs px-2 py-0.5 rounded",
+                  "text-xs text-muted-foreground px-2 py-0.5 rounded",
                   d.risk === "Low" ? "bg-green-500/10 text-green-400" :
                     d.risk === "Low–Medium" ? "bg-amber-500/10 text-amber-400" :
                       "bg-orange-500/10 text-orange-400"
@@ -383,7 +383,7 @@ function FrameworksTab() {
   const selectedFw = frameworks.find((f) => f.id === selected);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* ECBD Overview */}
       <SectionCard title="European Covered Bond Directive (ECBD) 2019/2162" icon={<Globe size={16} />}>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -530,7 +530,7 @@ function MarketDataTab() {
   const sPath = toPath(spreadPoints.map((p) => ({ x: p.sX, y: p.sY })));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <InfoChip label="Global Outstanding" value="~€3.2tn" color="blue" />
@@ -676,11 +676,11 @@ function ABSComparisonTab() {
   ] as const;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 12-factor comparison table */}
       <SectionCard title="12-Factor Comparison: Covered Bonds vs ABS" icon={<BarChart3 size={16} />}>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left text-muted-foreground font-medium pb-2 pr-4">Factor</th>
@@ -773,7 +773,7 @@ function ABSComparisonTab() {
               { instrument: "Mezz ABS (AA)", rw: "50%", lcr: "Not eligible", capital: "High" },
               { instrument: "Sub ABS (BB)", rw: "100%+", lcr: "Not eligible", capital: "Very High" },
             ].map((row) => (
-              <div key={row.instrument} className="flex items-center justify-between p-2 bg-muted rounded-lg text-xs">
+              <div key={row.instrument} className="flex items-center justify-between p-2 bg-muted rounded-lg text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{row.instrument}</span>
                 <div className="flex gap-2">
                   <span className="text-amber-400 font-mono">RW {row.rw}</span>
@@ -829,7 +829,7 @@ export default function CoveredBondsPage() {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
@@ -851,7 +851,7 @@ export default function CoveredBondsPage() {
             { label: "Bail-in", value: "Exempt (BRRD)", color: "text-amber-400" },
             { label: "LCR", value: "Level 1B HQLA", color: "text-muted-foreground" },
           ].map(({ label, value, color }) => (
-            <div key={label} className="flex items-center gap-1.5 bg-card border border-border rounded-lg px-3 py-1.5 text-xs">
+            <div key={label} className="flex items-center gap-1.5 bg-card border border-border rounded-lg px-3 py-1.5 text-xs text-muted-foreground">
               <span className="text-muted-foreground">{label}:</span>
               <span className={cn("font-medium", color)}>{value}</span>
             </div>

@@ -88,7 +88,7 @@ function InfoBox({
     violet: "bg-primary/10 border-border text-primary",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -272,7 +272,7 @@ function RegionalHNWIChart() {
 function ClientSegmentationTab() {
   const [selectedSeg, setSelectedSeg] = useState<number | null>(null);
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="Global HNWI Count" value="22.8M" sub="$1M+ investable assets" />
         <StatCard label="Total HNWI Wealth" value="$86T" sub="2024 estimate" highlight="pos" />
@@ -280,7 +280,7 @@ function ClientSegmentationTab() {
         <StatCard label="UHNW Individuals" value="220K" sub="$100M+ globally" />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Layers size={14} /> Wealth Pyramid
@@ -292,7 +292,7 @@ function ClientSegmentationTab() {
                 key={seg.label}
                 onClick={() => setSelectedSeg(selectedSeg === i ? null : i)}
                 className={cn(
-                  "w-full text-left rounded-lg border p-2 text-xs transition-colors",
+                  "w-full text-left rounded-lg border p-2 text-xs text-muted-foreground transition-colors",
                   selectedSeg === i
                     ? "border-foreground/30 bg-foreground/10"
                     : "border-border/50 bg-foreground/[0.03] hover:bg-muted/30"
@@ -338,7 +338,7 @@ function ClientSegmentationTab() {
                 <div key={g.goal} className="flex items-center gap-3">
                   <g.icon size={14} className={g.color} />
                   <div className="flex-1">
-                    <div className="flex justify-between text-xs mb-0.5">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                       <span className="text-muted-foreground">{g.goal}</span>
                       <span className="text-muted-foreground">{g.pct}%</span>
                     </div>
@@ -378,7 +378,7 @@ function ClientSegmentationTab() {
             <div
               key={b.bias}
               className={cn(
-                "rounded-lg border p-3 text-xs",
+                "rounded-lg border p-3 text-xs text-muted-foreground",
                 b.color === "rose"
                   ? "border-rose-500/30 bg-rose-500/10"
                   : b.color === "amber"
@@ -390,7 +390,7 @@ function ClientSegmentationTab() {
                 <span className="font-semibold text-foreground">{b.bias}</span>
                 <Badge
                   className={cn(
-                    "text-xs px-1.5 py-0",
+                    "text-xs text-muted-foreground px-1.5 py-0",
                     b.color === "rose"
                       ? "bg-rose-500/20 text-rose-300"
                       : b.color === "amber"
@@ -625,7 +625,7 @@ function MonteCarloSVG() {
 
 function FinancialPlanningTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="4% Rule Success Rate" value="95%" sub="30-yr horizon, balanced" highlight="pos" />
         <StatCard label="Human Capital (Age 30)" value="~$2.4M" sub="PV of future earnings" />
@@ -633,7 +633,7 @@ function FinancialPlanningTab() {
         <StatCard label="Life Insurance Need" value="10–12×" sub="Annual income multiplier" />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <CheckCircle size={14} /> CFP® 6-Step Financial Planning Process
@@ -641,7 +641,7 @@ function FinancialPlanningTab() {
           <CFPProcessSVG />
           <div className="space-y-2 mt-2">
             {CFP_STEPS.map((step) => (
-              <div key={step.step} className="flex gap-2 text-xs">
+              <div key={step.step} className="flex gap-2 text-xs text-muted-foreground">
                 <span
                   className="w-5 h-5 rounded-full flex items-center justify-center text-foreground font-bold text-xs flex-shrink-0"
                   style={{ backgroundColor: step.color }}
@@ -664,7 +664,7 @@ function FinancialPlanningTab() {
             </SectionTitle>
             <p className="text-xs text-muted-foreground mb-2">$1M portfolio, $40K/yr withdrawal, 30-year horizon</p>
             <MonteCarloSVG />
-            <div className="grid grid-cols-3 gap-2 mt-2 text-xs text-center">
+            <div className="grid grid-cols-3 gap-2 mt-2 text-xs text-muted-foreground text-center">
               <div className="rounded bg-rose-500/10 border border-rose-500/20 p-1.5">
                 <div className="text-rose-400 font-medium">10th Pct</div>
                 <div className="text-muted-foreground">Bear scenario</div>
@@ -686,7 +686,7 @@ function FinancialPlanningTab() {
             </SectionTitle>
             <div className="space-y-2">
               {TAX_ALPHA_SOURCES.map((t) => (
-                <div key={t.source} className="flex items-center gap-2 text-xs">
+                <div key={t.source} className="flex items-center gap-2 text-xs text-muted-foreground">
                   <div className="w-24 text-muted-foreground flex-shrink-0">{t.source}</div>
                   <div className="flex-1">
                     <div className="h-1.5 rounded-full bg-foreground/10">
@@ -931,7 +931,7 @@ function AssetAllocationTab() {
   const [selectedProfile, setSelectedProfile] = useState(0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="Alts Allocation (UHNW)" value="30–40%" sub="PE, hedge, real assets" />
         <StatCard label="Direct Indexing Min" value="$250K" sub="Tax-loss harvesting SMA" />
@@ -939,7 +939,7 @@ function AssetAllocationTab() {
         <StatCard label="ESG AUM Global" value="$41T" sub="30% of professionally managed" />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <PieChart size={14} /> Model Portfolio by Risk Profile
@@ -950,7 +950,7 @@ function AssetAllocationTab() {
                 key={p.name}
                 onClick={() => setSelectedProfile(i)}
                 className={cn(
-                  "flex-1 text-xs rounded-lg border py-1.5 font-medium transition-colors",
+                  "flex-1 text-xs text-muted-foreground rounded-lg border py-1.5 font-medium transition-colors",
                   selectedProfile === i
                     ? "border-foreground/30 bg-foreground/10 text-foreground"
                     : "border-border bg-transparent text-muted-foreground hover:text-foreground"
@@ -967,7 +967,7 @@ function AssetAllocationTab() {
               {ASSET_CLASSES.map((k) => {
                 const val = (PROFILES[selectedProfile].allocations as Record<string, number>)[k] ?? 0;
                 return (
-                  <div key={k} className="text-xs">
+                  <div key={k} className="text-xs text-muted-foreground">
                     <div className="flex justify-between mb-0.5">
                       <span className="text-muted-foreground">{k.replace("_", " ")}</span>
                       <span className="text-foreground font-medium">{val}%</span>
@@ -1018,7 +1018,7 @@ function AssetAllocationTab() {
             </SectionTitle>
             <div className="space-y-2">
               {FACTOR_TILTS.map((f) => (
-                <div key={f.factor} className="text-xs">
+                <div key={f.factor} className="text-xs text-muted-foreground">
                   <div className="flex items-center justify-between mb-0.5">
                     <span className="font-medium text-foreground">{f.factor}</span>
                     <span className="text-emerald-400">+{f.premium}% avg annual premium</span>
@@ -1040,7 +1040,7 @@ function AssetAllocationTab() {
             <div
               key={m.method}
               className={cn(
-                "rounded-lg border p-3 text-xs",
+                "rounded-lg border p-3 text-xs text-muted-foreground",
                 m.color === "blue"
                   ? "border-border bg-primary/10"
                   : m.color === "amber"
@@ -1245,7 +1245,7 @@ function AUMFeeChart() {
 
 function FeeModelsTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="Robo-Advisor Fee" value="0.20–0.25%" sub="vs 1%+ full-service" highlight="pos" />
         <StatCard label="SFO Cost Threshold" value="$100M+" sub="For dedicated family office" />
@@ -1253,7 +1253,7 @@ function FeeModelsTab() {
         <StatCard label="AI Personalization" value="2024+" sub="Next-gen wealth platforms" />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <BarChart3 size={14} /> AUM Fee Schedule by Wealth Tier
@@ -1276,7 +1276,7 @@ function FeeModelsTab() {
                 <div
                   key={m.model}
                   className={cn(
-                    "rounded-lg border p-2.5 text-xs",
+                    "rounded-lg border p-2.5 text-xs text-muted-foreground",
                     m.color === "blue"
                       ? "border-border bg-primary/10"
                       : m.color === "violet"
@@ -1292,7 +1292,7 @@ function FeeModelsTab() {
                       <span className="text-muted-foreground">{m.typical}</span>
                       <Badge
                         className={cn(
-                          "text-xs px-1 py-0",
+                          "text-xs text-muted-foreground px-1 py-0",
                           m.fiduciary
                             ? "bg-emerald-500/20 text-emerald-300"
                             : "bg-rose-500/20 text-rose-300"
@@ -1319,7 +1319,7 @@ function FeeModelsTab() {
           {ROBO_ADVISORS.map((ra) => (
             <div
               key={ra.name}
-              className="rounded-lg border border-border bg-foreground/5 p-3 text-xs"
+              className="rounded-lg border border-border bg-foreground/5 p-3 text-xs text-muted-foreground"
             >
               <div className="font-medium text-sm mb-1" style={{ color: ra.color }}>
                 {ra.name}
@@ -1355,7 +1355,7 @@ function FeeModelsTab() {
           {FAMILY_OFFICE_TYPES.map((fo) => (
             <div
               key={fo.type}
-              className="rounded-lg border border-border bg-foreground/5 p-3 text-xs"
+              className="rounded-lg border border-border bg-foreground/5 p-3 text-xs text-muted-foreground"
             >
               <div className="font-medium text-sm mb-1" style={{ color: fo.color }}>
                 {fo.type}
@@ -1421,7 +1421,7 @@ export default function WealthMgmtPage() {
   void r();
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -1446,19 +1446,19 @@ export default function WealthMgmtPage() {
         {/* Tabs */}
         <Tabs defaultValue="segmentation" className="mt-8">
           <TabsList className="mb-6 bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="segmentation" className="data-[state=active]:bg-foreground/15 text-xs">
+            <TabsTrigger value="segmentation" className="data-[state=active]:bg-foreground/15 text-xs text-muted-foreground">
               <Users size={13} className="mr-1.5" />
               Client Segmentation
             </TabsTrigger>
-            <TabsTrigger value="planning" className="data-[state=active]:bg-foreground/15 text-xs">
+            <TabsTrigger value="planning" className="data-[state=active]:bg-foreground/15 text-xs text-muted-foreground">
               <Target size={13} className="mr-1.5" />
               Financial Planning
             </TabsTrigger>
-            <TabsTrigger value="allocation" className="data-[state=active]:bg-foreground/15 text-xs">
+            <TabsTrigger value="allocation" className="data-[state=active]:bg-foreground/15 text-xs text-muted-foreground">
               <PieChart size={13} className="mr-1.5" />
               Asset Allocation
             </TabsTrigger>
-            <TabsTrigger value="fees" className="data-[state=active]:bg-foreground/15 text-xs">
+            <TabsTrigger value="fees" className="data-[state=active]:bg-foreground/15 text-xs text-muted-foreground">
               <DollarSign size={13} className="mr-1.5" />
               Fee Models & Tech
             </TabsTrigger>

@@ -491,7 +491,7 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
                   <td className="py-2.5 px-3 font-medium text-foreground">{issuer.company}</td>
                   <td className="py-2.5 px-3 text-foreground/60">{issuer.sector}</td>
                   <td className="py-2.5 px-3 text-center">
-                    <Badge className={cn("text-xs border", ratingColor(issuer.rating))}>
+                    <Badge className={cn("text-xs text-muted-foreground border", ratingColor(issuer.rating))}>
                       {issuer.rating}
                     </Badge>
                   </td>
@@ -500,7 +500,7 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
                   <td className="py-2.5 px-3 text-right font-mono text-amber-400">{fmtPct(issuer.defaultProbability)}</td>
                   <td className="py-2.5 px-3 text-right font-mono text-foreground/70">{issuer.recoveryEstimate}¢</td>
                   <td className="py-2.5 px-3">
-                    <Badge className={cn("text-xs border whitespace-nowrap", badgeColor(issuer.badge))}>
+                    <Badge className={cn("text-xs text-muted-foreground border whitespace-nowrap", badgeColor(issuer.badge))}>
                       {issuer.badge}
                     </Badge>
                   </td>
@@ -697,7 +697,7 @@ function RecoveryModelTab({ tranches: initialTranches }: { tranches: WaterfallTr
                     <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: t.color }} />
                     <span className="text-xs text-foreground/70">{t.name}</span>
                   </div>
-                  <div className="flex items-center gap-3 text-xs font-mono">
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono">
                     <span className="text-foreground/50">${t.recovered}M / ${t.amount}M</span>
                     <span
                       className="font-medium w-12 text-right"
@@ -864,7 +864,7 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
             <h4 className="text-xs font-medium text-foreground/50 mb-2">Relative Value Summary</h4>
             <div className="space-y-1.5">
               {layers.map((layer) => (
-                <div key={layer.tranche} className="flex items-center justify-between text-xs">
+                <div key={layer.tranche} className="flex items-center justify-between text-xs text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: layer.color }} />
                     <span className="text-foreground/70">{layer.tranche}</span>
@@ -1067,7 +1067,7 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
             </div>
             <Slider value={dipSize} onValueChange={setDipSize} min={25} max={500} step={25} />
           </div>
-          <div className="space-y-2 text-xs">
+          <div className="space-y-2 text-xs text-muted-foreground">
             <div className="flex justify-between border-b border-border/50 pb-1">
               <span className="text-foreground/50">Lien Priority</span>
               <span className="text-emerald-400 font-medium">Super-Priority / Priming</span>
@@ -1114,21 +1114,21 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
               <p className="text-xs text-foreground/50">{sc.description}</p>
               <div className="space-y-1.5">
                 <div>
-                  <div className="flex justify-between text-xs mb-0.5">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                     <span className="text-foreground/40">Senior Recovery</span>
                     <span className="text-emerald-400 font-mono">{sc.seniorRecovery}¢</span>
                   </div>
                   <Progress value={sc.seniorRecovery} className="h-1.5" />
                 </div>
                 <div>
-                  <div className="flex justify-between text-xs mb-0.5">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                     <span className="text-foreground/40">Unsecured Recovery</span>
                     <span className="text-amber-400 font-mono">{sc.unsecuredRecovery}¢</span>
                   </div>
                   <Progress value={sc.unsecuredRecovery} className="h-1.5" />
                 </div>
                 <div>
-                  <div className="flex justify-between text-xs mb-0.5">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                     <span className="text-foreground/40">Equity Recovery</span>
                     <span className="text-rose-400 font-mono">{sc.equityRecovery}¢</span>
                   </div>
@@ -1156,7 +1156,7 @@ export default function DistressedDebtPage() {
   const planScenarios = useMemo(() => generatePlanScenarios(), []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <div className="space-y-1">
         <div className="flex items-center gap-2">
@@ -1203,16 +1203,16 @@ export default function DistressedDebtPage() {
       {/* Tabs */}
       <Tabs defaultValue="opportunities" className="mt-8">
         <TabsList className="bg-foreground/5 border border-border">
-          <TabsTrigger value="opportunities" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
+          <TabsTrigger value="opportunities" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
             Opportunities
           </TabsTrigger>
-          <TabsTrigger value="recovery" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
+          <TabsTrigger value="recovery" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
             Recovery Model
           </TabsTrigger>
-          <TabsTrigger value="capital" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
+          <TabsTrigger value="capital" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
             Capital Structure
           </TabsTrigger>
-          <TabsTrigger value="bankruptcy" className="data-[state=active]:bg-foreground/10 text-xs sm:text-sm">
+          <TabsTrigger value="bankruptcy" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
             Bankruptcy
           </TabsTrigger>
         </TabsList>

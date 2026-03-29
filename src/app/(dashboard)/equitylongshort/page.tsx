@@ -204,7 +204,7 @@ function PortfolioStructureTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Top stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatChip label="Gross Exposure" value={`${gross}%`} neutral />
@@ -280,7 +280,7 @@ function PortfolioStructureTab() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left px-3 py-2 text-muted-foreground">Ticker</th>
@@ -312,7 +312,7 @@ function PortfolioStructureTab() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left px-3 py-2 text-muted-foreground">Ticker</th>
@@ -333,11 +333,11 @@ function PortfolioStructureTab() {
               </tbody>
             </table>
             <div className="px-3 py-3 border-t border-border space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Net Beta Contribution</span>
                 <span className="text-sky-400 font-medium">{netBeta.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Effective Market Sensitivity</span>
                 <span className="text-foreground">
                   {netBeta > 0.3
@@ -367,7 +367,7 @@ function PortfolioStructureTab() {
               const maxNet = 30;
               const pct = Math.min(Math.abs(net) / maxNet, 1) * 100;
               return (
-                <div key={sector} className="flex items-center gap-3 text-xs">
+                <div key={sector} className="flex items-center gap-3 text-xs text-muted-foreground">
                   <span className="w-28 text-muted-foreground shrink-0">{sector}</span>
                   <span className="w-10 text-right text-emerald-400">+{l}%</span>
                   <span className="w-10 text-right text-red-400">{sh > 0 ? `-${sh}%` : "—"}</span>
@@ -466,7 +466,7 @@ function ShortSellingTab() {
   const sqPath = squeezePoints.map((p, i) => `${i === 0 ? "M" : "L"}${toX(i)},${toY(p)}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Borrow mechanics flow */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -587,7 +587,7 @@ function ShortSellingTab() {
                 key={i}
                 onClick={() => setSqueezeStep(i)}
                 className={cn(
-                  "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+                  "px-3 py-1.5 rounded-full text-xs text-muted-foreground font-medium border transition-all",
                   squeezeStep === i
                     ? "bg-muted border-muted-foreground text-foreground"
                     : "bg-muted/50 border-border text-muted-foreground hover:border-muted-foreground"
@@ -741,7 +741,7 @@ function PairsTradingTab() {
   const yNeg2 = toY2(-2);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Cointegration concept */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -999,7 +999,7 @@ function FundEconomicsTab() {
   const zeroY = hPadT + hInnerH / 2;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 2 and 20 */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -1011,7 +1011,7 @@ function FundEconomicsTab() {
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="bg-muted/50 rounded-lg p-4">
-              <div className="text-2xl font-bold text-amber-400 mb-1">2%</div>
+              <div className="text-lg font-medium text-amber-400 mb-1">2%</div>
               <div className="text-xs font-medium text-foreground mb-1">Management Fee</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Annual fee on AUM (gross assets). Paid monthly regardless of performance.
@@ -1020,7 +1020,7 @@ function FundEconomicsTab() {
               </p>
             </div>
             <div className="bg-muted/50 rounded-lg p-4">
-              <div className="text-2xl font-bold text-indigo-400 mb-1">20%</div>
+              <div className="text-lg font-medium text-indigo-400 mb-1">20%</div>
               <div className="text-xs font-medium text-foreground mb-1">Performance Fee (Carry)</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 20% of profits above hurdle rate (typically LIBOR/SOFR + 200bps or 8%).
@@ -1032,7 +1032,7 @@ function FundEconomicsTab() {
           <div className="bg-muted/40 rounded-lg p-3">
             <SectionLabel>Alpha Math: What Net Returns Actually Look Like</SectionLabel>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     {["Gross Alpha", "Mgmt Fee", "Trading Costs", "Perf Fee (20%)", "Net Alpha"].map((h) => (
@@ -1247,7 +1247,7 @@ function FundEconomicsTab() {
                 { label: "Portfolio Volatility (σ)", value: "12%", color: "text-muted-foreground" },
                 { label: "Net Sharpe ≈ (10.8 − 5) / 12", value: "≈ 0.48", color: "text-indigo-400 font-medium" },
               ].map((row) => (
-                <div key={row.label} className="flex justify-between items-center text-xs border-b border-border/50 pb-1">
+                <div key={row.label} className="flex justify-between items-center text-xs text-muted-foreground border-b border-border/50 pb-1">
                   <span className="text-muted-foreground">{row.label}</span>
                   <span className={row.color}>{row.value}</span>
                 </div>
@@ -1268,7 +1268,7 @@ export default function EquityLongShortPage() {
   const [activeTab, setActiveTab] = useState("portfolio");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}

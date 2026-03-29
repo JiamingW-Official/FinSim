@@ -397,7 +397,7 @@ function FundamentalsTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Insurance Economics"
         subtitle="How insurers pool risk, price policies, and generate returns"
@@ -511,10 +511,10 @@ function FundamentalsTab() {
               <div className="text-xs font-medium text-foreground">{sector.name}</div>
               <div className="text-xs text-muted-foreground mt-1">{sector.examples}</div>
               <div className="flex gap-2 mt-2 flex-wrap">
-                <span className="text-xs bg-muted px-1.5 py-0.5 rounded">
+                <span className="text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
                   CR: {sector.combined}
                 </span>
-                <span className="text-xs bg-muted px-1.5 py-0.5 rounded">
+                <span className="text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
                   Float: {sector.float}
                 </span>
               </div>
@@ -714,7 +714,7 @@ function LifeTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Life Insurance Products"
         subtitle="Term, permanent, and hybrid products — finding the right fit"
@@ -747,9 +747,9 @@ function LifeTab() {
               <tr key={p.name} className="border-b border-border/50 hover:bg-muted/20">
                 <td className="px-4 py-2 font-medium">{p.name}</td>
                 <td className="px-4 py-2 text-muted-foreground text-xs">{p.coverage}</td>
-                <td className="px-4 py-2 text-xs">{p.premium}</td>
-                <td className="px-4 py-2 text-xs">{p.cashValue}</td>
-                <td className="px-4 py-2 text-xs">{p.duration}</td>
+                <td className="px-4 py-2 text-xs text-muted-foreground">{p.premium}</td>
+                <td className="px-4 py-2 text-xs text-muted-foreground">{p.cashValue}</td>
+                <td className="px-4 py-2 text-xs text-muted-foreground">{p.duration}</td>
               </tr>
             ))}
           </tbody>
@@ -1104,7 +1104,7 @@ function PCTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Property & Casualty Insurance"
         subtitle="Auto, home, umbrella, and commercial coverage — what to buy and why"
@@ -1147,7 +1147,7 @@ function PCTab() {
                       <Info size={14} className="text-primary flex-shrink-0 mt-0.5" />
                     )}
                     <div>
-                      <div className="text-xs font-medium">{sec.name}</div>
+                      <div className="text-xs text-muted-foreground font-medium">{sec.name}</div>
                       <div className="text-xs text-muted-foreground mt-0.5">{sec.desc}</div>
                     </div>
                   </div>
@@ -1190,7 +1190,7 @@ function PCTab() {
                 <div className="w-5 h-5 rounded-full bg-primary/20 text-primary text-[11px] flex items-center justify-center font-bold">
                   {i + 1}
                 </div>
-                <span className="text-xs">{step}</span>
+                <span className="text-xs text-muted-foreground">{step}</span>
               </div>
               {i < arr.length - 1 && <span className="text-muted-foreground">→</span>}
             </div>
@@ -1342,7 +1342,7 @@ function ReinsuranceTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Reinsurance & Catastrophe Bonds"
         subtitle="How insurers lay off risk — from quota shares to ILS markets"
@@ -1572,7 +1572,7 @@ function InsurTechTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="InsurTech & Risk Analytics"
         subtitle="Technology transforming insurance — telematics, parametric, AI, and climate risk"
@@ -1804,7 +1804,7 @@ function InvestmentTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Insurer Investment Portfolio"
         subtitle="$7T in US insurance AUM — asset allocation, duration matching, and equity performance"
@@ -1944,7 +1944,7 @@ export default function InsurancePage() {
   ];
 
   return (
-    <div className="p-4 md:p-6 max-w-5xl mx-auto">
+    <div className="p-4 md:p-4 max-w-5xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -1985,7 +1985,7 @@ export default function InsurancePage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm flex-1 min-w-[80px]"
+                className="flex items-center gap-1.5 text-xs text-muted-foreground px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:flex-1 min-w-[80px]"
               >
                 {tab.icon}
                 <span className="hidden sm:inline">{tab.label}</span>

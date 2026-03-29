@@ -726,7 +726,7 @@ export default function YieldCurvePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* ── Header ── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -744,7 +744,7 @@ export default function YieldCurvePage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className={cn("text-xs", spreadColor(spread2s10s))}>
+          <Badge variant="outline" className={cn("text-xs text-muted-foreground", spreadColor(spread2s10s))}>
             2s10s: {spread2s10s > 0 ? "+" : ""}{spread2s10s.toFixed(0)} bps
           </Badge>
           <Badge variant="outline" className="text-xs text-muted-foreground">
@@ -878,7 +878,7 @@ export default function YieldCurvePage() {
                       { label: "Current 2s10s", value: `${spread2s10s > 0 ? "+" : ""}${spread2s10s.toFixed(0)} bps` },
                       { label: "Current 5s30s", value: `${spread5s30s > 0 ? "+" : ""}${spread5s30s.toFixed(0)} bps` },
                     ].map((row) => (
-                      <div key={row.label} className="flex justify-between items-center text-xs">
+                      <div key={row.label} className="flex justify-between items-center text-xs text-muted-foreground">
                         <span className="text-muted-foreground">{row.label}</span>
                         <span className="font-medium">{row.value}</span>
                       </div>
@@ -898,7 +898,7 @@ export default function YieldCurvePage() {
                   {metrics.slice(0, 3).map((m) => (
                     <div key={m.label} className="p-3 rounded-lg bg-muted/30 border border-border space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium">{m.label}</span>
+                        <span className="text-xs text-muted-foreground font-medium">{m.label}</span>
                         <span className={cn("text-sm font-medium tabular-nums", spreadColor(m.spread))}>
                           {m.spread > 0 ? "+" : ""}{m.spread.toFixed(0)} bps
                         </span>
@@ -921,7 +921,7 @@ export default function YieldCurvePage() {
                   variant={selectedTrade === i ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedTrade(i)}
-                  className="text-xs"
+                  className="text-xs text-muted-foreground"
                 >
                   {t.name}
                 </Button>
@@ -941,10 +941,10 @@ export default function YieldCurvePage() {
                     <CardHeader className="pb-2">
                       <div className="flex items-center gap-2">
                         <CardTitle className="text-base">{trade.name}</CardTitle>
-                        <Badge variant="outline" className={cn("text-xs", typeColor(trade.type))}>
+                        <Badge variant="outline" className={cn("text-xs text-muted-foreground", typeColor(trade.type))}>
                           {trade.type}
                         </Badge>
-                        <Badge variant="outline" className={cn("text-xs", convictionColor(trade.conviction))}>
+                        <Badge variant="outline" className={cn("text-xs text-muted-foreground", convictionColor(trade.conviction))}>
                           {trade.conviction} conviction
                         </Badge>
                       </div>
@@ -958,7 +958,7 @@ export default function YieldCurvePage() {
                         </div>
                         <div className="space-y-1.5">
                           {trade.legs.map((leg, li) => (
-                            <div key={li} className="flex items-start gap-2 text-xs">
+                            <div key={li} className="flex items-start gap-2 text-xs text-muted-foreground">
                               <ArrowRight className="h-3 w-3 mt-0.5 text-primary flex-shrink-0" />
                               <span>{leg}</span>
                             </div>
@@ -994,7 +994,7 @@ export default function YieldCurvePage() {
                       </div>
 
                       {/* R:R calc */}
-                      <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Reward/Risk</span>
                         <span className="font-medium text-green-400">
                           {Math.abs((trade.target - trade.entry) / (trade.entry - trade.stop)).toFixed(1)}:1
@@ -1062,7 +1062,7 @@ export default function YieldCurvePage() {
                     },
                   ].map((s) => (
                     <div key={s.name} className={cn("p-3 rounded-lg border", s.color)}>
-                      <div className="text-xs font-medium mb-1">{s.name}</div>
+                      <div className="text-xs text-muted-foreground font-medium mb-1">{s.name}</div>
                       <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
                     </div>
                   ))}
@@ -1082,7 +1082,7 @@ export default function YieldCurvePage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Period", "Start", "End", "Peak Depth", "Recession", "Lead Time", "Severity"].map(
@@ -1108,7 +1108,7 @@ export default function YieldCurvePage() {
                           <td className="py-2">
                             <Badge
                               variant="outline"
-                              className={cn("text-xs capitalize", severityColor(inv.severity))}
+                              className={cn("text-xs text-muted-foreground capitalize", severityColor(inv.severity))}
                             >
                               {inv.severity}
                             </Badge>
@@ -1133,7 +1133,7 @@ export default function YieldCurvePage() {
                     const pct = Math.abs(inv.depth) / maxDepth;
                     return (
                       <div key={inv.period} className="space-y-1">
-                        <div className="flex justify-between text-xs">
+                        <div className="flex justify-between text-xs text-muted-foreground">
                           <span className="font-medium">{inv.period}</span>
                           <span className={cn("tabular-nums", severityColor(inv.severity))}>
                             {inv.depth} bps
@@ -1181,7 +1181,7 @@ export default function YieldCurvePage() {
                     <div key={r.regime} className="p-3 rounded-lg bg-muted/30 border border-border">
                       <div className="flex items-center gap-2 mb-2">
                         <div className={cn("h-2 w-2 rounded-full", r.color)} />
-                        <span className="text-xs font-medium">{r.regime}</span>
+                        <span className="text-xs text-muted-foreground font-medium">{r.regime}</span>
                       </div>
                       <div className="text-lg font-medium tabular-nums">{r.pct}%</div>
                       <div className="text-xs text-muted-foreground">Avg {r.months} months</div>
@@ -1209,13 +1209,13 @@ export default function YieldCurvePage() {
                       className="p-3 rounded-lg border border-border bg-muted/20 space-y-1"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium">{sig.signal}</span>
+                        <span className="text-xs text-muted-foreground font-medium">{sig.signal}</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-medium tabular-nums">{sig.value}</span>
+                          <span className="text-xs text-muted-foreground font-medium tabular-nums">{sig.value}</span>
                           <Badge
                             variant="outline"
                             className={cn(
-                              "text-xs",
+                              "text-xs text-muted-foreground",
                               sig.impact === "bullish"
                                 ? "text-green-400 border-green-500/30 bg-green-500/10"
                                 : sig.impact === "bearish"
@@ -1255,7 +1255,7 @@ export default function YieldCurvePage() {
                             { label: "Neutral signals", count: neutrals, color: "bg-yellow-500", textColor: "text-yellow-400" },
                           ].map((row) => (
                             <div key={row.label} className="space-y-1">
-                              <div className="flex justify-between text-xs">
+                              <div className="flex justify-between text-xs text-muted-foreground">
                                 <span className="text-muted-foreground">{row.label}</span>
                                 <span className={cn("font-medium", row.textColor)}>{row.count}/{total}</span>
                               </div>
@@ -1299,7 +1299,7 @@ export default function YieldCurvePage() {
                       { risk: "Geopolitical flight-to-quality compresses 10Y yield", level: "low" },
                       { risk: "Soft landing delays curve normalization timeline", level: "medium" },
                     ].map((r, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs">
+                      <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                         <div
                           className={cn(
                             "h-1.5 w-1.5 rounded-full mt-1.5 flex-shrink-0",
@@ -1353,12 +1353,12 @@ export default function YieldCurvePage() {
                   ].map((sc) => (
                     <div key={sc.scenario} className={cn("p-3 rounded-lg border space-y-2", sc.color)}>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium">{sc.scenario}</span>
-                        <Badge variant="outline" className="text-xs">
+                        <span className="text-xs text-muted-foreground font-medium">{sc.scenario}</span>
+                        <Badge variant="outline" className="text-xs text-muted-foreground">
                           {sc.prob}%
                         </Badge>
                       </div>
-                      <div className="space-y-1 text-xs">
+                      <div className="space-y-1 text-xs text-muted-foreground">
                         <div className="text-muted-foreground">{sc.cuts}</div>
                         <div>
                           <span className="text-muted-foreground">2s10s → </span>

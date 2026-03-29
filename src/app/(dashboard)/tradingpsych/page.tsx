@@ -1119,7 +1119,7 @@ export default function TradingPsychPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <div className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <h1 className="text-xl font-bold tracking-tight flex items-center gap-2">
@@ -1134,19 +1134,19 @@ export default function TradingPsychPage() {
 
       <Tabs defaultValue="bias" className="mt-8">
         <TabsList className="flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="bias" className="text-xs">
+          <TabsTrigger value="bias" className="text-xs text-muted-foreground">
             Bias Assessment
           </TabsTrigger>
-          <TabsTrigger value="emotional" className="text-xs">
+          <TabsTrigger value="emotional" className="text-xs text-muted-foreground">
             Emotional Cycle
           </TabsTrigger>
-          <TabsTrigger value="process" className="text-xs">
+          <TabsTrigger value="process" className="text-xs text-muted-foreground">
             Process Development
           </TabsTrigger>
-          <TabsTrigger value="review" className="text-xs">
+          <TabsTrigger value="review" className="text-xs text-muted-foreground">
             Post-Trade Review
           </TabsTrigger>
-          <TabsTrigger value="peak" className="text-xs">
+          <TabsTrigger value="peak" className="text-xs text-muted-foreground">
             Peak Performance
           </TabsTrigger>
         </TabsList>
@@ -1168,7 +1168,7 @@ export default function TradingPsychPage() {
                       <CardTitle className="text-base">
                         Bias Assessment Quiz
                       </CardTitle>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs text-muted-foreground">
                         {quizStep + 1} / {QUIZ_QUESTIONS.length}
                       </Badge>
                     </div>
@@ -1256,7 +1256,7 @@ export default function TradingPsychPage() {
                       .sort((a, b) => b.score - a.score)
                       .map((bs) => (
                         <div key={bs.bias} className="space-y-1">
-                          <div className="flex items-center justify-between text-xs">
+                          <div className="flex items-center justify-between text-xs text-muted-foreground">
                             <span className="font-medium" style={{ color: bs.color }}>
                               {bs.label}
                             </span>
@@ -1351,7 +1351,7 @@ export default function TradingPsychPage() {
                           </CardTitle>
                           <Badge
                             variant="outline"
-                            className="text-xs"
+                            className="text-xs text-muted-foreground"
                             style={{ borderColor: selectedEmotionalPhase.color, color: selectedEmotionalPhase.color }}
                           >
                             Trade Quality: {selectedEmotionalPhase.tradeQuality}%
@@ -1367,7 +1367,7 @@ export default function TradingPsychPage() {
                           {selectedEmotionalPhase.description}
                         </p>
                         <div className="space-y-1.5">
-                          <p className="text-xs font-semibold">Coping Strategies:</p>
+                          <p className="text-xs text-muted-foreground font-semibold">Coping Strategies:</p>
                           {selectedEmotionalPhase.strategies.map((s, i) => (
                             <div key={i} className="flex items-start gap-2">
                               <Shield
@@ -1419,7 +1419,7 @@ export default function TradingPsychPage() {
                           )
                         }
                         className={cn(
-                          "w-full flex items-center justify-between px-3 py-1.5 rounded-md text-xs transition-colors",
+                          "w-full flex items-center justify-between px-3 py-1.5 rounded-md text-xs text-muted-foreground transition-colors",
                           selectedState === phase.state
                             ? "bg-accent"
                             : "hover:bg-accent/50"
@@ -1462,7 +1462,7 @@ export default function TradingPsychPage() {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={cn(
-                  "px-3 py-1.5 rounded-md text-xs font-medium transition-colors border",
+                  "px-3 py-1.5 rounded-md text-xs text-muted-foreground font-medium transition-colors border",
                   activeCategory === cat
                     ? "bg-primary text-primary-foreground border-primary"
                     : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
@@ -1485,7 +1485,7 @@ export default function TradingPsychPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm">{activeCategory}</CardTitle>
-                    <Badge variant="outline" className="text-xs gap-1">
+                    <Badge variant="outline" className="text-xs text-muted-foreground gap-1">
                       <CheckCircle2 className="w-3 h-3" />
                       {categoryProgress}%
                     </Badge>
@@ -1541,7 +1541,7 @@ export default function TradingPsychPage() {
                 const pct = Math.round((done / items.length) * 100);
                 return (
                   <div key={cat} className="space-y-1">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">{cat}</span>
                       <span className="text-foreground font-medium">
                         {done}/{items.length}
@@ -1591,7 +1591,7 @@ export default function TradingPsychPage() {
                   ].map((row) => (
                     <div
                       key={row.grade}
-                      className="flex items-center justify-between text-xs px-2 py-0.5 rounded"
+                      className="flex items-center justify-between text-xs text-muted-foreground px-2 py-0.5 rounded"
                       style={{
                         backgroundColor:
                           reviewGrade.grade === row.grade && overallReviewScore > 0
@@ -1609,7 +1609,7 @@ export default function TradingPsychPage() {
                 </div>
 
                 {reviewSaved && (
-                  <Badge variant="outline" className="text-xs gap-1 mt-2">
+                  <Badge variant="outline" className="text-xs text-muted-foreground gap-1 mt-2">
                     <CheckCircle2 className="w-3 h-3 text-green-500" />
                     Review Saved
                   </Badge>
@@ -1689,7 +1689,7 @@ export default function TradingPsychPage() {
                   <div className="flex items-start gap-3">
                     <Lightbulb className="w-4 h-4 mt-0.5 text-yellow-500 flex-shrink-0" />
                     <div className="space-y-1">
-                      <p className="text-xs font-semibold">
+                      <p className="text-xs text-muted-foreground font-semibold">
                         Separating Process from Outcome
                       </p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
@@ -1756,7 +1756,7 @@ export default function TradingPsychPage() {
                               <Badge
                                 variant="outline"
                                 className={cn(
-                                  "text-xs",
+                                  "text-xs text-muted-foreground",
                                   technique.difficulty === "Easy" && "border-green-500/50 text-green-500",
                                   technique.difficulty === "Medium" && "border-yellow-500/50 text-yellow-500",
                                   technique.difficulty === "Hard" && "border-red-500/50 text-red-500"
@@ -1791,7 +1791,7 @@ export default function TradingPsychPage() {
                             {technique.description}
                           </p>
                           <div className="space-y-2">
-                            <p className="text-xs font-medium">Step-by-Step:</p>
+                            <p className="text-xs text-muted-foreground font-medium">Step-by-Step:</p>
                             {technique.steps.map((step, i) => (
                               <div key={i} className="flex items-start gap-3">
                                 <div className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 font-medium">
@@ -1818,7 +1818,7 @@ export default function TradingPsychPage() {
               <div className="flex items-start gap-3">
                 <Flame className="w-4 h-4 mt-0.5 text-orange-500 flex-shrink-0" />
                 <div className="space-y-2">
-                  <p className="text-xs font-medium">Physical Health → Decision Quality</p>
+                  <p className="text-xs text-muted-foreground font-medium">Physical Health → Decision Quality</p>
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { factor: "7–9 hrs sleep", impact: "+23% cognitive performance", positive: true },
@@ -1829,7 +1829,7 @@ export default function TradingPsychPage() {
                       <div
                         key={item.factor}
                         className={cn(
-                          "text-xs p-2 rounded-md",
+                          "text-xs text-muted-foreground p-2 rounded-md",
                           item.positive ? "bg-green-500/10" : "bg-red-500/10"
                         )}
                       >
@@ -1856,7 +1856,7 @@ export default function TradingPsychPage() {
               <div className="flex items-start gap-3">
                 <Star className="w-4 h-4 mt-0.5 text-yellow-500 flex-shrink-0" />
                 <div className="space-y-1">
-                  <p className="text-xs font-medium">The One Question That Changes Everything</p>
+                  <p className="text-xs text-muted-foreground font-medium">The One Question That Changes Everything</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     Before every trade entry, ask yourself:{" "}
                     <span className="text-foreground font-medium italic">

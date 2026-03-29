@@ -520,7 +520,7 @@ function IronCondorTab() {
           {/* 4-leg breakdown */}
           <div className="rounded-lg border border-border bg-card p-3">
             <SectionTitle>4-Leg Breakdown</SectionTitle>
-            <div className="space-y-1.5 text-xs font-mono">
+            <div className="space-y-1.5 text-xs text-muted-foreground font-mono">
               {[
                 { action: "BUY", type: "PUT", strike: longPutK, premium: longPutPrem, dir: -1 },
                 { action: "SELL", type: "PUT", strike: shortPutK, premium: shortPutPrem, dir: 1 },
@@ -565,7 +565,7 @@ function IronCondorTab() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
         <div className="rounded-lg border border-border bg-card p-3">
           <div className="text-muted-foreground font-medium mb-1.5">Adjustment: IV Spike</div>
           <div className="text-muted-foreground space-y-1">
@@ -669,7 +669,7 @@ function CalendarSpreadTab() {
                 <button
                   key={t}
                   onClick={() => setIsCall(t === "Call")}
-                  className={`px-2.5 py-0.5 rounded text-xs font-medium transition-colors ${
+                  className={`px-2.5 py-0.5 rounded text-xs text-muted-foreground font-medium transition-colors ${
                     (t === "Call") === isCall
                       ? "bg-primary text-foreground"
                       : "bg-muted text-muted-foreground hover:text-foreground"
@@ -698,7 +698,7 @@ function CalendarSpreadTab() {
         <div className="space-y-3">
           <div className="rounded-lg border border-border bg-card p-3">
             <SectionTitle>Leg Breakdown</SectionTitle>
-            <div className="space-y-2 text-xs font-mono">
+            <div className="space-y-2 text-xs text-muted-foreground font-mono">
               <div className="flex justify-between">
                 <span className="text-red-400">SELL {frontDte}DTE {isCall ? "Call" : "Put"} ${K.toFixed(1)}</span>
                 <span className="text-green-400">+${frontPrem.toFixed(2)}</span>
@@ -743,7 +743,7 @@ function CalendarSpreadTab() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
         <div className="rounded-lg border border-border bg-card p-3">
           <div className="text-muted-foreground font-medium mb-1.5">Adjustment Mechanics</div>
           <div className="text-muted-foreground space-y-1">
@@ -902,7 +902,7 @@ function StrategyComparisonTab() {
           <button
             key={s.key}
             onClick={() => setSelectedIvScenario(s.key)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
+            className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-colors border ${
               selectedIvScenario === s.key
                 ? "border-primary bg-primary/10 text-primary"
                 : "border-border bg-muted text-muted-foreground hover:text-foreground"
@@ -920,7 +920,7 @@ function StrategyComparisonTab() {
           Annual Yield Comparison — IV {iv}% | {dte} DTE | ${spotPrice} Spot
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left px-4 py-2 font-medium">Strategy</th>
@@ -990,7 +990,7 @@ function StrategyComparisonTab() {
               ].map(({ label, val, color }) => (
                 <div key={label} className="text-center">
                   <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
-                  <div className={`text-xs font-mono font-medium ${color}`}>{val}</div>
+                  <div className={`text-xs text-muted-foreground font-mono font-medium ${color}`}>{val}</div>
                 </div>
               ))}
             </div>
@@ -1001,7 +1001,7 @@ function StrategyComparisonTab() {
       {/* Conditions Guide */}
       <div className="rounded-lg border border-border bg-card p-4">
         <SectionTitle>When to Use Each Strategy</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
           {[
             {
               name: "Covered Call",
@@ -1060,7 +1060,7 @@ export default function OptionsIncomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="space-y-1">
           <div className="flex items-center gap-3">

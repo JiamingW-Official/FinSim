@@ -245,7 +245,7 @@ function OrderBookSVG({
   const labelX = W / 2;
 
   return (
-    <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="font-mono text-xs">
+    <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="font-mono text-xs text-muted-foreground">
       {/* Mid price line */}
       <line
         x1={0}
@@ -699,8 +699,8 @@ function Tab1MarketMaking101() {
   const netRevenue = spreadIncome - adverseSelectionCost - inventoryCost;
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Left: concepts */}
         <div className="space-y-4">
           <InfoCard title="Bid-Ask Spread Economics" accent="blue">
@@ -755,7 +755,7 @@ function Tab1MarketMaking101() {
               <p className="text-xs font-semibold text-muted-foreground">
                 Live Order Book (simulated)
               </p>
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-xs text-muted-foreground">
                 MID {fmt4(midPrice)}
               </Badge>
             </div>
@@ -803,8 +803,8 @@ function Tab2SpreadModeling() {
   const halfSpreadApprox = (gamma * sigma * sigma * 0.5) / 2 + Math.log(1 + gamma / 1.5) / gamma;
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-4">
           <InfoCard title="Avellaneda-Stoikov (2008)" accent="purple">
             <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -820,7 +820,7 @@ function Tab2SpreadModeling() {
           <InfoCard title="Parameters" accent="blue">
             <div className="space-y-4 mt-1">
               <div className="space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Risk Aversion γ</span>
                   <span className="font-mono text-foreground">{gamma.toFixed(2)}</span>
                 </div>
@@ -836,7 +836,7 @@ function Tab2SpreadModeling() {
                 </p>
               </div>
               <div className="space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Volatility σ</span>
                   <span className="font-mono text-foreground">{sigma.toFixed(1)}</span>
                 </div>
@@ -929,7 +929,7 @@ function Tab3HFTStrategies() {
           </p>
         </InfoCard>
         <div className="rounded-lg border border-border/50 overflow-hidden">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50 bg-muted/30">
                 <th className="text-left p-2.5 text-muted-foreground font-medium">Venue</th>
@@ -1082,7 +1082,7 @@ function Tab3HFTStrategies() {
               key={strat.id}
               onClick={() => setSelectedStrategy(strat.id)}
               className={cn(
-                "flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors",
+                "flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                 selectedStrategy === strat.id
                   ? "border-primary bg-primary/10 text-primary"
                   : "border-border/50 text-muted-foreground hover:border-border hover:text-foreground"
@@ -1125,7 +1125,7 @@ function Tab4PnlAttribution() {
   const invPct = grandAbs > 0 ? (Math.abs(totalInv) / grandAbs) * 100 : 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Top attribution cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {[
@@ -1201,7 +1201,7 @@ function Tab4PnlAttribution() {
           Daily Breakdown
         </p>
         <div className="overflow-x-auto max-h-48 overflow-y-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead className="sticky top-0 bg-background/95">
               <tr className="border-b border-border/50">
                 {["Day", "Spread", "Adverse Sel.", "Inventory", "Net", "Cumulative"].map((h) => (
@@ -1275,7 +1275,7 @@ function Tab5RegulationRisk() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {regs.map((reg) => {
           const Icon = reg.icon;
@@ -1296,7 +1296,7 @@ function Tab5RegulationRisk() {
         <p className="text-xs font-medium text-muted-foreground p-3 border-b border-border/50">
           US Market Circuit Breakers
         </p>
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="border-b border-border/40 bg-muted/20">
               {["Type", "Trigger", "Halt Duration"].map((h) => (
@@ -1316,7 +1316,7 @@ function Tab5RegulationRisk() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "text-xs",
+                      "text-xs text-muted-foreground",
                       cb.type === "Level 3"
                         ? "border-red-500/40 text-red-400"
                         : cb.type === "Level 2"
@@ -1379,7 +1379,7 @@ function Tab5RegulationRisk() {
             <div key={section.label} className="rounded-lg border border-border/50 p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Icon className={cn("h-4 w-4", section.color)} />
-                <p className="text-xs font-medium">{section.label}</p>
+                <p className="text-xs text-muted-foreground font-medium">{section.label}</p>
               </div>
               <ul className="space-y-1.5">
                 {section.items.map((item) => (
@@ -1478,7 +1478,7 @@ export default function AlgoMMPage() {
   ];
 
   return (
-    <div className="flex flex-col gap-6 p-6 max-w-5xl mx-auto">
+    <div className="flex flex-col gap-3 p-4 max-w-5xl mx-auto">
       {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1508,7 +1508,7 @@ export default function AlgoMMPage() {
           ].map((kpi) => (
             <div
               key={kpi.label}
-              className="flex items-center gap-1.5 rounded-full border border-border/50 bg-muted/30 px-3 py-1 text-xs"
+              className="flex items-center gap-1.5 rounded-full border border-border/50 bg-muted/30 px-3 py-1 text-xs text-muted-foreground"
             >
               <span className="text-muted-foreground">{kpi.label}:</span>
               <span className="font-medium">{kpi.value}</span>
@@ -1526,7 +1526,7 @@ export default function AlgoMMPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-background"
+                className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background"
               >
                 <Icon className="h-3.5 w-3.5" />
                 {tab.label}

@@ -698,7 +698,7 @@ export default function CryptoTrading2Page() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* HERO Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div>
@@ -739,7 +739,7 @@ export default function CryptoTrading2Page() {
         </TabsList>
 
         {/* ── Tab 1: Market Structure ────────────────────────────────────────── */}
-        <TabsContent value="market-structure" className="space-y-6">
+        <TabsContent value="market-structure" className="space-y-4">
           {/* Explainer row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
@@ -783,7 +783,7 @@ export default function CryptoTrading2Page() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border/50">
                       {["Pair", "Mark Price", "Index Price", "Basis", "Funding/8h", "Open Interest", "24h Volume", "Trend"].map(
@@ -830,7 +830,7 @@ export default function CryptoTrading2Page() {
                         <td className="px-4 py-3">
                           <Badge
                             className={cn(
-                              "text-xs capitalize",
+                              "text-xs text-muted-foreground capitalize",
                               m.trend === "bullish"
                                 ? "bg-green-500/15 text-green-400 border-green-500/30"
                                 : m.trend === "bearish"
@@ -879,7 +879,7 @@ export default function CryptoTrading2Page() {
         </TabsContent>
 
         {/* ── Tab 2: On-Chain Signals ────────────────────────────────────────── */}
-        <TabsContent value="onchain" className="space-y-6">
+        <TabsContent value="onchain" className="space-y-4">
           {/* Summary scorecard */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <StatChip label="Bullish Signals" value={String(bullishSignals)} color="green" />
@@ -942,7 +942,7 @@ export default function CryptoTrading2Page() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border/50">
                       {["Signal", "Category", "Current Value", "Signal", "Strength", "Interpretation"].map((h) => (
@@ -961,7 +961,7 @@ export default function CryptoTrading2Page() {
                         <td className="px-4 py-3">
                           <Badge
                             className={cn(
-                              "text-xs capitalize",
+                              "text-xs text-muted-foreground capitalize",
                               sig.signal === "bullish"
                                 ? "bg-green-500/15 text-green-400 border-green-500/30"
                                 : sig.signal === "bearish"
@@ -992,7 +992,7 @@ export default function CryptoTrading2Page() {
         </TabsContent>
 
         {/* ── Tab 3: Trading Strategies ──────────────────────────────────────── */}
-        <TabsContent value="strategies" className="space-y-6">
+        <TabsContent value="strategies" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {arbitrageOpps.map((opp) => (
               <motion.div
@@ -1009,7 +1009,7 @@ export default function CryptoTrading2Page() {
                         <p className="text-xs text-foreground/40 mt-0.5">{opp.type}</p>
                       </div>
                       <div className="flex gap-2">
-                        <Badge className={cn("text-xs capitalize", riskColor[opp.risk])}>
+                        <Badge className={cn("text-xs text-muted-foreground capitalize", riskColor[opp.risk])}>
                           {opp.risk} risk
                         </Badge>
                         <Badge className="text-xs bg-primary/15 text-primary border-border">
@@ -1049,7 +1049,7 @@ export default function CryptoTrading2Page() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border/50">
                       {["Strategy", "Return", "Risk", "Capital Req.", "Delta Neutral", "Execution Complexity"].map(
@@ -1074,7 +1074,7 @@ export default function CryptoTrading2Page() {
                         <td className="px-4 py-3">
                           <Badge
                             className={cn(
-                              "text-xs",
+                              "text-xs text-muted-foreground",
                               risk === "Low"
                                 ? "bg-green-500/15 text-green-400 border-green-500/30"
                                 : risk === "Medium"
@@ -1098,7 +1098,7 @@ export default function CryptoTrading2Page() {
         </TabsContent>
 
         {/* ── Tab 4: Risk Management ─────────────────────────────────────────── */}
-        <TabsContent value="risk" className="space-y-6">
+        <TabsContent value="risk" className="space-y-4">
           {/* Risk overview chips */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <StatChip
@@ -1133,7 +1133,7 @@ export default function CryptoTrading2Page() {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-foreground">{risk.name}</span>
-                        <Badge className={cn("text-xs capitalize", severityColor[risk.severity])}>
+                        <Badge className={cn("text-xs text-muted-foreground capitalize", severityColor[risk.severity])}>
                           {risk.severity}
                         </Badge>
                         <Badge className="text-xs bg-foreground/[0.08] text-foreground/50 border-border">
@@ -1214,7 +1214,7 @@ export default function CryptoTrading2Page() {
                   { label: "Stablecoins (Dry Powder)", weight: 5, color: "bg-foreground/[0.04]0" },
                 ].map((item) => (
                   <div key={item.label} className="space-y-1">
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span className="text-foreground/70">{item.label}</span>
                       <span className="text-foreground/60 tabular-nums">{item.weight}%</span>
                     </div>
@@ -1235,7 +1235,7 @@ export default function CryptoTrading2Page() {
         </TabsContent>
 
         {/* ── Tab 5: Derivatives Deep Dive ──────────────────────────────────── */}
-        <TabsContent value="derivatives" className="space-y-6">
+        <TabsContent value="derivatives" className="space-y-4">
           {/* Concepts row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
@@ -1329,7 +1329,7 @@ export default function CryptoTrading2Page() {
                       {item.change && (
                         <span
                           className={cn(
-                            "text-xs",
+                            "text-xs text-muted-foreground",
                             item.positive ? "text-green-400" : "text-red-400"
                           )}
                         >
@@ -1379,7 +1379,7 @@ export default function CryptoTrading2Page() {
                   },
                 ].map((item) => (
                   <div key={item.setup} className="bg-foreground/[0.04] rounded-lg p-3 space-y-1">
-                    <p className={cn("text-xs font-medium", item.color)}>
+                    <p className={cn("text-xs text-muted-foreground font-medium", item.color)}>
                       <span dangerouslySetInnerHTML={{ __html: item.setup }} />
                     </p>
                     <p className="text-xs text-foreground/55">{item.action}</p>

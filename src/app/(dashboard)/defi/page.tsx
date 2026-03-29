@@ -125,7 +125,7 @@ function InfoBox({
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -259,7 +259,7 @@ function YieldDashboard() {
     : 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="DeFi TVL (ecosystem)" value={fmtB(totalEcosystemTVL)} sub="Tracked protocols" highlight="pos" icon={<DollarSign size={14} />} />
@@ -315,7 +315,7 @@ function YieldDashboard() {
             key={p}
             onClick={() => setFilterProtocol(p)}
             className={cn(
-              "px-2 py-1 rounded text-xs border transition-colors",
+              "px-2 py-1 rounded text-xs text-muted-foreground border transition-colors",
               filterProtocol === p
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
                 : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -330,7 +330,7 @@ function YieldDashboard() {
             key={t}
             onClick={() => setFilterType(t)}
             className={cn(
-              "px-2 py-1 rounded text-xs border transition-colors",
+              "px-2 py-1 rounded text-xs text-muted-foreground border transition-colors",
               filterType === t
                 ? "border-primary bg-primary/20 text-primary"
                 : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -345,7 +345,7 @@ function YieldDashboard() {
             key={a}
             onClick={() => setFilterAPY(a)}
             className={cn(
-              "px-2 py-1 rounded text-xs border transition-colors",
+              "px-2 py-1 rounded text-xs text-muted-foreground border transition-colors",
               filterAPY === a
                 ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
                 : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -360,7 +360,7 @@ function YieldDashboard() {
             key={r}
             onClick={() => setFilterRisk(r)}
             className={cn(
-              "px-2 py-1 rounded text-xs border transition-colors",
+              "px-2 py-1 rounded text-xs text-muted-foreground border transition-colors",
               filterRisk === r
                 ? "border-rose-500 bg-rose-500/20 text-rose-300"
                 : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -372,7 +372,7 @@ function YieldDashboard() {
         <button
           onClick={() => setRealYield(!realYield)}
           className={cn(
-            "px-3 py-1 rounded text-xs border transition-colors ml-2",
+            "px-3 py-1 rounded text-xs text-muted-foreground border transition-colors ml-2",
             realYield
               ? "border-amber-500 bg-amber-500/20 text-amber-300"
               : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -507,7 +507,7 @@ function LiquidityPoolSimulator() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Inputs */}
         <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-4">
@@ -520,7 +520,7 @@ function LiquidityPoolSimulator() {
                   key={p.label}
                   onClick={() => setSelectedPair(i)}
                   className={cn(
-                    "px-3 py-1.5 rounded-lg text-xs border transition-colors",
+                    "px-3 py-1.5 rounded-lg text-xs text-muted-foreground border transition-colors",
                     selectedPair === i
                       ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
                       : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -539,7 +539,7 @@ function LiquidityPoolSimulator() {
                   key={v}
                   onClick={() => setLpAmount(v)}
                   className={cn(
-                    "px-3 py-1.5 rounded-lg text-xs border transition-colors",
+                    "px-3 py-1.5 rounded-lg text-xs text-muted-foreground border transition-colors",
                     lpAmount === v
                       ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
                       : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -554,7 +554,7 @@ function LiquidityPoolSimulator() {
             <button
               onClick={() => setV3Mode(!v3Mode)}
               className={cn(
-                "px-3 py-1.5 rounded-lg text-xs border transition-colors",
+                "px-3 py-1.5 rounded-lg text-xs text-muted-foreground border transition-colors",
                 v3Mode
                   ? "border-primary bg-primary/20 text-primary"
                   : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -777,7 +777,7 @@ function StakingCalculator() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Asset selector */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
         {STAKING_OPTIONS.map((opt, i) => (
@@ -805,7 +805,7 @@ function StakingCalculator() {
           <div className="p-3 rounded-lg bg-foreground/5 border border-border">
             <p className="text-sm font-medium text-foreground">{asset.name} ({asset.symbol})</p>
             <p className="text-xs text-muted-foreground mt-1">{asset.description}</p>
-            <div className="grid grid-cols-2 gap-2 mt-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-muted-foreground">
               <span className="text-muted-foreground">Min stake: <span className="text-muted-foreground">{asset.minStake} {asset.symbol}</span></span>
               <span className="text-muted-foreground">Lockup: <span className="text-muted-foreground">{asset.lockupDays === 0 ? "None" : `${asset.lockupDays} days`}</span></span>
               <span className="text-muted-foreground">Slash risk: <span className={cn(asset.slashingRisk <= 2 ? "text-emerald-400" : asset.slashingRisk <= 3 ? "text-amber-400" : "text-rose-400")}>{asset.slashingRisk}/10</span></span>
@@ -842,7 +842,7 @@ function StakingCalculator() {
                   key={v}
                   onClick={() => setAmount(v)}
                   className={cn(
-                    "px-3 py-1.5 rounded text-xs border transition-colors",
+                    "px-3 py-1.5 rounded text-xs text-muted-foreground border transition-colors",
                     amount === v
                       ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
                       : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -1023,7 +1023,7 @@ function LendingAnalyzer() {
   const loopNetAPY = depositRate * loopLeverage - borrowRate * (loopLeverage - 1);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Market selector */}
       <div className="flex flex-wrap gap-2">
         {LENDING_MARKETS.map((m, i) => (
@@ -1031,7 +1031,7 @@ function LendingAnalyzer() {
             key={`${m.protocol}-${m.asset}`}
             onClick={() => setSelectedMarket(i)}
             className={cn(
-              "px-3 py-2 rounded-lg text-xs border transition-colors",
+              "px-3 py-2 rounded-lg text-xs text-muted-foreground border transition-colors",
               selectedMarket === i
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-200"
                 : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -1077,7 +1077,7 @@ function LendingAnalyzer() {
       {/* Health factor calculator */}
       <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle><Calculator size={14} /> Health Factor Calculator</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="space-y-4">
             <div>
               <label className="text-xs text-muted-foreground mb-1 block">Collateral Value (USD)</label>
@@ -1156,7 +1156,7 @@ function LendingAnalyzer() {
         <p className="text-xs text-muted-foreground mb-3">
           Flash loans are uncollateralized loans that must be borrowed and repaid within a single transaction block. If repayment fails, the entire transaction reverts.
         </p>
-        <div className="flex flex-col gap-2 text-xs">
+        <div className="flex flex-col gap-2 text-xs text-muted-foreground">
           {[
             { step: "1", action: "Borrow $10M USDC (0% collateral)", color: "text-primary" },
             { step: "2", action: "Buy asset on DEX A (artificially low price)", color: "text-emerald-300" },
@@ -1312,7 +1312,7 @@ function YieldStrategyBuilder() {
   const maxAPY = 50;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Strategy selector */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
         {PRESET_STRATEGIES.map((st, i) => (
@@ -1365,7 +1365,7 @@ function YieldStrategyBuilder() {
               </motion.div>
             ))}
           </div>
-          <div className="mt-3 p-2 rounded-lg bg-foreground/5 border border-border text-xs">
+          <div className="mt-3 p-2 rounded-lg bg-foreground/5 border border-border text-xs text-muted-foreground">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Risk-Adj. Return (Sharpe-equiv)</span>
               <span className={cn("font-medium", strategy.sharpe >= 1.5 ? "text-emerald-400" : strategy.sharpe >= 0.8 ? "text-amber-400" : "text-rose-400")}>
@@ -1509,7 +1509,7 @@ function ProtocolRankings() {
   const maxCatRev = cats[0]?.[1] ?? 1;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Sort controls */}
       <div className="flex flex-wrap gap-2 items-center">
         <span className="text-xs text-muted-foreground">Sort by:</span>
@@ -1523,7 +1523,7 @@ function ProtocolRankings() {
             key={s.key}
             onClick={() => setSortBy(s.key)}
             className={cn(
-              "px-3 py-1.5 rounded text-xs border transition-colors",
+              "px-3 py-1.5 rounded text-xs text-muted-foreground border transition-colors",
               sortBy === s.key
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
                 : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -1681,7 +1681,7 @@ function ProtocolRankings() {
                   <td className="p-2 text-center">
                     <Badge
                       className={cn(
-                        "text-xs",
+                        "text-xs text-muted-foreground",
                         row.edge === "DeFi" ? "bg-indigo-500/20 text-indigo-300 border-indigo-500/30" :
                         row.edge === "CeFi" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
                         "bg-amber-500/20 text-amber-300 border-amber-500/30"
@@ -1711,7 +1711,7 @@ function ProtocolRankings() {
 export default function DefiPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

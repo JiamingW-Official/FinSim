@@ -1196,7 +1196,7 @@ function SovereignDebtTab() {
         </CardHeader>
         <CardContent className="space-y-3">
           <DebtRestructuringProcess />
-          <div className="grid grid-cols-3 gap-2 text-xs">
+          <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
             <div className="bg-muted/50 rounded p-2">
               <div className="text-yellow-400 font-medium mb-1">Brady Bonds (1989)</div>
               <div className="text-muted-foreground leading-tight">

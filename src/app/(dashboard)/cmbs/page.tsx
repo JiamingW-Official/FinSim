@@ -136,7 +136,7 @@ function InfoBadge({ text, color = "blue" }: { text: string; color?: string }) {
     purple: "bg-primary/15 text-primary border-border",
   };
   return (
-    <span className={cn("inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border", colors[color] ?? colors.blue)}>
+    <span className={cn("inline-flex items-center px-2 py-0.5 rounded text-xs text-muted-foreground font-medium border", colors[color] ?? colors.blue)}>
       {text}
     </span>
   );
@@ -177,7 +177,7 @@ function StructureTab() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Conduit vs SASB */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-muted/60 border border-border rounded-md p-5 space-y-3">
@@ -293,7 +293,7 @@ function StructureTab() {
                     <button onClick={() => setExpanded(null)} className="text-muted-foreground hover:text-muted-foreground text-xs">✕</button>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">{t.description}</p>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                     <div className="bg-muted rounded p-2">
                       <div className="text-muted-foreground">Size</div>
                       <div className="font-medium text-foreground">{t.size}% of deal</div>
@@ -317,7 +317,7 @@ function StructureTab() {
               { role: "Operating Advisor", desc: "Post-Dodd-Frank oversight of special servicer decisions when B-piece buyer accumulates conflicts.", color: "text-green-400" },
             ].map((item) => (
               <div key={item.role} className="flex gap-3">
-                <div className={cn("text-xs font-medium w-32 shrink-0 pt-0.5", item.color)}>{item.role}</div>
+                <div className={cn("text-xs text-muted-foreground font-medium w-32 shrink-0 pt-0.5", item.color)}>{item.role}</div>
                 <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
               </div>
             ))}
@@ -367,7 +367,7 @@ function LoanAnalysisTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Loans table */}
       <div className="bg-muted/60 border border-border/50 rounded-md overflow-hidden">
         <div className="px-5 py-3 border-b border-border/50 flex items-center gap-2">
@@ -375,7 +375,7 @@ function LoanAnalysisTab() {
           <span className="text-sm font-medium text-foreground">Sample Loan Pool (8 Loans)</span>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50">
                 {["ID", "Property Type", "City", "DSCR", "LTV%", "Coupon%", "Bal($M)", "Maturity", "IO Mo.", "Status"].map((h) => (
@@ -495,7 +495,7 @@ function LoanAnalysisTab() {
           </div>
           <div className="space-y-2">
             {stressedLoans.map((loan) => (
-              <div key={loan.id} className="flex items-center gap-2 text-xs">
+              <div key={loan.id} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span className="font-mono text-muted-foreground w-12">{loan.id}</span>
                 <span className="w-20 text-muted-foreground truncate">{loan.propertyType}</span>
                 <div className="flex-1 bg-muted rounded-full h-1.5 relative">
@@ -536,7 +536,7 @@ function LoanAnalysisTab() {
               <div key={sector.name} className={cn("border rounded-md p-4 space-y-2", heatColor)}>
                 <div className="font-medium text-sm text-foreground">{sector.name}</div>
                 <div className="text-xs text-muted-foreground">Weight: <span className="text-foreground font-medium">{sector.weight}%</span></div>
-                <div className={cn("text-xs font-medium", trendColor)}>
+                <div className={cn("text-xs text-muted-foreground font-medium", trendColor)}>
                   {sector.trend === "bullish" ? "▲" : sector.trend === "neutral" ? "—" : "▼"} NOI {sector.noigrowth > 0 ? "+" : ""}{sector.noigrowth}% YoY
                 </div>
                 <div className="text-xs text-muted-foreground">Vacancy: <span className={sector.vacancyRate > 15 ? "text-red-400" : "text-muted-foreground"}>{sector.vacancyRate}%</span></div>
@@ -581,7 +581,7 @@ function PerformanceTab() {
   const currentDelinq = delinquency[delinquency.length - 1].rate;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* KPI row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <MetricCard label="Delinquency Rate" value={`${currentDelinq}%`} sub="30+ day past due" icon={AlertTriangle} trend="down" />
@@ -638,7 +638,7 @@ function PerformanceTab() {
           </h3>
           <div className="space-y-2.5">
             {vintageData.map((v) => (
-              <div key={v.vintage} className="flex items-center gap-3 text-xs">
+              <div key={v.vintage} className="flex items-center gap-3 text-xs text-muted-foreground">
                 <span className="text-muted-foreground w-10 font-mono">{v.vintage}</span>
                 <div className="flex-1 bg-muted rounded-full h-2">
                   <div
@@ -664,7 +664,7 @@ function PerformanceTab() {
             {prepayBySector.map((p) => {
               const color = sectorColors[p.sector] ?? "#64748b";
               return (
-                <div key={p.sector} className="flex items-center gap-3 text-xs">
+                <div key={p.sector} className="flex items-center gap-3 text-xs text-muted-foreground">
                   <span className="text-muted-foreground w-20">{p.sector}</span>
                   <div className="flex-1 bg-muted rounded-full h-2">
                     <div className="h-2 rounded-full transition-all" style={{ width: `${(p.cpr / 25) * 100}%`, backgroundColor: color }} />
@@ -729,7 +729,7 @@ function TradingTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* KPI row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <MetricCard label="CMBX IG Spread" value={`+${cmbxData[cmbxData.length - 1].ig}bps`} sub="vs Treasuries" icon={TrendingUp} trend="neutral" />
@@ -782,7 +782,7 @@ function TradingTab() {
             <DollarSign className="w-4 h-4 text-green-400" />
             Bid/Ask Liquidity by Tranche
           </h3>
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50">
                 <th className="py-2 text-left text-muted-foreground">Tranche</th>
@@ -866,7 +866,7 @@ function TradingTab() {
                   { step: "4. Post-Trade", items: ["Update position risk systems", "Monitor servicer advances", "Watch delinquency triggers", "Report to PM & risk committee"], color: "border-border text-primary" },
                 ].map((phase) => (
                   <div key={phase.step} className={cn("border rounded-md p-4 space-y-2", phase.color.split(" ")[0])}>
-                    <div className={cn("text-xs font-medium", phase.color.split(" ")[1])}>{phase.step}</div>
+                    <div className={cn("text-xs text-muted-foreground font-medium", phase.color.split(" ")[1])}>{phase.step}</div>
                     <ul className="space-y-1">
                       {phase.items.map((item) => (
                         <li key={item} className="flex items-start gap-1.5 text-xs text-muted-foreground">
@@ -889,7 +889,7 @@ function TradingTab() {
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function CMBSPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 lg:p-8">
       {/* HERO Header */}
       <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-start gap-4">

@@ -278,7 +278,7 @@ const fmtNoSign = (n: number, decimals = 1) => n.toFixed(decimals) + "%";
 const ReturnBadge = ({ value }: { value: number }) => (
   <span
     className={cn(
-      "text-xs font-semibold",
+      "text-xs text-muted-foreground font-semibold",
       value > 0 ? "text-emerald-400" : value < 0 ? "text-red-400" : "text-muted-foreground"
     )}
   >
@@ -333,7 +333,7 @@ function MarketOverviewTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -401,7 +401,7 @@ function MarketOverviewTab() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-xs",
+                          "text-xs text-muted-foreground",
                           idx.type === "DM"
                             ? "border-border text-primary"
                             : "border-amber-700 text-amber-400"
@@ -535,7 +535,7 @@ function ValuationTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Filter */}
       <div className="flex items-center gap-2">
         {(["all", "DM", "EM"] as const).map(f => (
@@ -543,7 +543,7 @@ function ValuationTab() {
             key={f}
             onClick={() => setFilterType(f)}
             className={cn(
-              "px-3 py-1 text-xs font-medium rounded-md border transition-colors",
+              "px-3 py-1 text-xs text-muted-foreground font-medium rounded-md border transition-colors",
               filterType === f
                 ? "bg-primary border-primary text-foreground"
                 : "border-border text-muted-foreground hover:border-muted-foreground"
@@ -737,7 +737,7 @@ function CountryDeepDivesTab() {
             key={c.code}
             onClick={() => setSelectedCountry(c.code)}
             className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border transition-all",
+              "flex items-center gap-1.5 px-3 py-1.5 text-xs text-muted-foreground font-medium rounded-md border transition-all",
               selectedCountry === c.code
                 ? "bg-primary/20 border-primary text-primary"
                 : "border-border text-muted-foreground hover:border-muted-foreground"
@@ -857,7 +857,7 @@ function CountryDeepDivesTab() {
 
 function CurrencyImpactTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary chips */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -1033,7 +1033,7 @@ function CurrencyImpactTab() {
               },
             ].map(sec => (
               <div key={sec.title} className={cn("rounded-lg border p-3", sec.color)}>
-                <p className={cn("text-xs font-medium mb-2", sec.color.split(" ")[0])}>{sec.title}</p>
+                <p className={cn("text-xs text-muted-foreground font-medium mb-2", sec.color.split(" ")[0])}>{sec.title}</p>
                 <ul className="space-y-1">
                   {sec.points.map((p, i) => (
                     <li key={i} className="flex items-start gap-1.5 text-xs text-muted-foreground">
@@ -1078,7 +1078,7 @@ function EMvsDMTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -1168,7 +1168,7 @@ function EMvsDMTab() {
             <div key={f.name} className="space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium text-muted-foreground">{f.name}</span>
-                <div className="flex items-center gap-3 text-xs">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
                   <span className="text-primary">DM {f.dmScore.toFixed(1)}</span>
                   <span className="text-amber-400">EM {f.emScore.toFixed(1)}</span>
                 </div>
@@ -1254,7 +1254,7 @@ function EMvsDMTab() {
 
 export default function GlobalEquityPage() {
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-4 p-4">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
@@ -1298,11 +1298,11 @@ export default function GlobalEquityPage() {
       {/* Tabs */}
       <Tabs defaultValue="overview" className="mt-8 space-y-4">
         <TabsList className="bg-card border border-border">
-          <TabsTrigger value="overview"   className="data-[state=active]:bg-muted text-xs">Market Overview</TabsTrigger>
-          <TabsTrigger value="valuation"  className="data-[state=active]:bg-muted text-xs">Valuation</TabsTrigger>
-          <TabsTrigger value="countries"  className="data-[state=active]:bg-muted text-xs">Country Deep Dives</TabsTrigger>
-          <TabsTrigger value="currency"   className="data-[state=active]:bg-muted text-xs">Currency Impact</TabsTrigger>
-          <TabsTrigger value="emdm"       className="data-[state=active]:bg-muted text-xs">EM vs DM</TabsTrigger>
+          <TabsTrigger value="overview"   className="data-[state=active]:bg-muted text-xs text-muted-foreground">Market Overview</TabsTrigger>
+          <TabsTrigger value="valuation"  className="data-[state=active]:bg-muted text-xs text-muted-foreground">Valuation</TabsTrigger>
+          <TabsTrigger value="countries"  className="data-[state=active]:bg-muted text-xs text-muted-foreground">Country Deep Dives</TabsTrigger>
+          <TabsTrigger value="currency"   className="data-[state=active]:bg-muted text-xs text-muted-foreground">Currency Impact</TabsTrigger>
+          <TabsTrigger value="emdm"       className="data-[state=active]:bg-muted text-xs text-muted-foreground">EM vs DM</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview"  className="data-[state=inactive]:hidden mt-0"><MarketOverviewTab /></TabsContent>

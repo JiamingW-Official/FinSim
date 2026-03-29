@@ -339,7 +339,7 @@ function DonutChart({ data }: { data: { source: string; pct: number; color: stri
   }
 
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-3">
       <svg width={180} height={180} viewBox="0 0 180 180">
         {slices.map((s, i) => (
           <path key={i} d={arcPath(s.startAngle, s.endAngle)} fill={s.color} opacity={0.9} />
@@ -389,7 +389,7 @@ function InfoCard({ title, children, icon: Icon, accent = "#3b82f6" }: {
 // ── Risk Badge ────────────────────────────────────────────────────────────────
 function RiskBadge({ risk }: { risk: "Low" | "Medium" | "High" }) {
   const map = { Low: "bg-emerald-900/50 text-emerald-300 border-emerald-700", Medium: "bg-amber-900/50 text-amber-300 border-amber-700", High: "bg-rose-900/50 text-rose-300 border-rose-700" };
-  return <span className={cn("text-xs px-2 py-0.5 rounded border font-medium", map[risk])}>{risk} Risk</span>;
+  return <span className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium", map[risk])}>{risk} Risk</span>;
 }
 
 // ── Tab 1: Exchange Landscape ─────────────────────────────────────────────────
@@ -397,9 +397,9 @@ function ExchangeLandscapeTab() {
   const [selectedGlobal, setSelectedGlobal] = useState<Exchange | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Market Share */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <BarChart3 size={15} className="text-primary" />
@@ -476,7 +476,7 @@ function ExchangeLandscapeTab() {
       <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">NYSE vs NASDAQ: Structural Differences</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Dimension</th>
@@ -535,7 +535,7 @@ function ExchangeLandscapeTab() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-xs"
+              className="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-xs text-muted-foreground"
             >
               <div className="font-medium text-foreground mb-1">{selectedGlobal.name}</div>
               <div className="grid grid-cols-3 gap-4 text-muted-foreground">
@@ -609,7 +609,7 @@ function OrderTypesTab() {
   const filtered = useMemo(() => filter === "All" ? ORDER_TYPES : ORDER_TYPES.filter((o) => o.risk === filter), [filter]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Order type grid */}
       <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
@@ -663,7 +663,7 @@ function OrderTypesTab() {
               </div>
               <RiskBadge risk={selected.risk} />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-muted-foreground">
               <div className="bg-card/40 rounded-lg p-3">
                 <div className="text-muted-foreground font-medium mb-1.5 flex items-center gap-1.5"><CheckCircle size={12} className="text-emerald-400" />When to Use</div>
                 <p className="text-muted-foreground">{selected.whenToUse}</p>
@@ -686,10 +686,10 @@ function OrderTypesTab() {
       </AnimatePresence>
 
       {/* Order Book Mechanics */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-medium text-foreground mb-4">Order Book: Price-Time Priority</h3>
-          <div className="space-y-1 text-xs mb-3">
+          <div className="space-y-1 text-xs text-muted-foreground mb-3">
             {/* Simplified order book visual */}
             <div className="grid grid-cols-3 text-muted-foreground text-xs font-medium border-b border-border pb-1 mb-2">
               <span>Size</span><span className="text-center">Price</span><span className="text-right">Side</span>
@@ -700,13 +700,13 @@ function OrderTypesTab() {
               { size: "1200", price: "182.05", side: "Ask", color: "text-rose-400" },
               { size: "800", price: "182.00", side: "Ask", color: "text-rose-400" },
             ].map((row, i) => (
-              <div key={i} className="grid grid-cols-3 text-xs py-0.5">
+              <div key={i} className="grid grid-cols-3 text-xs text-muted-foreground py-0.5">
                 <span className="text-muted-foreground">{row.size}</span>
                 <span className={cn("text-center font-mono font-medium", row.color)}>${row.price}</span>
                 <span className={cn("text-right", row.color)}>{row.side}</span>
               </div>
             ))}
-            <div className="grid grid-cols-3 text-xs py-1 bg-muted/30 rounded px-1">
+            <div className="grid grid-cols-3 text-xs text-muted-foreground py-1 bg-muted/30 rounded px-1">
               <span className="text-muted-foreground">Spread</span>
               <span className="text-center text-amber-300 font-mono font-medium">$0.05</span>
               <span></span>
@@ -717,7 +717,7 @@ function OrderTypesTab() {
               { size: "1500", price: "181.85", side: "Bid", color: "text-emerald-400" },
               { size: "300", price: "181.80", side: "Bid", color: "text-emerald-400" },
             ].map((row, i) => (
-              <div key={i} className="grid grid-cols-3 text-xs py-0.5">
+              <div key={i} className="grid grid-cols-3 text-xs text-muted-foreground py-0.5">
                 <span className="text-muted-foreground">{row.size}</span>
                 <span className={cn("text-center font-mono font-medium", row.color)}>${row.price}</span>
                 <span className={cn("text-right", row.color)}>{row.side}</span>
@@ -779,7 +779,7 @@ function PriceDiscoveryTab() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Pre/Post market + auctions */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <InfoCard title="Pre-Market Trading (4–9:30 AM ET)" icon={Clock} accent="#f59e0b">
@@ -936,7 +936,7 @@ function PriceDiscoveryTab() {
           </div>
           <div className="space-y-2">
             {CIRCUIT_BREAKERS.map((cb, i) => (
-              <div key={i} className="text-xs bg-card/50 rounded-lg p-2.5 border border-border/40">
+              <div key={i} className="text-xs text-muted-foreground bg-card/50 rounded-lg p-2.5 border border-border/40">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-muted-foreground font-medium">{cb.level}</span>
                   <span className={cn("text-xs font-mono", i === 2 ? "text-rose-400" : i === 1 ? "text-amber-400" : "text-yellow-400")}>{cb.trigger}</span>
@@ -973,9 +973,9 @@ function FragmentationTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Overview */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Network size={14} className="text-muted-foreground" />
@@ -1006,7 +1006,7 @@ function FragmentationTab() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.06 }}
-                className="grid grid-cols-4 text-xs items-center"
+                className="grid grid-cols-4 text-xs text-muted-foreground items-center"
               >
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: v.color }} />
@@ -1107,7 +1107,7 @@ function FragmentationTab() {
       <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Retail Liquidity: Wholesalers vs Exchange Execution</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-card/40 rounded-lg p-4 text-xs">
+          <div className="bg-card/40 rounded-lg p-4 text-xs text-muted-foreground">
             <div className="text-emerald-400 font-medium mb-2">Wholesaler Model (Citadel, Virtu, Two Sigma)</div>
             <ul className="space-y-1.5 text-muted-foreground">
               <li>Receive order flow from brokers via PFOF arrangements</li>
@@ -1117,7 +1117,7 @@ function FragmentationTab() {
               <li>Citadel Securities: executes ~28% of all US equity volume</li>
             </ul>
           </div>
-          <div className="bg-card/40 rounded-lg p-4 text-xs">
+          <div className="bg-card/40 rounded-lg p-4 text-xs text-muted-foreground">
             <div className="text-primary font-medium mb-2">Exchange Execution (Fidelity, Interactive Brokers)</div>
             <ul className="space-y-1.5 text-muted-foreground">
               <li>Orders sent directly to exchanges — compete with all market participants</li>
@@ -1136,7 +1136,7 @@ function FragmentationTab() {
 // ── Tab 5: Regulation ─────────────────────────────────────────────────────────
 function RegulationTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Timeline */}
       <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
@@ -1230,7 +1230,7 @@ function RegulationTab() {
             </div>
             <div className="space-y-3">
               {reg.content.map((item, j) => (
-                <div key={j} className="text-xs">
+                <div key={j} className="text-xs text-muted-foreground">
                   <span className="text-muted-foreground font-medium">{item.label}: </span>
                   <span className="text-muted-foreground">{item.desc}</span>
                 </div>
@@ -1307,7 +1307,7 @@ function RegulationTab() {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function MarketStructurePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-start justify-between gap-4">
         <div>
@@ -1325,7 +1325,7 @@ export default function MarketStructurePage() {
             { label: "T+1 Settlement", color: "bg-emerald-900/40 text-emerald-300 border-emerald-700/50" },
             { label: "PFOF Reform", color: "bg-amber-900/40 text-amber-300 border-amber-700/50" },
           ].map((b, i) => (
-            <Badge key={i} variant="outline" className={cn("text-xs", b.color)}>{b.label}</Badge>
+            <Badge key={i} variant="outline" className={cn("text-xs text-muted-foreground", b.color)}>{b.label}</Badge>
           ))}
         </div>
       </motion.div>

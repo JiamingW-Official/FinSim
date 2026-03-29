@@ -292,7 +292,7 @@ function MechanicsTab() {
       </div>
 
       {/* Lifecycle SVG Timeline */}
-      <div className="bg-card rounded-md border border-border p-6">
+      <div className="bg-card rounded-md border border-border p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-5">SPAC Lifecycle</h3>
         <div className="overflow-x-auto">
           <svg width="720" height="180" viewBox="0 0 720 180" className="w-full">
@@ -380,7 +380,7 @@ function MechanicsTab() {
               { label: "Redemption right", value: "Full NAV + interest" },
               { label: "If no deal found", value: "Trust returned to shareholders" },
             ].map((item) => (
-              <div key={item.label} className="flex justify-between text-xs">
+              <div key={item.label} className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{item.label}</span>
                 <span className="text-emerald-400 font-medium">{item.value}</span>
               </div>
@@ -400,7 +400,7 @@ function MechanicsTab() {
           </p>
           <div className="space-y-1.5">
             {Object.entries(sponsorPromoteInfo).map(([k, v]) => (
-              <div key={k} className="flex justify-between text-xs">
+              <div key={k} className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{k.replace(/([A-Z])/g, " $1").trim()}</span>
                 <span className="text-amber-400 font-medium">{v}</span>
               </div>
@@ -426,7 +426,7 @@ function MechanicsTab() {
               { label: "Redemption trigger", value: "$18/share 20-day VWAP" },
               { label: "Black-Scholes value", value: "$1.50–$3.00" },
             ].map((item) => (
-              <div key={item.label} className="flex justify-between text-xs">
+              <div key={item.label} className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{item.label}</span>
                 <span className="text-primary font-medium">{item.value}</span>
               </div>
@@ -512,7 +512,7 @@ function DealAnalysisTab() {
                   <td className="py-2.5 pr-4 text-muted-foreground text-xs font-medium">{row.metric}</td>
                   <td className="py-2.5 pr-4 text-xs text-muted-foreground">{row.spac}</td>
                   <td className="py-2.5 pr-4 text-xs text-muted-foreground">{row.ipo}</td>
-                  <td className="py-2.5 text-xs">
+                  <td className="py-2.5 text-xs text-muted-foreground">
                     {row.winner === "spac" ? (
                       <span className="text-primary font-medium">SPAC</span>
                     ) : row.winner === "ipo" ? (
@@ -552,7 +552,7 @@ function DealAnalysisTab() {
                     <span className="text-xs text-muted-foreground hidden sm:block">{deal.name}</span>
                     <span
                       className={cn(
-                        "text-xs px-2 py-0.5 rounded-full font-medium",
+                        "text-xs text-muted-foreground px-2 py-0.5 rounded-full font-medium",
                         deal.status === "Completed"
                           ? "bg-emerald-500/15 text-emerald-400"
                           : deal.status === "Announced"
@@ -763,7 +763,7 @@ function WarrantValuationTab() {
                   color: stockPrice > K ? "text-emerald-400" : "text-red-400",
                 },
               ].map((item) => (
-                <div key={item.label} className="flex justify-between text-xs">
+                <div key={item.label} className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{item.label}</span>
                   <span className={`font-medium ${item.color}`}>{item.value}</span>
                 </div>
@@ -865,7 +865,7 @@ function WarrantValuationTab() {
               { phase: "Deal announced", warrantVal: "$1.50–$4.00", leverage: "~3–5x", risk: "High" },
               { phase: "Post-merger", warrantVal: "Market price", leverage: "~2–4x", risk: "Very High" },
             ].map((row, i) => (
-              <div key={i} className="bg-muted rounded p-2.5 text-xs">
+              <div key={i} className="bg-muted rounded p-2.5 text-xs text-muted-foreground">
                 <div className="text-muted-foreground font-medium mb-1">{row.phase}</div>
                 <div className="flex gap-4 text-muted-foreground">
                   <span>
@@ -1089,7 +1089,7 @@ function HistoricalPerformanceTab() {
       {/* Sector Breakdown */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">SPAC Volume by Sector (2019–2025)</h3>
-        <div className="flex flex-col md:flex-row gap-6 items-center">
+        <div className="flex flex-col md:flex-row gap-3 items-center">
           {/* Pie Chart */}
           <svg width={200} height={190} viewBox="0 0 200 190" className="shrink-0">
             {slices.map((slice, i) => (
@@ -1125,7 +1125,7 @@ function HistoricalPerformanceTab() {
                 <span className="text-xs text-muted-foreground w-12 text-right">{d.count} deals</span>
                 <span
                   className={cn(
-                    "text-xs font-medium w-16 text-right",
+                    "text-xs text-muted-foreground font-medium w-16 text-right",
                     d.avgPostReturn >= 0 ? "text-emerald-400" : "text-red-400"
                   )}
                 >
@@ -1145,7 +1145,7 @@ function HistoricalPerformanceTab() {
           <BarChart2 className="w-4 h-4 text-amber-400" />
           <span className="text-sm font-medium text-foreground">The SPAC Bubble & Bust Cycle (2020–2022)</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
           {[
             {
               phase: "Bubble (2020–2021)",
@@ -1276,7 +1276,7 @@ function InvestorStrategyTab() {
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">Strategy Comparison</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Strategy</th>
@@ -1476,7 +1476,7 @@ export default function SpacInvestingPage() {
             ].map((stat) => (
               <div key={stat.label} className="bg-card border border-border rounded-lg px-3 py-1.5">
                 <span className="text-xs text-muted-foreground">{stat.label}: </span>
-                <span className={cn("text-xs font-medium", stat.color)}>{stat.value}</span>
+                <span className={cn("text-xs text-muted-foreground font-medium", stat.color)}>{stat.value}</span>
               </div>
             ))}
           </div>

@@ -199,7 +199,7 @@ export default function OptionsPage() {
                 </TabsContent>
 
                 {/* Strategy — INTERACTIVE card styling */}
-                <TabsContent value="strategy" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden p-4">
+                <TabsContent value="strategy" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden p-3">
                   <StrategyBuilderV2
                     chain={chain}
                     spotPrice={spotPrice}
@@ -404,7 +404,7 @@ export default function OptionsPage() {
       <div className="md:hidden shrink-0 border-t border-border">
         <OptionsOrderEntry spotPrice={spotPrice} analytics={analytics} />
       </div>
-      <p className="shrink-0 border-t border-border/40 px-3 py-2.5 text-center text-[11px] text-muted-foreground/60">
+      <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60">
         For educational purposes only. Not financial advice. All data is simulated.
       </p>
     </div>

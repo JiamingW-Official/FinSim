@@ -290,7 +290,7 @@ function EfficientFrontierTab() {
 
       {/* SVG chart */}
       <Card className="mt-8 bg-muted/30 border-border border-l-4 border-l-primary">
-        <CardHeader className="pb-2 p-6">
+        <CardHeader className="pb-2 p-4">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-indigo-400" />
             Efficient Frontier — Risk vs Return
@@ -369,7 +369,7 @@ function EfficientFrontierTab() {
 
             {/* Hover tooltip */}
             {hoveredPort && (
-              <div className="absolute top-2 right-2 bg-background/90 border border-border rounded p-2 text-xs space-y-1 pointer-events-none">
+              <div className="absolute top-2 right-2 bg-background/90 border border-border rounded p-2 text-xs text-muted-foreground space-y-1 pointer-events-none">
                 <p className="font-semibold text-foreground">Portfolio</p>
                 <p className="text-muted-foreground">Vol: <span className="text-foreground">{hoveredPort.vol.toFixed(1)}%</span></p>
                 <p className="text-muted-foreground">Ret: <span className="text-foreground">{hoveredPort.ret.toFixed(1)}%</span></p>
@@ -493,7 +493,7 @@ function BlackLittermanTab() {
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-foreground">{view.asset}</span>
                 <div className="flex items-center gap-3">
-                  <Badge variant="outline" className="text-xs">
+                  <Badge variant="outline" className="text-xs text-muted-foreground">
                     View: {view.expectedReturn.toFixed(1)}%
                   </Badge>
                   <Badge variant="outline" className="text-xs text-primary border-primary/40">
@@ -615,7 +615,7 @@ function BlackLittermanTab() {
             const diff = blW - mcW;
             return (
               <div key={a.ticker} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="font-medium text-foreground">{a.name}</span>
                   <div className="flex items-center gap-2">
                     <span className="text-muted-foreground">MktCap: {mcW}%</span>
@@ -727,7 +727,7 @@ function RiskBudgetingTab() {
           <CardContent className="space-y-3">
             {RISK_BUDGET_DATA.map(a => (
               <div key={a.ticker} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="font-medium text-foreground">{a.ticker}</span>
                   <span className="text-muted-foreground">MRC: <span className="text-foreground font-semibold">{a.marginalRisk.toFixed(2)}%</span></span>
                 </div>
@@ -758,7 +758,7 @@ function RiskBudgetingTab() {
             const normalizedERC = Math.min(60, Math.max(5, ercW));
             return (
               <div key={a.ticker} className="space-y-0.5">
-                <div className="flex items-center justify-between text-xs mb-1">
+                <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
                   <span className="font-medium text-foreground w-24">{a.name}</span>
                   <div className="flex gap-3">
                     <span className="text-muted-foreground">EW: {eqW}%</span>
@@ -794,7 +794,7 @@ function RiskBudgetingTab() {
             const a = RISK_BUDGET_DATA[i];
             return (
               <div key={b.name} className="space-y-1.5">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="font-medium text-foreground">{b.name}</span>
                   <Badge variant="outline" style={{ borderColor: a.color + "66", color: a.color }} className="text-xs">
                     {b.budget}% risk budget
@@ -873,7 +873,7 @@ function RebalancingTab() {
             key={s.key}
             variant={selectedStrategy === s.key ? "default" : "outline"}
             size="sm"
-            className="text-xs"
+            className="text-xs text-muted-foreground"
             style={selectedStrategy === s.key ? { background: s.color, borderColor: s.color } : {}}
             onClick={() => setSelectedStrategy(s.key)}
           >
@@ -956,7 +956,7 @@ function RebalancingTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground font-medium">Strategy</th>
@@ -1041,7 +1041,7 @@ function RebalancingTab() {
 export default function PortfolioLabPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
@@ -1067,7 +1067,7 @@ export default function PortfolioLabPage() {
               { label: "Risk Budgeting",     icon: Scale,       color: "text-emerald-400" },
               { label: "Rebalancing",        icon: RefreshCw,   color: "text-amber-400" },
             ].map(({ label, icon: Icon, color }) => (
-              <Badge key={label} variant="outline" className="text-xs gap-1">
+              <Badge key={label} variant="outline" className="text-xs text-muted-foreground gap-1">
                 <Icon className={`h-3 w-3 ${color}`} />
                 {label}
               </Badge>
@@ -1083,19 +1083,19 @@ export default function PortfolioLabPage() {
         >
           <Tabs defaultValue="frontier" className="space-y-4">
             <TabsList className="grid grid-cols-4 w-full">
-              <TabsTrigger value="frontier" className="text-xs sm:text-sm">
+              <TabsTrigger value="frontier" className="text-xs text-muted-foreground sm:text-sm">
                 <TrendingUp className="h-3.5 w-3.5 mr-1.5 hidden sm:inline" />
                 Efficient Frontier
               </TabsTrigger>
-              <TabsTrigger value="bl" className="text-xs sm:text-sm">
+              <TabsTrigger value="bl" className="text-xs text-muted-foreground sm:text-sm">
                 <Activity className="h-3.5 w-3.5 mr-1.5 hidden sm:inline" />
                 Black-Litterman
               </TabsTrigger>
-              <TabsTrigger value="risk" className="text-xs sm:text-sm">
+              <TabsTrigger value="risk" className="text-xs text-muted-foreground sm:text-sm">
                 <Scale className="h-3.5 w-3.5 mr-1.5 hidden sm:inline" />
                 Risk Budgeting
               </TabsTrigger>
-              <TabsTrigger value="rebal" className="text-xs sm:text-sm">
+              <TabsTrigger value="rebal" className="text-xs text-muted-foreground sm:text-sm">
                 <RefreshCw className="h-3.5 w-3.5 mr-1.5 hidden sm:inline" />
                 Rebalancing
               </TabsTrigger>

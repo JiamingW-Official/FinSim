@@ -338,7 +338,7 @@ function PipelineTracker() {
   }, [sortBy]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Controls */}
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-sm text-muted-foreground">Sort by:</span>
@@ -347,7 +347,7 @@ function PipelineTracker() {
             key={opt}
             onClick={() => setSortBy(opt)}
             className={cn(
-              "px-3 py-1 rounded text-xs font-medium transition-colors",
+              "px-3 py-1 rounded text-xs text-muted-foreground font-medium transition-colors",
               sortBy === opt
                 ? "bg-primary text-foreground"
                 : "bg-muted text-muted-foreground hover:bg-muted"
@@ -396,7 +396,7 @@ function PipelineTracker() {
                       {co.subsector}
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-4 text-xs">
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="text-muted-foreground">
                       MCap: <span className="text-foreground">{fmtB(co.marketCap)}</span>
                     </span>
@@ -442,7 +442,7 @@ function PipelineTracker() {
                                 <span className="text-xs text-muted-foreground ml-2">— {drug.indication}</span>
                               </div>
                             </div>
-                            <div className="flex items-center gap-3 text-xs">
+                            <div className="flex items-center gap-3 text-xs text-muted-foreground">
                               {drug.designation !== "None" && (
                                 <Badge
                                   className="text-xs bg-amber-900/40 text-amber-300 border-amber-700"
@@ -458,7 +458,7 @@ function PipelineTracker() {
                                 Readout: <span className="text-primary">{drug.nextReadout}</span>
                               </span>
                               <span
-                                className="font-medium px-2 py-0.5 rounded text-xs"
+                                className="font-medium px-2 py-0.5 rounded text-xs text-muted-foreground"
                                 style={{
                                   backgroundColor: STAGE_COLORS[drug.stage] + "33",
                                   color: STAGE_COLORS[drug.stage],
@@ -472,7 +472,7 @@ function PipelineTracker() {
                       </div>
                       {/* Cash burn analysis */}
                       {co.quarterlyBurn > 0 && (
-                        <div className="mt-3 p-3 bg-card rounded flex items-center gap-6 text-xs">
+                        <div className="mt-3 p-3 bg-card rounded flex items-center gap-3 text-xs text-muted-foreground">
                           <div>
                             <span className="text-muted-foreground">Cash: </span>
                             <span className="text-foreground font-medium">{fmtM(co.cash)}</span>
@@ -509,7 +509,7 @@ function PipelineTracker() {
           Binary Event Calendar
         </h3>
         <div className="rounded-lg border border-border overflow-hidden">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="bg-card border-b border-border">
                 <th className="text-left p-3 text-muted-foreground font-medium">Date</th>
@@ -691,7 +691,7 @@ function DrugEconomics() {
   }, [peakSales, marketShare, launchYear, discountRate, poA]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
@@ -809,7 +809,7 @@ function DrugEconomics() {
         <div className="bg-muted/60 rounded-lg p-4 flex items-center justify-between">
           <div>
             <div className="text-xs text-muted-foreground">Risk-Adjusted NPV (rNPV)</div>
-            <div className="text-2xl font-bold text-emerald-400">{fmtM(Math.round(npv))}</div>
+            <div className="text-lg font-medium text-emerald-400">{fmtM(Math.round(npv))}</div>
           </div>
           <div className="text-xs text-muted-foreground max-w-xs">
             Based on {poA}% PoA × 10-year discounted cash flows at {discountRate}% discount rate.
@@ -959,7 +959,7 @@ function ValuationFramework() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Company selector */}
       <div className="flex items-center gap-2 flex-wrap">
         <span className="text-sm text-muted-foreground">Select company:</span>
@@ -968,7 +968,7 @@ function ValuationFramework() {
             key={c.ticker}
             onClick={() => setSelectedTicker(c.ticker)}
             className={cn(
-              "px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors",
+              "px-2.5 py-1 rounded text-xs text-muted-foreground font-mono font-medium transition-colors",
               selectedTicker === c.ticker
                 ? "bg-primary text-foreground"
                 : "bg-muted text-muted-foreground hover:bg-muted"
@@ -1003,7 +1003,7 @@ function ValuationFramework() {
             const pctOfTotal = rnpv > 0 ? riskAdjNPV / rnpv : 0;
             return (
               <div key={i} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <span
                       className="w-2 h-2 rounded-full"
@@ -1012,7 +1012,7 @@ function ValuationFramework() {
                     <span className="text-foreground font-medium">{drug.name}</span>
                     <span className="text-muted-foreground">({drug.indication})</span>
                     <span
-                      className="px-1.5 py-0.5 rounded text-xs"
+                      className="px-1.5 py-0.5 rounded text-xs text-muted-foreground"
                       style={{
                         backgroundColor: STAGE_COLORS[drug.stage] + "33",
                         color: STAGE_COLORS[drug.stage],
@@ -1065,7 +1065,7 @@ function ValuationFramework() {
       <div className="bg-card border border-border rounded-lg p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">Valuation Multiples by Subsector</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left p-2 text-muted-foreground">Subsector</th>
@@ -1162,12 +1162,12 @@ function SectorAnalysis() {
   const groupGap = W / fdaApprovals.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Subsector Comparison */}
       <div className="bg-card border border-border rounded-lg p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">Subsector Comparison</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left p-2 text-muted-foreground">Subsector</th>
@@ -1220,7 +1220,7 @@ function SectorAnalysis() {
               <div className="text-right">
                 <div
                   className={cn(
-                    "text-xs font-medium",
+                    "text-xs text-muted-foreground font-medium",
                     cat.pricingPower === "Extreme" || cat.pricingPower === "Very High"
                       ? "text-emerald-400"
                       : cat.pricingPower === "High"
@@ -1232,7 +1232,7 @@ function SectorAnalysis() {
                 </div>
                 <div
                   className={cn(
-                    "text-xs",
+                    "text-xs text-muted-foreground",
                     cat.biosimilarRisk === "High" || cat.biosimilarRisk === "High (generics)"
                       ? "text-rose-400"
                       : cat.biosimilarRisk === "Moderate"
@@ -1292,7 +1292,7 @@ function SectorAnalysis() {
             { label: "Accelerated Approval", desc: "Based on surrogate endpoint; post-market confirmation required", color: "text-emerald-400" },
           ].map((d) => (
             <div key={d.label} className="bg-muted/40 rounded p-3">
-              <div className={cn("text-xs font-medium mb-1", d.color)}>{d.label}</div>
+              <div className={cn("text-xs text-muted-foreground font-medium mb-1", d.color)}>{d.label}</div>
               <div className="text-xs text-muted-foreground">{d.desc}</div>
             </div>
           ))}
@@ -1390,7 +1390,7 @@ function BinaryEventTrading() {
   }, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Straddle Calculator */}
       <div className="bg-card border border-border rounded-lg p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
@@ -1509,7 +1509,7 @@ function BinaryEventTrading() {
           Spreading small positions across 10 upcoming catalysts reduces variance vs concentrating in one.
         </p>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left p-2 text-muted-foreground">Ticker</th>
@@ -1622,7 +1622,7 @@ function BinaryEventTrading() {
           ].map((des) => (
             <div key={des.name} className={cn("border rounded-lg p-3 flex items-center justify-between", des.color)}>
               <div>
-                <div className={cn("text-xs font-medium", des.textColor)}>{des.name}</div>
+                <div className={cn("text-xs text-muted-foreground font-medium", des.textColor)}>{des.name}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{des.granted}</div>
               </div>
               <div className="text-right">

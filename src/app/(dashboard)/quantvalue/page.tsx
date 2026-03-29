@@ -269,7 +269,7 @@ function Num({ v, decimals = 1, suffix = "", prefix = "", colorize = false }: {
 
 function Badge({ label, color }: { label: string; color: string }) {
   return (
-    <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", color)}>
+    <span className={cn("px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium", color)}>
       {label}
     </span>
   );
@@ -343,7 +343,7 @@ function DeepValueScreen() {
             key={f}
             onClick={() => setFilter(f)}
             className={cn(
-              "px-3 py-1.5 rounded text-xs font-medium transition-colors",
+              "px-3 py-1.5 rounded text-xs text-muted-foreground font-medium transition-colors",
               filter === f
                 ? "bg-primary text-foreground"
                 : "bg-muted text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -1000,7 +1000,7 @@ function BacktestedPerformance() {
         <AnimatePresence mode="wait">
           {!showDrawdown ? (
             <motion.div key="nav" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <div className="flex gap-4 mb-2 text-xs">
+              <div className="flex gap-4 mb-2 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-emerald-400 inline-block" /> Value Strategy</span>
                 <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-primary inline-block" /> Market</span>
               </div>
@@ -1111,7 +1111,7 @@ function BacktestedPerformance() {
 
 export default function QuantValuePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
       {/* Page Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -1133,7 +1133,7 @@ export default function QuantValuePage() {
           ].map((chip) => (
             <span
               key={chip.label}
-              className={cn("inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border", chip.color)}
+              className={cn("inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs text-muted-foreground border", chip.color)}
             >
               {chip.icon}
               {chip.label}
@@ -1145,23 +1145,23 @@ export default function QuantValuePage() {
       {/* Tabs */}
       <Tabs defaultValue="deepvalue">
         <TabsList className="bg-card border border-border mb-4 h-auto flex-wrap gap-1 p-1">
-          <TabsTrigger value="deepvalue" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="deepvalue" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Filter className="w-3.5 h-3.5 mr-1.5" />
             Deep Value
           </TabsTrigger>
-          <TabsTrigger value="magic" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="magic" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Award className="w-3.5 h-3.5 mr-1.5" />
             Magic Formula
           </TabsTrigger>
-          <TabsTrigger value="acquirers" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="acquirers" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Target className="w-3.5 h-3.5 mr-1.5" />
             Acquirer&apos;s Multiple
           </TabsTrigger>
-          <TabsTrigger value="qualityvalue" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="qualityvalue" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             Quality-Value
           </TabsTrigger>
-          <TabsTrigger value="backtest" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="backtest" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
             Backtest
           </TabsTrigger>

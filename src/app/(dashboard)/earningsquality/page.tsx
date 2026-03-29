@@ -256,7 +256,7 @@ function generateCashFlowData(): CashFlowStock[] {
 function ScoreBadge({ score }: { score: number }) {
   const color = score >= 70 ? "text-emerald-400 bg-emerald-400/10" : score >= 45 ? "text-amber-400 bg-amber-400/10" : "text-red-400 bg-red-400/10";
   return (
-    <span className={cn("inline-flex items-center justify-center rounded px-2 py-0.5 text-xs font-semibold tabular-nums", color)}>
+    <span className={cn("inline-flex items-center justify-center rounded px-2 py-0.5 text-xs text-muted-foreground font-semibold tabular-nums", color)}>
       {score}
     </span>
   );
@@ -270,7 +270,7 @@ function FlagBadge({ flag }: { flag: "high" | "medium" | "low" }) {
   };
   const labels = { high: "High Quality", medium: "Medium", low: "Low Quality" };
   return (
-    <span className={cn("inline-flex items-center gap-1 rounded border px-2 py-0.5 text-xs font-medium", map[flag])}>
+    <span className={cn("inline-flex items-center gap-1 rounded border px-2 py-0.5 text-xs text-muted-foreground font-medium", map[flag])}>
       {flag === "high" ? <CheckCircle2 size={10} /> : flag === "medium" ? <Info size={10} /> : <AlertTriangle size={10} />}
       {labels[flag]}
     </span>
@@ -285,7 +285,7 @@ function RiskBadge({ risk }: { risk: "high" | "medium" | "low" }) {
   };
   const labels = { high: "High Risk", medium: "Med Risk", low: "Low Risk" };
   return (
-    <span className={cn("inline-flex items-center gap-1 rounded border px-2 py-0.5 text-xs font-medium", map[risk])}>
+    <span className={cn("inline-flex items-center gap-1 rounded border px-2 py-0.5 text-xs text-muted-foreground font-medium", map[risk])}>
       {risk === "high" ? <ShieldAlert size={10} /> : risk === "medium" ? <AlertTriangle size={10} /> : <CheckCircle2 size={10} />}
       {labels[risk]}
     </span>
@@ -501,7 +501,7 @@ function ScreenerTab() {
     ) : null;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header row */}
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
@@ -555,7 +555,7 @@ function ScreenerTab() {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[700px] text-xs">
+        <table className="w-full min-w-[700px] text-xs text-muted-foreground">
           <thead>
             <tr className="border-b border-border/50">
               {[
@@ -625,7 +625,7 @@ function AccrualTab() {
   const [view, setView] = useState<"balance" | "cf">("balance");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-base font-medium text-foreground">Accrual Analysis</h2>
         <p className="mt-0.5 text-xs text-muted-foreground">
@@ -661,7 +661,7 @@ function AccrualTab() {
                   { label: "High Accrual Ratio", range: "> +5%", interpretation: "Earnings running ahead of cash. Mean reversion likely.", color: "text-red-400" },
                 ].map(item => (
                   <div key={item.label} className="rounded-lg border border-border/50 bg-foreground/[0.02] p-3">
-                    <div className={cn("text-xs font-medium mb-1", item.color)}>{item.label}</div>
+                    <div className={cn("text-xs text-muted-foreground font-medium mb-1", item.color)}>{item.label}</div>
                     <div className="text-xs text-muted-foreground mb-1">{item.range}</div>
                     <div className="text-xs text-muted-foreground">{item.interpretation}</div>
                   </div>
@@ -694,7 +694,7 @@ function AccrualTab() {
         <div className="flex justify-center">
           <DecileReturnChart />
         </div>
-        <div className="mt-3 flex gap-4 justify-center text-xs">
+        <div className="mt-3 flex gap-4 justify-center text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5"><div className="h-2.5 w-2.5 rounded-sm bg-emerald-400 opacity-85" /><span className="text-muted-foreground">Low accrual (quality)</span></div>
           <div className="flex items-center gap-1.5"><div className="h-2.5 w-2.5 rounded-sm bg-muted-foreground" /><span className="text-muted-foreground">Mid deciles</span></div>
           <div className="flex items-center gap-1.5"><div className="h-2.5 w-2.5 rounded-sm bg-red-400 opacity-85" /><span className="text-muted-foreground">High accrual (risk)</span></div>
@@ -748,7 +748,7 @@ function PiotroskiTab() {
   const fscoreColor = company.fscore >= 7 ? "text-emerald-400" : company.fscore >= 4 ? "text-amber-400" : "text-red-400";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-base font-medium text-foreground">Piotroski F-Score</h2>
         <p className="mt-0.5 text-xs text-muted-foreground">
@@ -775,7 +775,7 @@ function PiotroskiTab() {
           <RadarChart company={company} />
           <div className={cn("text-2xl font-bold tabular-nums", fscoreColor)}>{company.fscore}</div>
           <div className="text-xs text-muted-foreground">{company.ticker} F-Score (out of 9)</div>
-          <div className={cn("text-xs font-medium", fscoreColor)}>
+          <div className={cn("text-xs text-muted-foreground font-medium", fscoreColor)}>
             {company.fscore >= 7 ? "Strong — Long Candidate" : company.fscore >= 4 ? "Neutral — Monitor" : "Weak — Potential Short"}
           </div>
         </div>
@@ -784,11 +784,11 @@ function PiotroskiTab() {
         <div className="col-span-2 space-y-4">
           {factorGroups.map(group => (
             <div key={group.group} className="rounded-md border border-border/50 bg-foreground/[0.03] p-4">
-              <h3 className={cn("mb-3 text-xs font-medium uppercase tracking-wide", group.color)}>{group.group}</h3>
+              <h3 className={cn("mb-3 text-xs text-muted-foreground font-medium uppercase tracking-wide", group.color)}>{group.group}</h3>
               <div className="space-y-2">
                 {group.factors.map(factor => (
                   <div key={factor.label} className="flex items-center gap-3">
-                    <div className={cn("h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold",
+                    <div className={cn("h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs text-muted-foreground font-bold",
                       factor.value === 1 ? "bg-emerald-400/20 text-emerald-400" : "bg-red-400/10 text-red-400"
                     )}>
                       {factor.value === 1 ? "1" : "0"}
@@ -814,7 +814,7 @@ function PiotroskiTab() {
         ].map(item => (
           <div key={item.range} className={cn("rounded-lg border p-3", item.color)}>
             <div className={cn("text-sm font-medium mb-0.5", item.textColor)}>F-Score {item.range}</div>
-            <div className={cn("text-xs font-medium mb-1", item.textColor)}>{item.label}</div>
+            <div className={cn("text-xs text-muted-foreground font-medium mb-1", item.textColor)}>{item.label}</div>
             <div className="text-xs text-muted-foreground">{item.desc}</div>
           </div>
         ))}
@@ -843,7 +843,7 @@ function BeneishTab() {
   const mScoreColor = company.mScore > -1.78 ? "text-red-400" : company.mScore > -2.22 ? "text-amber-400" : "text-emerald-400";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-base font-medium text-foreground">Beneish M-Score</h2>
         <p className="mt-0.5 text-xs text-muted-foreground">
@@ -858,7 +858,7 @@ function BeneishTab() {
           <span className="text-indigo-400">M-Score</span> = −4.84 + 0.92(DSRI) + 0.528(GMI) + 0.404(AQI) + 0.892(SGI)<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.115(DEPI) − 0.172(SGAI) + 4.679(TATA) − 0.327(LVGI)
         </div>
-        <div className="mt-3 flex flex-wrap gap-3 text-xs">
+        <div className="mt-3 flex flex-wrap gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5"><div className="h-2 w-8 rounded bg-red-400/70" /><span className="text-muted-foreground">&gt; −1.78: Likely manipulator</span></div>
           <div className="flex items-center gap-1.5"><div className="h-2 w-8 rounded bg-amber-400/70" /><span className="text-muted-foreground">−2.22 to −1.78: Gray zone</span></div>
           <div className="flex items-center gap-1.5"><div className="h-2 w-8 rounded bg-emerald-400/70" /><span className="text-muted-foreground">&lt; −2.22: Unlikely manipulator</span></div>
@@ -885,7 +885,7 @@ function BeneishTab() {
             <h3 className="text-sm font-medium text-foreground">{company.name}</h3>
             <RiskBadge risk={company.risk} />
           </div>
-          <div className={cn("text-2xl font-bold tabular-nums", mScoreColor)}>{company.mScore.toFixed(3)}</div>
+          <div className={cn("text-lg font-medium tabular-nums", mScoreColor)}>{company.mScore.toFixed(3)}</div>
           <div className="text-xs text-muted-foreground">M-Score (threshold: −1.78)</div>
           <div className="mt-4 space-y-2.5">
             {variables.map(v => (
@@ -969,7 +969,7 @@ function CashFlowTab() {
   const W = 380, H = 80, PAD = 20;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-base font-medium text-foreground">Cash Flow Quality</h2>
         <p className="mt-0.5 text-xs text-muted-foreground">
@@ -986,7 +986,7 @@ function CashFlowTab() {
           { label: "Divergence", formula: "EPS Yield − FCF Yield", ideal: "< 1% is healthy", color: "text-muted-foreground" },
         ].map(item => (
           <div key={item.label} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
-            <div className={cn("text-xs font-medium mb-1", item.color)}>{item.label}</div>
+            <div className={cn("text-xs text-muted-foreground font-medium mb-1", item.color)}>{item.label}</div>
             <div className="font-mono text-xs text-muted-foreground mb-1">{item.formula}</div>
             <div className="text-xs text-muted-foreground">Ideal: {item.ideal}</div>
           </div>
@@ -1013,7 +1013,7 @@ function CashFlowTab() {
           <line x1={PAD} y1={H - (1 / maxOcf) * (H - 10)} x2={W - PAD} y2={H - (1 / maxOcf) * (H - 10)} stroke="#6366f1" strokeWidth={1} strokeDasharray="4,3" />
           <text x={W - PAD - 2} y={H - (1 / maxOcf) * (H - 10) - 3} textAnchor="end" fill="#6366f1" fontSize={8}>1.0x threshold</text>
         </svg>
-        <div className="mt-2 flex gap-4 text-xs">
+        <div className="mt-2 flex gap-4 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5"><div className="h-2 w-2 rounded bg-emerald-400" /><span className="text-muted-foreground">OCF/NI ≥ 1.0</span></div>
           <div className="flex items-center gap-1.5"><div className="h-2 w-2 rounded bg-amber-400" /><span className="text-muted-foreground">0.7–1.0</span></div>
           <div className="flex items-center gap-1.5"><div className="h-2 w-2 rounded bg-red-400" /><span className="text-muted-foreground">&lt; 0.7</span></div>
@@ -1030,7 +1030,7 @@ function CashFlowTab() {
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[600px] text-xs">
+          <table className="w-full min-w-[600px] text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50">
                 {[

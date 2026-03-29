@@ -621,7 +621,7 @@ function TrancheTable() {
             <tr key={t.rating} className="border-b border-border/40 hover:bg-muted/30 transition-colors">
               <td className="py-2 px-3">
                 <span
-                  className="inline-block px-2 py-0.5 rounded text-xs font-bold"
+                  className="inline-block px-2 py-0.5 rounded text-xs text-muted-foreground font-bold"
                   style={{ background: t.color, color: t.textColor }}
                 >
                   {t.rating}
@@ -699,7 +699,7 @@ function MarketDataPanel() {
                 <td className="py-2 px-3 text-foreground font-medium">{row.name}</td>
                 <td className="py-2 px-3">
                   <span
-                    className="inline-block px-2 py-0.5 rounded text-xs font-medium"
+                    className="inline-block px-2 py-0.5 rounded text-xs text-muted-foreground font-medium"
                     style={{ background: tranche.color, color: tranche.textColor }}
                   >
                     {row.rating}
@@ -762,7 +762,7 @@ export default function StructuredCreditPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -989,7 +989,7 @@ export default function StructuredCreditPage() {
             <div className="flex gap-2">
               <button
                 onClick={() => setScenario("base")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors ${
                   scenario === "base"
                     ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400"
                     : "border-border text-muted-foreground hover:bg-muted/30"
@@ -999,7 +999,7 @@ export default function StructuredCreditPage() {
               </button>
               <button
                 onClick={() => setScenario("stress")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors ${
                   scenario === "stress"
                     ? "bg-rose-500/20 border-rose-500/40 text-rose-400"
                     : "border-border text-muted-foreground hover:bg-muted/30"

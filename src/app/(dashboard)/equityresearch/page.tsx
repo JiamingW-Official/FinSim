@@ -347,7 +347,7 @@ function RatingBadge({ rating }: { rating: "Buy" | "Hold" | "Sell" | "Strong Buy
     Sell: "bg-red-500/20 text-red-400 border border-red-500/30",
   };
   return (
-    <span className={cn("text-xs font-semibold px-2 py-0.5 rounded-full", colors[rating])}>
+    <span className={cn("text-xs text-muted-foreground font-semibold px-2 py-0.5 rounded-full", colors[rating])}>
       {rating}
     </span>
   );
@@ -387,7 +387,7 @@ function SensitivityGrid() {
 
   return (
     <div className="overflow-x-auto">
-      <svg width={totalW} height={totalH} className="font-mono text-xs">
+      <svg width={totalW} height={totalH} className="font-mono text-xs text-muted-foreground">
         {/* Corner label */}
         <text x={leftPad / 2} y={topPad / 2 + 4} textAnchor="middle" fill="#94a3b8" fontSize={10}>
           g\WACC
@@ -865,7 +865,7 @@ function ResearchProcessTab() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h3 className="text-sm font-semibold text-foreground mb-1">The Equity Research Process</h3>
         <p className="text-xs text-muted-foreground">
@@ -948,7 +948,7 @@ function ResearchProcessTab() {
 // ── Tab: Financial Modeling ────────────────────────────────────────────────────
 function FinancialModelingTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 3-Statement Linkage */}
       <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
@@ -969,7 +969,7 @@ function FinancialModelingTab() {
           <p className="text-sm font-medium text-foreground">Key Driver Assumptions — {TICKER}</p>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50">
                 <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Driver</th>
@@ -989,7 +989,7 @@ function FinancialModelingTab() {
                   <td className="py-2 pl-3 text-right">
                     <span
                       className={cn(
-                        "px-2 py-0.5 rounded-full text-xs font-medium",
+                        "px-2 py-0.5 rounded-full text-xs text-muted-foreground font-medium",
                         row.sensitivity === "High"
                           ? "bg-red-500/20 text-red-400"
                           : row.sensitivity === "Medium"
@@ -1045,7 +1045,7 @@ function ValuationTab() {
   const nvda = COMPS_DATA[0];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* DCF Sensitivity Matrix */}
       <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
@@ -1099,7 +1099,7 @@ function ValuationTab() {
                 key={k}
                 onClick={() => setSortKey(k)}
                 className={cn(
-                  "text-xs px-2 py-1 rounded-md transition-colors",
+                  "text-xs text-muted-foreground px-2 py-1 rounded-md transition-colors",
                   sortKey === k ? "bg-indigo-600 text-foreground" : "text-muted-foreground hover:text-foreground"
                 )}
               >
@@ -1109,7 +1109,7 @@ function ValuationTab() {
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50 text-muted-foreground">
                 <th className="text-left py-2 pr-3 font-medium">Company</th>
@@ -1268,7 +1268,7 @@ function ReportStructureTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Report outline */}
       <div>
         <h3 className="text-sm font-medium text-foreground mb-1">Professional Research Report Structure</h3>
@@ -1375,7 +1375,7 @@ function ReportStructureTab() {
         </div>
         <div className="space-y-2">
           {CATALYSTS.map((cat, i) => (
-            <div key={`cat-${i}`} className="flex items-center gap-3 text-xs">
+            <div key={`cat-${i}`} className="flex items-center gap-3 text-xs text-muted-foreground">
               <span className="font-mono text-muted-foreground w-14 flex-shrink-0">{cat.date}</span>
               <span
                 className={cn(
@@ -1439,7 +1439,7 @@ function AnalystRatingsTab() {
   const revPath = revPoints.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
@@ -1468,7 +1468,7 @@ function AnalystRatingsTab() {
           <p className="text-sm font-medium text-foreground">Individual Analyst Ratings</p>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50 text-muted-foreground">
                 <th className="text-left py-2 pr-3 font-medium">Firm</th>
@@ -1609,8 +1609,8 @@ function AnalystRatingsTab() {
 // ── Main Page ──────────────────────────────────────────────────────────────────
 export default function EquityResearchPage() {
   return (
-    <div className="min-h-screen bg-card text-foreground p-4 sm:p-6">
-      <div className="max-w-6xl mx-auto space-y-6">
+    <div className="min-h-screen bg-card text-foreground p-4 sm:p-4">
+      <div className="max-w-6xl mx-auto space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

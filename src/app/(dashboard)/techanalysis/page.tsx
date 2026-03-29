@@ -647,7 +647,7 @@ function CandlestickMasteryTab() {
               size="sm"
               onClick={() => setShowOverlay(!showOverlay)}
               className={cn(
-                "h-7 text-xs border-border",
+                "h-7 text-xs text-muted-foreground border-border",
                 showOverlay ? "bg-yellow-500/20 border-yellow-500 text-yellow-400" : "text-muted-foreground"
               )}
             >
@@ -673,7 +673,7 @@ function CandlestickMasteryTab() {
             size="sm"
             onClick={() => setFilter(f)}
             className={cn(
-              "h-7 text-xs border-border capitalize",
+              "h-7 text-xs text-muted-foreground border-border capitalize",
               filter === f
                 ? f === "bullish" ? "bg-green-500/20 border-green-500 text-green-400"
                   : f === "bearish" ? "bg-red-500/20 border-red-500 text-red-400"
@@ -716,7 +716,7 @@ function CandlestickMasteryTab() {
                     <span className="text-xs font-semibold text-foreground truncate">{pattern.name}</span>
                     <Badge
                       className={cn(
-                        "text-xs h-4 px-1",
+                        "text-xs text-muted-foreground h-4 px-1",
                         pattern.sentiment === "bullish" ? "bg-green-500/20 text-green-400 border-green-500/30"
                         : pattern.sentiment === "bearish" ? "bg-red-500/20 text-red-400 border-red-500/30"
                         : "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30"
@@ -1664,7 +1664,7 @@ function SRTab() {
               size="sm"
               onClick={btn.toggle}
               className={cn(
-                "h-7 text-xs border-border transition-colors",
+                "h-7 text-xs text-muted-foreground border-border transition-colors",
                 btn.active
                   ? btn.color === "yellow" ? "bg-yellow-500/20 border-yellow-500 text-yellow-400"
                     : btn.color === "purple" ? "bg-primary/20 border-primary text-primary"

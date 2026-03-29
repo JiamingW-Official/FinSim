@@ -225,7 +225,7 @@ function RelativeValuationTab() {
       : { label: "Expensive", color: "text-red-400", bg: "bg-red-400/10" };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Company selector */}
       <div className="flex flex-wrap gap-2">
         {Object.keys(COMPANIES).map((t) => (
@@ -376,7 +376,7 @@ function RelativeValuationTab() {
           <h3 className="text-sm font-medium text-muted-foreground mb-3">PEG Ratio Analysis</h3>
           <div className="flex items-center gap-3 mb-3">
             <span className="text-2xl font-bold font-mono">{fmt2(co.peg)}</span>
-            <span className={cn("px-2 py-1 rounded-md text-xs font-medium", pegStatus.bg, pegStatus.color)}>
+            <span className={cn("px-2 py-1 rounded-md text-xs text-muted-foreground font-medium", pegStatus.bg, pegStatus.color)}>
               {pegStatus.label}
             </span>
           </div>
@@ -405,7 +405,7 @@ function RelativeValuationTab() {
             {expansionScenarios.map((sc) => (
               <div key={sc.label} className="flex items-center justify-between text-sm p-2 rounded-lg bg-secondary/20">
                 <span className="text-muted-foreground text-xs">{sc.label}</span>
-                <div className="flex gap-3 font-mono text-xs">
+                <div className="flex gap-3 font-mono text-xs text-muted-foreground">
                   <span>${sc.newPrice.toFixed(0)}</span>
                   <span className={sc.ret >= 0 ? "text-emerald-400" : "text-red-400"}>
                     {fmtPct(sc.ret * 100)}
@@ -552,7 +552,7 @@ function DCFTab() {
     projections.mos > 20 ? "Strong Buy" : projections.mos > 0 ? "Fair Value" : "Overvalued";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inputs */}
       <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">DCF Model Inputs</h3>
@@ -587,7 +587,7 @@ function DCFTab() {
       <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">FCF Projection ($B)</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs font-mono">
+          <table className="w-full text-xs text-muted-foreground font-mono">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2">Year</th>
@@ -612,7 +612,7 @@ function DCFTab() {
                 </tr>
               ))}
               <tr className="border-t-2 border-border/60 text-muted-foreground">
-                <td className="py-2 text-xs">Terminal Value</td>
+                <td className="py-2 text-xs text-muted-foreground">Terminal Value</td>
                 <td colSpan={5} />
                 <td className="text-right py-2">{projections.pvTerminal.toFixed(1)}</td>
               </tr>
@@ -633,11 +633,11 @@ function DCFTab() {
           <div className="flex items-end gap-4 mb-4">
             <div>
               <div className="text-xs text-muted-foreground">Intrinsic Value</div>
-              <div className="text-2xl font-bold font-mono">${projections.intrinsic.toFixed(0)}</div>
+              <div className="text-lg font-medium font-mono">${projections.intrinsic.toFixed(0)}</div>
             </div>
             <div>
               <div className="text-xs text-muted-foreground">Market Price</div>
-              <div className="text-2xl font-bold font-mono text-muted-foreground">${marketPrice}</div>
+              <div className="text-lg font-medium font-mono text-muted-foreground">${marketPrice}</div>
             </div>
           </div>
           {/* Gauge bar */}
@@ -666,7 +666,7 @@ function DCFTab() {
         {/* Sensitivity table */}
         <div className="rounded-md border border-border bg-card p-5 overflow-x-auto">
           <h3 className="text-sm font-medium text-muted-foreground mb-3">Sensitivity: WACC × Terminal Growth</h3>
-          <table className="text-xs font-mono w-full">
+          <table className="text-xs text-muted-foreground font-mono w-full">
             <thead>
               <tr>
                 <th className="text-left py-1 text-muted-foreground">WACC \ TG</th>
@@ -816,7 +816,7 @@ function SOTPTab() {
   const colors = ["#6366f1", "#8b5cf6", "#06b6d4", "#10b981", "#f59e0b", "#f43f5e", "#84cc16", "#ec4899"];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="rounded-md border border-border bg-card p-5">
         <div className="flex items-center justify-between mb-4">
@@ -838,7 +838,7 @@ function SOTPTab() {
                 style={{ background: colors[idx % colors.length] }}
               />
               <input
-                className="col-span-3 bg-secondary/30 rounded px-2 py-1 text-xs"
+                className="col-span-3 bg-secondary/30 rounded px-2 py-1 text-xs text-muted-foreground"
                 value={seg.name}
                 onChange={(e) => updateSegment(seg.id, "name", e.target.value)}
               />
@@ -846,7 +846,7 @@ function SOTPTab() {
                 <span className="text-xs text-muted-foreground">$</span>
                 <input
                   type="number"
-                  className="w-full bg-secondary/30 rounded px-2 py-1 text-xs font-mono"
+                  className="w-full bg-secondary/30 rounded px-2 py-1 text-xs text-muted-foreground font-mono"
                   value={seg.revenue}
                   onChange={(e) => updateSegment(seg.id, "revenue", Number(e.target.value))}
                 />
@@ -856,14 +856,14 @@ function SOTPTab() {
                 <input
                   type="number"
                   step="0.5"
-                  className="w-full bg-secondary/30 rounded px-2 py-1 text-xs font-mono"
+                  className="w-full bg-secondary/30 rounded px-2 py-1 text-xs text-muted-foreground font-mono"
                   value={seg.multiple}
                   onChange={(e) => updateSegment(seg.id, "multiple", Number(e.target.value))}
                 />
                 <span className="text-xs text-muted-foreground">x</span>
               </div>
               <select
-                className="col-span-3 bg-secondary/30 rounded px-2 py-1 text-xs"
+                className="col-span-3 bg-secondary/30 rounded px-2 py-1 text-xs text-muted-foreground"
                 value={seg.multipleType}
                 onChange={(e) => updateSegment(seg.id, "multipleType", e.target.value)}
               >
@@ -871,7 +871,7 @@ function SOTPTab() {
                   <option key={o} value={o}>{o}</option>
                 ))}
               </select>
-              <div className="col-span-1 font-mono text-xs text-right">
+              <div className="col-span-1 font-mono text-xs text-muted-foreground text-right">
                 ${(seg.revenue * seg.multiple).toFixed(0)}B
               </div>
               <button
@@ -1043,7 +1043,7 @@ function DDMTab() {
       : { label: "At Risk", color: "text-red-400", icon: AlertTriangle };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Ticker presets */}
       <div className="flex gap-2">
         {(["JNJ", "XOM", "JPM"] as const).map((t) => (
@@ -1099,7 +1099,7 @@ function DDMTab() {
         ].map((item) => (
           <div key={item.label} className="rounded-md border border-border bg-card p-5">
             <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
-            <div className="text-2xl font-bold font-mono mb-1">${item.value.toFixed(0)}</div>
+            <div className="text-lg font-medium font-mono mb-1">${item.value.toFixed(0)}</div>
             <div className="text-xs text-primary font-mono mb-0.5">{item.formula}</div>
             <div className="text-xs text-muted-foreground">{item.desc}</div>
           </div>
@@ -1132,7 +1132,7 @@ function DDMTab() {
       {/* Sensitivity grid */}
       <div className="rounded-md border border-border bg-card p-5 overflow-x-auto">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">Gordon Growth Model — g vs r Sensitivity ($)</h3>
-        <table className="text-xs font-mono w-full">
+        <table className="text-xs text-muted-foreground font-mono w-full">
           <thead>
             <tr>
               <th className="text-left py-1.5 text-muted-foreground">g \ r</th>
@@ -1244,7 +1244,7 @@ function RealOptionsTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Option type selector */}
       <div className="flex gap-2">
         {(Object.keys(optionTypes) as Array<"expand" | "abandon" | "delay">).map((key) => {
@@ -1312,15 +1312,15 @@ function RealOptionsTab() {
 
             <div className="grid grid-cols-3 gap-3 mb-4">
               <div className="rounded-lg bg-secondary/30 p-4 text-center">
-                <div className="text-2xl font-bold font-mono text-primary">${callValue.toFixed(1)}M</div>
+                <div className="text-lg font-medium font-mono text-primary">${callValue.toFixed(1)}M</div>
                 <div className="text-xs text-muted-foreground mt-1">Option Value (Black-Scholes)</div>
               </div>
               <div className="rounded-lg bg-secondary/30 p-4 text-center">
-                <div className="text-2xl font-bold font-mono text-amber-400">{(callValue / S * 100).toFixed(1)}%</div>
+                <div className="text-lg font-medium font-mono text-amber-400">{(callValue / S * 100).toFixed(1)}%</div>
                 <div className="text-xs text-muted-foreground mt-1">Option as % of Asset</div>
               </div>
               <div className="rounded-lg bg-secondary/30 p-4 text-center">
-                <div className={cn("text-2xl font-bold font-mono", S > K ? "text-emerald-400" : "text-red-400")}>
+                <div className={cn("text-lg font-medium font-mono", S > K ? "text-emerald-400" : "text-red-400")}>
                   {S > K ? "In the Money" : "Out of Money"}
                 </div>
                 <div className="text-xs text-muted-foreground mt-1">Intrinsic Status</div>
@@ -1337,7 +1337,7 @@ function RealOptionsTab() {
       {/* Sigma × Time sensitivity */}
       <div className="rounded-md border border-border bg-card p-5 overflow-x-auto">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">Option Value — Volatility × Time ($M)</h3>
-        <table className="text-xs font-mono w-full">
+        <table className="text-xs text-muted-foreground font-mono w-full">
           <thead>
             <tr>
               <th className="text-left py-1.5 text-muted-foreground">σ \ T</th>
@@ -1379,7 +1379,7 @@ function RealOptionsTab() {
             return (
               <div key={d.name} className="flex items-center gap-3 text-sm p-2 rounded-lg bg-secondary/20">
                 <div className="flex-1">
-                  <div className="font-medium text-xs">{d.name}</div>
+                  <div className="font-medium text-xs text-muted-foreground">{d.name}</div>
                   <div className="text-xs text-muted-foreground">
                     S=${d.S}M · K=${d.K}M · T={d.T}yr · σ={Math.round(d.sigma * 100)}% · PoS={Math.round(d.prob * 100)}%
                   </div>
@@ -1398,7 +1398,7 @@ function RealOptionsTab() {
         </div>
         <div className="flex justify-between items-center p-3 rounded-lg bg-primary/10 border border-primary/20">
           <span className="font-medium text-sm">Total Pipeline Value (Risk-Adjusted)</span>
-          <span className="text-2xl font-bold font-mono text-primary">${pharmaTotal.toFixed(0)}M</span>
+          <span className="text-lg font-medium font-mono text-primary">${pharmaTotal.toFixed(0)}M</span>
         </div>
         <div className="mt-3 p-3 rounded-lg bg-secondary/20 text-xs text-muted-foreground">
           <AlertTriangle className="inline w-3 h-3 mr-1 text-amber-400" />
@@ -1510,7 +1510,7 @@ function SynthesisTab() {
   const scenarioColors = { bull: "text-emerald-400", base: "text-amber-400", bear: "text-red-400" };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Football field */}
       <div className="rounded-md border border-border bg-card p-5">
         <div className="flex items-center justify-between mb-4">
@@ -1612,7 +1612,7 @@ function SynthesisTab() {
                 key={sc}
                 onClick={() => setScenario(sc)}
                 className={cn(
-                  "capitalize px-3 py-1.5 rounded-md text-xs font-medium transition-all",
+                  "capitalize px-3 py-1.5 rounded-md text-xs text-muted-foreground font-medium transition-all",
                   scenario === sc
                     ? sc === "bull"
                       ? "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-400/30"
@@ -1641,7 +1641,7 @@ function SynthesisTab() {
             ))}
           </div>
           <div className="border-t border-border/40 pt-3">
-            <h4 className={cn("text-xs font-medium mb-2 capitalize", scenarioColors[scenario])}>
+            <h4 className={cn("text-xs text-muted-foreground font-medium mb-2 capitalize", scenarioColors[scenario])}>
               {scenario} Case Catalysts
             </h4>
             <ul className="space-y-1">
@@ -1718,7 +1718,7 @@ function SynthesisTab() {
               ? "Acceptable risk/reward"
               : "Poor asymmetry — wait for better entry"}
           </div>
-          <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+          <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
             <div className="p-2 rounded bg-secondary/30 font-mono">
               <div className="text-muted-foreground">Bull Target</div>
               <div className="text-emerald-400">${(marketPrice * (1 + upside / 100)).toFixed(0)}</div>

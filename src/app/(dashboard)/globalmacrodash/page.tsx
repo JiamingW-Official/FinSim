@@ -379,7 +379,7 @@ function GuidanceBadge({ g }: { g: GuidanceLabel }) {
   };
   const { label, cls } = map[g];
   return (
-    <span className={cn("px-2 py-0.5 rounded text-xs border font-medium", cls)}>{label}</span>
+    <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground border font-medium", cls)}>{label}</span>
   );
 }
 
@@ -494,7 +494,7 @@ function MacroRegimeTab() {
           <span className="text-sm font-semibold text-foreground">Global Growth/Inflation Matrix</span>
         </div>
         <Badge
-          className="ml-auto text-xs font-bold px-3 py-1"
+          className="ml-auto text-xs text-muted-foreground font-bold px-3 py-1"
           style={{ background: current.color + "33", color: current.color, borderColor: current.color + "66" }}
         >
           {current.regime}
@@ -727,7 +727,7 @@ function CentralBanksTab() {
                   <p className={cn("text-lg font-mono font-medium", ytdColor)}>{c.ytd}</p>
                   <p className="text-xs text-muted-foreground">YTD vs basket</p>
                   <p className="text-xs text-muted-foreground mt-1">Intervention: {c.interv}</p>
-                  <p className={cn("text-xs font-medium mt-0.5", riskColor)}>Risk: {c.risk}</p>
+                  <p className={cn("text-xs text-muted-foreground font-medium mt-0.5", riskColor)}>Risk: {c.risk}</p>
                 </div>
               );
             })}
@@ -1043,7 +1043,7 @@ export default function GlobalMacroDashPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-5">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-5">
       {/* Page header — Hero */}
       <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start justify-between flex-wrap gap-3">
         <div>

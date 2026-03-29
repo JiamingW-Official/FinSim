@@ -331,7 +331,7 @@ function SectorBadge({ sector }: { sector: Sector }) {
   return (
     <span
       className={cn(
-        "inline-block text-xs font-medium px-1.5 py-0.5 rounded",
+        "inline-block text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded",
         SECTOR_COLORS[sector]
       )}
     >
@@ -465,7 +465,7 @@ function ScreenerTab() {
               key={sec}
               onClick={() => setSectorFilter(sec)}
               className={cn(
-                "text-xs px-2.5 py-1 rounded-lg border transition-all",
+                "text-xs text-muted-foreground px-2.5 py-1 rounded-lg border transition-all",
                 sectorFilter === sec
                   ? "bg-primary border-primary text-foreground"
                   : "bg-foreground/5 border-border text-foreground/50 hover:text-foreground/80"
@@ -1187,7 +1187,7 @@ function CustomScreenTab() {
             <Card className="bg-foreground/[0.03] border-border/50">
               <CardContent className="p-3">
                 <p className="text-xs text-foreground/40">Avg P/E</p>
-                <p className="text-2xl font-bold text-primary">
+                <p className="text-lg font-medium text-primary">
                   {results.length > 0 ? (results.reduce((a, s) => a + s.pe, 0) / results.length).toFixed(1) : "—"}
                 </p>
               </CardContent>
@@ -1195,7 +1195,7 @@ function CustomScreenTab() {
             <Card className="bg-foreground/[0.03] border-border/50">
               <CardContent className="p-3">
                 <p className="text-xs text-foreground/40">Avg ROE</p>
-                <p className="text-2xl font-bold text-emerald-400">
+                <p className="text-lg font-medium text-emerald-400">
                   {results.length > 0 ? (results.reduce((a, s) => a + s.roe, 0) / results.length).toFixed(1) + "%" : "—"}
                 </p>
               </CardContent>
@@ -1291,7 +1291,7 @@ function CustomScreenTab() {
 // ── Page ───────────────────────────────────────────────────────────────────────
 export default function StockScreenerPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1328,7 +1328,7 @@ export default function StockScreenerPage() {
           <span
             key={chip.label}
             className={cn(
-              "inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border font-medium",
+              "inline-flex items-center gap-1.5 text-xs text-muted-foreground px-2.5 py-1 rounded-full border font-medium",
               chip.color
             )}
           >

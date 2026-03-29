@@ -448,8 +448,8 @@ export default function AlphaResearchPage() {
   const categories = ["all", "momentum", "value", "quality", "sentiment", "technical", "alternative"];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
+      <div className="max-w-7xl mx-auto space-y-4">
 
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
@@ -459,7 +459,7 @@ export default function AlphaResearchPage() {
                 <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
                   <FlaskConical className="w-4 h-4 text-primary" />
                 </div>
-                <h1 className="text-2xl font-bold">Quantitative Alpha Research</h1>
+                <h1 className="text-lg font-medium">Quantitative Alpha Research</h1>
               </div>
               <p className="text-muted-foreground text-sm ml-11">
                 Signal discovery, information coefficient analysis, and alpha decay measurement
@@ -497,7 +497,7 @@ export default function AlphaResearchPage() {
                     variant={activeCategory === cat ? "default" : "outline"}
                     size="sm"
                     onClick={() => setActiveCategory(cat)}
-                    className="capitalize text-xs h-7"
+                    className="capitalize text-xs text-muted-foreground h-7"
                     style={
                       activeCategory === cat && cat !== "all"
                         ? { backgroundColor: CATEGORY_COLORS[cat] + "33", borderColor: CATEGORY_COLORS[cat] + "66", color: CATEGORY_COLORS[cat] }
@@ -702,7 +702,7 @@ export default function AlphaResearchPage() {
                         { cat: "Quality",                 hl: 240, color: "#f59e0b" },
                       ].map((row) => (
                         <div key={row.cat}>
-                          <div className="flex justify-between text-xs mb-1">
+                          <div className="flex justify-between text-xs text-muted-foreground mb-1">
                             <span className="text-muted-foreground">{row.cat}</span>
                             <span className="font-medium" style={{ color: row.color }}>{row.hl}d half-life</span>
                           </div>
@@ -741,7 +741,7 @@ export default function AlphaResearchPage() {
                         <div key={row.signal} className="flex items-center justify-between py-1 border-b border-border/30 last:border-0">
                           <span className="text-xs font-medium" style={{ color: row.color }}>{row.signal}</span>
                           <div className="flex gap-2 items-center">
-                            <Badge variant="outline" className="text-xs h-5">{row.freq}</Badge>
+                            <Badge variant="outline" className="text-xs text-muted-foreground h-5">{row.freq}</Badge>
                             <Badge variant="outline" className="text-xs h-5 text-muted-foreground">{row.cost}</Badge>
                             <span className="text-xs font-medium text-green-400">{row.net}</span>
                           </div>

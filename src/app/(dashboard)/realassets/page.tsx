@@ -526,7 +526,7 @@ function InfrastructureTab() {
   const yTicks = [0, 2, 4, 6, 8, 10, 12, 14];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Global Infra AUM" value="$1.3T" sub="Unlisted funds" highlight="pos" />
         <StatCard label="Avg Yield" value="4.8%" sub="Income component" highlight="pos" />
@@ -536,7 +536,7 @@ function InfrastructureTab() {
 
       {/* Yield Comparison Bar Chart */}
       <Card className="border-l-4 border-l-primary">
-        <CardHeader className="p-6">
+        <CardHeader className="p-4">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Yield vs Total Return by Infrastructure Sector
@@ -649,7 +649,7 @@ function InfrastructureTab() {
                   </div>
                   <p className="text-sm text-muted-foreground">{selected.description}</p>
                 </div>
-                <div className="flex gap-6 shrink-0 text-right">
+                <div className="flex gap-3 shrink-0 text-right">
                   <div>
                     <p className="text-xs text-muted-foreground">Yield</p>
                     <p className="text-lg font-bold text-emerald-400">{fmtPct(selected.yieldPct)}</p>
@@ -735,7 +735,7 @@ function RealEstateTab() {
   const avgReturn = (filtered.reduce((a, b) => a + b.totalReturn, 0) / filtered.length).toFixed(1);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Avg Cap Rate" value={`${avgCapRate}%`} sub={filterType} highlight="pos" />
         <StatCard label="Avg NOI Yield" value={`${avgNOI}%`} sub="Net operating income" highlight="pos" />
@@ -835,7 +835,7 @@ function RealEstateTab() {
         <CardContent className="space-y-3">
           {filtered.map((r) => (
             <div key={r.name} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-foreground/80">{r.name}</span>
                 <span className="font-mono text-emerald-400">{fmtPct(r.capRate)}</span>
               </div>
@@ -902,7 +902,7 @@ function CommoditiesTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Gold Spot" value="$2,342" sub="Per troy oz" highlight="pos" />
         <StatCard label="WTI Crude" value="$81.4" sub="Per barrel" highlight="pos" />
@@ -1153,7 +1153,7 @@ function TimberFarmlandTab() {
   const maxY = 12;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Timberland NCREIF" value="6.8%" sub="20-yr return" highlight="pos" />
         <StatCard label="Farmland NCREIF" value="10.7%" sub="20-yr return" highlight="pos" />
@@ -1285,7 +1285,7 @@ function TimberFarmlandTab() {
               animate={{ opacity: 1, y: 0 }}
               className="mt-4 p-4 rounded-lg border border-border bg-muted/30"
             >
-              <div className="flex flex-wrap items-start gap-6">
+              <div className="flex flex-wrap items-start gap-3">
                 <div className="flex-1 min-w-[200px]">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-semibold">{selected.name}</span>
@@ -1498,7 +1498,7 @@ function PortfolioRoleTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Diversification Benefit" value="−2.6%" sub="Vol reduction (20% RA)" highlight="pos" />
         <StatCard label="Sharpe Improvement" value="+0.24" sub="60/40 → 50/20/30" highlight="pos" />
@@ -1627,9 +1627,9 @@ function PortfolioRoleTab() {
                     <span>Real Assets: <span className="text-primary font-mono">{sc.realAssets}%</span></span>
                   </div>
                 </div>
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
                   <div className="flex-1">
-                    <div className="flex justify-between text-xs mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span className="text-muted-foreground">Sharpe Ratio</span>
                       <span className={`font-mono ${isMax ? "text-primary font-medium" : "text-foreground"}`}>
                         {sc.sharpe.toFixed(2)}
@@ -1644,7 +1644,7 @@ function PortfolioRoleTab() {
                       />
                     </div>
                   </div>
-                  <div className="text-right text-xs">
+                  <div className="text-right text-xs text-muted-foreground">
                     <p className="text-muted-foreground">Exp. Return / Vol</p>
                     <p className="font-mono">
                       <span className="text-emerald-400">{fmtPct(sc.expReturn)}</span>
@@ -1670,7 +1670,7 @@ function PortfolioRoleTab() {
         <CardContent className="space-y-3">
           {hedgeMetrics.map((m) => (
             <div key={m.asset} className="space-y-1">
-              <div className="flex justify-between items-center text-xs">
+              <div className="flex justify-between items-center text-xs text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <span className="text-foreground/80 font-medium w-24">{m.asset}</span>
                   <span className="text-muted-foreground hidden md:block">{m.mechanism}</span>
@@ -1720,12 +1720,12 @@ export default function RealAssetsPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
     >
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+          <h1 className="text-lg font-medium tracking-tight flex items-center gap-2">
             <Leaf className="w-6 h-6 text-emerald-500" />
             Real Assets &amp; Infrastructure
           </h1>
@@ -1781,27 +1781,27 @@ export default function RealAssetsPage() {
       {/* Tabs */}
       <Tabs defaultValue="infrastructure" className="w-full">
         <TabsList className="grid grid-cols-5 w-full">
-          <TabsTrigger value="infrastructure" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="infrastructure" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Zap className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Infrastructure</span>
             <span className="sm:hidden">Infra</span>
           </TabsTrigger>
-          <TabsTrigger value="realestate" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="realestate" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Building2 className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Real Estate</span>
             <span className="sm:hidden">RE</span>
           </TabsTrigger>
-          <TabsTrigger value="commodities" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="commodities" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Droplets className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Commodities</span>
             <span className="sm:hidden">Commod.</span>
           </TabsTrigger>
-          <TabsTrigger value="timberland" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="timberland" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <TreePine className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Timber &amp; Farm</span>
             <span className="sm:hidden">Timber</span>
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="portfolio" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Percent className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Portfolio Role</span>
             <span className="sm:hidden">Portfolio</span>

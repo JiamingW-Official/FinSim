@@ -422,7 +422,7 @@ function BHBTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary stats */}
       <div className="flex flex-wrap gap-3">
         <StatChip label="Portfolio Return" value={pct(portfolioReturn)} color="#8b5cf6" />
@@ -451,7 +451,7 @@ function BHBTab() {
 
       {/* Waterfall SVG */}
       <Card className="border-border bg-card/60 border-l-4 border-l-primary">
-        <CardHeader className="pb-2 p-6">
+        <CardHeader className="pb-2 p-4">
           <CardTitle className="text-lg font-semibold text-foreground">
             Return Decomposition — Waterfall
           </CardTitle>
@@ -526,7 +526,7 @@ function BHBTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2 pr-3">Sector</th>
@@ -635,7 +635,7 @@ function BHBTab() {
                   {sel.sector} — Worked Example
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs">
+              <CardContent className="space-y-3 text-xs text-muted-foreground">
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-2">
                     <div className="text-muted-foreground font-medium uppercase tracking-wide">Allocation Effect</div>
@@ -748,7 +748,7 @@ function FactorTab() {
   const fiMaxAbs = Math.max(...fi.map((f) => Math.abs(f.contribution)));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary */}
       <div className="flex flex-wrap gap-3">
         <StatChip label="Total Active Return" value={pct(totalActiveReturn)} up={totalActiveReturn > 0} />
@@ -870,7 +870,7 @@ function FactorTab() {
                 {f.factor}
               </div>
               <Badge
-                className="text-xs"
+                className="text-xs text-muted-foreground"
                 style={{
                   background: f.contribution >= 0 ? "#22c55e30" : "#ef444430",
                   color: f.contribution >= 0 ? "#22c55e" : "#ef4444",
@@ -881,7 +881,7 @@ function FactorTab() {
               </Badge>
             </div>
             <div className="text-xs text-muted-foreground mb-2">{f.description}</div>
-            <div className="grid grid-cols-3 gap-1 text-xs">
+            <div className="grid grid-cols-3 gap-1 text-xs text-muted-foreground">
               <div>
                 <div className="text-muted-foreground">Exposure</div>
                 <div className="font-mono text-foreground">{fmt2(f.exposure)}</div>
@@ -1120,7 +1120,7 @@ function RiskTab() {
     .join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Metric cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {metrics.map((m) => (
@@ -1133,13 +1133,13 @@ function RiskTab() {
                 </div>
               </div>
               <div
-                className="font-mono text-xs rounded px-2 py-1 mb-2"
+                className="font-mono text-xs text-muted-foreground rounded px-2 py-1 mb-2"
                 style={{ background: m.color + "15", color: m.color + "cc" }}
               >
                 {m.formula}
               </div>
               <div className="text-xs text-muted-foreground mb-3">{m.interpretation}</div>
-              <div className="flex items-center gap-2 text-xs">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span className="text-muted-foreground">vs Benchmark:</span>
                 <span
                   className="font-medium"
@@ -1199,7 +1199,7 @@ function RiskTab() {
             <CardTitle className="text-sm font-medium text-foreground">
               Drawdown Analysis
             </CardTitle>
-            <div className="flex gap-3 text-xs">
+            <div className="flex gap-3 text-xs text-muted-foreground">
               <StatChip label="Max Drawdown" value={maxDD.toFixed(1) + "%"} up={false} />
               <StatChip label="DD Duration" value={ddDuration + " bars"} color="#f59e0b" />
             </div>
@@ -1351,7 +1351,7 @@ function ManagerTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Manager comparison table */}
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
@@ -1362,7 +1362,7 @@ function ManagerTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2 pr-3">Manager</th>
@@ -1427,7 +1427,7 @@ function ManagerTab() {
                       <td className="text-right px-2 text-muted-foreground">{m.fees}</td>
                       <td className="text-right px-2">
                         <Badge
-                          className="text-xs"
+                          className="text-xs text-muted-foreground"
                           style={{
                             background: quartileColors[m.quartile - 1] + "30",
                             color: quartileColors[m.quartile - 1],
@@ -1439,7 +1439,7 @@ function ManagerTab() {
                       </td>
                       <td className="text-right px-2">
                         <Badge
-                          className="text-xs capitalize"
+                          className="text-xs text-muted-foreground capitalize"
                           style={{
                             background: skillColor + "20",
                             color: skillColor,
@@ -1569,7 +1569,7 @@ function ManagerTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex gap-4 mb-3 text-xs">
+          <div className="flex gap-4 mb-3 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-4 h-0.5 bg-green-400" />
               <span className="text-muted-foreground">Gross: ${feeData[30].gross.toFixed(0)}</span>
@@ -1681,7 +1681,7 @@ function ManagerTab() {
                     <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: severityColor }} />
                     <span className="text-xs font-medium text-foreground">{flag.flag}</span>
                     <Badge
-                      className="text-xs capitalize"
+                      className="text-xs text-muted-foreground capitalize"
                       style={{
                         background: severityColor + "20",
                         color: severityColor,
@@ -1724,7 +1724,7 @@ function ManagerTab() {
 
 export default function PerfAttributionPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1752,7 +1752,7 @@ export default function PerfAttributionPage() {
           ].map(({ label, color }) => (
             <Badge
               key={label}
-              className="text-xs"
+              className="text-xs text-muted-foreground"
               style={{ background: color + "20", color, border: "none" }}
             >
               {label}
@@ -1764,19 +1764,19 @@ export default function PerfAttributionPage() {
       {/* Tabs */}
       <Tabs defaultValue="bhb">
         <TabsList className="bg-card border border-border mb-6">
-          <TabsTrigger value="bhb" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="bhb" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             BHB Attribution
           </TabsTrigger>
-          <TabsTrigger value="factor" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="factor" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <Activity className="w-3.5 h-3.5 mr-1.5" />
             Factor Attribution
           </TabsTrigger>
-          <TabsTrigger value="risk" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="risk" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <Percent className="w-3.5 h-3.5 mr-1.5" />
             Risk-Adjusted Metrics
           </TabsTrigger>
-          <TabsTrigger value="manager" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="manager" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <Award className="w-3.5 h-3.5 mr-1.5" />
             Manager Evaluation
           </TabsTrigger>

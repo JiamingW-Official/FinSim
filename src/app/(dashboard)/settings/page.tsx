@@ -150,7 +150,7 @@ function RadioCards<T extends string>({
           key={opt.value}
           onClick={() => onChange(opt.value)}
           className={cn(
-            "flex flex-col items-start rounded-md border px-3 py-2 text-left text-xs transition-all",
+            "flex flex-col items-start rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-all",
             value === opt.value
               ? "border-primary bg-primary/10 text-primary"
               : "border-border bg-card text-muted-foreground hover:border-border/80 hover:bg-accent",
@@ -158,7 +158,7 @@ function RadioCards<T extends string>({
         >
           <span className="font-medium">{opt.label}</span>
           {opt.description && (
-            <span className="text-xs opacity-70 mt-0.5">
+            <span className="text-xs text-muted-foreground opacity-70 mt-0.5">
               {opt.description}
             </span>
           )}
@@ -217,7 +217,7 @@ function CheckboxItem({
     <button
       onClick={() => onChange(!checked)}
       className={cn(
-        "flex items-start gap-2.5 rounded-md border px-3 py-2 text-left text-xs transition-all w-full",
+        "flex items-start gap-2.5 rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-all w-full",
         checked
           ? "border-primary/40 bg-primary/5"
           : "border-border bg-card hover:bg-accent",
@@ -315,7 +315,7 @@ function TradingTab() {
             max={10000}
             value={defaultQuantity}
             onChange={(e) => setDefaultQuantity(Number(e.target.value))}
-            className="h-8 w-24 text-xs"
+            className="h-8 w-24 text-xs text-muted-foreground"
           />
         </SettingRow>
         <Separator className="opacity-30" />
@@ -360,7 +360,7 @@ function TradingTab() {
               onChange={(e) => setLossInput(e.target.value)}
               onBlur={commitLossLimit}
               onKeyDown={(e) => e.key === "Enter" && commitLossLimit()}
-              className="h-8 w-24 text-xs"
+              className="h-8 w-24 text-xs text-muted-foreground"
             />
           </div>
         </SettingRow>
@@ -780,7 +780,7 @@ function AccountTab() {
             onKeyDown={(e) => e.key === "Enter" && commitName()}
             maxLength={20}
             placeholder="Trader"
-            className="h-8 w-36 text-xs"
+            className="h-8 w-36 text-xs text-muted-foreground"
           />
         </SettingRow>
         <Separator className="opacity-30" />
@@ -921,7 +921,7 @@ function DataTab() {
           <SectionHeader>Keyboard Shortcuts</SectionHeader>
         </div>
         <div className="overflow-hidden rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-muted/30">
                 <th className="px-3 py-2 text-left font-semibold text-muted-foreground">
@@ -945,7 +945,7 @@ function DataTab() {
                   )}
                 >
                   <td className="px-3 py-2">
-                    <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs font-medium">
+                    <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground font-medium">
                       {s.key}
                     </kbd>
                   </td>
@@ -1004,7 +1004,7 @@ export default function SettingsPage() {
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <div className="space-y-5 p-6 max-w-2xl">
+      <div className="space-y-5 p-4 max-w-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted">
@@ -1028,23 +1028,23 @@ export default function SettingsPage() {
         {/* Tabs */}
         <Tabs defaultValue="trading">
           <TabsList className="w-full justify-start overflow-x-auto">
-            <TabsTrigger value="trading" className="gap-1.5 text-xs">
+            <TabsTrigger value="trading" className="gap-1.5 text-xs text-muted-foreground">
               <BarChart2 className="h-3.5 w-3.5" />
               Trading
             </TabsTrigger>
-            <TabsTrigger value="display" className="gap-1.5 text-xs">
+            <TabsTrigger value="display" className="gap-1.5 text-xs text-muted-foreground">
               <Monitor className="h-3.5 w-3.5" />
               Display
             </TabsTrigger>
-            <TabsTrigger value="notifications" className="gap-1.5 text-xs">
+            <TabsTrigger value="notifications" className="gap-1.5 text-xs text-muted-foreground">
               <Bell className="h-3.5 w-3.5" />
               Notifications
             </TabsTrigger>
-            <TabsTrigger value="account" className="gap-1.5 text-xs">
+            <TabsTrigger value="account" className="gap-1.5 text-xs text-muted-foreground">
               <User className="h-3.5 w-3.5" />
               Account
             </TabsTrigger>
-            <TabsTrigger value="data" className="gap-1.5 text-xs">
+            <TabsTrigger value="data" className="gap-1.5 text-xs text-muted-foreground">
               <Database className="h-3.5 w-3.5" />
               Data
             </TabsTrigger>

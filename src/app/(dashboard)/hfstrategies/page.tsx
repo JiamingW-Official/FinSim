@@ -531,7 +531,7 @@ function LongShortTab() {
         </CardHeader>
         <CardContent className="px-4 pb-4">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Long", "Short", "Sector", "Spread", "Z-Score", "P&L"].map((h) => (
@@ -734,7 +734,7 @@ function EventDrivenTab() {
               </CardHeader>
               <CardContent className="px-4 pb-4">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Acquirer", "Target", "Spread", "Deal Close", "Probability", "Ann. Return", "Type", "Status"].map((h) => (
@@ -760,7 +760,7 @@ function EventDrivenTab() {
                             <Badge variant="outline" className="text-xs py-0 px-1.5 border-border text-muted-foreground">{d.dealType}</Badge>
                           </td>
                           <td className="py-2">
-                            <Badge variant="outline" className={`text-xs py-0 px-1.5 ${statusColors[d.status]}`}>{d.status.replace("_", " ")}</Badge>
+                            <Badge variant="outline" className={`text-xs text-muted-foreground py-0 px-1.5 ${statusColors[d.status]}`}>{d.status.replace("_", " ")}</Badge>
                           </td>
                         </tr>
                       ))}
@@ -783,7 +783,7 @@ function EventDrivenTab() {
               </CardHeader>
               <CardContent className="px-4 pb-4">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Issuer", "Coupon", "Maturity", "YTM", "Spread (bps)", "Distress %", "Recovery Est.", "Catalyst", "Rating"].map((h) => (
@@ -910,7 +910,7 @@ function RelativeValueTab() {
               </CardHeader>
               <CardContent className="px-4 pb-4">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Instrument", "Conv. Prem.", "Theory Val.", "Mkt Price", "Mispricing", "Delta", "Gamma", "Imp. Vol"].map((h) => (
@@ -993,7 +993,7 @@ function RelativeValueTab() {
               </CardHeader>
               <CardContent className="px-4 pb-4">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Pair", "Correlation", "Z-Score", "Half-Life (d)", "Signal", "Exp. Return"].map((h) => (
@@ -1081,7 +1081,7 @@ function PerformanceTab() {
                 { label: "Factor Premia", value: totalFactorReturn - alpha - beta, color: "#a78bfa", pct: ((totalFactorReturn - alpha - beta) / totalFactorReturn) * 100 },
               ].map((item) => (
                 <div key={item.label}>
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span className="text-muted-foreground">{item.label}</span>
                     <span style={{ color: item.color }} className="font-medium">+{item.value.toFixed(2)}%</span>
                   </div>
@@ -1090,15 +1090,15 @@ function PerformanceTab() {
               ))}
             </div>
             <div className="mt-4 pt-3 border-t border-border">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Total Attributed Return</span>
                 <span className="text-green-400 font-medium">+{totalFactorReturn.toFixed(2)}%</span>
               </div>
-              <div className="flex justify-between text-xs mt-1">
+              <div className="flex justify-between text-xs text-muted-foreground mt-1">
                 <span className="text-muted-foreground">Information Ratio (alpha)</span>
                 <span className="text-green-400 font-medium">{(alpha / 1.82).toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-xs mt-1">
+              <div className="flex justify-between text-xs text-muted-foreground mt-1">
                 <span className="text-muted-foreground">Portfolio Beta (equity)</span>
                 <span className="text-primary font-medium">0.38</span>
               </div>
@@ -1191,8 +1191,8 @@ function PerformanceTab() {
 
 export default function HFStrategiesPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="max-w-6xl mx-auto space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="max-w-6xl mx-auto space-y-4">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
@@ -1232,7 +1232,7 @@ export default function HFStrategiesPage() {
               <div key={item.label} className="flex flex-col items-center text-center">
                 <div className="flex items-center gap-1 text-muted-foreground mb-0.5">
                   {item.icon}
-                  <span className="text-xs">{item.label}</span>
+                  <span className="text-xs text-muted-foreground">{item.label}</span>
                 </div>
                 <span className="text-sm font-medium text-foreground">{item.value}</span>
               </div>

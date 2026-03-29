@@ -250,7 +250,7 @@ function RiskMetricsDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Top gauges */}
       <div>
         <SectionHeader title="Portfolio Risk Metrics" sub="Based on current positions & 1-day horizon" />
@@ -307,11 +307,11 @@ function RiskMetricsDashboard() {
       </div>
 
       {/* Risk decomposition + VaR budget */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Pie: factor vs idiosyncratic */}
         <div className="bg-muted/60 rounded-md p-6 border border-border/40 border-l-4 border-l-primary">
           <SectionHeader title="Risk Decomposition" sub="Factor risk vs idiosyncratic risk" />
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             <svg width={160} height={140} viewBox="0 0 160 140">
               <path d={pieSlice(0, factorAngle, "#6366f1")} fill="#6366f1" opacity={0.85} />
               <path d={pieSlice(factorAngle, 2 * Math.PI, "#f59e0b")} fill="#f59e0b" opacity={0.85} />
@@ -475,7 +475,7 @@ function VaRModels() {
   const fanColors = ["#ef4444", "#f97316", "#f59e0b", "#84cc16", "#22c55e", "#84cc16", "#f59e0b", "#f97316", "#ef4444"];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Model comparison table */}
       <div className="bg-muted/60 rounded-md p-4 border border-border/40">
         <SectionHeader title="VaR Model Comparison" sub="1-day VaR as % of portfolio" />
@@ -509,7 +509,7 @@ function VaRModels() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Historical simulation histogram */}
         <div className="bg-muted/60 rounded-md p-4 border border-border/40">
           <SectionHeader title="Historical Simulation" sub="500-day return distribution" />
@@ -535,7 +535,7 @@ function VaRModels() {
             <text x={pad.l} y={histH - 5} fontSize={8} fill="#94a3b8">{(minR * 100).toFixed(1)}%</text>
             <text x={pad.l + gW} y={histH - 5} textAnchor="end" fontSize={8} fill="#94a3b8">{(maxR * 100).toFixed(1)}%</text>
           </svg>
-          <div className="flex gap-4 mt-2 text-xs">
+          <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-amber-400 inline-block" />VaR 95%: {(var95hist * 100).toFixed(2)}%</span>
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-red-400 inline-block" />VaR 99%: {(var99hist * 100).toFixed(2)}%</span>
           </div>
@@ -586,7 +586,7 @@ function VaRModels() {
           <line x1={fanPad.l} y1={fanPad.t} x2={fanPad.l} y2={fanPad.t + fanGH} stroke="#475569" />
           <text x={fanPad.l + fanGW / 2} y={fanH - 5} textAnchor="middle" fontSize={8} fill="#94a3b8">Days</text>
         </svg>
-        <div className="grid grid-cols-3 gap-3 mt-3 text-center text-xs">
+        <div className="grid grid-cols-3 gap-3 mt-3 text-center text-xs text-muted-foreground">
           <div className="bg-muted/40 rounded p-2">
             <div className="text-muted-foreground">MC VaR 95%</div>
             <div className="font-medium text-amber-400">{(var95mc * 100).toFixed(2)}%</div>
@@ -605,7 +605,7 @@ function VaRModels() {
       {/* Backtesting */}
       <div className="bg-muted/60 rounded-md p-4 border border-border/40">
         <SectionHeader title="VaR Backtesting — Traffic Light Test" sub="Count VaR breaches over 250 trading days" />
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
           <div
             className="w-20 h-20 rounded-full flex flex-col items-center justify-center border-4 shrink-0"
             style={{ borderColor: backtestColor }}
@@ -682,7 +682,7 @@ function StressTesting() {
   const portfolioVolCrisis = portfolioVolNormal * Math.sqrt(1 + (crisisCorr - normalCorr) * 6) ;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Historical scenarios */}
       <div>
         <SectionHeader title="Historical Stress Scenarios" sub="Portfolio P&L impact under historical market events" />
@@ -702,7 +702,7 @@ function StressTesting() {
                   onClick={() => setExpandedScenario(isExpanded ? null : i)}
                 >
                   <div className="flex items-center gap-3">
-                    <Badge variant="outline" className="text-xs shrink-0">{sc.year}</Badge>
+                    <Badge variant="outline" className="text-xs text-muted-foreground shrink-0">{sc.year}</Badge>
                     <span className="text-sm font-medium text-foreground">{sc.name}</span>
                   </div>
                   <div className="flex items-center gap-4">
@@ -724,7 +724,7 @@ function StressTesting() {
                       transition={{ duration: 0.2 }}
                       className="px-3 pb-3"
                     >
-                      <div className="grid grid-cols-3 gap-3 text-xs">
+                      <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
                         <div className="bg-muted/40 rounded p-2">
                           <div className="text-muted-foreground">Equity Impact</div>
                           <div className={cn("font-medium text-sm", equityImpact < 0 ? "text-red-400" : "text-green-400")}>
@@ -756,7 +756,7 @@ function StressTesting() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Custom scenario */}
         <div className="bg-muted/60 rounded-md p-4 border border-border/40">
           <SectionHeader title="Hypothetical Shock Scenario" sub="Adjust sliders to model custom stress event" />
@@ -784,7 +784,7 @@ function StressTesting() {
             </div>
             <div className="mt-3 pt-3 border-t border-border/40">
               <div className="text-xs text-muted-foreground mb-1">Portfolio Impact</div>
-              <div className={cn("text-2xl font-bold", customImpact() < 0 ? "text-red-400" : "text-green-400")}>
+              <div className={cn("text-lg font-medium", customImpact() < 0 ? "text-red-400" : "text-green-400")}>
                 {customImpact() >= 0 ? "+" : ""}{(customImpact() * 100).toFixed(2)}%
               </div>
               <div className={cn("text-sm", customImpact() < 0 ? "text-red-400/70" : "text-green-400/70")}>
@@ -799,7 +799,7 @@ function StressTesting() {
           <div className="bg-muted/60 rounded-md p-4 border border-border/40">
             <SectionHeader title="Reverse Stress Test" sub="How severe must equity fall to lose 20% of portfolio?" />
             <div className="text-center py-3">
-              <div className="text-2xl font-bold text-red-400">{(reverseShock * 100).toFixed(1)}%</div>
+              <div className="text-lg font-medium text-red-400">{(reverseShock * 100).toFixed(1)}%</div>
               <div className="text-xs text-muted-foreground mt-1">Required equity decline</div>
               <div className="mt-3 text-xs text-muted-foreground bg-muted/40 rounded p-2">
                 With current rate scenario ({rateShock[0]} bps), equities would need to fall{" "}
@@ -818,7 +818,7 @@ function StressTesting() {
               <text x={corrPad.l - 2} y={corrPad.t + corrGH * (1 - (normalCorr - 0.3) / 0.8) + 4} textAnchor="end" fontSize={8} fill="#94a3b8">Normal</text>
               <text x={corrPad.l + corrGW * 0.5} y={corrPad.t + corrGH * (1 - (crisisCorr - 0.3) / 0.8) - 4} textAnchor="middle" fontSize={8} fill="#ef4444">Crisis</text>
             </svg>
-            <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-center">
+            <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-muted-foreground text-center">
               <div className="bg-muted/40 rounded p-1">
                 <div className="text-muted-foreground">Normal Corr.</div>
                 <div className="font-medium text-green-400">{normalCorr.toFixed(2)}</div>
@@ -942,7 +942,7 @@ function DrawdownAnalysis() {
   const areaPath = `M ${uwPad.l},${uwPad.t} ${ddArea.join(" ")} L ${uwPad.l + uwGW},${uwPad.t} Z`;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Underwater chart */}
       <div className="bg-muted/60 rounded-md p-4 border border-border/40">
         <SectionHeader title="Underwater Chart — 3-Year Drawdown" sub="Percentage below previous peak" />
@@ -967,12 +967,12 @@ function DrawdownAnalysis() {
         <StatCard label="Calmar Ratio" value={ddStats.calmar.toFixed(2)} sub="Ann. return / Max DD" color={ddStats.calmar > 0.5 ? "text-green-400" : "text-red-400"} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Monthly heatmap */}
         <div className="bg-muted/60 rounded-md p-4 border border-border/40">
           <SectionHeader title="Monthly Return Heatmap" sub="Color intensity by return magnitude" />
           <div className="overflow-x-auto">
-            <table className="text-xs border-collapse w-full">
+            <table className="text-xs text-muted-foreground border-collapse w-full">
               <thead>
                 <tr>
                   <th className="text-left py-1 pr-2 text-muted-foreground font-normal">Year</th>
@@ -1012,7 +1012,7 @@ function DrawdownAnalysis() {
             <SectionHeader title="Drawdown Episodes" sub="Peak → Trough → Recovery timeline" />
             <div className="space-y-2">
               {episodes.map(ep => (
-                <div key={ep.label} className="text-xs bg-muted/30 rounded p-2">
+                <div key={ep.label} className="text-xs text-muted-foreground bg-muted/30 rounded p-2">
                   <div className="flex justify-between mb-1">
                     <span className="font-medium text-foreground">{ep.label}</span>
                     <span className="text-red-400 font-medium">{(ep.dd * 100).toFixed(1)}%</span>
@@ -1120,11 +1120,11 @@ function PositionSizing() {
   const supportStop = 150 * 0.04; // 4% below support
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Kelly criterion */}
       <div className="bg-muted/60 rounded-md p-4 border border-border/40">
         <SectionHeader title="Kelly Criterion" sub="Optimal position size to maximize long-run growth rate" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="space-y-4">
             <div>
               <div className="flex justify-between text-xs text-muted-foreground mb-1">
@@ -1188,7 +1188,7 @@ function PositionSizing() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Fixed fractional */}
         <div className="bg-muted/60 rounded-md p-4 border border-border/40">
           <SectionHeader title="Fixed Fractional Position Sizing" sub="Risk a fixed % of account per trade" />
@@ -1207,7 +1207,7 @@ function PositionSizing() {
               </div>
               <Slider value={stopPct} onValueChange={setStopPct} min={1} max={20} step={0.5} />
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
               <div className="bg-muted/40 rounded p-2">
                 <div className="text-muted-foreground">Dollar Risk</div>
                 <div className="font-medium text-red-400">${dollarRisk.toLocaleString()}</div>
@@ -1243,7 +1243,7 @@ function PositionSizing() {
       </div>
 
       {/* Concentration + stop loss */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="bg-muted/60 rounded-md p-4 border border-border/40">
           <SectionHeader title="Concentration Limits" sub="Current vs recommended maximums" />
           <div className="space-y-3">
@@ -1252,7 +1252,7 @@ function PositionSizing() {
               { label: "Tech Sector Exposure", current: techAlloc, limit: 40, unit: "%" },
               { label: "Corr. Cluster (Tech)", current: 65, limit: 50, unit: "%" },
             ].map(item => (
-              <div key={item.label} className="text-xs">
+              <div key={item.label} className="text-xs text-muted-foreground">
                 <div className="flex justify-between mb-1">
                   <span className="text-muted-foreground">{item.label}</span>
                   <div className="flex items-center gap-2">
@@ -1285,7 +1285,7 @@ function PositionSizing() {
             <div className="bg-muted/40 rounded p-3">
               <div className="flex justify-between mb-1">
                 <span className="text-muted-foreground font-medium">ATR-Based Stop</span>
-                <Badge variant="outline" className="text-xs">2.5× ATR</Badge>
+                <Badge variant="outline" className="text-xs text-muted-foreground">2.5× ATR</Badge>
               </div>
               <div className="text-red-400 font-medium">${atrStop.toFixed(2)} below entry</div>
               <div className="text-xs text-muted-foreground mt-1">Stop = Entry − 2.5 × ATR(14) = ${(150 - atrStop).toFixed(2)}</div>
@@ -1293,12 +1293,12 @@ function PositionSizing() {
             <div className="bg-muted/40 rounded p-3">
               <div className="flex justify-between mb-1">
                 <span className="text-muted-foreground font-medium">Support-Based Stop</span>
-                <Badge variant="outline" className="text-xs">Below key level</Badge>
+                <Badge variant="outline" className="text-xs text-muted-foreground">Below key level</Badge>
               </div>
               <div className="text-red-400 font-medium">${supportStop.toFixed(2)} below support</div>
               <div className="text-xs text-muted-foreground mt-1">Stop = ${(150 - supportStop).toFixed(2)} (1% below structural support)</div>
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
               <div className="bg-muted/30 rounded p-2 text-center">
                 <div className="text-muted-foreground">ATR Stop P&L Risk</div>
                 <div className="font-medium text-red-400">${(atrStop * maxShares).toLocaleString()}</div>
@@ -1377,9 +1377,9 @@ function HedgingTools() {
   const vixCallProtection = 0.40; // 40% of drawdown hedged by VIX call
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Equity hedge */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="bg-muted/60 rounded-md p-4 border border-border/40">
           <SectionHeader title="Equity Hedge — SPY Puts" sub="Long portfolio + protective puts" />
           <div className="space-y-4">
@@ -1397,7 +1397,7 @@ function HedgingTools() {
               </div>
               <Slider value={hedgeRatio} onValueChange={setHedgeRatio} min={0.1} max={1} step={0.05} />
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
               <div className="bg-muted/40 rounded p-2">
                 <div className="text-muted-foreground">Put Premium</div>
                 <div className="font-medium text-red-400">${(putPremium / 1000).toFixed(1)}k</div>
@@ -1447,7 +1447,7 @@ function HedgingTools() {
               <text x={colPad.l + colGW} y={colH - 5} textAnchor="end" fontSize={8} fill="#94a3b8">120%</text>
               <text x={colPad.l - 2} y={colPad.t + colGH / 2 + 4} textAnchor="end" fontSize={8} fill="#94a3b8">0</text>
             </svg>
-            <div className="grid grid-cols-3 gap-2 text-xs text-center">
+            <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground text-center">
               <div className="bg-muted/40 rounded p-2">
                 <div className="text-muted-foreground">Call Premium</div>
                 <div className="font-medium text-green-400">+${(callPremiumEarned / 1000).toFixed(1)}k</div>
@@ -1467,7 +1467,7 @@ function HedgingTools() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* VIX hedge */}
         <div className="bg-muted/60 rounded-md p-4 border border-border/40">
           <SectionHeader title="VIX Tail Risk Hedge" sub="Long VIX calls as portfolio insurance" />
@@ -1479,7 +1479,7 @@ function HedgingTools() {
               </div>
               <Slider value={vixCallStrike} onValueChange={setVixCallStrike} min={18} max={50} step={1} />
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
               <div className="bg-muted/40 rounded p-2">
                 <div className="text-muted-foreground">Annual VIX Call Cost</div>
                 <div className="font-medium text-red-400">${(vixCallCost / 1000).toFixed(1)}k</div>
@@ -1491,7 +1491,7 @@ function HedgingTools() {
                 <div className="text-muted-foreground">During spike events</div>
               </div>
             </div>
-            <div className="bg-muted/30 rounded p-3 text-xs">
+            <div className="bg-muted/30 rounded p-3 text-xs text-muted-foreground">
               <div className="text-muted-foreground font-medium mb-1">VIX-Equity Correlation in Crises</div>
               <div className="space-y-1 text-muted-foreground">
                 <div className="flex justify-between"><span>Normal market (VIX &lt;20)</span><span className="text-muted-foreground">−0.65</span></div>
@@ -1506,7 +1506,7 @@ function HedgingTools() {
         <div className="space-y-4">
           <div className="bg-muted/60 rounded-md p-4 border border-border/40">
             <SectionHeader title="Beta Hedge — Short SPY Futures" sub="Neutralize market beta exposure" />
-            <div className="grid grid-cols-2 gap-3 text-xs">
+            <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
               <div className="bg-muted/40 rounded p-2">
                 <div className="text-muted-foreground">Portfolio Beta</div>
                 <div className="font-medium text-amber-400">{portfolioBeta.toFixed(2)}</div>
@@ -1530,7 +1530,7 @@ function HedgingTools() {
 
           <div className="bg-muted/60 rounded-md p-4 border border-border/40">
             <SectionHeader title="Hedge Ratio Calculator" sub="Optimal ratio = ρ × (σ_portfolio / σ_hedge)" />
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2 text-xs text-muted-foreground">
               {[
                 { label: "Correlation (ρ)", value: correlation.toFixed(2) },
                 { label: "Portfolio Vol (σ_p)", value: `${(portVol * 100).toFixed(1)}%` },
@@ -1603,7 +1603,7 @@ export default function RiskManagementPage() {
               { label: "Max DD (est.)", value: "~18%", color: "text-red-400" },
               { label: "Diversification Ratio", value: "1.31×", color: "text-green-400" },
             ].map(s => (
-              <div key={s.label} className="bg-muted/60 rounded-lg px-3 py-1.5 text-xs border border-border/40 flex items-center gap-2">
+              <div key={s.label} className="bg-muted/60 rounded-lg px-3 py-1.5 text-xs text-muted-foreground border border-border/40 flex items-center gap-2">
                 <span className="text-muted-foreground">{s.label}</span>
                 <span className={cn("font-semibold", s.color)}>{s.value}</span>
               </div>

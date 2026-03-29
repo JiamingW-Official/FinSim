@@ -292,7 +292,7 @@ function RiskDecompositionTab() {
   let cumX = 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
@@ -314,10 +314,10 @@ function RiskDecompositionTab() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Systematic vs Idiosyncratic */}
         <Card className="bg-card border-border border-l-4 border-l-primary">
-          <CardHeader className="p-6 pb-3">
+          <CardHeader className="p-4 pb-3">
             <CardTitle className="text-lg font-medium text-muted-foreground">Systematic vs Idiosyncratic Risk</CardTitle>
           </CardHeader>
           <CardContent>
@@ -401,7 +401,7 @@ function RiskDecompositionTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground font-medium">Ticker</th>
@@ -474,7 +474,7 @@ function MarginalContributionTab() {
   const parityY2 = yScale(parityEnd);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Concentration risk score */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="bg-card border-border md:col-span-1">
@@ -483,7 +483,7 @@ function MarginalContributionTab() {
               <AlertTriangle className="w-4 h-4 text-amber-400" />
               <span className="text-sm font-medium text-muted-foreground">Concentration Risk</span>
             </div>
-            <div className="text-2xl font-bold text-amber-400 mb-1">{CONCENTRATION_SCORE}</div>
+            <div className="text-lg font-medium text-amber-400 mb-1">{CONCENTRATION_SCORE}</div>
             <div className="text-xs text-muted-foreground mb-3">Score out of 100</div>
             <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
               <div
@@ -505,7 +505,7 @@ function MarginalContributionTab() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="text-left py-2 text-muted-foreground">Ticker</th>
@@ -647,14 +647,14 @@ function StressTestingTab() {
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">Historical Stress Scenarios</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground font-medium">Scenario</th>
@@ -820,7 +820,7 @@ function ValueAtRiskTab() {
   const yTicks = [0, 50, 100, 150, 200].filter((t) => t <= histMax * 1.1 + 10);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Horizon toggle */}
       <div className="flex gap-2">
         <button
@@ -852,13 +852,13 @@ function ValueAtRiskTab() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">VaR 95% ({horizon})</div>
-                  <div className="text-2xl font-bold text-red-400">
+                  <div className="text-lg font-medium text-red-400">
                     {horizon === "1d" ? v.cl95_1d.toFixed(2) : v.cl95_10d.toFixed(2)}%
                   </div>
                 </div>
                 <div>
                   <div className="text-xs text-muted-foreground mb-1">VaR 99% ({horizon})</div>
-                  <div className="text-2xl font-bold text-red-500">
+                  <div className="text-lg font-medium text-red-500">
                     {horizon === "1d" ? v.cl99_1d.toFixed(2) : v.cl99_10d.toFixed(2)}%
                   </div>
                 </div>
@@ -983,7 +983,7 @@ function ValueAtRiskTab() {
       {/* Explainer */}
       <Card className="bg-card border-border">
         <CardContent className="pt-5">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
             <div>
               <div className="flex items-center gap-1.5 mb-1.5">
                 <Shield className="w-3.5 h-3.5 text-indigo-400" />
@@ -1047,7 +1047,7 @@ function RiskBudgetingTab() {
   const yTicks = [0, 5, 10, 15, 20, 25].filter((t) => t <= maxVal * 1.1 + 2);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Concept cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-card border-border">
@@ -1196,7 +1196,7 @@ function RiskBudgetingTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground">Ticker</th>
@@ -1260,7 +1260,7 @@ export default function RiskDecompositionPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <div className="w-9 h-9 rounded-lg bg-indigo-600/20 flex items-center justify-center">

@@ -849,9 +849,9 @@ function BiasAssessment() {
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="space-y-6"
+        className="space-y-4"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <Card className="bg-card/60 border-border">
             <CardHeader>
               <CardTitle className="text-sm font-semibold text-foreground">
@@ -879,7 +879,7 @@ function BiasAssessment() {
                     </div>
                     <Badge
                       variant="outline"
-                      className={cn("text-xs border-0 bg-transparent", severityColor(r.severity))}
+                      className={cn("text-xs text-muted-foreground border-0 bg-transparent", severityColor(r.severity))}
                     >
                       {r.severity}
                     </Badge>
@@ -935,7 +935,7 @@ function BiasAssessment() {
   const q = QUIZ_QUESTIONS[currentQ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
         <span className="text-xs text-muted-foreground">
           Question {currentQ + 1} of {QUIZ_QUESTIONS.length}
@@ -968,7 +968,7 @@ function BiasAssessment() {
                         }
                       }}
                       className={cn(
-                        "text-left p-3 rounded-lg border text-xs transition-all",
+                        "text-left p-3 rounded-lg border text-xs text-muted-foreground transition-all",
                         selected
                           ? "border-indigo-500 bg-indigo-900/30 text-indigo-200"
                           : "border-border bg-muted/40 text-muted-foreground hover:border-border hover:text-muted-foreground"
@@ -1059,8 +1059,8 @@ function DecisionFramework() {
     setChecks((prev) => ({ ...prev, [id]: !prev[id] }));
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         <div className="lg:col-span-2">
           <Card className="bg-card/60 border-border">
             <CardHeader>
@@ -1186,7 +1186,7 @@ function DecisionFramework() {
         {showJournal && (
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     {["Date", "Ticker", "Thesis", "Outcome", "P&L"].map((h) => (
@@ -1206,7 +1206,7 @@ function DecisionFramework() {
                         <Badge
                           variant="outline"
                           className={cn(
-                            "text-xs border-0",
+                            "text-xs text-muted-foreground border-0",
                             e.outcome === "win"
                               ? "bg-green-900/30 text-green-400"
                               : e.outcome === "loss"
@@ -1278,8 +1278,8 @@ function EmotionalIntelligence() {
       : "#22c55e";
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="bg-card/60 border-border">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-foreground">
@@ -1296,7 +1296,7 @@ function EmotionalIntelligence() {
                   key={i}
                   onClick={() => setCycleIndex(i)}
                   className={cn(
-                    "px-2 py-1 rounded text-xs transition-all border",
+                    "px-2 py-1 rounded text-xs text-muted-foreground transition-all border",
                     i === cycleIndex
                       ? "border-transparent text-foreground"
                       : "border-border text-muted-foreground hover:border-border"
@@ -1336,7 +1336,7 @@ function EmotionalIntelligence() {
                 </span>
                 <Badge
                   variant="outline"
-                  className="text-xs border-0"
+                  className="text-xs text-muted-foreground border-0"
                   style={{ color: emotionColor, backgroundColor: emotionColor + "20" }}
                 >
                   {emotionLabel}
@@ -1429,7 +1429,7 @@ function ProcessOutcome() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {MATRIX_QUADRANTS.map((q) => {
           const Icon = q.icon;
@@ -1452,14 +1452,14 @@ function ProcessOutcome() {
                 <div className="flex gap-2">
                   <Badge
                     variant="outline"
-                    className="text-xs border-0"
+                    className="text-xs text-muted-foreground border-0"
                     style={{ color: q.color, backgroundColor: q.color + "20" }}
                   >
                     Process: {q.process}
                   </Badge>
                   <Badge
                     variant="outline"
-                    className="text-xs border-0"
+                    className="text-xs text-muted-foreground border-0"
                     style={{ color: q.color, backgroundColor: q.color + "20" }}
                   >
                     Outcome: {q.outcome}
@@ -1524,7 +1524,7 @@ function ProcessOutcome() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-xs border-0 shrink-0",
+                    "text-xs text-muted-foreground border-0 shrink-0",
                     trade.outcome === "win"
                       ? "bg-green-900/30 text-green-400"
                       : "bg-red-900/30 text-red-400"
@@ -1590,7 +1590,7 @@ function MentalModelsTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
         {MENTAL_MODELS.map((model, i) => {
           const isOpen = expanded === i;
@@ -1615,7 +1615,7 @@ function MentalModelsTab() {
                     <button
                       onClick={() => toggleCombo(i)}
                       className={cn(
-                        "p-1 rounded text-xs transition-colors",
+                        "p-1 rounded text-xs text-muted-foreground transition-colors",
                         inCombo
                           ? "bg-indigo-700/40 text-indigo-300"
                           : "text-muted-foreground hover:text-muted-foreground"
@@ -1742,8 +1742,8 @@ function PerformanceReview() {
   const totalLoss = mistakes.reduce((a, b) => a + b.loss, 0);
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="bg-card/60 border-border">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-foreground">
@@ -1805,7 +1805,7 @@ function PerformanceReview() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="bg-card/60 border-border">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-foreground">
@@ -1830,7 +1830,7 @@ function PerformanceReview() {
               )}
             </div>
             <div className="mt-4">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     {["Date", "Ticker", "Loss", "Category"].map((h) => (
@@ -1993,7 +1993,7 @@ function PerformanceReview() {
 export default function MindsetPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 py-8 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
@@ -2002,7 +2002,7 @@ export default function MindsetPage() {
         >
           <div className="flex items-center gap-3">
             <Brain className="h-6 w-6 text-indigo-400" />
-            <h1 className="text-2xl font-bold text-foreground">Investment Psychology</h1>
+            <h1 className="text-lg font-medium text-foreground">Investment Psychology</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Understand your biases, sharpen your decision-making process, and build mental resilience.
@@ -2016,7 +2016,7 @@ export default function MindsetPage() {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="bias" className="space-y-6 mt-8">
+        <Tabs defaultValue="bias" className="space-y-4 mt-8">
           <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
             {[
               { value: "bias", label: "Bias Assessment", icon: Brain },

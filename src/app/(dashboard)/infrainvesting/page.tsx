@@ -108,7 +108,7 @@ function InfoBox({
       ? "border-border bg-primary/10 text-primary"
       : "border-border bg-primary/10 text-primary";
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", cls)}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", cls)}>
       {children}
     </div>
   );
@@ -403,7 +403,7 @@ function AssetClassesTab() {
                 <span className="text-xs text-emerald-400 font-medium">{sec.yieldTarget}</span>
                 <Badge
                   variant="outline"
-                  className="text-xs py-0 px-1.5"
+                  className="text-xs text-muted-foreground py-0 px-1.5"
                   style={{ borderColor: sec.color + "80", color: sec.color }}
                 >
                   {sec.risk}
@@ -427,10 +427,10 @@ function AssetClassesTab() {
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-semibold text-foreground">{selected.name}</span>
-                    <Badge variant="outline" className="text-xs">{selected.segment}</Badge>
+                    <Badge variant="outline" className="text-xs text-muted-foreground">{selected.segment}</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{selected.desc}</p>
-                  <div className="mt-2 flex flex-wrap gap-3 text-xs">
+                  <div className="mt-2 flex flex-wrap gap-3 text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Return target: <span className="text-emerald-400 font-medium">{selected.yieldTarget}</span></span>
                     <span className="text-muted-foreground">Inflation link: <span className="text-primary">{selected.inflationLink}</span></span>
                   </div>
@@ -442,7 +442,7 @@ function AssetClassesTab() {
       </div>
 
       {/* Two charts side by side */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         {/* AUM Growth */}
         <div>
           <SectionTitle>
@@ -576,7 +576,7 @@ function AssetClassesTab() {
                 </span>
               </div>
               <div className="flex-1 text-sm text-muted-foreground">{tier.desc}</div>
-              <div className="flex flex-col gap-1 text-xs text-right">
+              <div className="flex flex-col gap-1 text-xs text-muted-foreground text-right">
                 <span className="text-muted-foreground">Leverage: <span className="text-muted-foreground">{tier.leverage}</span></span>
                 <span className="text-muted-foreground text-xs">{tier.examples}</span>
               </div>
@@ -820,7 +820,7 @@ function ProjectFinanceTab() {
           {RESERVE_ACCOUNTS.map((ra) => (
             <div key={ra.name} className="rounded-md border border-border bg-muted/30 p-4">
               <div className="flex items-center gap-2 mb-2">
-                <Badge variant="outline" className="font-mono text-xs">{ra.name}</Badge>
+                <Badge variant="outline" className="font-mono text-xs text-muted-foreground">{ra.name}</Badge>
                 <span className="text-xs text-muted-foreground">{ra.months}</span>
               </div>
               <div className="text-xs font-medium text-foreground mb-1">{ra.full}</div>
@@ -1072,7 +1072,7 @@ function EnergyTransitionTab() {
       </div>
 
       {/* Two charts */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         {/* Battery cost curve */}
         <div>
           <SectionTitle>
@@ -1163,7 +1163,7 @@ function EnergyTransitionTab() {
                 <span className="text-sm font-medium text-foreground">{policy.name}</span>
                 <Badge
                   variant="outline"
-                  className="text-xs"
+                  className="text-xs text-muted-foreground"
                   style={{ borderColor: policy.color + "80", color: policy.color }}
                 >
                   {policy.type}
@@ -1186,7 +1186,7 @@ function EnergyTransitionTab() {
               { label: "Green Hydrogen", detail: "Electrolyzers require co-located renewable generation" },
               { label: "Industrial Heat", detail: "Electrification of industrial processes (steel, cement)" },
             ].map((item) => (
-              <div key={item.label} className="flex gap-2 text-xs">
+              <div key={item.label} className="flex gap-2 text-xs text-muted-foreground">
                 <span className="font-medium text-emerald-300 min-w-[110px]">{item.label}</span>
                 <span className="text-muted-foreground">{item.detail}</span>
               </div>
@@ -1195,7 +1195,7 @@ function EnergyTransitionTab() {
         </InfoBox>
         <InfoBox variant="amber">
           <div className="font-medium mb-2">Stranded Asset Risk (Fossil Fuel)</div>
-          <p className="text-xs leading-relaxed mb-2">
+          <p className="text-xs text-muted-foreground leading-relaxed mb-2">
             Coal-fired power plants face 15–30 year asset life curtailments. Pipelines dependent on fossil fuel volumes face declining utilization. Gas distribution networks may face regulated writedowns as building electrification accelerates.
           </p>
           <div className="text-xs font-medium text-amber-200">
@@ -1321,7 +1321,7 @@ function InstitutionalTab() {
       </div>
 
       {/* Two charts */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         {/* Pension allocation */}
         <div>
           <SectionTitle>
@@ -1333,7 +1333,7 @@ function InstitutionalTab() {
               const targetW = (pf.target / 25) * 100;
               return (
                 <div key={pf.fund}>
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span className="text-foreground font-medium">{pf.fund}</span>
                     <span className="text-muted-foreground">{pf.country} · ${pf.aum}B AUM</span>
                   </div>
@@ -1347,7 +1347,7 @@ function InstitutionalTab() {
                       style={{ left: `${targetW}%` }}
                     />
                   </div>
-                  <div className="flex justify-between text-xs mt-0.5">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-0.5">
                     <span className="text-primary">Current: {fmtPct(pf.allocation)}</span>
                     <span className="text-emerald-400">Target: {fmtPct(pf.target)}</span>
                   </div>
@@ -1453,7 +1453,7 @@ function InstitutionalTab() {
           <BarChart3 size={14} /> Infrastructure in 60/40 Portfolio Context
         </SectionTitle>
         <div className="rounded-md border border-border bg-muted/30 p-4">
-          <div className="flex flex-col md:flex-row gap-6 items-start">
+          <div className="flex flex-col md:flex-row gap-3 items-start">
             <div className="flex-shrink-0">
               <svg viewBox={`0 0 ${psW} ${psH}`} className="w-full" style={{ maxWidth: 400 }}>
                 {[8, 9, 10, 11, 12].map((v) => (
@@ -1527,7 +1527,7 @@ function InstitutionalTab() {
             <div
               key={row.attribute}
               className={cn(
-                "grid grid-cols-4 px-4 py-2.5 text-xs items-center",
+                "grid grid-cols-4 px-4 py-2.5 text-xs text-muted-foreground items-center",
                 i % 2 === 0 ? "bg-foreground/5" : "bg-transparent"
               )}
             >
@@ -1543,7 +1543,7 @@ function InstitutionalTab() {
       </div>
 
       {/* Benchmark Indices + Fee structures */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         <div>
           <SectionTitle>
             <BarChart3 size={14} /> Benchmark Indices
@@ -1604,7 +1604,7 @@ function InstitutionalTab() {
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: fee.color }} />
                   <span className="text-sm font-medium text-foreground">{fee.type}</span>
                 </div>
-                <div className="grid grid-cols-2 gap-1 text-xs">
+                <div className="grid grid-cols-2 gap-1 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Mgmt fee:</span>
                   <span className="text-foreground">{fee.mgmt}</span>
                   <span className="text-muted-foreground">Carried interest:</span>
@@ -1629,7 +1629,7 @@ export default function InfraInvestingPage() {
   const [activeTab, setActiveTab] = useState("asset-classes");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Page Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

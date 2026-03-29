@@ -675,7 +675,7 @@ export default function MicrostructurePage() {
   const selectedOrderData = ORDER_TYPES.find((o) => o.abbr === selectedOrder);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* ── Header ── */}
       <motion.div
         variants={fadeUp}
@@ -694,7 +694,7 @@ export default function MicrostructurePage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className="text-xs gap-1">
+          <Badge variant="outline" className="text-xs text-muted-foreground gap-1">
             <RefreshCw className="w-3 h-3" />
             Live Snapshot
           </Badge>
@@ -776,19 +776,19 @@ export default function MicrostructurePage() {
       >
         <Tabs defaultValue="orderbook">
           <TabsList className="grid grid-cols-4 w-full mb-4">
-            <TabsTrigger value="orderbook" className="text-xs">
+            <TabsTrigger value="orderbook" className="text-xs text-muted-foreground">
               <BookOpen className="w-3.5 h-3.5 mr-1.5" />
               Order Book
             </TabsTrigger>
-            <TabsTrigger value="pricediscovery" className="text-xs">
+            <TabsTrigger value="pricediscovery" className="text-xs text-muted-foreground">
               <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
               Price Discovery
             </TabsTrigger>
-            <TabsTrigger value="liquidity" className="text-xs">
+            <TabsTrigger value="liquidity" className="text-xs text-muted-foreground">
               <DollarSign className="w-3.5 h-3.5 mr-1.5" />
               Liquidity
             </TabsTrigger>
-            <TabsTrigger value="fragmentation" className="text-xs">
+            <TabsTrigger value="fragmentation" className="text-xs text-muted-foreground">
               <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
               Fragmentation
             </TabsTrigger>
@@ -819,7 +819,7 @@ export default function MicrostructurePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-0.5 text-xs font-mono">
+                  <div className="space-y-0.5 text-xs text-muted-foreground font-mono">
                     {/* Header */}
                     <div className="grid grid-cols-3 text-muted-foreground border-b border-border/40 pb-1 mb-2">
                       <span>Size</span>
@@ -881,7 +881,7 @@ export default function MicrostructurePage() {
                       The NBBO aggregates the best bid and ask across all 16 registered equity exchanges.
                       A tighter spread indicates better market quality and lower execution costs.
                     </p>
-                    <div className="flex flex-wrap gap-3 mt-2 text-xs">
+                    <div className="flex flex-wrap gap-3 mt-2 text-xs text-muted-foreground">
                       <span className="text-green-400">Best Bid: ${bids[0].price.toFixed(2)}</span>
                       <span className="text-red-400">Best Ask: ${asks[0].price.toFixed(2)}</span>
                       <span className="text-amber-400">Mid: $182.50</span>
@@ -949,7 +949,7 @@ export default function MicrostructurePage() {
                     <div key={i} className="flex gap-3">
                       <ArrowRight className={cn("w-3 h-3 mt-1 shrink-0", item.color)} />
                       <div>
-                        <div className={cn("text-xs font-medium", item.color)}>{item.title}</div>
+                        <div className={cn("text-xs text-muted-foreground font-medium", item.color)}>{item.title}</div>
                         <div className="text-xs text-muted-foreground">{item.desc}</div>
                       </div>
                     </div>
@@ -968,7 +968,7 @@ export default function MicrostructurePage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border/40">
                         <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Type</th>
@@ -993,7 +993,7 @@ export default function MicrostructurePage() {
                         >
                           <td className="py-2 pr-3">
                             <span className="font-medium">{o.name}</span>
-                            <Badge variant="outline" className="ml-1.5 text-xs px-1 py-0">
+                            <Badge variant="outline" className="ml-1.5 text-xs text-muted-foreground px-1 py-0">
                               {o.abbr}
                             </Badge>
                           </td>
@@ -1033,7 +1033,7 @@ export default function MicrostructurePage() {
                     className="mt-4 p-3 rounded-lg bg-muted/30 border border-border/40"
                   >
                     <div className="text-sm font-medium mb-2">{selectedOrderData.name}</div>
-                    <div className="grid md:grid-cols-2 gap-3 text-xs">
+                    <div className="grid md:grid-cols-2 gap-3 text-xs text-muted-foreground">
                       <div>
                         <div className="flex items-center gap-1 text-green-400 mb-1">
                           <CheckCircle className="w-3 h-3" />
@@ -1141,7 +1141,7 @@ export default function MicrostructurePage() {
                     },
                   ].map((m, i) => (
                     <div key={i}>
-                      <div className="flex items-center justify-between text-xs mb-1">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
                         <span className="font-medium">{m.metric}</span>
                         <div className="flex items-center gap-2">
                           <span className="text-foreground">{m.value}</span>
@@ -1203,7 +1203,7 @@ export default function MicrostructurePage() {
                           {mm.icon}
                           <span className="text-sm font-medium">{mm.abbr}</span>
                         </div>
-                        <Badge variant="outline" className="text-xs">{mm.badge}</Badge>
+                        <Badge variant="outline" className="text-xs text-muted-foreground">{mm.badge}</Badge>
                       </div>
                       <div className="text-xs text-muted-foreground mb-2">{mm.name}</div>
                       <div className="text-xs text-muted-foreground leading-relaxed">{mm.role}</div>
@@ -1271,7 +1271,7 @@ export default function MicrostructurePage() {
                     <div key={i} className="flex gap-3">
                       <div className="mt-0.5 shrink-0">{item.icon}</div>
                       <div>
-                        <div className="text-xs font-medium">{item.title}</div>
+                        <div className="text-xs text-muted-foreground font-medium">{item.title}</div>
                         <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
                       </div>
                     </div>
@@ -1290,7 +1290,7 @@ export default function MicrostructurePage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border/40">
                         {["Venue", "Type", "Market Share", "Fee Model", "Unique Feature"].map((h) => (

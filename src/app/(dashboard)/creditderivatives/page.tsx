@@ -581,7 +581,7 @@ export default function CreditDerivativesPage() {
   const [activeTab, setActiveTab] = useState("cds-fundamentals");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -608,7 +608,7 @@ export default function CreditDerivativesPage() {
           ].map((stat) => (
             <div key={stat.label} className="flex items-center gap-1.5 px-3 py-1 bg-card border border-border rounded-full">
               <span className="text-muted-foreground text-xs">{stat.label}</span>
-              <span className={cn("text-xs font-semibold", stat.color)}>{stat.value}</span>
+              <span className={cn("text-xs text-muted-foreground font-semibold", stat.color)}>{stat.value}</span>
             </div>
           ))}
         </div>
@@ -692,7 +692,7 @@ export default function CreditDerivativesPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {CREDIT_EVENTS.map((ev) => (
                     <div key={ev.name} className={cn("rounded-lg p-3 bg-background border", ev.borderColor)}>
-                      <p className={cn("text-xs font-bold mb-1", ev.textColor)}>{ev.name}</p>
+                      <p className={cn("text-xs text-muted-foreground font-bold mb-1", ev.textColor)}>{ev.name}</p>
                       <p className="text-xs text-muted-foreground mb-1">{ev.desc}</p>
                       <p className="text-xs text-muted-foreground italic">e.g. {ev.example}</p>
                     </div>
@@ -771,7 +771,7 @@ export default function CreditDerivativesPage() {
                   </div>
                 </div>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Scenario", "Running Coupon", "Fair Spread", "Upfront", "Direction"].map((h) => (
@@ -905,7 +905,7 @@ export default function CreditDerivativesPage() {
                     <span className="text-muted-foreground font-medium">DeltaPV approx -Duration x DeltaSpread x Notional</span>
                   </p>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           {["Entry Spread", "Current Spread", "Spread Delta", "DV01 (5Y, $10M)", "Approx P&L"].map((h) => (
@@ -960,7 +960,7 @@ export default function CreditDerivativesPage() {
                         <Badge
                           variant="outline"
                           className={cn(
-                            "text-xs border font-mono",
+                            "text-xs text-muted-foreground border font-mono",
                             idx.spread > 300 ? "border-orange-500/50 text-orange-300" : "border-primary/50 text-primary"
                           )}
                         >
@@ -1008,7 +1008,7 @@ export default function CreditDerivativesPage() {
                         ["Maturity", "Standard: 5Y (also 1Y, 2Y, 3Y, 7Y, 10Y)"],
                         ["Roll Date", "March 20 and September 20 each year"],
                       ].map(([k, v]) => (
-                        <div key={k} className="flex justify-between text-xs">
+                        <div key={k} className="flex justify-between text-xs text-muted-foreground">
                           <span className="text-muted-foreground">{k}</span>
                           <span className="text-muted-foreground text-right ml-2 max-w-[60%]">{v}</span>
                         </div>
@@ -1094,7 +1094,7 @@ export default function CreditDerivativesPage() {
                       { label: "Skew Trade", desc: "Long equity tranche + short index = correlation bet", color: "text-primary" },
                     ].map((item) => (
                       <div key={item.label} className="bg-card rounded p-2 border border-border">
-                        <p className={cn("text-xs font-medium mb-1", item.color)}>{item.label}</p>
+                        <p className={cn("text-xs text-muted-foreground font-medium mb-1", item.color)}>{item.label}</p>
                         <p className="text-xs text-muted-foreground">{item.desc}</p>
                       </div>
                     ))}
@@ -1117,7 +1117,7 @@ export default function CreditDerivativesPage() {
                     {TRANCHES.map((tr) => (
                       <div key={tr.name} className={cn("rounded-lg p-2.5 bg-background border", tr.borderColor)}>
                         <div className="flex items-center justify-between mb-1">
-                          <span className={cn("text-xs font-medium", tr.labelColor)}>
+                          <span className={cn("text-xs text-muted-foreground font-medium", tr.labelColor)}>
                             {tr.name} ({tr.attachment}–{tr.detachment})
                           </span>
                           <Badge variant="outline" className="text-xs text-muted-foreground border-border">{tr.correlation}</Badge>
@@ -1247,7 +1247,7 @@ export default function CreditDerivativesPage() {
                 </div>
                 <div className="overflow-x-auto">
                   <p className="text-xs font-medium text-muted-foreground mb-2">TRS vs Repo — Financing Comparison</p>
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left py-2 pr-4 text-muted-foreground">Aspect</th>
@@ -1330,7 +1330,7 @@ export default function CreditDerivativesPage() {
                     ].map((item) => (
                       <div key={item.label} className="bg-card rounded p-2 border border-border text-center">
                         <p className="text-xs text-muted-foreground mb-0.5">{item.label}</p>
-                        <p className={cn("text-xs font-medium", item.color)}>{item.value}</p>
+                        <p className={cn("text-xs text-muted-foreground font-medium", item.color)}>{item.value}</p>
                       </div>
                     ))}
                   </div>
@@ -1410,7 +1410,7 @@ export default function CreditDerivativesPage() {
                     <div key={item.title} className={cn("bg-background rounded-lg p-3 border", item.borderColor)}>
                       <div className={cn("flex items-center gap-2 mb-2", item.labelColor)}>
                         {item.icon}
-                        <p className="text-xs font-medium">{item.title}</p>
+                        <p className="text-xs text-muted-foreground font-medium">{item.title}</p>
                       </div>
                       <p className="text-xs text-muted-foreground">{item.desc}</p>
                     </div>

@@ -118,7 +118,7 @@ function SimpleQuestCard({
               </h3>
               <span
                 className={cn(
-                  "shrink-0 rounded border px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide",
+                  "shrink-0 rounded border px-1.5 py-0.5 text-[11px] font-medium",
                   timeBadgeClass,
                 )}
               >
@@ -170,7 +170,7 @@ function SimpleQuestCard({
 
 function MonthlyQuestsSection({ gameSnapshot }: { gameSnapshot: QuestGameState }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {MONTHLY_QUESTS.map((quest, i) => {
         const progress = computeQuestProgress(quest, gameSnapshot);
         return (
@@ -235,7 +235,7 @@ function ActiveQuestsTab() {
   ];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Sub-tab pills */}
       <div className="flex gap-1.5 flex-wrap">
         {SUB_TABS.map((t) => (
@@ -375,7 +375,7 @@ function BranchGrid() {
   const totalCompleted = useQuestStore((s) => s.totalQuestsCompleted);
 
   return (
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
       {BRANCHES.map((branch, bi) => {
         const isUnlocked = totalCompleted >= branch.unlockAt;
 
@@ -395,7 +395,7 @@ function BranchGrid() {
                 {branch.name}
               </span>
               {!isUnlocked && (
-                <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground border border-border rounded px-1 py-0.5">
+                <span className="text-[11px] font-medium text-muted-foreground border border-border rounded px-1 py-0.5">
                   {branch.unlockAt} quests to unlock
                 </span>
               )}
@@ -515,18 +515,18 @@ export default function QuestsPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="border-b border-border px-4 py-5">
+      <div className="border-b border-border px-4 py-4">
         <div className="flex items-center gap-3">
           <motion.div
-            className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10"
+            className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            <ScrollText className="h-5 w-5 text-primary" />
+            <ScrollText className="h-4.5 w-4.5 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-medium">Quest Board</h1>
+            <h1 className="text-base font-medium">Quest Board</h1>
             <p className="text-[11px] text-muted-foreground">
               Complete quests across all game modes to earn XP and unlock rewards
             </p>

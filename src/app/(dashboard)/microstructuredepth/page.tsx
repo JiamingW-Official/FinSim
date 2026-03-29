@@ -562,7 +562,7 @@ export default function MicrostructureDepthPage() {
   const avgVPIN = useMemo(() => (toxicFlowRows.reduce((a, b) => a + b.vpinScore, 0) / toxicFlowRows.length).toFixed(3), []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -590,7 +590,7 @@ export default function MicrostructureDepthPage() {
           ].map((chip) => (
             <div key={chip.label} className={cn("flex items-center gap-1.5 border rounded-full px-3 py-1", chip.color)}>
               <span className="text-xs text-muted-foreground">{chip.label}</span>
-              <span className="text-xs font-semibold">{chip.value}</span>
+              <span className="text-xs text-muted-foreground font-semibold">{chip.value}</span>
             </div>
           ))}
         </div>
@@ -810,7 +810,7 @@ export default function MicrostructureDepthPage() {
                       <span className="text-xs text-muted-foreground w-10 text-right">{row.toxicPct}%</span>
                       <Badge
                         className={cn(
-                          "text-xs px-1.5 py-0 shrink-0",
+                          "text-xs text-muted-foreground px-1.5 py-0 shrink-0",
                           row.classification === "High Toxic" ? "bg-red-500/20 text-red-400 border-red-500/30" :
                           row.classification === "Elevated" ? "bg-amber-500/20 text-amber-400 border-amber-500/30" :
                           "bg-green-500/20 text-green-400 border-green-500/30"
@@ -836,7 +836,7 @@ export default function MicrostructureDepthPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-3">
                     <VPINGauge value={Number(avgVPIN)} />
                     <div className="space-y-2 flex-1">
                       <p className="text-xs text-muted-foreground leading-relaxed">
@@ -849,8 +849,8 @@ export default function MicrostructureDepthPage() {
                           { range: ">0.65", label: "High Risk", color: "bg-red-500/20 text-red-400 border-red-500/30" },
                         ].map((z) => (
                           <div key={z.range} className={cn("text-center px-2 py-1 rounded border", z.color)}>
-                            <p className="text-xs font-mono">{z.range}</p>
-                            <p className="text-xs">{z.label}</p>
+                            <p className="text-xs text-muted-foreground font-mono">{z.range}</p>
+                            <p className="text-xs text-muted-foreground">{z.label}</p>
                           </div>
                         ))}
                       </div>
@@ -867,7 +867,7 @@ export default function MicrostructureDepthPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2 text-xs">
+                  <div className="space-y-2 text-xs text-muted-foreground">
                     {[
                       { rule: "Quote Rule", desc: "Trade price > ask → buyer-initiated; < bid → seller-initiated", accuracy: 82 },
                       { rule: "Tick Rule", desc: "Price uptick vs last different price → buy; downtick → sell", accuracy: 74 },
@@ -905,7 +905,7 @@ export default function MicrostructureDepthPage() {
                 <div className="overflow-x-auto">
                   <PriceImpactChart />
                 </div>
-                <div className="mt-3 space-y-2 text-xs">
+                <div className="mt-3 space-y-2 text-xs text-muted-foreground">
                   <div className="flex gap-2">
                     <div className="flex-1 p-2 rounded bg-muted/40 border border-border">
                       <p className="text-primary font-medium mb-0.5">Permanent Impact</p>
@@ -991,7 +991,7 @@ export default function MicrostructureDepthPage() {
                         <Badge
                           variant="outline"
                           className={cn(
-                            "text-xs px-1.5",
+                            "text-xs text-muted-foreground px-1.5",
                             asset.liquidity === "Very High" ? "border-green-500/30 text-green-400" :
                             asset.liquidity === "High" ? "border-border text-primary" :
                             asset.liquidity === "Medium" ? "border-amber-500/30 text-amber-400" :
@@ -1050,7 +1050,7 @@ export default function MicrostructureDepthPage() {
                       desc: "Almgren-Chriss framework minimizes total execution cost = impact cost + timing risk. Front-loads in volatile markets; back-loads when mean-reverting.",
                     },
                   ].map((s) => (
-                    <div key={s.name} className={cn("p-2.5 rounded-lg border bg-muted/30 text-xs", s.color)}>
+                    <div key={s.name} className={cn("p-2.5 rounded-lg border bg-muted/30 text-xs text-muted-foreground", s.color)}>
                       <p className={cn("font-medium mb-0.5", s.color.split(" ")[0])}>{s.name}</p>
                       <p className="text-muted-foreground">{s.desc}</p>
                     </div>
@@ -1127,7 +1127,7 @@ export default function MicrostructureDepthPage() {
                   );
                 })}
               </div>
-              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
                 {[
                   {
                     icon: <Shield className="w-4 h-4 text-primary" />,

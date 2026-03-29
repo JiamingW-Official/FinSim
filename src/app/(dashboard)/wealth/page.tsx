@@ -230,9 +230,9 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
   const prevMilestone = [...NET_WORTH_MILESTONES].reverse().find((m) => m.value <= netWorth);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Hero net worth */}
-      <div className="rounded-md border border-border bg-card p-6">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm text-muted-foreground">Total Net Worth</p>
@@ -279,7 +279,7 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-3 lg:grid-cols-3">
         {/* Asset / Liability inputs */}
         <div className="lg:col-span-2 space-y-4">
           {/* Assets */}
@@ -331,7 +331,7 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
             </div>
             <div className="mt-3 space-y-1">
               {donutSegments.map((seg, i) => (
-                <div key={i} className="flex items-center justify-between text-xs">
+                <div key={i} className="flex items-center justify-between text-xs text-muted-foreground">
                   <div className="flex items-center gap-1.5">
                     <div className="h-2 w-2 rounded-full" style={{ background: seg.color }} />
                     <span className="text-muted-foreground">{seg.label}</span>
@@ -363,7 +363,7 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
                   : 0;
                 return (
                   <div key={m.label} className="space-y-1">
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <div className="flex items-center gap-1.5">
                         {achieved ? (
                           <CheckCircle className="h-3.5 w-3.5 text-emerald-500" />
@@ -430,7 +430,7 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
                   <td className="px-4 py-1.5">
                     <span
                       className={cn(
-                        "text-xs font-medium",
+                        "text-xs text-muted-foreground font-medium",
                         r.positive ? "text-emerald-500" : "text-red-500",
                       )}
                     >
@@ -675,7 +675,7 @@ function GoalsTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Goals list */}
       <div className="rounded-md border border-border bg-card p-4">
         <div className="mb-3 flex items-center justify-between">
@@ -794,7 +794,7 @@ function GoalsTab() {
             <NumInput label="Current Emergency Fund" value={efCurrent} onChange={setEfCurrent} />
           </div>
           <div className="rounded-lg bg-muted/30 p-3 text-center">
-            <p className="text-2xl font-bold">{efMonths.toFixed(1)}x</p>
+            <p className="text-lg font-medium">{efMonths.toFixed(1)}x</p>
             <p className="text-xs text-muted-foreground">months of expenses covered</p>
           </div>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-muted">
@@ -1032,7 +1032,7 @@ function TaxTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inputs */}
       <div className="rounded-md border border-border bg-card p-4">
         <h3 className="mb-3 text-sm font-medium">Tax Inputs</h3>
@@ -1046,7 +1046,7 @@ function TaxTab() {
                   key={s}
                   onClick={() => setFilingStatus(s)}
                   className={cn(
-                    "flex-1 rounded-md border px-2 py-1.5 text-xs font-medium transition-colors",
+                    "flex-1 rounded-md border px-2 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                     filingStatus === s
                       ? "border-primary bg-primary/10 text-primary"
                       : "border-border text-muted-foreground hover:border-primary/50",
@@ -1065,7 +1065,7 @@ function TaxTab() {
                   key={d}
                   onClick={() => setDeductionType(d)}
                   className={cn(
-                    "flex-1 rounded-md border px-2 py-1.5 text-xs font-medium transition-colors",
+                    "flex-1 rounded-md border px-2 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                     deductionType === d
                       ? "border-primary bg-primary/10 text-primary"
                       : "border-border text-muted-foreground hover:border-primary/50",
@@ -1099,7 +1099,7 @@ function TaxTab() {
         ].map((card, i) => (
           <div key={i} className="rounded-md border border-border bg-card p-4">
             <p className="text-xs text-muted-foreground">{card.label}</p>
-            <p className={cn("text-2xl font-bold", card.color)}>{card.value}</p>
+            <p className={cn("text-lg font-medium", card.color)}>{card.value}</p>
             {card.sub && <p className="text-xs text-muted-foreground">{card.sub}</p>}
           </div>
         ))}
@@ -1114,7 +1114,7 @@ function TaxTab() {
             const b = brackets[i];
             if (!b) return null;
             return (
-              <div key={i} className="flex items-center gap-1 text-xs">
+              <div key={i} className="flex items-center gap-1 text-xs text-muted-foreground">
                 <div className="h-2.5 w-2.5 rounded-sm" style={{ background: c }} />
                 <span className="text-muted-foreground">{b.rate}%</span>
               </div>
@@ -1131,7 +1131,7 @@ function TaxTab() {
             {/* 401k */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-medium">401(k) Contribution</label>
+                <label className="text-xs text-muted-foreground font-medium">401(k) Contribution</label>
                 <span className="text-xs text-emerald-500">Saves {fmt(savings401k)}</span>
               </div>
               <div className="flex items-center gap-2">
@@ -1139,7 +1139,7 @@ function TaxTab() {
                   type="number"
                   value={contrib401k}
                   onChange={(e) => setContrib401k(Math.min(23500, Number(e.target.value) || 0))}
-                  className="w-24 rounded-md border border-border bg-background px-2 py-1 text-xs"
+                  className="w-24 rounded-md border border-border bg-background px-2 py-1 text-xs text-muted-foreground"
                 />
                 <Slider
                   value={[contrib401k]}
@@ -1155,7 +1155,7 @@ function TaxTab() {
             {/* HSA */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-medium">HSA Contribution</label>
+                <label className="text-xs text-muted-foreground font-medium">HSA Contribution</label>
                 <Badge variant="outline" className="text-[11px] text-emerald-500 border-emerald-500/40">Triple Tax Benefit</Badge>
               </div>
               <div className="flex items-center gap-2">
@@ -1163,7 +1163,7 @@ function TaxTab() {
                   type="number"
                   value={contribHSA}
                   onChange={(e) => setContribHSA(Math.min(4300, Number(e.target.value) || 0))}
-                  className="w-24 rounded-md border border-border bg-background px-2 py-1 text-xs"
+                  className="w-24 rounded-md border border-border bg-background px-2 py-1 text-xs text-muted-foreground"
                 />
                 <Slider
                   value={[contribHSA]}
@@ -1178,11 +1178,11 @@ function TaxTab() {
             </div>
             {/* Capital gains */}
             <div className="rounded-lg bg-muted/30 p-3">
-              <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="font-medium">Short-term cap gains rate</span>
                 <span className="font-medium text-red-500">{marginalRate}%</span>
               </div>
-              <div className="flex items-center justify-between text-xs mt-1">
+              <div className="flex items-center justify-between text-xs text-muted-foreground mt-1">
                 <span className="font-medium">Long-term cap gains rate</span>
                 <span className="font-medium text-emerald-500">{ltcgRate}%</span>
               </div>
@@ -1193,7 +1193,7 @@ function TaxTab() {
             </div>
             {/* Roth conversion */}
             {isLowBracket && (
-              <div className="flex items-start gap-2 rounded-lg border border-primary/30 bg-primary/5 p-3 text-xs">
+              <div className="flex items-start gap-2 rounded-lg border border-primary/30 bg-primary/5 p-3 text-xs text-muted-foreground">
                 <Zap className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-primary">Roth Conversion Opportunity</p>
@@ -1245,7 +1245,7 @@ function TaxTab() {
                 { label: "Low effective rate", achieved: effectiveRate < 20, tip: "Effective rate below 20%" },
                 { label: "LTCG advantage", achieved: ltcgRate < marginalRate, tip: "Hold positions over 1 year" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs">
+                <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                   {item.achieved ? (
                     <CheckCircle className="h-3.5 w-3.5 shrink-0 text-emerald-500" />
                   ) : (
@@ -1468,7 +1468,7 @@ function RoadmapTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inputs */}
       <div className="rounded-md border border-border bg-card p-4">
         <h3 className="mb-3 text-sm font-medium">Your Financial Profile</h3>
@@ -1494,17 +1494,17 @@ function RoadmapTab() {
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-md border border-border bg-card p-4 text-center">
           <p className="text-xs text-muted-foreground">Monthly Savings</p>
-          <p className="text-2xl font-bold text-primary">{fmt(monthlySavings)}</p>
+          <p className="text-lg font-medium text-primary">{fmt(monthlySavings)}</p>
           <p className="text-xs text-muted-foreground">{annualSavingsRate}% of income</p>
         </div>
         <div className="rounded-md border border-border bg-card p-4 text-center">
           <p className="text-xs text-muted-foreground">Projected at Retirement (65)</p>
-          <p className="text-2xl font-bold text-emerald-500">{fmtK(retirementProjection)}</p>
+          <p className="text-lg font-medium text-emerald-500">{fmtK(retirementProjection)}</p>
           <p className="text-xs text-muted-foreground">{Math.max(0, 65 - currentAge)} years at {expectedReturn}%</p>
         </div>
         <div className="rounded-md border border-border bg-card p-4 text-center">
           <p className="text-xs text-muted-foreground">Annual Retirement Income (4%)</p>
-          <p className="text-2xl font-bold text-amber-500">{fmtK(retirementProjection * 0.04)}</p>
+          <p className="text-lg font-medium text-amber-500">{fmtK(retirementProjection * 0.04)}</p>
           <p className="text-xs text-muted-foreground">Safe withdrawal rate</p>
         </div>
       </div>
@@ -1599,7 +1599,7 @@ function RoadmapTab() {
           <div className="space-y-3">
             {allocationRecs.map((rec, i) => (
               <div key={i} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="font-medium">{rec.label}</span>
                   <div className="flex gap-2 text-muted-foreground">
                     <span className="text-primary font-medium">{rec.stocks}% stocks</span>
@@ -1642,7 +1642,7 @@ export default function WealthPage() {
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <div className="flex-1 space-y-4 p-4 md:p-6">
+      <div className="flex-1 space-y-4 p-4 md:p-4">
         {/* Page header */}
         <div className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
@@ -1658,19 +1658,19 @@ export default function WealthPage() {
 
         <Tabs defaultValue="networth" className="space-y-4">
           <TabsList className="grid w-full grid-cols-4 md:w-auto md:inline-grid">
-            <TabsTrigger value="networth" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="networth" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <PieChart className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Net Worth</span>
             </TabsTrigger>
-            <TabsTrigger value="goals" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="goals" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Target className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Goals</span>
             </TabsTrigger>
-            <TabsTrigger value="tax" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="tax" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <DollarSign className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Tax Planning</span>
             </TabsTrigger>
-            <TabsTrigger value="roadmap" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="roadmap" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <BarChart3 className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Roadmap</span>
             </TabsTrigger>

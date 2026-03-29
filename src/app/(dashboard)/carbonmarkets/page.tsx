@@ -448,7 +448,7 @@ function ComplianceTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="EUA Price (Mar 2026)" value="EUR 62/t" sub="Per tonne CO2eq" color="text-emerald-400" />
         <StatChip label="EU ETS Annual Cap" value="1.39 Bt" sub="2024 cap; declining" color="text-primary" />
@@ -492,7 +492,7 @@ function ComplianceTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Phase", "Years", "Cap Design", "Price Range", "Key Developments"].map((h) => (
@@ -540,7 +540,7 @@ function ComplianceTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["System", "Region", "Year", "Price", "GHG Coverage", "Sectors", "Status"].map((h) => (
@@ -566,7 +566,7 @@ function ComplianceTab() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">EU ETS Sectoral Coverage</CardTitle>
@@ -574,7 +574,7 @@ function ComplianceTab() {
           <CardContent className="space-y-3">
             {sectorCoverage.map((sec) => (
               <div key={sec.name} className="space-y-1">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{sec.name}</span>
                   <span className="text-muted-foreground">{sec.pct}%</span>
                 </div>
@@ -590,7 +590,7 @@ function ComplianceTab() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Key Policy Mechanisms</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             {[
               { label: "Free Allocation", desc: "Given to carbon-leakage-risk industries (cement, steel, chemicals). Being phased out 2026-34 alongside CBAM." },
               { label: "CBAM (Carbon Border Adjustment)", desc: "From 2026, importers of steel/cement/aluminium/fertilisers must buy CBAM certificates at EUA price." },
@@ -625,7 +625,7 @@ function VoluntaryTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="VCM Size 2023" value="$2.0B" color="text-emerald-400" />
         <StatChip label="VCM Target 2030" value="$50B" color="text-primary" />
@@ -671,7 +671,7 @@ function VoluntaryTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 px-3 text-muted-foreground">Aspect</th>
@@ -699,7 +699,7 @@ function VoluntaryTab() {
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: std.color }} />
               <span className="text-sm font-bold" style={{ color: std.color }}>{std.name}</span>
-              <Badge variant="outline" className="text-xs ml-auto">{std.founded}</Badge>
+              <Badge variant="outline" className="text-xs text-muted-foreground ml-auto">{std.founded}</Badge>
             </div>
             <div className="text-xs text-muted-foreground font-medium mb-1">{std.fullName}</div>
             <div className="text-xs text-muted-foreground mb-2">{std.focus}</div>
@@ -751,7 +751,7 @@ function QualityTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
@@ -762,7 +762,7 @@ function QualityTab() {
         <CardContent className="space-y-3">
           {PERMANENCE_DATA.map((row) => (
             <div key={row.type} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{row.type}</span>
                 <span className="text-muted-foreground text-right max-w-[200px]">{row.note}</span>
               </div>
@@ -798,7 +798,7 @@ function QualityTab() {
         </CardHeader>
         <CardContent className="space-y-3">
           {additionalityTests.map((test) => (
-            <div key={test.test} className="flex gap-3 text-xs">
+            <div key={test.test} className="flex gap-3 text-xs text-muted-foreground">
               <div className={cn("mt-0.5 shrink-0", test.pass ? "text-emerald-400" : "text-red-400")}>
                 {test.pass ? <CheckCircle className="w-4 h-4" /> : <AlertTriangle className="w-4 h-4" />}
               </div>
@@ -821,7 +821,7 @@ function QualityTab() {
               <div className="flex items-center gap-2">
                 <span className="text-xs font-medium text-foreground">{lt.type}</span>
                 <Badge
-                  className="text-xs ml-auto"
+                  className="text-xs text-muted-foreground ml-auto"
                   style={{
                     backgroundColor: lt.severity === "High" ? "#f8717122" : "#fb923c22",
                     color: lt.severity === "High" ? "#f87171" : "#fb923c",
@@ -844,7 +844,7 @@ function QualityTab() {
         <CardContent className="space-y-2">
           {CALYX_RATINGS.map((r) => (
             <div key={r.rating} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="font-mono font-medium" style={{ color: r.color }}>{r.rating}</span>
                 <span className="text-muted-foreground">{r.label}</span>
                 <span className="text-muted-foreground">{r.pct}% of rated credits</span>
@@ -904,7 +904,7 @@ function InvestmentTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="KRBN YTD" value={fmtPct(-18.3)} sub="Global carbon ETF" color="text-red-400" />
         <StatChip label="EUA vs S&P500 Corr" value="0.12" sub="Low correlation benefit" color="text-primary" />
@@ -921,7 +921,7 @@ function InvestmentTab() {
         </CardHeader>
         <CardContent>
           <PriceForecastChart />
-          <div className="grid grid-cols-3 gap-3 mt-3 text-xs">
+          <div className="grid grid-cols-3 gap-3 mt-3 text-xs text-muted-foreground">
             <div className="border border-border rounded p-2">
               <div className="text-emerald-400 font-medium">NZE Scenario</div>
               <div className="text-muted-foreground">$250/t by 2030</div>
@@ -950,7 +950,7 @@ function InvestmentTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Ticker", "Name", "AUM", "Exposure", "YTD", "Expense"].map((h) => (
@@ -980,7 +980,7 @@ function InvestmentTab() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">EUA Futures Market Structure</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             {[
               { label: "Benchmark Contract", value: "ICE EUA Dec expiry; ~90% market share" },
               { label: "Roll Yield", value: "Typical contango of 2-4% p.a. (cost of carry)" },
@@ -1004,7 +1004,7 @@ function InvestmentTab() {
           </CardHeader>
           <CardContent className="space-y-3">
             {arbitrageOps.map((arb, i) => (
-              <div key={i} className="border border-border rounded p-2 text-xs space-y-1">
+              <div key={i} className="border border-border rounded p-2 text-xs text-muted-foreground space-y-1">
                 <div className="flex justify-between items-center">
                   <span className="text-foreground font-medium">{arb.desc}</span>
                   <Badge className="text-xs bg-emerald-900/40 text-emerald-400 border-emerald-700">{arb.current}</Badge>
@@ -1026,7 +1026,7 @@ function InvestmentTab() {
         <CardContent className="space-y-3">
           {politicalRisks.map((pr) => (
             <div key={pr.risk} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground font-medium">{pr.risk}</span>
                 <span className="text-muted-foreground">Risk Score: {pr.severity}/100</span>
               </div>
@@ -1088,7 +1088,7 @@ function InvestmentTab() {
 // ══════════════════════════════════════════════════════════════════════════════
 export default function CarbonMarketsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2 flex-wrap">
           <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">

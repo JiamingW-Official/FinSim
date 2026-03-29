@@ -394,7 +394,7 @@ function Tab1EtfContent() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Spot BTC ETF AUM" value="$100B" sub="Dec 2024 total" color="text-indigo-400" />
         <StatChip label="Spot ETH ETF AUM" value="$12B" sub="8 issuers combined" color="text-primary" />
@@ -483,11 +483,11 @@ function Tab1EtfContent() {
                 ? "#f59e0b"
                 : "#8b5cf6";
             return (
-              <div key={i} className={cn("border rounded p-2 text-xs", borderCol)}>
+              <div key={i} className={cn("border rounded p-2 text-xs text-muted-foreground", borderCol)}>
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-muted-foreground">{ev.date}</span>
                   <Badge
-                    className="text-xs"
+                    className="text-xs text-muted-foreground"
                     style={{
                       backgroundColor: `${badgeColor}22`,
                       color: badgeColor,
@@ -532,7 +532,7 @@ function Tab1EtfContent() {
         <div className="space-y-3">
           {allocationData.map((row) => (
             <div key={row.tier} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{row.tier}</span>
                 <span className="text-muted-foreground">{row.note}</span>
               </div>
@@ -780,7 +780,7 @@ function Tab2StablecoinContent() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Total Stablecoin M.Cap" value="$165B" sub="Sep 2024" color="text-emerald-400" />
         <StatChip label="USDT Dominance" value="71%" sub="Of stablecoin supply" color="text-amber-400" />
@@ -818,7 +818,7 @@ function Tab2StablecoinContent() {
         icon={<Shield className="w-4 h-4 text-primary" />}
       >
         <ReserveChart />
-        <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
+        <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded">
             <div className="font-medium text-amber-300 mb-1">Tether (USDT)</div>
             <div className="text-muted-foreground">
@@ -859,7 +859,7 @@ function Tab2StablecoinContent() {
                   {ev.depeg}
                 </span>
                 <Badge
-                  className="text-xs"
+                  className="text-xs text-muted-foreground"
                   style={{
                     backgroundColor: `${ev.color}22`,
                     color: ev.color,
@@ -882,7 +882,7 @@ function Tab2StablecoinContent() {
         defaultOpen={false}
       >
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Stablecoin", "Mechanism", "Yield", "Chain", "Access"].map((h) => (
@@ -917,7 +917,7 @@ function Tab2StablecoinContent() {
         icon={<Globe className="w-4 h-4 text-indigo-400" />}
         defaultOpen={false}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
           <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded space-y-2">
             <div className="font-medium text-indigo-300">EU MiCA — Asset-Referenced Tokens</div>
             <ul className="space-y-1 text-muted-foreground">
@@ -1114,7 +1114,7 @@ function Tab3PrimeBrokerageContent() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Coinbase Prime AUM" value="$250B+" sub="Custodied institutional" color="text-primary" />
         <StatChip label="OTC Block Min. Size" value=">$500K" sub="Typical minimum" color="text-emerald-400" />
@@ -1141,7 +1141,7 @@ function Tab3PrimeBrokerageContent() {
         <div className="space-y-3">
           {marginData.map((row) => (
             <div key={row.asset} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{row.asset}</span>
                 <span className="text-muted-foreground">{row.note}</span>
               </div>
@@ -1174,7 +1174,7 @@ function Tab3PrimeBrokerageContent() {
         icon={<Globe className="w-4 h-4 text-emerald-400" />}
       >
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Provider", "Key Strengths", "Cust.", "OTC", "Lend", "Margin"].map((h) => (
@@ -1207,7 +1207,7 @@ function Tab3PrimeBrokerageContent() {
         defaultOpen={false}
       >
         <FtxImpactSVG />
-        <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div className="p-3 bg-red-500/10 border border-red-500/20 rounded space-y-1">
             <div className="font-medium text-red-300">Immediate Impact</div>
             <ul className="text-muted-foreground space-y-0.5">
@@ -1236,7 +1236,7 @@ function Tab3PrimeBrokerageContent() {
       >
         <div className="space-y-3">
           {riskTypes.map((r, i) => (
-            <div key={i} className="flex gap-3 text-xs">
+            <div key={i} className="flex gap-3 text-xs text-muted-foreground">
               <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
               <div>
                 <div className="text-foreground font-medium">{r.risk}</div>
@@ -1534,7 +1534,7 @@ function Tab4OnchainContent() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="BTC Exchange Reserves" value="1.72M" sub="Multi-year lows (Oct 24)" color="text-amber-400" />
         <StatChip label="Whale Wallets >1K BTC" value="~2,100" sub="Address count" color="text-indigo-400" />
@@ -1560,7 +1560,7 @@ function Tab4OnchainContent() {
         icon={<Activity className="w-4 h-4 text-indigo-400" />}
       >
         <MvrvChart />
-        <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
+        <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div className="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded">
             <div className="font-medium text-emerald-300">MVRV &lt; 1 — Accumulation Zone</div>
             <div className="text-muted-foreground mt-1">
@@ -1607,7 +1607,7 @@ function Tab4OnchainContent() {
               <div className="flex items-center gap-2">
                 <span className="text-xs font-medium text-foreground">{m.metric}</span>
                 <Badge
-                  className="text-xs ml-auto"
+                  className="text-xs text-muted-foreground ml-auto"
                   style={{
                     backgroundColor: `${m.color}22`,
                     color: m.color,
@@ -1630,10 +1630,10 @@ function Tab4OnchainContent() {
       >
         <div className="space-y-2">
           {platforms.map((p, i) => (
-            <div key={i} className="flex gap-3 items-start text-xs border border-border rounded p-3">
+            <div key={i} className="flex gap-3 items-start text-xs text-muted-foreground border border-border rounded p-3">
               <div className="shrink-0">
                 <Badge
-                  className="text-xs"
+                  className="text-xs text-muted-foreground"
                   style={{
                     backgroundColor: `${p.color}22`,
                     color: p.color,
@@ -1662,7 +1662,7 @@ function Tab4OnchainContent() {
         icon={<Lock className="w-4 h-4 text-amber-400" />}
         defaultOpen={false}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded space-y-2">
             <div className="font-medium text-amber-300">1,000+ BTC Wallets (~2,100 addresses)</div>
             <ul className="text-muted-foreground space-y-1">
@@ -1682,7 +1682,7 @@ function Tab4OnchainContent() {
             </ul>
           </div>
         </div>
-        <div className="mt-3 p-3 bg-primary/10 border border-border rounded text-xs">
+        <div className="mt-3 p-3 bg-primary/10 border border-border rounded text-xs text-muted-foreground">
           <div className="font-medium text-primary mb-1">Nansen Smart Money Labels</div>
           <div className="text-muted-foreground">
             Nansen&apos;s entity database labels ~200M wallets including exchanges, protocols, VC funds (a16z, Paradigm),
@@ -1701,7 +1701,7 @@ function Tab4OnchainContent() {
 
 export default function CryptoInstitutionalPage() {
   return (
-    <div className="p-6 space-y-6 max-w-5xl mx-auto">
+    <div className="p-4 space-y-4 max-w-5xl mx-auto">
       {/* HERO Header */}
       <div className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1">
         <div className="flex items-center gap-3">
@@ -1724,7 +1724,7 @@ export default function CryptoInstitutionalPage() {
           ].map((tag) => (
             <span
               key={tag.label}
-              className={cn("text-xs px-2 py-0.5 rounded border font-medium", tag.color)}
+              className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium", tag.color)}
             >
               {tag.label}
             </span>

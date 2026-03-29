@@ -754,8 +754,8 @@ function ThreeFundBuilder() {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Controls */}
         <div className="space-y-5">
           <div>
@@ -867,7 +867,7 @@ function ThreeFundBuilder() {
               <span className="font-medium text-sm" style={{ color: f.color }}>
                 {f.ticker}
               </span>
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-xs text-muted-foreground">
                 {f.er}
               </Badge>
             </div>
@@ -984,7 +984,7 @@ function ActivePassiveSection() {
   const compoundAdv = Math.pow(1 + feeAdvantage / 100, horizon) - 1;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* SPIVA Chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -1185,7 +1185,7 @@ function FactorSection() {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -1216,7 +1216,7 @@ function FactorSection() {
                 <td className="py-2.5 pr-3">
                   <Badge
                     variant="outline"
-                    className="text-xs"
+                    className="text-xs text-muted-foreground"
                     style={{ borderColor: etf.color, color: etf.color }}
                   >
                     {etf.factor}
@@ -1311,7 +1311,7 @@ export default function IndexInvestingPage() {
   const methodData = useMemo(() => METHODS, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1638,7 +1638,7 @@ export default function IndexInvestingPage() {
                   },
                 ].map((al) => (
                   <div key={al.label} className="bg-muted rounded-lg p-3 text-center">
-                    <div className={cn("text-2xl font-bold", al.color)}>{al.value}</div>
+                    <div className={cn("text-lg font-medium", al.color)}>{al.value}</div>
                     <div className="text-xs text-muted-foreground">{al.label}</div>
                     <div className="text-xs text-muted-foreground mt-1">{al.fund}</div>
                   </div>

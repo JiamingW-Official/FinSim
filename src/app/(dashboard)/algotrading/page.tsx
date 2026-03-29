@@ -408,7 +408,7 @@ function EquityCurveChart() {
 function MonthlyHeatmap() {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs border-collapse">
+      <table className="w-full text-xs text-muted-foreground border-collapse">
         <thead>
           <tr>
             <th className="text-left text-muted-foreground font-normal pr-3 py-1 w-12">Year</th>
@@ -425,7 +425,7 @@ function MonthlyHeatmap() {
                 <td key={m.label} className="px-0.5 py-0.5 text-center">
                   <div
                     className={cn(
-                      "rounded px-1 py-0.5 text-xs font-medium tabular-nums",
+                      "rounded px-1 py-0.5 text-xs text-muted-foreground font-medium tabular-nums",
                       m.ret >= 2 ? "bg-emerald-500/30 text-emerald-300" :
                       m.ret >= 0.5 ? "bg-emerald-500/15 text-emerald-400" :
                       m.ret >= -0.5 ? "bg-muted/50 text-muted-foreground" :
@@ -505,7 +505,7 @@ export default function AlgoTradingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* HERO Header */}
       <motion.div {...fadeUp}>
         <div className="border-l-4 border-l-primary rounded-md bg-card p-6">
@@ -573,12 +573,12 @@ export default function AlgoTradingPage() {
                 <Card key={ot.name} className={cn("border", ot.bg)}>
                   <CardHeader className="p-4 pb-2">
                     <div className="flex items-center justify-between">
-                      <Badge className={cn("font-mono text-xs px-2 py-0.5", ot.color, "bg-transparent border-current border")}>
+                      <Badge className={cn("font-mono text-xs text-muted-foreground px-2 py-0.5", ot.color, "bg-transparent border-current border")}>
                         {ot.abbr}
                       </Badge>
                       <Badge
                         className={cn(
-                          "text-xs px-1.5 py-0.5",
+                          "text-xs text-muted-foreground px-1.5 py-0.5",
                           ot.risk === "Low" ? "bg-emerald-500/15 text-emerald-400" :
                           ot.risk === "Medium" ? "bg-amber-500/15 text-amber-400" :
                           "bg-red-500/15 text-red-400"
@@ -676,7 +676,7 @@ export default function AlgoTradingPage() {
                 <CardTitle className="text-sm text-muted-foreground">Algorithm Mechanics</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-muted-foreground">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-3 h-0.5 bg-emerald-400" style={{ borderTop: "1.5px dashed #34d399" }}></div>
@@ -774,7 +774,7 @@ export default function AlgoTradingPage() {
                 <CardTitle className="text-sm text-muted-foreground">Model Reference</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
                   <div className="p-3 bg-muted/50 rounded">
                     <div className="text-muted-foreground font-medium mb-1">Temporary Impact</div>
                     <div className="font-mono text-muted-foreground mb-1.5">h(v) = &eta; &sigma; (v/ADV)^0.6</div>
@@ -807,7 +807,7 @@ export default function AlgoTradingPage() {
                       </div>
                       <div>
                         <CardTitle className="text-sm text-foreground">{strat.name}</CardTitle>
-                        <Badge className={cn("text-xs px-1.5 py-0 mt-1 border", strat.tagColor)}>
+                        <Badge className={cn("text-xs text-muted-foreground px-1.5 py-0 mt-1 border", strat.tagColor)}>
                           {strat.tag}
                         </Badge>
                       </div>
@@ -841,7 +841,7 @@ export default function AlgoTradingPage() {
                 <CardTitle className="text-sm text-muted-foreground">Microstructure Concepts</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
                   {[
                     { term: "Co-location", def: "Server racks physically adjacent to exchange matching engine; reduces round-trip latency to ~1 microsecond." },
                     { term: "Order Book Depth", def: "Cumulative volume at each price level. Thin books amplify market impact; deep books absorb large orders." },
@@ -935,7 +935,7 @@ export default function AlgoTradingPage() {
               </CardHeader>
               <CardContent className="p-4 pt-0">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left text-muted-foreground font-normal py-2 pr-4">Metric</th>
@@ -953,7 +953,7 @@ export default function AlgoTradingPage() {
                           <td className="py-2.5 pl-4 text-right">
                             <Badge
                               className={cn(
-                                "text-xs px-1.5 py-0",
+                                "text-xs text-muted-foreground px-1.5 py-0",
                                 row.status === "good" ? "bg-emerald-500/15 text-emerald-400" :
                                 row.status === "neutral" ? "bg-amber-500/15 text-amber-400" :
                                 "bg-red-500/15 text-red-400"
@@ -982,7 +982,7 @@ export default function AlgoTradingPage() {
                     { term: "Fill Rate", def: "% of shares in limit orders that received full fills. Low fill rate = too aggressive limit pricing or low liquidity." },
                     { term: "Queue Position", def: "Rank in the order queue at a given price level. Position 1 = first to fill. Lower numbers = faster execution." },
                   ].map((d) => (
-                    <div key={d.term} className="flex gap-2 text-xs">
+                    <div key={d.term} className="flex gap-2 text-xs text-muted-foreground">
                       <Shield className="w-3 h-3 text-indigo-400 mt-0.5 shrink-0" />
                       <div>
                         <span className="text-muted-foreground font-medium">{d.term}: </span>

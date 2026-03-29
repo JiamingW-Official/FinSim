@@ -257,7 +257,7 @@ export default function BacktestPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header — quiet zone */}
-      <div className="flex items-center gap-3 border-b border-border bg-card/60 px-6 py-5">
+      <div className="flex items-center gap-3 border-b border-border bg-card/60 px-5 py-4">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
           <FlaskConical className="h-4 w-4 text-primary" />
         </div>
@@ -433,8 +433,8 @@ export default function BacktestPage() {
         {/* Tab 2: Event Analysis — hero tier */}
         {activeTab === "earnings" && (
           <div className="flex flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="mx-auto max-w-4xl space-y-6">
+            <div className="flex-1 overflow-y-auto p-5">
+              <div className="mx-auto max-w-4xl space-y-5">
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-sm font-medium text-foreground">Earnings Event Analysis</h2>
@@ -457,7 +457,7 @@ export default function BacktestPage() {
         {/* Tab 3: Monte Carlo */}
         {activeTab === "montecarlo" && (
           <div className="flex flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-5">
               <div className="mx-auto max-w-3xl">
                 <MonteCarloPanelV2
                   result={store.monteCarloResult}
@@ -471,9 +471,9 @@ export default function BacktestPage() {
         {/* Tab 4: Walk-Forward */}
         {activeTab === "walkforward" && (
           <div className="flex flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="mx-auto max-w-3xl space-y-4">
-                <div className="mb-4">
+            <div className="flex-1 overflow-y-auto p-5">
+              <div className="mx-auto max-w-3xl space-y-3">
+                <div className="mb-6">
                   <h2 className="text-sm font-medium text-foreground">Walk-Forward Analysis</h2>
                   <p className="text-xs text-muted-foreground">
                     Measures how well in-sample performance translates to out-of-sample results across multiple folds
@@ -488,9 +488,9 @@ export default function BacktestPage() {
         {/* Tab 5: Optimization */}
         {activeTab === "optimization" && (
           <div className="flex flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="mx-auto max-w-4xl space-y-4">
-                <div className="mb-4">
+            <div className="flex-1 overflow-y-auto p-5">
+              <div className="mx-auto max-w-4xl space-y-3">
+                <div className="mb-6">
                   <h2 className="text-sm font-medium text-foreground">Parameter Optimization</h2>
                   <p className="text-xs text-muted-foreground">
                     Grid search over parameter combinations to find the highest Sharpe ratio

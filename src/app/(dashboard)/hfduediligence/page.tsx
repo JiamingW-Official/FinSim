@@ -381,7 +381,7 @@ export default function HFDueDiligencePage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
       {/* Header */}
       <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="space-y-1">
         <div className="flex items-center gap-3">
@@ -519,7 +519,7 @@ export default function HFDueDiligencePage() {
                   key={cat}
                   size="sm"
                   variant={activeFilter === cat ? "default" : "outline"}
-                  className="h-7 text-xs"
+                  className="h-7 text-xs text-muted-foreground"
                   onClick={() => setActiveFilter(cat)}
                 >
                   {cat === "all" ? "All" : categoryLabels[cat]}
@@ -541,7 +541,7 @@ export default function HFDueDiligencePage() {
                           <div className="flex items-center gap-2 flex-wrap">
                             <p className="text-sm font-medium">{item.label}</p>
                             <StatusBadge status={item.status} />
-                            <Badge variant="outline" className="text-xs gap-1 border-border">
+                            <Badge variant="outline" className="text-xs text-muted-foreground gap-1 border-border">
                               <CatIcon className="h-2.5 w-2.5" />
                               {categoryLabels[item.category]}
                             </Badge>
@@ -568,7 +568,7 @@ export default function HFDueDiligencePage() {
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border bg-muted/30">
                         <th className="text-left p-3 text-muted-foreground font-medium">Year</th>
@@ -658,7 +658,7 @@ export default function HFDueDiligencePage() {
               <Button
                 size="sm"
                 variant={showDetectedOnly ? "default" : "outline"}
-                className="h-7 text-xs gap-1.5"
+                className="h-7 text-xs text-muted-foreground gap-1.5"
                 onClick={() => setShowDetectedOnly((v) => !v)}
               >
                 <Eye className="h-3 w-3" />

@@ -284,7 +284,7 @@ function BHBTab() {
   const zero = xScale(0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Allocation Effect" value={pct(totalAlloc)} highlight={totalAlloc >= 0 ? "pos" : "neg"} sub="Sector weight decisions" />
         <StatCard label="Selection Effect" value={pct(totalSel)} highlight={totalSel >= 0 ? "pos" : "neg"} sub="Stock picking within sector" />
@@ -338,7 +338,7 @@ function BHBTab() {
       </div>
 
       <div className="rounded-md border border-border bg-foreground/5 overflow-auto">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="border-b border-border">
               {["Sector", "Port Wt", "Bmk Wt", "Port Ret", "Bmk Ret", "Alloc", "Sel", "Inter", "Total"].map((h) => (
@@ -407,7 +407,7 @@ function FactorTab() {
   const yticks = [-0.04, -0.02, 0, 0.02, 0.04, 0.06];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
         {FACTOR_DATA.map((f) => (
           <StatCard
@@ -490,7 +490,7 @@ function FactorTab() {
       </div>
 
       <div className="rounded-md border border-border bg-foreground/5 overflow-auto">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="border-b border-border">
               {["Factor", "Beta Exposure", "Factor Return", "Contribution", "% of Total"].map((h) => (
@@ -572,7 +572,7 @@ function ActiveShareTab() {
   const yTicks = [0, 20, 40, 60, 80, 100];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Conviction Level Simulator" sub="Drag the slider to adjust portfolio concentration" />
         <div className="flex items-center gap-4 mb-6">
@@ -683,7 +683,7 @@ function RiskContribTab() {
   const maxPct = POSITIONS[0].pctContrib + 0.02;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Positions" value={`${POSITIONS.length}`} sub="Equal-weight benchmark" />
         <StatCard
@@ -737,7 +737,7 @@ function RiskContribTab() {
       </div>
 
       <div className="rounded-md border border-border bg-foreground/5 overflow-auto">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="border-b border-border">
               {["#", "Ticker", "Weight", "Standalone Vol", "MCTR", "% Risk Contrib", "Risk Bar"].map((h) => (
@@ -791,7 +791,7 @@ function ScenarioTab() {
   const xScale = (v: number) => (v / maxAbs) * (innerW / 2);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Macro Scenario Impact" sub="Estimated portfolio vs benchmark response to stress scenarios" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
@@ -907,7 +907,7 @@ function HistoryTab() {
   const yticks = 5;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-3 gap-3">
         <StatCard
           label="Cumulative Alpha"
@@ -996,7 +996,7 @@ function HistoryTab() {
       </div>
 
       <div className="rounded-md border border-border bg-foreground/5 overflow-auto">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="border-b border-border">
               {["Month", "Cum. Alpha", "Alloc Effect", "Sel Effect", "Monthly Delta"].map((h) => (
@@ -1042,7 +1042,7 @@ export default function RiskAttributionPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="p-6 space-y-6 max-w-5xl mx-auto"
+      className="p-4 space-y-4 max-w-5xl mx-auto"
     >
       {/* Header */}
       <div className="flex items-start gap-4">

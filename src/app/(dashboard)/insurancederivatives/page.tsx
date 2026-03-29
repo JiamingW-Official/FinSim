@@ -451,7 +451,7 @@ export default function InsuranceDerivativesPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="p-6 space-y-6 max-w-7xl mx-auto"
+      className="p-4 space-y-4 max-w-7xl mx-auto"
     >
       {/* Header */}
       <div className="flex items-start justify-between">
@@ -525,7 +525,7 @@ export default function InsuranceDerivativesPage() {
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left text-muted-foreground px-4 py-2 font-medium">Bond</th>
@@ -558,7 +558,7 @@ export default function InsuranceDerivativesPage() {
                               </span>
                             </td>
                             <td className="px-4 py-2.5">
-                              <Badge variant="outline" className={cn("text-xs", TRIGGER_COLORS[b.trigger])}>
+                              <Badge variant="outline" className={cn("text-xs text-muted-foreground", TRIGGER_COLORS[b.trigger])}>
                                 {b.trigger}
                               </Badge>
                             </td>
@@ -589,7 +589,7 @@ export default function InsuranceDerivativesPage() {
                     <CardTitle className="text-sm font-medium text-muted-foreground">{bond.name}</CardTitle>
                     <p className="text-xs text-muted-foreground">{bond.issuer}</p>
                   </CardHeader>
-                  <CardContent className="space-y-3 text-xs">
+                  <CardContent className="space-y-3 text-xs text-muted-foreground">
                     <div className="grid grid-cols-2 gap-2">
                       <div className="bg-muted/60 rounded p-2">
                         <p className="text-muted-foreground">Coupon</p>
@@ -636,7 +636,7 @@ export default function InsuranceDerivativesPage() {
                 </Card>
               ) : (
                 <Card className="bg-card border-border h-full flex items-center justify-center">
-                  <div className="text-center p-6">
+                  <div className="text-center p-4">
                     <Shield className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
                     <p className="text-muted-foreground text-sm">Select a bond</p>
                     <p className="text-muted-foreground text-xs mt-1">Click any row for details</p>
@@ -674,7 +674,7 @@ export default function InsuranceDerivativesPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left text-muted-foreground py-2 font-medium">Return Period</th>
@@ -750,7 +750,7 @@ export default function InsuranceDerivativesPage() {
               <CardTitle className="text-sm font-medium text-muted-foreground">Catastrophe Risk Model Components</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
                 {[
                   { stage: "Hazard Module", desc: "Physical characteristics of the event (wind speed, PGA, surge height)", color: "border-border bg-primary/5" },
                   { stage: "Vulnerability Module", desc: "Damage functions mapping hazard intensity to mean damage ratios by construction type", color: "border-amber-500/30 bg-amber-500/5" },
@@ -776,7 +776,7 @@ export default function InsuranceDerivativesPage() {
               </CardHeader>
               <CardContent>
                 <ILSComparisonChart />
-                <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                   <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
                     <p className="text-emerald-300 font-medium">ILS Advantage</p>
                     <p className="text-muted-foreground mt-1">Near-zero correlation to equities makes ILS a powerful diversifier in multi-asset portfolios.</p>
@@ -794,7 +794,7 @@ export default function InsuranceDerivativesPage() {
                 <CardTitle className="text-sm font-medium text-muted-foreground">Comparison Table</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left text-muted-foreground px-4 py-2 font-medium">Metric</th>
@@ -821,7 +821,7 @@ export default function InsuranceDerivativesPage() {
               <CardTitle className="text-sm font-medium text-muted-foreground">CAT Bond SPV Structure</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center justify-between gap-2 text-xs overflow-x-auto pb-2">
+              <div className="flex items-center justify-between gap-2 text-xs text-muted-foreground overflow-x-auto pb-2">
                 {[
                   { label: "Cedent\n(Sponsor)", sub: "Insurance / Re co.", color: "bg-primary/20 border-primary/40" },
                   { label: "Reinsurance\nAgreement", sub: "Premium payments", color: "bg-muted border-border", arrow: true },
@@ -858,7 +858,7 @@ export default function InsuranceDerivativesPage() {
               <Card key={t.type} className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <Badge variant="outline" className={cn("text-xs", TRIGGER_COLORS[t.type])}>
+                    <Badge variant="outline" className={cn("text-xs text-muted-foreground", TRIGGER_COLORS[t.type])}>
                       {t.type}
                     </Badge>
                   </CardTitle>
@@ -887,7 +887,7 @@ export default function InsuranceDerivativesPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="border-t border-border pt-2 space-y-1 text-xs">
+                  <div className="border-t border-border pt-2 space-y-1 text-xs text-muted-foreground">
                     {[
                       { label: "Basis Risk", value: t.basisRisk },
                       { label: "Moral Hazard", value: t.moralHazard },
@@ -978,7 +978,7 @@ export default function InsuranceDerivativesPage() {
                 <CardTitle className="text-sm font-medium text-muted-foreground">Portfolio Diversification Benefit</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                   {[
                     { label: "60/40 Sharpe Ratio", value: "0.68", note: "Without ILS", color: "text-muted-foreground" },
                     { label: "60/40 + 10% ILS Sharpe", value: "0.84", note: "+24% improvement", color: "text-emerald-400" },
@@ -993,7 +993,7 @@ export default function InsuranceDerivativesPage() {
                   ))}
                 </div>
 
-                <div className="border border-border rounded-lg p-3 space-y-2 text-xs">
+                <div className="border border-border rounded-lg p-3 space-y-2 text-xs text-muted-foreground">
                   <p className="text-muted-foreground font-medium">Why ILS Diversifies</p>
                   <p className="text-muted-foreground">
                     CAT bond returns are driven by natural catastrophe occurrence — entirely uncorrelated with interest rates, credit cycles, equity valuations, or GDP growth. A hurricane does not care about Fed policy.
@@ -1003,7 +1003,7 @@ export default function InsuranceDerivativesPage() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 text-xs">
+                <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                   {[
                     { label: "Optimal Allocation", value: "10–15%", color: "text-emerald-400" },
                     { label: "Min Portfolio Size", value: "$50M+", color: "text-primary" },
@@ -1025,7 +1025,7 @@ export default function InsuranceDerivativesPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="text-xs w-full max-w-md">
+                <table className="text-xs text-muted-foreground w-full max-w-md">
                   <thead>
                     <tr>
                       <th className="text-left text-muted-foreground py-1.5 pr-4 font-medium" />
@@ -1130,7 +1130,7 @@ export default function InsuranceDerivativesPage() {
                   Temperature Swap Structure
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs">
+              <CardContent className="space-y-3 text-xs text-muted-foreground">
                 <div className="border border-border rounded-lg p-3">
                   <p className="text-muted-foreground font-medium mb-2">Example: HDD Swap — Chicago Winter</p>
                   <div className="grid grid-cols-2 gap-2">
@@ -1184,7 +1184,7 @@ export default function InsuranceDerivativesPage() {
               <CardTitle className="text-sm font-medium text-muted-foreground">Weather Derivatives Market Overview</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
                 {[
                   { label: "Annual Market Size", value: "~$3–5B", sub: "Notional outstanding", color: "text-amber-400" },
                   { label: "CME Listed Contracts", value: "24 Cities", sub: "US, EU, Asia-Pacific", color: "text-primary" },

@@ -527,7 +527,7 @@ export default function PairsPage() {
 
         {/* ── Tab 1: Pair Finder ───────────────────────────────────────────────── */}
         {activeTab === "finder" && (
-          <div className="p-6 space-y-4">
+          <div className="p-4 space-y-4">
             <div className="grid gap-3">
               {pairData.map(({ pair, zScores, currentZ }) => {
                 const abs = Math.abs(currentZ);
@@ -557,7 +557,7 @@ export default function PairsPage() {
                       </div>
 
                       {/* Stats chips */}
-                      <div className="flex gap-3 flex-wrap flex-1 text-xs">
+                      <div className="flex gap-3 flex-wrap flex-1 text-xs text-muted-foreground">
                         <div className="flex flex-col">
                           <span className="text-muted-foreground">Correlation</span>
                           <span className="font-semibold text-foreground">{pair.correlation.toFixed(2)}</span>
@@ -597,7 +597,7 @@ export default function PairsPage() {
 
         {/* ── Tab 2: Spread Analysis ───────────────────────────────────────────── */}
         {activeTab === "analysis" && (
-          <div className="p-6 space-y-6">
+          <div className="p-4 space-y-4">
             {/* Ticker selectors */}
             <div className="flex gap-4 items-end flex-wrap">
               <div className="space-y-1">
@@ -624,7 +624,7 @@ export default function PairsPage() {
                   ))}
                 </select>
               </div>
-              <div className="flex gap-6 text-sm ml-4">
+              <div className="flex gap-3 text-sm ml-4">
                 <div>
                   <div className="text-muted-foreground text-xs">Hedge Ratio (β)</div>
                   <div className="font-mono font-medium">{analysisData.beta.toFixed(4)}</div>
@@ -692,7 +692,7 @@ export default function PairsPage() {
 
         {/* ── Tab 3: Trade the Spread ───────────────────────────────────────────── */}
         {activeTab === "trade" && (
-          <div className="p-6 space-y-6">
+          <div className="p-4 space-y-4">
             {/* Pair selector info */}
             <div className="flex items-center gap-4 flex-wrap">
               <div className="text-sm font-medium">
@@ -780,7 +780,7 @@ export default function PairsPage() {
               <div className="space-y-2">
                 <h3 className="text-sm font-medium">Trade Log</h3>
                 <div className="rounded-lg border border-border/50 overflow-hidden">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead className="bg-muted/30">
                       <tr>
                         {["#", "Direction", "Entry Z", "Exit Z", "P&L", "Status"].map(h => (
@@ -823,7 +823,7 @@ export default function PairsPage() {
 
         {/* ── Tab 4: Education ─────────────────────────────────────────────────── */}
         {activeTab === "education" && (
-          <div className="p-6 max-w-3xl mx-auto space-y-6">
+          <div className="p-4 max-w-3xl mx-auto space-y-4">
             <div className="flex items-center gap-2 mb-2">
               <BookOpen className="h-4 w-4 text-primary" />
               <h2 className="text-base font-medium">Pairs Trading Fundamentals</h2>

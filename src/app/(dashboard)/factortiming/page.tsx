@@ -612,7 +612,7 @@ function FactorDashboard() {
   const sel = factorSignals.find((f) => f.name === selected);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary cards */}
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         {factorSignals.map((f) => (
@@ -704,7 +704,7 @@ function FactorDashboard() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">Factor</th>
@@ -763,7 +763,7 @@ function CrossAssetMomentum() {
   const bot5 = sorted.slice(-5).reverse();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
@@ -845,7 +845,7 @@ function CrossAssetMomentum() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">Ticker</th>
@@ -890,7 +890,7 @@ function FactorCycle() {
   const factorNames: FactorName[] = ["Value", "Momentum", "Quality", "Low-Vol", "Size"];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Heatmap */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -944,7 +944,7 @@ function FactorCycle() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="text-xs w-full">
+            <table className="text-xs text-muted-foreground w-full">
               <thead>
                 <tr className="text-muted-foreground">
                   <th className="py-1.5 pr-3 text-left" />
@@ -1021,7 +1021,7 @@ function FactorCycle() {
                       }}
                     />
                   </div>
-                  <div className={cn("w-14 text-xs font-medium text-right", riskColor)}>{risk}</div>
+                  <div className={cn("w-14 text-xs text-muted-foreground font-medium text-right", riskColor)}>{risk}</div>
                   <div className="w-8 text-xs text-right text-muted-foreground">{Math.round(f.crowding * 100)}%</div>
                 </div>
               );
@@ -1047,7 +1047,7 @@ function TacticalAllocation() {
   const bhReturn = ((finalBH - 100) / 100) * 100;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* MA rules table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -1057,7 +1057,7 @@ function TacticalAllocation() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">Asset</th>
@@ -1115,7 +1115,7 @@ function TacticalAllocation() {
               <TrendingUp className="w-4 h-4 text-primary" />
               200d MA Strategy vs Buy &amp; Hold (36-Month Sim)
             </CardTitle>
-            <div className="flex items-center gap-3 text-xs">
+            <div className="flex items-center gap-3 text-xs text-muted-foreground">
               <div>
                 <span className="text-muted-foreground">Strategy: </span>
                 <span className={cn("font-medium", stratReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -1177,7 +1177,7 @@ function Implementation() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* ETF universe table */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -1187,7 +1187,7 @@ function Implementation() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">ETF</th>
@@ -1218,7 +1218,7 @@ function Implementation() {
                   </td>
                   <td className="py-2 pr-3">
                     <span
-                      className="px-1.5 py-0.5 rounded text-xs font-medium"
+                      className="px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium"
                       style={{
                         backgroundColor: (factorColors[e.factor] ?? "#6b7280") + "22",
                         color: factorColors[e.factor] ?? "#6b7280",
@@ -1259,7 +1259,7 @@ function Implementation() {
                 <div className="flex items-center gap-2">
                   <span className="font-mono font-medium text-lg text-foreground">{sel.ticker}</span>
                   <span
-                    className="px-2 py-0.5 rounded text-xs font-medium"
+                    className="px-2 py-0.5 rounded text-xs text-muted-foreground font-medium"
                     style={{
                       backgroundColor: (factorColors[sel.factor] ?? "#6b7280") + "22",
                       color: factorColors[sel.factor] ?? "#6b7280",
@@ -1304,7 +1304,7 @@ function Implementation() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">Dimension</th>
@@ -1350,7 +1350,7 @@ function Implementation() {
             const total = expCost + taxCost + tradeCost;
             return (
               <div key={e.ticker} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="font-mono font-medium text-muted-foreground">{e.ticker}</span>
                   <span className="text-muted-foreground">Total: <span className="font-medium text-foreground">${total}/yr</span></span>
                 </div>
@@ -1399,7 +1399,7 @@ export default function FactorTimingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

@@ -540,7 +540,7 @@ function ReturnChip({ value }: { value: number }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-semibold tabular-nums",
+        "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs text-muted-foreground font-semibold tabular-nums",
         pos ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400",
       )}
     >
@@ -612,7 +612,7 @@ function ETFDetailPanel({ etf, onClose }: { etf: ETFRow; onClose: () => void }) 
         ].map((s) => (
           <div key={s.label} className="bg-card px-3 py-2">
             <div className="text-[11px] text-muted-foreground">{s.label}</div>
-            <div className="mt-0.5 text-xs font-semibold">{s.value}</div>
+            <div className="mt-0.5 text-xs text-muted-foreground font-semibold">{s.value}</div>
           </div>
         ))}
       </div>
@@ -707,7 +707,7 @@ function ETFExplorer() {
 
         {/* Table */}
         <div className="flex-1 overflow-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead className="sticky top-0 bg-card z-10 border-b border-border/50">
               <tr>
                 <Th k="symbol">Symbol</Th>
@@ -825,7 +825,7 @@ function FundComparison() {
                 type="button"
                 onClick={() => toggleETF(etf.symbol)}
                 className={cn(
-                  "flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs font-medium transition-colors",
+                  "flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs text-muted-foreground font-medium transition-colors",
                   isSel
                     ? "border-transparent text-foreground"
                     : "border-border/50 text-muted-foreground hover:border-primary/50 hover:text-foreground",
@@ -852,7 +852,7 @@ function FundComparison() {
                 {selectedRows.map((e, i) => (
                   <div key={e.symbol} className="flex items-center gap-1.5">
                     <div className="h-2 w-4 rounded-full" style={{ backgroundColor: COMPARE_COLORS[i] }} />
-                    <span className="text-xs font-medium">{e.symbol}</span>
+                    <span className="text-xs text-muted-foreground font-medium">{e.symbol}</span>
                   </div>
                 ))}
               </div>
@@ -908,7 +908,7 @@ function FundComparison() {
 
           {/* Side-by-side stats */}
           <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border/50 bg-muted/20">
                   <th className="px-4 py-2.5 text-left text-xs font-medium text-muted-foreground">Metric</th>
@@ -967,7 +967,7 @@ function FundComparison() {
                 <span className="text-xs text-muted-foreground">No pairs to compare.</span>
               ) : overlapPairs.map((p) => (
                 <div key={`${p.a}-${p.b}`} className="flex items-center gap-2 rounded-md border border-border/50 bg-muted/20 px-3 py-1.5">
-                  <span className="text-xs font-medium">{p.a} + {p.b}</span>
+                  <span className="text-xs text-muted-foreground font-medium">{p.a} + {p.b}</span>
                   <span className="text-xs text-muted-foreground">share</span>
                   <span className={cn("text-xs font-medium", p.pct > 30 ? "text-amber-400" : "text-emerald-400")}>
                     {p.pct}%
@@ -1097,7 +1097,7 @@ function HoldingsXRay() {
         <select
           value={selectedSym}
           onChange={(e) => setSelectedSym(e.target.value)}
-          className="rounded-md border border-border/50 bg-muted/30 px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+          className="rounded-md border border-border/50 bg-muted/30 px-3 py-1.5 text-xs text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
         >
           {ETF_ROWS.map((e) => (
             <option key={e.symbol} value={e.symbol}>{e.symbol} — {e.name}</option>
@@ -1125,7 +1125,7 @@ function HoldingsXRay() {
                     {h.name.length > 22 ? h.name.slice(0, 22) + "…" : h.name}
                   </span>
                 </div>
-                <span className="w-10 text-right text-xs tabular-nums font-medium">{h.weight.toFixed(2)}%</span>
+                <span className="w-10 text-right text-xs text-muted-foreground tabular-nums font-medium">{h.weight.toFixed(2)}%</span>
               </div>
             ))}
           </div>
@@ -1143,7 +1143,7 @@ function HoldingsXRay() {
                 <div key={s.sector} className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                   <span className="flex-1 text-xs text-muted-foreground">{s.sector}</span>
-                  <span className="text-xs font-medium tabular-nums">{s.pct}%</span>
+                  <span className="text-xs text-muted-foreground font-medium tabular-nums">{s.pct}%</span>
                 </div>
               ))}
             </div>
@@ -1158,14 +1158,14 @@ function HoldingsXRay() {
           <div className="space-y-3">
             {etf.geoExposure.map((g) => (
               <div key={g.region} className="flex items-center gap-3">
-                <span className="w-12 text-xs font-medium">{g.region}</span>
+                <span className="w-12 text-xs text-muted-foreground font-medium">{g.region}</span>
                 <div className="flex-1 h-2 rounded-full bg-muted/30">
                   <div
                     className="h-full rounded-full bg-primary/50 transition-all"
                     style={{ width: `${g.pct}%` }}
                   />
                 </div>
-                <span className="w-10 text-right text-xs font-medium tabular-nums">{g.pct}%</span>
+                <span className="w-10 text-right text-xs text-muted-foreground font-medium tabular-nums">{g.pct}%</span>
               </div>
             ))}
           </div>
@@ -1185,7 +1185,7 @@ function HoldingsXRay() {
                   <div className="w-16 h-1.5 rounded-full bg-muted/30">
                     <div className="h-full rounded-full bg-indigo-500/60" style={{ width: `${v}%` }} />
                   </div>
-                  <span className="w-6 text-right text-xs font-medium tabular-nums">{v}</span>
+                  <span className="w-6 text-right text-xs text-muted-foreground font-medium tabular-nums">{v}</span>
                 </div>
               ))}
             </div>
@@ -1257,7 +1257,7 @@ function ETFScreener() {
             type="button"
             onClick={() => onChange(opt)}
             className={cn(
-              "rounded-md border px-2.5 py-1 text-xs font-medium transition-colors",
+              "rounded-md border px-2.5 py-1 text-xs text-muted-foreground font-medium transition-colors",
               value === opt
                 ? "border-primary bg-primary/10 text-primary"
                 : "border-border/50 text-muted-foreground hover:border-primary/40",
@@ -1336,7 +1336,7 @@ function ETFScreener() {
                   ].map((s) => (
                     <div key={s.label} className="rounded bg-muted/20 px-1.5 py-1 text-center">
                       <div className="text-[11px] text-muted-foreground">{s.label}</div>
-                      <div className="text-xs font-medium tabular-nums">{s.value}</div>
+                      <div className="text-xs text-muted-foreground font-medium tabular-nums">{s.value}</div>
                     </div>
                   ))}
                 </div>
@@ -1403,19 +1403,19 @@ export default function ETFPage() {
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0 mt-8">
         <TabsList className="shrink-0 mx-6 mt-3 w-fit">
-          <TabsTrigger value="explorer" className="text-xs gap-1.5">
+          <TabsTrigger value="explorer" className="text-xs text-muted-foreground gap-1.5">
             <Search className="h-3.5 w-3.5" />
             ETF Explorer
           </TabsTrigger>
-          <TabsTrigger value="comparison" className="text-xs gap-1.5">
+          <TabsTrigger value="comparison" className="text-xs text-muted-foreground gap-1.5">
             <TrendingUp className="h-3.5 w-3.5" />
             Fund Comparison
           </TabsTrigger>
-          <TabsTrigger value="xray" className="text-xs gap-1.5">
+          <TabsTrigger value="xray" className="text-xs text-muted-foreground gap-1.5">
             <PieChart className="h-3.5 w-3.5" />
             Holdings X-Ray
           </TabsTrigger>
-          <TabsTrigger value="screener" className="text-xs gap-1.5">
+          <TabsTrigger value="screener" className="text-xs text-muted-foreground gap-1.5">
             <Filter className="h-3.5 w-3.5" />
             ETF Screener
           </TabsTrigger>

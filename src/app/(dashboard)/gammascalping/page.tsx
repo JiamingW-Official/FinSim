@@ -161,7 +161,7 @@ function DeltaHedgingTab() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -297,7 +297,7 @@ function DeltaHedgingTab() {
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Gamma vs Theta Daily P&amp;L Grid ($ per 100-share lot)</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-4">DTE / ΔS%</th>
@@ -376,7 +376,7 @@ function GammaPnLTab() {
   const cumPnLMax = Math.max(...simulation.hedgeEvents.map((e) => e.cumPnL));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key concept */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -468,7 +468,7 @@ function GammaPnLTab() {
 
         {/* Hedge event table */}
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-1.5 pr-3">Bar</th>
@@ -560,7 +560,7 @@ function VolArbitrageTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Strategy selector */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
@@ -657,7 +657,7 @@ function VolArbitrageTab() {
           <text x={PAD - 3} y={PAD + 4} fontSize={9} fill="#94a3b8" textAnchor="end">{(ivMax * 100).toFixed(0)}%</text>
           <text x={PAD - 3} y={H - PAD} fontSize={9} fill="#94a3b8" textAnchor="end">{(ivMin * 100).toFixed(0)}%</text>
         </svg>
-        <div className="flex items-center gap-6 mt-2 text-xs">
+        <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5 text-amber-400"><span className="w-4 h-0.5 bg-amber-400 inline-block" /> Implied Vol</span>
           <span className="flex items-center gap-1.5 text-emerald-400"><span className="w-4 h-0.5 bg-emerald-400 inline-block border-dashed" style={{ borderStyle: "dashed" }} /> Realized Vol</span>
           <span className="text-muted-foreground">IV &gt; RV in {IV_HIST.filter((d) => d.iv > d.rv).length}/24 months — structural vol risk premium</span>
@@ -668,7 +668,7 @@ function VolArbitrageTab() {
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Vol Surface — Implied Vol by Strike &amp; Expiry</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-4">Strike</th>
@@ -688,7 +688,7 @@ function VolArbitrageTab() {
                     const bg = iv > 0.28 ? "bg-red-500/20 text-red-300" : iv > 0.25 ? "bg-amber-500/20 text-amber-300" : "bg-primary/10 text-primary";
                     return (
                       <td key={ei} className="py-2 px-3 text-center">
-                        <span className={`font-mono text-xs px-1.5 py-0.5 rounded ${bg}`}>{(iv * 100).toFixed(1)}%</span>
+                        <span className={`font-mono text-xs text-muted-foreground px-1.5 py-0.5 rounded ${bg}`}>{(iv * 100).toFixed(1)}%</span>
                       </td>
                     );
                   })}
@@ -747,7 +747,7 @@ function MMRiskTab() {
   const maxAbs = Math.max(...MM_DAILY.map((d) => Math.max(Math.abs(d.gamma), Math.abs(d.theta), Math.abs(d.total))));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Book overview */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
@@ -762,7 +762,7 @@ function MMRiskTab() {
             { label: "Net Vega", value: "-$1,240", desc: "Short vol exposure; profits if IV drops", color: "amber" },
           ].map((card) => (
             <div key={card.label} className={`bg-${card.color}-500/10 border border-${card.color}-500/20 rounded-lg p-3`}>
-              <div className={`text-xs text-${card.color}-300 font-medium`}>{card.label}</div>
+              <div className={`text-xs text-muted-foreground text-${card.color}-300 font-medium`}>{card.label}</div>
               <div className={`text-lg font-bold text-${card.color}-400 font-mono mt-1`}>{card.value}</div>
               <div className="text-xs text-muted-foreground mt-1 leading-tight">{card.desc}</div>
             </div>
@@ -788,7 +788,7 @@ function MMRiskTab() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                   />
                 </div>
-                <div className="w-24 text-right text-xs font-mono">
+                <div className="w-24 text-right text-xs text-muted-foreground font-mono">
                   <span className={pct > 0.8 ? "text-red-400" : pct > 0.6 ? "text-amber-400" : "text-emerald-400"}>
                     {(pct * 100).toFixed(0)}%
                   </span>
@@ -853,7 +853,7 @@ function MMRiskTab() {
           <text x={PAD} y={H - 4} fontSize={9} fill="#64748b">Day 1</text>
           <text x={W - PAD} y={H - 4} fontSize={9} fill="#64748b" textAnchor="end">Day 20</text>
         </svg>
-        <div className="flex items-center gap-6 mt-2 text-xs">
+        <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5 text-emerald-400"><span className="w-3 h-3 rounded bg-emerald-500/40 inline-block" /> Gamma income</span>
           <span className="flex items-center gap-1.5 text-red-400"><span className="w-3 h-3 rounded bg-red-500/40 inline-block" /> Theta decay</span>
           <span className="flex items-center gap-1.5 text-primary"><span className="w-4 h-0.5 bg-primary inline-block" /> Net P&amp;L</span>
@@ -903,7 +903,7 @@ function MMRiskTab() {
         <h3 className="text-foreground font-medium mb-4">Stress Scenarios — P&amp;L Impact ($)</h3>
         <div className="space-y-2">
           {stressScenarios.map((sc) => (
-            <div key={sc.name} className="grid grid-cols-6 gap-2 text-xs py-2 border-b border-border/50 items-center">
+            <div key={sc.name} className="grid grid-cols-6 gap-2 text-xs text-muted-foreground py-2 border-b border-border/50 items-center">
               <div className={`text-${sc.color}-300 font-medium col-span-1`}>{sc.name}</div>
               <div className="text-right font-mono">
                 <span className="text-muted-foreground text-xs">Δ </span>

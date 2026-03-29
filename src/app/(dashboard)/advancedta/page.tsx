@@ -894,7 +894,7 @@ export default function AdvancedTAPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-6">
+    <div className="min-h-screen bg-background p-4 md:p-4">
       {/* HERO header */}
       <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
@@ -918,7 +918,7 @@ export default function AdvancedTAPage() {
             { value: "options", label: "Options TA" },
             { value: "backtest", label: "Backtest" },
           ].map((t) => (
-            <TabsTrigger key={t.value} value={t.value} className="text-xs py-1.5">
+            <TabsTrigger key={t.value} value={t.value} className="text-xs text-muted-foreground py-1.5">
               {t.label}
             </TabsTrigger>
           ))}
@@ -1000,7 +1000,7 @@ export default function AdvancedTAPage() {
                   { tf: "Hourly", role: "Precise Timing", desc: "Fine-tunes entry within the daily setup. Tighten stops using intraday structure.", color: "text-green-400" },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-3 items-start">
-                    <Badge variant="outline" className={cn("text-xs shrink-0", item.color)}>
+                    <Badge variant="outline" className={cn("text-xs text-muted-foreground shrink-0", item.color)}>
                       {item.tf}
                     </Badge>
                     <div>
@@ -1132,7 +1132,7 @@ export default function AdvancedTAPage() {
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {r.indicators.map((ind, j) => (
-                      <Badge key={j} variant="outline" className="text-xs py-0">
+                      <Badge key={j} variant="outline" className="text-xs text-muted-foreground py-0">
                         {ind}
                       </Badge>
                     ))}
@@ -1177,7 +1177,7 @@ export default function AdvancedTAPage() {
                 <div key={i} className="p-3 rounded bg-muted/20 border border-border/30">
                   <div className={cn("flex items-center gap-1 mb-2", item.color)}>
                     {item.icon}
-                    <p className="text-xs font-medium">{item.label}</p>
+                    <p className="text-xs text-muted-foreground font-medium">{item.label}</p>
                   </div>
                   <p className="text-xs text-muted-foreground">{item.high}</p>
                   <p className="text-xs text-muted-foreground mt-1 pt-1 border-t border-border/30">{item.low}</p>
@@ -1197,7 +1197,7 @@ export default function AdvancedTAPage() {
                     <Layers className="w-4 h-4 text-primary shrink-0" />
                     <h3 className="font-medium text-sm">{concept.title}</h3>
                   </div>
-                  <Badge className={cn("text-xs shrink-0", concept.badgeColor)}>{concept.badge}</Badge>
+                  <Badge className={cn("text-xs text-muted-foreground shrink-0", concept.badgeColor)}>{concept.badge}</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-3">{concept.description}</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
@@ -1222,7 +1222,7 @@ export default function AdvancedTAPage() {
                 key={i}
                 onClick={() => setSelectedStrategy(i)}
                 className={cn(
-                  "px-3 py-1.5 rounded-lg text-xs font-medium border transition-all",
+                  "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-all",
                   selectedStrategy === i
                     ? "border-primary bg-primary/10 text-primary"
                     : "border-border/50 text-muted-foreground hover:border-border"
@@ -1282,7 +1282,7 @@ export default function AdvancedTAPage() {
               <h3 className="font-medium text-sm">Drawdown & Performance Comparison</h3>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border/40">
                     {["Strategy", "Win %", "Avg R", "Sharpe", "Max DD", "Trades", "Expectancy"].map((h) => (

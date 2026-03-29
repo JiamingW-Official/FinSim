@@ -411,7 +411,7 @@ function RiskBadge({ level }: { level: "Low" | "Medium" | "High" | "Critical" })
     Critical: "bg-red-900/40 text-red-300 border-red-700",
   };
   return (
-    <span className={`text-xs px-2 py-0.5 rounded border font-medium ${map[level]}`}>
+    <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium ${map[level]}`}>
       {level}
     </span>
   );
@@ -425,7 +425,7 @@ function ComplianceBadge({ status }: { status: DeforestationCompany["eudrComplia
     Unknown: "bg-muted text-muted-foreground border-border",
   };
   return (
-    <span className={`text-xs px-2 py-0.5 rounded border font-medium ${map[status]}`}>
+    <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium ${map[status]}`}>
       {status}
     </span>
   );
@@ -438,7 +438,7 @@ function SeverityBadge({ level }: { level: "Low" | "Medium" | "High" }) {
     High: "bg-red-900/40 text-red-300",
   };
   return (
-    <span className={`text-xs px-2 py-0.5 rounded font-medium ${map[level]}`}>
+    <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded font-medium ${map[level]}`}>
       {level}
     </span>
   );
@@ -452,7 +452,7 @@ function BenefitBadge({ level }: { level: "Low" | "Medium" | "High" | "Very High
     "Very High": "bg-emerald-900/40 text-emerald-300",
   };
   return (
-    <span className={`text-xs px-2 py-0.5 rounded font-medium ${map[level]}`}>
+    <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded font-medium ${map[level]}`}>
       {level}
     </span>
   );
@@ -524,12 +524,12 @@ function EcosystemTab() {
   const totalValue = ECOSYSTEM_CATEGORIES.reduce((s, c) => s + c.value, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Hero stat */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
         <Card className="bg-card border-border border-l-4 border-l-primary">
-          <CardContent className="p-6">
-            <div className="flex flex-col md:flex-row md:items-center gap-6">
+          <CardContent className="p-4">
+            <div className="flex flex-col md:flex-row md:items-center gap-3">
               <div className="flex-1">
                 <p className="text-lg font-semibold text-muted-foreground mb-1">Total Natural Capital Value</p>
                 <div className="text-2xl font-bold text-emerald-400">$125T</div>
@@ -579,7 +579,7 @@ function EcosystemTab() {
         </Card>
       </motion.div>
 
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Sector Dependency */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible">
           <Card className="bg-card border-border/50">
@@ -696,7 +696,7 @@ function EcosystemTab() {
             <p className="text-xs text-muted-foreground">9 Earth system processes — 6 of 9 boundaries now exceeded (as of 2023)</p>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col lg:flex-row gap-6 items-center">
+            <div className="flex flex-col lg:flex-row gap-3 items-center">
               <svg viewBox="0 0 340 340" className="w-full max-w-[340px] flex-shrink-0">
                 {/* Safe zone circle */}
                 <circle cx={pbCx} cy={pbCy} r={pbR} fill="none" stroke="#22c55e" strokeDasharray="3,3" strokeWidth={1} opacity={0.3} />
@@ -736,7 +736,7 @@ function EcosystemTab() {
                     />
                     <span className="text-xs text-muted-foreground w-44">{pb.name}</span>
                     <span
-                      className="text-xs px-2 py-0.5 rounded font-medium flex-shrink-0"
+                      className="text-xs text-muted-foreground px-2 py-0.5 rounded font-medium flex-shrink-0"
                       style={{
                         backgroundColor: pb.color + "22",
                         color: pb.color,
@@ -779,7 +779,7 @@ function EcosystemTab() {
                 { label: "Ocean services at risk", value: "$2.5T/yr", sub: "fisheries + coastal protection", color: "text-primary" },
               ].map(item => (
                 <div key={item.label} className="p-3 rounded-lg bg-muted/50 border border-border/40">
-                  <div className={`text-2xl font-bold mb-1 ${item.color}`}>{item.value}</div>
+                  <div className={`text-lg font-medium mb-1 ${item.color}`}>{item.value}</div>
                   <div className="text-xs text-muted-foreground leading-snug mb-1">{item.label}</div>
                   <div className="text-xs text-muted-foreground">{item.sub}</div>
                 </div>
@@ -840,7 +840,7 @@ function TNFDTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* TNFD Overview */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
         <Card className="bg-card border-border/50">
@@ -864,7 +864,7 @@ function TNFDTab() {
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <div
-                      className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-xs text-muted-foreground font-medium flex-shrink-0"
                       style={{ backgroundColor: pillar.color + "22", color: pillar.color }}
                     >
                       {i + 1}
@@ -952,7 +952,7 @@ function TNFDTab() {
             </CardTitle>
           </CardHeader>
           <CardContent className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Dimension</th>
@@ -975,7 +975,7 @@ function TNFDTab() {
       </motion.div>
 
       {/* Nature Risk Taxonomy + Sector Materiality */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <motion.div variants={fadeUp} initial="hidden" animate="visible">
           <Card className="bg-card border-border/50">
             <CardHeader className="pb-3">
@@ -993,7 +993,7 @@ function TNFDTab() {
                       <span className="text-sm font-medium text-foreground">{risk.type}</span>
                       <div className="flex gap-2">
                         <span
-                          className="text-xs px-2 py-0.5 rounded font-medium"
+                          className="text-xs text-muted-foreground px-2 py-0.5 rounded font-medium"
                           style={{ backgroundColor: catColor + "22", color: catColor }}
                         >
                           {risk.category}
@@ -1029,7 +1029,7 @@ function TNFDTab() {
                   <div key={sm.sector} className="p-3 rounded-lg bg-muted/40">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm text-foreground font-medium">{sm.sector}</span>
-                      <span className={`text-xs px-2 py-0.5 rounded font-medium ${
+                      <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded font-medium ${
                         sm.tnfdPriority === "Mandatory" ? "bg-red-900/40 text-red-300" :
                         sm.tnfdPriority === "High" ? "bg-orange-900/40 text-orange-300" :
                         sm.tnfdPriority === "Medium" ? "bg-yellow-900/40 text-yellow-300" :
@@ -1074,7 +1074,7 @@ function TNFDTab() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <p className="text-xs text-muted-foreground mb-3 font-medium uppercase tracking-wide">Adoption Milestones</p>
                 <div className="relative">
@@ -1151,7 +1151,7 @@ function BiodiversityCreditsTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Credit types */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
         <Card className="bg-card border-border/50">
@@ -1195,7 +1195,7 @@ function BiodiversityCreditsTab() {
                 </div>
                 <div className="flex flex-col justify-center items-center p-4 rounded-lg bg-card border border-border/50">
                   <div className="text-xs text-muted-foreground mb-1">Price Range</div>
-                  <div className="text-2xl font-bold" style={{ color: BIODIVERSITY_CREDITS[selectedCredit].color }}>
+                  <div className="text-lg font-medium" style={{ color: BIODIVERSITY_CREDITS[selectedCredit].color }}>
                     ${BIODIVERSITY_CREDITS[selectedCredit].priceMin}–{BIODIVERSITY_CREDITS[selectedCredit].priceMax}
                   </div>
                   <div className="text-xs text-muted-foreground">per credit</div>
@@ -1269,7 +1269,7 @@ function BiodiversityCreditsTab() {
                     <div>
                       <span className="font-medium text-foreground text-sm">{nbs.name}</span>
                       <span
-                        className="ml-2 text-xs px-1.5 py-0.5 rounded"
+                        className="ml-2 text-xs text-muted-foreground px-1.5 py-0.5 rounded"
                         style={{ backgroundColor: nbs.color + "22", color: nbs.color }}
                       >
                         {nbs.type}
@@ -1416,7 +1416,7 @@ function DeforestationTab() {
   const maxDef = Math.max(...FOREST_COMMODITIES.map(c => c.annualDeforestation));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* EUDR + framework explainer */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
         <Card className="bg-card border-border/50">
@@ -1494,7 +1494,7 @@ function DeforestationTab() {
             <p className="text-xs text-muted-foreground">All 6 commodities covered under EUDR. Mha = million hectares of annual tropical forest loss attributable.</p>
           </CardHeader>
           <CardContent className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 pr-3 text-muted-foreground">Commodity</th>
@@ -1641,7 +1641,7 @@ function DeforestationTab() {
             </div>
           </CardHeader>
           <CardContent className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 pr-3 text-muted-foreground">Company</th>
@@ -1785,7 +1785,7 @@ export default function NaturalCapitalPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
@@ -1799,7 +1799,7 @@ export default function NaturalCapitalPage() {
                   <Leaf className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold text-foreground">Natural Capital & Biodiversity Finance</h1>
+                  <h1 className="text-lg font-medium text-foreground">Natural Capital & Biodiversity Finance</h1>
                   <p className="text-sm text-muted-foreground">Ecosystem services valuation, TNFD, biodiversity credits, and deforestation-linked finance risk</p>
                 </div>
               </div>

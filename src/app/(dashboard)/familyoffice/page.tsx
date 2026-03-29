@@ -265,7 +265,7 @@ function FoStructureTab() {
   const sel = FO_TYPES.find((f) => f.id === selected)!;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-3 gap-3">
         {FO_TYPES.map((fo) => (
           <button
@@ -373,8 +373,8 @@ function FoStructureTab() {
 // ── Asset Allocation Tab ─────────────────────────────────────────────────────
 function AllocationTab() {
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="border-border bg-foreground/5">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">
@@ -406,7 +406,7 @@ function AllocationTab() {
                         {ac.pct}%
                       </span>
                       <span
-                        className={`text-xs font-mono w-14 text-right ${posColor(ac.ytd)}`}
+                        className={`text-xs text-muted-foreground font-mono w-14 text-right ${posColor(ac.ytd)}`}
                       >
                         +{fmtPct(ac.ytd)}
                       </span>
@@ -515,13 +515,13 @@ function EstateTab() {
   const afterTaxEstate = estateValue - estateTaxOwed;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Estate Tax Calculator (2024)</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="text-xs text-muted-foreground block mb-2">
                 Taxable Estate Value: ${estateValue}M
@@ -637,7 +637,7 @@ function EstateTab() {
               >
                 <div className="flex items-center gap-3">
                   <span className="text-sm font-medium text-foreground">{tool.name}</span>
-                  <Badge className={`text-xs border ${complexityColor}`}>
+                  <Badge className={`text-xs text-muted-foreground border ${complexityColor}`}>
                     {tool.complexity}
                   </Badge>
                 </div>
@@ -692,7 +692,7 @@ const GRANTS = [
 
 function PhilanthropyTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Philanthropic Capital Funnel</CardTitle>
@@ -792,7 +792,7 @@ function PhilanthropyTab() {
                     Setup: {v.setup}
                   </Badge>
                 </div>
-                <div className="grid grid-cols-2 gap-1 text-xs">
+                <div className="grid grid-cols-2 gap-1 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Deduction:</span>
                   <span className="text-muted-foreground">{v.deduction}</span>
                   <span className="text-muted-foreground">Control:</span>
@@ -903,7 +903,7 @@ const CO_INVESTMENTS: CoInvestment[] = [
 
 function DirectInvestingTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: "Co-Investment Deployed", value: "$108M", sub: "6 active deals" },
@@ -927,7 +927,7 @@ function DirectInvestingTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
                   <th className="pb-2 text-left font-medium">Deal</th>
@@ -961,7 +961,7 @@ function DirectInvestingTab() {
                         {ci.status === "Pipeline" ? "—" : `+${ci.irr.toFixed(1)}%`}
                       </td>
                       <td className="py-2 text-center">
-                        <Badge className={`text-xs border ${statusColor}`}>
+                        <Badge className={`text-xs text-muted-foreground border ${statusColor}`}>
                           {ci.status}
                         </Badge>
                       </td>
@@ -1070,7 +1070,7 @@ function LiquidityTab() {
   const total = LIQUIDITY_LADDER.reduce((a, b) => a + b.amount, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="border-border bg-foreground/5">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">
@@ -1234,7 +1234,7 @@ export default function FamilyOfficePage() {
 
   return (
     <motion.div
-      className="min-h-screen bg-background p-4 md:p-6"
+      className="min-h-screen bg-background p-4 md:p-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}

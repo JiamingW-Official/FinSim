@@ -338,7 +338,7 @@ export default function BankingRegPage() {
   const [gsibBucket, setGsibBucket] = useState(2);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -463,7 +463,7 @@ export default function BankingRegPage() {
                         key={b}
                         onClick={() => setGsibBucket(b)}
                         className={cn(
-                          "px-3 py-1 text-xs rounded-md border transition-colors",
+                          "px-3 py-1 text-xs text-muted-foreground rounded-md border transition-colors",
                           gsibBucket === b
                             ? "bg-primary border-primary text-foreground"
                             : "bg-muted border-border text-muted-foreground hover:bg-muted"
@@ -490,7 +490,7 @@ export default function BankingRegPage() {
                           { surcharge: "3.5%", banks: "Empty — reserve bucket for future systemic institutions", cet1: "8.0%" },
                         ][gsibBucket - 1];
                         return (
-                          <div className="space-y-2 text-xs">
+                          <div className="space-y-2 text-xs text-muted-foreground">
                             <div className="flex items-center gap-3">
                               <span className="text-muted-foreground">CET1 Surcharge:</span>
                               <Badge className="bg-muted/60 text-primary text-sm font-medium">{info.surcharge}</Badge>
@@ -675,7 +675,7 @@ export default function BankingRegPage() {
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.06 }}
-                          className="flex items-start gap-2 text-xs"
+                          className="flex items-start gap-2 text-xs text-muted-foreground"
                         >
                           <span className={cn("font-mono text-xs shrink-0 mt-0.5 w-12", `text-[${f.color}]`)} style={{ color: f.color }}>{f.date}</span>
                           <div className="flex-1 bg-muted/50 rounded-md px-2 py-1.5 border border-border/40">

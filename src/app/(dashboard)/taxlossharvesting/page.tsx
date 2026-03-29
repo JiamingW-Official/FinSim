@@ -302,13 +302,13 @@ function TaxRatesPanel() {
             <span className="text-sm font-semibold text-foreground">{sc.type}</span>
             <Badge
               style={{ backgroundColor: sc.color + "22", color: sc.color, borderColor: sc.color + "55" }}
-              className="border text-xs font-bold"
+              className="border text-xs text-muted-foreground font-bold"
             >
               {(sc.rate * 100).toFixed(1)}%
             </Badge>
           </div>
           <p className="text-xs text-muted-foreground mb-3">{sc.desc}</p>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">$10,000 gain → tax:</span>
             <span className="font-bold" style={{ color: sc.color }}>
               {formatCurrency(sc.example.tax)}
@@ -352,7 +352,7 @@ export default function TaxLossHarvestingPage() {
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <motion.div {...fadeUp(0)} className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div className="flex items-center gap-3">
@@ -420,16 +420,16 @@ export default function TaxLossHarvestingPage() {
       <motion.div {...fadeUp(0.1)}>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="mb-4 flex-wrap h-auto gap-1">
-            <TabsTrigger value="opportunities" className="text-xs">
+            <TabsTrigger value="opportunities" className="text-xs text-muted-foreground">
               Harvesting Opportunities
             </TabsTrigger>
-            <TabsTrigger value="washsale" className="text-xs">
+            <TabsTrigger value="washsale" className="text-xs text-muted-foreground">
               Wash Sale Rules
             </TabsTrigger>
-            <TabsTrigger value="longterm" className="text-xs">
+            <TabsTrigger value="longterm" className="text-xs text-muted-foreground">
               Long-term Impact
             </TabsTrigger>
-            <TabsTrigger value="directindexing" className="text-xs">
+            <TabsTrigger value="directindexing" className="text-xs text-muted-foreground">
               Direct Indexing
             </TabsTrigger>
           </TabsList>
@@ -450,7 +450,7 @@ export default function TaxLossHarvestingPage() {
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="px-3 py-2 text-left text-muted-foreground font-medium">Ticker</th>
@@ -514,7 +514,7 @@ export default function TaxLossHarvestingPage() {
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="px-3 py-2 text-left text-muted-foreground font-medium">Ticker</th>

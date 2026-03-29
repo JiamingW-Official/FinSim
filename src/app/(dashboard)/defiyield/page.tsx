@@ -229,7 +229,7 @@ function ProtocolTable() {
                 >
                   <td className="px-4 py-3 font-medium text-foreground">{p.name}</td>
                   <td className="px-4 py-3">
-                    <Badge variant="outline" className={`text-xs ${TYPE_COLORS[p.type]}`}>
+                    <Badge variant="outline" className={`text-xs text-muted-foreground ${TYPE_COLORS[p.type]}`}>
                       {p.type}
                     </Badge>
                   </td>
@@ -248,7 +248,7 @@ function ProtocolTable() {
                     {p.apyLow}% – {p.apyHigh}%
                   </td>
                   <td className="px-4 py-3">
-                    <Badge variant="outline" className={`text-xs ${RISK_BG[p.risk]}`}>
+                    <Badge variant="outline" className={`text-xs text-muted-foreground ${RISK_BG[p.risk]}`}>
                       {p.risk}
                     </Badge>
                   </td>
@@ -320,7 +320,7 @@ function StrategiesTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Simulator */}
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
@@ -347,7 +347,7 @@ function StrategiesTab() {
           </div>
 
           {/* Legend */}
-          <div className="flex gap-6 text-xs">
+          <div className="flex gap-3 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-emerald-400 inline-block rounded" /> ETH Staking (4.2%)</span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-primary inline-block rounded" /> LP Farming (22%)</span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-primary inline-block rounded" /> Lending (6.5%)</span>
@@ -426,7 +426,7 @@ function StrategiesTab() {
                 <div key={i} className="flex items-center gap-2">
                   <div className={`border rounded-md p-3 text-center min-w-[80px] ${step.color}`}>
                     <Icon className="w-5 h-5 mx-auto mb-1" />
-                    <p className="text-xs font-medium whitespace-pre-line leading-tight">{step.label}</p>
+                    <p className="text-xs text-muted-foreground font-medium whitespace-pre-line leading-tight">{step.label}</p>
                   </div>
                   {i < flowSteps.length - 1 && (
                     <ArrowRight className="w-4 h-4 text-muted-foreground shrink-0" />
@@ -514,7 +514,7 @@ function RiskAnalysisTab() {
   const gridLevels = [25, 50, 75, 100];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* IL Calculator */}
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
@@ -617,13 +617,13 @@ function RiskAnalysisTab() {
                 variant={selectedStrat === i ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedStrat(i)}
-                className="text-xs"
+                className="text-xs text-muted-foreground"
               >
                 {st.name}
               </Button>
             ))}
           </div>
-          <div className="flex flex-col md:flex-row gap-6 items-center">
+          <div className="flex flex-col md:flex-row gap-3 items-center">
             <svg viewBox={`0 0 ${RW} ${RH}`} style={{ width: RW, height: RH }} className="shrink-0">
               {/* Grid rings */}
               {gridLevels.map((level) => {
@@ -692,7 +692,7 @@ function RiskAnalysisTab() {
               <div className="text-2xl font-bold text-emerald-400">{strat.apy}% APY</div>
               {radarCategories.map((c) => (
                 <div key={c.label} className="space-y-1">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{c.label} Risk</span>
                     <span className={c.value > 60 ? "text-red-400" : c.value > 35 ? "text-yellow-400" : "text-emerald-400"}>
                       {c.value}/100
@@ -760,7 +760,7 @@ function YieldCalculatorTab() {
   const freqLabels: Record<number, string> = { 1: "Annual", 4: "Quarterly", 12: "Monthly", 365: "Daily" };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
@@ -776,7 +776,7 @@ function YieldCalculatorTab() {
               { label: "Time Horizon (years)", val: years, min: 1, max: 10, step: 1, set: setYears, fmt: (v: number) => `${v}yr` },
             ].map(({ label, val, min, max, step, set, fmt }) => (
               <div key={label} className="space-y-1">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{label}</span>
                   <span className="text-foreground font-medium">{fmt(val)}</span>
                 </div>
@@ -825,7 +825,7 @@ function YieldCalculatorTab() {
           {/* Bar chart */}
           <div>
             <p className="text-xs text-muted-foreground mb-2">Yearly Growth Comparison</p>
-            <div className="flex gap-4 text-xs mb-2">
+            <div className="flex gap-4 text-xs text-muted-foreground mb-2">
               <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-emerald-400/70 rounded inline-block" /> Compounded</span>
               <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-primary/50 rounded inline-block" /> Simple</span>
             </div>
@@ -920,7 +920,7 @@ function YieldCalculatorTab() {
                   </p>
                   <p className="text-xs text-muted-foreground">{p.type}</p>
                   <div
-                    className={`mt-1 text-xs px-1.5 py-0.5 rounded-full border inline-block ${RISK_BG[p.risk]}`}
+                    className={`mt-1 text-xs text-muted-foreground px-1.5 py-0.5 rounded-full border inline-block ${RISK_BG[p.risk]}`}
                   >
                     {p.risk}
                   </div>
@@ -949,7 +949,7 @@ export default function DeFiYieldPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -962,7 +962,7 @@ export default function DeFiYieldPage() {
               <Droplets className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">DeFi Yield Strategies</h1>
+              <h1 className="text-lg font-medium text-foreground">DeFi Yield Strategies</h1>
               <p className="text-sm text-muted-foreground">
                 Liquidity mining, lending protocols, yield aggregators — maximize returns in decentralized finance
               </p>

@@ -214,7 +214,7 @@ function useSundayCountdown(): string {
 function DifficultyBadge({ difficulty }: { difficulty: "Easy" | "Medium" | "Hard" }) {
   return (
     <span className={cn(
-      "rounded-md px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide",
+      "rounded-md px-2 py-0.5 text-[11px] font-medium",
       difficulty === "Easy" && "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400",
       difficulty === "Medium" && "bg-amber-500/10 border border-amber-500/20 text-amber-400",
       difficulty === "Hard" && "bg-red-500/10 border border-red-500/20 text-red-400",
@@ -235,7 +235,7 @@ function WeeklyTab() {
   const rest = sorted.slice(1);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {/* Header info — flow card (borderless, content-like) */}
       <div className="flex items-center justify-between bg-transparent p-2">
         <div className="flex items-center gap-2">
@@ -339,7 +339,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
       <div className="flex items-center justify-between px-4 py-3 border-b border-primary/10">
         <div className="flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          <span className="text-xs font-medium text-primary uppercase tracking-wide">Special Event</span>
+          <span className="text-xs font-medium text-primary">Special Event</span>
           {event.isNew && (
             <span className="rounded-full bg-primary px-1.5 py-0.5 text-[11px] font-medium text-primary-foreground">NEW</span>
           )}
@@ -363,7 +363,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
           <span className="text-[11px] font-medium text-muted-foreground">Rules</span>
           {event.rules.map((rule, i) => (
             <div key={i} className="flex items-start gap-2">
-              <CheckCircle2 className="h-3 w-3 text-primary/60 shrink-0 mt-0.5" />
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/40" />
               <span className="text-xs text-muted-foreground">{rule}</span>
             </div>
           ))}
@@ -390,10 +390,9 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
 function SpecialEventsTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Flow card (borderless, content-like) */}
-      <div className="flex items-start gap-2 bg-transparent p-3">
-        <Sparkles className="h-3.5 w-3.5 text-primary/50 mt-0.5 shrink-0" />
+      <div className="bg-transparent p-2">
         <p className="text-xs text-muted-foreground leading-relaxed">
           Special events are limited-time competitions with unique rules. Complete them before they expire to earn exclusive badges and bonus XP.
         </p>
@@ -421,20 +420,20 @@ function HistoryTab() {
   const successCount = history.filter((e) => e.result === "success").length;
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
       {/* Summary — flow cards (borderless, content-like) */}
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-1.5">
         <div className="bg-transparent p-2 text-center">
           <div className="text-lg font-medium tabular-nums text-primary">{history.length}</div>
-          <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">Completed</div>
+          <div className="text-[11px] text-muted-foreground mt-0.5">Completed</div>
         </div>
         <div className="bg-transparent p-2 text-center">
           <div className="text-lg font-medium tabular-nums text-emerald-400">{successCount}</div>
-          <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">Full Clear</div>
+          <div className="text-[11px] text-muted-foreground mt-0.5">Full clear</div>
         </div>
         <div className="bg-transparent p-2 text-center">
           <div className="text-lg font-medium tabular-nums text-amber-400">+{totalXP}</div>
-          <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground mt-0.5">XP Earned</div>
+          <div className="text-[11px] text-muted-foreground mt-0.5">XP earned</div>
         </div>
       </div>
 
@@ -531,7 +530,7 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
 
   return (
     <motion.div
-      className="border-l-4 border-primary bg-card p-6 rounded-lg mb-10"
+      className="border-l-4 border-primary bg-card p-5 rounded-lg mb-8"
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25 }}
@@ -543,7 +542,7 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-[11px] font-medium uppercase tracking-wide text-primary">Today&apos;s Challenge</span>
+              <span className="text-[11px] font-medium text-primary">Today&apos;s challenge</span>
               <DifficultyBadge difficulty={challenge.difficulty} />
             </div>
             <h2 className="text-base font-medium mb-1">{challenge.title}</h2>
@@ -763,7 +762,7 @@ export default function ChallengesPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 py-6">
+      <div className="flex-1 overflow-y-auto px-4 pt-5 pb-8">
         {/* Daily Challenge Hero — only on daily tab */}
         {tab === "daily" && <DailyHeroCard countdown={dailyCountdown} />}
 

@@ -242,7 +242,7 @@ function AssetClassOverview() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Asset Class Table */}
       <Card className="bg-card border-border p-5">
         <div className="flex items-center justify-between mb-4">
@@ -253,7 +253,7 @@ function AssetClassOverview() {
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={cn(
-                  "px-2 py-1 rounded text-xs capitalize transition-colors",
+                  "px-2 py-1 rounded text-xs text-muted-foreground capitalize transition-colors",
                   selectedCategory === cat
                     ? "bg-indigo-600 text-foreground"
                     : "bg-muted text-muted-foreground hover:bg-muted"
@@ -265,7 +265,7 @@ function AssetClassOverview() {
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 px-2 text-muted-foreground font-medium">Asset Class</th>
@@ -550,7 +550,7 @@ function PortfolioBuilder() {
             variant="outline"
             onClick={() => applyPreset(p)}
             className={cn(
-              "text-xs border-border",
+              "text-xs text-muted-foreground border-border",
               activePreset === p.name
                 ? "bg-indigo-600 border-indigo-500 text-foreground hover:bg-indigo-700"
                 : "bg-muted text-muted-foreground hover:bg-muted"
@@ -639,7 +639,7 @@ function PortfolioBuilder() {
                 .sort((a, b) => b.weight - a.weight)
                 .slice(0, 6)
                 .map(s => (
-                  <div key={s.i} className="flex items-center gap-2 text-xs">
+                  <div key={s.i} className="flex items-center gap-2 text-xs text-muted-foreground">
                     <div className="w-2 h-2 rounded-full" style={{ background: s.color }} />
                     <span className="text-muted-foreground flex-1">{s.name}</span>
                     <span className="text-foreground">{s.weight.toFixed(1)}%</span>
@@ -824,7 +824,7 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
   const bY = (v: number) => bPad.top + bPlotH / 2 - (v / maxAbs) * (bPlotH / 2);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Monte Carlo Fan Chart */}
       <Card className="bg-card border-border p-5">
         <div className="flex items-center justify-between mb-1">
@@ -963,7 +963,7 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
 
         {/* Table summary */}
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Scenario</th>
@@ -1102,7 +1102,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
   const yTicks = [100_000, 200_000, 300_000, 500_000, 750_000, 1_000_000].filter(v => v >= minVal && v <= maxVal);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Strategy toggles */}
       <div className="flex flex-wrap gap-3">
         {REBALANCE_STRATEGIES.map(s => (
@@ -1115,7 +1115,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
               setSelected(next);
             }}
             className={cn(
-              "flex items-center gap-2 px-3 py-2 rounded-lg border text-xs transition-colors",
+              "flex items-center gap-2 px-3 py-2 rounded-lg border text-xs text-muted-foreground transition-colors",
               selected.has(s.key)
                 ? "border-transparent text-foreground"
                 : "border-border bg-muted/50 text-muted-foreground"
@@ -1173,7 +1173,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
       <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Strategy Comparison</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Strategy</th>
@@ -1343,11 +1343,11 @@ function LifecyclePlanning() {
   const toleranceLabels = ["Conservative", "Moderate", "Aggressive"];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Controls */}
       <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Personal Parameters</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           <div>
             <label className="text-xs text-muted-foreground block mb-2">Current Age: <span className="text-foreground font-medium">{currentAge}</span></label>
             <Slider value={[currentAge]} onValueChange={([v]) => setCurrentAge(v)} min={20} max={75} step={1} />
@@ -1373,7 +1373,7 @@ function LifecyclePlanning() {
                 key={label}
                 onClick={() => setRiskTolerance(i)}
                 className={cn(
-                  "px-3 py-1.5 rounded text-xs transition-colors",
+                  "px-3 py-1.5 rounded text-xs text-muted-foreground transition-colors",
                   riskTolerance === i ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 )}
               >
@@ -1451,7 +1451,7 @@ function LifecyclePlanning() {
 
         {/* Age-based table */}
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Age</th>
@@ -1530,7 +1530,7 @@ function LifecyclePlanning() {
                     <text x={0} y={8} textAnchor="middle" fill="#9ca3af" fontSize={8}>stocks</text>
                   </g>
                 </svg>
-                <div className="space-y-0.5 text-xs mt-1">
+                <div className="space-y-0.5 text-xs text-muted-foreground mt-1">
                   {segments.map(seg => (
                     <div key={seg.label} className="flex justify-between">
                       <span style={{ color: seg.color }}>{seg.label}</span>
@@ -1555,7 +1555,7 @@ function LifecyclePlanning() {
             </p>
           </div>
           <Badge className={cn(
-            "text-xs",
+            "text-xs text-muted-foreground",
             swrProb >= 0.9 ? "bg-emerald-900/50 text-emerald-400 border-emerald-800"
             : swrProb >= 0.7 ? "bg-amber-900/50 text-amber-400 border-amber-800"
             : "bg-red-900/50 text-red-400 border-red-800"
@@ -1634,7 +1634,7 @@ export default function AllocationPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

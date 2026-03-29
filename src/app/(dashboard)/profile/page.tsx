@@ -624,7 +624,7 @@ export default function ProfilePage() {
                 <Zap className="h-3.5 w-3.5 text-amber-400" />
                 Level {level}
               </Badge>
-              <Badge variant="outline" className="gap-1 text-xs">
+              <Badge variant="outline" className="gap-1 text-xs text-muted-foreground">
                 <Flame className="h-3 w-3 text-orange-400" />
                 {loginStreak}d streak
               </Badge>
@@ -649,7 +649,7 @@ export default function ProfilePage() {
             </div>
           </div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Level {level}</span>
               <span className="text-muted-foreground">Level {nextLevel}</span>
             </div>
@@ -659,23 +659,23 @@ export default function ProfilePage() {
 
         <Tabs defaultValue="dna">
           <TabsList className="grid w-full grid-cols-5 mb-4 h-9">
-            <TabsTrigger value="dna" className="text-xs px-1">
+            <TabsTrigger value="dna" className="text-xs text-muted-foreground px-1">
               <Brain className="h-3 w-3 mr-1" />
               DNA
             </TabsTrigger>
-            <TabsTrigger value="skills" className="text-xs px-1">
+            <TabsTrigger value="skills" className="text-xs text-muted-foreground px-1">
               <Star className="h-3 w-3 mr-1" />
               Skills
             </TabsTrigger>
-            <TabsTrigger value="path" className="text-xs px-1">
+            <TabsTrigger value="path" className="text-xs text-muted-foreground px-1">
               <BookOpen className="h-3 w-3 mr-1" />
               Path
             </TabsTrigger>
-            <TabsTrigger value="analytics" className="text-xs px-1">
+            <TabsTrigger value="analytics" className="text-xs text-muted-foreground px-1">
               <BarChart3 className="h-3 w-3 mr-1" />
               Analytics
             </TabsTrigger>
-            <TabsTrigger value="goals" className="text-xs px-1">
+            <TabsTrigger value="goals" className="text-xs text-muted-foreground px-1">
               <Trophy className="h-3 w-3 mr-1" />
               Goals
             </TabsTrigger>
@@ -730,7 +730,7 @@ export default function ProfilePage() {
                                             : "border-border bg-background/50 text-muted-foreground hover:border-primary/30 hover:bg-primary/5 hover:text-foreground"
                                         }`}
                                       >
-                                        <span className="mr-2 text-xs opacity-50">{["A", "B", "C"][i]}.</span>
+                                        <span className="mr-2 text-xs text-muted-foreground opacity-50">{["A", "B", "C"][i]}.</span>
                                         {option}
                                       </button>
                                     );
@@ -776,7 +776,7 @@ export default function ProfilePage() {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <h2 className="text-base font-medium">{archetype.name}</h2>
-                            <Badge variant="secondary" className="text-xs">Your Archetype</Badge>
+                            <Badge variant="secondary" className="text-xs text-muted-foreground">Your Archetype</Badge>
                           </div>
                           <p className="text-xs text-muted-foreground leading-relaxed">{archetype.description}</p>
                         </div>
@@ -811,7 +811,7 @@ export default function ProfilePage() {
                         <p className="text-xs text-primary font-medium uppercase mb-2">Recommended Strategies</p>
                         <div className="flex flex-wrap gap-1.5">
                           {archetype.strategies.map((s) => (
-                            <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
+                            <Badge key={s} variant="secondary" className="text-xs text-muted-foreground">{s}</Badge>
                           ))}
                         </div>
                       </div>
@@ -831,7 +831,7 @@ export default function ProfilePage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full text-xs"
+                    className="w-full text-xs text-muted-foreground"
                     onClick={() => {
                       setQuizAnswers([]);
                       setQuizComplete(false);
@@ -861,7 +861,7 @@ export default function ProfilePage() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <Icon className="h-3.5 w-3.5" style={{ color: branch.color }} />
-                            <span className="text-xs font-medium">{branch.name}</span>
+                            <span className="text-xs text-muted-foreground font-medium">{branch.name}</span>
                           </div>
                           <div className="flex items-center gap-1.5">
                             <span className="text-xs text-muted-foreground">
@@ -895,7 +895,7 @@ export default function ProfilePage() {
                             {i + 1}
                           </div>
                           <div>
-                            <p className="text-xs font-medium">{lesson.title}</p>
+                            <p className="text-xs text-muted-foreground font-medium">{lesson.title}</p>
                             <p className="text-xs text-muted-foreground capitalize">{lesson.branch} · {lesson.eta}</p>
                           </div>
                         </div>
@@ -919,7 +919,7 @@ export default function ProfilePage() {
                       const gap = branch.level - avgLevel;
                       return (
                         <div key={branch.id} className="space-y-1">
-                          <div className="flex items-center justify-between text-xs">
+                          <div className="flex items-center justify-between text-xs text-muted-foreground">
                             <span className="text-muted-foreground">{branch.name}</span>
                             <span className={gap >= 0 ? "text-emerald-400" : "text-red-400"}>
                               {gap >= 0 ? "+" : ""}{gap} levels vs avg
@@ -984,7 +984,7 @@ export default function ProfilePage() {
               {/* Overall progress */}
               <Card className="border-border bg-card">
                 <CardContent className="pt-4 space-y-2">
-                  <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span className="font-medium">Overall Course Progress</span>
                     <span className="text-muted-foreground">{completedLessons.length} / {TOTAL_LESSONS_ESTIMATE} lessons</span>
                   </div>
@@ -1000,7 +1000,7 @@ export default function ProfilePage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>Daily time commitment</span>
                       <span className="font-medium text-primary">{timeCommitment[0]} min/day</span>
                     </div>
@@ -1021,7 +1021,7 @@ export default function ProfilePage() {
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-xs font-medium">Learning style</p>
+                    <p className="text-xs text-muted-foreground font-medium">Learning style</p>
                     <div className="grid grid-cols-3 gap-1.5">
                       {[
                         { id: "read", label: "Read + Quiz" },
@@ -1031,7 +1031,7 @@ export default function ProfilePage() {
                         <button
                           key={style.id}
                           onClick={() => setLearningStyle(style.id as typeof learningStyle)}
-                          className={`rounded-lg border py-2 text-xs font-medium transition-all ${
+                          className={`rounded-lg border py-2 text-xs text-muted-foreground font-medium transition-all ${
                             learningStyle === style.id
                               ? "border-primary/60 bg-primary/10 text-foreground"
                               : "border-border bg-background/50 text-muted-foreground hover:border-primary/30"
@@ -1058,7 +1058,7 @@ export default function ProfilePage() {
                         <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[11px] font-medium text-primary">
                           {week.week}
                         </div>
-                        <span className="text-xs font-medium">Week {week.week}: {week.theme}</span>
+                        <span className="text-xs text-muted-foreground font-medium">Week {week.week}: {week.theme}</span>
                       </div>
                       <div className="ml-7 space-y-1.5">
                         {week.days.map((d, di) => (
@@ -1121,7 +1121,7 @@ export default function ProfilePage() {
                     const pct = Math.min(100, (current / target) * 100);
                     return (
                       <div key={def.id} className="space-y-1.5">
-                        <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center justify-between text-xs text-muted-foreground">
                           <span className="font-medium">{def.name}</span>
                           <span className="text-muted-foreground">{current} / {target}</span>
                         </div>
@@ -1170,7 +1170,7 @@ export default function ProfilePage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Overall Percentile</span>
                       <span className="font-medium text-primary">Top {100 - communityPercentile}%</span>
                     </div>
@@ -1189,7 +1189,7 @@ export default function ProfilePage() {
                     { label: "Learning Rank", pct: Math.min(99, completedLessons.length * 4) },
                   ].map((item) => (
                     <div key={item.label} className="space-y-1">
-                      <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">{item.label}</span>
                         <span>Top {100 - Math.round(item.pct)}%</span>
                       </div>
@@ -1213,7 +1213,7 @@ export default function ProfilePage() {
                     ].map((row) => (
                       <div key={row.style} className="flex items-center justify-between py-2 border-b border-border/50 last:border-0">
                         <div>
-                          <p className="text-xs font-medium">{row.style}</p>
+                          <p className="text-xs text-muted-foreground font-medium">{row.style}</p>
                           <p className="text-xs text-muted-foreground">{row.trades} trades</p>
                         </div>
                         <div className="text-right">
@@ -1271,11 +1271,11 @@ export default function ProfilePage() {
                         <div className="flex items-center gap-2">
                           <Icon className="h-3.5 w-3.5 text-muted-foreground" />
                           <div>
-                            <p className="text-xs font-medium">{item.label}</p>
+                            <p className="text-xs text-muted-foreground font-medium">{item.label}</p>
                             <p className="text-xs text-muted-foreground">{item.note}</p>
                           </div>
                         </div>
-                        <span className="text-xs font-medium">{item.value}</span>
+                        <span className="text-xs text-muted-foreground font-medium">{item.value}</span>
                       </div>
                     );
                   })}
@@ -1308,14 +1308,14 @@ export default function ProfilePage() {
                         <span className="text-sm font-medium text-primary">{level}</span>
                       </div>
                       <div>
-                        <p className="text-xs font-medium">Current Level</p>
+                        <p className="text-xs text-muted-foreground font-medium">Current Level</p>
                         <p className="text-xs text-muted-foreground">{xp.toLocaleString()} XP total</p>
                       </div>
                     </div>
                     <ArrowRight className="h-4 w-4 text-muted-foreground" />
                     <div className="flex items-center gap-3">
                       <div>
-                        <p className="text-xs font-medium text-right">Level {nextLevel}</p>
+                        <p className="text-xs text-muted-foreground font-medium text-right">Level {nextLevel}</p>
                         <p className="text-xs text-muted-foreground">{levelProgress.needed - levelProgress.current} XP needed</p>
                       </div>
                       <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/15 border border-border">
@@ -1351,11 +1351,11 @@ export default function ProfilePage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <DollarSign className="h-3.5 w-3.5 text-emerald-400" />
-                        <span className="text-xs font-medium">Portfolio Target</span>
+                        <span className="text-xs text-muted-foreground font-medium">Portfolio Target</span>
                       </div>
                       <Badge variant="secondary" className="text-[11px]">Active</Badge>
                     </div>
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Current: ${portfolioValue.toLocaleString()}</span>
                       <span className="font-medium">Target: ${portfolioGoal.toLocaleString()}</span>
                     </div>
@@ -1375,11 +1375,11 @@ export default function ProfilePage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <BookOpen className="h-3.5 w-3.5 text-primary" />
-                        <span className="text-xs font-medium">Learning Goal</span>
+                        <span className="text-xs text-muted-foreground font-medium">Learning Goal</span>
                       </div>
                       <Badge variant="secondary" className="text-[11px]">Active</Badge>
                     </div>
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Completed: {completedLessons.length}</span>
                       <span className="font-medium">Target: 20 lessons</span>
                     </div>
@@ -1394,11 +1394,11 @@ export default function ProfilePage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Target className="h-3.5 w-3.5 text-primary" />
-                        <span className="text-xs font-medium">Win Rate Goal</span>
+                        <span className="text-xs text-muted-foreground font-medium">Win Rate Goal</span>
                       </div>
                       <Badge variant="secondary" className="text-[11px]">Active</Badge>
                     </div>
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Current: {winRate.toFixed(1)}%</span>
                       <span className="font-medium">Target: 60%</span>
                     </div>
@@ -1426,7 +1426,7 @@ export default function ProfilePage() {
                           {a.icon === "Zap" ? "⚡" : a.icon === "TrendingUp" ? "📈" : a.icon === "Flame" ? "🔥" : a.icon === "Trophy" ? "🏆" : "🎯"}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-medium">{a.name}</p>
+                          <p className="text-xs text-muted-foreground font-medium">{a.name}</p>
                           <p className="text-xs text-muted-foreground truncate">{a.description}</p>
                         </div>
                         <span className="text-[11px] text-muted-foreground shrink-0">

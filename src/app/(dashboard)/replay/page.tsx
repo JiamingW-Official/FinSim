@@ -418,7 +418,7 @@ function TradeLog({ trades, currentPrice }: TradeLogProps) {
                     >
                       {t.side.toUpperCase()}
                     </Badge>
-                    <span className="font-mono text-xs">
+                    <span className="font-mono text-xs text-muted-foreground">
                       {t.qty} @ {formatCurrency(t.price)}
                     </span>
                   </div>
@@ -430,7 +430,7 @@ function TradeLog({ trades, currentPrice }: TradeLogProps) {
                     )}
                     <span
                       className={cn(
-                        "font-mono text-xs font-medium",
+                        "font-mono text-xs text-muted-foreground font-medium",
                         pnlVal >= 0 ? "text-emerald-500" : "text-red-500",
                       )}
                     >
@@ -498,7 +498,7 @@ function KeyboardHints() {
               <Keyboard className="h-3 w-3" />
               {desc}
             </span>
-            <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">
+            <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
               {key}
             </kbd>
           </div>
@@ -972,7 +972,7 @@ export default function ReplayPage() {
           <select
             value={ticker}
             onChange={(e) => setTicker(e.target.value)}
-            className="h-8 rounded-md border border-border bg-background px-2 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+            className="h-8 rounded-md border border-border bg-background px-2 text-xs text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
           >
             {WATCHLIST_STOCKS.map((s) => (
               <option key={s.ticker} value={s.ticker}>
@@ -985,7 +985,7 @@ export default function ReplayPage() {
           <select
             value={dateValue}
             onChange={(e) => setDateValue(e.target.value)}
-            className="h-8 rounded-md border border-border bg-background px-2 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+            className="h-8 rounded-md border border-border bg-background px-2 text-xs text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
           >
             {TRADING_DAYS.map((d) => (
               <option key={d.value} value={d.value}>
@@ -1002,7 +1002,7 @@ export default function ReplayPage() {
                   key={tf}
                   onClick={() => setReplayTf(tf)}
                   className={cn(
-                    "rounded px-2 py-1 text-xs transition-colors",
+                    "rounded px-2 py-1 text-xs text-muted-foreground transition-colors",
                     replayTf === tf
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground",
@@ -1106,7 +1106,7 @@ export default function ReplayPage() {
                 key={opt.label}
                 onClick={() => setSpeedIndex(i)}
                 className={cn(
-                  "rounded px-2 py-0.5 text-xs transition-colors",
+                  "rounded px-2 py-0.5 text-xs text-muted-foreground transition-colors",
                   speedIndex === i
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground",

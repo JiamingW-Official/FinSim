@@ -196,11 +196,11 @@ function DashboardTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Animated Ticker Strip */}
       <div className="overflow-hidden border border-border rounded-lg bg-card/60">
         <motion.div
-          className="flex gap-6 py-2 px-4 whitespace-nowrap"
+          className="flex gap-3 py-2 px-4 whitespace-nowrap"
           animate={{ x: [0, -1200] }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
@@ -217,7 +217,7 @@ function DashboardTab() {
       </div>
 
       {/* Sector Performance */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Sector YTD Performance</CardTitle>
@@ -253,7 +253,7 @@ function DashboardTab() {
               <div
                 key={p.name}
                 className={cn(
-                  "flex-1 text-center py-2 rounded text-xs font-semibold transition-all",
+                  "flex-1 text-center py-2 rounded text-xs text-muted-foreground font-semibold transition-all",
                   p.active
                     ? "bg-amber-500/30 border border-amber-500 text-amber-300"
                     : "bg-muted text-muted-foreground"
@@ -284,7 +284,7 @@ function DashboardTab() {
                   size="sm"
                   variant={sector === sec ? "default" : "outline"}
                   onClick={() => setSector(sec)}
-                  className="text-xs h-7 px-2"
+                  className="text-xs text-muted-foreground h-7 px-2"
                 >
                   {sec}
                 </Button>
@@ -430,7 +430,7 @@ function OPECTracker() {
         const compliance = ((m.actual / m.quota) * 100 - 100).toFixed(1);
         const over = m.actual > m.quota;
         return (
-          <div key={m.name} className="flex items-center gap-3 text-xs">
+          <div key={m.name} className="flex items-center gap-3 text-xs text-muted-foreground">
             <span className="text-muted-foreground w-28 shrink-0">{m.name}</span>
             <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden relative">
               <div
@@ -485,7 +485,7 @@ function EnergyTab() {
   const crackSpread = ((2.31 * 42 * 2 + 2.67 * 42) / 3 - 78.42).toFixed(2);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* WTI Spot + Strip */}
         <Card className="bg-card border-border lg:col-span-2">
@@ -544,7 +544,7 @@ function EnergyTab() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Brent-WTI Spread */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
@@ -552,11 +552,11 @@ function EnergyTab() {
           </CardHeader>
           <CardContent>
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-2xl font-bold text-foreground">${(82.17 - 78.42).toFixed(2)}</span>
+              <span className="text-lg font-medium text-foreground">${(82.17 - 78.42).toFixed(2)}</span>
               <span className="text-muted-foreground text-sm">Brent premium</span>
             </div>
             <BrentWTIChart />
-            <div className="grid grid-cols-2 gap-2 mt-3 text-xs">
+            <div className="grid grid-cols-2 gap-2 mt-3 text-xs text-muted-foreground">
               {[
                 { label: "Historic avg", val: "$3.50" },
                 { label: "Peak (2012)", val: "$26.40" },
@@ -579,11 +579,11 @@ function EnergyTab() {
           </CardHeader>
           <CardContent>
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-2xl font-bold text-foreground">$2.84</span>
+              <span className="text-lg font-medium text-foreground">$2.84</span>
               <span className="text-red-400 text-sm">−3.21% today</span>
             </div>
             <NatGasSeasonalChart />
-            <div className="flex gap-4 mt-2 text-xs">
+            <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
               <div>
                 <span className="text-muted-foreground">Storage vs 5yr avg</span>
                 <div className="text-emerald-400 font-mono">+12.3% above</div>
@@ -606,12 +606,12 @@ function EnergyTab() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <OPECTracker />
             <div className="space-y-3">
-              <div className="p-3 bg-muted/50 rounded-lg text-xs space-y-2">
+              <div className="p-3 bg-muted/50 rounded-lg text-xs text-muted-foreground space-y-2">
                 <div className="text-muted-foreground font-semibold">OPEC+ Compliance Score</div>
                 <Progress value={84} className="h-2" />
                 <div className="text-muted-foreground">84% compliance. 3 members over-producing (Iraq, Nigeria, Venezuela)</div>
               </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                 {[
                   { label: "Group quota (kbpd)", val: "36,920" },
                   { label: "Group actual (kbpd)", val: "37,635" },
@@ -699,8 +699,8 @@ function MetalsTab() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Gold */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
@@ -708,7 +708,7 @@ function MetalsTab() {
           </CardHeader>
           <CardContent>
             <div className="flex items-baseline gap-2 mb-3">
-              <span className="text-2xl font-bold text-foreground">$2,318.50</span>
+              <span className="text-lg font-medium text-foreground">$2,318.50</span>
               <span className="text-emerald-400 text-sm">+0.34%</span>
             </div>
             <GoldRealRateChart />
@@ -719,7 +719,7 @@ function MetalsTab() {
                 { label: "Central bank buying", val: "387t (2025)", color: "text-amber-400" },
                 { label: "Real yield (10yr TIPS)", val: "2.18%", color: "text-primary" },
               ].map((item) => (
-                <div key={item.label} className="text-xs">
+                <div key={item.label} className="text-xs text-muted-foreground">
                   <div className="text-muted-foreground">{item.label}</div>
                   <div className={`font-mono ${item.color}`}>{item.val}</div>
                 </div>
@@ -735,17 +735,17 @@ function MetalsTab() {
           </CardHeader>
           <CardContent>
             <div className="flex items-baseline gap-2 mb-3">
-              <span className="text-2xl font-bold text-foreground">$27.84</span>
+              <span className="text-lg font-medium text-foreground">$27.84</span>
               <span className="text-emerald-400 text-sm">+1.42%</span>
             </div>
             <div className="flex items-center gap-3 mb-3 p-3 bg-muted/50 rounded-lg">
               <div className="text-center flex-1">
-                <div className="text-2xl font-bold text-amber-400">{gsRatio}</div>
+                <div className="text-lg font-medium text-amber-400">{gsRatio}</div>
                 <div className="text-xs text-muted-foreground">Current G:S Ratio</div>
               </div>
               <div className="text-muted-foreground text-2xl">/</div>
               <div className="text-center flex-1">
-                <div className="text-2xl font-bold text-muted-foreground">70:1</div>
+                <div className="text-lg font-medium text-muted-foreground">70:1</div>
                 <div className="text-xs text-muted-foreground">Historic Average</div>
               </div>
             </div>
@@ -760,7 +760,7 @@ function MetalsTab() {
                 { label: "Jewelry/Silverware", val: "163Moz", pct: 23 },
               ].map((item) => (
                 <div key={item.label} className="space-y-0.5">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{item.label}</span>
                     <span className="text-muted-foreground">{item.val}</span>
                   </div>
@@ -774,7 +774,7 @@ function MetalsTab() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Copper / LME stocks */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
@@ -782,10 +782,10 @@ function MetalsTab() {
           </CardHeader>
           <CardContent>
             <div className="flex items-baseline gap-2 mb-3">
-              <span className="text-2xl font-bold text-foreground">$4.21/lb</span>
+              <span className="text-lg font-medium text-foreground">$4.21/lb</span>
               <span className="text-emerald-400 text-sm">+2.14%</span>
             </div>
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left pb-1">Metal</th>
@@ -818,7 +818,7 @@ function MetalsTab() {
           </CardHeader>
           <CardContent className="space-y-3">
             {criticalMinerals.map((m) => (
-              <div key={m.name} className="flex items-center gap-3 text-xs">
+              <div key={m.name} className="flex items-center gap-3 text-xs text-muted-foreground">
                 <div className="w-20 shrink-0">
                   <div className="text-foreground font-medium">{m.name}</div>
                   <div className="text-muted-foreground">{m.use}</div>
@@ -829,7 +829,7 @@ function MetalsTab() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "shrink-0 text-xs",
+                    "shrink-0 text-xs text-muted-foreground",
                     m.risk === "Very High" && "border-red-500 text-red-400",
                     m.risk === "High" && "border-orange-500 text-orange-400",
                     m.risk === "Medium" && "border-amber-500 text-amber-400",
@@ -869,7 +869,7 @@ function GrainHeatmap() {
 
   return (
     <div className="overflow-x-auto">
-      <table className="text-xs w-full">
+      <table className="text-xs text-muted-foreground w-full">
         <thead>
           <tr className="text-muted-foreground">
             <th className="text-left pr-2 py-1 w-20">Crop</th>
@@ -885,7 +885,7 @@ function GrainHeatmap() {
               {allReturns[ci].map((v, mi) => (
                 <td key={mi} className="py-1">
                   <div
-                    className={cn("w-9 h-7 rounded flex items-center justify-center text-xs font-mono", colorForRet(v))}
+                    className={cn("w-9 h-7 rounded flex items-center justify-center text-xs text-muted-foreground font-mono", colorForRet(v))}
                     title={`${v > 0 ? "+" : ""}${v.toFixed(1)}%`}
                   >
                     {v > 0 ? "+" : ""}{v.toFixed(1)}
@@ -917,7 +917,7 @@ function AgricultureTab() {
   const faoPts = faoIndex.map((v, i) => `${toFaoX(i)},${toFaoY(v)}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Grain Heatmap */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -931,7 +931,7 @@ function AgricultureTab() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Weather Risk */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
@@ -949,7 +949,7 @@ function AgricultureTab() {
               { region: "Australia", crop: "Wheat", impact: "Above avg rainfall", risk: "Low" },
               { region: "West Africa", crop: "Cocoa", impact: "Dry Harmattan", risk: "Very High" },
             ].map((row) => (
-              <div key={row.region} className="flex items-center gap-3 text-xs border-b border-border/40 pb-2">
+              <div key={row.region} className="flex items-center gap-3 text-xs text-muted-foreground border-b border-border/40 pb-2">
                 <div className="w-28 text-muted-foreground">{row.region}</div>
                 <div className="text-muted-foreground flex-1">{row.crop}</div>
                 <div className="text-muted-foreground">{row.impact}</div>
@@ -1053,7 +1053,7 @@ function AgricultureTab() {
             <polyline points={faoPts} fill="none" stroke="#f59e0b" strokeWidth="2" />
             <text x={W - 80} y={toFaoY(120) - 4} fontSize="9" fill="#6b7280">Danger zone</text>
           </svg>
-          <div className="grid grid-cols-3 gap-3 mt-3 text-xs">
+          <div className="grid grid-cols-3 gap-3 mt-3 text-xs text-muted-foreground">
             {[
               { label: "Current Index", val: "110.2", color: "text-amber-400" },
               { label: "2022 Peak (War)", val: "159.7", color: "text-red-400" },
@@ -1111,7 +1111,7 @@ function FuturesCurveChart({
       <div className="flex justify-between text-xs text-muted-foreground">
         {months.map((m) => <span key={m}>{m}</span>)}
       </div>
-      <div className="flex justify-between text-xs mt-1">
+      <div className="flex justify-between text-xs text-muted-foreground mt-1">
         <span className="text-muted-foreground">F1: {prices[0].toFixed(2)}</span>
         <span className="text-muted-foreground">F{prices.length}: {prices[prices.length - 1].toFixed(2)}</span>
         <span className={contango ? "text-red-400" : "text-emerald-400"}>
@@ -1200,7 +1200,7 @@ function FuturesCurveTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Contango/Backwardation explainer */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card className="bg-card border-border">
@@ -1239,7 +1239,7 @@ function FuturesCurveTab() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Index Comparison */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
@@ -1264,7 +1264,7 @@ function FuturesCurveTab() {
                 </div>
               ))}
             </div>
-            <div className="flex gap-4 mt-3 text-xs">
+            <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
               <span className="flex items-center gap-1">
                 <span className="w-2 h-2 bg-amber-500/60 rounded-sm inline-block" />GSCI (production-weighted)
               </span>
@@ -1281,7 +1281,7 @@ function FuturesCurveTab() {
             <CardTitle className="text-sm font-medium text-muted-foreground">Front-Month Contract Roll Schedule</CardTitle>
           </CardHeader>
           <CardContent>
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left pb-1">Commodity</th>
@@ -1477,7 +1477,7 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
             <Badge
               variant="outline"
               className={cn(
-                "text-xs",
+                "text-xs text-muted-foreground",
                 idea.conviction === "High" && "border-emerald-500 text-emerald-400",
                 idea.conviction === "Medium" && "border-amber-500 text-amber-400",
                 idea.conviction === "Low" && "border-muted-foreground text-muted-foreground"
@@ -1493,7 +1493,7 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
           </div>
         </div>
 
-        <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
+        <div className="mt-3 grid grid-cols-3 gap-3 text-xs text-muted-foreground">
           <div className="text-center">
             <div className="text-muted-foreground">Entry</div>
             <div className="text-foreground font-mono">{idea.entry.toLocaleString()}</div>
@@ -1530,11 +1530,11 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
             className="border-t border-border px-4 py-3 space-y-2"
           >
             <div className="text-xs text-muted-foreground leading-relaxed">{idea.thesis}</div>
-            <div className="flex gap-2 flex-wrap text-xs">
+            <div className="flex gap-2 flex-wrap text-xs text-muted-foreground">
               <span className="text-muted-foreground">Catalyst:</span>
               <span className="text-muted-foreground">{idea.catalyst}</span>
             </div>
-            <div className="flex gap-2 flex-wrap text-xs">
+            <div className="flex gap-2 flex-wrap text-xs text-muted-foreground">
               <span className="text-muted-foreground">Implementation:</span>
               <span className="text-muted-foreground">{idea.implementation}</span>
             </div>
@@ -1556,7 +1556,7 @@ function PositionSizingTable() {
   ];
 
   return (
-    <table className="w-full text-xs">
+    <table className="w-full text-xs text-muted-foreground">
       <thead>
         <tr className="text-muted-foreground border-b border-border">
           <th className="text-left pb-2">Commodity</th>
@@ -1635,7 +1635,7 @@ function ETFvsChart() {
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="text-muted-foreground border-b border-border">
             <th className="text-left pb-2">Method</th>
@@ -1675,7 +1675,7 @@ function CommodityBetaChart() {
 
   return (
     <div className="space-y-2">
-      <div className="flex gap-4 text-xs mb-2">
+      <div className="flex gap-4 text-xs text-muted-foreground mb-2">
         {commodities.map((c, i) => (
           <span key={c} className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full inline-block" style={{ background: colors[i] }} />
@@ -1684,7 +1684,7 @@ function CommodityBetaChart() {
         ))}
       </div>
       {regimes.map((row) => (
-        <div key={row.regime} className="flex items-center gap-2 text-xs">
+        <div key={row.regime} className="flex items-center gap-2 text-xs text-muted-foreground">
           <span className="text-muted-foreground w-28 shrink-0">{row.regime}</span>
           {betas(row).map((b, i) => (
             <div key={i} className="relative w-16 h-4 bg-muted rounded">
@@ -1698,7 +1698,7 @@ function CommodityBetaChart() {
                 }}
               />
               <span
-                className="absolute inset-0 flex items-center justify-center text-xs font-mono"
+                className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground font-mono"
                 style={{ color: colors[i] }}
               >
                 {b.toFixed(2)}
@@ -1713,7 +1713,7 @@ function CommodityBetaChart() {
 
 function TradeIdeasTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-sm font-medium text-muted-foreground mb-3">Active Trade Ideas</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -1723,7 +1723,7 @@ function TradeIdeasTab() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Seasonal trade */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
@@ -1731,7 +1731,7 @@ function TradeIdeasTab() {
           </CardHeader>
           <CardContent>
             <SeasonalTradeChart />
-            <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
+            <div className="grid grid-cols-2 gap-3 mt-3 text-xs text-muted-foreground">
               {[
                 { label: "Best quarter", val: "Q4 (avg +18.7%)" },
                 { label: "Q4 hit rate", val: "71% since 2000" },
@@ -1803,7 +1803,7 @@ export default function CommoditiesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 lg:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 lg:p-4">
       {/* HERO Header */}
       <div className="flex items-start justify-between mb-8 flex-wrap gap-4 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div>

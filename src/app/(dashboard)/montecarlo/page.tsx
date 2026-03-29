@@ -614,7 +614,7 @@ export default function MonteCarloPage() {
   const varData = useMemo(() => VAR_DATA, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -627,7 +627,7 @@ export default function MonteCarloPage() {
             <Shuffle className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">Monte Carlo Simulation</h1>
+            <h1 className="text-lg font-medium">Monte Carlo Simulation</h1>
             <p className="text-sm text-muted-foreground">
               Stochastic modeling for portfolio outcomes, option pricing, retirement planning, and risk quantification
             </p>
@@ -723,7 +723,7 @@ export default function MonteCarloPage() {
                     { label: "Initial Value", key: "initialValue", step: 10000, min: 10000, max: 500000, fmt: (v: number) => `$${(v / 1000).toFixed(0)}K` },
                   ].map(({ label, key, step, min, max, fmt: f }) => (
                     <div key={key} className="space-y-1">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">{label}</span>
                         <span className="font-mono text-foreground">{f(simParams[key as keyof SimParams] as number)}</span>
                       </div>
@@ -776,7 +776,7 @@ export default function MonteCarloPage() {
               </CardHeader>
               <CardContent>
                 <HistogramChart sim={sim} params={simParams} />
-                <div className="mt-2 grid grid-cols-3 gap-3 text-xs">
+                <div className="mt-2 grid grid-cols-3 gap-3 text-xs text-muted-foreground">
                   {[
                     { label: "P5 (Worst 5%)", value: fmt(sim.percentile5), color: "text-red-400" },
                     { label: "P50 (Median)", value: fmt(sim.percentile50), color: "text-green-400" },
@@ -875,7 +875,7 @@ export default function MonteCarloPage() {
                             <td className="text-right py-2">
                               <Badge
                                 variant={accuracy > 98 ? "default" : accuracy > 95 ? "secondary" : "destructive"}
-                                className="text-xs"
+                                className="text-xs text-muted-foreground"
                               >
                                 {accuracy.toFixed(1)}%
                               </Badge>
@@ -1153,7 +1153,7 @@ export default function MonteCarloPage() {
                   </table>
                 </div>
 
-                <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
                   <div className="p-3 bg-muted rounded-lg">
                     <p className="font-medium text-foreground mb-1">VaR Definition</p>
                     <p className="text-muted-foreground">

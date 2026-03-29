@@ -372,7 +372,7 @@ function MajorPairsTab() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="px-4 py-2 text-left">Pair</th>
@@ -546,7 +546,7 @@ function MajorPairsTab() {
               </CardHeader>
               <CardContent className="space-y-2">
                 {card.items.map((item) => (
-                  <div key={item.label} className="flex justify-between items-center text-xs">
+                  <div key={item.label} className="flex justify-between items-center text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{item.label}</span>
                     <span className={cn("font-medium", item.color)}>{item.status}</span>
                   </div>
@@ -588,7 +588,7 @@ function CarryTradeTab() {
               <Button
                 size="sm"
                 variant={sortBy === "differential" ? "default" : "ghost"}
-                className="h-6 text-xs"
+                className="h-6 text-xs text-muted-foreground"
                 onClick={() => setSortBy("differential")}
               >
                 By Differential
@@ -596,7 +596,7 @@ function CarryTradeTab() {
               <Button
                 size="sm"
                 variant={sortBy === "totalReturn" ? "default" : "ghost"}
-                className="h-6 text-xs"
+                className="h-6 text-xs text-muted-foreground"
                 onClick={() => setSortBy("totalReturn")}
               >
                 By Total Return
@@ -606,7 +606,7 @@ function CarryTradeTab() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="px-4 py-2 text-left">Pair</th>
@@ -802,7 +802,7 @@ function TechnicalAnalysisTab() {
             size="sm"
             variant={activePair === p.symbol ? "default" : "outline"}
             onClick={() => setActivePair(p.symbol)}
-            className="text-xs"
+            className="text-xs text-muted-foreground"
           >
             {p.symbol}
           </Button>
@@ -820,7 +820,7 @@ function TechnicalAnalysisTab() {
               </CardTitle>
               <Badge
                 className={cn(
-                  "text-xs",
+                  "text-xs text-muted-foreground",
                   tech.trend === "bullish" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
                   tech.trend === "bearish" ? "bg-rose-500/20 text-rose-400 border-rose-500/30" :
                   "bg-muted text-muted-foreground"
@@ -927,7 +927,7 @@ function TechnicalAnalysisTab() {
               <div className="text-xs text-muted-foreground mb-1">MACD Signal</div>
               <Badge
                 className={cn(
-                  "text-xs",
+                  "text-xs text-muted-foreground",
                   tech.macdSignal === "bullish" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
                   tech.macdSignal === "bearish" ? "bg-rose-500/20 text-rose-400 border-rose-500/30" :
                   "bg-muted text-muted-foreground"
@@ -943,7 +943,7 @@ function TechnicalAnalysisTab() {
                 {tech.srLevels.map((lvl, i) => {
                   const decimals = tech.symbol.includes("JPY") ? 2 : 4;
                   return (
-                    <div key={i} className="flex justify-between items-center text-xs">
+                    <div key={i} className="flex justify-between items-center text-xs text-muted-foreground">
                       <div className="flex items-center gap-1.5">
                         <div className={cn("w-1.5 h-1.5 rounded-full", lvl.type === "support" ? "bg-emerald-400" : "bg-rose-400")} />
                         <span className="text-muted-foreground capitalize">{lvl.type}</span>
@@ -986,7 +986,7 @@ function TechnicalAnalysisTab() {
                 )}
               >
                 <div className="text-xs font-medium text-foreground mb-2">{p.symbol}</div>
-                <div className="space-y-1 text-xs">
+                <div className="space-y-1 text-xs text-muted-foreground">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Trend</span>
                     <span className={p.trend === "bullish" ? "text-emerald-400" : p.trend === "bearish" ? "text-rose-400" : "text-muted-foreground"}>
@@ -1043,7 +1043,7 @@ function MacroDriversTab() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="text-muted-foreground border-b border-border">
                     <th className="py-2 text-left">Pair</th>
@@ -1072,7 +1072,7 @@ function MacroDriversTab() {
                       <td className="py-2 text-right">
                         <Badge
                           className={cn(
-                            "text-xs",
+                            "text-xs text-muted-foreground",
                             d.outlook === "overvalued" ? "bg-rose-500/20 text-rose-400 border-rose-500/30" :
                             d.outlook === "undervalued" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
                             "bg-muted text-muted-foreground"
@@ -1138,7 +1138,7 @@ function MacroDriversTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-3">
               <div className="text-xs text-muted-foreground font-medium mb-2">CB Policy Stance</div>
               {MACRO_DRIVERS.map((d) => (
@@ -1147,7 +1147,7 @@ function MacroDriversTab() {
                   <div className="flex items-center gap-2">
                     <Badge
                       className={cn(
-                        "text-xs",
+                        "text-xs text-muted-foreground",
                         d.cbDivergence === "hawkish" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
                         d.cbDivergence === "dovish"  ? "bg-rose-500/20 text-rose-400 border-rose-500/30" :
                         "bg-muted text-muted-foreground"
@@ -1167,7 +1167,7 @@ function MacroDriversTab() {
                 const barPct = Math.abs(d.currentAccount) / 8 * 100;
                 return (
                   <div key={d.pair} className="space-y-1">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">{d.pair}</span>
                       <span className={cn("font-medium", isPositive ? "text-emerald-400" : "text-rose-400")}>
                         {isPositive ? "+" : ""}{d.currentAccount.toFixed(1)}%
@@ -1270,7 +1270,7 @@ function RiskManagementTab() {
                     key={p.symbol}
                     size="sm"
                     variant={pair === p.symbol ? "default" : "outline"}
-                    className="text-xs h-7"
+                    className="text-xs text-muted-foreground h-7"
                     onClick={() => setPair(p.symbol)}
                   >
                     {p.symbol}
@@ -1364,7 +1364,7 @@ function RiskManagementTab() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="text-xs">
+              <table className="text-xs text-muted-foreground">
                 <thead>
                   <tr>
                     <th className="w-16" />
@@ -1399,7 +1399,7 @@ function RiskManagementTab() {
                 </tbody>
               </table>
             </div>
-            <div className="flex gap-3 mt-3 text-xs flex-wrap">
+            <div className="flex gap-3 mt-3 text-xs text-muted-foreground flex-wrap">
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-emerald-500/80" /><span className="text-muted-foreground">Strong +</span></div>
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-emerald-500/40" /><span className="text-muted-foreground">Moderate +</span></div>
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-muted/40" /><span className="text-muted-foreground">Neutral</span></div>
@@ -1455,11 +1455,11 @@ function RiskManagementTab() {
                   <div className={cn("text-sm font-medium", strat.color)}>{strat.name}</div>
                   <p className="text-[11px] text-muted-foreground leading-relaxed">{strat.description}</p>
                   <div className="space-y-1 pt-1">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Cost</span>
                       <span className="text-muted-foreground">{strat.cost}</span>
                     </div>
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Effectiveness</span>
                       <span className="text-muted-foreground">{strat.effectiveness}%</span>
                     </div>
@@ -1518,7 +1518,7 @@ function RiskManagementTab() {
 
 export default function ForexPage() {
   return (
-    <div className="p-4 md:p-6 space-y-4 min-h-screen">
+    <div className="p-4 md:p-4 space-y-4 min-h-screen">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1558,7 +1558,7 @@ export default function ForexPage() {
         ].map((chip) => (
           <div
             key={chip.label}
-            className="flex items-center gap-1.5 bg-muted/70 border border-border/50 rounded-full px-3 py-1 text-xs"
+            className="flex items-center gap-1.5 bg-muted/70 border border-border/50 rounded-full px-3 py-1 text-xs text-muted-foreground"
           >
             <span className={chip.color}>{chip.icon}</span>
             <span className="text-muted-foreground">{chip.label}</span>
@@ -1570,19 +1570,19 @@ export default function ForexPage() {
       {/* Tabs */}
       <Tabs defaultValue="pairs" className="mt-8">
         <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/60 p-1">
-          <TabsTrigger value="pairs" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="pairs" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Globe className="w-3.5 h-3.5" /> Major Pairs
           </TabsTrigger>
-          <TabsTrigger value="carry" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="carry" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-muted">
             <DollarSign className="w-3.5 h-3.5" /> Carry Trade
           </TabsTrigger>
-          <TabsTrigger value="technical" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="technical" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-muted">
             <BarChart2 className="w-3.5 h-3.5" /> Technical Analysis
           </TabsTrigger>
-          <TabsTrigger value="macro" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="macro" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-muted">
             <TrendingUp className="w-3.5 h-3.5" /> Macro Drivers
           </TabsTrigger>
-          <TabsTrigger value="risk" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="risk" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-muted">
             <ShieldCheck className="w-3.5 h-3.5" /> Risk Management
           </TabsTrigger>
         </TabsList>

@@ -563,7 +563,7 @@ export default function EsgPage() {
   };
 
   return (
-    <div className="p-4 md:p-6 space-y-4 min-h-screen bg-background text-foreground">
+    <div className="p-4 md:p-4 space-y-4 min-h-screen bg-background text-foreground">
       {/* Header */}
       <motion.div {...fadeUp} className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start justify-between flex-wrap gap-2">
         <div>
@@ -621,11 +621,11 @@ export default function EsgPage() {
       >
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="flex-wrap h-auto gap-1 bg-card border border-border p-1">
-            <TabsTrigger value="scores" className="text-xs">ESG Scores</TabsTrigger>
-            <TabsTrigger value="performance" className="text-xs">Performance</TabsTrigger>
-            <TabsTrigger value="climate" className="text-xs">Climate Risk</TabsTrigger>
-            <TabsTrigger value="impact" className="text-xs">Impact Metrics</TabsTrigger>
-            <TabsTrigger value="screening" className="text-xs">Screening</TabsTrigger>
+            <TabsTrigger value="scores" className="text-xs text-muted-foreground">ESG Scores</TabsTrigger>
+            <TabsTrigger value="performance" className="text-xs text-muted-foreground">Performance</TabsTrigger>
+            <TabsTrigger value="climate" className="text-xs text-muted-foreground">Climate Risk</TabsTrigger>
+            <TabsTrigger value="impact" className="text-xs text-muted-foreground">Impact Metrics</TabsTrigger>
+            <TabsTrigger value="screening" className="text-xs text-muted-foreground">Screening</TabsTrigger>
           </TabsList>
 
           {/* ── Tab 1: ESG Scores ─────────────────────────────────────────────── */}
@@ -639,7 +639,7 @@ export default function EsgPage() {
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="overflow-x-auto">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-xs text-muted-foreground">
                         <thead>
                           <tr className="border-b border-border">
                             <th className="px-3 py-2 text-left text-muted-foreground font-medium">Company</th>
@@ -676,7 +676,7 @@ export default function EsgPage() {
                               </td>
                               <td className="px-2 py-2 text-right font-medium">{c.total}</td>
                               <td className="px-3 py-2 text-center">
-                                <span className={`inline-block px-1.5 py-0.5 rounded border text-xs font-medium ${controversyBadge(c.controversyLevel)}`}>
+                                <span className={`inline-block px-1.5 py-0.5 rounded border text-xs text-muted-foreground font-medium ${controversyBadge(c.controversyLevel)}`}>
                                   {c.controversyLevel}
                                 </span>
                               </td>
@@ -722,19 +722,19 @@ export default function EsgPage() {
 
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-1">
-                    <CardTitle className="text-xs flex items-center gap-1.5">
+                    <CardTitle className="text-xs text-muted-foreground flex items-center gap-1.5">
                       <AlertTriangle className="w-3.5 h-3.5 text-orange-400" />
                       Controversy Tracker
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className={`px-2 py-0.5 rounded border text-xs font-semibold ${controversyBadge(selectedCompany.controversyLevel)}`}>
+                      <span className={`px-2 py-0.5 rounded border text-xs text-muted-foreground font-semibold ${controversyBadge(selectedCompany.controversyLevel)}`}>
                         {selectedCompany.controversyLevel} Risk
                       </span>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">{selectedCompany.controversyDesc}</p>
-                    <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                    <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                       <div>
                         <div className="text-muted-foreground">Carbon Intensity</div>
                         <div className="font-semibold">{selectedCompany.carbonIntensity} tCO₂/$M</div>
@@ -770,7 +770,7 @@ export default function EsgPage() {
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Risk-Adjusted Metrics</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3 text-xs">
+                  <CardContent className="space-y-3 text-xs text-muted-foreground">
                     {[
                       {
                         label: "Total Return",
@@ -814,7 +814,7 @@ export default function EsgPage() {
                 <CardTitle className="text-sm">Annual Cumulative Index Values (Base 100)</CardTitle>
               </CardHeader>
               <CardContent className="p-0 overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="px-3 py-2 text-left text-muted-foreground font-medium">Year</th>
@@ -865,7 +865,7 @@ export default function EsgPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="px-3 py-2 text-left text-muted-foreground font-medium">Company</th>
@@ -975,7 +975,7 @@ export default function EsgPage() {
                     const pct = (c.carbonIntensity / max) * 100;
                     const color = c.carbonIntensity < 50 ? "#10b981" : c.carbonIntensity < 120 ? "#f59e0b" : "#ef4444";
                     return (
-                      <div key={c.ticker} className="text-xs">
+                      <div key={c.ticker} className="text-xs text-muted-foreground">
                         <div className="flex justify-between mb-0.5">
                           <span className="text-muted-foreground">{c.ticker}</span>
                           <span className="font-medium" style={{ color }}>{c.carbonIntensity}</span>
@@ -1003,7 +1003,7 @@ export default function EsgPage() {
                     const pct = (c.waterUsage / max) * 100;
                     const color = c.waterUsage < 100 ? "#10b981" : c.waterUsage < 400 ? "#3b82f6" : "#ef4444";
                     return (
-                      <div key={c.ticker} className="text-xs">
+                      <div key={c.ticker} className="text-xs text-muted-foreground">
                         <div className="flex justify-between mb-0.5">
                           <span className="text-muted-foreground">{c.ticker}</span>
                           <span className="font-medium" style={{ color }}>{c.waterUsage}</span>
@@ -1027,7 +1027,7 @@ export default function EsgPage() {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {COMPANIES.map((c) => (
-                    <div key={c.ticker} className="text-xs">
+                    <div key={c.ticker} className="text-xs text-muted-foreground">
                       <div className="flex justify-between mb-0.5">
                         <span className="text-muted-foreground">{c.ticker}</span>
                         <span className={`font-medium ${c.boardDiversity >= 50 ? "text-emerald-400" : c.boardDiversity >= 35 ? "text-yellow-400" : "text-red-400"}`}>
@@ -1050,7 +1050,7 @@ export default function EsgPage() {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {COMPANIES.map((c) => (
-                    <div key={c.ticker} className="text-xs">
+                    <div key={c.ticker} className="text-xs text-muted-foreground">
                       <div className="flex justify-between mb-0.5">
                         <span className="text-muted-foreground">{c.ticker}</span>
                         <span className={`font-medium ${c.employeeSat >= 80 ? "text-emerald-400" : c.employeeSat >= 65 ? "text-yellow-400" : "text-red-400"}`}>
@@ -1098,7 +1098,7 @@ export default function EsgPage() {
                             {c.renewableEnergy}%
                           </text>
                         </svg>
-                        <span className="text-xs font-medium">{c.ticker}</span>
+                        <span className="text-xs text-muted-foreground font-medium">{c.ticker}</span>
                         <span className="text-xs text-muted-foreground">{c.sector}</span>
                       </div>
                     );
@@ -1161,7 +1161,7 @@ export default function EsgPage() {
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Screening Summary</CardTitle>
                   </CardHeader>
-                  <CardContent className="text-xs space-y-1.5">
+                  <CardContent className="text-xs text-muted-foreground space-y-1.5">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Universe</span>
                       <span className="font-medium">{COMPANIES.length} companies</span>
@@ -1193,7 +1193,7 @@ export default function EsgPage() {
                     <CardTitle className="text-sm">Screened Universe ({screened.length} holdings)</CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="px-3 py-2 text-left text-muted-foreground font-medium">Company</th>
@@ -1215,7 +1215,7 @@ export default function EsgPage() {
                             </td>
                             <td className="px-2 py-2 text-right font-medium">{c.total}</td>
                             <td className="px-2 py-2 text-center">
-                              <span className={`px-1.5 py-0.5 rounded border text-xs font-medium ${controversyBadge(c.controversyLevel)}`}>
+                              <span className={`px-1.5 py-0.5 rounded border text-xs text-muted-foreground font-medium ${controversyBadge(c.controversyLevel)}`}>
                                 {c.controversyLevel}
                               </span>
                             </td>
@@ -1236,7 +1236,7 @@ export default function EsgPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="px-3 py-2 text-left text-muted-foreground font-medium">ETF</th>
@@ -1253,7 +1253,7 @@ export default function EsgPage() {
                             <td className="px-3 py-2">
                               <div className="font-medium">{e.ticker}</div>
                               <div className="text-muted-foreground truncate max-w-[130px]">{e.name}</div>
-                              <Badge variant="outline" className="text-xs mt-0.5 px-1 py-0">{e.theme}</Badge>
+                              <Badge variant="outline" className="text-xs text-muted-foreground mt-0.5 px-1 py-0">{e.theme}</Badge>
                             </td>
                             <td className="px-2 py-2 text-right font-medium">{e.aum.toFixed(1)}</td>
                             <td className={`px-2 py-2 text-right font-medium ${e.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}>
@@ -1283,7 +1283,7 @@ export default function EsgPage() {
                       Engagement vs Exclusion Strategy
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                  <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-muted-foreground">
                     <div>
                       <div className="font-medium text-emerald-400 mb-1.5 flex items-center gap-1">
                         <CheckCircle className="w-3.5 h-3.5" /> Active Engagement

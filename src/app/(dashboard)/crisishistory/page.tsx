@@ -649,7 +649,7 @@ export default function CrisisHistoryPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
@@ -730,7 +730,7 @@ export default function CrisisHistoryPage() {
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-medium text-muted-foreground">{c.year}</span>
-                  <Badge className={`text-xs px-1.5 py-0 border ${severityColor(c.severity)}`}>
+                  <Badge className={`text-xs text-muted-foreground px-1.5 py-0 border ${severityColor(c.severity)}`}>
                     {c.severity}
                   </Badge>
                 </div>
@@ -949,7 +949,7 @@ export default function CrisisHistoryPage() {
                 examples: ["Lehman 2008", "LTCM 1998", "SVB 2023", "March 2020"] },
             ].map((p) => (
               <div key={p.phase} className={`rounded-lg border p-3 ${p.color}`}>
-                <p className={`text-xs font-medium mb-2 ${p.tc}`}>{p.phase}</p>
+                <p className={`text-xs text-muted-foreground font-medium mb-2 ${p.tc}`}>{p.phase}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-2">{p.desc}</p>
                 <div className="space-y-1">
                   {p.examples.map((ex, i) => (
@@ -1004,7 +1004,7 @@ export default function CrisisHistoryPage() {
                   ]},
                 ].map((cat) => (
                   <div key={cat.category}>
-                    <p className={`text-xs font-medium mb-2 ${cat.color}`}>{cat.category}</p>
+                    <p className={`text-xs text-muted-foreground font-medium mb-2 ${cat.color}`}>{cat.category}</p>
                     <ul className="space-y-1">
                       {cat.items.map((item, i) => (
                         <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
@@ -1171,7 +1171,7 @@ export default function CrisisHistoryPage() {
                     ]},
                   ].map((era) => (
                     <div key={era.era} className="bg-muted rounded-lg p-3">
-                      <p className={`text-xs font-medium mb-2 ${era.color}`}>{era.era}</p>
+                      <p className={`text-xs text-muted-foreground font-medium mb-2 ${era.color}`}>{era.era}</p>
                       <ul className="space-y-1">
                         {era.tools.map((t, i) => (
                           <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
@@ -1200,7 +1200,7 @@ export default function CrisisHistoryPage() {
                     <div key={row.crisis} className="bg-muted rounded-lg p-3">
                       <div className="flex items-center justify-between mb-1">
                         <p className="text-xs font-medium text-muted-foreground">{row.crisis}</p>
-                        <Badge className={`text-xs px-1.5 py-0 border border-border bg-muted/50 ${row.color}`}>{row.outcome}</Badge>
+                        <Badge className={`text-xs text-muted-foreground px-1.5 py-0 border border-border bg-muted/50 ${row.color}`}>{row.outcome}</Badge>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed">{row.response}</p>
                     </div>

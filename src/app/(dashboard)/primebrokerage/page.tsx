@@ -609,7 +609,7 @@ function FeePieChart({ fees }: { fees: FeeBreakdown[] }) {
   }
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-6">
+    <div className="flex flex-col md:flex-row items-center gap-3">
       <svg viewBox="0 0 200 200" className="w-40 h-40 shrink-0" aria-label="Fee breakdown pie chart">
         {slices.map((sl, i) => (
           <path key={i} d={sl.d} fill={sl.color} opacity={0.85} stroke="#0f172a" strokeWidth={1.5} />
@@ -668,7 +668,7 @@ export default function PrimeBrokeragePage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
@@ -737,7 +737,7 @@ export default function PrimeBrokeragePage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* Lendable Inventory Table */}
                   <Card className="bg-card border-border border-l-4 border-l-primary">
-                    <CardHeader className="pb-2 p-6">
+                    <CardHeader className="pb-2 p-4">
                       <CardTitle className="text-lg font-semibold text-foreground flex items-center gap-2">
                         <BarChart3 className="w-4 h-4 text-indigo-400" />
                         Lendable Inventory
@@ -745,7 +745,7 @@ export default function PrimeBrokeragePage() {
                     </CardHeader>
                     <CardContent className="p-0">
                       <div className="overflow-x-auto">
-                        <table className="w-full text-xs">
+                        <table className="w-full text-xs text-muted-foreground">
                           <thead>
                             <tr className="border-b border-border bg-muted/50">
                               <th className="text-left px-3 py-2 text-muted-foreground font-medium">Ticker</th>
@@ -766,7 +766,7 @@ export default function PrimeBrokeragePage() {
                                 <td className="px-3 py-2 text-muted-foreground hidden md:table-cell truncate max-w-[100px]">{sec.sector}</td>
                                 <td className="px-3 py-2 text-right font-mono text-amber-300">{sec.borrowRate.toLocaleString()}</td>
                                 <td className="px-3 py-2 text-center">
-                                  <span className={cn("px-1.5 py-0.5 rounded text-xs font-semibold", availabilityBg(sec.availability))}>
+                                  <span className={cn("px-1.5 py-0.5 rounded text-xs text-muted-foreground font-semibold", availabilityBg(sec.availability))}>
                                     {sec.availability}
                                   </span>
                                 </td>
@@ -899,7 +899,7 @@ export default function PrimeBrokeragePage() {
                           <span>10x (Max)</span>
                         </div>
                       </div>
-                      <div className="space-y-2.5 text-xs">
+                      <div className="space-y-2.5 text-xs text-muted-foreground">
                         {[
                           { label: "Portfolio Value (Equity)", value: `$${(portfolioValue / 1e6).toFixed(1)}M`, color: "text-foreground" },
                           { label: "Leveraged Exposure", value: `$${(leveragedValue / 1e6).toFixed(1)}M`, color: "text-indigo-300" },
@@ -1018,7 +1018,7 @@ export default function PrimeBrokeragePage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <CollateralChainSVG />
-                    <div className="grid md:grid-cols-3 gap-3 text-xs">
+                    <div className="grid md:grid-cols-3 gap-3 text-xs text-muted-foreground">
                       {[
                         { step: "1", title: "Client Posts Collateral", desc: "Hedge fund pledges securities or cash to PB as margin collateral for leveraged positions.", color: "border-indigo-500/40 bg-indigo-500/5" },
                         { step: "2", title: "PB Rehypothecates (140% Rule)", desc: "PB may re-use up to 140% of client debit balance. Provides PB with liquidity for own financing.", color: "border-cyan-500/40 bg-cyan-500/5" },
@@ -1047,7 +1047,7 @@ export default function PrimeBrokeragePage() {
                     </CardHeader>
                     <CardContent className="p-0">
                       <div className="overflow-x-auto">
-                        <table className="w-full text-xs">
+                        <table className="w-full text-xs text-muted-foreground">
                           <thead>
                             <tr className="border-b border-border bg-muted/50">
                               <th className="text-left px-3 py-2 text-muted-foreground font-medium">Asset Class</th>
@@ -1170,7 +1170,7 @@ export default function PrimeBrokeragePage() {
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="overflow-x-auto">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-xs text-muted-foreground">
                         <thead>
                           <tr className="border-b border-border bg-muted/50">
                             <th className="text-left px-4 py-2.5 text-muted-foreground font-medium w-1/3">Feature</th>

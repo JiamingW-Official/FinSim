@@ -119,7 +119,7 @@ function InfoBox({
     purple: "bg-primary/10 border-border text-primary",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -141,7 +141,7 @@ function CompareRow({
       <td className="py-2.5 px-3 text-xs text-muted-foreground">{label}</td>
       <td
         className={cn(
-          "py-2.5 px-3 text-xs text-center",
+          "py-2.5 px-3 text-xs text-muted-foreground text-center",
           better === 1 ? "text-emerald-400 font-semibold" : "text-muted-foreground"
         )}
       >
@@ -149,7 +149,7 @@ function CompareRow({
       </td>
       <td
         className={cn(
-          "py-2.5 px-3 text-xs text-center",
+          "py-2.5 px-3 text-xs text-muted-foreground text-center",
           better === 2 ? "text-emerald-400 font-semibold" : "text-muted-foreground"
         )}
       >
@@ -442,7 +442,7 @@ function LiquidityTab() {
                 { label: "Managed Pool", desc: "Owner adjusts weights + fees dynamically." },
                 { label: "Boosted Pool", desc: "Idle capital earns yield in Aave while in pool." },
               ].map((row) => (
-                <div key={row.label} className="flex gap-2 text-xs">
+                <div key={row.label} className="flex gap-2 text-xs text-muted-foreground">
                   <span className="text-emerald-400 font-medium w-28 shrink-0">{row.label}</span>
                   <span className="text-muted-foreground">{row.desc}</span>
                 </div>
@@ -729,7 +729,7 @@ function RWATab() {
                   <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.focus}</td>
                   <td className="py-2.5 px-3 text-xs text-center text-emerald-400">{p.tvl}</td>
                   <td className="py-2.5 px-3 text-center">
-                    <Badge className={cn("text-xs",
+                    <Badge className={cn("text-xs text-muted-foreground",
                       p.collateral === "Full" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
                       p.collateral === "Over" ? "bg-primary/20 text-primary border-border" :
                       "bg-amber-500/20 text-amber-300 border-amber-500/30"
@@ -1037,7 +1037,7 @@ function IntentTab() {
                 { label: "Paymaster", desc: "Third party that pays gas on behalf of user — enabling sponsored/gasless UX or gas payment in ERC-20 tokens." },
                 { label: "Smart Wallet", desc: "User's on-chain account: programmable, upgradeable, supports multi-sig and session keys." },
               ].map((row) => (
-                <div key={row.label} className="flex gap-2 text-xs">
+                <div key={row.label} className="flex gap-2 text-xs text-muted-foreground">
                   <span className="text-amber-400 font-medium w-28 shrink-0 mt-0.5">{row.label}</span>
                   <span className="text-muted-foreground">{row.desc}</span>
                 </div>
@@ -1084,7 +1084,7 @@ function IntentTab() {
               <div key={b.type} className="rounded-lg border border-border bg-foreground/5 p-2.5">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-medium text-foreground">{b.type}</span>
-                  <Badge className={cn("text-xs",
+                  <Badge className={cn("text-xs text-muted-foreground",
                     b.risk === "Very Low" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
                     b.risk === "Low" ? "bg-primary/20 text-primary border-border" :
                     b.risk === "Medium" ? "bg-amber-500/20 text-amber-300 border-amber-500/30" :
@@ -1357,7 +1357,7 @@ function RestakingTab() {
                   <td className="py-2.5 px-3 text-xs text-center text-primary">{l.baseYield}</td>
                   <td className="py-2.5 px-3 text-xs text-center text-indigo-300">{l.avsYield}</td>
                   <td className="py-2.5 px-3 text-center">
-                    <Badge className={cn("text-xs",
+                    <Badge className={cn("text-xs text-muted-foreground",
                       l.slashRisk === "Low" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
                       l.slashRisk === "Medium" ? "bg-amber-500/20 text-amber-300 border-amber-500/30" :
                       "bg-rose-500/20 text-rose-300 border-rose-500/30"
@@ -1388,7 +1388,7 @@ function RestakingTab() {
                   <span className="text-xs font-medium text-foreground">{barrier.title}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Badge className={cn("text-xs",
+                  <Badge className={cn("text-xs text-muted-foreground",
                     barrier.severity === "High" ? "bg-rose-500/20 text-rose-300 border-rose-500/30" : "bg-amber-500/20 text-amber-300 border-amber-500/30"
                   )}>
                     {barrier.severity}
@@ -1448,7 +1448,7 @@ function RestakingTab() {
               <div key={pool.name} className="rounded-lg border border-border bg-foreground/5 p-2.5">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-medium text-foreground">{pool.name}</span>
-                  <Badge className={cn("text-xs",
+                  <Badge className={cn("text-xs text-muted-foreground",
                     pool.status === "Active" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
                     pool.status === "Paused" ? "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30" :
                     "bg-primary/20 text-primary border-border"
@@ -1524,7 +1524,7 @@ void NOISE;
 
 export default function DeFi2Page() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

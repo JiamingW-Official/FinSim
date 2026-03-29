@@ -569,7 +569,7 @@ function FXExposureMonitor() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           {e.hedged ? (
-                            <Badge variant="secondary" className="text-xs">{e.hedgeRatio}%</Badge>
+                            <Badge variant="secondary" className="text-xs text-muted-foreground">{e.hedgeRatio}%</Badge>
                           ) : (
                             <span className="text-muted-foreground text-xs">—</span>
                           )}
@@ -582,7 +582,7 @@ function FXExposureMonitor() {
                         <td className="py-3 px-4 text-right font-mono text-red-400">
                           -${Math.round(e.hedged ? (e.onePercentImpact * (100 - e.hedgeRatio)) / 100 : e.onePercentImpact).toLocaleString()}
                         </td>
-                        <td className="py-3 px-4 text-right font-mono text-xs">
+                        <td className="py-3 px-4 text-right font-mono text-xs text-muted-foreground">
                           {e.hedged ? (
                             <span className={hcost < 0 ? "text-emerald-400" : "text-red-400"}>
                               {hcost < 0 ? "+" : ""}${Math.abs(Math.round(hcost)).toLocaleString()}
@@ -709,7 +709,7 @@ function HedgingStrategyBuilder() {
                     variant={hedgeType === t ? "default" : "outline"}
                     size="sm"
                     onClick={() => setHedgeType(t)}
-                    className="capitalize text-xs"
+                    className="capitalize text-xs text-muted-foreground"
                   >
                     {t === "overlay" ? "Overlay Program" : t.charAt(0).toUpperCase() + t.slice(1) + " Hedge"}
                   </Button>
@@ -728,7 +728,7 @@ function HedgingStrategyBuilder() {
                     variant={instrument === i ? "default" : "outline"}
                     size="sm"
                     onClick={() => setInstrument(i)}
-                    className="capitalize text-xs"
+                    className="capitalize text-xs text-muted-foreground"
                   >
                     {i === "forwards" ? "Forwards" : i === "options" ? "Options" : "CCS"}
                   </Button>
@@ -849,7 +849,7 @@ function HedgingStrategyBuilder() {
                           style={{ width: `${Math.min(Math.abs(be) / 5 * 100, 100)}%` }}
                         />
                       </div>
-                      <span className="text-xs font-mono w-16 text-right">
+                      <span className="text-xs text-muted-foreground font-mono w-16 text-right">
                         {Math.abs(be).toFixed(2)}% FX
                       </span>
                     </div>
@@ -929,7 +929,7 @@ function CarryTradeAnalyzer() {
             <CardTitle className="text-sm font-medium">Carry Rankings — 8 Pairs by Yield Differential</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left py-2 px-3">Pair</th>
@@ -962,7 +962,7 @@ function CarryTradeAnalyzer() {
                       {p.rollingSharpe.toFixed(2)}
                     </td>
                     <td className="py-2 px-3 text-center">
-                      <span className={cn("px-1.5 py-0.5 rounded text-xs uppercase", riskBg[p.carryRisk], riskColors[p.carryRisk])}>
+                      <span className={cn("px-1.5 py-0.5 rounded text-xs text-muted-foreground uppercase", riskBg[p.carryRisk], riskColors[p.carryRisk])}>
                         {p.carryRisk === "crash" ? "⚠ CRASH" : p.carryRisk}
                       </span>
                     </td>
@@ -981,7 +981,7 @@ function CarryTradeAnalyzer() {
             </CardHeader>
             <CardContent>
               <div className="mb-2">
-                <div className="flex gap-4 text-xs mb-2">
+                <div className="flex gap-4 text-xs text-muted-foreground mb-2">
                   <span className="flex items-center gap-1"><span className="inline-block w-3 h-1 bg-primary rounded" />Total Return</span>
                   <span className="flex items-center gap-1"><span className="inline-block w-3 h-1 bg-emerald-400 rounded" />Carry</span>
                   <span className="flex items-center gap-1"><span className="inline-block w-3 h-1 bg-primary rounded" />Spot</span>
@@ -1021,7 +1021,7 @@ function CarryTradeAnalyzer() {
                     <span>3M rolling Sharpe {selected.rollingSharpe.toFixed(2)} — carry crash risk elevated. Reduce position by 50-75%.</span>
                   </div>
                 )}
-                <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                   <div className="p-2 rounded bg-secondary/50">
                     <p className="text-muted-foreground">Recommended Stop-Loss</p>
                     <p className="font-medium text-foreground">1.5% — 2.0% of notional</p>
@@ -1107,7 +1107,7 @@ function FXValuationModels() {
           </CardHeader>
           <CardContent className="p-0">
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border text-muted-foreground">
                     <th className="text-left py-2 px-3">Country</th>
@@ -1147,7 +1147,7 @@ function FXValuationModels() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-3 flex-row items-center justify-between">
             <CardTitle className="text-sm font-medium">REER 10-Year Z-Score + Mean Reversion Signals</CardTitle>
-            <Button variant="outline" size="sm" className="text-xs h-7" onClick={() => setShowMeanRev(!showMeanRev)}>
+            <Button variant="outline" size="sm" className="text-xs text-muted-foreground h-7" onClick={() => setShowMeanRev(!showMeanRev)}>
               {showMeanRev ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
               Signals
             </Button>
@@ -1155,7 +1155,7 @@ function FXValuationModels() {
           <CardContent className="space-y-2">
             {reerData.map((r) => (
               <div key={r.currency} className="flex items-center gap-3">
-                <span className="text-xs font-medium w-8">{r.currency}</span>
+                <span className="text-xs text-muted-foreground font-medium w-8">{r.currency}</span>
                 <div className="flex-1 relative h-5">
                   <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-secondary rounded-full" />
                   <div
@@ -1171,7 +1171,7 @@ function FXValuationModels() {
                   <span className={cn("text-xs font-mono", r.zScore > 0 ? "text-red-400" : "text-emerald-400")}>
                     z={r.zScore > 0 ? "+" : ""}{r.zScore.toFixed(2)}
                   </span>
-                  <span className={cn("text-xs px-1.5 rounded", signalBg[r.signal], signalColors[r.signal])}>
+                  <span className={cn("text-xs text-muted-foreground px-1.5 rounded", signalBg[r.signal], signalColors[r.signal])}>
                     {signalLabel[r.signal]}
                   </span>
                 </div>
@@ -1193,7 +1193,7 @@ function FXValuationModels() {
                   <div className="pt-3 border-t border-border mt-3 space-y-2">
                     <p className="text-xs text-muted-foreground font-medium">Mean Reversion Trade Ideas:</p>
                     {reerData.filter((r) => Math.abs(r.zScore) > 1.5).map((r) => (
-                      <div key={r.currency} className={cn("p-2 rounded text-xs", signalBg[r.signal])}>
+                      <div key={r.currency} className={cn("p-2 rounded text-xs text-muted-foreground", signalBg[r.signal])}>
                         <span className={cn("font-medium", signalColors[r.signal])}>{r.currency}</span>
                         <span className="text-muted-foreground ml-2">
                           z={r.zScore.toFixed(2)} — {r.zScore > 1.5 ? `Short ${r.currency}/USD — REER ${((r.currentREER / r.tenYrAvg - 1) * 100).toFixed(1)}% above LTA. Target z=0 implies ${((r.tenYrAvg / r.currentREER - 1) * 100).toFixed(1)}% depreciation.` : `Long ${r.currency}/USD — REER ${((1 - r.currentREER / r.tenYrAvg) * 100).toFixed(1)}% below LTA. Target z=0 implies ${((r.tenYrAvg / r.currentREER - 1) * 100).toFixed(1)}% appreciation.`}
@@ -1213,7 +1213,7 @@ function FXValuationModels() {
             <CardTitle className="text-sm font-medium">Interest Rate Parity — Forward Rate Calculator</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <div className="grid grid-cols-2 gap-3 text-xs">
+            <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
               <div>
                 <p className="text-muted-foreground mb-1">Spot Rate (EUR/USD)</p>
                 <Slider value={[spotRate]} min={0.9} max={1.25} step={0.001} onValueChange={([v]) => setSpotRate(v)} />
@@ -1254,7 +1254,7 @@ function FXValuationModels() {
             <BubbleScatter points={caBalanceData} width={320} height={200} />
             <div className="grid grid-cols-4 gap-1 mt-2">
               {caBalanceData.map((p) => (
-                <div key={p.label} className="flex items-center gap-1 text-xs">
+                <div key={p.label} className="flex items-center gap-1 text-xs text-muted-foreground">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
                   <span className="text-muted-foreground">{p.label}</span>
                 </div>
@@ -1327,7 +1327,7 @@ function OptionsFXHedging() {
                 <p className="text-xs text-muted-foreground mb-1">OTM Strike Offset (±{strikeOffset}% from spot {spot})</p>
                 <Slider value={[strikeOffset]} min={1} max={6} step={0.5} onValueChange={([v]) => setStrikeOffset(v)} />
               </div>
-              <div className="grid grid-cols-3 gap-3 text-xs">
+              <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
                 <StatChip label="Put Strike" value={putStrike.toFixed(4)} />
                 <StatChip label="Call Strike" value={callStrike.toFixed(4)} />
                 <StatChip label="KI Barrier" value={barrierKI.toFixed(4)} color="amber" />
@@ -1424,7 +1424,7 @@ function OptionsFXHedging() {
             <CardTitle className="text-sm font-medium">Instrument Cost Comparison</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left py-2 px-4">Instrument</th>
@@ -1506,7 +1506,7 @@ function CrossCurrencySwapAnalytics() {
             <CardTitle className="text-sm font-medium">Cross-Currency Basis Spread (bps)</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left py-2 px-3">Pair</th>
@@ -1554,7 +1554,7 @@ function CrossCurrencySwapAnalytics() {
               <CardTitle className="text-sm font-medium">Historical CIP Deviations (48M)</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="mb-2 flex gap-4 text-xs">
+              <div className="mb-2 flex gap-4 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <span className="inline-block w-3 h-1 bg-primary rounded" />EUR/USD basis
                 </span>
@@ -1627,7 +1627,7 @@ function CrossCurrencySwapAnalytics() {
               <div className="space-y-2">
                 <p className="text-xs font-medium text-foreground mb-2">CIP Violation Math</p>
                 {cipData.map((row) => (
-                  <div key={row.pair} className="p-2 rounded bg-secondary/50 text-xs">
+                  <div key={row.pair} className="p-2 rounded bg-secondary/50 text-xs text-muted-foreground">
                     <div className="flex justify-between mb-1">
                       <span className="font-medium">{row.pair}</span>
                       <span className={cn(row.fundingStress ? "text-red-400" : "text-muted-foreground")}>
@@ -1654,7 +1654,7 @@ function CrossCurrencySwapAnalytics() {
                   { term: "Hedged Return", def: "Non-US investors buying USD assets earn: yield + basis. Basis being negative reduces hedged return for foreigners buying Treasuries." },
                   { term: "Arbitrage Limits", def: "CIP violations persist because arbitrageurs face balance sheet constraints, counterparty risk, and regulatory costs that prevent full arbitrage." },
                 ].map((item, i) => (
-                  <div key={i} className="p-2 rounded bg-secondary/30 text-xs">
+                  <div key={i} className="p-2 rounded bg-secondary/30 text-xs text-muted-foreground">
                     <p className="font-medium text-foreground">{item.term}</p>
                     <p className="text-muted-foreground mt-0.5">{item.def}</p>
                   </div>
@@ -1698,14 +1698,14 @@ export default function CurrencyOverlayPage() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="text-xs">
+              <Badge variant="secondary" className="text-xs text-muted-foreground">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block mr-1.5" />
                 Live Rates
               </Badge>
               <Button
                 variant="outline"
                 size="sm"
-                className="text-xs"
+                className="text-xs text-muted-foreground"
                 onClick={() => toast.info("Rates refreshed", { description: "FX data updated to latest market close." })}
               >
                 <RefreshCw className="h-3.5 w-3.5 mr-1.5" />

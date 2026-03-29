@@ -91,7 +91,7 @@ function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
   return (
     <span
       className={cn(
-        "inline-block rounded-full px-2 py-0.5 text-xs font-medium",
+        "inline-block rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium",
         cls[color] ?? cls.zinc
       )}
     >
@@ -249,7 +249,7 @@ function DirectLendingTab() {
       <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="BDC vs. Private Credit Fund Structure" sub="Key structural differences for investors" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium w-32">Feature</th>
@@ -274,7 +274,7 @@ function DirectLendingTab() {
       <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Unitranche vs. First Lien / Second Lien Split" sub="Structural trade-offs in deal architecture" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium w-32">Attribute</th>
@@ -389,7 +389,7 @@ function MezzanineTab() {
       {/* Capital structure */}
       <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Mezzanine Position in Capital Structure" sub="Click a layer to see details" />
-        <div className="flex gap-6 flex-col md:flex-row">
+        <div className="flex gap-3 flex-col md:flex-row">
           <div className="flex-1">
             <svg viewBox={`0 0 260 ${svgH}`} className="w-full" style={{ maxHeight: 260 }}>
               {layerRects.map((layer) => {
@@ -594,7 +594,7 @@ function DistressedTab() {
       {/* Fulcrum security */}
       <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Fulcrum Security Identification" sub="The tranche that converts to equity in the plan of reorganization" />
-        <div className="flex gap-6 flex-col md:flex-row items-start">
+        <div className="flex gap-3 flex-col md:flex-row items-start">
           <svg viewBox="0 0 320 120" className="w-full md:w-72 shrink-0" style={{ maxHeight: 130 }}>
             <rect x={20} y={10} width={200} height={26} rx={4} fill="#3b82f6" fillOpacity={0.55} />
             <text x={24} y={27} fontSize={9} fill="#fff">Secured Debt $300M</text>
@@ -804,7 +804,7 @@ function MarketDynamicsTab() {
             <div key={a.type}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs text-muted-foreground">{a.type}</span>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Current: <span className="text-foreground">{a.current}%</span></span>
                   <span className="text-muted-foreground">→</span>
                   <span className="text-muted-foreground">Target: <span className="text-emerald-400">{a.target}%</span></span>

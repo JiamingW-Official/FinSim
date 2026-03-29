@@ -205,7 +205,7 @@ function PodStructureTab() {
   const avgSharpe = pods.reduce((a, b) => a + b.sharpe, 0) / pods.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Architecture SVG */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -290,14 +290,14 @@ function PodStructureTab() {
         <Card className="bg-card border-border">
           <CardContent className="pt-4 pb-3">
             <p className="text-xs text-muted-foreground">Annual Pod Cost</p>
-            <p className="text-2xl font-bold text-foreground">${totalCost}M</p>
+            <p className="text-lg font-medium text-foreground">${totalCost}M</p>
             <p className="text-xs text-muted-foreground">{((totalCost / totalAum) * 100).toFixed(2)}% of AUM</p>
           </CardContent>
         </Card>
         <Card className="bg-card border-border">
           <CardContent className="pt-4 pb-3">
             <p className="text-xs text-muted-foreground">Avg Pod Sharpe</p>
-            <p className="text-2xl font-bold text-foreground">{fmt(avgSharpe)}</p>
+            <p className="text-lg font-medium text-foreground">{fmt(avgSharpe)}</p>
             <p className="text-xs text-muted-foreground">Portfolio Sharpe ~1.8</p>
           </CardContent>
         </Card>
@@ -313,7 +313,7 @@ function PodStructureTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Pod</th>
@@ -355,14 +355,14 @@ function PodStructureTab() {
                       </td>
                       <td className="text-right px-2 text-muted-foreground">{pod.drawdownLimit}%</td>
                       <td className="text-right px-2">
-                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-xs border ${statusBg} ${statusColor}`}>
+                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-xs text-muted-foreground border ${statusBg} ${statusColor}`}>
                           {pod.status.toUpperCase()}
                         </span>
                       </td>
                       <td className="text-right px-2 text-muted-foreground">{pod.headcount}</td>
                       <td className="text-right px-2 text-muted-foreground">${pod.annualCost}M</td>
                       <td className="text-right px-2">
-                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-xs border ${seedColor}`}>
+                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-xs text-muted-foreground border ${seedColor}`}>
                           {pod.seeding}
                         </span>
                       </td>
@@ -408,7 +408,7 @@ function PodStructureTab() {
               const tc = t.color === "amber" ? "text-amber-400" : t.color === "orange" ? "text-orange-400" : "text-red-400";
               return (
                 <div key={t.trigger} className={`p-3 rounded-lg border ${bg}`}>
-                  <p className={`text-xs font-medium ${tc} mb-1`}>{t.trigger}</p>
+                  <p className={`text-xs text-muted-foreground font-medium ${tc} mb-1`}>{t.trigger}</p>
                   <p className="text-xs font-mono text-muted-foreground mb-1">{t.level}</p>
                   <p className="text-xs text-muted-foreground">{t.action}</p>
                 </div>
@@ -442,7 +442,7 @@ function StrategyAllocationTab() {
   const avgPodSharpe = allocs.reduce((a, b) => a + b.avgSharpe, 0) / allocs.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stacked allocation bar */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -507,12 +507,12 @@ function StrategyAllocationTab() {
             <div className="flex items-end gap-4">
               <div>
                 <p className="text-xs text-muted-foreground">Portfolio Sharpe</p>
-                <p className="text-2xl font-bold text-emerald-400">{fmt(portfolioSharpe)}</p>
+                <p className="text-lg font-medium text-emerald-400">{fmt(portfolioSharpe)}</p>
               </div>
               <div className="text-muted-foreground text-xl mb-1">vs</div>
               <div>
                 <p className="text-xs text-muted-foreground">Avg Pod Sharpe</p>
-                <p className="text-2xl font-bold text-muted-foreground">{fmt(avgPodSharpe)}</p>
+                <p className="text-lg font-medium text-muted-foreground">{fmt(avgPodSharpe)}</p>
               </div>
             </div>
             <p className="text-xs text-emerald-500 mt-2">+{fmt(portfolioSharpe - avgPodSharpe)} Sharpe lift from diversification</p>
@@ -589,7 +589,7 @@ function StrategyAllocationTab() {
               { rule: "Capacity Reached", action: "New investor capital directed to under-capacity strategies first" },
               { rule: "PM Departure", action: "Book wound down over 10 days; replacement PM onboarded within 60 days" },
             ].map((r) => (
-              <div key={r.rule} className="flex gap-2 text-xs">
+              <div key={r.rule} className="flex gap-2 text-xs text-muted-foreground">
                 <Badge variant="outline" className="shrink-0 text-indigo-300 border-indigo-800 bg-indigo-900/20 h-5 text-xs">{r.rule}</Badge>
                 <span className="text-muted-foreground">{r.action}</span>
               </div>
@@ -639,7 +639,7 @@ function RiskManagementTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Centralized risk desk SVG */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -751,7 +751,7 @@ function RiskManagementTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Scenario</th>
@@ -775,11 +775,11 @@ function RiskManagementTab() {
             </tbody>
           </table>
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="p-3 bg-muted/40 rounded-lg text-xs space-y-1">
+            <div className="p-3 bg-muted/40 rounded-lg text-xs text-muted-foreground space-y-1">
               <p className="font-medium text-muted-foreground">Leverage Limits</p>
               <p className="text-muted-foreground">Gross: typically 5–8x NAV across portfolio. Quant pods may run 10–15x intra-pod but offset across books. Portfolio net exposure target: 15–30% long bias.</p>
             </div>
-            <div className="p-3 bg-muted/40 rounded-lg text-xs space-y-1">
+            <div className="p-3 bg-muted/40 rounded-lg text-xs text-muted-foreground space-y-1">
               <p className="font-medium text-muted-foreground">Tail Risk Overlay</p>
               <p className="text-muted-foreground">Portfolio-level SPX puts (3–5% OTM, 3-month tenor). Tail risk cost ~40–80bps/year. Correlation swaps when cross-pod correlations spike above 0.5 threshold.</p>
             </div>
@@ -816,7 +816,7 @@ function EconomicsTab() {
       .join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* AUM bar chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -917,7 +917,7 @@ function EconomicsTab() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div className="p-3 bg-amber-900/20 border border-amber-800 rounded-lg">
               <p className="text-xs font-medium text-amber-400 mb-2">What Investors Pay</p>
-              <div className="space-y-1.5 text-xs">
+              <div className="space-y-1.5 text-xs text-muted-foreground">
                 <div className="flex justify-between text-muted-foreground">
                   <span>Management Fee</span><span className="font-mono">0%–1%</span>
                 </div>
@@ -960,11 +960,11 @@ function EconomicsTab() {
 
           {/* Capacity & talent war */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-3 bg-muted/40 rounded-lg border border-border text-xs">
+            <div className="p-3 bg-muted/40 rounded-lg border border-border text-xs text-muted-foreground">
               <p className="font-medium text-muted-foreground mb-2 flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5 text-indigo-400" /> Capacity Constraints at $50B+</p>
               <p className="text-muted-foreground leading-relaxed">When AUM exceeds ~$50B, alpha generation becomes harder. More capital chasing the same opportunities compresses spreads. Funds either: (1) return capital to investors, (2) expand into new strategies, or (3) grow headcount — with diminishing returns on each additional pod. Citadel ($63B) and Millennium ($68B) have reached this threshold, pushing into more exotic/niche strategies to maintain edge.</p>
             </div>
-            <div className="p-3 bg-muted/40 rounded-lg border border-border text-xs">
+            <div className="p-3 bg-muted/40 rounded-lg border border-border text-xs text-muted-foreground">
               <p className="font-medium text-muted-foreground mb-2 flex items-center gap-1.5"><Zap className="h-3.5 w-3.5 text-amber-400" /> Talent War &amp; Compensation Inflation</p>
               <p className="text-muted-foreground leading-relaxed">Top PMs earn $5–50M+/year via pass-through model. Multi-strats are in constant competition for talent — a proven PM with $2B+ AUM and 15%+ returns commands $10–30M guaranteed. Non-compete clauses (typically 1 year) drive bidding wars. Analyst salaries at multi-strats 2–3× investment banking peers. Compensation is the #1 expense, making the pass-through model essential for firm economics.</p>
             </div>
@@ -1028,7 +1028,7 @@ export default function MultiStrategyPage() {
                 emerald: "bg-emerald-900/30 text-emerald-300 border-emerald-800",
               };
               return (
-                <span key={chip.label} className={`text-xs px-2 py-0.5 rounded border ${colors[chip.color]}`}>
+                <span key={chip.label} className={`text-xs text-muted-foreground px-2 py-0.5 rounded border ${colors[chip.color]}`}>
                   {chip.label}
                 </span>
               );

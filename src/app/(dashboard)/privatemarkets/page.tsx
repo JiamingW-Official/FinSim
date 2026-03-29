@@ -675,7 +675,7 @@ function JCurveSVG() {
 function VintageHeatmap() {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs border-collapse">
+      <table className="w-full text-xs text-muted-foreground border-collapse">
         <thead>
           <tr>
             <th className="text-left text-muted-foreground py-1.5 pr-3 font-medium whitespace-nowrap">
@@ -876,7 +876,7 @@ function PEFundTable() {
   };
   return (
     <div className="overflow-x-auto rounded-md border border-border">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border bg-muted/30">
             {["Fund", "Type", "Vintage", "IRR", "TVPI", "DPI", "RVPI", "Size ($B)", "Status"].map(
@@ -913,7 +913,7 @@ function PEFundTable() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-xs",
+                    "text-xs text-muted-foreground",
                     f.status === "Harvesting"
                       ? "border-green-500/30 text-green-400"
                       : f.status === "Investing"
@@ -1052,7 +1052,7 @@ function VCStages() {
             {st.name}
           </div>
           <div className="flex-1 rounded-lg border border-border bg-muted/20 px-3 py-2">
-            <div className="flex items-center justify-between text-xs">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">
                 Check: ${st.checkMin}M – ${st.checkMax}M
               </span>
@@ -1116,7 +1116,7 @@ function VCEconomics() {
           <div className="text-sm font-medium text-foreground mt-1">${grossReturn}M</div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-3 text-xs">
+      <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
         <div className="rounded-lg bg-muted/20 p-3 space-y-1.5">
           <div className="font-medium text-muted-foreground uppercase tracking-wide text-xs mb-2">
             LP Waterfall
@@ -1413,7 +1413,7 @@ function InfraAssets() {
 
   return (
     <div className="overflow-x-auto rounded-md border border-border">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border bg-muted/30">
             {["Asset Class", "Examples", "Yield Range", "Inflation Link", "Typical Lockup", "Risk"].map(
@@ -1550,7 +1550,7 @@ function RiskReturnBubbleSVG() {
 function HFStrategyTable() {
   return (
     <div className="overflow-x-auto rounded-md border border-border">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border bg-muted/30">
             {["Strategy", "Ann. Return", "Volatility", "Sharpe", "Sortino", "Calmar", "Max DD", "AUM ($B)", "S&P Corr"].map(
@@ -1806,7 +1806,7 @@ function PortfolioOptimizer() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Slider */}
       <div className="rounded-md border border-border bg-card p-5">
         <div className="flex items-center justify-between mb-3">
@@ -1933,7 +1933,7 @@ function DDAccordion() {
         <button
           onClick={() => setShowRedFlags(false)}
           className={cn(
-            "text-xs px-3 py-1.5 rounded-lg border transition-colors",
+            "text-xs text-muted-foreground px-3 py-1.5 rounded-lg border transition-colors",
             !showRedFlags
               ? "bg-primary/10 border-primary/30 text-primary"
               : "border-border text-muted-foreground hover:text-foreground"
@@ -1944,7 +1944,7 @@ function DDAccordion() {
         <button
           onClick={() => setShowRedFlags(true)}
           className={cn(
-            "text-xs px-3 py-1.5 rounded-lg border transition-colors",
+            "text-xs text-muted-foreground px-3 py-1.5 rounded-lg border transition-colors",
             showRedFlags
               ? "bg-red-500/10 border-red-500/30 text-red-400"
               : "border-border text-muted-foreground hover:text-foreground"
@@ -2025,7 +2025,7 @@ function FundDocChecklist() {
         <Badge
           variant="outline"
           className={cn(
-            "text-xs",
+            "text-xs text-muted-foreground",
             receivedReq === required.length
               ? "border-green-500/30 text-green-400"
               : "border-amber-500/30 text-amber-400"
@@ -2040,7 +2040,7 @@ function FundDocChecklist() {
           Required Documents
         </div>
         {required.map((doc) => (
-          <div key={doc.name} className="flex items-center gap-2.5 text-xs">
+          <div key={doc.name} className="flex items-center gap-2.5 text-xs text-muted-foreground">
             {doc.received ? (
               <CheckCircle className="w-3.5 h-3.5 text-green-500 shrink-0" />
             ) : (
@@ -2059,7 +2059,7 @@ function FundDocChecklist() {
           Optional / Best Practice
         </div>
         {optional.map((doc) => (
-          <div key={doc.name} className="flex items-center gap-2.5 text-xs">
+          <div key={doc.name} className="flex items-center gap-2.5 text-xs text-muted-foreground">
             {doc.received ? (
               <CheckCircle className="w-3.5 h-3.5 text-green-500/70 shrink-0" />
             ) : (
@@ -2095,7 +2095,7 @@ function GPLPAlignment() {
               <span className="text-xs text-muted-foreground leading-tight">{m.label}</span>
               <span
                 className={cn(
-                  "text-xs font-medium shrink-0 ml-1",
+                  "text-xs text-muted-foreground font-medium shrink-0 ml-1",
                   m.good ? "text-green-400" : "text-amber-400"
                 )}
               >
@@ -2123,7 +2123,7 @@ export default function PrivateMarketsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-6">
+    <div className="min-h-screen bg-background p-4 md:p-4">
       {/* Page header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -2169,7 +2169,7 @@ export default function PrivateMarketsPage() {
         </TabsList>
 
         {/* ── Tab 1: Private Equity ── */}
-        <TabsContent value="pe" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="pe" className="data-[state=inactive]:hidden space-y-4">
           <SectionHeader
             icon={<DollarSign className="w-5 h-5" />}
             title="Private Equity"
@@ -2226,7 +2226,7 @@ export default function PrivateMarketsPage() {
             <p className="text-xs text-muted-foreground mb-4">
               Typical drawdown schedule for a 7-year PE fund. Early quarters are dominated by capital calls; later quarters shift to distributions.
             </p>
-            <div className="flex gap-4 mb-3 text-xs">
+            <div className="flex gap-4 mb-3 text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-sm inline-block bg-indigo-500/70" /> Capital Calls
               </span>
@@ -2239,7 +2239,7 @@ export default function PrivateMarketsPage() {
         </TabsContent>
 
         {/* ── Tab 2: Venture Capital ── */}
-        <TabsContent value="vc" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="vc" className="data-[state=inactive]:hidden space-y-4">
           <SectionHeader
             icon={<TrendingUp className="w-5 h-5" />}
             title="Venture Capital"
@@ -2273,7 +2273,7 @@ export default function PrivateMarketsPage() {
           <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-4">Top VC Sectors (2025 YTD)</h3>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     {["Sector", "# Deals", "Median Val ($B)", "YoY Deal Growth"].map((h) => (
@@ -2303,7 +2303,7 @@ export default function PrivateMarketsPage() {
         </TabsContent>
 
         {/* ── Tab 3: Real Assets ── */}
-        <TabsContent value="realassets" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="realassets" className="data-[state=inactive]:hidden space-y-4">
           <SectionHeader
             icon={<Building2 className="w-5 h-5" />}
             title="Real Assets"
@@ -2394,7 +2394,7 @@ export default function PrivateMarketsPage() {
         </TabsContent>
 
         {/* ── Tab 4: Hedge Funds ── */}
-        <TabsContent value="hedgefunds" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="hedgefunds" className="data-[state=inactive]:hidden space-y-4">
           <SectionHeader
             icon={<BarChart3 className="w-5 h-5" />}
             title="Hedge Fund Strategies"
@@ -2454,7 +2454,7 @@ export default function PrivateMarketsPage() {
                         />
                       </div>
                       <div
-                        className="text-xs font-medium w-12 text-right"
+                        className="text-xs text-muted-foreground font-medium w-12 text-right"
                         style={{ color }}
                       >
                         {st.corr.toFixed(2)}
@@ -2467,7 +2467,7 @@ export default function PrivateMarketsPage() {
         </TabsContent>
 
         {/* ── Tab 5: Optimizer ── */}
-        <TabsContent value="optimizer" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="optimizer" className="data-[state=inactive]:hidden space-y-4">
           <SectionHeader
             icon={<Target className="w-5 h-5" />}
             title="Portfolio Allocation Optimizer"
@@ -2477,7 +2477,7 @@ export default function PrivateMarketsPage() {
         </TabsContent>
 
         {/* ── Tab 6: Due Diligence ── */}
-        <TabsContent value="dd" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="dd" className="data-[state=inactive]:hidden space-y-4">
           <SectionHeader
             icon={<Shield className="w-5 h-5" />}
             title="Due Diligence Framework"
@@ -2490,7 +2490,7 @@ export default function PrivateMarketsPage() {
             <DDAccordion />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <FundDocChecklist />
             <GPLPAlignment />
           </div>

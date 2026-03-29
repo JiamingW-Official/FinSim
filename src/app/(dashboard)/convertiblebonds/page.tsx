@@ -430,7 +430,7 @@ export default function ConvertibleBondsPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
     >
       {/* HERO Header */}
       <div className="flex items-start justify-between flex-wrap gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
@@ -485,7 +485,7 @@ export default function ConvertibleBondsPage() {
               <p className="text-xs text-muted-foreground/60">Click a row to select for detailed analysis in other tabs</p>
             </CardHeader>
             <CardContent className="overflow-x-auto">
-              <table className="w-full text-xs min-w-[720px]">
+              <table className="w-full text-xs text-muted-foreground min-w-[720px]">
                 <thead>
                   <tr className="border-b border-border">
                     {["Issuer", "Maturity", "Coupon", "Conv. Price", "Stock Price", "Premium", "Delta", "Parity", "Inv. Value", "Type"].map((h) => (
@@ -521,7 +521,7 @@ export default function ConvertibleBondsPage() {
                         <td className="py-2.5 pr-3 font-mono text-foreground/70">{fmt2(d.parity)}</td>
                         <td className="py-2.5 pr-3 font-mono text-foreground/70">{fmt2(d.investmentValue)}</td>
                         <td className="py-2.5">
-                          <Badge className={cn("text-xs border", classBadge(d.classification))}>
+                          <Badge className={cn("text-xs text-muted-foreground border", classBadge(d.classification))}>
                             {d.classification}
                           </Badge>
                         </td>
@@ -726,7 +726,7 @@ export default function ConvertibleBondsPage() {
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <MandatoryPayoffSVG mc={mc} />
-                      <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                         <div>
                           <div className="text-muted-foreground/60">Coupon</div>
                           <div className="text-emerald-400 font-medium">{mc.coupon}%</div>
@@ -757,7 +757,7 @@ export default function ConvertibleBondsPage() {
               <CardTitle className="text-sm text-foreground/80">Structure Comparison</CardTitle>
             </CardHeader>
             <CardContent className="overflow-x-auto">
-              <table className="w-full text-xs min-w-[480px]">
+              <table className="w-full text-xs text-muted-foreground min-w-[480px]">
                 <thead>
                   <tr className="border-b border-border">
                     {["Feature", "PRCS", "DECS", "ACES"].map((h) => (
@@ -815,7 +815,7 @@ export default function ConvertibleBondsPage() {
                   Arb Strategy — {selectedCb.ticker}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs">
+              <CardContent className="space-y-3 text-xs text-muted-foreground">
                 <div className="rounded-lg bg-amber-500/5 border border-amber-500/20 p-3 space-y-2">
                   <div className="font-medium text-amber-400 mb-1">Leg Structure</div>
                   <div className="flex justify-between">
@@ -857,7 +857,7 @@ export default function ConvertibleBondsPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       {["Stock Δ", "CB P&L", "Hedge P&L", "Net P&L"].map((h) => (
@@ -903,7 +903,7 @@ export default function ConvertibleBondsPage() {
               </button>
             </CardHeader>
             {expandedArb && (
-              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs pt-2">
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground pt-2">
                 {[
                   { title: "Credit Risk", color: "text-rose-400", desc: "If issuer credit deteriorates, investment floor drops and the hedge becomes insufficient. Credit spread widening hurts even delta-neutral books." },
                   { title: "Liquidity Risk", color: "text-amber-400", desc: "CBs trade OTC with wide bid-ask spreads. Forced liquidations during market stress can be costly. Position sizing must account for liquidity." },
@@ -973,7 +973,7 @@ export default function ConvertibleBondsPage() {
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground/80">Key CB Terms Glossary</CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs text-muted-foreground">
               {[
                 { term: "Conversion Price", def: "The pre-set stock price at which the bond converts to shares. Set at a premium to stock price at issuance (typically 20-40%)." },
                 { term: "Conversion Ratio", def: "Par value divided by conversion price. Number of shares received per bond. E.g. $1000 / $50 = 20 shares." },

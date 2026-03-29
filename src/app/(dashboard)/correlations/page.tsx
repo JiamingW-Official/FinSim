@@ -521,7 +521,7 @@ function CorrelationMatrixTab() {
       initial={{ opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="space-y-6"
+      className="space-y-4"
     >
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         {/* Stats cards */}
@@ -534,7 +534,7 @@ function CorrelationMatrixTab() {
             <CardContent className="pt-4 pb-4">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <span className={s.color}>{s.icon}</span>
-                <span className="text-xs">{s.label}</span>
+                <span className="text-xs text-muted-foreground">{s.label}</span>
               </div>
               <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{s.sub}</p>
@@ -953,7 +953,7 @@ function CrisisCorrelationsTab() {
             style={selectedCrisis === e.id ? { background: e.color, borderColor: e.color } : {}}
           >
             {e.label}
-            <span className="ml-2 text-xs opacity-70">{e.period}</span>
+            <span className="ml-2 text-xs text-muted-foreground opacity-70">{e.period}</span>
           </button>
         ))}
       </div>
@@ -1009,7 +1009,7 @@ function CrisisCorrelationsTab() {
                           </td>
                           <td className="py-2.5 text-right">
                             <span
-                              className="font-mono text-xs px-1.5 py-0.5 rounded"
+                              className="font-mono text-xs text-muted-foreground px-1.5 py-0.5 rounded"
                               style={{ background: corrColor(normal), color: corrTextColor(normal) }}
                             >
                               {normal.toFixed(2)}
@@ -1017,7 +1017,7 @@ function CrisisCorrelationsTab() {
                           </td>
                           <td className="py-2.5 text-right">
                             <span
-                              className="font-mono text-xs px-1.5 py-0.5 rounded"
+                              className="font-mono text-xs text-muted-foreground px-1.5 py-0.5 rounded"
                               style={{ background: corrColor(crisis), color: corrTextColor(crisis) }}
                             >
                               {crisis.toFixed(2)}
@@ -1030,7 +1030,7 @@ function CrisisCorrelationsTab() {
                           </td>
                           <td className="py-2.5 text-right pr-1">
                             <Badge
-                              className="text-xs"
+                              className="text-xs text-muted-foreground"
                               style={{
                                 background: delta > 0.15 ? "#7f1d1d" : delta < -0.1 ? "#14532d" : "#1e293b",
                                 color: delta > 0.15 ? "#fca5a5" : delta < -0.1 ? "#86efac" : "#94a3b8",
@@ -1245,7 +1245,7 @@ function DiversificationScoreTab() {
               return { d, color: colors[i % colors.length], pct, lx, ly, label: a.asset, contribution: a.contribution };
             });
             return (
-              <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="flex flex-col md:flex-row items-center gap-3">
                 <svg width={200} height={200} className="flex-shrink-0">
                   {segments.map((seg, i) => (
                     <path key={i} d={seg.d} fill={seg.color} opacity={0.85} stroke="#0f172a" strokeWidth={1} />
@@ -1370,7 +1370,7 @@ function OptimalPairsTab() {
                       </div>
                       <div className="flex items-center gap-3 flex-shrink-0">
                         <span
-                          className="text-xs font-mono px-2 py-0.5 rounded"
+                          className="text-xs text-muted-foreground font-mono px-2 py-0.5 rounded"
                           style={{
                             background: corrColor(pair.correlation),
                             color: corrTextColor(pair.correlation),
@@ -1378,7 +1378,7 @@ function OptimalPairsTab() {
                         >
                           ρ = {pair.correlation > 0 ? "+" : ""}{pair.correlation.toFixed(2)}
                         </span>
-                        <Badge className={`text-xs ${freeLunchColor(pair.freeLunch)}`}>
+                        <Badge className={`text-xs text-muted-foreground ${freeLunchColor(pair.freeLunch)}`}>
                           {pair.freeLunch} benefit
                         </Badge>
                         <span className="text-xs text-green-400 font-medium">
@@ -1504,7 +1504,7 @@ function OptimalPairsTab() {
 
 export default function CorrelationsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* HERO header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}

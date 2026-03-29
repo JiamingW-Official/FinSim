@@ -515,7 +515,7 @@ function MonthlyHeatmap({ data }: { data: number[][] }) {
                     <td key={mi} className="text-center py-0.5">
                       <div
                         className={cn(
-                          "rounded px-1 py-0.5 text-xs font-mono",
+                          "rounded px-1 py-0.5 text-xs text-muted-foreground font-mono",
                           isPos ? "text-emerald-300" : "text-red-300"
                         )}
                         style={{
@@ -978,25 +978,25 @@ export default function AlgoBuilderPage() {
           </div>
           <div className="flex items-center gap-2">
             {selectedSignals.length > 0 && (
-              <Badge variant="secondary" className="text-xs">
+              <Badge variant="secondary" className="text-xs text-muted-foreground">
                 {selectedSignals.length} signal{selectedSignals.length !== 1 ? "s" : ""} selected
               </Badge>
             )}
-            <Button variant="outline" size="sm" className="text-xs gap-1">
+            <Button variant="outline" size="sm" className="text-xs text-muted-foreground gap-1">
               <Download size={12} /> Export
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-4">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="mb-6 bg-muted/50">
-            <TabsTrigger value="signals" className="text-xs">Signal Library</TabsTrigger>
-            <TabsTrigger value="constructor" className="text-xs">Strategy Constructor</TabsTrigger>
-            <TabsTrigger value="backtest" className="text-xs">Backtest Engine</TabsTrigger>
-            <TabsTrigger value="risk" className="text-xs">Risk Analytics</TabsTrigger>
-            <TabsTrigger value="monitor" className="text-xs relative">
+            <TabsTrigger value="signals" className="text-xs text-muted-foreground">Signal Library</TabsTrigger>
+            <TabsTrigger value="constructor" className="text-xs text-muted-foreground">Strategy Constructor</TabsTrigger>
+            <TabsTrigger value="backtest" className="text-xs text-muted-foreground">Backtest Engine</TabsTrigger>
+            <TabsTrigger value="risk" className="text-xs text-muted-foreground">Risk Analytics</TabsTrigger>
+            <TabsTrigger value="monitor" className="text-xs text-muted-foreground relative">
               Live Monitor
               {newSignalCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[11px] rounded-full w-4 h-4 flex items-center justify-center font-bold">
@@ -1007,7 +1007,7 @@ export default function AlgoBuilderPage() {
           </TabsList>
 
           {/* ── TAB 1: Signal Library ─────────────────────────────────────────── */}
-          <TabsContent value="signals" className="space-y-6">
+          <TabsContent value="signals" className="space-y-4">
             {/* Category filter */}
             <div className="flex gap-2 flex-wrap">
               {categories.map(cat => {
@@ -1018,7 +1018,7 @@ export default function AlgoBuilderPage() {
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
                     className={cn(
-                      "px-3 py-1.5 rounded-full text-xs font-medium transition-all border",
+                      "px-3 py-1.5 rounded-full text-xs text-muted-foreground font-medium transition-all border",
                       isActive
                         ? "bg-primary text-primary-foreground border-primary"
                         : "border-border text-muted-foreground hover:border-muted-foreground/50",
@@ -1046,7 +1046,7 @@ export default function AlgoBuilderPage() {
                             key={id}
                             onClick={() => toggleSignal(id)}
                             className={cn(
-                              "flex items-center gap-1 px-2 py-1 rounded text-xs border",
+                              "flex items-center gap-1 px-2 py-1 rounded text-xs text-muted-foreground border",
                               meta.bg, meta.color, "border-current/30 hover:opacity-80"
                             )}
                           >
@@ -1105,11 +1105,11 @@ export default function AlgoBuilderPage() {
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className={cn("flex items-center gap-1 text-xs px-1.5 py-0.5 rounded-full border border-current/30", meta.bg, meta.color)}>
+                            <span className={cn("flex items-center gap-1 text-xs text-muted-foreground px-1.5 py-0.5 rounded-full border border-current/30", meta.bg, meta.color)}>
                               {meta.icon} {meta.label}
                             </span>
                             <span className={cn(
-                              "text-xs font-medium px-1.5 py-0.5 rounded",
+                              "text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded",
                               signal.rating === "A" ? "bg-emerald-500/20 text-emerald-400" :
                               signal.rating === "B" ? "bg-primary/20 text-primary" :
                               "bg-red-500/20 text-red-400"
@@ -1122,7 +1122,7 @@ export default function AlgoBuilderPage() {
                         <button
                           onClick={e => { e.stopPropagation(); toggleSignal(signal.id); }}
                           className={cn(
-                            "ml-2 p-1.5 rounded border transition-all text-xs",
+                            "ml-2 p-1.5 rounded border transition-all text-xs text-muted-foreground",
                             isSelected
                               ? "bg-primary/20 border-primary text-primary hover:bg-primary/30"
                               : canAdd
@@ -1178,7 +1178,7 @@ export default function AlgoBuilderPage() {
                                       const other = SIGNALS.find(s => s.id === otherId);
                                       if (!other) return null;
                                       return (
-                                        <div key={otherId} className="flex items-center gap-2 text-xs">
+                                        <div key={otherId} className="flex items-center gap-2 text-xs text-muted-foreground">
                                           <span className="text-muted-foreground truncate flex-1">{other.name}</span>
                                           <div className="w-16 h-1.5 rounded bg-muted overflow-hidden">
                                             <div
@@ -1207,7 +1207,7 @@ export default function AlgoBuilderPage() {
           </TabsContent>
 
           {/* ── TAB 2: Strategy Constructor ───────────────────────────────────── */}
-          <TabsContent value="constructor" className="space-y-6">
+          <TabsContent value="constructor" className="space-y-4">
             {selectedSignals.length === 0 && (
               <Card className="p-8 text-center border-dashed">
                 <Layers size={32} className="mx-auto mb-3 text-muted-foreground/40" />
@@ -1218,7 +1218,7 @@ export default function AlgoBuilderPage() {
               </Card>
             )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {/* Left: Configuration */}
               <div className="lg:col-span-2 space-y-4">
 
@@ -1234,10 +1234,10 @@ export default function AlgoBuilderPage() {
                         const meta = CAT_META[sig.category];
                         return (
                           <div key={id} className="flex items-center gap-3 p-2 rounded bg-muted/30 border border-border">
-                            <span className={cn("text-xs px-1.5 py-0.5 rounded border border-current/30", meta.bg, meta.color)}>
+                            <span className={cn("text-xs text-muted-foreground px-1.5 py-0.5 rounded border border-current/30", meta.bg, meta.color)}>
                               {meta.label}
                             </span>
-                            <span className="text-xs flex-1">{sig.name}</span>
+                            <span className="text-xs text-muted-foreground flex-1">{sig.name}</span>
                             <div className="flex items-center gap-1">
                               <span className="text-xs text-muted-foreground">Win: {sig.winRate}%</span>
                               <span className="text-xs text-muted-foreground ml-2">Avg: +{sig.avgReturn}%</span>
@@ -1263,7 +1263,7 @@ export default function AlgoBuilderPage() {
                         key={logic}
                         onClick={() => setStrategy(prev => ({ ...prev, entryLogic: logic }))}
                         className={cn(
-                          "flex-1 py-2 rounded text-xs font-medium border transition-all",
+                          "flex-1 py-2 rounded text-xs text-muted-foreground font-medium border transition-all",
                           strategy.entryLogic === logic
                             ? "bg-primary text-primary-foreground border-primary"
                             : "border-border text-muted-foreground hover:border-muted-foreground/50"
@@ -1297,7 +1297,7 @@ export default function AlgoBuilderPage() {
                             : [...prev.exits, exit.id],
                         }))}
                         className={cn(
-                          "py-2 px-3 rounded text-xs border transition-all text-left",
+                          "py-2 px-3 rounded text-xs text-muted-foreground border transition-all text-left",
                           strategy.exits.includes(exit.id)
                             ? "bg-primary/10 border-primary/40 text-primary"
                             : "border-border text-muted-foreground hover:border-muted-foreground/50"
@@ -1311,7 +1311,7 @@ export default function AlgoBuilderPage() {
                   <div className="space-y-4">
                     {strategy.exits.includes("profit-target") && (
                       <div>
-                        <div className="flex justify-between text-xs mb-2">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-2">
                           <span className="text-muted-foreground">Profit Target</span>
                           <span className="text-emerald-400 font-mono">+{strategy.profitTarget}%</span>
                         </div>
@@ -1324,7 +1324,7 @@ export default function AlgoBuilderPage() {
                     )}
                     {strategy.exits.includes("stop-loss") && (
                       <div>
-                        <div className="flex justify-between text-xs mb-2">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-2">
                           <span className="text-muted-foreground">Stop Loss</span>
                           <span className="text-red-400 font-mono">-{strategy.stopLoss}%</span>
                         </div>
@@ -1337,7 +1337,7 @@ export default function AlgoBuilderPage() {
                     )}
                     {strategy.exits.includes("trailing") && (
                       <div>
-                        <div className="flex justify-between text-xs mb-2">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-2">
                           <span className="text-muted-foreground">Trailing Stop</span>
                           <span className="text-amber-400 font-mono">{strategy.trailingStop}%</span>
                         </div>
@@ -1350,7 +1350,7 @@ export default function AlgoBuilderPage() {
                     )}
                     {strategy.exits.includes("time") && (
                       <div>
-                        <div className="flex justify-between text-xs mb-2">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-2">
                           <span className="text-muted-foreground">Max Holding Days</span>
                           <span className="font-mono text-primary">{strategy.timeExit} days</span>
                         </div>
@@ -1383,7 +1383,7 @@ export default function AlgoBuilderPage() {
                             key={u.id}
                             onClick={() => setStrategy(prev => ({ ...prev, universe: u.id }))}
                             className={cn(
-                              "w-full text-left py-1.5 px-3 rounded text-xs border transition-all",
+                              "w-full text-left py-1.5 px-3 rounded text-xs text-muted-foreground border transition-all",
                               strategy.universe === u.id
                                 ? "bg-primary/10 border-primary/40 text-primary"
                                 : "border-border text-muted-foreground hover:border-muted-foreground/30"
@@ -1407,7 +1407,7 @@ export default function AlgoBuilderPage() {
                             key={rb.id}
                             onClick={() => setStrategy(prev => ({ ...prev, rebalancing: rb.id }))}
                             className={cn(
-                              "w-full text-left py-1.5 px-3 rounded text-xs border transition-all",
+                              "w-full text-left py-1.5 px-3 rounded text-xs text-muted-foreground border transition-all",
                               strategy.rebalancing === rb.id
                                 ? "bg-primary/10 border-primary/40 text-primary"
                                 : "border-border text-muted-foreground hover:border-muted-foreground/30"
@@ -1456,7 +1456,7 @@ export default function AlgoBuilderPage() {
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <Settings size={14} className="text-muted-foreground" /> Transaction Cost Model
                   </h3>
-                  <div className="grid grid-cols-3 gap-3 text-xs">
+                  <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
                     <div className="p-3 rounded bg-muted/30 border border-border">
                       <div className="text-muted-foreground mb-1">Commission</div>
                       <div className="font-mono text-foreground">$0.005/share</div>
@@ -1494,14 +1494,14 @@ export default function AlgoBuilderPage() {
                             { label: "Expected Drawdown", value: `-${(10 + r() * 15).toFixed(0)}%` },
                           ];
                         })().map(item => (
-                          <div key={item.label} className="flex justify-between text-xs">
+                          <div key={item.label} className="flex justify-between text-xs text-muted-foreground">
                             <span className="text-muted-foreground">{item.label}</span>
                             <span className="font-mono">{item.value}</span>
                           </div>
                         ))}
                       </div>
                       <Button
-                        className="w-full mt-4 text-xs"
+                        className="w-full mt-4 text-xs text-muted-foreground"
                         size="sm"
                         onClick={() => setActiveTab("backtest")}
                       >
@@ -1515,7 +1515,7 @@ export default function AlgoBuilderPage() {
           </TabsContent>
 
           {/* ── TAB 3: Backtest Engine ─────────────────────────────────────────── */}
-          <TabsContent value="backtest" className="space-y-6">
+          <TabsContent value="backtest" className="space-y-4">
             {selectedSignals.length === 0 ? (
               <Card className="p-8 text-center border-dashed">
                 <Play size={32} className="mx-auto mb-3 text-muted-foreground/40" />
@@ -1548,7 +1548,7 @@ export default function AlgoBuilderPage() {
                     <motion.div
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="space-y-6"
+                      className="space-y-4"
                     >
                       {/* Performance Dashboard */}
                       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
@@ -1579,7 +1579,7 @@ export default function AlgoBuilderPage() {
                           <h3 className="text-sm font-medium flex items-center gap-2">
                             <BarChart2 size={14} /> Equity Curve vs SPY
                           </h3>
-                          <div className="flex gap-3 text-xs">
+                          <div className="flex gap-3 text-xs text-muted-foreground">
                             <span className="text-emerald-400 font-mono">
                               Strategy: {backtestResult.totalReturn > 0 ? "+" : ""}{backtestResult.totalReturn.toFixed(1)}%
                             </span>
@@ -1643,8 +1643,8 @@ export default function AlgoBuilderPage() {
           </TabsContent>
 
           {/* ── TAB 4: Risk Analytics ─────────────────────────────────────────── */}
-          <TabsContent value="risk" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <TabsContent value="risk" className="space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Factor Exposures */}
               <Card className="p-5">
                 <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
@@ -1662,7 +1662,7 @@ export default function AlgoBuilderPage() {
                 <div className="space-y-3">
                   {regimeData.map(r => (
                     <div key={r.regime}>
-                      <div className="flex justify-between text-xs mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span className="text-muted-foreground">{r.regime}</span>
                         <div className="flex gap-3">
                           <span className={cn("font-mono", r.ret >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -1717,7 +1717,7 @@ export default function AlgoBuilderPage() {
                     <div key={st.event} className="p-3 rounded border border-border bg-muted/20">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <div className="text-xs font-medium">{st.event}</div>
+                          <div className="text-xs text-muted-foreground font-medium">{st.event}</div>
                           <div className="text-xs text-muted-foreground">{st.period}</div>
                         </div>
                         <div className="text-right">
@@ -1727,7 +1727,7 @@ export default function AlgoBuilderPage() {
                       </div>
                       {/* Comparison bars */}
                       <div className="space-y-1">
-                        <div className="flex items-center gap-2 text-xs">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <span className="w-16 text-muted-foreground">Strategy</span>
                           <div className="flex-1 h-1.5 rounded bg-muted overflow-hidden">
                             <div
@@ -1737,7 +1737,7 @@ export default function AlgoBuilderPage() {
                           </div>
                           <span className="w-12 text-right font-mono text-red-400">{st.stratRet.toFixed(1)}%</span>
                         </div>
-                        <div className="flex items-center gap-2 text-xs">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <span className="w-16 text-muted-foreground">Market</span>
                           <div className="flex-1 h-1.5 rounded bg-muted overflow-hidden">
                             <div
@@ -1749,7 +1749,7 @@ export default function AlgoBuilderPage() {
                         </div>
                       </div>
                       <div className={cn(
-                        "text-xs mt-2 font-medium",
+                        "text-xs text-muted-foreground mt-2 font-medium",
                         st.stratRet > st.mktRet ? "text-emerald-400" : "text-red-400"
                       )}>
                         {st.stratRet > st.mktRet
@@ -1791,7 +1791,7 @@ export default function AlgoBuilderPage() {
           </TabsContent>
 
           {/* ── TAB 5: Live Signal Monitor ─────────────────────────────────────── */}
-          <TabsContent value="monitor" className="space-y-6">
+          <TabsContent value="monitor" className="space-y-4">
             {/* Header row */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -1799,9 +1799,9 @@ export default function AlgoBuilderPage() {
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="text-sm font-medium">Live Signal Monitor</span>
                 </div>
-                <Badge variant="outline" className="text-xs">Updates every 3s</Badge>
+                <Badge variant="outline" className="text-xs text-muted-foreground">Updates every 3s</Badge>
                 {newSignalCount > 0 && (
-                  <Badge className="text-xs gap-1">
+                  <Badge className="text-xs text-muted-foreground gap-1">
                     <BellRing size={10} /> {newSignalCount} new signals
                   </Badge>
                 )}
@@ -1809,7 +1809,7 @@ export default function AlgoBuilderPage() {
               <Button
                 variant="outline"
                 size="sm"
-                className="text-xs gap-1"
+                className="text-xs text-muted-foreground gap-1"
                 onClick={() => { setNewSignalCount(0); }}
               >
                 <Bell size={12} /> Clear Alerts
@@ -1824,13 +1824,13 @@ export default function AlgoBuilderPage() {
               </Card>
             )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {/* Signal Table */}
               <div className="lg:col-span-2">
                 <Card className="p-4">
                   <h3 className="text-sm font-medium mb-3">Active Signals</h3>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           {["Ticker", "Signal", "Direction", "Strength", "Entry Price", "Size (%)", "Time"].map(h => (
@@ -1852,7 +1852,7 @@ export default function AlgoBuilderPage() {
                               <td className="py-2 pr-3 text-muted-foreground max-w-[160px] truncate">{sig.signalType}</td>
                               <td className="py-2 pr-3">
                                 <span className={cn(
-                                  "px-1.5 py-0.5 rounded text-xs font-medium",
+                                  "px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium",
                                   sig.direction === "long"
                                     ? "bg-emerald-500/20 text-emerald-400"
                                     : "bg-red-500/20 text-red-400"
@@ -1905,10 +1905,10 @@ export default function AlgoBuilderPage() {
                   {liveSignals.length > 0 ? (
                     <div className="space-y-2">
                       {liveSignals.slice(0, 5).map(sig => (
-                        <div key={sig.id} className="flex items-center gap-2 text-xs">
+                        <div key={sig.id} className="flex items-center gap-2 text-xs text-muted-foreground">
                           <span className="font-mono font-medium w-12">{sig.ticker}</span>
                           <span className={cn(
-                            "text-xs px-1.5 py-0.5 rounded w-14 text-center",
+                            "text-xs text-muted-foreground px-1.5 py-0.5 rounded w-14 text-center",
                             sig.direction === "long" ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"
                           )}>
                             {sig.direction === "long" ? "BUY" : "SELL"}
@@ -1940,7 +1940,7 @@ export default function AlgoBuilderPage() {
                       { label: "Concentration (top 3)", value: `${(25 + r() * 20).toFixed(0)}%` },
                       { label: "Beta to Market", value: `${(0.5 + r() * 0.6).toFixed(2)}` },
                     ].map(m => (
-                      <div key={m.label} className="flex justify-between text-xs py-1 border-b border-border/40 last:border-0">
+                      <div key={m.label} className="flex justify-between text-xs text-muted-foreground py-1 border-b border-border/40 last:border-0">
                         <span className="text-muted-foreground">{m.label}</span>
                         <span className="font-mono">{m.value}</span>
                       </div>

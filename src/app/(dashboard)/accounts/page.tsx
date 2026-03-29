@@ -457,7 +457,7 @@ function AccountCard({ account }: { account: Account }) {
             <span className="font-semibold text-sm text-foreground">
               {account.name}
             </span>
-            <Badge className={cn("text-xs py-0 px-1.5", meta.bg)}>
+            <Badge className={cn("text-xs text-muted-foreground py-0 px-1.5", meta.bg)}>
               {meta.label}
             </Badge>
           </div>
@@ -614,7 +614,7 @@ function AddAccountModal({
                   key={t}
                   onClick={() => setType(t)}
                   className={cn(
-                    "rounded-md border px-3 py-2 text-xs font-medium transition-colors text-left",
+                    "rounded-md border px-3 py-2 text-xs text-muted-foreground font-medium transition-colors text-left",
                     type === t
                       ? "border-primary bg-primary/10 text-primary"
                       : "border-border bg-background text-muted-foreground hover:border-border/80"
@@ -862,7 +862,7 @@ function AccountSettingsRow({
                   <Button
                     size="sm"
                     variant="destructive"
-                    className="flex-1 h-7 text-xs"
+                    className="flex-1 h-7 text-xs text-muted-foreground"
                     onClick={() => {
                       onReset(account.id);
                       setConfirmReset(false);
@@ -873,7 +873,7 @@ function AccountSettingsRow({
                   <Button
                     size="sm"
                     variant="outline"
-                    className="flex-1 h-7 text-xs"
+                    className="flex-1 h-7 text-xs text-muted-foreground"
                     onClick={() => setConfirmReset(false)}
                   >
                     Cancel
@@ -883,7 +883,7 @@ function AccountSettingsRow({
                 <Button
                   size="sm"
                   variant="outline"
-                  className="w-full h-7 text-xs gap-1.5"
+                  className="w-full h-7 text-xs text-muted-foreground gap-1.5"
                   onClick={() => setConfirmReset(true)}
                 >
                   <RotateCcw className="h-3 w-3" />
@@ -897,7 +897,7 @@ function AccountSettingsRow({
           <Button
             size="sm"
             variant="outline"
-            className="w-full h-7 text-xs gap-1.5"
+            className="w-full h-7 text-xs text-muted-foreground gap-1.5"
             onClick={() => {
               const rows = [
                 ["Account", account.name],
@@ -1092,13 +1092,13 @@ export default function AccountsPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           <div>
             <p className="text-xs text-muted-foreground mb-1">Total Portfolio</p>
-            <p className="text-2xl font-bold tabular-nums text-foreground">
+            <p className="text-lg font-medium tabular-nums text-foreground">
               {fmtCompact(aggregate.totalBalance)}
             </p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-1">Day P&L</p>
-            <p className={cn("text-2xl font-bold tabular-nums", pnlColor(aggregate.totalDayPnl))}>
+            <p className={cn("text-lg font-medium tabular-nums", pnlColor(aggregate.totalDayPnl))}>
               {aggregate.totalDayPnl >= 0 ? "+" : ""}{fmt(aggregate.totalDayPnl)}
             </p>
           </div>
@@ -1109,7 +1109,7 @@ export default function AccountsPage() {
               <span className="text-sm font-medium text-foreground">
                 {aggregate.bestReturn.name}
               </span>
-              <Badge className={cn("text-xs py-0 px-1", pnlBg(aggregate.bestReturn.totalPnlPct))}>
+              <Badge className={cn("text-xs text-muted-foreground py-0 px-1", pnlBg(aggregate.bestReturn.totalPnlPct))}>
                 {fmtPct(aggregate.bestReturn.totalPnlPct)}
               </Badge>
             </div>
@@ -1121,7 +1121,7 @@ export default function AccountsPage() {
               <span className="text-sm font-medium text-foreground">
                 {aggregate.worstReturn.name}
               </span>
-              <Badge className={cn("text-xs py-0 px-1", pnlBg(aggregate.worstReturn.totalPnlPct))}>
+              <Badge className={cn("text-xs text-muted-foreground py-0 px-1", pnlBg(aggregate.worstReturn.totalPnlPct))}>
                 {fmtPct(aggregate.worstReturn.totalPnlPct)}
               </Badge>
             </div>
@@ -1133,10 +1133,10 @@ export default function AccountsPage() {
       <Tabs defaultValue="overview" className="flex-1 flex flex-col min-h-0">
         <div className="shrink-0 px-6 pt-3">
           <TabsList className="h-8">
-            <TabsTrigger value="overview" className="text-xs px-3">Overview</TabsTrigger>
-            <TabsTrigger value="comparison" className="text-xs px-3">Comparison</TabsTrigger>
-            <TabsTrigger value="transfer" className="text-xs px-3">Transfer & Allocation</TabsTrigger>
-            <TabsTrigger value="settings" className="text-xs px-3">Settings</TabsTrigger>
+            <TabsTrigger value="overview" className="text-xs text-muted-foreground px-3">Overview</TabsTrigger>
+            <TabsTrigger value="comparison" className="text-xs text-muted-foreground px-3">Comparison</TabsTrigger>
+            <TabsTrigger value="transfer" className="text-xs text-muted-foreground px-3">Transfer & Allocation</TabsTrigger>
+            <TabsTrigger value="settings" className="text-xs text-muted-foreground px-3">Settings</TabsTrigger>
           </TabsList>
         </div>
 
@@ -1151,7 +1151,7 @@ export default function AccountsPage() {
 
         {/* ── Tab 2: Comparison ────────────────────────────────────────────── */}
         <TabsContent value="comparison" className="flex-1 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Bar chart */}
             <Card className="p-5 bg-card/60 border-border/50">
               <h3 className="text-sm font-medium text-foreground mb-4">Account Values</h3>
@@ -1179,7 +1179,7 @@ export default function AccountsPage() {
             <Card className="p-5 bg-card/60 border-border/50">
               <h3 className="text-sm font-medium text-foreground mb-3">Performance Comparison</h3>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border/40">
                       <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Account</th>
@@ -1216,7 +1216,7 @@ export default function AccountsPage() {
                           <td className="py-2 pl-3 text-right">
                             <span
                               className={cn(
-                                "text-xs font-medium px-1.5 py-0.5 rounded",
+                                "text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded",
                                 acc.taxEfficiency >= 80
                                   ? "bg-emerald-500/15 text-emerald-400"
                                   : acc.taxEfficiency >= 50
@@ -1278,7 +1278,7 @@ export default function AccountsPage() {
 
         {/* ── Tab 3: Transfer & Allocation ─────────────────────────────────── */}
         <TabsContent value="transfer" className="flex-1 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Transfer form */}
             <div className="space-y-4">
               <Card className="p-5 bg-card/60 border-border/50">
@@ -1403,7 +1403,7 @@ export default function AccountsPage() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-foreground">Estimated Tax Savings</p>
-                    <p className="text-2xl font-bold text-emerald-400 tabular-nums">
+                    <p className="text-lg font-medium text-emerald-400 tabular-nums">
                       {fmtCompact(taxSavings)}
                     </p>
                     <p className="text-[11px] text-muted-foreground mt-1">
@@ -1449,7 +1449,7 @@ export default function AccountsPage() {
                   },
                 ].map((rule) => (
                   <div key={rule.asset} className="flex gap-3 items-start">
-                    <span className={cn("text-xs font-medium px-2 py-1 rounded shrink-0", rule.bg, rule.color)}>
+                    <span className={cn("text-xs text-muted-foreground font-medium px-2 py-1 rounded shrink-0", rule.bg, rule.color)}>
                       {rule.target}
                     </span>
                     <div>

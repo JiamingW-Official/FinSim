@@ -111,7 +111,7 @@ function InfoBox({
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -246,9 +246,9 @@ function PropertyAnalyzer() {
   const equityPath = chartData.map((d, i) => `${i === 0 ? "M" : "L"}${xScale(i)},${yScale(d.equity)}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inputs */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-foreground/5 p-6 space-y-4 border-l-4 border-l-primary">
           <SectionTitle><Calculator className="w-4 h-4" />Property Inputs</SectionTitle>
           {(
@@ -540,7 +540,7 @@ function MarketComparisons() {
   const winner10 = rvb.yvBuy[9] < rvb.yvRent[9] ? "buying" : "renting";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Sort controls */}
       <div className="flex flex-wrap gap-2 items-center">
         <span className="text-xs text-muted-foreground">Sort by:</span>
@@ -557,7 +557,7 @@ function MarketComparisons() {
             key={key}
             onClick={() => setSort(key)}
             className={cn(
-              "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
+              "rounded-lg px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
               sort === key ? "bg-primary text-foreground" : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
             )}
           >
@@ -751,7 +751,7 @@ function REITAnalysis() {
   const barW = (W3 - P3.l - P3.r) / REITS.length - 2;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="REITs Covered" value="12" sub="Across 8 sectors" />
@@ -887,7 +887,7 @@ function REITAnalysis() {
             { factor: "Control", reit: "None", direct: "Full" },
             { factor: "Min. Investment", reit: "~$50 per share", direct: "$50K+ down payment" },
           ].map(({ factor, reit, direct }) => (
-            <div key={factor} className="grid grid-cols-3 text-xs gap-1">
+            <div key={factor} className="grid grid-cols-3 text-xs text-muted-foreground gap-1">
               <span className="text-muted-foreground font-medium">{factor}</span>
               <span className="text-primary">{reit}</span>
               <span className="text-amber-300">{direct}</span>
@@ -946,7 +946,7 @@ function CommercialRE() {
   }, [mortInputs]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Sector grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
         {CRE_SECTORS.map((s) => (
@@ -963,7 +963,7 @@ function CommercialRE() {
               </div>
               {s.trend === "up" ? <TrendingUp className="w-4 h-4 text-emerald-400" /> : s.trend === "down" ? <TrendingDown className="w-4 h-4 text-rose-400" /> : <ArrowRight className="w-4 h-4 text-amber-400" />}
             </div>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-muted-foreground">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">NYC Cap Rate</span>
                 <span className="text-muted-foreground">{fmtPct(s.nyCapRate)}</span>
@@ -986,7 +986,7 @@ function CommercialRE() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* DSCR Calculator */}
         <div className="rounded-md border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Calculator className="w-4 h-4" />DSCR Calculator</SectionTitle>
@@ -1055,7 +1055,7 @@ function CommercialRE() {
             { metric: "Loans Due 2024-2026", val: "$450B+", note: "Commercial RE loan maturity wall" },
           ].map(({ metric, val, note }) => (
             <div key={metric} className="text-center">
-              <div className="text-2xl font-bold text-rose-400">{val}</div>
+              <div className="text-lg font-medium text-rose-400">{val}</div>
               <div className="text-xs font-medium text-rose-300 mt-1">{metric}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{note}</div>
             </div>
@@ -1147,8 +1147,8 @@ function DevelopmentTab() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Ground-up Development */}
         <div className="rounded-md border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Building2 className="w-4 h-4" />Ground-Up Development Costs</SectionTitle>
@@ -1295,7 +1295,7 @@ function DevelopmentTab() {
           ))}
         </div>
         <div className="rounded-lg bg-emerald-500/15 border border-emerald-500/30 p-3 text-center">
-          <span className="text-emerald-400 text-2xl font-bold">{irrFlows.irr.toFixed(1)}% IRR</span>
+          <span className="text-emerald-400 text-lg font-medium">{irrFlows.irr.toFixed(1)}% IRR</span>
           <span className="text-muted-foreground text-sm ml-2">on $200K equity with 5-year hold</span>
         </div>
         <InfoBox variant="blue">
@@ -1387,9 +1387,9 @@ function PortfolioStrategy() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Risk-return + allocation */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Risk-return scatter */}
         <div className="rounded-md border border-border bg-foreground/5 p-5">
           <SectionTitle><BarChart3 className="w-4 h-4" />Core → Opportunistic Risk/Return</SectionTitle>
@@ -1419,7 +1419,7 @@ function PortfolioStrategy() {
           </svg>
           <div className="mt-2 space-y-1">
             {STRATEGIES.map((s) => (
-              <div key={s.strategy} className="text-xs flex gap-2">
+              <div key={s.strategy} className="text-xs text-muted-foreground flex gap-2">
                 <span className="font-medium w-24 shrink-0" style={{ color: s.color }}>{s.strategy}</span>
                 <span className="text-muted-foreground">{s.description}</span>
               </div>
@@ -1485,7 +1485,7 @@ function PortfolioStrategy() {
             const cf = 55_000 - int;
             const coc = eq > 0 ? (cf / eq) * 100 : 0;
             return (
-              <div key={ltvTest} className="flex items-center gap-3 text-xs">
+              <div key={ltvTest} className="flex items-center gap-3 text-xs text-muted-foreground">
                 <span className="text-muted-foreground w-14">{ltvTest}% LTV</span>
                 <div className="flex-1 h-4 rounded-full bg-foreground/10 overflow-hidden relative">
                   <div className={cn("absolute inset-y-0 left-0 rounded-full transition-all", coc > 5.5 ? "bg-emerald-500/60" : coc >= 0 ? "bg-amber-500/60" : "bg-rose-500/60")} style={{ width: `${Math.max(0, Math.min(100, coc * 5))}%` }} />
@@ -1509,7 +1509,7 @@ function PortfolioStrategy() {
             { rule: "Qualified Intermediary", desc: "Must hold funds; seller cannot touch proceeds" },
             { rule: "Tax Deferred", desc: "Not tax-free — basis carries over to new property" },
           ].map(({ rule, desc }) => (
-            <div key={rule} className="flex gap-3 text-xs">
+            <div key={rule} className="flex gap-3 text-xs text-muted-foreground">
               <span className="font-medium text-primary w-28 shrink-0">{rule}</span>
               <span className="text-muted-foreground">{desc}</span>
             </div>
@@ -1522,7 +1522,7 @@ function PortfolioStrategy() {
             { pct: "3-5 Markets", risk: "Moderate concentration — some protection from local shocks" },
             { pct: "10+ Markets", risk: "Well diversified — national economic sensitivity dominates" },
           ].map(({ pct, risk }) => (
-            <div key={pct} className="flex gap-3 text-xs">
+            <div key={pct} className="flex gap-3 text-xs text-muted-foreground">
               <span className="font-medium text-amber-400 w-24 shrink-0">{pct}</span>
               <span className="text-muted-foreground">{risk}</span>
             </div>
@@ -1554,7 +1554,7 @@ const TABS = [
 export default function RealEstatePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="flex items-start justify-between flex-wrap gap-4">
           <div>
@@ -1562,7 +1562,7 @@ export default function RealEstatePage() {
               <div className="rounded-md bg-primary/20 p-2.5">
                 <Home className="w-6 h-6 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold text-foreground">Real Estate Investment Analysis</h1>
+              <h1 className="text-lg font-medium text-foreground">Real Estate Investment Analysis</h1>
             </div>
             <p className="text-sm text-muted-foreground ml-14">
               Property analyzer, market comparisons, REITs, commercial RE, development, and portfolio strategy.
@@ -1574,7 +1574,7 @@ export default function RealEstatePage() {
               { label: "Commercial", color: "bg-emerald-600/20 text-emerald-400" },
               { label: "REITs", color: "bg-orange-600/20 text-orange-400" },
             ].map(({ label, color }) => (
-              <Badge key={label} className={cn("text-xs font-medium border-0", color)}>
+              <Badge key={label} className={cn("text-xs text-muted-foreground font-medium border-0", color)}>
                 {label}
               </Badge>
             ))}
@@ -1582,7 +1582,7 @@ export default function RealEstatePage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="analyzer" className="space-y-6">
+        <Tabs defaultValue="analyzer" className="space-y-4">
           <TabsList className="flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-md border border-border">
             {TABS.map(({ id, label, icon }) => (
               <TabsTrigger

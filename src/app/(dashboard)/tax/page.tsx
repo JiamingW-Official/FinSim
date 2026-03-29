@@ -138,7 +138,7 @@ function TaxOverviewTab() {
   const markerX = Math.min(income / totalRange, 1) * chartW;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Quick calculator */}
       <Card>
         <CardHeader className="pb-3">
@@ -260,7 +260,7 @@ function TaxOverviewTab() {
                 <span className="text-xs text-muted-foreground w-24 text-right shrink-0">
                   {formatCurrency(row.taxed)} taxed
                 </span>
-                <span className="text-xs font-semibold w-20 text-right shrink-0">
+                <span className="text-xs text-muted-foreground font-semibold w-20 text-right shrink-0">
                   = {formatCurrency(row.tax)}
                 </span>
               </div>
@@ -346,7 +346,7 @@ function TaxLossHarvestingTab() {
   const lossPositions = positions.filter((p) => p.currentPrice < p.costBasis);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <Card className="bg-green-500/10 border-green-500/30">
@@ -465,7 +465,7 @@ function TaxLossHarvestingTab() {
                 {lossPositions
                   .filter((p) => p.selected && WASH_SALE_ALTERNATIVES[p.ticker])
                   .map((p) => (
-                    <div key={p.id} className="flex items-center gap-2 text-xs">
+                    <div key={p.id} className="flex items-center gap-2 text-xs text-muted-foreground">
                       <ArrowRight className="h-3 w-3 text-muted-foreground shrink-0" />
                       <span className="font-mono font-medium w-12">{p.ticker}</span>
                       <span className="text-muted-foreground">replace with</span>
@@ -538,7 +538,7 @@ function TaxLossHarvestingTab() {
           </svg>
 
           <div
-            className={`rounded-lg p-3 text-xs flex items-start gap-2 ${
+            className={`rounded-lg p-3 text-xs text-muted-foreground flex items-start gap-2 ${
               washSaleDay < 31
                 ? "bg-red-500/10 border border-red-500/30"
                 : "bg-green-500/10 border border-green-500/30"
@@ -622,7 +622,7 @@ function AccountOptimizerTab() {
   const rothFinal = rothStarting > 0 ? rothStarting * Math.pow(1 + GROWTH, YEARS) : 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Asset location grid */}
       <Card>
         <CardHeader className="pb-3">
@@ -640,7 +640,7 @@ function AccountOptimizerTab() {
                   <p className="text-xs font-medium text-muted-foreground mb-1.5">Best Fit</p>
                   <div className="space-y-1">
                     {acct.ideal.map((a) => (
-                      <div key={a} className="flex items-start gap-1.5 text-xs">
+                      <div key={a} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                         <CheckCircle2 className="h-3 w-3 text-green-400 shrink-0 mt-0.5" />
                         <span>{a}</span>
                       </div>
@@ -765,7 +765,7 @@ function AccountOptimizerTab() {
             </div>
           </div>
 
-          <div className="rounded-lg bg-primary/10 border border-primary/20 p-3 text-xs">
+          <div className="rounded-lg bg-primary/10 border border-primary/20 p-3 text-xs text-muted-foreground">
             <strong className="text-primary">Rule of thumb:</strong>{" "}
             <span className="text-muted-foreground">
               Convert when current tax rate &lt; expected retirement rate. Best in low-income years: career transitions, sabbaticals, early retirement before Social Security begins.
@@ -827,7 +827,7 @@ function CapitalGainsPlannerTab() {
   const ltSavings = ifAllST - totalBill;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Income input */}
       <Card>
         <CardContent className="pt-4 space-y-3">
@@ -859,7 +859,7 @@ function CapitalGainsPlannerTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto -mx-2">
-            <table className="w-full text-xs min-w-[640px]">
+            <table className="w-full text-xs text-muted-foreground min-w-[640px]">
               <thead>
                 <tr className="border-b border-border">
                   {["Ticker", "Purchase Date", "Days Held", "Gain / Loss", "Type", "Tax Owed", "LT Savings"].map((h) => (
@@ -933,7 +933,7 @@ function CapitalGainsPlannerTab() {
               </p>
               <div className="rounded bg-green-500/20 px-3 py-2 text-center">
                 <p className="text-xs text-muted-foreground">Tax rate</p>
-                <p className="text-2xl font-bold text-green-400">{formatPct(ltRate)}</p>
+                <p className="text-lg font-medium text-green-400">{formatPct(ltRate)}</p>
                 <p className="text-xs text-muted-foreground">Same as long-term capital gains</p>
               </div>
             </div>
@@ -947,7 +947,7 @@ function CapitalGainsPlannerTab() {
               </p>
               <div className="rounded bg-orange-500/20 px-3 py-2 text-center">
                 <p className="text-xs text-muted-foreground">Tax rate</p>
-                <p className="text-2xl font-bold text-orange-400">{formatPct(stRate)}</p>
+                <p className="text-lg font-medium text-orange-400">{formatPct(stRate)}</p>
                 <p className="text-xs text-muted-foreground">Same as ordinary income</p>
               </div>
             </div>
@@ -997,7 +997,7 @@ function EstateGiftTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key 2024 numbers */}
       <div className="grid grid-cols-3 gap-3">
         <Card className="bg-primary/10 border-primary/30">
@@ -1053,11 +1053,11 @@ function EstateGiftTab() {
               <span className="text-muted-foreground">Tax-free gifts this year</span>
               <span className="font-medium text-primary">{formatCurrency(totalAnnualGifts)}</span>
             </div>
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">10-year cumulative</span>
               <span className="font-medium">{formatCurrency(totalAnnualGifts * 10)}</span>
             </div>
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">Estate tax saved (10yr @ 40%)</span>
               <span className="font-medium text-green-400">
                 {formatCurrency(totalAnnualGifts * 10 * ESTATE_TAX_RATE)}
@@ -1190,7 +1190,7 @@ function EstateGiftTab() {
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg bg-red-500/10 border border-red-500/30 p-4">
               <p className="text-xs font-medium text-red-400 mb-2">Without Step-Up (You Sell Now)</p>
-              <div className="space-y-1 text-xs">
+              <div className="space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Embedded gain</span>
                   <span>{formatCurrency(stepUpGain)}</span>
@@ -1207,7 +1207,7 @@ function EstateGiftTab() {
             </div>
             <div className="rounded-lg bg-green-500/10 border border-green-500/30 p-4">
               <p className="text-xs font-medium text-green-400 mb-2">With Step-Up (Inherited)</p>
-              <div className="space-y-1 text-xs">
+              <div className="space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">New basis (FMV at death)</span>
                   <span>{formatCurrency(assetFMV)}</span>
@@ -1252,7 +1252,7 @@ function EstateGiftTab() {
               <p className="text-xs text-muted-foreground">
                 Contribute now, invest tax-free, grant to charities at any time. Immediate deduction up to 60% of AGI.
               </p>
-              <div className="space-y-1 text-xs">
+              <div className="space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Deductible amount</span>
                   <span>{formatCurrency(dafDeduction)}</span>
@@ -1272,7 +1272,7 @@ function EstateGiftTab() {
               <p className="text-xs text-muted-foreground">
                 Age 70.5+: Transfer up to $105,000/yr from IRA directly to charity. Counts as RMD and excluded from income.
               </p>
-              <div className="space-y-1 text-xs">
+              <div className="space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">2024 max QCD</span>
                   <span>$105,000</span>
@@ -1322,7 +1322,7 @@ function EstateGiftTab() {
           </svg>
 
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="rounded-lg bg-muted/30 p-3 text-xs space-y-1.5">
+            <div className="rounded-lg bg-muted/30 p-3 text-xs text-muted-foreground space-y-1.5">
               <p className="font-medium text-foreground">Core Estate Documents</p>
               {[
                 ["Will & Living Trust", "Directs asset distribution, avoids probate"],
@@ -1339,7 +1339,7 @@ function EstateGiftTab() {
                 </div>
               ))}
             </div>
-            <div className="rounded-lg bg-amber-500/10 border border-amber-500/30 p-3 text-xs">
+            <div className="rounded-lg bg-amber-500/10 border border-amber-500/30 p-3 text-xs text-muted-foreground">
               <p className="font-medium text-amber-400 mb-1.5">2026 Exemption Sunset Warning</p>
               <p className="text-muted-foreground leading-relaxed">
                 The Tax Cuts and Jobs Act (TCJA) estate tax provisions expire after 2025. The federal exemption may drop from $13.61M to approximately $7M per person. Estates between $7M–$13.61M should consult an estate attorney before December 31, 2025.
@@ -1357,7 +1357,7 @@ function EstateGiftTab() {
 export default function TaxPage() {
   return (
     <div className="flex flex-col h-full overflow-y-auto bg-background">
-      <div className="flex-1 p-4 md:p-6 space-y-6 max-w-6xl mx-auto w-full">
+      <div className="flex-1 p-4 md:p-4 space-y-4 max-w-6xl mx-auto w-full">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -1371,7 +1371,7 @@ export default function TaxPage() {
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <Badge variant="outline" className="text-xs">2024 Tax Year</Badge>
+            <Badge variant="outline" className="text-xs text-muted-foreground">2024 Tax Year</Badge>
             <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Educational Only</span>
           </div>
         </motion.div>
@@ -1424,23 +1424,23 @@ export default function TaxPage() {
         >
           <Tabs defaultValue="overview">
             <TabsList className="flex h-auto flex-wrap gap-1 bg-muted/30 p-1 mb-6">
-              <TabsTrigger value="overview" className="flex items-center gap-1.5 text-xs">
+              <TabsTrigger value="overview" className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <BarChart3 className="h-3.5 w-3.5" />
                 Overview
               </TabsTrigger>
-              <TabsTrigger value="harvesting" className="flex items-center gap-1.5 text-xs">
+              <TabsTrigger value="harvesting" className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <TrendingDown className="h-3.5 w-3.5" />
                 Tax-Loss Harvesting
               </TabsTrigger>
-              <TabsTrigger value="accounts" className="flex items-center gap-1.5 text-xs">
+              <TabsTrigger value="accounts" className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <PiggyBank className="h-3.5 w-3.5" />
                 Account Optimizer
               </TabsTrigger>
-              <TabsTrigger value="capgains" className="flex items-center gap-1.5 text-xs">
+              <TabsTrigger value="capgains" className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Clock className="h-3.5 w-3.5" />
                 Capital Gains
               </TabsTrigger>
-              <TabsTrigger value="estate" className="flex items-center gap-1.5 text-xs">
+              <TabsTrigger value="estate" className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Heart className="h-3.5 w-3.5" />
                 Estate & Gifts
               </TabsTrigger>

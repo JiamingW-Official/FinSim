@@ -410,7 +410,7 @@ function OSSCalculator() {
           </svg>
           <Badge
             style={{ backgroundColor: ossColor + "22", color: ossColor, borderColor: ossColor + "44" }}
-            className="border text-xs"
+            className="border text-xs text-muted-foreground"
           >
             {ossLabel}
           </Badge>
@@ -443,7 +443,7 @@ function PARGauge({
     <div className="bg-card border border-border rounded-lg p-4 space-y-3">
       <p className="text-xs font-medium text-muted-foreground">{name}</p>
       <div className="space-y-2">
-        <div className="flex justify-between text-xs">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span className="text-muted-foreground">PAR 30</span>
           <span style={{ color: par30Color }} className="font-mono font-bold">
             {par30.toFixed(1)}%
@@ -455,7 +455,7 @@ function PARGauge({
             style={{ width: `${Math.min(par30 * 5, 100)}%`, backgroundColor: par30Color }}
           />
         </div>
-        <div className="flex justify-between text-xs mt-1">
+        <div className="flex justify-between text-xs text-muted-foreground mt-1">
           <span className="text-muted-foreground">PAR 90</span>
           <span style={{ color: par90Color }} className="font-mono font-bold">
             {par90.toFixed(1)}%
@@ -510,7 +510,7 @@ function BorrowerDonut() {
           Borrower Demographics (Global MFI Average)
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col items-center gap-6 lg:flex-row lg:items-start">
+      <CardContent className="flex flex-col items-center gap-3 lg:flex-row lg:items-start">
         {/* Donut: Women vs Men */}
         <div className="flex flex-col items-center gap-2">
           <svg width="200" height="200" viewBox="0 0 200 200">
@@ -534,7 +534,7 @@ function BorrowerDonut() {
               Women
             </text>
           </svg>
-          <div className="flex gap-4 text-xs">
+          <div className="flex gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-1">
               <div className="w-3 h-3 rounded-full bg-pink-500" />
               <span className="text-muted-foreground">Women 68%</span>
@@ -550,7 +550,7 @@ function BorrowerDonut() {
         <div className="flex-1 space-y-3 w-full">
           {segments.map((seg) => (
             <div key={seg.label} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{seg.label}</span>
                 <span className="font-mono" style={{ color: seg.color }}>
                   {seg.pct}%
@@ -875,7 +875,7 @@ function InterestRateExplainer() {
           <div key={r.label} className="flex gap-3 bg-muted rounded-lg p-3">
             <r.icon className={`w-4 h-4 mt-0.5 shrink-0 ${r.color}`} />
             <div>
-              <p className={`text-xs font-semibold ${r.color}`}>{r.label}</p>
+              <p className={`text-xs text-muted-foreground font-semibold ${r.color}`}>{r.label}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{r.detail}</p>
             </div>
           </div>
@@ -1008,7 +1008,7 @@ export default function MicrofinancepagePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto p-4 sm:p-6 space-y-6">
+      <div className="max-w-7xl mx-auto p-4 sm:p-4 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -16 }}
@@ -1058,22 +1058,22 @@ export default function MicrofinancepagePage() {
         {/* Tabs */}
         <Tabs defaultValue="models" className="mt-8">
           <TabsList className="bg-card border border-border flex flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="models" className="text-xs data-[state=active]:bg-muted">
+            <TabsTrigger value="models" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
               Microfinance Models
             </TabsTrigger>
-            <TabsTrigger value="health" className="text-xs data-[state=active]:bg-muted">
+            <TabsTrigger value="health" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
               MFI Financial Health
             </TabsTrigger>
-            <TabsTrigger value="impact" className="text-xs data-[state=active]:bg-muted">
+            <TabsTrigger value="impact" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
               Impact Metrics
             </TabsTrigger>
-            <TabsTrigger value="mobile" className="text-xs data-[state=active]:bg-muted">
+            <TabsTrigger value="mobile" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
               Mobile Money &amp; Innovation
             </TabsTrigger>
           </TabsList>
 
           {/* ── Tab 1: Microfinance Models ─────────────────────────────────────── */}
-          <TabsContent value="models" className="data-[state=inactive]:hidden space-y-6 mt-4">
+          <TabsContent value="models" className="data-[state=inactive]:hidden space-y-4 mt-4">
             <GrameenFlowDiagram />
 
             {/* MFI Types */}
@@ -1086,7 +1086,7 @@ export default function MicrofinancepagePage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Type", "Regulated", "Avg Loan", "Clients", "Profit Motive", "Description"].map(
@@ -1163,7 +1163,7 @@ export default function MicrofinancepagePage() {
                             style={{ backgroundColor: r.color + "44", border: `1px solid ${r.color}` }}
                           >
                             <span
-                              className="text-xs font-mono font-medium"
+                              className="text-xs text-muted-foreground font-mono font-medium"
                               style={{ color: r.color }}
                             >
                               ${r.avgLoanUSD.toLocaleString()}
@@ -1184,7 +1184,7 @@ export default function MicrofinancepagePage() {
           </TabsContent>
 
           {/* ── Tab 2: MFI Financial Health ───────────────────────────────────── */}
-          <TabsContent value="health" className="data-[state=inactive]:hidden space-y-6 mt-4">
+          <TabsContent value="health" className="data-[state=inactive]:hidden space-y-4 mt-4">
             {/* PAR overview grid */}
             <Card className="bg-card border-border">
               <CardHeader>
@@ -1199,7 +1199,7 @@ export default function MicrofinancepagePage() {
                     <button
                       key={mfi.name}
                       onClick={() => setSelectedMFI(mfi)}
-                      className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+                      className={`px-3 py-1.5 rounded text-xs text-muted-foreground font-medium transition-colors ${
                         selectedMFI.name === mfi.name
                           ? "bg-primary text-foreground"
                           : "bg-muted text-muted-foreground hover:bg-muted"
@@ -1210,7 +1210,7 @@ export default function MicrofinancepagePage() {
                   ))}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <PARGauge
                     par30={selectedMFI.par30}
                     par90={selectedMFI.par90}
@@ -1288,7 +1288,7 @@ export default function MicrofinancepagePage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {[
@@ -1392,7 +1392,7 @@ export default function MicrofinancepagePage() {
           </TabsContent>
 
           {/* ── Tab 3: Impact Metrics ──────────────────────────────────────────── */}
-          <TabsContent value="impact" className="data-[state=inactive]:hidden space-y-6 mt-4">
+          <TabsContent value="impact" className="data-[state=inactive]:hidden space-y-4 mt-4">
             {/* KPI Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {impactMetrics.map((m) => (
@@ -1474,7 +1474,7 @@ export default function MicrofinancepagePage() {
                       <div className="flex justify-between items-center">
                         <p className="text-xs font-medium text-muted-foreground">{pillar.pillar}</p>
                         <span
-                          className={`text-xs font-mono font-medium ${
+                          className={`text-xs text-muted-foreground font-mono font-medium ${
                             pillar.score >= 75
                               ? "text-green-400"
                               : pillar.score >= 60
@@ -1553,7 +1553,7 @@ export default function MicrofinancepagePage() {
           </TabsContent>
 
           {/* ── Tab 4: Mobile Money & Innovation ─────────────────────────────── */}
-          <TabsContent value="mobile" className="data-[state=inactive]:hidden space-y-6 mt-4">
+          <TabsContent value="mobile" className="data-[state=inactive]:hidden space-y-4 mt-4">
             <MPesaChart />
 
             {/* Digital features grid */}
@@ -1661,7 +1661,7 @@ export default function MicrofinancepagePage() {
                 {challenges.map((ch) => (
                   <div key={ch.label} className="flex gap-3 bg-muted rounded-lg p-3">
                     <Badge
-                      className={`text-xs border shrink-0 mt-0.5 ${severityColor[ch.severity]}`}
+                      className={`text-xs text-muted-foreground border shrink-0 mt-0.5 ${severityColor[ch.severity]}`}
                     >
                       {ch.severity}
                     </Badge>

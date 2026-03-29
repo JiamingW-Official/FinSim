@@ -227,10 +227,10 @@ function PaymentRailsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* SVG Flow Diagram */}
       <Card className="bg-card border-border border-l-4 border-l-primary">
-        <CardHeader className="p-6">
+        <CardHeader className="p-4">
           <CardTitle className="text-lg text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
             Card Transaction Flow
@@ -309,7 +309,7 @@ function PaymentRailsTab() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-3 px-4 text-muted-foreground font-medium">Rail</th>
@@ -437,7 +437,7 @@ function CardEconomicsTab() {
   let runningY = maxBarH;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Card Type Selector */}
       <Card className="bg-card border-border">
         <CardHeader>
@@ -452,7 +452,7 @@ function CardEconomicsTab() {
               <button
                 key={tier.cardType}
                 onClick={() => setActiveCard(tier)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors ${
                   activeCard.cardType === tier.cardType
                     ? "bg-indigo-600 border-indigo-500 text-foreground"
                     : "bg-muted border-border text-muted-foreground hover:border-border"
@@ -622,8 +622,8 @@ function DigitalWalletsTab() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Pie Chart */}
         <Card className="bg-card border-border">
           <CardHeader>
@@ -792,7 +792,7 @@ function CBDCTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Status Overview */}
       <div className="grid grid-cols-3 gap-4">
         {(["Live", "Pilot", "Research"] as const).map((st) => {
@@ -817,7 +817,7 @@ function CBDCTab() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors ${
               filter === f
                 ? "bg-indigo-600 border-indigo-500 text-foreground"
                 : "bg-muted border-border text-muted-foreground hover:border-border"
@@ -838,7 +838,7 @@ function CBDCTab() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-3 px-4 text-muted-foreground font-medium">Country</th>
@@ -857,7 +857,7 @@ function CBDCTab() {
                     <td className="py-3 px-3">
                       <Badge
                         variant="outline"
-                        className="text-xs"
+                        className="text-xs text-muted-foreground"
                         style={{ borderColor: proj.statusColor, color: proj.statusColor }}
                       >
                         {proj.status}
@@ -989,7 +989,7 @@ function PaymentStocksTab() {
   const years = ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Comparison Table */}
       <Card className="bg-card border-border">
         <CardHeader>
@@ -1000,7 +1000,7 @@ function PaymentStocksTab() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-3 px-4 text-muted-foreground font-medium">Ticker</th>
@@ -1159,7 +1159,7 @@ export default function PaymentsPage() {
               <CreditCard className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Payment Systems</h1>
+              <h1 className="text-lg font-medium text-foreground">Payment Systems</h1>
               <p className="text-sm text-muted-foreground">Fintech infrastructure, digital payments, and the future of money</p>
             </div>
           </div>

@@ -208,7 +208,7 @@ function QuotingTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="bg-card border border-border border-l-4 border-l-primary rounded-md p-6">
         <div className="flex items-center gap-3 mb-3">
@@ -266,7 +266,7 @@ function QuotingTab() {
                   key={t}
                   onClick={() => setTick(t)}
                   className={cn(
-                    "px-2 py-1 text-xs rounded border transition-colors",
+                    "px-2 py-1 text-xs text-muted-foreground rounded border transition-colors",
                     tick === t
                       ? "bg-primary/20 border-primary text-primary"
                       : "border-border text-muted-foreground hover:border-muted-foreground"
@@ -296,7 +296,7 @@ function QuotingTab() {
               key={btn.label}
               onClick={() => btn.set(!btn.active)}
               className={cn(
-                "flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg border transition-colors",
+                "flex items-center gap-1.5 px-3 py-1.5 text-xs text-muted-foreground rounded-lg border transition-colors",
                 btn.active ? "border-border bg-muted" : "border-border text-muted-foreground"
               )}
             >
@@ -315,7 +315,7 @@ function QuotingTab() {
             transition={{ duration: 0.3 }}
           >
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     {showCalls && (
@@ -406,7 +406,7 @@ function QuotingTab() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-xs shrink-0",
+                    "text-xs text-muted-foreground shrink-0",
                     d.impact.includes("Tighter") ? "border-emerald-700 text-emerald-400" : "border-rose-700 text-rose-400"
                   )}
                 >
@@ -420,7 +420,7 @@ function QuotingTab() {
 
         <div className="bg-card border border-border rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-4">Minimum Tick Sizes (US Options)</h3>
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Program</th>
@@ -451,7 +451,7 @@ function QuotingTab() {
           <Shield className="text-primary" size={16} />
           <h3 className="text-sm font-medium text-foreground">Quote Stuffing Protection & Market Rules</h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-muted-foreground">
           {[
             {
               title: "Quote-to-Trade Ratio (QTR)",
@@ -571,7 +571,7 @@ function InventoryTab() {
   const last = data[data.length - 1];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Greeks Dashboard */}
       <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Greeks Inventory Dashboard</h3>
@@ -656,7 +656,7 @@ function InventoryTab() {
             <RefreshCw className="text-primary" size={15} />
             <h3 className="text-sm font-medium text-foreground">Dynamic Hedging Frequency</h3>
           </div>
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 text-xs text-muted-foreground">
             {[
               { regime: "Low vol (VIX < 15)", freq: "End of day", cost: "Low", note: "Delta stable, hedge less" },
               { regime: "Normal (VIX 15-25)", freq: "Hourly", cost: "Moderate", note: "Balanced gamma/cost tradeoff" },
@@ -683,7 +683,7 @@ function InventoryTab() {
             <Lock className="text-rose-400" size={15} />
             <h3 className="text-sm font-medium text-foreground">Position &amp; Risk Limits</h3>
           </div>
-          <div className="space-y-2 text-xs">
+          <div className="space-y-2 text-xs text-muted-foreground">
             {[
               { limit: "Delta limit", value: "±5,000 shares equiv.", color: "text-primary" },
               { limit: "Gamma limit", value: "±500 per $1 move", color: "text-amber-400" },
@@ -709,7 +709,7 @@ function InventoryTab() {
           SPY/QQQ means a long vega in SPY partially offsets a short vega in QQQ.
         </p>
         <div className="overflow-x-auto">
-          <table className="text-xs text-center">
+          <table className="text-xs text-muted-foreground text-center">
             <thead>
               <tr>
                 <th className="w-12" />
@@ -769,7 +769,7 @@ function InventoryTab() {
           A market maker with short gamma at that strike faces extreme hedging costs or unhedgeable gaps.
         </p>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Strike</th>
@@ -787,7 +787,7 @@ function InventoryTab() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-xs",
+                        "text-xs text-muted-foreground",
                         row.pinRisk === "Extreme"
                           ? "border-rose-600 text-rose-400"
                           : row.pinRisk === "Medium"
@@ -910,7 +910,7 @@ function AdverseSelectionTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* VPIN Section */}
       <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-3 mb-3">
@@ -963,7 +963,7 @@ function AdverseSelectionTab() {
           </text>
         </svg>
 
-        <div className="flex gap-4 text-xs mt-2">
+        <div className="flex gap-4 text-xs text-muted-foreground mt-2">
           {(["low", "medium", "high"] as const).map((t) => {
             const count = vpinData.filter((d) => d.toxicity === t).length;
             return (
@@ -987,7 +987,7 @@ function AdverseSelectionTab() {
       <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Options Order Flow Intelligence</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Order Type</th>
@@ -1078,7 +1078,7 @@ function AdverseSelectionTab() {
           {informationExamples.map((ex) => (
             <div key={ex.scenario} className="p-4 bg-muted/50 rounded-md border border-border/50">
               <div className="text-sm font-medium text-foreground mb-2">{ex.scenario}</div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
                 <div>
                   <div className="text-muted-foreground mb-1">Detection signal</div>
                   <div className="text-primary">{ex.detection}</div>
@@ -1103,7 +1103,7 @@ function AdverseSelectionTab() {
           <Clock className="text-rose-400" size={15} />
           <h3 className="text-sm font-medium text-foreground">Trading Halt Triggers</h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-muted-foreground">
           {[
             { trigger: "LULD Circuit Breaker", desc: "5% move in underlying in 5 minutes → 5 min halt", severity: "Automatic" },
             { trigger: "Market-wide circuit breaker", desc: "S&P 500 drops 7%, 13%, or 20%", severity: "Automatic" },
@@ -1117,7 +1117,7 @@ function AdverseSelectionTab() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-xs",
+                    "text-xs text-muted-foreground",
                     h.severity === "Automatic"
                       ? "border-rose-700 text-rose-400"
                       : h.severity === "Voluntary"
@@ -1187,7 +1187,7 @@ function EconomicsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Profitability Model */}
       <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-3 mb-3">
@@ -1196,7 +1196,7 @@ function EconomicsTab() {
           </div>
           <h3 className="text-sm font-medium text-foreground">MM Profitability Model</h3>
         </div>
-        <div className="p-4 bg-muted/50 rounded-md font-mono text-xs mb-5">
+        <div className="p-4 bg-muted/50 rounded-md font-mono text-xs text-muted-foreground mb-5">
           <div className="text-muted-foreground mb-2">// Annual P&amp;L formula</div>
           <div className="text-emerald-400">Net P&amp;L =</div>
           <div className="text-muted-foreground ml-4">+ Spread Income (bid-ask × volume)</div>
@@ -1235,7 +1235,7 @@ function EconomicsTab() {
             );
           })}
         </svg>
-        <div className="flex gap-4 text-xs">
+        <div className="flex gap-4 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded bg-emerald-500/60" />
             <span className="text-muted-foreground">Spread income</span>
@@ -1282,7 +1282,7 @@ function EconomicsTab() {
             MMs pay brokers for retail order flow because retail is typically uninformed (low VPIN). This &quot;payment&quot;
             is the expected profit from trading against uninformed flow, shared with the broker.
           </p>
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Broker</th>
@@ -1306,7 +1306,7 @@ function EconomicsTab() {
 
         <div className="bg-card border border-border rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-3">Maker-Taker vs PFOF Comparison</h3>
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 text-xs text-muted-foreground">
             {[
               {
                 model: "Maker-Taker (exchange)",
@@ -1399,7 +1399,7 @@ function EconomicsTab() {
           <AlertTriangle className="text-rose-400" size={15} />
           <h3 className="text-sm font-medium text-foreground">Case Study: March 2020 Vol Spike</h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs text-muted-foreground">
           <div>
             <div className="text-muted-foreground font-medium mb-3">Timeline of Events</div>
             <div className="space-y-2">
@@ -1498,7 +1498,7 @@ export default function OptionsMmPage() {
               { label: "VPIN / Flow Toxicity", color: "border-rose-800 text-rose-400" },
               { label: "PFOF & Rebates", color: "border-border text-primary" },
             ].map((tag) => (
-              <Badge key={tag.label} variant="outline" className={cn("text-xs", tag.color)}>
+              <Badge key={tag.label} variant="outline" className={cn("text-xs text-muted-foreground", tag.color)}>
                 {tag.label}
               </Badge>
             ))}

@@ -338,7 +338,7 @@ function EuEtsTab() {
   const capTicks = [800, 1000, 1200, 1400, 1600, 1800];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Allowance Price Chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -528,7 +528,7 @@ function EuEtsTab() {
                   <span className="text-muted-foreground text-xs">{item.label}</span>
                   <div className="flex items-center gap-2">
                     <span className="text-foreground text-xs">{item.val}</span>
-                    <Badge variant="outline" className={`text-xs ${item.color} border-current`}>{item.dir}</Badge>
+                    <Badge variant="outline" className={`text-xs text-muted-foreground ${item.color} border-current`}>{item.dir}</Badge>
                   </div>
                 </div>
               ))}
@@ -602,7 +602,7 @@ function VoluntaryTab() {
   const yS = (v: number) => PAD.t + (1 - v / maxMid) * (H - PAD.t - PAD.b);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Credit type taxonomy */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -630,7 +630,7 @@ function VoluntaryTab() {
                 </div>
                 <p className="text-xs text-muted-foreground mb-1">{ct.name}</p>
                 <p className="text-xs text-muted-foreground">{ct.registry}</p>
-                <div className="flex justify-between mt-2 text-xs">
+                <div className="flex justify-between mt-2 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Price range:</span>
                   <span style={{ color: ct.color }}>${ct.priceMin}–${ct.priceMax}/t</span>
                 </div>
@@ -787,7 +787,7 @@ function NatureTab() {
     r === "Low" ? "text-emerald-400" : r === "Medium" ? "text-yellow-400" : "text-red-400";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Project types overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
@@ -831,7 +831,7 @@ function NatureTab() {
                 <span className="text-sm font-medium text-foreground">{pt.type}</span>
               </div>
               <p className="text-xs text-muted-foreground">{pt.mech}</p>
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-emerald-400">{pt.creds}</span>
                 <span className="text-muted-foreground">{pt.risk}</span>
               </div>
@@ -884,7 +884,7 @@ function NatureTab() {
                   </div>
                 ))}
               </div>
-              <div className="flex gap-4 text-xs">
+              <div className="flex gap-4 text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Permanence: <span className={riskColor(p.permanenceRisk)}>{p.permanenceRisk}</span></span>
                 <span className="text-muted-foreground">Tenure: <span className={riskColor(p.tenureRisk)}>{p.tenureRisk}</span></span>
               </div>
@@ -980,7 +980,7 @@ function CorporateTab() {
   const yTicks = [-50, 0, 100, 200, 300, 400, 500];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Framework distinctions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
@@ -1258,12 +1258,12 @@ export default function CarbonMarkets2Page() {
   void _unused;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="max-w-5xl mx-auto space-y-6"
+        className="max-w-5xl mx-auto space-y-4"
       >
         {/* HERO Header */}
         <div className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1">
@@ -1299,16 +1299,16 @@ export default function CarbonMarkets2Page() {
         {/* Tabs */}
         <Tabs defaultValue="eu-ets">
           <TabsList className="bg-card border border-border flex-wrap h-auto gap-1">
-            <TabsTrigger value="eu-ets" className="data-[state=active]:bg-muted text-xs">
+            <TabsTrigger value="eu-ets" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
               EU ETS
             </TabsTrigger>
-            <TabsTrigger value="voluntary" className="data-[state=active]:bg-muted text-xs">
+            <TabsTrigger value="voluntary" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
               Voluntary Carbon
             </TabsTrigger>
-            <TabsTrigger value="nature" className="data-[state=active]:bg-muted text-xs">
+            <TabsTrigger value="nature" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
               Nature-Based Solutions
             </TabsTrigger>
-            <TabsTrigger value="corporate" className="data-[state=active]:bg-muted text-xs">
+            <TabsTrigger value="corporate" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
               Corporate Strategy
             </TabsTrigger>
           </TabsList>

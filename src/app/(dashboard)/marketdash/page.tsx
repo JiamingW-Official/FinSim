@@ -438,7 +438,7 @@ export default function MarketDashPage() {
 
   return (
     <div className="h-full overflow-y-auto bg-background text-foreground">
-      <div className="max-w-[1400px] mx-auto p-4 space-y-6">
+      <div className="max-w-[1400px] mx-auto p-4 space-y-4">
 
         {/* ── Header ────────────────────────────────────────────────────── */}
         <div
@@ -449,7 +449,7 @@ export default function MarketDashPage() {
             <h1 className="text-xl font-semibold tracking-tight">Market Dashboard</h1>
             <Badge
               className={cn(
-                "text-xs font-medium px-2 py-0.5",
+                "text-xs text-muted-foreground font-medium px-2 py-0.5",
                 marketStatus.label === "Open"
                   ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
                   : marketStatus.label === "Pre-Market"
@@ -478,7 +478,7 @@ export default function MarketDashPage() {
           <div className="relative overflow-hidden h-9 bg-background border border-border rounded-md flex items-center">
             <div className="flex gap-0 animate-[marquee_45s_linear_infinite] whitespace-nowrap">
               {[...stripData, ...stripData].map((item, i) => (
-                <span key={i} className="inline-flex items-center gap-1.5 px-4 text-xs">
+                <span key={i} className="inline-flex items-center gap-1.5 px-4 text-xs text-muted-foreground">
                   <span className="font-medium text-foreground">{item.sym}</span>
                   <span className="text-muted-foreground">{item.price.toFixed(2)}</span>
                   <span className={item.pct >= 0 ? "text-emerald-400" : "text-red-400"}>
@@ -613,7 +613,7 @@ export default function MarketDashPage() {
                         Clear
                       </Button>
                     </div>
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="text-muted-foreground border-b border-border">
                           <th className="text-left pb-1.5 font-medium">Ticker</th>
@@ -670,7 +670,7 @@ export default function MarketDashPage() {
               </div>
               <div className="space-y-1">
                 {ACTIVE_STOCKS.map((s) => (
-                  <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/50 last:border-0 text-xs">
+                  <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/50 last:border-0 text-xs text-muted-foreground">
                     <span className="font-mono font-medium w-14 text-foreground">{s.ticker}</span>
                     <span className="text-muted-foreground flex-1 text-center">{s.vol}</span>
                     <span className="text-muted-foreground flex-1 text-center">{s.avgVol}</span>
@@ -693,7 +693,7 @@ export default function MarketDashPage() {
               </div>
               <div className="space-y-1">
                 {TOP_GAINERS.map((s) => (
-                  <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/50 last:border-0 text-xs">
+                  <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/50 last:border-0 text-xs text-muted-foreground">
                     <span className="font-mono font-medium w-14 text-foreground">{s.ticker}</span>
                     <span className="text-muted-foreground tabular-nums flex-1">${s.price.toFixed(2)}</span>
                     <div className="flex items-center gap-1">
@@ -717,7 +717,7 @@ export default function MarketDashPage() {
               </div>
               <div className="space-y-1">
                 {TOP_LOSERS.map((s) => (
-                  <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/50 last:border-0 text-xs">
+                  <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/50 last:border-0 text-xs text-muted-foreground">
                     <span className="font-mono font-medium w-14 text-foreground">{s.ticker}</span>
                     <span className="text-muted-foreground tabular-nums flex-1">${s.price.toFixed(2)}</span>
                     <div className="flex items-center gap-1">
@@ -758,7 +758,7 @@ export default function MarketDashPage() {
                   size="sm"
                   variant={flowFilter === f ? "default" : "outline"}
                   className={cn(
-                    "h-6 px-2 text-xs",
+                    "h-6 px-2 text-xs text-muted-foreground",
                     flowFilter === f
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted border-border text-muted-foreground hover:text-foreground"
@@ -784,7 +784,7 @@ export default function MarketDashPage() {
 
             {/* Table */}
             <div className="overflow-x-auto">
-              <table className="w-full text-xs min-w-[700px]">
+              <table className="w-full text-xs text-muted-foreground min-w-[700px]">
                 <thead>
                   <tr className="text-muted-foreground border-b border-border">
                     {["Ticker", "Expiry", "Strike", "Type", "Size", "OI", "Premium", "Flow", "Sentiment"].map((h) => (
@@ -811,7 +811,7 @@ export default function MarketDashPage() {
                         <td className="py-1.5 pr-3 tabular-nums">${row.strike}</td>
                         <td className="py-1.5 pr-3">
                           <span className={cn(
-                            "px-1.5 py-0.5 rounded text-xs font-medium",
+                            "px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium",
                             row.isCall
                               ? "bg-emerald-500/20 text-emerald-400"
                               : "bg-red-500/20 text-red-400"
@@ -824,7 +824,7 @@ export default function MarketDashPage() {
                         <td className="py-1.5 pr-3 tabular-nums font-medium text-foreground">${row.premium}M</td>
                         <td className="py-1.5 pr-3">
                           <span className={cn(
-                            "px-1.5 py-0.5 rounded text-xs font-medium",
+                            "px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium",
                             row.flowType === "Sweep"
                               ? "bg-sky-500/20 text-sky-400"
                               : row.flowType === "Block"
@@ -836,7 +836,7 @@ export default function MarketDashPage() {
                         </td>
                         <td className="py-1.5">
                           <span className={cn(
-                            "px-1.5 py-0.5 rounded text-xs font-medium",
+                            "px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium",
                             row.bullish
                               ? "bg-emerald-500/20 text-emerald-400"
                               : "bg-red-500/20 text-red-400"
@@ -910,7 +910,7 @@ export default function MarketDashPage() {
 
               <div className="space-y-2">
                 {EARNINGS_TODAY.map((e) => (
-                  <div key={e.ticker} className="flex items-center justify-between text-xs py-1.5 border-b border-border/50 last:border-0">
+                  <div key={e.ticker} className="flex items-center justify-between text-xs text-muted-foreground py-1.5 border-b border-border/50 last:border-0">
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="font-mono font-medium text-foreground w-12">{e.ticker}</span>
                       <span className="text-muted-foreground truncate">{e.name}</span>
@@ -954,7 +954,7 @@ export default function MarketDashPage() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-xs px-1.5 h-5",
+                          "text-xs text-muted-foreground px-1.5 h-5",
                           ev.impact === "high"
                             ? "border-red-500/40 text-red-400 bg-red-500/10"
                             : "border-amber-500/40 text-amber-400 bg-amber-500/10"
@@ -979,12 +979,12 @@ export default function MarketDashPage() {
                     const count = EARNINGS_TODAY.filter((e) => e.surprise === s).length;
                     return (
                       <div key={s} className={cn(
-                        "rounded-lg p-2 text-xs",
+                        "rounded-lg p-2 text-xs text-muted-foreground",
                         s === "beat" ? "bg-emerald-500/10 text-emerald-400" :
                         s === "miss" ? "bg-red-500/10 text-red-400" : "bg-muted text-muted-foreground"
                       )}>
                         <div className="text-lg font-bold">{count}</div>
-                        <div className="text-xs capitalize">{s === "inline" ? "In-line" : s}</div>
+                        <div className="text-xs text-muted-foreground capitalize">{s === "inline" ? "In-line" : s}</div>
                       </div>
                     );
                   })}
@@ -1052,7 +1052,7 @@ export default function MarketDashPage() {
                 </div>
                 <div className="w-px h-16 bg-muted" />
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-red-400">
+                  <div className="text-lg font-medium text-red-400">
                     {BREADTH.newLows}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">New Lows</div>
@@ -1088,7 +1088,7 @@ export default function MarketDashPage() {
               <div className="text-center mt-2">
                 <div
                   className={cn(
-                    "text-2xl font-bold",
+                    "text-lg font-medium",
                     BREADTH.pctAbove200 >= 60 ? "text-emerald-400" : BREADTH.pctAbove200 >= 40 ? "text-amber-400" : "text-red-400"
                   )}
                 >
@@ -1124,7 +1124,7 @@ export default function MarketDashPage() {
               </div>
               <div className="text-center mt-2">
                 <div
-                  className={cn("text-2xl font-bold", BREADTH.mcclellan > 0 ? "text-emerald-400" : "text-red-400")}
+                  className={cn("text-lg font-medium", BREADTH.mcclellan > 0 ? "text-emerald-400" : "text-red-400")}
                 >
                   {BREADTH.mcclellan > 0 ? "+" : ""}{BREADTH.mcclellan}
                 </div>
@@ -1134,7 +1134,7 @@ export default function MarketDashPage() {
                    BREADTH.mcclellan > -50 ? "Bearish momentum" : "Oversold territory"}
                 </div>
               </div>
-              <div className="mt-3 grid grid-cols-3 text-center text-xs gap-1">
+              <div className="mt-3 grid grid-cols-3 text-center text-xs text-muted-foreground gap-1">
                 {[{ label: "Oversold", range: "< -50", color: "text-red-400" },
                   { label: "Neutral", range: "-50 to 50", color: "text-muted-foreground" },
                   { label: "Overbought", range: "> 50", color: "text-amber-400" }].map((z) => (

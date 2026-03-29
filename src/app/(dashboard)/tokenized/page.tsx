@@ -247,7 +247,7 @@ function TypeBadge({ type }: { type: AssetType }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-xs font-medium",
+        "inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-xs text-muted-foreground font-medium",
         TYPE_COLOR[type],
       )}
     >
@@ -262,7 +262,7 @@ function ChangeChip({ value }: { value: number }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-0.5 text-xs font-medium",
+        "inline-flex items-center gap-0.5 text-xs text-muted-foreground font-medium",
         positive ? "text-emerald-400" : "text-red-400",
       )}
     >
@@ -599,11 +599,11 @@ function AssetCard({
         </div>
         <div>
           <p className="text-xs text-muted-foreground">Total Supply</p>
-          <p className="font-mono text-xs">{asset.totalSupply.toLocaleString()}</p>
+          <p className="font-mono text-xs text-muted-foreground">{asset.totalSupply.toLocaleString()}</p>
         </div>
         <div>
           <p className="text-xs text-muted-foreground">Min. Investment</p>
-          <p className="font-mono text-xs">${asset.minInvestment.toLocaleString()}</p>
+          <p className="font-mono text-xs text-muted-foreground">${asset.minInvestment.toLocaleString()}</p>
         </div>
       </div>
 
@@ -636,7 +636,7 @@ function PurchaseModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="w-full max-w-sm rounded-md border bg-card p-6 shadow-sm space-y-4 mx-4">
+      <div className="w-full max-w-sm rounded-md border bg-card p-4 space-y-4 mx-4">
         <div className="flex items-start justify-between">
           <div>
             <h3 className="text-sm font-semibold">Simulate Purchase</h3>
@@ -663,21 +663,21 @@ function PurchaseModal({
         </div>
 
         <div className="rounded-lg border bg-muted/30 p-3 space-y-2">
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Token Price</span>
             <span className="font-mono font-medium">${fmt(asset.tokenPrice)}</span>
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Tokens</span>
             <span className="font-mono font-medium">{tokens.toLocaleString()}</span>
           </div>
           <div className="h-px bg-border" />
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Total Cost</span>
             <span className="font-mono font-semibold">${fmt(totalCost)}</span>
           </div>
           {annualYield > 0 && (
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">Est. Annual Yield</span>
               <span className="font-mono font-medium text-emerald-400">
                 ${fmt(annualYield)} ({fmt(asset.apy)}%)
@@ -689,7 +689,7 @@ function PurchaseModal({
         <div className="flex gap-2">
           <button
             onClick={onClose}
-            className="flex-1 rounded-md border py-1.5 text-xs font-medium hover:bg-accent transition-colors"
+            className="flex-1 rounded-md border py-1.5 text-xs text-muted-foreground font-medium hover:bg-accent transition-colors"
           >
             Cancel
           </button>
@@ -802,7 +802,7 @@ function PortfolioTab({
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* Holdings table */}
         <div className="lg:col-span-2 overflow-auto rounded-lg border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b bg-muted/30">
                 {["Asset", "Tokens", "Avg Price", "Value", "APY", "P&L"].map(
@@ -864,7 +864,7 @@ function PortfolioTab({
           <DonutChart slices={slices} />
           <div className="w-full space-y-1">
             {slices.map((s) => (
-              <div key={s.label} className="flex items-center gap-2 text-xs">
+              <div key={s.label} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span
                   className="inline-block h-2 w-2 rounded-full shrink-0"
                   style={{ background: s.color }}
@@ -946,7 +946,7 @@ function YieldCalculatorTab() {
   ];
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl">
+    <div className="flex flex-col gap-3 max-w-3xl">
       {/* Inputs */}
       <div className="rounded-lg border bg-card p-4 space-y-4">
         <h3 className="text-sm font-medium">Parameters</h3>
@@ -969,7 +969,7 @@ function YieldCalculatorTab() {
 
         {/* Investment slider */}
         <div className="space-y-2">
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <label className="text-muted-foreground">Investment Amount</label>
             <span className="font-mono font-medium">
               ${investmentAmount.toLocaleString()}
@@ -999,7 +999,7 @@ function YieldCalculatorTab() {
                 key={p}
                 onClick={() => setHoldingPeriod(p)}
                 className={cn(
-                  "flex-1 rounded-md py-1.5 text-xs font-medium transition-colors",
+                  "flex-1 rounded-md py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                   holdingPeriod === p
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground",
@@ -1047,7 +1047,7 @@ function YieldCalculatorTab() {
         {/* Legend */}
         <div className="flex flex-wrap gap-3">
           {chartSeries.map((s) => (
-            <div key={s.label} className="flex items-center gap-1.5 text-xs">
+            <div key={s.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <span
                 className="inline-block h-2 w-2 rounded-sm"
                 style={{ background: s.color }}
@@ -1060,7 +1060,7 @@ function YieldCalculatorTab() {
 
       {/* Year-by-year table */}
       <div className="rounded-lg border overflow-auto">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="border-b bg-muted/30">
               {["Year", "RWA Gain", "S&P 500 Gain", "Treasury Gain", "Cash Gain"].map(
@@ -1223,7 +1223,7 @@ const REAL_EXAMPLES = [
 
 function EducationTab() {
   return (
-    <div className="flex flex-col gap-6 max-w-3xl">
+    <div className="flex flex-col gap-3 max-w-3xl">
       {/* Explainer */}
       <div className="rounded-lg border bg-card p-5 space-y-3">
         <h3 className="text-sm font-medium">What is RWA Tokenization?</h3>
@@ -1259,7 +1259,7 @@ function EducationTab() {
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </div>
               <div>
-                <p className="text-xs font-medium">{b.title}</p>
+                <p className="text-xs text-muted-foreground font-medium">{b.title}</p>
                 <p className="text-[11px] text-muted-foreground leading-relaxed">
                   {b.description}
                 </p>
@@ -1279,7 +1279,7 @@ function EducationTab() {
                 <div className="h-1.5 w-1.5 rounded-full bg-amber-400" />
               </div>
               <div>
-                <p className="text-xs font-medium">{r.title}</p>
+                <p className="text-xs text-muted-foreground font-medium">{r.title}</p>
                 <p className="text-[11px] text-muted-foreground leading-relaxed">
                   {r.description}
                 </p>
@@ -1314,7 +1314,7 @@ function EducationTab() {
           {REAL_EXAMPLES.map((ex) => (
             <div key={ex.name} className="rounded-md border p-3 space-y-1.5">
               <div className="flex items-start justify-between gap-2">
-                <p className="text-xs font-medium leading-tight">{ex.name}</p>
+                <p className="text-xs text-muted-foreground font-medium leading-tight">{ex.name}</p>
                 <TypeBadge type={ex.type as AssetType} />
               </div>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
@@ -1406,7 +1406,7 @@ export default function TokenizedPage() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                "px-4 py-2.5 text-xs font-medium border-b-2 transition-colors",
+                "px-4 py-2.5 text-xs text-muted-foreground font-medium border-b-2 transition-colors",
                 activeTab === tab.id
                   ? "border-primary text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",

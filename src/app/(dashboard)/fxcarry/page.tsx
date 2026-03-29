@@ -602,7 +602,7 @@ function RiskMetricsPanel() {
                 <span className="text-xs text-muted-foreground">{m.label}</span>
                 {m.icon}
               </div>
-              <div className={cn("text-2xl font-bold", m.color)}>
+              <div className={cn("text-lg font-medium", m.color)}>
                 {m.value}
                 <span className="text-sm font-normal">{m.unit}</span>
               </div>
@@ -631,7 +631,7 @@ export default function FXCarryPage() {
   const basketVol = 6.1;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -641,7 +641,7 @@ export default function FXCarryPage() {
       >
         <div className="flex items-center gap-3">
           <Globe className="w-7 h-7 text-emerald-400" />
-          <h1 className="text-2xl font-bold">FX Carry Trade &amp; Currency Strategies</h1>
+          <h1 className="text-lg font-medium">FX Carry Trade &amp; Currency Strategies</h1>
         </div>
         <p className="text-sm text-muted-foreground max-w-2xl">
           Exploit interest rate differentials across G10 currencies. Monitor carry basket performance,
@@ -701,7 +701,7 @@ export default function FXCarryPage() {
           </TabsList>
 
           {/* ── Tab: Carry Portfolio ── */}
-          <TabsContent value="portfolio" className="space-y-6">
+          <TabsContent value="portfolio" className="space-y-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -786,7 +786,7 @@ export default function FXCarryPage() {
           </TabsContent>
 
           {/* ── Tab: Interest Rate Differentials ── */}
-          <TabsContent value="rates" className="space-y-6">
+          <TabsContent value="rates" className="space-y-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
@@ -796,7 +796,7 @@ export default function FXCarryPage() {
               </CardHeader>
               <CardContent>
                 <RateDifferentialChart />
-                <div className="flex gap-4 mt-3 text-xs">
+                <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <span className="inline-block w-3 h-3 rounded-sm bg-emerald-400/80" />
                     High yield (&ge;4%)
@@ -849,7 +849,7 @@ export default function FXCarryPage() {
           </TabsContent>
 
           {/* ── Tab: Risk Analysis ── */}
-          <TabsContent value="risk" className="space-y-6">
+          <TabsContent value="risk" className="space-y-4">
             <RiskMetricsPanel />
 
             <Card className="border-border bg-card">
@@ -909,7 +909,7 @@ export default function FXCarryPage() {
                           <td className="px-3 py-2 text-center">
                             <Badge
                               className={cn(
-                                "text-xs",
+                                "text-xs text-muted-foreground",
                                 row.severity === "Low"
                                   ? "bg-emerald-400/10 text-emerald-400 border-emerald-400/30"
                                   : row.severity === "Medium"
@@ -1000,13 +1000,13 @@ export default function FXCarryPage() {
                   Carry traders are, in effect, &quot;picking up nickels in front of a steamroller.&quot;
                 </p>
                 <div className="flex gap-2 mt-3 flex-wrap">
-                  <Button variant="outline" size="sm" className="text-xs">
+                  <Button variant="outline" size="sm" className="text-xs text-muted-foreground">
                     Learn UIP Theory
                   </Button>
-                  <Button variant="outline" size="sm" className="text-xs">
+                  <Button variant="outline" size="sm" className="text-xs text-muted-foreground">
                     Forward Premium Puzzle
                   </Button>
-                  <Button variant="outline" size="sm" className="text-xs">
+                  <Button variant="outline" size="sm" className="text-xs text-muted-foreground">
                     Risk-Off Dynamics
                   </Button>
                 </div>

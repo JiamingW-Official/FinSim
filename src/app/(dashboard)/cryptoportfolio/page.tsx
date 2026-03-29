@@ -388,7 +388,7 @@ function CorrelationMatrix() {
   const size = SYMBOLS.length;
   return (
     <div className="overflow-x-auto">
-      <table className="text-xs border-collapse">
+      <table className="text-xs text-muted-foreground border-collapse">
         <thead>
           <tr>
             <th className="w-10 h-7" />
@@ -585,7 +585,7 @@ export default function CryptoPortfolioPage() {
   const toggle = (key: string) => setExpandedSection(prev => prev === key ? null : key);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -618,7 +618,7 @@ export default function CryptoPortfolioPage() {
             <TabsTrigger
               key={t.id}
               value={t.id}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium
                 data-[state=active]:bg-primary data-[state=active]:text-foreground
                 data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground
                 data-[state=inactive]:bg-foreground/5 transition-colors"
@@ -630,7 +630,7 @@ export default function CryptoPortfolioPage() {
         </TabsList>
 
         {/* ── Tab 1: Portfolio Tracker ─────────────────────────────────────────── */}
-        <TabsContent value="portfolio" className="mt-4 space-y-6 data-[state=inactive]:hidden">
+        <TabsContent value="portfolio" className="mt-4 space-y-4 data-[state=inactive]:hidden">
           {/* Summary stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <StatCard label="Total Value"   value={fmt(portfolioData.totalValue)}   icon={DollarSign} />
@@ -640,12 +640,12 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Donut + Holdings table */}
-          <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-3">
             <div className="flex flex-col items-center gap-2">
               <DonutChart data={portfolioData.donutData} />
               <div className="flex flex-wrap gap-x-3 gap-y-1 justify-center">
                 {portfolioData.assets.map(a => (
-                  <div key={a.symbol} className="flex items-center gap-1 text-xs">
+                  <div key={a.symbol} className="flex items-center gap-1 text-xs text-muted-foreground">
                     <span className="w-2 h-2 rounded-full" style={{ background: a.color }} />
                     <span className="text-muted-foreground">{a.symbol}</span>
                   </div>
@@ -692,7 +692,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Cost basis methods + Heat score */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
               <h3 className="font-semibold text-sm flex items-center gap-2"><FileText className="w-4 h-4 text-primary" />Cost Basis Method — Tax Impact</h3>
               <div className="flex gap-2">
@@ -700,7 +700,7 @@ export default function CryptoPortfolioPage() {
                   <button
                     key={m}
                     onClick={() => setCostMethod(m)}
-                    className={cn("px-3 py-1 rounded-lg text-xs font-medium transition-colors",
+                    className={cn("px-3 py-1 rounded-lg text-xs text-muted-foreground font-medium transition-colors",
                       costMethod === m ? "bg-primary text-foreground" : "bg-foreground/[0.08] text-muted-foreground hover:text-foreground")}
                   >
                     {m}
@@ -745,7 +745,7 @@ export default function CryptoPortfolioPage() {
                     {portfolioData.heatScore < 20 ? "Low Concentration Risk" : portfolioData.heatScore < 40 ? "Moderate Correlation Risk" : "High Cluster Risk"}
                   </div>
                   <p className="text-xs text-muted-foreground">Measures correlation-weighted concentration. A high score means your assets tend to move together — limited diversification benefit.</p>
-                  <div className="flex gap-3 text-xs">
+                  <div className="flex gap-3 text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Avg Corr: <span className="text-foreground">0.68</span></span>
                     <span className="text-muted-foreground">HHI: <span className="text-foreground">{portfolioData.weights.reduce((s, w) => s + w * w, 0).toFixed(3)}</span></span>
                   </div>
@@ -756,7 +756,7 @@ export default function CryptoPortfolioPage() {
         </TabsContent>
 
         {/* ── Tab 2: Market Analysis ────────────────────────────────────────────── */}
-        <TabsContent value="market" className="mt-4 space-y-6 data-[state=inactive]:hidden">
+        <TabsContent value="market" className="mt-4 space-y-4 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <StatCard label="BTC Dominance" value="52%" sub="↑ 1.2% this week" icon={Bitcoin} />
             <StatCard label="Altcoin Season" value={`${Math.round(marketData.altcoinIndexCurrent)}`} sub="Score 0-100 (>75 = Alt Season)" />
@@ -764,14 +764,14 @@ export default function CryptoPortfolioPage() {
             <StatCard label="Market Structure" value="Bull Market" sub="Accumulation phase" positive />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* BTC Dominance Gauge */}
             <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2"><Bitcoin className="w-4 h-4 text-orange-400" />Bitcoin Dominance</h3>
               <div className="flex justify-center">
                 <BitcoinDominanceGauge pct={52} />
               </div>
-              <div className="grid grid-cols-3 gap-2 text-xs">
+              <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                 {[
                   { label: "Low (<40%)", desc: "Alt season", c: "text-primary" },
                   { label: "Normal (40-60%)", desc: "Balanced", c: "text-primary" },
@@ -789,7 +789,7 @@ export default function CryptoPortfolioPage() {
             <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm">Altcoin Season Index (24m)</h3>
               <LineChartSVG data={marketData.altcoinIndex} color="#8b5cf6" fill height={110} label="0 = BTC Season  →  100 = Alt Season" />
-              <div className="flex gap-2 text-xs">
+              <div className="flex gap-2 text-xs text-muted-foreground">
                 <div className="flex-1 rounded bg-orange-500/15 border border-orange-500/30 p-2 text-center">
                   <div className="text-orange-400 font-medium">0–25</div>
                   <div className="text-muted-foreground">BTC Season</div>
@@ -811,7 +811,7 @@ export default function CryptoPortfolioPage() {
             <h3 className="font-medium text-sm flex items-center gap-2"><TrendingUp className="w-4 h-4 text-primary" />BTC/ETH Ratio — 24 Months</h3>
             <p className="text-xs text-muted-foreground">Higher ratio = BTC outperforming ETH. Watch for reversal signals when ETH leads innovation cycles.</p>
             <LineChartSVG data={marketData.btcEthRatio} color="#3b82f6" fill height={100} />
-            <div className="flex gap-6 text-xs text-muted-foreground">
+            <div className="flex gap-3 text-xs text-muted-foreground">
               <span>Current: <span className="text-foreground">{marketData.btcEthRatio[marketData.btcEthRatio.length - 1].toFixed(1)}x</span></span>
               <span>12m Avg: <span className="text-foreground">{(marketData.btcEthRatio.slice(-12).reduce((s, v) => s + v, 0) / 12).toFixed(1)}x</span></span>
               <span>Interpretation: <span className="text-orange-400">BTC Season</span></span>
@@ -925,7 +925,7 @@ export default function CryptoPortfolioPage() {
                         <td className="py-2 pr-4 font-medium">{y.protocol}</td>
                         <td className="py-2 pr-3 text-muted-foreground">{y.asset}</td>
                         <td className="py-2 pr-3 text-center">
-                          <span className={cn("text-xs px-1.5 py-0.5 rounded", typeColor)}>{y.type}</span>
+                          <span className={cn("text-xs text-muted-foreground px-1.5 py-0.5 rounded", typeColor)}>{y.type}</span>
                         </td>
                         <td className="text-right py-2 pr-3 text-yellow-400 font-medium">{y.apy.toFixed(1)}%</td>
                         <td className="text-right py-2 pr-3 text-muted-foreground">${y.tvl.toFixed(1)}B</td>
@@ -959,7 +959,7 @@ export default function CryptoPortfolioPage() {
                   { label: "Uniswap ETH/USDC",     apy: 12.4, color: "#ff007a",  type: "DeFi"   },
                 ].map(row => (
                   <div key={row.label} className="space-y-0.5">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <div className="flex items-center gap-1.5">
                         <span className={cn("text-xs px-1 py-0.5 rounded text-foreground", row.type === "TradFi" ? "bg-primary/50" : "bg-primary/50")}>{row.type}</span>
                         <span className="text-muted-foreground">{row.label}</span>
@@ -986,7 +986,7 @@ export default function CryptoPortfolioPage() {
           <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><Activity className="w-4 h-4 text-emerald-400" />Total DeFi TVL — 12 Months ($B)</h3>
             <LineChartSVG data={defiTVLSeries} color="#10b981" fill height={100} />
-            <div className="flex gap-6 text-xs text-muted-foreground">
+            <div className="flex gap-3 text-xs text-muted-foreground">
               <span>Current TVL: <span className="text-foreground">${defiTVLSeries[defiTVLSeries.length - 1].toFixed(0)}B</span></span>
               <span>12m Growth: <span className="text-emerald-400">{(((defiTVLSeries[defiTVLSeries.length - 1] / defiTVLSeries[0]) - 1) * 100).toFixed(0)}%</span></span>
             </div>
@@ -1029,7 +1029,7 @@ export default function CryptoPortfolioPage() {
           <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><TrendingDown className="w-4 h-4 text-red-400" />BTC Historical Drawdowns — Bubble Size = Severity</h3>
             <DrawdownBubbleChart />
-            <div className="grid grid-cols-3 gap-2 text-xs">
+            <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
               <div className="rounded bg-red-500/10 border border-red-500/20 p-2 text-center">
                 <div className="text-red-400 font-medium">-90%+ Events</div>
                 <div className="text-muted-foreground">Typical bear mkt</div>
@@ -1085,7 +1085,7 @@ export default function CryptoPortfolioPage() {
             <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2"><DollarSign className="w-4 h-4 text-yellow-400" />Kelly Criterion — Crypto Position Sizing</h3>
               <div className="space-y-3 text-sm">
-                <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                   {[
                     { label: "Win Rate",         value: "65%" },
                     { label: "Avg Win",          value: "45%" },
@@ -1109,7 +1109,7 @@ export default function CryptoPortfolioPage() {
 
             <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2"><Shield className="w-4 h-4 text-primary" />Stop Loss Strategy — High Volatility Assets</h3>
-              <div className="space-y-2.5 text-xs">
+              <div className="space-y-2.5 text-xs text-muted-foreground">
                 {[
                   { type: "Fixed Stop",      pros: "Simple, removes emotion", cons: "Stopped out by normal volatility spikes", rec: "Use 15-20% for BTC/ETH" },
                   { type: "Trailing Stop",   pros: "Locks in profits on runs", cons: "Whipsaws in sideways markets", rec: "Trail 2× ATR for crypto" },
@@ -1211,7 +1211,7 @@ export default function CryptoPortfolioPage() {
                     Congress has proposed extending wash sale rules to crypto. This strategy window may close. Monitor regulatory changes (CFTC/SEC jurisdiction battles ongoing).
                   </p>
                 </div>
-                <div className="space-y-1.5 text-xs">
+                <div className="space-y-1.5 text-xs text-muted-foreground">
                   <div className="font-medium text-foreground">Tax Loss Harvesting Strategy:</div>
                   {[
                     "Sell BTC at loss in December to realize capital loss",
@@ -1231,7 +1231,7 @@ export default function CryptoPortfolioPage() {
             <div className="rounded-md border border-border bg-primary/5 p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2 text-primary"><Shield className="w-4 h-4" />Long vs Short Term Capital Gains</h3>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs border-collapse">
+                <table className="w-full text-xs text-muted-foreground border-collapse">
                   <thead>
                     <tr className="text-muted-foreground border-b border-border/50">
                       <th className="text-left py-2 pr-3">Income Bracket</th>
@@ -1280,13 +1280,13 @@ export default function CryptoPortfolioPage() {
                 <div key={e.event} className="rounded-lg bg-foreground/5 p-3 space-y-1.5">
                   <div className="flex items-center justify-between">
                     <div className="font-medium text-sm">{e.event}</div>
-                    <span className={cn("text-xs px-1.5 py-0.5 rounded",
+                    <span className={cn("text-xs text-muted-foreground px-1.5 py-0.5 rounded",
                       e.complexity === "Very High" ? "bg-red-500/20 text-red-400" :
                       e.complexity === "High" ? "bg-orange-500/20 text-orange-400" :
                       "bg-yellow-500/20 text-yellow-400"
                     )}>{e.complexity}</span>
                   </div>
-                  <div className="text-xs">
+                  <div className="text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Treatment: </span>
                     <span className="text-primary">{e.treatment}</span>
                   </div>
@@ -1302,7 +1302,7 @@ export default function CryptoPortfolioPage() {
             <h3 className="font-medium text-sm flex items-center gap-2"><FileText className="w-4 h-4 text-primary" />Form 8949 Preview — Simplified Gain/Loss Report</h3>
             <p className="text-xs text-muted-foreground mb-2">Simplified illustration. Consult a tax professional or crypto tax software (Koinly, TaxBit, CoinTracker) for actual filing.</p>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs border-collapse font-mono">
+              <table className="w-full text-xs text-muted-foreground border-collapse font-mono">
                 <thead>
                   <tr className="text-muted-foreground border-b border-border/50 text-left">
                     <th className="py-2 pr-3">Description</th>
@@ -1356,7 +1356,7 @@ export default function CryptoPortfolioPage() {
           {/* Mining / Staking income */}
           <div className="rounded-md border border-yellow-500/30 bg-yellow-500/5 p-4 space-y-3">
             <h3 className="font-medium text-sm text-yellow-400 flex items-center gap-2"><Zap className="w-4 h-4" />Mining & Staking Income — Taxed as Ordinary Income</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-muted-foreground">
               <div className="space-y-2">
                 <div className="font-medium text-foreground">Mining Income</div>
                 <ul className="space-y-1.5 text-muted-foreground">

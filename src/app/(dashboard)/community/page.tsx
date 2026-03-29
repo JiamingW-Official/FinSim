@@ -334,7 +334,7 @@ function Avatar({
   colorClass: string;
   size?: "sm" | "md" | "lg";
 }) {
-  const sizeClass = size === "lg" ? "h-10 w-10 text-sm" : size === "sm" ? "h-6 w-6 text-[11px]" : "h-8 w-8 text-xs";
+  const sizeClass = size === "lg" ? "h-10 w-10 text-sm" : size === "sm" ? "h-6 w-6 text-[11px]" : "h-8 w-8 text-xs text-muted-foreground";
   return (
     <div
       className={cn(
@@ -462,7 +462,7 @@ function TradeIdeasTab() {
             type="button"
             onClick={() => setFilter(f.value)}
             className={cn(
-              "rounded border px-2 py-1 text-xs font-medium leading-none transition-all",
+              "rounded border px-2 py-1 text-xs text-muted-foreground font-medium leading-none transition-all",
               filter === f.value
                 ? "bg-primary/15 border-primary/30 text-primary"
                 : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -636,7 +636,7 @@ function AnalystRatingsTab() {
             </div>
 
             {/* Row 2: prices */}
-            <div className="flex items-center gap-4 text-xs">
+            <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <div>
                 <span className="text-muted-foreground/50 mr-1">Current</span>
                 <span className="font-mono font-medium text-foreground">${r.currentPrice.toFixed(2)}</span>
@@ -760,7 +760,7 @@ function TrendingTab() {
                 </div>
               </div>
               <div className={cn(
-                "shrink-0 text-xs font-medium font-mono",
+                "shrink-0 text-xs text-muted-foreground font-medium font-mono",
                 a.priceChange >= 0 ? "text-emerald-400" : "text-red-400",
               )}>
                 {a.priceChange >= 0 ? "+" : ""}{a.priceChange.toFixed(1)}%
@@ -892,7 +892,7 @@ function TopTradersTab() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 20 }}
               transition={{ duration: 0.2 }}
-              className="w-full max-w-sm rounded-md border border-border bg-card p-4 shadow-sm space-y-4"
+              className="w-full max-w-sm rounded-md border border-border bg-card p-4 space-y-4"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal header */}
@@ -930,7 +930,7 @@ function TopTradersTab() {
                 <div className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wide mb-2">Recent Trades</div>
                 <div className="space-y-1">
                   {profileTrader.tradeHistory.map((t, idx) => (
-                    <div key={idx} className="flex items-center justify-between text-xs py-1 border-b border-border/30 last:border-0">
+                    <div key={idx} className="flex items-center justify-between text-xs text-muted-foreground py-1 border-b border-border/30 last:border-0">
                       <span className="font-medium text-foreground">{t.ticker}</span>
                       <span className="text-muted-foreground/50">{t.date}</span>
                       <span className={cn("font-mono font-medium", t.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -970,16 +970,16 @@ export default function CommunityPage() {
       <div className="flex-1 min-h-0 overflow-hidden">
         <Tabs defaultValue="ideas" className="h-full flex flex-col">
           <TabsList className="shrink-0 mx-6 mt-4 mb-0 w-auto justify-start gap-0 rounded-lg bg-muted/50 p-0.5">
-            <TabsTrigger value="ideas" className="text-xs px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            <TabsTrigger value="ideas" className="text-xs text-muted-foreground px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:">
               Trade Ideas
             </TabsTrigger>
-            <TabsTrigger value="analysts" className="text-xs px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            <TabsTrigger value="analysts" className="text-xs text-muted-foreground px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:">
               Analyst Ratings
             </TabsTrigger>
-            <TabsTrigger value="trending" className="text-xs px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            <TabsTrigger value="trending" className="text-xs text-muted-foreground px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:">
               Trending
             </TabsTrigger>
-            <TabsTrigger value="traders" className="text-xs px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            <TabsTrigger value="traders" className="text-xs text-muted-foreground px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:">
               Top Traders
             </TabsTrigger>
           </TabsList>

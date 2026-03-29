@@ -198,7 +198,7 @@ function WorldHeatmap() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-20 pointer-events-none bg-card border border-border rounded-lg p-3 shadow-sm text-xs min-w-[180px]"
+            className="absolute z-20 pointer-events-none bg-card border border-border rounded-lg p-3 text-xs text-muted-foreground min-w-[180px]"
             style={{
               left: Math.min(tooltipPos.x + 8, svgW > 0 ? 9999 : 0),
               top: tooltipPos.y + 8,
@@ -233,7 +233,7 @@ function WorldHeatmap() {
             </div>
             <div className="mt-2 pt-2 border-t border-border">
               <Badge
-                className="text-xs"
+                className="text-xs text-muted-foreground"
                 style={{
                   backgroundColor: OUTLOOK_COLOR[hovered.outlook] + "33",
                   color: OUTLOOK_COLOR[hovered.outlook],
@@ -277,7 +277,7 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
             <div
               key={opt}
               className={cn(
-                "flex-1 text-center py-1 px-1 rounded text-xs font-semibold transition-all",
+                "flex-1 text-center py-1 px-1 rounded text-xs text-muted-foreground font-semibold transition-all",
                 opt === indicator.current
                   ? "text-background"
                   : "bg-muted text-muted-foreground"
@@ -460,13 +460,13 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
             <Badge
-              className="text-xs px-1.5 py-0"
+              className="text-xs text-muted-foreground px-1.5 py-0"
               style={{ backgroundColor: CONVICTION_COLOR[idea.conviction] + "22", color: CONVICTION_COLOR[idea.conviction], border: `1px solid ${CONVICTION_COLOR[idea.conviction]}44` }}
             >
               {idea.conviction}
             </Badge>
             <Badge
-              className="text-xs px-1.5 py-0"
+              className="text-xs text-muted-foreground px-1.5 py-0"
               style={{ backgroundColor: HORIZON_COLOR[idea.horizon] + "22", color: HORIZON_COLOR[idea.horizon], border: `1px solid ${HORIZON_COLOR[idea.horizon]}44` }}
             >
               {idea.horizon}
@@ -857,7 +857,7 @@ const PPP_VALUATION: Record<string, { ppp: number; spot: number; overUnder: numb
 function FxMatrixTable() {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs border-collapse">
+      <table className="w-full text-xs text-muted-foreground border-collapse">
         <thead>
           <tr>
             <th className="p-1.5 text-left text-muted-foreground font-medium w-16">Base →</th>
@@ -905,7 +905,7 @@ function FxMatrixTable() {
 function CarryMatrix() {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs border-collapse">
+      <table className="w-full text-xs text-muted-foreground border-collapse">
         <thead>
           <tr>
             <th className="p-1.5 text-left text-muted-foreground font-medium w-16">Long →</th>
@@ -992,7 +992,7 @@ function PppChart() {
           </div>
         );
       })}
-      <div className="flex justify-center mt-2 gap-6 text-xs text-muted-foreground">
+      <div className="flex justify-center mt-2 gap-3 text-xs text-muted-foreground">
         <span className="text-red-400">◀ Undervalued vs USD</span>
         <span className="text-green-400">Overvalued vs USD ▶</span>
       </div>
@@ -1077,7 +1077,7 @@ export default function GlobalMacroPage() {
   const [minPotential, setMinPotential] = useState(0);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1098,11 +1098,11 @@ export default function GlobalMacroPage() {
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="dashboard"   className="data-[state=active]:bg-muted text-xs">Macro Dashboard</TabsTrigger>
-          <TabsTrigger value="trade-ideas" className="data-[state=active]:bg-muted text-xs">Trade Ideas</TabsTrigger>
-          <TabsTrigger value="central-banks" className="data-[state=active]:bg-muted text-xs">Central Banks</TabsTrigger>
-          <TabsTrigger value="indicators"  className="data-[state=active]:bg-muted text-xs">Macro Indicators</TabsTrigger>
-          <TabsTrigger value="currency"    className="data-[state=active]:bg-muted text-xs">Currency Wars</TabsTrigger>
+          <TabsTrigger value="dashboard"   className="data-[state=active]:bg-muted text-xs text-muted-foreground">Macro Dashboard</TabsTrigger>
+          <TabsTrigger value="trade-ideas" className="data-[state=active]:bg-muted text-xs text-muted-foreground">Trade Ideas</TabsTrigger>
+          <TabsTrigger value="central-banks" className="data-[state=active]:bg-muted text-xs text-muted-foreground">Central Banks</TabsTrigger>
+          <TabsTrigger value="indicators"  className="data-[state=active]:bg-muted text-xs text-muted-foreground">Macro Indicators</TabsTrigger>
+          <TabsTrigger value="currency"    className="data-[state=active]:bg-muted text-xs text-muted-foreground">Currency Wars</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Macro Dashboard ─────────────────────────────────────────── */}
@@ -1145,7 +1145,7 @@ export default function GlobalMacroPage() {
               {(["High", "Medium", "Low"] as const).map((c) => {
                 const count = TRADE_IDEAS.filter((t) => t.conviction === c).length;
                 return (
-                  <div key={c} className="flex items-center gap-2 text-xs">
+                  <div key={c} className="flex items-center gap-2 text-xs text-muted-foreground">
                     <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: CONVICTION_COLOR[c] }} />
                     <span className="text-muted-foreground">{c} Conviction:</span>
                     <span className="font-medium text-foreground">{count}</span>
@@ -1156,7 +1156,7 @@ export default function GlobalMacroPage() {
               {(["Short", "Medium", "Long"] as const).map((h) => {
                 const count = TRADE_IDEAS.filter((t) => t.horizon === h).length;
                 return (
-                  <div key={h} className="flex items-center gap-2 text-xs">
+                  <div key={h} className="flex items-center gap-2 text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{h}:</span>
                     <span className="font-medium text-foreground">{count}</span>
                   </div>
@@ -1242,13 +1242,13 @@ export default function GlobalMacroPage() {
                         </div>
                         <div className="flex items-center gap-2">
                           <Badge
-                            className="text-xs"
+                            className="text-xs text-muted-foreground"
                             style={{ backgroundColor: DECISION_COLOR[bank.lastDecision] + "22", color: DECISION_COLOR[bank.lastDecision], border: `1px solid ${DECISION_COLOR[bank.lastDecision]}44` }}
                           >
                             Last: {bank.lastDecision}
                           </Badge>
                           <Badge
-                            className="text-xs"
+                            className="text-xs text-muted-foreground"
                             style={{ backgroundColor: DECISION_COLOR[bank.marketExpectation] + "22", color: DECISION_COLOR[bank.marketExpectation], border: `1px solid ${DECISION_COLOR[bank.marketExpectation]}44` }}
                           >
                             Mkt: {bank.marketExpectation}
@@ -1325,7 +1325,7 @@ export default function GlobalMacroPage() {
             {/* Classification legend */}
             <div className="flex gap-4 mb-4 flex-wrap">
               {(["Leading", "Coincident", "Lagging"] as const).map((cls) => (
-                <div key={cls} className="flex items-center gap-1.5 text-xs">
+                <div key={cls} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                   <div
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ backgroundColor: CLASS_COLOR[cls] }}
@@ -1352,7 +1352,7 @@ export default function GlobalMacroPage() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">

@@ -655,7 +655,7 @@ function PmiBadge({ val }: { val: number }) {
     : val >= 48 ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
     : "bg-red-500/15 text-red-400 border-red-500/25";
   return (
-    <span className={cn("inline-block px-1.5 py-0.5 rounded text-xs font-mono border", color)}>
+    <span className={cn("inline-block px-1.5 py-0.5 rounded text-xs text-muted-foreground font-mono border", color)}>
       {val.toFixed(1)}
     </span>
   );
@@ -676,7 +676,7 @@ function GdpTab() {
           <p className="text-2xl font-bold text-indigo-300">2.4%</p>
           <p className="text-xs text-muted-foreground mt-1">Annualized real growth rate</p>
           <div className="mt-3 bg-muted/60 rounded-lg p-3 flex flex-col gap-1.5">
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">Confidence band</span>
               <span className="text-muted-foreground">±0.8pp</span>
             </div>
@@ -733,7 +733,7 @@ function GdpTab() {
             {["Real", "Nominal"].map(lbl => (
               <button key={lbl}
                 onClick={() => setShowNominal(lbl === "Nominal")}
-                className={cn("px-3 py-1 rounded-full text-xs font-medium transition-colors",
+                className={cn("px-3 py-1 rounded-full text-xs text-muted-foreground font-medium transition-colors",
                   (lbl === "Nominal") === showNominal
                     ? "bg-indigo-600 text-foreground"
                     : "bg-muted text-muted-foreground hover:text-foreground"
@@ -818,14 +818,14 @@ function GdpTab() {
             <div key={li.name} className="bg-muted/60 border border-border/50 rounded-md p-3.5">
               <div className="flex justify-between items-start mb-1">
                 <span className="text-sm font-semibold text-foreground">{li.name}</span>
-                <Badge className={cn("text-xs",
+                <Badge className={cn("text-xs text-muted-foreground",
                   li.signal === "expansion" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
                   li.signal === "neutral"   ? "bg-amber-500/20 text-amber-300 border-amber-500/30" :
                                               "bg-red-500/20 text-red-300 border-red-500/30")}>
                   {li.signal}
                 </Badge>
               </div>
-              <p className="text-2xl font-bold text-foreground">{li.value}{li.unit ?? ""}</p>
+              <p className="text-lg font-medium text-foreground">{li.value}{li.unit ?? ""}</p>
               <p className="text-xs text-muted-foreground mt-1">{li.desc}</p>
             </div>
           ))}
@@ -848,7 +848,7 @@ function InflationTab() {
               <ArcGauge value={g.value} min={0} max={10} color={g.color} label={g.label} unit="%" target={g.target} />
               <div className="flex items-center gap-1.5 mt-1">
                 <TrendArrow value={g.value} prev={g.prev} />
-                <span className={cn("text-xs font-medium",
+                <span className={cn("text-xs text-muted-foreground font-medium",
                   g.value < g.prev ? "text-emerald-400" : "text-red-400")}>
                   {g.value < g.prev ? "↓" : "↑"} from {g.prev}%
                 </span>
@@ -1041,7 +1041,7 @@ function LaborTab() {
                 {sahmTriggered ? "RECESSION SIGNAL TRIGGERED" : "No Recession Signal"}
               </span>
             </div>
-            <p className="text-2xl font-bold text-foreground mb-1">{SAHM_CURRENT.toFixed(2)} pp</p>
+            <p className="text-lg font-medium text-foreground mb-1">{SAHM_CURRENT.toFixed(2)} pp</p>
             <p className="text-xs text-muted-foreground">Current Sahm Rule Reading (trigger: ≥0.50pp)</p>
           </div>
           <div className="h-[80px]">
@@ -1214,14 +1214,14 @@ function GlobalTab() {
           {(["composite", "manufacturing", "services"] as const).map(v => (
             <button key={v}
               onClick={() => setPmiView(v)}
-              className={cn("px-3 py-1 rounded-full text-xs font-medium capitalize transition-colors",
+              className={cn("px-3 py-1 rounded-full text-xs text-muted-foreground font-medium capitalize transition-colors",
                 pmiView === v ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground hover:text-foreground")}>
               {v}
             </button>
           ))}
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50">
                 <th className="text-left text-muted-foreground pb-2 pr-4 font-medium">Country</th>
@@ -1251,7 +1251,7 @@ function GlobalTab() {
             { label: "48–50  Mild contraction",cls: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
             { label: "<48  Contraction",        cls: "bg-red-500/15 text-red-400 border-red-500/25" },
           ].map(({ label, cls }) => (
-            <span key={label} className={cn("text-xs px-2 py-0.5 rounded border", cls)}>{label}</span>
+            <span key={label} className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded border", cls)}>{label}</span>
           ))}
         </div>
       </SectionCard>
@@ -1346,7 +1346,7 @@ function GlobalTab() {
             <div key={r.region} className="bg-muted/50 rounded-md p-3 border border-border/50">
               <Globe className="w-4 h-4 mb-2" style={{ color: r.color }} />
               <p className="text-sm font-medium text-foreground">{r.region}</p>
-              <Badge className="mt-1.5 text-xs" style={{
+              <Badge className="mt-1.5 text-xs text-muted-foreground" style={{
                 background: `${r.color}20`,
                 color: r.color,
                 borderColor: `${r.color}40`,
@@ -1402,7 +1402,7 @@ export default function EconomicIndicatorsPage() {
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <BarChart3 className="w-6 h-6 text-indigo-400" />
-                <h1 className="text-2xl font-bold text-foreground">Economic Indicators</h1>
+                <h1 className="text-lg font-medium text-foreground">Economic Indicators</h1>
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">Live</Badge>
               </div>
               <p className="text-sm text-muted-foreground">

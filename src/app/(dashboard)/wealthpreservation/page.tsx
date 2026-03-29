@@ -465,10 +465,10 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className={cn("text-xs", catColor[strategy.category] || "")}>
+          <Badge variant="outline" className={cn("text-xs text-muted-foreground", catColor[strategy.category] || "")}>
             {strategy.category}
           </Badge>
-          <Badge variant="outline" className={cn("text-xs", riskColor)}>
+          <Badge variant="outline" className={cn("text-xs text-muted-foreground", riskColor)}>
             {strategy.riskLevel} Risk
           </Badge>
           {expanded ? (
@@ -625,7 +625,7 @@ function SuccessionTimeline() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-xs",
+                    "text-xs text-muted-foreground",
                     step.status === "complete"
                       ? "bg-green-500/10 text-green-400 border-green-500/20"
                       : step.status === "active"
@@ -712,7 +712,7 @@ function TaxStrategyPanel() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-xs shrink-0",
+                        "text-xs text-muted-foreground shrink-0",
                         s.complexity === "Low"
                           ? "bg-green-500/10 text-green-400 border-green-500/20"
                           : s.complexity === "Medium"
@@ -820,7 +820,7 @@ function InflationHedgesPanel() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "text-xs",
+                      "text-xs text-muted-foreground",
                       h.liquidity === "High"
                         ? "bg-green-500/10 text-green-400 border-green-500/20"
                         : h.liquidity.startsWith("Low–")
@@ -947,13 +947,13 @@ export default function WealthPreservationPage() {
           </TabsList>
 
           {/* ── Asset Allocation Tab ── */}
-          <TabsContent value="allocation" className="mt-6 space-y-6">
+          <TabsContent value="allocation" className="mt-6 space-y-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {/* Pie chart */}
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
@@ -1030,7 +1030,7 @@ export default function WealthPreservationPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="space-y-6"
+              className="space-y-4"
             >
               <div className="p-4 bg-amber-500/5 border border-amber-500/20 rounded-lg">
                 <div className="flex items-start gap-2">
@@ -1051,7 +1051,7 @@ export default function WealthPreservationPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="space-y-6"
+              className="space-y-4"
             >
               <div className="p-4 bg-red-500/5 border border-red-500/20 rounded-lg">
                 <div className="flex items-start gap-2">
@@ -1072,7 +1072,7 @@ export default function WealthPreservationPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="space-y-6"
+              className="space-y-4"
             >
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Card className="bg-card border-border">
@@ -1084,14 +1084,14 @@ export default function WealthPreservationPage() {
                 </Card>
                 <Card className="bg-card border-border">
                   <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-foreground mb-1">40%</div>
+                    <div className="text-lg font-medium text-foreground mb-1">40%</div>
                     <div className="text-xs text-muted-foreground">Federal Estate Tax Rate</div>
                     <div className="text-xs text-muted-foreground mt-1">Above exemption amount</div>
                   </CardContent>
                 </Card>
                 <Card className="bg-card border-border">
                   <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-foreground mb-1">$18,000</div>
+                    <div className="text-lg font-medium text-foreground mb-1">$18,000</div>
                     <div className="text-xs text-muted-foreground">2024 Annual Gift Exclusion</div>
                     <div className="text-xs text-muted-foreground mt-1">Per recipient, indexed to inflation</div>
                   </CardContent>

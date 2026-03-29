@@ -242,7 +242,7 @@ function WealthAccumulationTab() {
   }, [startingCapital, monthlyContrib, returnRate, years]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Controls */}
         <Card className="lg:col-span-1 p-5 bg-card border-border space-y-5">
@@ -306,7 +306,7 @@ function WealthAccumulationTab() {
 
           {/* Stacked Area Chart */}
           <div className="bg-muted/60 rounded-md p-3">
-            <div className="flex gap-4 text-xs mb-2">
+            <div className="flex gap-4 text-xs text-muted-foreground mb-2">
               <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-primary/70" /> Contributions</span>
               <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-emerald-500/70" /> Growth</span>
             </div>
@@ -483,7 +483,7 @@ function NetWorthTab() {
           </div>
           {assetItems.map((item, i) => (
             <div key={i} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="flex items-center gap-1 text-muted-foreground">{item.icon}{item.label}</span>
                 <span className="text-foreground font-medium">{fmt(item.value)}</span>
               </div>
@@ -506,7 +506,7 @@ function NetWorthTab() {
           </div>
           {liabilityItems.map((item, i) => (
             <div key={i} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="flex items-center gap-1 text-muted-foreground">{item.icon}{item.label}</span>
                 <span className="text-foreground font-medium">{fmt(item.value)}</span>
               </div>
@@ -540,7 +540,7 @@ function NetWorthTab() {
                   key={bracket}
                   onClick={() => setAgeBracket(bracket)}
                   className={cn(
-                    "px-2 py-0.5 rounded text-xs border transition-colors",
+                    "px-2 py-0.5 rounded text-xs text-muted-foreground border transition-colors",
                     ageBracket === bracket
                       ? "bg-primary border-primary text-foreground"
                       : "bg-muted border-border text-muted-foreground hover:border-border"
@@ -711,7 +711,7 @@ function PassiveIncomeTab() {
               </Badge>
             </div>
 
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2 text-xs text-muted-foreground">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Invested</span>
                 <span className="text-foreground">{fmt(stream.invested)}</span>
@@ -967,7 +967,7 @@ function TaxOptimizationTab() {
 
           <div className="bg-emerald-900/30 border border-emerald-800/50 rounded-lg p-3">
             <div className="text-xs text-emerald-400 font-medium">Annual Tax Savings</div>
-            <div className="text-2xl font-bold text-emerald-400">{fmt(taxSaved)}</div>
+            <div className="text-lg font-medium text-emerald-400">{fmt(taxSaved)}</div>
             <div className="text-xs text-muted-foreground mt-1">at {marginalRate}% marginal rate on {fmt(annualContrib)} contribution</div>
           </div>
 
@@ -992,7 +992,7 @@ function TaxOptimizationTab() {
               <text key={yr} x={toTaX(yr)} y={taxAdvH - 6} textAnchor="middle" fontSize="10" fill="#9ca3af">Yr {yr}</text>
             ))}
           </svg>
-          <div className="flex gap-4 text-xs mt-1">
+          <div className="flex gap-4 text-xs text-muted-foreground mt-1">
             <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 bg-green-500" /> Tax-Deferred</span>
             <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 bg-red-500 border-dashed border-t border-red-500" /> Taxable</span>
           </div>
@@ -1171,7 +1171,7 @@ function RiskInsuranceTab() {
             { label: "Dependents", value: dependents, min: 0, max: 6, step: 1, set: setDependents },
           ].map((field) => (
             <div key={field.label} className="space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{field.label}</span>
                 <span className="text-foreground font-medium">{field.value >= 10000 ? fmtK(field.value) : field.value}</span>
               </div>
@@ -1309,7 +1309,7 @@ function SWRHistoricalChart() {
         <text x={pad.left} y={vh - 6} fontSize="10" fill="#9ca3af">1920</text>
         <text x={pad.left + cw} y={vh - 6} textAnchor="end" fontSize="10" fill="#9ca3af">2020</text>
       </svg>
-      <div className="flex gap-4 text-xs mt-1">
+      <div className="flex gap-4 text-xs text-muted-foreground mt-1">
         <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-green-500/75" /> Portfolio survived</span>
         <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-red-500/75" /> Ran out of money</span>
       </div>
@@ -1392,7 +1392,7 @@ function FIRoadmapTab() {
             { label: "Savings Rate", value: annualSavingsRate, min: 5, max: 80, step: 5, set: setAnnualSavingsRate, isPercent: true },
           ].map((field) => (
             <div key={field.label} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{field.label}</span>
                 <span className="text-foreground font-medium">
                   {field.isPercent ? fmtPct(field.value) : fmtK(field.value)}
@@ -1408,12 +1408,12 @@ function FIRoadmapTab() {
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-muted rounded-md p-4 text-center">
               <div className="text-xs text-muted-foreground">FI Number (25×)</div>
-              <div className="text-2xl font-bold text-green-400">{fmtK(fiNumber)}</div>
+              <div className="text-lg font-medium text-green-400">{fmtK(fiNumber)}</div>
               <div className="text-xs text-muted-foreground mt-1">{fmt(annualExpenses)}/yr × 25</div>
             </div>
             <div className="bg-muted rounded-md p-4 text-center">
               <div className="text-xs text-muted-foreground">Years to FI</div>
-              <div className="text-2xl font-bold text-primary">{yearsToFI}</div>
+              <div className="text-lg font-medium text-primary">{yearsToFI}</div>
               <div className="text-xs text-muted-foreground mt-1">at {fmtPct(annualSavingsRate)} savings rate</div>
             </div>
           </div>
@@ -1438,7 +1438,7 @@ function FIRoadmapTab() {
               <div key={i} className="flex items-center gap-3">
                 <div className="text-lg w-6">{m.emoji}</div>
                 <div className="flex-1">
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span style={{ color: m.color }} className="font-medium">{m.label}</span>
                     <span className="text-muted-foreground">{fmtK(m.target)}</span>
                   </div>
@@ -1468,7 +1468,7 @@ function FIRoadmapTab() {
           <h3 className="text-sm font-medium text-foreground">Barista FIRE Calculator</h3>
           <p className="text-xs text-muted-foreground">Work part-time to cover some expenses — retire with less capital needed.</p>
           <div className="space-y-2">
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">Part-Time Earnings/yr</span>
               <span className="text-foreground font-medium">{fmt(baristaEarnings)}</span>
             </div>
@@ -1526,7 +1526,7 @@ function FIRoadmapTab() {
               { label: "Donor-Advised Fund", value: "Immediate deduction, flexible giving" },
               { label: "Leave to heirs", value: "Step-up in basis eliminates capital gains" },
             ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between text-xs">
+              <div key={i} className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="flex items-center gap-1 text-muted-foreground"><ChevronRight size={10} className="text-muted-foreground" />{item.label}</span>
                 <span className="text-muted-foreground">{item.value}</span>
               </div>

@@ -590,7 +590,7 @@ function StrategyExplorer() {
   const sel = STRATEGIES.find((s) => s.id === selected);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Cards grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         {STRATEGIES.map((st) => (
@@ -678,7 +678,7 @@ function StrategyExplorer() {
       </AnimatePresence>
 
       {/* Two-column: chart + table */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
         <Card className="bg-foreground/[0.03] border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Risk-Return Scatter (Bubble Size = AUM)</CardTitle>
@@ -693,7 +693,7 @@ function StrategyExplorer() {
             <CardTitle className="text-sm text-muted-foreground">Annual Returns by Strategy</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Strategy</th>
@@ -848,7 +848,7 @@ function LSEquitySimulator() {
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-1.5 text-muted-foreground">Ticker</th>
@@ -890,7 +890,7 @@ function LSEquitySimulator() {
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-1.5 text-muted-foreground">Ticker</th>
@@ -960,7 +960,7 @@ function LSEquitySimulator() {
               { label: "Max Single Name", value: (maxLong / portfolioValue) * 100, max: 20, color: "bg-amber-500" },
             ].map(({ label, value, max, color }) => (
               <div key={label}>
-                <div className="flex justify-between text-xs mb-1">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
                   <span className="text-muted-foreground">{label}</span>
                   <span className="text-muted-foreground font-medium">{value.toFixed(1)}%</span>
                 </div>
@@ -1079,7 +1079,7 @@ function GlobalMacroSimulator() {
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <div className="flex items-center gap-2 mb-0.5">
-                      <Badge className={cn("text-xs px-1.5 py-0 h-5 gap-1", categoryColor(theme.category))}>
+                      <Badge className={cn("text-xs text-muted-foreground px-1.5 py-0 h-5 gap-1", categoryColor(theme.category))}>
                         {categoryIcon(theme.category)}
                         {theme.category.charAt(0).toUpperCase() + theme.category.slice(1)}
                       </Badge>
@@ -1091,7 +1091,7 @@ function GlobalMacroSimulator() {
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground">{theme.thesis}</p>
-                <div className="grid grid-cols-4 gap-2 text-xs">
+                <div className="grid grid-cols-4 gap-2 text-xs text-muted-foreground">
                   {[["Instrument", theme.instrument], ["Entry", `${theme.unit}${theme.entry}`], ["Current", `${theme.unit}${theme.current}`], ["Target", `${theme.unit}${theme.target}`]].map(([l, v]) => (
                     <div key={l} className="bg-foreground/5 rounded px-2 py-1.5">
                       <div className="text-muted-foreground text-[11px] uppercase">{l}</div>
@@ -1106,7 +1106,7 @@ function GlobalMacroSimulator() {
                   </div>
                   <Progress value={progress} className="h-1.5 bg-foreground/10" />
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Stop: <span className="text-red-400">{theme.unit}{theme.stop}</span></span>
                   <span className="text-muted-foreground">Size: <span className="text-muted-foreground">${theme.size}M</span></span>
                 </div>
@@ -1132,7 +1132,7 @@ function GlobalMacroSimulator() {
                     key={r.name}
                     onClick={() => setActiveRegime(i)}
                     className={cn(
-                      "w-full text-left rounded-lg border p-2.5 text-xs transition-colors",
+                      "w-full text-left rounded-lg border p-2.5 text-xs text-muted-foreground transition-colors",
                       activeRegime === i
                         ? "border-transparent bg-foreground/10"
                         : "border-border/50 hover:bg-muted/30"
@@ -1170,7 +1170,7 @@ function GlobalMacroSimulator() {
                     <span className="text-xs text-muted-foreground">{cb.rate}</span>
                     <Badge
                       className={cn(
-                        "text-xs px-1.5 py-0 h-5",
+                        "text-xs text-muted-foreground px-1.5 py-0 h-5",
                         cb.trend === "cutting" && "bg-emerald-400/15 text-emerald-400",
                         cb.trend === "hiking" && "bg-red-400/15 text-red-400",
                         cb.trend === "holding" && "bg-muted-foreground/15 text-muted-foreground"
@@ -1276,7 +1276,7 @@ function EventDriven() {
           <CardTitle className="text-sm text-muted-foreground">Active Merger Arb Positions</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Target</th>
@@ -1313,7 +1313,7 @@ function EventDriven() {
                     <td className="py-2 text-left">
                       <Badge
                         className={cn(
-                          "text-xs px-1.5 py-0 h-5",
+                          "text-xs text-muted-foreground px-1.5 py-0 h-5",
                           deal.status.includes("Approved") || deal.status.includes("Close")
                             ? "bg-emerald-400/15 text-emerald-400"
                             : deal.status.includes("Risk") || deal.status.includes("Political")
@@ -1496,7 +1496,7 @@ function CTASimulator() {
           <CardTitle className="text-sm text-muted-foreground">Trend Following Signals & Position Sizing</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground">Market</th>
@@ -1517,7 +1517,7 @@ function CTASimulator() {
                     {pct(m.momentum12m)}
                   </td>
                   <td className="py-1.5 px-3">
-                    <Badge className={cn("text-xs px-1.5 py-0 h-5", signalColor(m.signal))}>
+                    <Badge className={cn("text-xs text-muted-foreground px-1.5 py-0 h-5", signalColor(m.signal))}>
                       {signalLabel(m.signal)}
                     </Badge>
                   </td>
@@ -1674,10 +1674,10 @@ function FundEconomics() {
           <CardTitle className="text-sm text-muted-foreground">Fee Calculator (2&amp;20 Structure)</CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-4">
               <div>
-                <div className="flex justify-between text-xs mb-2">
+                <div className="flex justify-between text-xs text-muted-foreground mb-2">
                   <span className="text-muted-foreground">Fund AUM</span>
                   <span className="text-foreground font-medium">${aumLevel}M</span>
                 </div>
@@ -1695,7 +1695,7 @@ function FundEconomics() {
                 </div>
               </div>
               <div>
-                <div className="flex justify-between text-xs mb-2">
+                <div className="flex justify-between text-xs text-muted-foreground mb-2">
                   <span className="text-muted-foreground">Annual Gross Return</span>
                   <span className="text-foreground font-medium">{returnLevel}%</span>
                 </div>
@@ -1724,7 +1724,7 @@ function FundEconomics() {
                 <div
                   key={label}
                   className={cn(
-                    "flex justify-between items-center rounded-lg px-3 py-2 text-xs",
+                    "flex justify-between items-center rounded-lg px-3 py-2 text-xs text-muted-foreground",
                     highlight ? "bg-emerald-400/8 border border-emerald-400/20" : "bg-foreground/[0.04]"
                   )}
                 >
@@ -1753,7 +1753,7 @@ function FundEconomics() {
             <CardTitle className="text-sm text-muted-foreground">High Water Mark — Investor Protection</CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
-            <table className="w-full text-xs mb-3">
+            <table className="w-full text-xs text-muted-foreground mb-3">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground">Year</th>
@@ -1799,11 +1799,11 @@ function FundEconomics() {
           <CardContent className="pt-0 space-y-4">
             <div className="rounded-md bg-indigo-400/8 border border-indigo-400/20 p-4">
               <p className="text-xs text-muted-foreground mb-1">Break-Even AUM (cover $3.5M fixed costs)</p>
-              <p className="text-2xl font-bold text-indigo-400">${breakEvenAUM.toFixed(0)}M</p>
+              <p className="text-lg font-medium text-indigo-400">${breakEvenAUM.toFixed(0)}M</p>
               <p className="text-xs text-muted-foreground mt-1">At 2% mgmt fee — minimum viable fund size</p>
             </div>
 
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-1.5 text-muted-foreground">AUM</th>
@@ -1829,7 +1829,7 @@ function FundEconomics() {
             </table>
             <p className="text-xs text-muted-foreground">* Perf fee assumes 10% gross return, 5% hurdle, no HWM adjustment</p>
 
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
               {[
                 { label: "Management Fee", value: "2% of AUM/yr", note: "Covers fixed ops" },
                 { label: "Performance Fee", value: "20% above hurdle", note: "GP profit share" },
@@ -1855,7 +1855,7 @@ function FundEconomics() {
 export default function HedgeFundPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-screen-xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-screen-xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

@@ -69,7 +69,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
   return (
     <div className="flex h-full flex-col bg-card/30">
       {/* Tab Bar */}
-      <div className="flex border-b border-border/60">
+      <div className="flex border-b border-border/40">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -91,34 +91,34 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
         {tab === "overview" && (
           <div className="p-6">
             {/* ── Hero zone: Grade + Total Return — HERO card ─── */}
-            <div className="flex items-start gap-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
+            <div className="flex items-start gap-5 border-l-4 border-l-primary rounded-lg bg-card p-4">
               {/* Grade badge — large and prominent */}
               <motion.div
                 initial={{ scale: 0, rotate: -10 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", damping: 12, stiffness: 200 }}
-                className={`flex flex-col items-center gap-1.5 rounded-md border p-5 ${config.bg} ${config.border}`}
+                className={`flex flex-col items-center gap-1 rounded-md border p-4 ${config.bg} ${config.border}`}
               >
-                <GradeIcon className={`h-10 w-10 ${config.color}`} />
-                <div className={`text-4xl font-bold ${config.color}`}>{grade}</div>
-                <div className="text-xs text-muted-foreground">{config.label}</div>
-                <div className="mt-1 rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary">
+                <GradeIcon className={`h-8 w-8 ${config.color}`} />
+                <div className={`text-3xl font-semibold ${config.color}`}>{grade}</div>
+                <div className="text-[11px] text-muted-foreground">{config.label}</div>
+                <div className="mt-1 rounded-full bg-primary/20 px-2.5 py-0.5 text-[11px] font-medium text-primary">
                   +{xpEarned} XP
                 </div>
               </motion.div>
 
               {/* Total return — the hero number */}
               <div className="flex-1 pt-1">
-                <div className="text-xs font-medium text-muted-foreground">Total Return</div>
-                <div className={`text-3xl font-bold tracking-tight ${metrics.totalReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
+                <div className="text-[11px] font-medium text-muted-foreground">Total Return</div>
+                <div className={`text-2xl font-semibold tracking-tight ${metrics.totalReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
                   {metrics.totalReturnPercent >= 0 ? "+" : ""}{metrics.totalReturnPercent.toFixed(1)}%
                 </div>
-                <div className={`text-sm font-medium ${metrics.totalReturn >= 0 ? "text-emerald-400/70" : "text-rose-400/70"}`}>
+                <div className={`text-xs font-medium ${metrics.totalReturn >= 0 ? "text-emerald-400/70" : "text-rose-400/70"}`}>
                   {metrics.totalReturn >= 0 ? "+" : ""}${metrics.totalReturn.toFixed(0)}
                 </div>
 
                 {/* Key metrics row — compact */}
-                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted-foreground">
+                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                   <span>
                     Sharpe <span className={`font-semibold ${metrics.sharpeRatio > 0 ? "text-foreground" : "text-rose-400"}`}>{metrics.sharpeRatio.toFixed(2)}</span>
                   </span>
@@ -247,7 +247,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
       </div>
 
       {/* Actions (always visible) */}
-      <div className="flex gap-2 border-t border-border/60 p-3">
+      <div className="flex gap-2 border-t border-border/40 p-3">
         <button onClick={onSave} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">
           <Save className="h-3.5 w-3.5" /> Save
         </button>
@@ -273,7 +273,7 @@ function CompactMetric({ label, value, positive }: { label: string; value: strin
   return (
     <div className="rounded-lg border border-border/40 bg-card/40 px-2.5 py-2">
       <div className="text-[10px] text-muted-foreground">{label}</div>
-      <div className={`text-sm font-bold ${positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-rose-400"}`}>
+      <div className={`text-xs font-semibold ${positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>
     </div>

@@ -174,9 +174,9 @@ function StatChip({
   };
   return (
     <div className={cn("rounded-lg border px-4 py-3", colorMap[color] ?? colorMap.indigo)}>
-      <div className="text-xs opacity-70 mb-1">{label}</div>
+      <div className="text-xs text-muted-foreground opacity-70 mb-1">{label}</div>
       <div className="text-lg font-bold font-mono">{value}</div>
-      {sub && <div className="text-xs opacity-60 mt-0.5">{sub}</div>}
+      {sub && <div className="text-xs text-muted-foreground opacity-60 mt-0.5">{sub}</div>}
     </div>
   );
 }
@@ -232,7 +232,7 @@ function ConvertibleMechanicsTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Top stat chips */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         <StatChip label="Bond Floor" value={`$${metrics.bondFloor.toFixed(0)}`} sub="Investment value" color="blue" />
@@ -412,7 +412,7 @@ function GreeksSensitivityTab() {
   }, [vol, tenor, spread]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stat chips */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatChip label="Delta (Δ)" value={currentMetrics.bs.delta.toFixed(3)} sub="Equity sensitivity" color="indigo" />
@@ -542,7 +542,7 @@ function MarketOverviewTab() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Market stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatChip label="Market Size" value="$320B+" sub="Global outstanding" color="indigo" />
@@ -551,7 +551,7 @@ function MarketOverviewTab() {
         <StatChip label="YTD Issuance" value="$94B" sub="2025 pace" color="amber" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Sector donut */}
         <div className="bg-card border border-border rounded-md p-4">
           <div className="text-sm font-medium text-foreground mb-3">Market by Sector</div>
@@ -608,7 +608,7 @@ function MarketOverviewTab() {
           <div className="text-sm font-medium text-foreground">Top Convertible Issuers</div>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead className="bg-muted/50">
               <tr>
                 {["Issuer", "Ticker", "Sector", "Outstanding ($B)", "Coupon (%)", "Conv. Premium", "Rating"].map((h) => (
@@ -628,7 +628,7 @@ function MarketOverviewTab() {
                   <td className="px-4 py-2.5 font-mono text-green-400">{iss.coupon.toFixed(3)}%</td>
                   <td className="px-4 py-2.5 font-mono text-amber-400">{iss.premium.toFixed(1)}%</td>
                   <td className="px-4 py-2.5">
-                    <span className={cn("px-2 py-0.5 rounded text-xs font-medium",
+                    <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground font-medium",
                       iss.rating.startsWith("BB") ? "bg-amber-500/10 text-amber-400" :
                       iss.rating.startsWith("B+") || iss.rating === "B" ? "bg-orange-500/10 text-orange-400" :
                       "bg-red-500/10 text-red-400"
@@ -746,7 +746,7 @@ function InvestmentStrategiesTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Strategy selector */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {strategies.map((st, i) => {
@@ -824,7 +824,7 @@ function InvestmentStrategiesTab() {
           Strategy Comparison
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead className="bg-muted/50">
               <tr>
                 {["Strategy", "Delta", "Vega", "Credit", "Liquidity", "Complexity", "Target Return"].map((h) => (
@@ -922,7 +922,7 @@ function RiskAnalysisTab() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Risk matrix SVG */}
       <div className="bg-card border border-border rounded-md p-4">
         <div className="text-sm font-medium text-foreground mb-1">Risk Matrix</div>
@@ -994,7 +994,7 @@ function RiskAnalysisTab() {
                 <AlertTriangle size={14} style={{ color: rk.color }} />
                 <span className="text-sm font-medium text-foreground">{rk.name}</span>
               </div>
-              <div className="flex gap-2 text-xs">
+              <div className="flex gap-2 text-xs text-muted-foreground">
                 <span className="px-2 py-0.5 rounded font-mono" style={{ background: `${rk.color}20`, color: rk.color }}>
                   Sev {rk.severity}/10
                 </span>
@@ -1056,7 +1056,7 @@ function RiskAnalysisTab() {
 export default function ConvertiblesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* HERO Header */}
         <div className="flex items-center justify-between border-l-4 border-l-primary rounded-md bg-card p-6">
           <div>

@@ -635,7 +635,7 @@ export default function FixedIncomeRVPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -676,19 +676,19 @@ export default function FixedIncomeRVPage() {
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
         <Tabs defaultValue="curve">
           <TabsList className="bg-card/70 border border-border/60 h-9 mb-4 flex-wrap gap-1 p-1">
-            <TabsTrigger value="curve" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
+            <TabsTrigger value="curve" className="text-xs text-muted-foreground h-7 px-3 data-[state=active]:bg-muted/80">
               Yield Curve Trades
             </TabsTrigger>
-            <TabsTrigger value="spreads" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
+            <TabsTrigger value="spreads" className="text-xs text-muted-foreground h-7 px-3 data-[state=active]:bg-muted/80">
               Spread Analysis
             </TabsTrigger>
-            <TabsTrigger value="crossmarket" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
+            <TabsTrigger value="crossmarket" className="text-xs text-muted-foreground h-7 px-3 data-[state=active]:bg-muted/80">
               Cross-Market RV
             </TabsTrigger>
-            <TabsTrigger value="sector" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
+            <TabsTrigger value="sector" className="text-xs text-muted-foreground h-7 px-3 data-[state=active]:bg-muted/80">
               Sector Rotation
             </TabsTrigger>
-            <TabsTrigger value="carry" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
+            <TabsTrigger value="carry" className="text-xs text-muted-foreground h-7 px-3 data-[state=active]:bg-muted/80">
               Carry &amp; Roll
             </TabsTrigger>
           </TabsList>
@@ -709,7 +709,7 @@ export default function FixedIncomeRVPage() {
                       key={String(h)}
                       onClick={() => setCurveHighlight(h)}
                       className={cn(
-                        "text-xs px-2.5 py-1 rounded border transition-colors",
+                        "text-xs text-muted-foreground px-2.5 py-1 rounded border transition-colors",
                         curveHighlight === h
                           ? "bg-indigo-500/20 border-indigo-500/50 text-indigo-300"
                           : "bg-muted/50 border-border/40 text-muted-foreground hover:text-muted-foreground"
@@ -897,7 +897,7 @@ export default function FixedIncomeRVPage() {
                             {r.zScore > 0 ? "+" : ""}{r.zScore}σ
                           </td>
                           <td className="py-2">
-                            <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", signalBg(r.signal))}>
+                            <span className={cn("px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium", signalBg(r.signal))}>
                               {r.signal.toUpperCase()}
                             </span>
                           </td>
@@ -927,7 +927,7 @@ export default function FixedIncomeRVPage() {
                   <AlertTriangle className="w-3.5 h-3.5 text-orange-400" />
                   <span className="text-xs font-medium text-orange-400">HY Credit</span>
                 </div>
-                <div className="text-2xl font-bold mb-1">382 <span className="text-sm text-muted-foreground font-normal">bps OAS</span></div>
+                <div className="text-lg font-medium mb-1">382 <span className="text-sm text-muted-foreground font-normal">bps OAS</span></div>
                 <div className="text-xs text-muted-foreground mb-2">vs 10Y average: 420 bps</div>
                 <div className="text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded px-2 py-1">
                   FAIR value — select issuer opportunities in BB-rated
@@ -938,7 +938,7 @@ export default function FixedIncomeRVPage() {
                   <Target className="w-3.5 h-3.5 text-emerald-400" />
                   <span className="text-xs font-medium text-emerald-400">IG vs HY Differential</span>
                 </div>
-                <div className="text-2xl font-bold mb-1">264 <span className="text-sm text-muted-foreground font-normal">bps</span></div>
+                <div className="text-lg font-medium mb-1">264 <span className="text-sm text-muted-foreground font-normal">bps</span></div>
                 <div className="text-xs text-muted-foreground mb-2">vs 10Y average: 295 bps</div>
                 <div className="text-xs text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 rounded px-2 py-1">
                   Tight differential — HY not well compensated vs IG quality
@@ -989,7 +989,7 @@ export default function FixedIncomeRVPage() {
                         <td className="py-2 pr-4">
                           <span
                             className={cn(
-                              "px-1.5 py-0.5 rounded text-xs",
+                              "px-1.5 py-0.5 rounded text-xs text-muted-foreground",
                               row.type === "Treasury" && "bg-muted/50 text-muted-foreground",
                               row.type === "Agency" && "bg-primary/10 text-primary",
                               row.type === "Muni" && "bg-indigo-500/10 text-indigo-400",
@@ -1014,7 +1014,7 @@ export default function FixedIncomeRVPage() {
                           {row.otrOtsPremium != null ? `${row.otrOtsPremium} bps` : <span className="text-muted-foreground">—</span>}
                         </td>
                         <td className="py-2">
-                          <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", signalBg(row.signal))}>
+                          <span className={cn("px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium", signalBg(row.signal))}>
                             {row.signal.toUpperCase()}
                           </span>
                         </td>
@@ -1030,13 +1030,13 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-md bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Layers className="w-3.5 h-3.5 text-primary" />
-                  <span className="text-xs font-medium">Agency Premium</span>
+                  <span className="text-xs text-muted-foreground font-medium">Agency Premium</span>
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">
                   FNMA 2Y trades at +26 bps vs OTR Treasury. Historical range: +18–42 bps. Currently FAIR-to-CHEAP.
                   Implicit GSE government backing provides high credit quality at above-Treasury yields.
                 </p>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Typical range:</span>
                   <span className="text-muted-foreground">+18 — +42 bps</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>BUY</span>
@@ -1046,7 +1046,7 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-md bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="w-3.5 h-3.5 text-indigo-400" />
-                  <span className="text-xs font-medium">Muni Tax Equiv. Yield</span>
+                  <span className="text-xs text-muted-foreground font-medium">Muni Tax Equiv. Yield</span>
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">
                   10Y AA Muni nominal yield of {(CURVE_POINTS[7].yield * 0.68).toFixed(2)}% equates to{" "}
@@ -1054,7 +1054,7 @@ export default function FixedIncomeRVPage() {
                   {Math.round(((CURVE_POINTS[7].yield * 0.68) / 0.63 - CURVE_POINTS[7].yield) * 100)} bps pickup vs
                   Treasuries.
                 </p>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Muni/Tsy ratio:</span>
                   <span className="text-indigo-300">68% (below 80% = cheap)</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>BUY</span>
@@ -1064,14 +1064,14 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-md bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
-                  <span className="text-xs font-medium">10Y TIPS Breakeven</span>
+                  <span className="text-xs text-muted-foreground font-medium">10Y TIPS Breakeven</span>
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">
                   10Y nominal Treasury at {CURVE_POINTS[7].yield.toFixed(2)}% vs TIPS real yield of{" "}
                   {(CURVE_POINTS[7].yield - 2.28).toFixed(2)}%. Breakeven inflation: 2.28% — below the 5Y average of
                   2.35%. Suggests TIPS slightly cheap relative to nominals.
                 </p>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">5Y avg BE:</span>
                   <span className="text-muted-foreground">2.35% &bull; Current: 2.28%</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>TIPS</span>
@@ -1134,7 +1134,7 @@ export default function FixedIncomeRVPage() {
                             {s.spreadPerTurnLev.toFixed(1)}
                           </td>
                           <td className="py-2">
-                            <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", signalBg(s.signal))}>
+                            <span className={cn("px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium", signalBg(s.signal))}>
                               {s.signal.toUpperCase()}
                             </span>
                           </td>

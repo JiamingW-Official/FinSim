@@ -265,7 +265,7 @@ function FactorCard({ factor, rank }: { factor: FactorMetric; rank: number }) {
               <span className="font-semibold text-sm">{factor.name}</span>
             </div>
             {isMarket ? (
-              <Badge variant="outline" className="text-xs">Benchmark</Badge>
+              <Badge variant="outline" className="text-xs text-muted-foreground">Benchmark</Badge>
             ) : (
               <Badge className="text-xs" style={{ backgroundColor: factor.color + "22", color: factor.color, border: `1px solid ${factor.color}44` }}>
                 Premium
@@ -391,7 +391,7 @@ function FactorCycleHeatmap() {
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs border-separate border-spacing-1" style={{ minWidth: 500 }}>
+      <table className="w-full text-xs text-muted-foreground border-separate border-spacing-1" style={{ minWidth: 500 }}>
         <thead>
           <tr>
             <th className="text-left text-muted-foreground font-medium p-1 w-24">Factor</th>
@@ -498,7 +498,7 @@ function ETFComparisonTable() {
               <td className="p-2">
                 <Badge variant="outline" className="text-xs" style={{ color: etf.color, borderColor: etf.color + "66" }}>{etf.factor}</Badge>
               </td>
-              <td className="p-2 text-right font-mono text-xs">{(etf.expenseRatio * 100).toFixed(2)}%</td>
+              <td className="p-2 text-right font-mono text-xs text-muted-foreground">{(etf.expenseRatio * 100).toFixed(2)}%</td>
               <td className="p-2 text-right font-mono">${etf.aumB.toFixed(1)}B</td>
               <td className={cn("p-2 text-right font-mono font-semibold", etf.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {etf.ytdReturn > 0 ? "+" : ""}{etf.ytdReturn}%
@@ -539,8 +539,8 @@ function FactorExposureAnalyzer() {
   const barW = 240;
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Holdings list */}
         <Card className="border-border">
           <CardHeader className="pb-2">
@@ -620,7 +620,7 @@ function FactorExposureAnalyzer() {
           <CardTitle className="text-sm">Individual Security Factor Scores</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs" style={{ minWidth: 500 }}>
+          <table className="w-full text-xs text-muted-foreground" style={{ minWidth: 500 }}>
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left p-2 text-muted-foreground">Ticker</th>
@@ -790,7 +790,7 @@ export default function SmartBetaPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto p-6 space-y-6">
+      <div className="max-w-7xl mx-auto p-4 space-y-4">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="flex items-start justify-between">
@@ -808,9 +808,9 @@ export default function SmartBetaPage() {
               </div>
             </div>
             <div className="flex gap-2">
-              <Badge variant="outline" className="text-xs">5 Factors</Badge>
-              <Badge variant="outline" className="text-xs">10 ETFs</Badge>
-              <Badge variant="outline" className="text-xs">2015–2024</Badge>
+              <Badge variant="outline" className="text-xs text-muted-foreground">5 Factors</Badge>
+              <Badge variant="outline" className="text-xs text-muted-foreground">10 ETFs</Badge>
+              <Badge variant="outline" className="text-xs text-muted-foreground">2015–2024</Badge>
             </div>
           </div>
         </motion.div>
@@ -869,10 +869,10 @@ export default function SmartBetaPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid grid-cols-4 w-full max-w-xl">
-              <TabsTrigger value="returns" className="text-xs">Factor Returns</TabsTrigger>
-              <TabsTrigger value="etfs" className="text-xs">ETF Comparison</TabsTrigger>
-              <TabsTrigger value="exposure" className="text-xs">Factor Exposure</TabsTrigger>
-              <TabsTrigger value="backtester" className="text-xs">Backtester</TabsTrigger>
+              <TabsTrigger value="returns" className="text-xs text-muted-foreground">Factor Returns</TabsTrigger>
+              <TabsTrigger value="etfs" className="text-xs text-muted-foreground">ETF Comparison</TabsTrigger>
+              <TabsTrigger value="exposure" className="text-xs text-muted-foreground">Factor Exposure</TabsTrigger>
+              <TabsTrigger value="backtester" className="text-xs text-muted-foreground">Backtester</TabsTrigger>
             </TabsList>
 
             {/* Tab 1: Factor Returns */}
@@ -1030,13 +1030,13 @@ function FactorBacktester() {
 
   return (
     <div className="space-y-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Weight sliders */}
         <Card className="border-border">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm">Factor Allocation</CardTitle>
-              <Button size="sm" variant="outline" className="text-xs h-7" onClick={equalWeight}>Equal Weight</Button>
+              <Button size="sm" variant="outline" className="text-xs text-muted-foreground h-7" onClick={equalWeight}>Equal Weight</Button>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -1046,7 +1046,7 @@ function FactorBacktester() {
                 <div key={fid}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-medium" style={{ color: getFactorColor(fid) }}>{f?.name}</span>
-                    <span className="text-xs font-mono font-medium">{weights[fid]}%</span>
+                    <span className="text-xs text-muted-foreground font-mono font-medium">{weights[fid]}%</span>
                   </div>
                   <input
                     type="range"
@@ -1079,7 +1079,7 @@ function FactorBacktester() {
                     key={r}
                     size="sm"
                     variant={rebalance === r ? "default" : "outline"}
-                    className="text-xs h-7 flex-1"
+                    className="text-xs text-muted-foreground h-7 flex-1"
                     onClick={() => setRebalance(r)}
                   >
                     {r === "annual" ? "Annual" : "Quarterly"}
@@ -1124,7 +1124,7 @@ function FactorBacktester() {
                 </g>
               </svg>
             </div>
-            <div className="flex gap-4 justify-center mb-4 text-xs">
+            <div className="flex gap-4 justify-center mb-4 text-xs text-muted-foreground">
               <div className="flex items-center gap-1.5">
                 <span className="inline-block w-6 h-0.5" style={{ backgroundColor: "#6366f1" }} />
                 <span className="text-muted-foreground">Your Portfolio</span>
@@ -1174,7 +1174,7 @@ function FactorBacktester() {
           <div className="flex items-start gap-2">
             <Info className="h-4 w-4 text-primary mt-0.5 shrink-0" />
             <div className="space-y-1">
-              <p className="text-xs font-medium">Backtester Notes</p>
+              <p className="text-xs text-muted-foreground font-medium">Backtester Notes</p>
               <p className="text-xs text-muted-foreground">
                 Returns are simulated based on historical factor premium research data. Past factor premiums do not guarantee future results. Transaction costs, taxes, and factor crowding effects are not fully modeled. The backtest assumes perfect rebalancing execution.
               </p>

@@ -518,7 +518,7 @@ export default function MortgageFinancePage() {
   const totalInterestLifetime = schedule.reduce((s, d) => s + d.interestPaid, 0);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -634,7 +634,7 @@ export default function MortgageFinancePage() {
                         onChange={(e) => setHomePrice(Number(e.target.value))}
                         className="w-full accent-blue-500"
                       />
-                      <div className="text-xs font-medium mt-0.5">{fmtK(homePrice)}</div>
+                      <div className="text-xs text-muted-foreground font-medium mt-0.5">{fmtK(homePrice)}</div>
                     </div>
                     <div>
                       <label className="text-xs text-muted-foreground block mb-1">Down Payment</label>
@@ -647,7 +647,7 @@ export default function MortgageFinancePage() {
                         onChange={(e) => setDownPct(Number(e.target.value))}
                         className="w-full accent-blue-500"
                       />
-                      <div className="text-xs font-medium mt-0.5">{downPct}% ({fmtK(homePrice * downPct / 100)})</div>
+                      <div className="text-xs text-muted-foreground font-medium mt-0.5">{downPct}% ({fmtK(homePrice * downPct / 100)})</div>
                     </div>
                     <div>
                       <label className="text-xs text-muted-foreground block mb-1">Mortgage Rate</label>
@@ -660,7 +660,7 @@ export default function MortgageFinancePage() {
                         onChange={(e) => setMortgageRate(Number(e.target.value))}
                         className="w-full accent-blue-500"
                       />
-                      <div className="text-xs font-medium mt-0.5">{fmtPct(mortgageRate, 2)}</div>
+                      <div className="text-xs text-muted-foreground font-medium mt-0.5">{fmtPct(mortgageRate, 2)}</div>
                     </div>
                     <div>
                       <label className="text-xs text-muted-foreground block mb-1">Monthly Rent</label>
@@ -673,7 +673,7 @@ export default function MortgageFinancePage() {
                         onChange={(e) => setRentMonthly(Number(e.target.value))}
                         className="w-full accent-blue-500"
                       />
-                      <div className="text-xs font-medium mt-0.5">{fmtUSD(rentMonthly)}/mo</div>
+                      <div className="text-xs text-muted-foreground font-medium mt-0.5">{fmtUSD(rentMonthly)}/mo</div>
                     </div>
                     <div>
                       <label className="text-xs text-muted-foreground block mb-1">Appreciation %</label>
@@ -686,7 +686,7 @@ export default function MortgageFinancePage() {
                         onChange={(e) => setAppreciationRate(Number(e.target.value))}
                         className="w-full accent-blue-500"
                       />
-                      <div className="text-xs font-medium mt-0.5">{fmtPct(appreciationRate, 1)}/yr</div>
+                      <div className="text-xs text-muted-foreground font-medium mt-0.5">{fmtPct(appreciationRate, 1)}/yr</div>
                     </div>
                     <div>
                       <label className="text-xs text-muted-foreground block mb-1">Horizon (yrs)</label>
@@ -699,7 +699,7 @@ export default function MortgageFinancePage() {
                         onChange={(e) => setHorizonYears(Number(e.target.value))}
                         className="w-full accent-blue-500"
                       />
-                      <div className="text-xs font-medium mt-0.5">{horizonYears} years</div>
+                      <div className="text-xs text-muted-foreground font-medium mt-0.5">{horizonYears} years</div>
                     </div>
                   </div>
 
@@ -747,8 +747,8 @@ export default function MortgageFinancePage() {
                   ].map((c) => (
                     <div key={c.title} className="bg-muted/30 rounded p-3">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-medium">{c.title}</span>
-                        <Badge variant="secondary" className="text-xs">{c.val}</Badge>
+                        <span className="text-xs text-muted-foreground font-medium">{c.title}</span>
+                        <Badge variant="secondary" className="text-xs text-muted-foreground">{c.val}</Badge>
                       </div>
                       <p className="text-xs text-muted-foreground">{c.desc}</p>
                     </div>
@@ -793,7 +793,7 @@ export default function MortgageFinancePage() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left py-1.5 text-muted-foreground font-medium">Security</th>
@@ -813,7 +813,7 @@ export default function MortgageFinancePage() {
                               <Badge
                                 variant="secondary"
                                 className={cn(
-                                  "text-xs px-1",
+                                  "text-xs text-muted-foreground px-1",
                                   t.rating.startsWith("AAA")
                                     ? "text-emerald-400"
                                     : t.rating.startsWith("AA")
@@ -834,7 +834,7 @@ export default function MortgageFinancePage() {
                       </tbody>
                     </table>
                   </div>
-                  <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                  <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                     <div className="bg-muted/30 rounded p-2">
                       <div className="font-medium text-amber-400 mb-0.5">Option-Adjusted Spread</div>
                       <div className="text-muted-foreground">OAS strips out the embedded prepayment option value, giving the true credit/liquidity spread vs. Treasuries.</div>
@@ -861,7 +861,7 @@ export default function MortgageFinancePage() {
                     { name: "Ginnie Mae (GNMA)", detail: "Full-faith USG guarantee. Pools FHA/VA/USDA loans only. Highest credit quality. Used by banks for liquidity.", color: "text-emerald-400" },
                   ].map((a) => (
                     <div key={a.name} className="bg-muted/30 rounded p-3">
-                      <div className={cn("text-xs font-medium mb-1", a.color)}>{a.name}</div>
+                      <div className={cn("text-xs text-muted-foreground font-medium mb-1", a.color)}>{a.name}</div>
                       <p className="text-xs text-muted-foreground">{a.detail}</p>
                     </div>
                   ))}
@@ -885,7 +885,7 @@ export default function MortgageFinancePage() {
                 </CardHeader>
                 <CardContent>
                   <AffordabilityChart />
-                  <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
+                  <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground">
                     {[
                       { yr: "2006 Peak", val: "6.2x", note: "Pre-crisis bubble", color: "text-rose-400" },
                       { yr: "2012 Trough", val: "4.1x", note: "Post-crisis floor", color: "text-emerald-400" },
@@ -921,8 +921,8 @@ export default function MortgageFinancePage() {
                         <Icon className={cn("w-4 h-4 mt-0.5 flex-shrink-0", d.color)} />
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-medium">{d.label}</span>
-                            <Badge variant="secondary" className="text-xs">{d.current}</Badge>
+                            <span className="text-xs text-muted-foreground font-medium">{d.label}</span>
+                            <Badge variant="secondary" className="text-xs text-muted-foreground">{d.current}</Badge>
                           </div>
                           <p className="text-xs text-muted-foreground mt-0.5">{d.note}</p>
                         </div>
@@ -946,7 +946,7 @@ export default function MortgageFinancePage() {
                     { prog: "USDA Rural", dn: "0% down", rate: "Market −0.3%", note: "Rural areas only. Income limits apply." },
                     { prog: "Conventional 97", dn: "3% down", rate: "Market", note: "620+ credit. PMI until 80% LTV." },
                   ].map((p) => (
-                    <div key={p.prog} className="bg-muted/30 rounded p-2 text-xs">
+                    <div key={p.prog} className="bg-muted/30 rounded p-2 text-xs text-muted-foreground">
                       <div className="font-medium text-primary mb-1">{p.prog}</div>
                       <div className="flex justify-between text-muted-foreground">
                         <span>Down:</span><span className="text-foreground">{p.dn}</span>
@@ -977,7 +977,7 @@ export default function MortgageFinancePage() {
                 </CardHeader>
                 <CardContent>
                   <PrepaymentChart />
-                  <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-center">
+                  <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-muted-foreground text-center">
                     <div className="bg-muted/30 rounded p-2">
                       <div className="text-indigo-300 font-medium">100% PSA</div>
                       <div className="text-muted-foreground">Standard benchmark. Ramps to 6% CPR by month 30.</div>
@@ -1038,8 +1038,8 @@ export default function MortgageFinancePage() {
                       <ArrowRight className="w-3 h-3 mt-1 text-muted-foreground flex-shrink-0" />
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-0.5">
-                          <span className="text-xs font-medium">{r.factor}</span>
-                          <span className={cn("text-xs", r.color)}>{r.level}</span>
+                          <span className="text-xs text-muted-foreground font-medium">{r.factor}</span>
+                          <span className={cn("text-xs text-muted-foreground", r.color)}>{r.level}</span>
                         </div>
                         <p className="text-xs text-muted-foreground">{r.desc}</p>
                       </div>

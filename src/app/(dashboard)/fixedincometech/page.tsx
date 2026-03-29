@@ -310,7 +310,7 @@ function ElectronicMarketsTab() {
   const ptLinePath = PORTFOLIO_TRADING.map((d, i) => `${i === 0 ? "M" : "L"}${ptX(d.year).toFixed(1)},${ptY(d.pct).toFixed(1)}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         icon={Wifi}
         title="Electronic Bond Markets"
@@ -387,7 +387,7 @@ function ElectronicMarketsTab() {
             >
               <div className="flex items-center justify-between mb-1">
                 <span className={cn("font-semibold text-sm", p.color)}>{p.name}</span>
-                <Badge variant="outline" className="text-xs">{p.adv} ADV</Badge>
+                <Badge variant="outline" className="text-xs text-muted-foreground">{p.adv} ADV</Badge>
               </div>
               <p className="text-xs text-muted-foreground">{p.type}</p>
               <p className="text-xs text-muted-foreground mt-0.5">Focus: {p.focus}</p>
@@ -500,7 +500,7 @@ function ElectronicMarketsTab() {
               { step: "6", text: "Premium collapses back to NAV", color: "text-green-400" },
             ].map((s) => (
               <div key={s.step} className="flex items-start gap-2">
-                <span className={cn("text-xs font-bold shrink-0 w-4", s.color)}>{s.step}.</span>
+                <span className={cn("text-xs text-muted-foreground font-bold shrink-0 w-4", s.color)}>{s.step}.</span>
                 <span className="text-xs text-muted-foreground">{s.text}</span>
               </div>
             ))}
@@ -539,7 +539,7 @@ function AlgoExecutionTab() {
   const maxH = 80;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         icon={Zap}
         title="Algo Bond Execution"
@@ -598,7 +598,7 @@ function AlgoExecutionTab() {
               key={a.id}
               onClick={() => setSelectedAlgo(a.id)}
               className={cn(
-                "px-3 py-1.5 rounded-lg text-xs font-medium border transition-all",
+                "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-all",
                 selectedAlgo === a.id ? cn(a.bg, a.border, a.color) : "bg-muted/30 border-border text-muted-foreground hover:text-foreground"
               )}
             >
@@ -628,10 +628,10 @@ function AlgoExecutionTab() {
                 </div>
               ))}
             </div>
-            <div className="flex gap-4 text-xs">
+            <div className="flex gap-4 text-xs text-muted-foreground">
               <span className="text-muted-foreground">Best for: <span className="text-foreground">{selected.bestFor}</span></span>
             </div>
-            <div className="flex gap-4 mt-2 text-xs">
+            <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
               <span className="text-muted-foreground">Spread Impact: <span className={cn("font-medium", selected.spreadImpact === "Low" ? "text-green-400" : selected.spreadImpact === "High" ? "text-red-400" : "text-amber-400")}>{selected.spreadImpact}</span></span>
               <span className="text-muted-foreground">Timing Risk: <span className={cn("font-medium", selected.timingRisk === "Low" ? "text-green-400" : selected.timingRisk === "High" ? "text-red-400" : "text-amber-400")}>{selected.timingRisk}</span></span>
             </div>
@@ -792,7 +792,7 @@ function BondPricingTab() {
   const selFV = FAIR_VALUE_SOURCES.find((f) => f.name === selectedFV)!;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         icon={Calculator}
         title="Bond Pricing Models"
@@ -841,7 +841,7 @@ function BondPricingTab() {
             { factor: "Curvature (β₂)", desc: "Hump shape at medium maturities", color: "text-primary" },
           ].map((f) => (
             <div key={f.factor} className="p-2 rounded-lg bg-muted/30 border border-border">
-              <p className={cn("text-xs font-medium", f.color)}>{f.factor}</p>
+              <p className={cn("text-xs text-muted-foreground font-medium", f.color)}>{f.factor}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{f.desc}</p>
             </div>
           ))}
@@ -913,7 +913,7 @@ function BondPricingTab() {
               key={f.name}
               onClick={() => setSelectedFV(f.name)}
               className={cn(
-                "px-3 py-1 rounded-lg text-xs font-medium border transition-all",
+                "px-3 py-1 rounded-lg text-xs text-muted-foreground font-medium border transition-all",
                 selectedFV === f.name ? "bg-primary/20 border-primary/40 text-primary" : "bg-muted/30 border-border text-muted-foreground hover:text-foreground"
               )}
             >
@@ -1001,7 +1001,7 @@ function CreditStructureTab() {
   const cdsPath = CDS_VS_BOND_DATA.map((d, i) => `${i === 0 ? "M" : "L"}${cdsX(i).toFixed(1)},${cdsY(d.cdsSpread).toFixed(1)}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         icon={Network}
         title="Credit Market Structure"
@@ -1010,7 +1010,7 @@ function CreditStructureTab() {
 
       {/* Spread decomposition */}
       <InfoCard title="Credit Spread Decomposition (IG Corporate Bond ~580 bps total yield)">
-        <div className="flex gap-6 items-start">
+        <div className="flex gap-3 items-start">
           <div className="flex-shrink-0">
             <svg viewBox={`0 0 ${sbW} ${sbH}`} className="h-48 w-auto">
               <rect x={sbPad.l + 40} y={sbPad.t} width={60} height={sbIh} fill="#1f2937" rx="4" />
@@ -1169,7 +1169,7 @@ function CreditStructureTab() {
               },
             ].map((r) => (
               <div key={r.reg} className={cn("rounded-lg border p-2.5", r.bg, r.border)}>
-                <p className={cn("text-xs font-medium", r.color)}>{r.reg}</p>
+                <p className={cn("text-xs text-muted-foreground font-medium", r.color)}>{r.reg}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{r.impact}</p>
                 <p className="text-xs text-foreground/70 mt-0.5 font-medium">{r.result}</p>
               </div>
@@ -1183,7 +1183,7 @@ function CreditStructureTab() {
               <div key={src.name} className="flex items-start gap-3 p-2 rounded-lg bg-muted/20 border border-border">
                 <src.icon className={cn("w-4 h-4 shrink-0 mt-0.5", src.color)} />
                 <div>
-                  <p className={cn("text-xs font-medium", src.color)}>{src.name}</p>
+                  <p className={cn("text-xs text-muted-foreground font-medium", src.color)}>{src.name}</p>
                   <p className="text-xs text-muted-foreground mt-0.5">{src.signal}</p>
                   <p className="text-xs text-muted-foreground">Lead time: <span className="text-foreground">{src.lead}</span></p>
                 </div>
@@ -1232,7 +1232,7 @@ function CreditStructureTab() {
             },
           ].map((g) => (
             <div key={g.grade} className={cn("rounded-lg border p-3", g.bg, g.border)}>
-              <p className={cn("text-xs font-medium mb-2", g.color)}>{g.grade}</p>
+              <p className={cn("text-xs text-muted-foreground font-medium mb-2", g.color)}>{g.grade}</p>
               <div className="space-y-1">
                 {g.traits.map((t) => (
                   <div key={t} className="flex items-start gap-2">
@@ -1287,19 +1287,19 @@ export default function FixedIncomeTechPage() {
         {/* Tabs */}
         <Tabs defaultValue="electronic" className="mt-8">
           <TabsList className="mb-6 flex flex-wrap h-auto gap-1">
-            <TabsTrigger value="electronic" className="text-xs">
+            <TabsTrigger value="electronic" className="text-xs text-muted-foreground">
               <Wifi className="w-3.5 h-3.5 mr-1.5" />
               Electronic Markets
             </TabsTrigger>
-            <TabsTrigger value="algo" className="text-xs">
+            <TabsTrigger value="algo" className="text-xs text-muted-foreground">
               <Zap className="w-3.5 h-3.5 mr-1.5" />
               Algo Execution
             </TabsTrigger>
-            <TabsTrigger value="pricing" className="text-xs">
+            <TabsTrigger value="pricing" className="text-xs text-muted-foreground">
               <Calculator className="w-3.5 h-3.5 mr-1.5" />
               Pricing Models
             </TabsTrigger>
-            <TabsTrigger value="credit" className="text-xs">
+            <TabsTrigger value="credit" className="text-xs text-muted-foreground">
               <Network className="w-3.5 h-3.5 mr-1.5" />
               Credit Structure
             </TabsTrigger>

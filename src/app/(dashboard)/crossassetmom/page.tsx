@@ -972,7 +972,7 @@ function SignalBadge({ signal }: { signal: AssetClass["signal"] }) {
   };
   const { label, cls } = map[signal];
   return (
-    <span className={`text-xs px-2 py-0.5 rounded border font-medium ${cls}`}>
+    <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium ${cls}`}>
       {label}
     </span>
   );
@@ -996,7 +996,7 @@ export default function CrossAssetMomPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1046,12 +1046,12 @@ export default function CrossAssetMomPage() {
         </TabsList>
 
         {/* ── Tab 1: Momentum Factor ─────────────────────────────────────────── */}
-        <TabsContent value="factor" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="factor" className="data-[state=inactive]:hidden space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Definition */}
             <Card className="bg-card border-border">
@@ -1143,7 +1143,7 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Factor zoo + Sharpe by asset class */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base text-muted-foreground">Momentum in the Factor Zoo</CardTitle>
@@ -1217,12 +1217,12 @@ export default function CrossAssetMomPage() {
         </TabsContent>
 
         {/* ── Tab 2: Trend Following ──────────────────────────────────────────── */}
-        <TabsContent value="trend" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="trend" className="data-[state=inactive]:hidden space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* CTA Overview */}
             <Card className="bg-card border-border">
@@ -1392,12 +1392,12 @@ export default function CrossAssetMomPage() {
         </TabsContent>
 
         {/* ── Tab 3: Multi-Asset Portfolio ───────────────────────────────────── */}
-        <TabsContent value="portfolio" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="portfolio" className="data-[state=inactive]:hidden space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* 8 Asset Class Signals */}
             <Card className="bg-card border-border">
@@ -1479,7 +1479,7 @@ export default function CrossAssetMomPage() {
                       </div>
                       <span className="text-xs font-mono text-muted-foreground w-10 text-right">{a.weight.toFixed(1)}%</span>
                       <span
-                        className={`text-xs font-mono w-14 text-right ${
+                        className={`text-xs text-muted-foreground font-mono w-14 text-right ${
                           a.signal >= 0 ? "text-emerald-400" : "text-red-400"
                         }`}
                       >
@@ -1487,7 +1487,7 @@ export default function CrossAssetMomPage() {
                       </span>
                       <Badge
                         variant="outline"
-                        className={`text-xs w-12 text-center ${
+                        className={`text-xs text-muted-foreground w-12 text-center ${
                           a.signal >= 0
                             ? "border-emerald-700 text-emerald-400"
                             : "border-red-700 text-red-400"
@@ -1509,7 +1509,7 @@ export default function CrossAssetMomPage() {
                       <p className="text-xs font-medium text-indigo-300 mb-1">
                         {selectedPortfolioAsset.name} ({selectedPortfolioAsset.shortName})
                       </p>
-                      <div className="grid grid-cols-4 gap-2 text-xs">
+                      <div className="grid grid-cols-4 gap-2 text-xs text-muted-foreground">
                         <div>
                           <span className="text-muted-foreground">Vol Target</span>
                           <p className="font-mono text-foreground">{selectedPortfolioAsset.volTarget}%</p>
@@ -1593,12 +1593,12 @@ export default function CrossAssetMomPage() {
         </TabsContent>
 
         {/* ── Tab 4: Strategy Implementation ────────────────────────────────── */}
-        <TabsContent value="implementation" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="implementation" className="data-[state=inactive]:hidden space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Signal Construction */}
             <Card className="bg-card border-border">
@@ -1663,7 +1663,7 @@ export default function CrossAssetMomPage() {
                       <span className="text-xs font-mono text-muted-foreground w-24 text-right">{row.cost}</span>
                       <Badge
                         variant="outline"
-                        className="w-16 text-center text-xs"
+                        className="w-16 text-center text-xs text-muted-foreground"
                         style={{ borderColor: row.color + "60", color: row.color }}
                       >
                         {row.impact}

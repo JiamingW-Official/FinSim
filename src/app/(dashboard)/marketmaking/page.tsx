@@ -127,7 +127,7 @@ function Tab101() {
             <span className="text-rose-400 font-semibold">ask</span> (sell) quotes, earning the{" "}
             <span className="text-amber-400 font-semibold">spread</span> — the difference between the two prices.
           </p>
-          <div className="bg-muted rounded-lg p-4 font-mono text-xs space-y-1">
+          <div className="bg-muted rounded-lg p-4 font-mono text-xs text-muted-foreground space-y-1">
             <div className="text-muted-foreground">Example: AAPL</div>
             <div className="flex justify-between">
               <span className="text-emerald-400">Bid: $189.45</span>
@@ -189,7 +189,7 @@ function Tab101() {
               },
             ].map((c) => (
               <div key={c.label}>
-                <div className="flex justify-between text-xs mb-1">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
                   <span className="text-foreground">{c.label}</span>
                   <span className="text-muted-foreground">{c.pct}%</span>
                 </div>
@@ -209,7 +209,7 @@ function Tab101() {
       title: "Market Maker P&L",
       content: (
         <div className="space-y-3 text-sm text-muted-foreground">
-          <div className="bg-muted rounded-lg p-4 font-mono text-xs space-y-2">
+          <div className="bg-muted rounded-lg p-4 font-mono text-xs text-muted-foreground space-y-2">
             <div className="text-muted-foreground font-sans font-medium mb-2">P&L Formula</div>
             <div className="text-emerald-400">Gross P&L = ½ × spread × volume_filled</div>
             <div className="text-rose-400">− Inventory Risk = σ² × |position| × T</div>
@@ -249,7 +249,7 @@ function Tab101() {
               δ* = q · σ² · γ · T + (2/γ) · ln(1 + γ/k)
             </div>
           </div>
-          <div className="space-y-1 text-xs">
+          <div className="space-y-1 text-xs text-muted-foreground">
             {[
               { sym: "q", desc: "inventory position (shares held)" },
               { sym: "σ²", desc: "variance of asset price" },
@@ -369,7 +369,7 @@ function TabSpread() {
         <div className="bg-card border border-border rounded-md p-4 space-y-3">
           <div className="text-xs font-medium text-muted-foreground">Market Parameters</div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Annual Volatility</span>
               <span className="text-amber-400 font-mono">{volatility}%</span>
             </div>
@@ -383,7 +383,7 @@ function TabSpread() {
             />
           </div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">ADV (M shares)</span>
               <span className="text-amber-400 font-mono">{adv}M</span>
             </div>
@@ -397,7 +397,7 @@ function TabSpread() {
             />
           </div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Inventory Limit</span>
               <span className="text-amber-400 font-mono">{invLimit} sh</span>
             </div>
@@ -411,7 +411,7 @@ function TabSpread() {
             />
           </div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Risk Aversion (γ)</span>
               <span className="text-amber-400 font-mono">{fmt2(riskAversion)}</span>
             </div>
@@ -696,7 +696,7 @@ function TabInventory() {
       {/* Quote skewing info */}
       <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Quote Skewing Logic</div>
-        <div className="grid grid-cols-3 gap-3 text-xs">
+        <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
           <div className="bg-muted rounded p-3">
             <div className="text-emerald-400 font-medium mb-1">Long Inventory → Skew Down</div>
             <p className="text-muted-foreground">Lower bid AND ask to attract sell orders. Accept worse prices to reduce position.</p>
@@ -785,7 +785,7 @@ function TabAMM() {
           {comparisons.map((c) => (
             <div
               key={c.metric}
-              className="grid grid-cols-3 gap-2 text-xs py-1.5 border-b border-border/50 hover:bg-muted/30 rounded px-1"
+              className="grid grid-cols-3 gap-2 text-xs text-muted-foreground py-1.5 border-b border-border/50 hover:bg-muted/30 rounded px-1"
             >
               <span className="text-muted-foreground font-medium">{c.metric}</span>
               <span
@@ -816,7 +816,7 @@ function TabAMM() {
         <div className="bg-card border border-border rounded-md p-4 space-y-3">
           <div className="text-xs font-medium text-muted-foreground">Impermanent Loss Calculator</div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Price Move</span>
               <span className="text-amber-400 font-mono">+{priceMove}%</span>
             </div>
@@ -829,7 +829,7 @@ function TabAMM() {
             />
           </div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Fee Tier</span>
               <span className="text-amber-400 font-mono">{feeTier}%</span>
             </div>
@@ -839,7 +839,7 @@ function TabAMM() {
                   key={ft}
                   onClick={() => setFeeTier(ft)}
                   className={cn(
-                    "flex-1 text-xs py-1 rounded border transition-colors",
+                    "flex-1 text-xs text-muted-foreground py-1 rounded border transition-colors",
                     feeTier === ft
                       ? "border-amber-500 text-amber-400 bg-amber-500/10"
                       : "border-border text-muted-foreground hover:border-muted-foreground"
@@ -922,7 +922,7 @@ function TabAMM() {
             <span className="text-amber-400">Dot:</span> current {priceMove}% scenario.
           </div>
 
-          <div className="mt-3 bg-muted rounded p-3 text-xs space-y-1">
+          <div className="mt-3 bg-muted rounded p-3 text-xs text-muted-foreground space-y-1">
             <div className="text-muted-foreground font-medium">Uniswap v3: Concentrated Liquidity</div>
             <p className="text-muted-foreground">
               LPs set a price range [pMin, pMax]. Capital efficiency = full-range LP multiplied by price_range_factor.
@@ -1009,7 +1009,7 @@ function TabHFT() {
         <div className="bg-card border border-border rounded-md p-4 space-y-3">
           <div className="text-xs font-medium text-muted-foreground">Latency Edge Calculator</div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Trades Per Day</span>
               <span className="text-amber-400 font-mono">{tradesPerDay.toLocaleString()}</span>
             </div>
@@ -1022,7 +1022,7 @@ function TabHFT() {
             />
           </div>
           <div>
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Latency Advantage (μs)</span>
               <span className="text-amber-400 font-mono">{edgeMicros} μs</span>
             </div>
@@ -1145,7 +1145,7 @@ function TabHFT() {
       {/* Market impact */}
       <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">HFT Market Impact: Debate</div>
-        <div className="grid grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div>
             <div className="text-emerald-400 font-medium mb-2">Positive Contributions</div>
             <div className="space-y-1 text-muted-foreground">

@@ -387,7 +387,7 @@ const COMP_COLS = ["Timber", "Farmland", "Real Estate", "Art", "Listed REIT", "I
 function ComparisonMatrix() {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs border-collapse">
+      <table className="w-full text-xs text-muted-foreground border-collapse">
         <thead>
           <tr>
             <th className="text-left py-2 px-3 text-muted-foreground font-medium border-b border-border min-w-[120px]">Category</th>
@@ -482,7 +482,7 @@ const ART_COSTS: { label: string; pct: number; color: string }[] = [
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function RealAssets2Page() {
   return (
-    <div className="p-6 space-y-6 max-w-6xl mx-auto">
+    <div className="p-4 space-y-4 max-w-6xl mx-auto">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
         <div className="flex items-center gap-3 mb-1">
@@ -501,7 +501,7 @@ export default function RealAssets2Page() {
             { label: "Mei Moses Art Real Return", value: "5–7%", color: "bg-pink-500/10 text-pink-400" },
             { label: "Music Royalty Market", value: "$30B+", color: "bg-primary/10 text-primary" },
           ].map((chip) => (
-            <div key={chip.label} className={cn("px-3 py-1.5 rounded-full text-xs font-medium", chip.color)}>
+            <div key={chip.label} className={cn("px-3 py-1.5 rounded-full text-xs text-muted-foreground font-medium", chip.color)}>
               <span className="text-muted-foreground mr-1">{chip.label}:</span>{chip.value}
             </div>
           ))}
@@ -511,16 +511,16 @@ export default function RealAssets2Page() {
       {/* Tabs */}
       <Tabs defaultValue="timber">
         <TabsList className="bg-card border border-border h-auto flex-wrap">
-          <TabsTrigger value="timber" className="data-[state=active]:bg-muted text-xs gap-1.5">
+          <TabsTrigger value="timber" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
             <TreePine className="w-3.5 h-3.5" />Timberland &amp; Farmland
           </TabsTrigger>
-          <TabsTrigger value="art" className="data-[state=active]:bg-muted text-xs gap-1.5">
+          <TabsTrigger value="art" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
             <Gem className="w-3.5 h-3.5" />Art &amp; Collectibles
           </TabsTrigger>
-          <TabsTrigger value="royalties" className="data-[state=active]:bg-muted text-xs gap-1.5">
+          <TabsTrigger value="royalties" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
             <Music className="w-3.5 h-3.5" />Royalties &amp; IP
           </TabsTrigger>
-          <TabsTrigger value="comparison" className="data-[state=active]:bg-muted text-xs gap-1.5">
+          <TabsTrigger value="comparison" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
             <BarChart2 className="w-3.5 h-3.5" />Infra vs Real Estate
           </TabsTrigger>
         </TabsList>
@@ -530,7 +530,7 @@ export default function RealAssets2Page() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* NCREIF Timberland Returns */}
             <Card className="bg-card border-border border-l-4 border-l-primary">
-              <CardHeader className="p-6 pb-2">
+              <CardHeader className="p-4 pb-2">
                 <CardTitle className="text-lg text-muted-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                   NCREIF Timberland Index Annual Returns
@@ -557,7 +557,7 @@ export default function RealAssets2Page() {
                   { label: "Land Appreciation", desc: "Underlying land value typically appreciates 1–2% annually, providing inflation protection and optionality for sale/conversion.", pct: 20, color: "#fbbf24" },
                 ].map((item) => (
                   <div key={item.label}>
-                    <div className="flex justify-between text-xs mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span className="text-muted-foreground font-medium">{item.label}</span>
                       <span style={{ color: item.color }}>{item.pct}% of return</span>
                     </div>
@@ -651,7 +651,7 @@ export default function RealAssets2Page() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs border-collapse">
+                <table className="w-full text-xs text-muted-foreground border-collapse">
                   <thead>
                     <tr>
                       <th className="text-left py-2 px-3 text-muted-foreground border-b border-border min-w-[160px]">Factor</th>
@@ -702,7 +702,7 @@ export default function RealAssets2Page() {
               <CardContent className="space-y-3">
                 {ART_COSTS.map((cost) => (
                   <div key={cost.label}>
-                    <div className="flex justify-between text-xs mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span className="text-muted-foreground">{cost.label}</span>
                       <span style={{ color: cost.color }} className="font-medium">{cost.pct}%</span>
                     </div>
@@ -785,11 +785,11 @@ export default function RealAssets2Page() {
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     {cat.icon}{cat.title}
-                    <Badge className={cn("ml-auto text-xs", cat.badgeColor)}>{cat.badge}</Badge>
+                    <Badge className={cn("ml-auto text-xs text-muted-foreground", cat.badgeColor)}>{cat.badge}</Badge>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{cat.index}</span>
                     <span className={posColor(parseFloat(cat.return))}>{cat.return}</span>
                   </div>
@@ -940,7 +940,7 @@ export default function RealAssets2Page() {
                     {cat.stats.map((s) => (
                       <div key={s.k} className="p-2 rounded bg-muted/60">
                         <p className="text-muted-foreground text-xs">{s.k}</p>
-                        <p className={`text-${cat.color}-300 font-medium text-xs mt-0.5`}>{s.v}</p>
+                        <p className={`text-${cat.color}-300 font-medium text-xs text-muted-foreground mt-0.5`}>{s.v}</p>
                       </div>
                     ))}
                   </div>
@@ -958,7 +958,7 @@ export default function RealAssets2Page() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
                 <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
                   <p className="text-emerald-300 font-medium mb-2">Royalty Interest</p>
                   <ul className="space-y-1 text-muted-foreground">
@@ -1057,7 +1057,7 @@ export default function RealAssets2Page() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs text-muted-foreground">
                 {[
                   {
                     asset: "Infrastructure",
@@ -1188,7 +1188,7 @@ export default function RealAssets2Page() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
                 {[
                   { point: "Biological assets offer harvest optionality", detail: "Timber and farmland have unique feature of deferring production when prices are unfavorable — acting as natural volatility dampeners unavailable in any financial asset.", color: "emerald" },
                   { point: "Transaction costs determine holding period", detail: "Art's 25–30% round-trip cost means 10+ year minimum holds to justify returns. Infrastructure and real estate at 5–10% costs require 5–7 years. Only listed REITs have sub-1% transaction costs.", color: "blue" },

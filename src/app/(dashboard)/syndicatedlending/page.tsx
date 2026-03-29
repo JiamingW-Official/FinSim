@@ -93,7 +93,7 @@ function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
   return (
     <span
       className={cn(
-        "inline-block rounded-full px-2 py-0.5 text-xs font-medium",
+        "inline-block rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium",
         cls[color] ?? cls.zinc
       )}
     >
@@ -337,7 +337,7 @@ function DealStructureTab() {
       <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Investment Grade vs Leveraged Lending" sub="Key structural differences" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Attribute</th>
@@ -683,15 +683,15 @@ function PricingMechanicsTab() {
             <div key={c.name} className="rounded-lg border border-border bg-muted/30 p-3">
               <InfoPill text={c.name} color={c.color} />
               <div className="mt-2 space-y-1">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Metric</span>
                   <span className="text-muted-foreground">{c.metric}</span>
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Threshold</span>
                   <span className="text-muted-foreground">{c.threshold}</span>
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Test</span>
                   <span className="text-muted-foreground">{c.test}</span>
                 </div>
@@ -851,7 +851,7 @@ function SyndicationProcessTab() {
               key={t.step}
               onClick={() => setActiveStep(activeStep === i ? null : i)}
               className={cn(
-                "rounded-lg border px-3 py-2 text-xs font-medium transition-colors",
+                "rounded-lg border px-3 py-2 text-xs text-muted-foreground font-medium transition-colors",
                 activeStep === i
                   ? "border-opacity-80 bg-foreground/10"
                   : "border-border bg-muted/30 hover:bg-muted/30"
@@ -921,7 +921,7 @@ function SyndicationProcessTab() {
           {secondaryMarket.map((sm) => (
             <div key={sm.category} className="rounded-lg border border-border bg-muted/30 p-3">
               <InfoPill text={sm.category} color={sm.color} />
-              <div className="mt-2 space-y-1 text-xs">
+              <div className="mt-2 space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Spread</span>
                   <span className="text-muted-foreground">{sm.spread}</span>
@@ -1300,7 +1300,7 @@ export default function SyndicatedLendingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

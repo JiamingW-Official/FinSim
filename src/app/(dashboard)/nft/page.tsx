@@ -705,7 +705,7 @@ function MarketOverview() {
   const avgChange = COLLECTIONS.reduce((acc, c) => acc + c.change7d, 0) / COLLECTIONS.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* KPI chips */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
@@ -733,7 +733,7 @@ function MarketOverview() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Collection", "Floor", "7d Vol", "Holders", "7d Change", "Mkt Cap", "Listed %", "Chain"].map((h) => (
@@ -795,8 +795,8 @@ function MarketOverview() {
 
 function CollectionAnalysis() {
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Rarity histogram */}
         <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-2">
@@ -869,7 +869,7 @@ function CollectionAnalysis() {
 
 function PricingModels() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Hedonic regression concept */}
       <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-2">
@@ -880,7 +880,7 @@ function PricingModels() {
         </CardHeader>
         <CardContent>
           <HedonicRegressionChart />
-          <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
+          <div className="mt-3 grid grid-cols-3 gap-3 text-xs text-muted-foreground">
             {[
               { label: "R² (Fit Quality)", value: "0.78", color: "text-green-400" },
               { label: "Base Floor (α)", value: "42.3 ETH", color: "text-primary" },
@@ -902,7 +902,7 @@ function PricingModels() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Trait", "Rarity %", "Floor Mult.", "Avg Sale (ETH)", "Sample Size", "Signal"].map((h) => (
@@ -958,7 +958,7 @@ function PricingModels() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-sm font-medium text-foreground">{ws.signal}</span>
-                  <Badge variant="outline" className={`text-xs border ${severityColor(ws.severity)}`}>
+                  <Badge variant="outline" className={`text-xs text-muted-foreground border ${severityColor(ws.severity)}`}>
                     {ws.severity}
                   </Badge>
                   {ws.detected && (
@@ -1003,7 +1003,7 @@ function NFTFinancialization() {
                     </Badge>
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-3 text-xs">
+                <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
                   <div>
                     <p className="text-muted-foreground">TVL</p>
                     <p className="text-muted-foreground font-medium">${lp.tvl}M</p>
@@ -1044,7 +1044,7 @@ function NFTFinancialization() {
             {FRACTION_PROTOCOLS.map((fp) => (
               <div key={fp.name} className="bg-muted/40 rounded-lg p-3">
                 <p className="font-medium text-foreground text-sm mb-1">{fp.name}</p>
-                <div className="space-y-1 text-xs">
+                <div className="space-y-1 text-xs text-muted-foreground">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">TVL</span>
                     <span className="text-primary">${fp.tvlM}M</span>
@@ -1190,9 +1190,9 @@ function InvestmentFramework() {
   const totalWeight = FRAMEWORK_CRITERIA.reduce((a, c) => a + c.weight, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Weight overview donut */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-foreground">Scoring Weight Distribution</CardTitle>
@@ -1204,7 +1204,7 @@ function InvestmentFramework() {
                 const pct = (catWeight / totalWeight) * 100;
                 return (
                   <div key={cat}>
-                    <div className="flex justify-between text-xs mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span className={categoryColors[cat]}>{cat}</span>
                       <span className="text-muted-foreground">{catWeight}%</span>
                     </div>
@@ -1229,7 +1229,7 @@ function InvestmentFramework() {
                 { label: "Liquidity", score: 12, max: 15 },
               ].map((row) => (
                 <div key={row.label}>
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span className={categoryColors[row.label]}>{row.label}</span>
                     <span className="text-muted-foreground">
                       {row.score}/{row.max * (row.label === "Creator Brand" ? 1 : 1)} pts
@@ -1259,7 +1259,7 @@ function InvestmentFramework() {
       <div className="flex gap-2 flex-wrap">
         <button
           onClick={() => setSelectedCategory(null)}
-          className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+          className={`px-3 py-1.5 rounded-md text-xs text-muted-foreground font-medium transition-colors ${
             selectedCategory === null
               ? "bg-muted text-foreground"
               : "bg-muted/60 text-muted-foreground hover:bg-muted/60"
@@ -1271,7 +1271,7 @@ function InvestmentFramework() {
           <button
             key={cat}
             onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-md text-xs text-muted-foreground font-medium transition-colors ${
               selectedCategory === cat
                 ? "bg-muted text-foreground"
                 : "bg-muted/60 text-muted-foreground hover:bg-muted/60"
@@ -1286,7 +1286,7 @@ function InvestmentFramework() {
       <Card className="bg-muted/60 border-border">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Category", "Criterion", "Weight", "Description", "Green-Flag Signals"].map((h) => (
@@ -1359,7 +1359,7 @@ export default function NFTPage() {
   );
 
   return (
-    <div className="p-6 space-y-6 min-h-screen bg-card text-foreground">
+    <div className="p-4 space-y-4 min-h-screen bg-card text-foreground">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1372,7 +1372,7 @@ export default function NFTPage() {
               <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
                 <Image className="w-4 h-4 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold text-foreground">NFT Markets</h1>
+              <h1 className="text-lg font-medium text-foreground">NFT Markets</h1>
             </div>
             <p className="text-sm text-muted-foreground ml-11">
               Digital collectibles analysis — pricing models, financialization, and investment framework
@@ -1405,7 +1405,7 @@ export default function NFTPage() {
           >
             <span className="text-xs font-medium text-muted-foreground">{c.name}</span>
             <span className="text-xs text-primary">{fmtETH(c.floorPrice)}</span>
-            <span className={`text-xs font-medium flex items-center gap-0.5 ${clr(c.change7d)}`}>
+            <span className={`text-xs text-muted-foreground font-medium flex items-center gap-0.5 ${clr(c.change7d)}`}>
               {c.change7d >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
               {Math.abs(c.change7d).toFixed(1)}%
             </span>

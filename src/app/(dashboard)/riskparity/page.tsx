@@ -396,7 +396,7 @@ export default function RiskParityPage() {
   const finalValues = BACKTEST[BACKTEST.length - 1];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -434,7 +434,7 @@ export default function RiskParityPage() {
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-xs text-muted-foreground">{m.label}</p>
-                  <p className="text-2xl font-bold font-mono mt-0.5">{m.value}</p>
+                  <p className="text-lg font-medium font-mono mt-0.5">{m.value}</p>
                 </div>
                 <m.icon className="w-5 h-5 text-primary mt-0.5" />
               </div>
@@ -463,7 +463,7 @@ export default function RiskParityPage() {
             <div className="grid md:grid-cols-2 gap-4">
               {/* Donut */}
               <Card className="border-border border-l-4 border-l-primary">
-                <CardHeader className="p-6 pb-2">
+                <CardHeader className="p-4 pb-2">
                   <CardTitle className="text-lg flex items-center gap-2">
                     <Target className="w-4 h-4 text-primary" />
                     Equal Risk Contribution
@@ -473,7 +473,7 @@ export default function RiskParityPage() {
                   <DonutChart data={donutData} />
                   <div className="grid grid-cols-2 gap-1.5 mt-3">
                     {ASSETS.map(a => (
-                      <div key={a.name} className="flex items-center gap-2 text-xs">
+                      <div key={a.name} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: a.color }} />
                         <span className="text-muted-foreground">{a.name}</span>
                         <span className="ml-auto font-mono">{a.riskWeight.toFixed(1)}%</span>
@@ -526,7 +526,7 @@ export default function RiskParityPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-3">Asset</th>
@@ -578,7 +578,7 @@ export default function RiskParityPage() {
                           {expandedAsset === i && (
                             <tr key={`${a.name}-detail`} className="bg-muted/20">
                               <td colSpan={6} className="px-4 py-3">
-                                <div className="grid grid-cols-3 gap-4 text-xs">
+                                <div className="grid grid-cols-3 gap-4 text-xs text-muted-foreground">
                                   <div>
                                     <span className="text-muted-foreground">Leveraged Weight</span>
                                     <div className="font-mono font-semibold mt-0.5">{a.leveragedWeight}%</div>
@@ -641,7 +641,7 @@ export default function RiskParityPage() {
               </CardHeader>
               <CardContent>
                 <EquityCurveChart data={BACKTEST} />
-                <div className="grid grid-cols-3 gap-3 mt-4 text-xs text-center">
+                <div className="grid grid-cols-3 gap-3 mt-4 text-xs text-muted-foreground text-center">
                   {[
                     { label: "Risk Parity", value: finalValues.riskParity.toFixed(0), color: "text-primary" },
                     { label: "60/40", value: finalValues.sixtyForty.toFixed(0), color: "text-muted-foreground" },
@@ -669,7 +669,7 @@ export default function RiskParityPage() {
                     { label: "All-Equity", dd: drawdownStats.eq, color: "#475569" },
                   ].map(row => (
                     <div key={row.label}>
-                      <div className="flex justify-between text-xs mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span className="text-muted-foreground">{row.label}</span>
                         <span className="font-mono text-red-400">-{row.dd}%</span>
                       </div>
@@ -689,7 +689,7 @@ export default function RiskParityPage() {
                   <CardTitle className="text-sm">Key Statistics (2000–2024)</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="text-muted-foreground border-b border-border">
                         <th className="text-left py-1">Metric</th>
@@ -729,7 +729,7 @@ export default function RiskParityPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2">Strategy</th>
@@ -810,8 +810,8 @@ export default function RiskParityPage() {
                     ].map(r => (
                       <div key={r.regime} className="rounded-lg border border-border/50 p-2.5">
                         <div className="flex justify-between items-start">
-                          <span className="text-xs font-medium">{r.regime}</span>
-                          <div className="flex gap-3 text-xs font-mono text-right">
+                          <span className="text-xs text-muted-foreground font-medium">{r.regime}</span>
+                          <div className="flex gap-3 text-xs text-muted-foreground font-mono text-right">
                             <div>
                               <div className="text-muted-foreground text-xs">RP</div>
                               <div className={r.rp.startsWith("+") ? "text-emerald-400" : "text-red-400"}>{r.rp}</div>
@@ -822,7 +822,7 @@ export default function RiskParityPage() {
                             </div>
                           </div>
                         </div>
-                        <p className={`text-xs mt-1 ${r.color}`}>{r.note}</p>
+                        <p className={`text-xs text-muted-foreground mt-1 ${r.color}`}>{r.note}</p>
                       </div>
                     ))}
                   </div>
@@ -838,7 +838,7 @@ export default function RiskParityPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-3 text-xs">
+                <div className="grid md:grid-cols-2 gap-3 text-xs text-muted-foreground">
                   {[
                     {
                       title: "Leverage Risk",

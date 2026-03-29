@@ -298,13 +298,13 @@ function InsuranceNeedsTab() {
   }, [annualIncome, totalDebts, dependents, liquidAssets, existingLife, existingDisability]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Insurance Needs Calculator"
         subtitle="Interactive DIME-method calculator — Debts + Income replacement + Mortgage/expenses + Education"
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Sliders */}
         <div className="rounded-md border border-border border-l-4 border-l-primary bg-card p-6 space-y-5">
           <div className="text-lg font-medium text-foreground mb-1">Your Financial Profile</div>
@@ -395,7 +395,7 @@ function InsuranceNeedsTab() {
                         <Badge className="bg-amber-500/10 text-amber-400 border-amber-500/20 text-xs">Gap Found</Badge>
                       )}
                     </div>
-                    <div className="grid grid-cols-3 gap-2 text-xs">
+                    <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                       <div>
                         <div className="text-muted-foreground">Recommended</div>
                         <div className="font-medium text-foreground">{fmt$(item.need)}{item.monthly ? "/mo" : ""}</div>
@@ -599,7 +599,7 @@ function LifeInsuranceTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Life Insurance Comparison"
         subtitle="Compare term vs whole vs universal life — 30-year cumulative cost analysis"
@@ -629,7 +629,7 @@ function LifeInsuranceTab() {
                 key={hc}
                 onClick={() => setHealthClass(hc)}
                 className={cn(
-                  "flex-1 text-xs py-1.5 px-2 rounded-md border transition-colors",
+                  "flex-1 text-xs text-muted-foreground py-1.5 px-2 rounded-md border transition-colors",
                   healthClass === hc
                     ? "bg-primary text-primary-foreground border-primary"
                     : "border-border text-muted-foreground hover:text-foreground"
@@ -681,7 +681,7 @@ function LifeInsuranceTab() {
                 <div className="text-base font-bold text-foreground">{fmt$(p.annual)}<span className="text-xs font-normal text-muted-foreground">/yr</span></div>
               </div>
               <div className="flex gap-2 flex-wrap">
-                <Badge className={cn("text-xs", badgeCls)}>{fmt$(p.annual / 12)}/mo</Badge>
+                <Badge className={cn("text-xs text-muted-foreground", badgeCls)}>{fmt$(p.annual / 12)}/mo</Badge>
                 <Badge className={cn("text-xs", p.cashValue ? "bg-primary/10 text-primary border-border" : "bg-muted text-muted-foreground border-border")}>
                   {p.cashValue ? "Cash Value" : "No Cash Value"}
                 </Badge>
@@ -780,13 +780,13 @@ function DisabilityTab() {
   const elimSavingsNeeded = monthlyIncome * (elimDays[String(eliminationPeriod)] / 30);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Disability Insurance Planner"
         subtitle="Own-occupation definition, benefit/elimination periods, and income replacement math"
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Controls */}
         <div className="space-y-4">
           <div className="rounded-md border border-border bg-card p-5 space-y-5">
@@ -815,7 +815,7 @@ function DisabilityTab() {
                     key={ep}
                     onClick={() => setEliminationPeriod(ep)}
                     className={cn(
-                      "text-xs py-1.5 rounded-md border transition-colors",
+                      "text-xs text-muted-foreground py-1.5 rounded-md border transition-colors",
                       eliminationPeriod === ep
                         ? "bg-primary text-primary-foreground border-primary"
                         : "border-border text-muted-foreground hover:text-foreground"
@@ -836,7 +836,7 @@ function DisabilityTab() {
                     key={bp}
                     onClick={() => setBenefitPeriod(bp)}
                     className={cn(
-                      "text-xs py-1.5 rounded-md border transition-colors",
+                      "text-xs text-muted-foreground py-1.5 rounded-md border transition-colors",
                       benefitPeriod === bp
                         ? "bg-primary text-primary-foreground border-primary"
                         : "border-border text-muted-foreground hover:text-foreground"
@@ -900,7 +900,7 @@ function DisabilityTab() {
                   { label: "Own-Occupation (recommended)", multiplier: 1.20, desc: "Pays if you can't do your specific job" },
                   { label: "Modified Own-Occ (hybrid)", multiplier: 1.10, desc: "Own-occ for 2 yrs, then any-occ" },
                 ].map((policy) => (
-                  <div key={policy.label} className="flex items-center justify-between text-xs">
+                  <div key={policy.label} className="flex items-center justify-between text-xs text-muted-foreground">
                     <div>
                       <div className="text-foreground">{policy.label}</div>
                       <div className="text-muted-foreground">{policy.desc}</div>
@@ -1002,13 +1002,13 @@ function PropertyAutoTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Property & Auto Insurance"
         subtitle="Homeowners coverage (ACV vs replacement cost), auto liability limits, umbrella value"
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="space-y-4">
           <div className="rounded-md border border-border bg-card p-5 space-y-5">
             <div className="text-sm font-medium text-foreground">Your Coverage Parameters</div>
@@ -1095,7 +1095,7 @@ function PropertyAutoTab() {
                 { label: "Auto Insurance", amount: autoPremium },
                 { label: `Umbrella (${fmt$(umbrellaLimit)})`, amount: umbrellaPremium },
               ].map((line) => (
-                <div key={line.label} className="flex justify-between text-xs">
+                <div key={line.label} className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{line.label}</span>
                   <span className="font-medium text-foreground">{fmt$(line.amount)}/yr</span>
                 </div>
@@ -1122,7 +1122,7 @@ function PropertyAutoTab() {
                   {recommended && <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">Recommended</Badge>}
                 </div>
                 <div className="text-xs text-muted-foreground mb-2">{limit.desc}</div>
-                <div className="grid grid-cols-3 gap-2 text-xs">
+                <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                   <div><div className="text-muted-foreground">Per Person</div><div className="font-medium text-foreground">{fmt$(limit.bodily1)}</div></div>
                   <div><div className="text-muted-foreground">Per Accident</div><div className="font-medium text-foreground">{fmt$(limit.bodily2)}</div></div>
                   <div><div className="text-muted-foreground">Property</div><div className="font-medium text-foreground">{fmt$(limit.property)}</div></div>
@@ -1259,13 +1259,13 @@ function HealthMedicareTab() {
   const hsaBalance10yr = Math.round(hsaContrib * 10 * Math.pow(1.07, 5)); // rough 7% growth
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Health Insurance & Medicare Planning"
         subtitle="HSA triple tax advantage, HDHP vs PPO analysis, Medicare parts explained"
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Controls */}
         <div className="space-y-4">
           <div className="rounded-md border border-border bg-card p-5 space-y-5">
@@ -1326,7 +1326,7 @@ function HealthMedicareTab() {
                 { label: "2. State income tax deduction (~5.5%)", saving: hsaStateIncomeTax, color: "blue" as const },
                 { label: "3. Tax-free withdrawals for medical", saving: Math.round(annualClaims * (marginalRate / 100)), color: "purple" as const },
               ].map((item) => (
-                <div key={item.label} className="flex items-center justify-between text-xs">
+                <div key={item.label} className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{item.label}</span>
                   <span className={cn("font-medium", {
                     green: "text-green-400",
@@ -1337,7 +1337,7 @@ function HealthMedicareTab() {
                   </span>
                 </div>
               ))}
-              <div className="flex items-center justify-between text-xs border-t border-primary/20 pt-2">
+              <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-primary/20 pt-2">
                 <span className="font-medium text-foreground">Total Annual Tax Savings</span>
                 <span className="font-bold text-primary">{fmt$(totalHsaSavings + Math.round(annualClaims * (marginalRate / 100)))}</span>
               </div>
@@ -1424,7 +1424,7 @@ function HealthMedicareTab() {
                   <span className="text-xs font-medium text-foreground">{part.name}</span>
                 </div>
                 <div className="text-xs text-muted-foreground">{part.covers}</div>
-                <div className={cn("text-xs font-medium", partCls)}>{part.cost}</div>
+                <div className={cn("text-xs text-muted-foreground font-medium", partCls)}>{part.cost}</div>
               </div>
             );
           })}
@@ -1451,7 +1451,7 @@ function HealthMedicareTab() {
 export default function PersonalInsurancePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Page Header */}
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -1504,19 +1504,19 @@ export default function PersonalInsurancePage() {
         {/* Tabs */}
         <Tabs defaultValue="needs">
           <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/40 p-1 rounded-md">
-            <TabsTrigger value="needs" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-background">
+            <TabsTrigger value="needs" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
               <Calculator className="h-3.5 w-3.5" />Needs Calculator
             </TabsTrigger>
-            <TabsTrigger value="life" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-background">
+            <TabsTrigger value="life" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
               <Heart className="h-3.5 w-3.5" />Life Insurance
             </TabsTrigger>
-            <TabsTrigger value="disability" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-background">
+            <TabsTrigger value="disability" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
               <Activity className="h-3.5 w-3.5" />Disability
             </TabsTrigger>
-            <TabsTrigger value="property" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-background">
+            <TabsTrigger value="property" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
               <Home className="h-3.5 w-3.5" />Property &amp; Auto
             </TabsTrigger>
-            <TabsTrigger value="health" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-background">
+            <TabsTrigger value="health" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
               <Stethoscope className="h-3.5 w-3.5" />Health &amp; Medicare
             </TabsTrigger>
           </TabsList>

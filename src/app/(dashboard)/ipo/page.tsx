@@ -567,7 +567,7 @@ function IPODetailModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-xl rounded-md border border-border bg-card p-6 shadow-sm">
+      <div className="w-full max-w-xl rounded-md border border-border bg-card p-4">
         <div className="mb-4 flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
@@ -621,7 +621,7 @@ function IPODetailModal({
               <span
                 key={uw}
                 className={cn(
-                  "rounded-full px-2.5 py-0.5 text-xs font-medium border",
+                  "rounded-full px-2.5 py-0.5 text-xs text-muted-foreground font-medium border",
                   uw === ipo.bookrunner
                     ? "border-primary/40 bg-primary/10 text-primary"
                     : "border-border bg-muted text-muted-foreground"
@@ -887,7 +887,7 @@ export default function IPOPage() {
 
           {/* ── Tab 1: Upcoming IPOs ── */}
           <TabsContent value="upcoming" className="flex-1 min-h-0 overflow-y-auto data-[state=inactive]:hidden m-0">
-            <div className="p-6 space-y-2">
+            <div className="p-4 space-y-2">
               <div className="flex items-center justify-between mb-4">
                 <p className="text-sm text-muted-foreground">
                   {UPCOMING_IPOS.length} upcoming IPOs · Click a row for details
@@ -975,7 +975,7 @@ export default function IPOPage() {
 
           {/* ── Tab 2: Recent IPOs ── */}
           <TabsContent value="recent" className="flex-1 min-h-0 overflow-y-auto data-[state=inactive]:hidden m-0">
-            <div className="p-6">
+            <div className="p-4">
               {/* Filters */}
               <div className="flex flex-wrap gap-2 mb-5">
                 {(["all", "profitable", "unprofitable", "lockup-expired"] as RecentFilter[]).map((f) => (
@@ -983,7 +983,7 @@ export default function IPOPage() {
                     key={f}
                     onClick={() => setRecentFilter(f)}
                     className={cn(
-                      "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                      "rounded-full border px-3 py-1 text-xs text-muted-foreground font-medium transition-colors",
                       recentFilter === f
                         ? "bg-primary text-primary-foreground border-primary"
                         : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
@@ -1062,7 +1062,7 @@ export default function IPOPage() {
 
           {/* ── Tab 3: IPO Analysis ── */}
           <TabsContent value="analysis" className="flex-1 min-h-0 overflow-y-auto data-[state=inactive]:hidden m-0">
-            <div className="p-6 space-y-6">
+            <div className="p-4 space-y-4">
 
               {/* IPO Grader */}
               <div className="rounded-md border border-border p-5">
@@ -1240,7 +1240,7 @@ export default function IPOPage() {
 
           {/* ── Tab 4: Participate ── */}
           <TabsContent value="participate" className="flex-1 min-h-0 overflow-y-auto data-[state=inactive]:hidden m-0">
-            <div className="p-6 space-y-6">
+            <div className="p-4 space-y-4">
 
               {/* Allocations */}
               <div className="rounded-md border border-border p-5">
@@ -1310,7 +1310,7 @@ export default function IPOPage() {
                       key={ipo.ticker}
                       onClick={() => setFlipTicker(ipo.ticker)}
                       className={cn(
-                        "rounded-full border px-2.5 py-1 text-xs font-medium transition-colors",
+                        "rounded-full border px-2.5 py-1 text-xs text-muted-foreground font-medium transition-colors",
                         flipTicker === ipo.ticker
                           ? "bg-primary text-primary-foreground border-primary"
                           : "border-border text-muted-foreground hover:text-foreground"
@@ -1346,7 +1346,7 @@ export default function IPOPage() {
                               <span className="font-mono text-xs font-medium text-foreground">{ipo.ticker}</span>
                               <span className="text-xs text-muted-foreground">{ipo.company}</span>
                             </div>
-                            <span className={cn("text-xs font-medium", urgency)}>
+                            <span className={cn("text-xs text-muted-foreground font-medium", urgency)}>
                               {days}d until unlock
                             </span>
                           </div>

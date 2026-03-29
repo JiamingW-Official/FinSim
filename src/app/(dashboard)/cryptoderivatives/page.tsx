@@ -330,7 +330,7 @@ function OptionsChainTable() {
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border">
             <th colSpan={5} className="text-center text-emerald-400 pb-2 font-medium text-xs">— CALLS —</th>
@@ -432,7 +432,7 @@ function MarginToggle() {
             <p className="text-xs text-muted-foreground leading-relaxed">
               All available balance is used as collateral across all positions. Higher liquidation resilience — losses in one position can be offset by gains in another. Risk: a large adverse move can liquidate your entire portfolio.
             </p>
-            <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
+            <div className="grid grid-cols-2 gap-3 mt-3 text-xs text-muted-foreground">
               <div className="bg-background/60 rounded p-2">
                 <p className="text-muted-foreground">Collateral scope</p>
                 <p className="font-medium text-foreground mt-0.5">Entire account</p>
@@ -460,7 +460,7 @@ function MarginToggle() {
             <p className="text-xs text-muted-foreground leading-relaxed">
               Each position has its own dedicated margin. If liquidated, only that position&apos;s margin is lost — protecting the rest of your account. You can manually top-up margin to avoid liquidation.
             </p>
-            <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
+            <div className="grid grid-cols-2 gap-3 mt-3 text-xs text-muted-foreground">
               <div className="bg-background/60 rounded p-2">
                 <p className="text-muted-foreground">Collateral scope</p>
                 <p className="font-medium text-foreground mt-0.5">Per position</p>
@@ -509,7 +509,7 @@ function MarginToggle() {
       </div>
 
       {/* Estimated liquidation */}
-      <div className="grid grid-cols-2 gap-3 text-xs bg-muted/30 rounded-lg p-3">
+      <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground bg-muted/30 rounded-lg p-3">
         <div>
           <p className="text-muted-foreground">Est. Liq. (Long)</p>
           <p className="font-medium text-red-400 mt-0.5">
@@ -538,7 +538,7 @@ function MarginToggle() {
 function DefiComparisonTable() {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border text-muted-foreground">
             <th className="text-left py-2 pr-3 font-medium">Platform</th>
@@ -636,7 +636,7 @@ export default function CryptoDerivativesPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="p-6 space-y-6 max-w-7xl mx-auto"
+      className="p-4 space-y-4 max-w-7xl mx-auto"
     >
       {/* HERO Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-md bg-card p-6">
@@ -663,7 +663,7 @@ export default function CryptoDerivativesPage() {
             variant={activePerp === sym ? "default" : "outline"}
             size="sm"
             onClick={() => setActivePerp(sym)}
-            className="font-mono text-xs"
+            className="font-mono text-xs text-muted-foreground"
           >
             {sym}-PERP
           </Button>
@@ -724,7 +724,7 @@ export default function CryptoDerivativesPage() {
               </div>
               <p className={`text-sm font-bold font-mono ${stat.valueClass}`}>{stat.value}</p>
               {stat.sub && (
-                <p className={`text-xs mt-0.5 font-mono ${stat.valueClass}`}>{stat.sub}</p>
+                <p className={`text-xs text-muted-foreground mt-0.5 font-mono ${stat.valueClass}`}>{stat.sub}</p>
               )}
             </CardContent>
           </Card>
@@ -732,7 +732,7 @@ export default function CryptoDerivativesPage() {
       </div>
 
       {/* Funding rate explanation banner */}
-      <div className={`flex items-start gap-2 text-xs rounded-lg px-3 py-2.5 border ${
+      <div className={`flex items-start gap-2 text-xs text-muted-foreground rounded-lg px-3 py-2.5 border ${
         perp.fundingRate >= 0
           ? "bg-red-400/5 border-red-400/20 text-red-400"
           : "bg-emerald-400/5 border-emerald-400/20 text-emerald-400"
@@ -831,7 +831,7 @@ export default function CryptoDerivativesPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border text-muted-foreground">
                       <th className="text-left py-1.5 font-normal">Symbol</th>
@@ -1004,7 +1004,7 @@ export default function CryptoDerivativesPage() {
                       .map((d) => {
                         const isBelow = d.price < ATM_STRIKE;
                         return (
-                          <div key={d.price} className="flex items-center justify-between text-xs">
+                          <div key={d.price} className="flex items-center justify-between text-xs text-muted-foreground">
                             <div className="flex items-center gap-2">
                               {isBelow ? (
                                 <TrendingDown className="w-3 h-3 text-red-400" />

@@ -269,7 +269,7 @@ function TradeLogTab() {
           <button
             key={o}
             onClick={() => setFilterOutcome(o)}
-            className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+            className={`px-3 py-1 text-xs text-muted-foreground rounded-full border transition-colors ${
               filterOutcome === o
                 ? "bg-primary text-foreground border-primary"
                 : "border-border text-muted-foreground hover:border-muted-foreground"
@@ -283,7 +283,7 @@ function TradeLogTab() {
           <button
             key={s}
             onClick={() => setFilterStrategy(s as StrategyType | "all")}
-            className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+            className={`px-3 py-1 text-xs text-muted-foreground rounded-full border transition-colors ${
               filterStrategy === s
                 ? "bg-primary text-foreground border-primary"
                 : "border-border text-muted-foreground hover:border-muted-foreground"
@@ -355,7 +355,7 @@ function TradeLogTab() {
                   <td className="px-3 py-2.5 font-medium text-foreground">{trade.symbol}</td>
                   <td className="px-3 py-2.5">
                     <span
-                      className="px-2 py-0.5 rounded text-xs font-medium"
+                      className="px-2 py-0.5 rounded text-xs text-muted-foreground font-medium"
                       style={{
                         backgroundColor: STRATEGY_COLORS[trade.strategy] + "22",
                         color: STRATEGY_COLORS[trade.strategy],
@@ -481,7 +481,7 @@ function PerformanceTab() {
   const yTicks = [minY, minY + yRange * 0.25, minY + yRange * 0.5, minY + yRange * 0.75, maxY];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Metrics grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         <MetricCard
@@ -686,7 +686,7 @@ function StrategyBreakdownTab() {
   const scale = (v: number) => (Math.abs(v) / maxAbsPnl) * maxBarH;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* SVG P&L by strategy */}
       <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-foreground mb-1">Total P&L by Strategy</div>
@@ -806,7 +806,7 @@ function StrategyBreakdownTab() {
               <tr key={stat.strategy} className="border-b border-border/60 hover:bg-muted/20">
                 <td className="px-3 py-2.5">
                   <span
-                    className="px-2 py-0.5 rounded text-xs font-medium"
+                    className="px-2 py-0.5 rounded text-xs text-muted-foreground font-medium"
                     style={{
                       backgroundColor: STRATEGY_COLORS[stat.strategy] + "22",
                       color: STRATEGY_COLORS[stat.strategy],
@@ -903,7 +903,7 @@ function GreekAttributionTab() {
   const yTicks = [-1, -0.5, 0, 0.5, 1].map((f) => f * maxAbs);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stacked description */}
       <div className="flex gap-4 flex-wrap">
         {[
@@ -1100,7 +1100,7 @@ function ImprovementAreasTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Trade Sizing */}
       <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-foreground mb-3">Trade Sizing Distribution (% of $25K capital)</div>
@@ -1122,7 +1122,7 @@ function ImprovementAreasTab() {
                 </div>
                 <div className="w-12 text-xs text-muted-foreground">{b.count} trade{b.count !== 1 ? "s" : ""}</div>
                 <div
-                  className={`w-16 text-xs text-right tabular-nums font-medium ${
+                  className={`w-16 text-xs text-muted-foreground text-right tabular-nums font-medium ${
                     b.pnl >= 0 ? "text-emerald-400" : "text-red-400"
                   }`}
                 >

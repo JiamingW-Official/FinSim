@@ -102,7 +102,7 @@ function InfoBox({
     violet: "bg-primary/10 border-border text-primary",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -127,7 +127,7 @@ function SliderInput({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <div className="flex justify-between text-xs">
+      <div className="flex justify-between text-xs text-muted-foreground">
         <span className="text-muted-foreground">{label}</span>
         <span className="text-foreground font-medium">{format(value)}</span>
       </div>
@@ -392,7 +392,7 @@ function TabSPVStructure() {
   const equityAmt = (sec.capex * sec.equity) / 100;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Hero stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="Typical CAPEX" value={fmtM(sec.capex)} sub="Total project cost" />
@@ -413,7 +413,7 @@ function TabSPVStructure() {
               key={ps.name}
               onClick={() => setSelectedSector(i)}
               className={cn(
-                "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+                "px-3 py-1.5 rounded-full text-xs text-muted-foreground font-medium border transition-all",
                 selectedSector === i
                   ? "border-cyan-500 bg-cyan-500/20 text-muted-foreground"
                   : "border-border bg-foreground/5 text-muted-foreground hover:border-border"
@@ -463,7 +463,7 @@ function TabSPVStructure() {
           Contractual Framework
         </SectionTitle>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="px-4 py-2 text-left text-muted-foreground font-medium">Contract</th>
@@ -774,7 +774,7 @@ function TabCashFlowModel() {
   const peakRevenue = Math.max(...cashFlows.map((d) => d.revenue));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Slider controls */}
       <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-4">
         <SectionTitle>
@@ -839,7 +839,7 @@ function TabCashFlowModel() {
           Annual Cash Flow Summary
         </SectionTitle>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="px-3 py-2 text-left text-muted-foreground">Year</th>
@@ -859,7 +859,7 @@ function TabCashFlowModel() {
                   <td className="px-3 py-1.5 text-right">
                     <Badge
                       className={cn(
-                        "text-xs capitalize",
+                        "text-xs text-muted-foreground capitalize",
                         row.phase === "construction"
                           ? "bg-amber-500/20 text-amber-300"
                           : row.phase === "ramp"
@@ -1004,7 +1004,7 @@ function TabRiskAllocation() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Risk matrix */}
       <div>
         <SectionTitle>
@@ -1024,7 +1024,7 @@ function TabRiskAllocation() {
                     <span className="text-sm font-medium text-foreground">{row.category}</span>
                     <Badge
                       className={cn(
-                        "text-xs",
+                        "text-xs text-muted-foreground",
                         row.severity === "high"
                           ? "bg-rose-500/20 text-rose-300"
                           : row.severity === "medium"
@@ -1369,7 +1369,7 @@ function TabDealMetrics() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Gauge displays */}
       <div>
         <SectionTitle>
@@ -1418,7 +1418,7 @@ function TabDealMetrics() {
           Typical Debt Tenor &amp; Pricing by Sector
         </SectionTitle>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="px-4 py-2 text-left text-muted-foreground">Sector</th>
@@ -1466,7 +1466,7 @@ function TabDealMetrics() {
           PPP vs Merchant Project Comparison
         </SectionTitle>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="px-4 py-2 text-left text-muted-foreground">Metric</th>
@@ -1500,7 +1500,7 @@ function TabDealMetrics() {
 
 export default function ProjectFinancePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

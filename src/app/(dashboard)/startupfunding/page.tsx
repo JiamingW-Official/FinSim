@@ -471,7 +471,7 @@ function FundingStagesTab() {
   const totalStages = FUNDING_STAGES.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Funnel SVG */}
       <div className="rounded-md bg-card border border-border p-4">
         <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wide font-medium">
@@ -537,7 +537,7 @@ function FundingStagesTab() {
             key={stage.name}
             onClick={() => setSelected(stage)}
             className={cn(
-              "rounded-lg border p-2 text-center transition-all text-xs font-medium",
+              "rounded-lg border p-2 text-center transition-all text-xs text-muted-foreground font-medium",
               selected.name === stage.name
                 ? "border-transparent text-foreground"
                 : "border-border bg-card text-muted-foreground hover:border-muted-foreground"
@@ -746,7 +746,7 @@ function CapTableTab() {
   const barW = Math.floor((waterW - 20) / Math.max(stages.length, 1));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Dilution waterfall */}
       <div className="rounded-md bg-card border border-border p-4">
         <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wide font-medium">
@@ -842,7 +842,7 @@ function CapTableTab() {
                     <td className="px-4 py-2.5">
                       <Badge
                         variant="outline"
-                        className="text-xs capitalize"
+                        className="text-xs text-muted-foreground capitalize"
                         style={{ borderColor: sh.color + "66", color: sh.color }}
                       >
                         {sh.type}
@@ -964,7 +964,7 @@ function TermSheetTab() {
           <Calculator className="w-4 h-4 text-indigo-400" />
           Worked Example: Series A Term Sheet
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
           {[
             { label: "Pre-money valuation", value: "$18M" },
             { label: "Investment", value: "$4.5M" },
@@ -1016,7 +1016,7 @@ function TermSheetTab() {
                   <span className="text-sm font-medium text-foreground">{item.term}</span>
                   <span
                     className={cn(
-                      "text-xs px-2 py-0.5 rounded-full border font-medium",
+                      "text-xs text-muted-foreground px-2 py-0.5 rounded-full border font-medium",
                       riskBg(item.risk),
                       riskColor(item.risk)
                     )}
@@ -1268,7 +1268,7 @@ function ValuationTab() {
           Assumes $5M investment. Each cell: (Exit Value / Multiple) − $5M
         </p>
         <div className="overflow-x-auto">
-          <table className="text-xs min-w-full">
+          <table className="text-xs text-muted-foreground min-w-full">
             <thead>
               <tr>
                 <th className="text-left text-muted-foreground font-medium px-2 py-1.5 border-b border-border">
@@ -1354,7 +1354,7 @@ function EmployeeOptionsTab() {
   const barItemW = Math.floor(svgW / Math.max(barCount, 1));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* ISO vs NSO comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {OPTION_TYPES.map((opt) => (
@@ -1375,7 +1375,7 @@ function EmployeeOptionsTab() {
               </div>
               <Badge
                 variant="outline"
-                className="text-xs"
+                className="text-xs text-muted-foreground"
                 style={{
                   borderColor: opt.color + "88",
                   color: opt.color,
@@ -1385,7 +1385,7 @@ function EmployeeOptionsTab() {
                 {opt.taxTreatment}
               </Badge>
             </div>
-            <div className="space-y-1.5 text-xs">
+            <div className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 { label: "Who can receive", value: opt.who },
                 { label: "Annual limit", value: opt.amtLimit },
@@ -1492,7 +1492,7 @@ function EmployeeOptionsTab() {
                 key={sch.label}
                 onClick={() => setVestingIdx(i)}
                 className={cn(
-                  "text-xs px-2 py-1 rounded border transition-colors",
+                  "text-xs text-muted-foreground px-2 py-1 rounded border transition-colors",
                   vestingIdx === i
                     ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
                     : "border-border text-muted-foreground hover:border-muted-foreground"
@@ -1635,7 +1635,7 @@ export default function StartupFundingPage() {
               <div
                 key={chip.label}
                 className={cn(
-                  "flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border border-border bg-card",
+                  "flex items-center gap-1.5 text-xs text-muted-foreground px-2.5 py-1 rounded-full border border-border bg-card",
                   chip.color
                 )}
               >

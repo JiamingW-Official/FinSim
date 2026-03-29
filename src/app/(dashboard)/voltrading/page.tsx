@@ -618,7 +618,7 @@ export default function VolTradingPage() {
   ];
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-4 p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -723,7 +723,7 @@ export default function VolTradingPage() {
             </CardHeader>
             <CardContent>
               <SkewSVG />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4 text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4 text-xs text-muted-foreground">
                 <div className="bg-card rounded-lg p-3 border border-border">
                   <p className="font-medium text-primary mb-1">Put Skew Origin</p>
                   <p className="text-muted-foreground">Institutional investors systematically buy OTM puts for portfolio insurance, creating persistent demand that inflates put IV vs call IV — a structural risk premium.</p>
@@ -838,7 +838,7 @@ export default function VolTradingPage() {
               </CardHeader>
               <CardContent>
                 <BreakevenDisplay />
-                <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
+                <div className="grid grid-cols-2 gap-3 mt-3 text-xs text-muted-foreground">
                   <div className="bg-card rounded-lg p-3 border border-border">
                     <p className="font-medium text-emerald-300 mb-1">Breakeven Formula</p>
                     <p className="text-muted-foreground">Upside BE = Strike + Total Premium</p>
@@ -884,7 +884,7 @@ export default function VolTradingPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       {["Strategy", "Structure", "Market Outlook", "Max Risk", "Max Reward", "Theta", "Gamma"].map((h) => (
@@ -990,7 +990,7 @@ export default function VolTradingPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       {["Strategy", "Structure", "Max Gain", "Max Loss", "Ideal Environment", "Key Risk"].map((h) => (
@@ -1034,7 +1034,7 @@ export default function VolTradingPage() {
                 <p>Short VIX futures captures roll yield when VIX futures trade above spot VIX (contango). As time passes, futures converge down to spot — the short position profits from this convergence.</p>
                 <div className="bg-card rounded p-3 space-y-1">
                   <p className="font-medium text-muted-foreground">Annualized roll yield approx:</p>
-                  <p className="font-mono text-xs">(VIX_futures - VIX_spot) / VIX_spot x 252/DTE</p>
+                  <p className="font-mono text-xs text-muted-foreground">(VIX_futures - VIX_spot) / VIX_spot x 252/DTE</p>
                 </div>
                 <p className="text-amber-400 font-medium">Risk: VIX spot can spike above futures during stress, destroying the trade instantly with unlimited theoretical loss.</p>
               </div>
@@ -1100,7 +1100,7 @@ export default function VolTradingPage() {
                 <div className="font-mono text-muted-foreground text-sm mb-2">
                   rho_implied = (sigma_index^2 - sum_i(wi^2 * sigmai^2)) / (2 * sum_ij(wi * wj * sigmai * sigmaj))
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs mt-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground mt-3">
                   {[
                     { sym: "sigma_index", def: "Index implied vol (from ATM straddle)", color: "text-primary" },
                     { sym: "wi", def: "Component weight in index", color: "text-primary" },
@@ -1138,7 +1138,7 @@ export default function VolTradingPage() {
                       <div className="w-16 flex items-center">
                         <div className={cn("h-2 rounded", barColor)} style={{ width: `${barW}%` }} />
                       </div>
-                      <div className={cn("text-xs font-medium w-12 text-right", color, isLast && "text-sm")}>
+                      <div className={cn("text-xs text-muted-foreground font-medium w-12 text-right", color, isLast && "text-sm")}>
                         {item.value > 0 ? "+" : ""}{item.value.toFixed(1)}
                       </div>
                     </div>
@@ -1218,7 +1218,7 @@ export default function VolTradingPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
                 {[
                   {
                     title: "Via Variance Swaps",

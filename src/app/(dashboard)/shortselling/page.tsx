@@ -550,7 +550,7 @@ function RubricRow({ criterion }: { criterion: ThesisCriterion }) {
         />
         <span className="text-xs text-muted-foreground w-24 shrink-0">{criterion.category}</span>
         <span className="text-sm text-foreground flex-1">{criterion.signal}</span>
-        <Badge variant="outline" className="text-xs shrink-0 border-border">
+        <Badge variant="outline" className="text-xs text-muted-foreground shrink-0 border-border">
           {criterion.weight}pts
         </Badge>
         {expanded ? <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" /> : <ChevronRight className="w-3.5 h-3.5 text-muted-foreground" />}
@@ -598,7 +598,7 @@ function FamousShortCard({ short }: { short: FamousShort }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-semibold text-foreground">{short.name}</span>
-            <Badge variant="outline" className={`text-xs ${badgeColorMap[short.color] ?? ""}`}>
+            <Badge variant="outline" className={`text-xs text-muted-foreground ${badgeColorMap[short.color] ?? ""}`}>
               {short.ticker}
             </Badge>
             <span className="text-xs text-muted-foreground">{short.year}</span>
@@ -768,7 +768,7 @@ export default function ShortSellingPage() {
 
           {/* ── TAB 1: Short Mechanics ─────────────────────────────────── */}
           <TabsContent value="mechanics" className="data-[state=inactive]:hidden">
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Process flow */}
               <Card className="border-border bg-card/50">
                 <CardHeader>
@@ -820,7 +820,7 @@ export default function ShortSellingPage() {
               </Card>
 
               {/* Short interest metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Card className="border-border bg-card/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-base">
@@ -905,7 +905,7 @@ export default function ShortSellingPage() {
                     Unlike a long position (max loss = cost), a short has theoretically unlimited downside. Profit is capped at 100% (stock goes to zero), but losses are unbounded.
                   </p>
                 </CardHeader>
-                <CardContent className="flex flex-col md:flex-row items-start gap-6">
+                <CardContent className="flex flex-col md:flex-row items-start gap-3">
                   <ShortPnLChart />
                   <div className="space-y-3 flex-1">
                     <div className="rounded-lg bg-green-500/10 border border-green-500/20 p-3">
@@ -928,7 +928,7 @@ export default function ShortSellingPage() {
 
           {/* ── TAB 2: Thesis Framework ────────────────────────────────── */}
           <TabsContent value="thesis" className="data-[state=inactive]:hidden">
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
                   {
@@ -1047,7 +1047,7 @@ export default function ShortSellingPage() {
                         />
                         <span className="text-xs text-muted-foreground w-24 shrink-0">{criterion.category}</span>
                         <span className="text-sm text-foreground flex-1">{criterion.signal}</span>
-                        <Badge variant="outline" className="text-xs shrink-0 border-border">
+                        <Badge variant="outline" className="text-xs text-muted-foreground shrink-0 border-border">
                           {criterion.weight}pts
                         </Badge>
                       </button>
@@ -1091,7 +1091,7 @@ export default function ShortSellingPage() {
 
           {/* ── TAB 3: Risk Management ─────────────────────────────────── */}
           <TabsContent value="risk" className="data-[state=inactive]:hidden">
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Unlimited upside warning */}
               <div className="rounded-md border border-red-500/30 bg-red-500/8 p-5 flex gap-4">
                 <AlertTriangle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
@@ -1103,7 +1103,7 @@ export default function ShortSellingPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {/* Position sizing */}
                 <Card className="border-border bg-card/50">
                   <CardHeader>
@@ -1146,7 +1146,7 @@ export default function ShortSellingPage() {
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
                             <span className="text-sm text-foreground font-medium">{item.rule}</span>
-                            <Badge variant="outline" className="text-xs border-border">{item.value}</Badge>
+                            <Badge variant="outline" className="text-xs text-muted-foreground border-border">{item.value}</Badge>
                           </div>
                           <p className="text-xs text-muted-foreground mt-0.5">{item.rationale}</p>
                         </div>
@@ -1306,7 +1306,7 @@ export default function ShortSellingPage() {
 
           {/* ── TAB 5: Market Efficiency ───────────────────────────────── */}
           <TabsContent value="emh" className="data-[state=inactive]:hidden">
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* EMH overview */}
               <div className="rounded-md border border-indigo-500/30 bg-indigo-500/5 p-5">
                 <div className="flex items-start gap-3">

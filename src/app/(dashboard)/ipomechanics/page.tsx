@@ -418,7 +418,7 @@ function StatChip({
   };
   return (
     <div className={cn("border rounded-lg px-3 py-2 text-center", colors[color])}>
-      <div className="text-xs opacity-70">{label}</div>
+      <div className="text-xs text-muted-foreground opacity-70">{label}</div>
       <div className="text-sm font-bold">{value}</div>
     </div>
   );
@@ -437,7 +437,7 @@ function IPOTimelineTab() {
   const chartWidth = ganttWidth - labelWidth;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header Stats */}
       <div className="grid grid-cols-4 gap-3">
         <StatChip label="Avg IPO Timeline" value="12–18 months" color="blue" />
@@ -455,7 +455,7 @@ function IPOTimelineTab() {
               key={step.id}
               onClick={() => setSelectedStep(step === selectedStep ? null : step)}
               className={cn(
-                "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+                "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-muted-foreground font-medium border transition-all",
                 selectedStep?.id === step.id
                   ? "border-foreground/30 text-foreground"
                   : "border-border text-foreground/50 hover:text-foreground/80 hover:border-border"
@@ -466,7 +466,7 @@ function IPOTimelineTab() {
                   : {}
               }
             >
-              <span className="w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
+              <span className="w-4 h-4 rounded-full flex items-center justify-center text-xs text-muted-foreground font-bold"
                 style={{ backgroundColor: step.color + "40", color: step.color }}>
                 {step.id}
               </span>
@@ -490,7 +490,7 @@ function IPOTimelineTab() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium"
+                    <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs text-muted-foreground font-medium"
                       style={{ backgroundColor: selectedStep.color + "30", color: selectedStep.color }}>
                       {selectedStep.id}
                     </span>
@@ -698,7 +698,7 @@ function BookBuildingTab() {
   const ixPx = px(ipoPrice);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Section Nav */}
       <div className="flex gap-2 flex-wrap">
         {[
@@ -711,7 +711,7 @@ function BookBuildingTab() {
             key={id}
             onClick={() => setActiveSection(id)}
             className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all",
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-all",
               activeSection === id
                 ? "bg-primary/20 border-primary/50 text-primary"
                 : "bg-foreground/[0.03] border-border text-foreground/50 hover:text-foreground/80"
@@ -735,7 +735,7 @@ function BookBuildingTab() {
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-md p-5">
                 <h3 className="text-sm font-medium text-foreground/80 mb-4">Book Building — Demand Curve Construction</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {/* SVG demand curve */}
                   <div>
                     <svg width={svgW} height={svgH} className="max-w-full">
@@ -1047,7 +1047,7 @@ function BookBuildingTab() {
                         { item: "Selling Concession (60%)", value: "$21M → Selling brokers", highlight: true },
                         { item: "Net Proceeds to Issuer", value: "$465M", highlight: false },
                       ].map((row) => (
-                        <div key={row.item} className={cn("flex justify-between text-xs py-1 border-b border-border/50", row.highlight && "bg-foreground/[0.03] px-2 rounded")}>
+                        <div key={row.item} className={cn("flex justify-between text-xs text-muted-foreground py-1 border-b border-border/50", row.highlight && "bg-foreground/[0.03] px-2 rounded")}>
                           <span className="text-foreground/60">{row.item}</span>
                           <span className="text-foreground/85 font-medium">{row.value}</span>
                         </div>
@@ -1118,7 +1118,7 @@ function MarketAnalysisTab() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Notable IPOs Table */}
       <div className="bg-card border border-border rounded-md overflow-hidden">
         <div className="p-4 border-b border-border/50">
@@ -1126,7 +1126,7 @@ function MarketAnalysisTab() {
           <p className="text-xs text-foreground/45 mt-0.5">Click column headers to sort. 1-year returns are vs offer price.</p>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50 bg-foreground/[0.03]">
                 <th className="px-4 py-2.5 text-left text-foreground/50">Company</th>
@@ -1317,7 +1317,7 @@ function MarketAnalysisTab() {
               { rule: "Pre-Filing Quiet Period", desc: "Once the S-1 is filed, company executives cannot make public statements beyond the prospectus that might condition the market (gun-jumping rules).", type: "pre" },
               { rule: "Gun-Jumping Risk", desc: "Pre-S-1 press releases, CEO speeches, or interviews can constitute 'conditioning the market' — SEC can delay registration as a penalty.", type: "pre" },
             ].map((r) => (
-              <div key={r.rule} className={cn("rounded-lg p-3 border text-xs", r.type === "post" ? "bg-primary/5 border-border" : "bg-amber-500/5 border-amber-500/15")}>
+              <div key={r.rule} className={cn("rounded-lg p-3 border text-xs text-muted-foreground", r.type === "post" ? "bg-primary/5 border-border" : "bg-amber-500/5 border-amber-500/15")}>
                 <div className={cn("font-medium mb-1", r.type === "post" ? "text-primary" : "text-amber-400")}>{r.rule}</div>
                 <p className="text-foreground/60 leading-relaxed">{r.desc}</p>
               </div>
@@ -1342,7 +1342,7 @@ function AlternativesTab() {
   const zY = 80;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 3-Way Comparison Table */}
       <div className="bg-card border border-border rounded-md overflow-hidden">
         <div className="p-4 border-b border-border/50">
@@ -1350,7 +1350,7 @@ function AlternativesTab() {
           <p className="text-xs text-foreground/45 mt-0.5">Click a row to highlight the best option</p>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50 bg-foreground/[0.03]">
                 <th className="px-4 py-2.5 text-left text-foreground/50 w-36">Dimension</th>
@@ -1407,7 +1407,7 @@ function AlternativesTab() {
           <StatChip label="Reference Price" value="Set by exchange, not bankers" color="blue" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <div className="text-xs font-medium text-foreground/50 mb-3">Direct Listing Steps</div>
             <div className="space-y-3">
@@ -1442,7 +1442,7 @@ function AlternativesTab() {
                     <span className="text-xs font-medium text-foreground/85">{dl.company} ({dl.ticker})</span>
                     <span className="text-xs text-foreground/40">{dl.year}</span>
                   </div>
-                  <div className="flex gap-3 text-xs mb-1">
+                  <div className="flex gap-3 text-xs text-muted-foreground mb-1">
                     <span className="text-foreground/50">Ref: <span className="text-foreground/80">${dl.ref}</span></span>
                     <span className="text-foreground/50">Open: <span className="text-green-400">${dl.open}</span></span>
                   </div>
@@ -1460,7 +1460,7 @@ function AlternativesTab() {
           <Layers className="w-4 h-4 text-primary" />
           SPAC Structure & De-SPAC Transaction
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {/* SPAC SVG */}
           <div>
             <div className="text-xs font-medium text-foreground/50 mb-3">SPAC Lifecycle</div>
@@ -1628,7 +1628,7 @@ function AlternativesTab() {
 
 export default function IPOMechanicsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Page Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">

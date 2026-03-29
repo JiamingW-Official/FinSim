@@ -531,7 +531,7 @@ function StatChip({ label, value, color = "blue" }: { label: string; value: stri
   };
   return (
     <div className={cn("inline-flex flex-col rounded-lg border px-3 py-2", colorMap[color])}>
-      <span className="text-xs opacity-70">{label}</span>
+      <span className="text-xs text-muted-foreground opacity-70">{label}</span>
       <span className="text-sm font-bold">{value}</span>
     </div>
   );
@@ -542,7 +542,7 @@ function StatChip({ label, value, color = "blue" }: { label: string; value: stri
 function IPOProcessTab() {
   const [selectedStage, setSelectedStage] = useState<IPOStage | null>(null);
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex flex-wrap gap-3 mb-2">
         <StatChip label="Typical Duration" value="6–12 months" color="blue" />
         <StatChip label="Avg Underwriting Fee" value="3.5–7%" color="amber" />
@@ -675,7 +675,7 @@ function IPOValuationTab() {
   }, [filter]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex flex-wrap gap-3 mb-2">
         <StatChip label="Avg IPO Underpricing" value="10–15%" color="amber" />
         <StatChip label="Avg First Day Return" value="+20%" color="green" />
@@ -693,10 +693,10 @@ function IPOValuationTab() {
           <p className="text-xs text-muted-foreground leading-relaxed mb-3">Underwriters systematically price IPOs 10–15% below fair value. This "money left on the table" benefits institutional investors who flip shares on day 1.</p>
           <div className="rounded-lg bg-muted/40 p-2">
             <div className="text-xs text-muted-foreground mb-1">Who wins / loses</div>
-            <div className="flex items-center gap-2 text-xs">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="text-green-400">Win:</span><span className="text-muted-foreground">Institutional allocatees, underwriters (repeat business)</span>
             </div>
-            <div className="flex items-center gap-2 text-xs mt-1">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
               <span className="text-red-400">Lose:</span><span className="text-muted-foreground">Pre-IPO shareholders (diluted value), company (raised less)</span>
             </div>
           </div>
@@ -711,7 +711,7 @@ function IPOValuationTab() {
               { period: "Year 2", perf: "-2%", color: "text-red-400" },
               { period: "Year 3", perf: "-8%", color: "text-red-400" },
             ].map((row) => (
-              <div key={row.period} className="flex justify-between text-xs">
+              <div key={row.period} className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{row.period}</span>
                 <span className={cn("font-mono font-medium", row.color)}>{row.perf}</span>
               </div>
@@ -737,14 +737,14 @@ function IPOValuationTab() {
         <div className="flex gap-2 mb-3 flex-wrap">
           {(["all", "profitable", "unprofitable", "lockup"] as const).map((f) => (
             <button key={f} onClick={() => setFilter(f)}
-              className={cn("text-xs rounded-full px-3 py-1 transition-colors",
+              className={cn("text-xs text-muted-foreground rounded-full px-3 py-1 transition-colors",
                 filter === f ? "bg-primary text-foreground" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f === "all" ? "All" : f === "profitable" ? "Profitable" : f === "unprofitable" ? "Underwater" : "Lockup Expired"}
             </button>
           ))}
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs min-w-[600px]">
+          <table className="w-full text-xs text-muted-foreground min-w-[600px]">
             <thead>
               <tr className="border-b border-border">
                 {["Company", "Ticker", "Sector", "Offer", "Current", "Total Return", "1st Day", "Mkt Cap", "Date", "Lockup"].map((h) => (
@@ -795,7 +795,7 @@ function SPACTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex flex-wrap gap-3 mb-2">
         <StatChip label="Sponsor Promote" value="20% for ~1%" color="amber" />
         <StatChip label="Search Window" value="24 months" color="blue" />
@@ -832,7 +832,7 @@ function SPACTab() {
         <div className="space-y-4">
           <InfoCard title="SPAC vs Traditional IPO" icon={<ArrowUpDown className="w-4 h-4" />}>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="text-left py-1.5 text-muted-foreground">Dimension</th>
@@ -874,14 +874,14 @@ function SPACTab() {
         <div className="flex gap-2 mb-3 flex-wrap">
           {(["all", "searching", "announced", "voting"] as const).map((f) => (
             <button key={f} onClick={() => setStatusFilter(f)}
-              className={cn("text-xs rounded-full px-3 py-1 transition-colors capitalize",
+              className={cn("text-xs text-muted-foreground rounded-full px-3 py-1 transition-colors capitalize",
                 statusFilter === f ? "bg-primary text-foreground" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f}
             </button>
           ))}
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs min-w-[640px]">
+          <table className="w-full text-xs text-muted-foreground min-w-[640px]">
             <thead>
               <tr className="border-b border-border">
                 {["SPAC", "Ticker", "Sponsor", "Target", "Trust/Sh", "Price", "Premium", "Deadline", "Raise"].map((h) => (
@@ -986,7 +986,7 @@ function SecondaryOfferingsTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex flex-wrap gap-3 mb-2">
         <StatChip label="FPO Discount to Market" value="2–5%" color="red" />
         <StatChip label="Block Trade Discount" value="3–7%" color="amber" />
@@ -1016,7 +1016,7 @@ function SecondaryOfferingsTab() {
               <div className="flex items-center gap-2 mb-2">
                 <span className={iconColorMap[cardColor]}>{ot.icon}</span>
                 <span className="text-sm font-medium text-foreground">{ot.name}</span>
-                <span className={cn("ml-auto text-xs rounded-full border px-2 py-0.5 capitalize", typeColor(ot.type))}>
+                <span className={cn("ml-auto text-xs text-muted-foreground rounded-full border px-2 py-0.5 capitalize", typeColor(ot.type))}>
                   {ot.type}
                 </span>
               </div>
@@ -1047,7 +1047,7 @@ function DCMTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex flex-wrap gap-3 mb-2">
         <StatChip label="IG Spread to UST" value="+80–150 bps" color="blue" />
         <StatChip label="HY Spread to UST" value="+300–600 bps" color="amber" />
@@ -1080,7 +1080,7 @@ function DCMTab() {
         <div className="space-y-4">
           <InfoCard title="LBO Capital Structure" icon={<Layers className="w-4 h-4" />}>
             <LBOWaterfallChart />
-            <div className="mt-3 space-y-1.5 text-xs">
+            <div className="mt-3 space-y-1.5 text-xs text-muted-foreground">
               {[
                 { label: "1st Lien Term Loan A/B", desc: "Secured, floating rate (SOFR+), 7-year maturity, amortizing" },
                 { label: "2nd Lien", desc: "Subordinate security interest, higher spread, PIK toggle available" },
@@ -1097,7 +1097,7 @@ function DCMTab() {
 
           <InfoCard title="Loan vs. Bond" icon={<ArrowUpDown className="w-4 h-4" />}>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="text-left py-1.5 text-muted-foreground">Feature</th>
@@ -1131,14 +1131,14 @@ function DCMTab() {
         <div className="flex gap-2 mb-3 flex-wrap">
           {(["all", "investment-grade", "high-yield", "loan"] as const).map((f) => (
             <button key={f} onClick={() => setTypeFilter(f)}
-              className={cn("text-xs rounded-full px-3 py-1 transition-colors",
+              className={cn("text-xs text-muted-foreground rounded-full px-3 py-1 transition-colors",
                 typeFilter === f ? "bg-primary text-foreground" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f === "all" ? "All" : f === "investment-grade" ? "Inv. Grade" : f === "high-yield" ? "High Yield" : "Loans"}
             </button>
           ))}
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs min-w-[600px]">
+          <table className="w-full text-xs text-muted-foreground min-w-[600px]">
             <thead>
               <tr className="border-b border-border">
                 {["Issuer", "Sector", "Size", "Coupon", "Rating", "Tenor", "Type", "Use of Proceeds", "Date"].map((h) => (
@@ -1163,7 +1163,7 @@ function DCMTab() {
                     <td className="pr-3 font-mono text-muted-foreground">{deal.rating}</td>
                     <td className="pr-3 text-muted-foreground">{deal.tenor}</td>
                     <td className="pr-3">
-                      <span className={cn("text-xs rounded-full px-2 py-0.5 font-medium", typeColor2)}>{typeLabel}</span>
+                      <span className={cn("text-xs text-muted-foreground rounded-full px-2 py-0.5 font-medium", typeColor2)}>{typeLabel}</span>
                     </td>
                     <td className="pr-3 text-muted-foreground max-w-[160px] truncate">{deal.useOfProceeds}</td>
                     <td className="text-muted-foreground">{deal.date}</td>
@@ -1184,7 +1184,7 @@ function ECMAnalyticsTab() {
   const maxVol = Math.max(...LEAGUE_TABLE.map((e) => e.volume));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex flex-wrap gap-3 mb-2">
         <StatChip label="2026 YTD IPO Volume" value="$88B" color="blue" />
         <StatChip label="Active Pipeline" value="$47B" color="green" />
@@ -1198,7 +1198,7 @@ function ECMAnalyticsTab() {
             {LEAGUE_TABLE.map((entry) => (
               <div key={entry.rank} className="flex items-center gap-2">
                 <div className={cn(
-                  "w-5 h-5 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0",
+                  "w-5 h-5 rounded-full flex items-center justify-center text-xs text-muted-foreground font-medium flex-shrink-0",
                   entry.rank <= 3 ? "bg-amber-500/20 text-amber-300" : "bg-muted text-muted-foreground"
                 )}>
                   {entry.rank}
@@ -1212,7 +1212,7 @@ function ECMAnalyticsTab() {
                 </div>
                 <div className="text-xs font-mono text-muted-foreground w-14 text-right">${entry.volume}B</div>
                 <div className="text-xs text-muted-foreground w-10 text-right">{entry.deals} deals</div>
-                <div className={cn("text-xs w-8 text-right font-medium",
+                <div className={cn("text-xs text-muted-foreground w-8 text-right font-medium",
                   entry.change > 0 ? "text-green-400" : entry.change < 0 ? "text-red-400" : "text-muted-foreground")}>
                   {entry.change > 0 ? `↑${entry.change}` : entry.change < 0 ? `↓${Math.abs(entry.change)}` : "—"}
                 </div>
@@ -1238,7 +1238,7 @@ function ECMAnalyticsTab() {
               ].map((ind) => {
                 const dotColor = ind.status === "green" ? "bg-green-500" : ind.status === "amber" ? "bg-amber-500" : "bg-red-500";
                 return (
-                  <div key={ind.label} className="flex items-center gap-2 text-xs">
+                  <div key={ind.label} className="flex items-center gap-2 text-xs text-muted-foreground">
                     <div className={cn("w-2 h-2 rounded-full flex-shrink-0", dotColor)} />
                     <span className="text-muted-foreground w-36">{ind.label}</span>
                     <span className="font-mono font-medium text-foreground w-20">{ind.value}</span>
@@ -1253,7 +1253,7 @@ function ECMAnalyticsTab() {
 
       <InfoCard title="IPO Market Cycles (2000–2026)" icon={<BarChart3 className="w-4 h-4" />}>
         <IPOCycleChart />
-        <div className="flex gap-6 mt-2 text-xs text-muted-foreground">
+        <div className="flex gap-3 mt-2 text-xs text-muted-foreground">
           <span><strong className="text-amber-400">Bubble years</strong>: 2000 (dotcom), 2007 (LBO/credit), 2021 (SPAC/rate zero)</span>
           <span><strong className="text-red-400">Dry years</strong>: 2001–2002 (dotcom bust), 2008 (GFC), 2022 (rate hike shock)</span>
         </div>
@@ -1265,7 +1265,7 @@ function ECMAnalyticsTab() {
 
       <InfoCard title="IPO Calendar — Upcoming 10 Expected IPOs" icon={<Calendar className="w-4 h-4" />}>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs min-w-[560px]">
+          <table className="w-full text-xs text-muted-foreground min-w-[560px]">
             <thead>
               <tr className="border-b border-border">
                 {["Company", "Sector", "Exp. Size", "Expected", "Stage", "Last Valuation", "vs Peers"].map((h) => (
@@ -1289,12 +1289,12 @@ function ECMAnalyticsTab() {
                     <td className="pr-4 font-mono text-muted-foreground">${ipo.expectedSize}B</td>
                     <td className="pr-4 text-muted-foreground">{ipo.expectedQ}</td>
                     <td className="pr-4">
-                      <span className={cn("text-xs rounded-full px-2 py-0.5 capitalize font-medium", stageMap[ipo.stage])}>
+                      <span className={cn("text-xs text-muted-foreground rounded-full px-2 py-0.5 capitalize font-medium", stageMap[ipo.stage])}>
                         {ipo.stage}
                       </span>
                     </td>
                     <td className="pr-4 font-mono text-muted-foreground">${ipo.lastValuation}B</td>
-                    <td className={cn("font-mono text-xs", multColor)}>
+                    <td className={cn("font-mono text-xs text-muted-foreground", multColor)}>
                       {impliedMultiple.toFixed(1)}× rev
                     </td>
                   </tr>
@@ -1313,7 +1313,7 @@ function ECMAnalyticsTab() {
 
 export default function CapitalMarketsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

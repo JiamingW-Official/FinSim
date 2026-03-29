@@ -147,7 +147,7 @@ function MergerArbitrageTab() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key stats */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
@@ -182,7 +182,7 @@ function MergerArbitrageTab() {
           </div>
           <div className="rounded-lg bg-muted/40 p-3">
             <p className="text-xs text-muted-foreground font-semibold uppercase mb-2">Example Calculation</p>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
               <div><span className="text-muted-foreground">Deal Price:</span> <span className="text-foreground">$50.00</span></div>
               <div><span className="text-muted-foreground">Current Price:</span> <span className="text-foreground">$48.50</span></div>
               <div><span className="text-muted-foreground">Gross Spread:</span> <span className="text-emerald-400">$1.50 (3.1%)</span></div>
@@ -270,7 +270,7 @@ function MergerArbitrageTab() {
               onClick={() => setExpanded(expanded === i ? null : i)}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", severityColor(rf.severity))}>
+                  <span className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded-full font-medium", severityColor(rf.severity))}>
                     {rf.severity.toUpperCase()}
                   </span>
                   <span className="text-sm text-foreground">{rf.name}</span>
@@ -300,7 +300,7 @@ function MergerArbitrageTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Target", "Acquirer", "Deal $", "Mkt $", "Type", "Break %", "Outcome"].map((h) => (
@@ -318,7 +318,7 @@ function MergerArbitrageTab() {
                       <td className="py-2 pr-3 text-muted-foreground">{row.dealType}</td>
                       <td className={cn("py-2 pr-3", row.breakProb > 30 ? "text-red-400" : "text-amber-400")}>{row.breakProb}%</td>
                       <td className="py-2 pr-3">
-                        <span className={cn("px-2 py-0.5 rounded-full text-xs",
+                        <span className={cn("px-2 py-0.5 rounded-full text-xs text-muted-foreground",
                           row.status === "Closed" ? "bg-emerald-900/40 text-emerald-300" :
                           row.status === "Terminated" ? "bg-red-900/40 text-red-300" :
                           "bg-amber-900/40 text-amber-300")}>
@@ -447,7 +447,7 @@ function ActivismTab() {
   const [showFunds, setShowFunds] = useState(false);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Playbook SVG */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -682,7 +682,7 @@ function SpinoffPerfChart() {
 
 function SpinoffsTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Comparison SVG */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -938,7 +938,7 @@ function DistressedSPACTab() {
   const [showRegs, setShowRegs] = useState(false);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Distressed timeline */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -999,7 +999,7 @@ function DistressedSPACTab() {
               },
             ].map((m) => (
               <div key={m.label} className="rounded-lg bg-muted/50 p-3">
-                <p className={cn("text-xs font-medium mb-1", m.color)}>{m.label}</p>
+                <p className={cn("text-xs text-muted-foreground font-medium mb-1", m.color)}>{m.label}</p>
                 <p className="text-xs text-muted-foreground">{m.desc}</p>
               </div>
             ))}
@@ -1042,7 +1042,7 @@ function DistressedSPACTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left text-muted-foreground pb-2 pr-4">Dimension</th>
@@ -1141,7 +1141,7 @@ function DistressedSPACTab() {
 
 export default function EventDrivenPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
       {/* Header — Hero */}
       <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
@@ -1161,7 +1161,7 @@ export default function EventDrivenPage() {
           ].map((chip) => (
             <div key={chip.label} className="flex items-center gap-1.5 rounded-full bg-card border border-border px-3 py-1">
               <span className="text-xs text-muted-foreground">{chip.label}:</span>
-              <span className={cn("text-xs font-medium", chip.color)}>{chip.value}</span>
+              <span className={cn("text-xs text-muted-foreground font-medium", chip.color)}>{chip.value}</span>
             </div>
           ))}
         </div>

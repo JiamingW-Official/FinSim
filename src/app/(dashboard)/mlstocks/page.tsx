@@ -716,7 +716,7 @@ export default function MLStocksPage() {
   const totalFeatures = useMemo(() => FEATURE_CATEGORIES.reduce((s, c) => s + c.count, 0), []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -743,7 +743,7 @@ export default function MLStocksPage() {
             { label: "IC/ICIR Framework", color: "text-green-400 bg-green-500/10 border-green-500/20" },
             { label: "10-Stock Ranking", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
           ].map(chip => (
-            <span key={chip.label} className={`text-xs px-2 py-1 rounded-full border ${chip.color}`}>{chip.label}</span>
+            <span key={chip.label} className={`text-xs text-muted-foreground px-2 py-1 rounded-full border ${chip.color}`}>{chip.label}</span>
           ))}
         </div>
       </motion.div>
@@ -866,7 +866,7 @@ export default function MLStocksPage() {
                     },
                   ].map(item => (
                     <div key={item.title} className="bg-muted/50 rounded-lg p-3">
-                      <p className={`text-xs font-semibold mb-1 ${item.color}`}>{item.title}</p>
+                      <p className={`text-xs text-muted-foreground font-semibold mb-1 ${item.color}`}>{item.title}</p>
                       <p className="text-xs text-muted-foreground">{item.desc}</p>
                     </div>
                   ))}
@@ -886,7 +886,7 @@ export default function MLStocksPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left py-2 text-muted-foreground font-medium">Model</th>
@@ -985,7 +985,7 @@ export default function MLStocksPage() {
                     { cond: "Rich cross-asset context", rec: "Transformer — attention mechanism handles long-range deps", color: "text-pink-400" },
                     { cond: "Production deployment", rec: "Ensemble — diversification reduces model-specific drawdowns", color: "text-amber-400" },
                   ].map(g => (
-                    <div key={g.cond} className="flex gap-2 text-xs">
+                    <div key={g.cond} className="flex gap-2 text-xs text-muted-foreground">
                       <span className="text-muted-foreground shrink-0">{g.cond}:</span>
                       <span className={g.color}>{g.rec}</span>
                     </div>
@@ -1035,7 +1035,7 @@ export default function MLStocksPage() {
                       { cost: "Slippage", est: "1–3 bps", note: "Signal delay between decision and execution" },
                       { cost: "Total (round-trip)", est: "14–48 bps", note: "Must be earned by alpha signal daily" },
                     ].map(row => (
-                      <div key={row.cost} className="flex items-start justify-between text-xs py-1.5 border-b border-border/50">
+                      <div key={row.cost} className="flex items-start justify-between text-xs text-muted-foreground py-1.5 border-b border-border/50">
                         <div>
                           <span className="text-foreground font-medium">{row.cost}</span>
                           <span className="text-muted-foreground ml-2">{row.note}</span>
@@ -1067,7 +1067,7 @@ export default function MLStocksPage() {
                           <span className="text-sm font-medium">{p.name}</span>
                           <Badge
                             variant="outline"
-                            className={`text-xs border-current ${
+                            className={`text-xs text-muted-foreground border-current ${
                               p.severity === "high" ? "text-red-400" : p.severity === "medium" ? "text-amber-400" : "text-green-400"
                             }`}
                           >{p.severity}</Badge>
@@ -1166,7 +1166,7 @@ export default function MLStocksPage() {
                   <CardTitle className="text-sm text-foreground">IC / ICIR Framework</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="bg-muted/50 rounded-lg p-3 font-mono text-xs space-y-1">
+                  <div className="bg-muted/50 rounded-lg p-3 font-mono text-xs text-muted-foreground space-y-1">
                     <p className="text-green-400">IC = rank_corr(predictions_t, returns_{"{t+1}"})</p>
                     <p className="text-primary">ICIR = mean(IC) / std(IC)</p>
                     <p className="text-amber-400">IC_t2: IR ≥ 0.5 for live deployment</p>
@@ -1218,7 +1218,7 @@ export default function MLStocksPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left py-1.5 text-muted-foreground">Ticker</th>
@@ -1250,7 +1250,7 @@ export default function MLStocksPage() {
                               <td className={`py-1.5 text-right ${sig.quality >= 0 ? "text-green-400" : "text-red-400"}`}>{fmtScore(sig.quality)}</td>
                               <td className={`py-1.5 text-right ${sig.sentiment >= 0 ? "text-green-400" : "text-red-400"}`}>{fmtScore(sig.sentiment)}</td>
                               <td className="py-1.5 text-right">
-                                <Badge variant={signalBadgeVariant(sig.signal)} className={`text-xs ${signalColor(sig.signal)}`}>
+                                <Badge variant={signalBadgeVariant(sig.signal)} className={`text-xs text-muted-foreground ${signalColor(sig.signal)}`}>
                                   {sig.signal}
                                 </Badge>
                               </td>

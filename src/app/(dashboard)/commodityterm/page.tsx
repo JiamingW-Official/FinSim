@@ -591,7 +591,7 @@ function RollYieldCalculator() {
                 { label: "Annualized drag", value: annualRoll, isBps: true, color: annualRoll < 0 ? "text-red-400" : "text-emerald-400" },
                 { label: "Monthly equivalent", value: annualRoll / 12, isBps: true, color: annualRoll / 12 < 0 ? "text-red-400" : "text-emerald-400" },
               ].map(({ label, value, isBps, color }) => (
-                <div key={label} className="flex justify-between text-xs">
+                <div key={label} className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{label}</span>
                   <span className={cn("font-mono font-semibold", color)}>
                     {isBps
@@ -744,7 +744,7 @@ function StrategyComparison() {
                   </CardTitle>
                   <Badge
                     className={cn(
-                      "text-xs font-mono",
+                      "text-xs text-muted-foreground font-mono",
                       strat.returnPct >= 0 ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"
                     )}
                   >
@@ -832,7 +832,7 @@ export default function CommodityTermPage() {
   const annRollYield = rollYield(CURVE_PRICES[0], CURVE_PRICES[1], 28);
 
   return (
-    <div className="p-4 md:p-6 space-y-6 max-w-6xl mx-auto">
+    <div className="p-4 md:p-4 space-y-4 max-w-6xl mx-auto">
       {/* HERO Header */}
       <FadeIn>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
@@ -899,19 +899,19 @@ export default function CommodityTermPage() {
       <FadeIn delay={0.12}>
         <Tabs value={tab} onValueChange={setTab}>
           <TabsList className="grid grid-cols-4 w-full">
-            <TabsTrigger value="curve" className="text-xs sm:text-sm">
+            <TabsTrigger value="curve" className="text-xs text-muted-foreground sm:text-sm">
               <BarChart2 className="h-3.5 w-3.5 mr-1 hidden sm:inline" />
               Futures Curve
             </TabsTrigger>
-            <TabsTrigger value="roll" className="text-xs sm:text-sm">
+            <TabsTrigger value="roll" className="text-xs text-muted-foreground sm:text-sm">
               <RefreshCw className="h-3.5 w-3.5 mr-1 hidden sm:inline" />
               Roll Yield
             </TabsTrigger>
-            <TabsTrigger value="storage" className="text-xs sm:text-sm">
+            <TabsTrigger value="storage" className="text-xs text-muted-foreground sm:text-sm">
               <Layers className="h-3.5 w-3.5 mr-1 hidden sm:inline" />
               Storage &amp; Carry
             </TabsTrigger>
-            <TabsTrigger value="strategy" className="text-xs sm:text-sm">
+            <TabsTrigger value="strategy" className="text-xs text-muted-foreground sm:text-sm">
               <ArrowRight className="h-3.5 w-3.5 mr-1 hidden sm:inline" />
               Strategy Impact
             </TabsTrigger>
@@ -979,7 +979,7 @@ export default function CommodityTermPage() {
       <FadeIn delay={0.15}>
         <Card className="bg-muted/30 border-border">
           <CardContent className="pt-4 pb-4">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-muted-foreground">
               <div>
                 <p className="font-medium text-amber-400 mb-1">Contango</p>
                 <p className="text-muted-foreground">

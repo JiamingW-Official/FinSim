@@ -622,7 +622,7 @@ function ISRow({
     <tr className={cn("border-b border-border/50 hover:bg-muted/30", highlightClass)}>
       <td
         className={cn(
-          "py-1.5 px-3 text-xs sticky left-0 bg-card",
+          "py-1.5 px-3 text-xs text-muted-foreground sticky left-0 bg-card",
           bold ? "font-semibold text-foreground" : sub ? "pl-6 text-muted-foreground" : "text-muted-foreground"
         )}
       >
@@ -634,7 +634,7 @@ function ISRow({
           <td
             key={i}
             className={cn(
-              "py-1.5 px-3 text-xs text-right font-mono",
+              "py-1.5 px-3 text-xs text-muted-foreground text-right font-mono",
               bold ? "font-medium text-foreground" : "text-muted-foreground"
             )}
           >
@@ -945,7 +945,7 @@ export default function FinancialModelPage() {
                   key={k}
                   onClick={() => setCompany(k)}
                   className={cn(
-                    "px-3 py-1 rounded-md text-xs font-medium transition-all",
+                    "px-3 py-1 rounded-md text-xs text-muted-foreground font-medium transition-all",
                     company === k
                       ? "bg-primary text-foreground shadow"
                       : "text-muted-foreground hover:text-foreground"
@@ -961,7 +961,7 @@ export default function FinancialModelPage() {
                   key={sc}
                   onClick={() => setScenario(sc)}
                   className={cn(
-                    "px-3 py-1 rounded-md text-xs font-medium capitalize transition-all",
+                    "px-3 py-1 rounded-md text-xs text-muted-foreground font-medium capitalize transition-all",
                     scenario === sc
                       ? sc === "bull"
                         ? "bg-emerald-600 text-foreground"
@@ -999,7 +999,7 @@ export default function FinancialModelPage() {
                 key={value}
                 value={value}
                 className={cn(
-                  "flex items-center gap-1.5 px-3 py-2 text-xs rounded-t-md rounded-b-none border-b-2 transition-all",
+                  "flex items-center gap-1.5 px-3 py-2 text-xs text-muted-foreground rounded-t-md rounded-b-none border-b-2 transition-all",
                   activeTab === value
                     ? "border-primary text-foreground bg-foreground/[0.04]"
                     : "border-transparent text-muted-foreground hover:text-muted-foreground"
@@ -1012,7 +1012,7 @@ export default function FinancialModelPage() {
           </TabsList>
 
           {/* ─── Tab 1: Income Statement ─────────────────────────────────────── */}
-          <TabsContent value="income" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+          <TabsContent value="income" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1040,7 +1040,7 @@ export default function FinancialModelPage() {
 
               {/* IS Table */}
               <div className="overflow-x-auto rounded-md border border-border/50 bg-card">
-                <table className="w-full text-xs border-collapse">
+                <table className="w-full text-xs text-muted-foreground border-collapse">
                   <thead>
                     <tr className="bg-foreground/[0.04] border-b border-border">
                       <th className="text-left py-2 px-3 text-muted-foreground font-medium sticky left-0 bg-card min-w-[160px]">
@@ -1125,7 +1125,7 @@ export default function FinancialModelPage() {
           </TabsContent>
 
           {/* ─── Tab 2: Balance Sheet ─────────────────────────────────────────── */}
-          <TabsContent value="balance" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+          <TabsContent value="balance" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
               {/* Balance check banner */}
               <div className={cn(
@@ -1144,7 +1144,7 @@ export default function FinancialModelPage() {
                 {/* Assets */}
                 <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Assets</SectionHeading>
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <tbody>
                       {[
                         { label: "Cash & Equivalents", value: companyData.historicalCash },
@@ -1167,7 +1167,7 @@ export default function FinancialModelPage() {
                 {/* Liabilities */}
                 <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Liabilities</SectionHeading>
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <tbody>
                       {[
                         { label: "Accounts Payable", value: companyData.historicalAP },
@@ -1184,7 +1184,7 @@ export default function FinancialModelPage() {
                     </tbody>
                   </table>
                   <SectionHeading>Equity</SectionHeading>
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <tbody>
                       {[
                         { label: "Common Stock + APIC", value: 5.0 },
@@ -1237,13 +1237,13 @@ export default function FinancialModelPage() {
           </TabsContent>
 
           {/* ─── Tab 3: Cash Flow ─────────────────────────────────────────────── */}
-          <TabsContent value="cashflow" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+          <TabsContent value="cashflow" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
                 {/* CF statement */}
                 <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Cash Flow Statement (LTM, $B)</SectionHeading>
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <tbody>
                       <tr><td colSpan={2} className="pt-2 pb-1 text-xs text-primary font-medium">Operating Activities</td></tr>
                       {[
@@ -1298,7 +1298,7 @@ export default function FinancialModelPage() {
                       ].map(({ label, value, color, big }) => (
                         <div key={label} className="flex justify-between items-center border-b border-border/50 pb-2">
                           <span className={cn("text-xs", big ? "font-medium text-foreground" : "text-muted-foreground")}>{label}</span>
-                          <span className={cn("text-xs font-mono font-medium", color, big && "text-base")}>{value}</span>
+                          <span className={cn("text-xs text-muted-foreground font-mono font-medium", color, big && "text-base")}>{value}</span>
                         </div>
                       ))}
                     </div>
@@ -1320,7 +1320,7 @@ export default function FinancialModelPage() {
           </TabsContent>
 
           {/* ─── Tab 4: DCF Valuation ─────────────────────────────────────────── */}
-          <TabsContent value="dcf" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+          <TabsContent value="dcf" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
               {/* DCF controls */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -1357,7 +1357,7 @@ export default function FinancialModelPage() {
 
               {/* DCF table */}
               <div className="overflow-x-auto rounded-md border border-border/50 bg-card mb-6">
-                <table className="w-full text-xs border-collapse">
+                <table className="w-full text-xs text-muted-foreground border-collapse">
                   <thead>
                     <tr className="bg-foreground/[0.04] border-b border-border">
                       <th className="text-left py-2 px-3 text-muted-foreground font-medium sticky left-0 bg-card min-w-[160px]">Year</th>
@@ -1457,11 +1457,11 @@ export default function FinancialModelPage() {
           </TabsContent>
 
           {/* ─── Tab 5: Comparables ───────────────────────────────────────────── */}
-          <TabsContent value="comps" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+          <TabsContent value="comps" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
               {/* Comps table */}
               <div className="overflow-x-auto rounded-md border border-border/50 bg-card mb-6">
-                <table className="w-full text-xs border-collapse">
+                <table className="w-full text-xs text-muted-foreground border-collapse">
                   <thead>
                     <tr className="bg-foreground/[0.04] border-b border-border">
                       {["Company", "Revenue ($B)", "EBITDA ($B)", "Net Income ($B)", "Mkt Cap ($B)", "EV ($B)", "EV/Rev", "EV/EBITDA", "P/E", "P/FCF", "P/S"].map((h) => (
@@ -1512,7 +1512,7 @@ export default function FinancialModelPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Implied Share Price — {company}</SectionHeading>
-                  <table className="w-full text-xs mt-1">
+                  <table className="w-full text-xs text-muted-foreground mt-1">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left py-1.5 text-muted-foreground font-medium">Multiple</th>
@@ -1555,7 +1555,7 @@ export default function FinancialModelPage() {
           </TabsContent>
 
           {/* ─── Tab 6: Scenario Analysis ─────────────────────────────────────── */}
-          <TabsContent value="scenario" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+          <TabsContent value="scenario" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
               {/* Scenario summary */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -1571,7 +1571,7 @@ export default function FinancialModelPage() {
                     <div key={sc.scenario} className={cn("rounded-md border p-4", c.bg, c.border)}>
                       <div className="flex items-center justify-between mb-3">
                         <span className={cn("text-sm font-medium capitalize", c.text)}>{sc.scenario} Case</span>
-                        <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", c.badge)}>2026E</span>
+                        <span className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded-full font-medium", c.badge)}>2026E</span>
                       </div>
                       {[
                         { label: "Revenue", value: fmt(sc.revenue) },

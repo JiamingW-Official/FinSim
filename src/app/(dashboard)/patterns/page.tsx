@@ -517,7 +517,7 @@ function PatternLibraryTab() {
             key={cat}
             onClick={() => setFilterCat(cat)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
+              "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
               filterCat === cat
                 ? "bg-indigo-600 border-indigo-500 text-foreground"
                 : "bg-card border-border text-muted-foreground hover:border-border"
@@ -553,7 +553,7 @@ function PatternLibraryTab() {
                     <h3 className="text-sm font-semibold text-foreground">{pattern.name}</h3>
                     <span
                       className={cn(
-                        "inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded border mt-1",
+                        "inline-flex items-center gap-1 text-xs text-muted-foreground px-1.5 py-0.5 rounded border mt-1",
                         categoryColor(pattern.category)
                       )}
                     >
@@ -580,7 +580,7 @@ function PatternLibraryTab() {
 
                 {/* Reliability bar */}
                 <div className="mt-3 space-y-1">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Reliability</span>
                     <span className="text-muted-foreground font-medium">{pattern.reliability}%</span>
                   </div>
@@ -733,7 +733,7 @@ function PatternQuizTab() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="flex flex-col items-center justify-center py-16 space-y-6"
+        className="flex flex-col items-center justify-center py-16 space-y-4"
       >
         <div className="text-6xl">{pct >= 80 ? "🏆" : pct >= 60 ? "⭐" : "📚"}</div>
         <div className="text-center">
@@ -742,17 +742,17 @@ function PatternQuizTab() {
             You scored {score}/{total} ({pct}%)
           </p>
         </div>
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <div className="text-center p-4 rounded-md bg-card border border-border">
-            <p className="text-2xl font-bold text-indigo-400">+{xpEarned}</p>
+            <p className="text-lg font-medium text-indigo-400">+{xpEarned}</p>
             <p className="text-xs text-muted-foreground mt-1">XP Earned</p>
           </div>
           <div className="text-center p-4 rounded-md bg-card border border-border">
-            <p className="text-2xl font-bold text-emerald-400">{score}</p>
+            <p className="text-lg font-medium text-emerald-400">{score}</p>
             <p className="text-xs text-muted-foreground mt-1">Correct</p>
           </div>
           <div className="text-center p-4 rounded-md bg-card border border-border">
-            <p className="text-2xl font-bold text-amber-400">{total - score}</p>
+            <p className="text-lg font-medium text-amber-400">{total - score}</p>
             <p className="text-xs text-muted-foreground mt-1">Missed</p>
           </div>
         </div>
@@ -764,7 +764,7 @@ function PatternQuizTab() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
+    <div className="max-w-2xl mx-auto space-y-4">
       {/* Score strip */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -810,7 +810,7 @@ function PatternQuizTab() {
           exit={{ opacity: 0, x: -40 }}
           transition={{ duration: 0.25 }}
         >
-          <Card className="p-6 bg-card/80 border-border">
+          <Card className="p-4 bg-card/80 border-border">
             <p className="text-sm text-muted-foreground mb-4">What chart pattern is shown below?</p>
 
             {/* Chart illustration */}
@@ -995,7 +995,7 @@ function ScanSimulatorTab() {
                 key={cat}
                 onClick={() => setFilterCat(cat)}
                 className={cn(
-                  "px-2.5 py-1 rounded text-xs border transition-colors",
+                  "px-2.5 py-1 rounded text-xs text-muted-foreground border transition-colors",
                   filterCat === cat
                     ? "bg-indigo-600 border-indigo-500 text-foreground"
                     : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
@@ -1007,7 +1007,7 @@ function ScanSimulatorTab() {
             <button
               onClick={() => setFilterConfirmed((v) => !v)}
               className={cn(
-                "px-2.5 py-1 rounded text-xs border transition-colors",
+                "px-2.5 py-1 rounded text-xs text-muted-foreground border transition-colors",
                 filterConfirmed
                   ? "bg-emerald-700 border-emerald-600 text-foreground"
                   : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
@@ -1094,7 +1094,7 @@ function ScanSimulatorTab() {
                             <span className="font-medium text-foreground text-sm">{result.ticker}</span>
                             <span
                               className={cn(
-                                "text-xs px-1.5 py-0.5 rounded border",
+                                "text-xs text-muted-foreground px-1.5 py-0.5 rounded border",
                                 result.stage === "confirmed"
                                   ? "text-emerald-400 bg-emerald-400/10 border-emerald-400/20"
                                   : "text-amber-400 bg-amber-400/10 border-amber-400/20"
@@ -1129,7 +1129,7 @@ function ScanSimulatorTab() {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="mt-2 h-7 text-xs border-border hover:border-indigo-500 hover:bg-indigo-950/30"
+                        className="mt-2 h-7 text-xs text-muted-foreground border-border hover:border-indigo-500 hover:bg-indigo-950/30"
                         onClick={() =>
                           toast.success(`${result.ticker} added to watchlist`, {
                             description: `Monitoring ${result.pattern} pattern`,
@@ -1191,7 +1191,7 @@ function PatternStatsTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Market condition toggle */}
       <div className="flex items-center gap-3">
         <span className="text-sm text-muted-foreground">Market Condition:</span>
@@ -1200,7 +1200,7 @@ function PatternStatsTab() {
             key={cond}
             onClick={() => setCondition(cond)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
+              "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
               condition === cond
                 ? cond === "Bull Market"
                   ? "bg-emerald-700 border-emerald-600 text-foreground"
@@ -1331,7 +1331,7 @@ function PatternStatsTab() {
       <Card className="p-5 bg-card/60 border-border">
         <h3 className="text-sm font-medium text-foreground mb-4">Historical Win Rate Table</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left pb-2 text-muted-foreground font-medium pr-4">Pattern</th>
@@ -1390,7 +1390,7 @@ function PatternStatsTab() {
 
 export default function PatternsPage() {
   return (
-    <div className="p-6 space-y-6 min-h-full bg-background">
+    <div className="p-4 space-y-4 min-h-full bg-background">
       {/* Header */}
       <div className="flex items-start justify-between border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div>

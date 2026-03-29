@@ -144,7 +144,7 @@ function Pill({ children, color = "default" }: { children: React.ReactNode; colo
     purple: "bg-primary/20 text-primary",
   }[color];
   return (
-    <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full", cls)}>
+    <span className={cn("text-xs text-muted-foreground font-medium px-2 py-0.5 rounded-full", cls)}>
       {children}
     </span>
   );
@@ -203,7 +203,7 @@ function DonutChart({ data }: { data: { label: string; pct: number; color: strin
   });
 
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-3">
       <svg width="160" height="160" viewBox="0 0 160 160">
         {slices.map((sl, i) => (
           <circle
@@ -473,7 +473,7 @@ export default function LoanSyndPage() {
   const bidAsk = 0.375; // typical bid/ask in pts
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-1">
@@ -541,7 +541,7 @@ export default function LoanSyndPage() {
               <span className="text-sm font-medium">Sample LBO Loan Transactions</span>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     {["Company", "Size ($B)", "Spread (bps)", "SOFR Floor", "OID", "Maturity", "Rating", "Type"].map((h) => (
@@ -596,7 +596,7 @@ export default function LoanSyndPage() {
                 className="bg-indigo-500/10 border border-indigo-500/30 rounded-md p-4 overflow-hidden"
               >
                 <p className="text-sm font-medium text-indigo-300 mb-2">{selectedLoan.company} — Deal Summary</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
                   <div>
                     <p className="text-foreground/40 mb-0.5">All-In Yield</p>
                     <p className="text-foreground font-mono font-medium">
@@ -623,7 +623,7 @@ export default function LoanSyndPage() {
           {/* TLA vs TLB comparison + Amortization */}
           <div className="grid md:grid-cols-2 gap-4">
             <InfoCard title="Term Loan A vs Term Loan B">
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 {[
                   { feature: "Primary buyers", tla: "Banks / relationship", tlb: "Institutional / CLOs" },
                   { feature: "Amortization", tla: "5–7% annually", tlb: "1% annually" },
@@ -643,7 +643,7 @@ export default function LoanSyndPage() {
 
             <InfoCard title="TLB Amortization Schedule ($100M)">
               <AmortizationChart bars={amortBars} />
-              <div className="flex gap-4 mt-2 text-xs">
+              <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-indigo-500 inline-block" />Annual payment</div>
                 <div className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-indigo-500/25 inline-block" />Remaining balance</div>
               </div>
@@ -673,7 +673,7 @@ export default function LoanSyndPage() {
             </InfoCard>
 
             <InfoCard title="Security Package">
-              <div className="space-y-3 text-xs">
+              <div className="space-y-3 text-xs text-muted-foreground">
                 {[
                   {
                     tier: "1st Lien",
@@ -723,7 +723,7 @@ export default function LoanSyndPage() {
 
             {/* Arranger economics */}
             <InfoCard title="Arranger Economics">
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 {[
                   { fee: "Upfront arrangement fee", typical: "1.5–2.5% of facility size" },
                   { fee: "Commitment fee (RCF)", typical: "0.25–0.50% per annum" },
@@ -786,7 +786,7 @@ export default function LoanSyndPage() {
 
           {/* CLO mechanics */}
           <InfoCard title="CLO Demand Engine">
-            <div className="grid md:grid-cols-3 gap-4 text-xs">
+            <div className="grid md:grid-cols-3 gap-4 text-xs text-muted-foreground">
               {[
                 {
                   title: "CLO Structure",
@@ -890,10 +890,10 @@ export default function LoanSyndPage() {
               <Activity size={14} className="text-indigo-400" />
               <span className="text-sm font-medium">Leverage & Coverage Ratio Tests</span>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-3">
               {COVENANT_TESTS.map((test, i) => (
                 <div key={i} className="space-y-1">
-                  <div className="flex items-center justify-between text-xs mb-1">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
                     <span className="text-foreground/70 font-medium">{test.name}</span>
                     <Pill color={test.type === "maintenance" ? "green" : "amber"}>
                       {test.type}
@@ -967,7 +967,7 @@ export default function LoanSyndPage() {
                 <BarChart3 size={14} className="text-indigo-400" />
                 <span className="text-sm font-medium">Secondary Loan Price — 30 Day History</span>
               </div>
-              <div className="flex items-center gap-3 text-xs">
+              <div className="flex items-center gap-3 text-xs text-muted-foreground">
                 <span className="text-foreground/50">Nexus Technology TLB</span>
                 <span className={cn("font-mono font-medium", priceChange >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {priceChange >= 0 ? "+" : ""}{priceChange.toFixed(3)} pts
@@ -975,7 +975,7 @@ export default function LoanSyndPage() {
               </div>
             </div>
             <LoanPriceChart data={loanPrices} />
-            <div className="grid grid-cols-3 gap-3 mt-3 text-xs">
+            <div className="grid grid-cols-3 gap-3 mt-3 text-xs text-muted-foreground">
               <div className="text-center">
                 <p className="text-foreground/40">Current Bid</p>
                 <p className="text-foreground font-mono font-medium">{(latestPrice - bidAsk / 2).toFixed(3)}</p>
@@ -994,7 +994,7 @@ export default function LoanSyndPage() {
           {/* Par vs Distressed + LSTA conventions */}
           <div className="grid md:grid-cols-2 gap-4">
             <InfoCard title="Par vs Distressed Trading Thresholds">
-              <div className="space-y-3 text-xs">
+              <div className="space-y-3 text-xs text-muted-foreground">
                 <div className="space-y-2">
                   {[
                     { range: "98–102", label: "Par / Near-Par", color: "bg-emerald-500", note: "T+7 settlement (LSTA standard)" },
@@ -1015,7 +1015,7 @@ export default function LoanSyndPage() {
             </InfoCard>
 
             <InfoCard title="LSTA Trading Conventions">
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 {[
                   { key: "Settlement", val: "T+7 business days (par), T+20+ (distressed)" },
                   { key: "Documentation", val: "LSTA Standard Terms & Conditions (STAC)" },
@@ -1061,7 +1061,7 @@ export default function LoanSyndPage() {
             </ExpandSection>
 
             <InfoCard title="Loan Market Indices">
-              <div className="space-y-3 text-xs">
+              <div className="space-y-3 text-xs text-muted-foreground">
                 {[
                   {
                     name: "LSTA Leveraged Loan Index",
@@ -1101,7 +1101,7 @@ export default function LoanSyndPage() {
               <Scale size={14} className="text-amber-400" />
               <span className="text-sm font-medium">Secondary Market Key Metrics</span>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-muted-foreground">
               {[
                 { label: "Daily trading volume", val: "~$3–5B", sub: "LSTA reported" },
                 { label: "Par bid/ask (liquid)", val: "0.125–0.375 pts", sub: "Investment grade borrowers" },

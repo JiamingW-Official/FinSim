@@ -70,7 +70,7 @@ function InfoCard({
   return (
     <div className="rounded-md border border-border bg-card p-4">
       <p className="text-sm font-semibold text-foreground mb-3">{title}</p>
-      <div className="text-xs space-y-1.5">{children}</div>
+      <div className="text-xs text-muted-foreground space-y-1.5">{children}</div>
     </div>
   );
 }
@@ -264,7 +264,7 @@ function SovereignTab() {
   const sel = SOVEREIGN_BONDS.find((b) => b.country === selected);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Avg EMBI Spread" value="185 bps" sub="vs 2023 avg 230 bps" color="text-amber-400" />
         <StatChip label="EM FX YTD" value="-3.2%" sub="Broad EM currency index" color="text-rose-400" />
@@ -281,7 +281,7 @@ function SovereignTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto p-0">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 px-3 font-medium">Country</th>
@@ -337,7 +337,7 @@ function SovereignTab() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs mb-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground mb-4">
                 <div className="bg-muted rounded p-3">
                   <div className="text-muted-foreground mb-1">Basis (Local − USD)</div>
                   <div className="text-foreground font-mono text-lg font-medium">
@@ -370,7 +370,7 @@ function SovereignTab() {
               </div>
               {/* Spread bar */}
               <div className="space-y-2 mt-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Spread to UST vs EM peers (max 600 bps)</span>
                   <span className="text-amber-400 font-mono">{fmtBps(sel.spreadUST)}</span>
                 </div>
@@ -491,7 +491,7 @@ function HardLocalTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="EMBI+ Spread" value="185 bps" sub="Hard currency benchmark" color="text-primary" />
         <StatChip label="GBI-EM Avg Yield" value="6.88%" sub="Local currency bonds" color="text-amber-400" />
@@ -508,7 +508,7 @@ function HardLocalTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto p-0">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 px-3 font-medium">Index</th>
@@ -546,7 +546,7 @@ function HardLocalTab() {
             Net carry = local yield − USD hedging cost (3m FX forward cross-currency basis). Real yield shown before hedging.
           </p>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left py-2 px-3 font-medium">Country</th>
@@ -667,7 +667,7 @@ function SpreadDecompositionTab() {
   const cellH = (HH - HPAD.t - HPAD.b) / heatmapCountries.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Waterfall */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -790,7 +790,7 @@ function SpreadDecompositionTab() {
             ))}
           </svg>
           {/* Legend */}
-          <div className="flex gap-4 mt-2 text-xs justify-center flex-wrap">
+          <div className="flex gap-4 mt-2 text-xs text-muted-foreground justify-center flex-wrap">
             {[
               { label: "Low risk (<30)", color: "#22c55e" },
               { label: "Moderate (30–50)", color: "#84cc16" },
@@ -907,7 +907,7 @@ function CurrencyImpactTab() {
   const totalReturn = (localYield: number, fxMove: number) => localYield + fxMove;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="DXY YTD" value="+2.8%" sub="USD strength vs EM basket" color="text-amber-400" />
         <StatChip label="EM FX Vol (1m)" value="8.4%" sub="Avg implied vol" color="text-rose-400" />
@@ -923,7 +923,7 @@ function CurrencyImpactTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto p-0">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 px-3 font-medium">Country</th>
@@ -1061,7 +1061,7 @@ function CrisisHistoryTab() {
   const barH = Math.floor(cH / CRISES.length) - 4;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Worst Peak Spread" value="5,500 bps" sub="Argentina 2001 default" color="text-rose-400" />
         <StatChip label="Average Recovery" value="3–4 yrs" sub="Spread normalisation" color="text-amber-400" />
@@ -1134,7 +1134,7 @@ function CrisisHistoryTab() {
                 transition={{ duration: 0.2 }}
                 className="border-t border-border px-4 py-3 bg-background/50"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
                   <div>
                     <div className="text-muted-foreground font-medium mb-1">Crisis Trigger</div>
                     <p className="text-muted-foreground">{c.trigger}</p>
@@ -1145,11 +1145,11 @@ function CrisisHistoryTab() {
                   </div>
                 </div>
                 <div className="flex gap-4 mt-3">
-                  <div className="text-xs">
+                  <div className="text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Peak Spread: </span>
                     <span className="text-rose-400 font-mono font-medium">{c.peakSpread.toLocaleString()} bps</span>
                   </div>
-                  <div className="text-xs">
+                  <div className="text-xs text-muted-foreground">
                     <span className="text-muted-foreground">GDP Impact: </span>
                     <span className="text-rose-400 font-mono font-medium">{c.gdpDrop}</span>
                   </div>
@@ -1190,7 +1190,7 @@ function CrisisHistoryTab() {
 
 export default function EmDebtPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header — Hero */}
       <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2 flex-wrap">

@@ -524,12 +524,12 @@ function ValidatorCostModel() {
       </div>
       <div className="space-y-1">
         {costs.map((c) => (
-          <div key={c.label} className="flex items-center justify-between text-xs">
+          <div key={c.label} className="flex items-center justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">{c.label}</span>
             <span className="text-foreground">${c.usd}/mo</span>
           </div>
         ))}
-        <div className="flex items-center justify-between text-xs border-t border-border pt-1 mt-1">
+        <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-border pt-1 mt-1">
           <span className="text-foreground font-medium">Total opex</span>
           <span className="text-foreground font-medium">${totalCost}/mo</span>
         </div>
@@ -586,7 +586,7 @@ export default function CryptoStakingPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6 max-w-7xl mx-auto">
+    <div className="p-4 space-y-4 max-w-7xl mx-auto">
       {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -605,8 +605,8 @@ export default function CryptoStakingPage() {
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
-            <Badge variant="outline" className="text-xs">Post-Merge ETH</Badge>
-            <Badge variant="outline" className="text-xs">PoS</Badge>
+            <Badge variant="outline" className="text-xs text-muted-foreground">Post-Merge ETH</Badge>
+            <Badge variant="outline" className="text-xs text-muted-foreground">PoS</Badge>
             <Badge variant="outline" className="text-xs text-green-500 border-green-500/40">Live Network</Badge>
           </div>
         </div>
@@ -674,7 +674,7 @@ export default function CryptoStakingPage() {
                 </CardHeader>
                 <CardContent>
                   <RewardBreakdownChart />
-                  <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+                  <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                     <div className="text-center">
                       <div className="font-semibold text-primary">~3.2%</div>
                       <div className="text-muted-foreground">Consensus</div>
@@ -717,7 +717,7 @@ export default function CryptoStakingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
                   {[
                     {
                       icon: Lock,
@@ -757,7 +757,7 @@ export default function CryptoStakingPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Client Pair", "HW Cost", "Bandwidth", "Stake Req.", "APY", "Break-even", "Network Share"].map((h) => (
@@ -818,7 +818,7 @@ export default function CryptoStakingPage() {
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: p.color }} />
                           <span className="font-medium text-sm text-foreground">{p.name}</span>
-                          <Badge variant="outline" className="text-xs py-0">{p.ticker}</Badge>
+                          <Badge variant="outline" className="text-xs text-muted-foreground py-0">{p.ticker}</Badge>
                         </div>
                         <div className="text-right">
                           <div className="text-sm font-semibold text-green-500">{p.apy}% APY</div>
@@ -845,7 +845,7 @@ export default function CryptoStakingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs text-muted-foreground">
                   {[
                     {
                       title: "Smart Contract Risk",
@@ -908,7 +908,7 @@ export default function CryptoStakingPage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <MEVRevenueChart sources={MEV_SOURCES} />
-                  <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                     {MEV_SOURCES.map((src) => (
                       <div key={src.name} className="rounded border border-border bg-card/40 p-2">
                         <div className="flex items-center gap-1.5 mb-0.5">
@@ -929,7 +929,7 @@ export default function CryptoStakingPage() {
                     MEV-Boost & PBS Architecture
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3 text-xs">
+                <CardContent className="space-y-3 text-xs text-muted-foreground">
                   <p className="text-muted-foreground">
                     Proposer-Builder Separation (PBS) via MEV-Boost allows validators to outsource block building to specialized builders, capturing MEV revenue without running complex extraction bots.
                   </p>
@@ -1033,7 +1033,7 @@ export default function CryptoStakingPage() {
                     Slashing Conditions
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2 text-xs">
+                <CardContent className="space-y-2 text-xs text-muted-foreground">
                   {slashingConditions.map((sc) => (
                     <div key={sc.name} className="rounded border border-border bg-card/40 p-2.5">
                       <div className="flex items-center justify-between mb-1">
@@ -1063,7 +1063,7 @@ export default function CryptoStakingPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Date", "Entity", "Validators Slashed", "ETH Lost", "Root Cause"].map((h) => (
@@ -1096,7 +1096,7 @@ export default function CryptoStakingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-muted-foreground">
                   {mitigations.map((m, i) => (
                     <div key={i} className="flex items-start gap-2 rounded border border-border bg-card/40 p-2.5">
                       <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -1104,7 +1104,7 @@ export default function CryptoStakingPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 rounded-lg border border-border bg-primary/5 p-3 text-xs">
+                <div className="mt-4 rounded-lg border border-border bg-primary/5 p-3 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1.5 font-medium text-primary mb-1">
                     <Info className="w-3.5 h-3.5" />
                     DVT: Distributed Validator Technology

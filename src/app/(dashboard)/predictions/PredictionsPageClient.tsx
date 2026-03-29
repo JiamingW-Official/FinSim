@@ -21,7 +21,6 @@ import {
   ChevronLeft,
   HelpCircle,
   Users,
-  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -356,20 +355,13 @@ function MarketDetailDrawer({
         <PriceHistoryChart data={priceHistory} title="YES Probability History" />
       </div>
 
-      {/* Stats row — CONSOLE card (compact, tabular, crushed against chart) */}
-      <div className="mb-6 rounded-lg bg-card border border-border/40 p-3">
-        <div className="grid grid-cols-3 gap-2">
-          {[
-            { label: "YES prob", value: `${market.initialProbability}%` },
-            { label: "Volume", value: `$${(volume / 1000).toFixed(1)}K` },
-            { label: "Closes", value: `${market.expiresInDays}d` },
-          ].map(({ label, value }) => (
-            <div key={label} className="text-center">
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{label}</div>
-              <div className="font-mono tabular-nums text-xs font-semibold text-foreground">{value}</div>
-            </div>
-          ))}
-        </div>
+      {/* Stats row — inline text, no grid */}
+      <div className="mb-6 flex items-center gap-3 text-xs px-1">
+        <span className="text-muted-foreground">YES <span className="font-mono tabular-nums font-semibold text-foreground">{market.initialProbability}%</span></span>
+        <span className="text-border/30">·</span>
+        <span className="text-muted-foreground">Vol <span className="font-mono tabular-nums font-semibold text-foreground">${(volume / 1000).toFixed(1)}K</span></span>
+        <span className="text-border/30">·</span>
+        <span className="text-muted-foreground">Closes <span className="font-mono tabular-nums font-semibold text-foreground">{market.expiresInDays}d</span></span>
       </div>
 
       {/* Order book */}
@@ -449,18 +441,13 @@ function MarketDetailDrawer({
             </div>
           </div>
 
-          {/* Payout calculation */}
-          <div className="mb-3 grid grid-cols-3 gap-2 text-center">
-            {[
-              { label: "Stake", value: `${betAmount} pts` },
-              { label: "Payout if correct", value: `${expectedPayout} pts`, highlight: true },
-              { label: "Profit", value: `+${expectedPayout - betAmount} pts`, highlight: true },
-            ].map(({ label, value, highlight }) => (
-              <div key={label} className="rounded bg-muted/50 px-2 py-1.5">
-                <div className="text-[11px] text-muted-foreground">{label}</div>
-                <div className={cn("text-xs font-semibold", highlight ? "text-emerald-500" : "text-foreground")}>{value}</div>
-              </div>
-            ))}
+          {/* Payout calculation — inline */}
+          <div className="mb-3 flex items-center gap-2.5 text-xs px-1 flex-wrap">
+            <span className="text-muted-foreground">Stake <span className="font-semibold text-foreground">{betAmount} pts</span></span>
+            <span className="text-border/30">·</span>
+            <span className="text-muted-foreground">Payout <span className="font-semibold text-emerald-500">{expectedPayout} pts</span></span>
+            <span className="text-border/30">·</span>
+            <span className="text-muted-foreground">Profit <span className="font-semibold text-emerald-500">+{expectedPayout - betAmount} pts</span></span>
           </div>
 
           <button
@@ -548,22 +535,17 @@ function MyBetsTab() {
 
   return (
     <div className="space-y-6">
-      {/* Summary stats — CONSOLE card (compact, data-dense) */}
-      <div className="rounded-lg bg-card border border-border/40 p-3">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
-          {[
-            { label: "Total Staked", value: `${totalStaked} pts` },
-            { label: "Total Won", value: `+${totalWon} pts`, color: "text-emerald-500" },
-            { label: "Total Lost", value: `-${totalLost} pts`, color: "text-red-500" },
-            { label: "Net P&L", value: `${netPnl >= 0 ? "+" : ""}${netPnl} pts`, color: netPnl >= 0 ? "text-emerald-500" : "text-red-500" },
-            { label: "ROI", value: `${roi >= 0 ? "+" : ""}${roi.toFixed(1)}%`, color: roi >= 0 ? "text-emerald-500" : "text-red-500" },
-          ].map(({ label, value, color }) => (
-            <div key={label} className="px-2 py-1">
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{label}</div>
-              <div className={cn("font-mono tabular-nums text-xs font-semibold", color ?? "text-foreground")}>{value}</div>
-            </div>
-          ))}
-        </div>
+      {/* Summary stats — inline text */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs px-1">
+        <span className="text-muted-foreground">Staked <span className="font-mono tabular-nums font-semibold text-foreground">{totalStaked} pts</span></span>
+        <span className="text-border/30">·</span>
+        <span className="text-muted-foreground">Won <span className="font-mono tabular-nums font-semibold text-emerald-500">+{totalWon} pts</span></span>
+        <span className="text-border/30">·</span>
+        <span className="text-muted-foreground">Lost <span className="font-mono tabular-nums font-semibold text-red-500">-{totalLost} pts</span></span>
+        <span className="text-border/30">·</span>
+        <span className="text-muted-foreground">Net P&L <span className={cn("font-mono tabular-nums font-semibold", netPnl >= 0 ? "text-emerald-500" : "text-red-500")}>{netPnl >= 0 ? "+" : ""}{netPnl} pts</span></span>
+        <span className="text-border/30">·</span>
+        <span className="text-muted-foreground">ROI <span className={cn("font-mono tabular-nums font-semibold", roi >= 0 ? "text-emerald-500" : "text-red-500")}>{roi >= 0 ? "+" : ""}{roi.toFixed(1)}%</span></span>
       </div>
 
       {/* Accuracy tracker */}
@@ -695,7 +677,7 @@ function CalibrationChartSection() {
 
   return (
     <div className="rounded-lg bg-card border border-border/40 p-3">
-      <h3 className="mb-3 text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">Predicted vs Actual Outcomes</h3>
+      <h3 className="mb-3 text-[10px] text-muted-foreground">Predicted vs actual outcomes</h3>
       <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ maxWidth: w }} aria-hidden>
         {[0, 0.25, 0.5, 0.75, 1].map((v) => (
           <line key={`g-${v}`} x1={pad.left} x2={pad.left + plotW} y1={pad.top + plotH * (1 - v)} y2={pad.top + plotH * (1 - v)} stroke="currentColor" strokeOpacity={0.1} />
@@ -995,8 +977,7 @@ export function PredictionsPageClient() {
                       >
                         {/* Top meta */}
                         <div className="mb-3 flex items-center gap-2">
-                          <Zap className="h-3.5 w-3.5 text-primary" />
-                          <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">Featured Market</span>
+                          <span className="text-[11px] font-medium text-primary">Featured market</span>
                           <span className={cn("ml-1 rounded px-1.5 py-0.5 text-[10px] font-medium", CATEGORY_COLORS[featuredMarket.category])}>
                             {CATEGORY_LABELS[featuredMarket.category]}
                           </span>

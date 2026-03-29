@@ -900,7 +900,7 @@ function QualityScreener() {
 
       {/* Table */}
       <div className="overflow-x-auto rounded-md border border-border">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead className="bg-card border-b border-border sticky top-0">
             <tr>
               {([
@@ -1028,7 +1028,7 @@ function IncomeStatementAnalyzer() {
   const recurringPct = 50 + rand() * 40;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Ticker selector */}
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
@@ -1036,7 +1036,7 @@ function IncomeStatementAnalyzer() {
             key={t}
             onClick={() => setTicker(t)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors",
+              "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-mono font-medium transition-colors",
               ticker === t
                 ? "bg-indigo-600 text-foreground"
                 : "bg-muted border border-border text-muted-foreground hover:text-foreground"
@@ -1047,7 +1047,7 @@ function IncomeStatementAnalyzer() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Revenue Trend */}
         <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-1">Revenue Trend ($B)</h3>
@@ -1149,7 +1149,7 @@ function BalanceSheetHealth() {
   const ccc = dso + dio - dpo;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Ticker */}
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
@@ -1163,7 +1163,7 @@ function BalanceSheetHealth() {
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Liquidity Ratios</h3>
         <p className="text-xs text-muted-foreground mb-4">Current, Quick, Cash ratio — higher is stronger</p>
-        <div className="flex gap-6 flex-wrap justify-center">
+        <div className="flex gap-3 flex-wrap justify-center">
           <div className="text-center">
             <GaugeChart value={currentRatio} min={0} max={4} label="Current" color={currentRatio >= 1.5 ? "#22c55e" : currentRatio >= 1 ? "#f59e0b" : "#ef4444"} />
             <p className="text-xs text-muted-foreground mt-1">Current ≥ 1.5 healthy</p>
@@ -1179,7 +1179,7 @@ function BalanceSheetHealth() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Debt Maturity Schedule */}
         <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Debt Maturity Schedule ($B)</h3>
@@ -1230,16 +1230,16 @@ function BalanceSheetHealth() {
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Goodwill & Intangibles Risk</h3>
         <p className="text-xs text-muted-foreground mb-4">High goodwill as % of assets signals M&A integration risk and potential impairment</p>
-        <div className="flex items-center gap-6 flex-wrap">
+        <div className="flex items-center gap-3 flex-wrap">
           <div className="flex-1 min-w-[200px]">
-            <div className="flex justify-between text-xs mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">Goodwill</span>
               <span className={cn("font-medium", goodwillPct > 30 ? "text-red-400" : goodwillPct > 15 ? "text-amber-400" : "text-emerald-400")}>{goodwillPct}%</span>
             </div>
             <div className="h-2 bg-muted rounded-full">
               <div className={cn("h-full rounded-full", goodwillPct > 30 ? "bg-red-500" : goodwillPct > 15 ? "bg-amber-500" : "bg-emerald-500")} style={{ width: `${Math.min(goodwillPct, 100)}%` }} />
             </div>
-            <div className="flex justify-between text-xs mb-1 mt-2">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1 mt-2">
               <span className="text-muted-foreground">Total Intangibles</span>
               <span className={cn("font-medium", intangiblesPct > 40 ? "text-red-400" : intangiblesPct > 20 ? "text-amber-400" : "text-emerald-400")}>{intangiblesPct}%</span>
             </div>
@@ -1247,7 +1247,7 @@ function BalanceSheetHealth() {
               <div className={cn("h-full rounded-full", intangiblesPct > 40 ? "bg-red-500" : intangiblesPct > 20 ? "bg-amber-500" : "bg-emerald-500")} style={{ width: `${Math.min(intangiblesPct, 100)}%` }} />
             </div>
           </div>
-          <div className="p-3 bg-muted rounded-md text-xs space-y-1">
+          <div className="p-3 bg-muted rounded-md text-xs text-muted-foreground space-y-1">
             <p className="text-muted-foreground font-medium">Goodwill: <span className="text-foreground">${latest.goodwill.toFixed(1)}B</span></p>
             <p className="text-muted-foreground font-medium">Intangibles: <span className="text-foreground">${latest.intangibles.toFixed(1)}B</span></p>
             <p className="text-muted-foreground font-medium">Total Assets: <span className="text-foreground">${latest.totalAssets.toFixed(1)}B</span></p>
@@ -1264,7 +1264,7 @@ function BalanceSheetHealth() {
           height={160}
           formatVal={(v) => `${v.toFixed(2)}B`}
         />
-        <div className="mt-2 text-xs">
+        <div className="mt-2 text-xs text-muted-foreground">
           {data[4].sharesOutstanding < data[0].sharesOutstanding
             ? <span className="text-emerald-400">Buyback program: {(((data[0].sharesOutstanding - data[4].sharesOutstanding) / data[0].sharesOutstanding) * 100).toFixed(1)}% shares retired over 5 years</span>
             : <span className="text-amber-400">Share dilution: +{(((data[4].sharesOutstanding - data[0].sharesOutstanding) / data[0].sharesOutstanding) * 100).toFixed(1)}% shares issued over 5 years</span>
@@ -1321,7 +1321,7 @@ function CashFlowAnalysis() {
   const reinvestmentRate = data.map((d) => +((d.capex / (d.operatingCF || 1)) * 100).toFixed(1));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
           <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
@@ -1330,7 +1330,7 @@ function CashFlowAnalysis() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* OCF vs Net Income */}
         <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Operating CF vs Net Income</h3>
@@ -1351,7 +1351,7 @@ function CashFlowAnalysis() {
           <h3 className="text-sm font-medium text-foreground mb-1">FCF Margin Trend</h3>
           <p className="text-xs text-muted-foreground mb-3">FCF / Revenue — expanding margin is bullish</p>
           <LineChart series={fcfMarginSeries} height={180} formatVal={(v) => `${v.toFixed(1)}%`} />
-          <div className="mt-2 text-xs">
+          <div className="mt-2 text-xs text-muted-foreground">
             {fcfMarginSeries[0].data[4].y > fcfMarginSeries[0].data[0].y
               ? <span className="text-emerald-400">Expanding FCF margins (+{(fcfMarginSeries[0].data[4].y - fcfMarginSeries[0].data[0].y).toFixed(1)}pp over 5yr)</span>
               : <span className="text-amber-400">Contracting FCF margins ({(fcfMarginSeries[0].data[4].y - fcfMarginSeries[0].data[0].y).toFixed(1)}pp over 5yr)</span>
@@ -1360,16 +1360,16 @@ function CashFlowAnalysis() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* FCF Yield */}
         <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">FCF Yield vs Historical</h3>
           <p className="text-xs text-muted-foreground mb-3">FCF / Market Cap — higher = better value proposition</p>
           <div className="flex items-center gap-4 mt-2">
             <div className="text-center">
-              <p className="text-2xl font-bold text-indigo-400">{fcfYieldCurrent}%</p>
+              <p className="text-lg font-medium text-indigo-400">{fcfYieldCurrent}%</p>
               <p className="text-xs text-muted-foreground mt-1">Current FCF Yield</p>
-              <p className="text-xs mt-2 px-2 py-1 rounded-full bg-muted">
+              <p className="text-xs text-muted-foreground mt-2 px-2 py-1 rounded-full bg-muted">
                 {fcfYieldCurrent >= 5 ? <span className="text-emerald-400">Attractive (&ge;5%)</span>
                  : fcfYieldCurrent >= 3 ? <span className="text-amber-400">Fair (3–5%)</span>
                  : <span className="text-red-400">Expensive (&lt;3%)</span>}
@@ -1494,7 +1494,7 @@ function CompetitiveAnalysis() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
           <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
@@ -1507,7 +1507,7 @@ function CompetitiveAnalysis() {
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">5-Company Comparison</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="px-3 py-2 text-left text-muted-foreground font-medium">Company</th>
@@ -1544,7 +1544,7 @@ function CompetitiveAnalysis() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Moat Assessment */}
         <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Moat Assessment</h3>
@@ -1601,7 +1601,7 @@ function CompetitiveAnalysis() {
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">ESG Comparison vs Peers</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="px-3 py-2 text-left text-muted-foreground font-medium">Company</th>
@@ -1677,7 +1677,7 @@ function EarningsQualityTab() {
   ]).filter((v) => v > 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex gap-2 flex-wrap">
         {INCOME_TICKERS.map((t) => (
           <button key={t} onClick={() => setTicker(t)} className={cn("px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors", ticker === t ? "bg-indigo-600 text-foreground" : "bg-muted border border-border text-muted-foreground hover:text-foreground")}>
@@ -1718,7 +1718,7 @@ function EarningsQualityTab() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Accruals Ratio Trend */}
         <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Accruals Ratio Trend</h3>
@@ -1826,7 +1826,7 @@ function EarningsQualityTab() {
 
 export default function FundamentalsPage() {
   return (
-    <div className="min-h-screen bg-background p-4 md:p-6">
+    <div className="min-h-screen bg-background p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}

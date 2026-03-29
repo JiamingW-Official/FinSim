@@ -417,7 +417,7 @@ function StatCard({ label, value, change, sub, icon, color = "text-indigo-400" }
             <Badge
               variant="outline"
               className={cn(
-                "text-xs border-0",
+                "text-xs text-muted-foreground border-0",
                 isPos ? "text-emerald-400 bg-emerald-900/30" : "text-red-400 bg-red-900/30"
               )}
             >
@@ -531,7 +531,7 @@ export default function OnchainPage() {
   const netFlow = exchangeInflow - exchangeOutflow;
 
   return (
-    <div className="flex flex-col gap-6 p-6 min-h-screen bg-background text-foreground">
+    <div className="flex flex-col gap-3 p-4 min-h-screen bg-background text-foreground">
       {/* Header */}
       <motion.div
         initial="hidden"
@@ -541,7 +541,7 @@ export default function OnchainPage() {
         className="flex items-center justify-between"
       >
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
             <Network className="w-6 h-6 text-indigo-400" />
             On-Chain Analytics
           </h1>
@@ -566,23 +566,23 @@ export default function OnchainPage() {
       >
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="bg-card border border-border h-10 mb-6">
-            <TabsTrigger value="network" className="data-[state=active]:bg-indigo-600 text-xs px-3">
+            <TabsTrigger value="network" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
               <Activity className="w-3.5 h-3.5 mr-1.5" />
               Network Health
             </TabsTrigger>
-            <TabsTrigger value="holders" className="data-[state=active]:bg-indigo-600 text-xs px-3">
+            <TabsTrigger value="holders" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
               <Users className="w-3.5 h-3.5 mr-1.5" />
               Holder Analysis
             </TabsTrigger>
-            <TabsTrigger value="defi" className="data-[state=active]:bg-indigo-600 text-xs px-3">
+            <TabsTrigger value="defi" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
               <Layers className="w-3.5 h-3.5 mr-1.5" />
               DeFi Metrics
             </TabsTrigger>
-            <TabsTrigger value="mining" className="data-[state=active]:bg-indigo-600 text-xs px-3">
+            <TabsTrigger value="mining" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
               <Server className="w-3.5 h-3.5 mr-1.5" />
               Mining &amp; Validators
             </TabsTrigger>
-            <TabsTrigger value="signals" className="data-[state=active]:bg-indigo-600 text-xs px-3">
+            <TabsTrigger value="signals" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
               <Zap className="w-3.5 h-3.5 mr-1.5" />
               Market Signals
             </TabsTrigger>
@@ -590,7 +590,7 @@ export default function OnchainPage() {
 
           {/* ── Tab 1: Network Health ─────────────────────────────────────────── */}
           <TabsContent value="network" className="data-[state=inactive]:hidden">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
               {/* BTC stat cards */}
               <div>
                 <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
@@ -709,7 +709,7 @@ export default function OnchainPage() {
                               <Badge
                                 variant="outline"
                                 className={cn(
-                                  "text-xs border-0",
+                                  "text-xs text-muted-foreground border-0",
                                   row.leader === "BTC"
                                     ? "text-amber-400 bg-amber-900/20"
                                     : "text-indigo-400 bg-indigo-900/20"
@@ -730,7 +730,7 @@ export default function OnchainPage() {
 
           {/* ── Tab 2: Holder Analysis ────────────────────────────────────────── */}
           <TabsContent value="holders" className="data-[state=inactive]:hidden">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
               {/* UTXO Age Bands */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
@@ -782,14 +782,14 @@ export default function OnchainPage() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-xs border-0",
+                          "text-xs text-muted-foreground border-0",
                           netFlow > 0 ? "text-red-400 bg-red-900/30" : "text-emerald-400 bg-emerald-900/30"
                         )}
                       >
                         {netFlow > 0 ? "Net Inflow" : "Net Outflow"}
                       </Badge>
                     </div>
-                    <p className="text-2xl font-bold text-foreground mt-2">
+                    <p className="text-lg font-medium text-foreground mt-2">
                       {netFlow > 0 ? "+" : ""}
                       {fmtNum(netFlow)} BTC
                     </p>
@@ -824,7 +824,7 @@ export default function OnchainPage() {
                             <td className="py-2 text-xs font-mono text-muted-foreground">{w.address}</td>
                             <td className="py-2 text-xs text-muted-foreground">{w.label}</td>
                             <td className="py-2 text-right text-xs font-mono text-foreground">{w.balance}</td>
-                            <td className="py-2 text-right text-xs font-mono">
+                            <td className="py-2 text-right text-xs text-muted-foreground font-mono">
                               <span
                                 className={cn(
                                   w.change24h > 0
@@ -842,7 +842,7 @@ export default function OnchainPage() {
                               <Badge
                                 variant="outline"
                                 className={cn(
-                                  "text-xs border-0",
+                                  "text-xs text-muted-foreground border-0",
                                   w.type === "accumulating"
                                     ? "text-emerald-400 bg-emerald-900/20"
                                     : w.type === "distributing"
@@ -865,7 +865,7 @@ export default function OnchainPage() {
 
           {/* ── Tab 3: DeFi Metrics ───────────────────────────────────────────── */}
           <TabsContent value="defi" className="data-[state=inactive]:hidden">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
               {/* Summary stats */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <StatCard
@@ -938,7 +938,7 @@ export default function OnchainPage() {
                                 </Badge>
                               </td>
                               <td className="py-2 text-right text-xs font-mono text-foreground">{fmtB(row.tvl)}</td>
-                              <td className="py-2 text-right text-xs font-mono">
+                              <td className="py-2 text-right text-xs text-muted-foreground font-mono">
                                 <span className={row.change7d >= 0 ? "text-emerald-400" : "text-red-400"}>
                                   {fmtPct(row.change7d)}
                                 </span>
@@ -1003,7 +1003,7 @@ export default function OnchainPage() {
 
           {/* ── Tab 4: Mining & Validators ────────────────────────────────────── */}
           <TabsContent value="mining" className="data-[state=inactive]:hidden">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
               {/* Stats */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <StatCard
@@ -1041,7 +1041,7 @@ export default function OnchainPage() {
               </div>
 
               {/* Pool distribution + details */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -1049,7 +1049,7 @@ export default function OnchainPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3">
                       <DonutChart />
                       <div className="flex-1 space-y-2">
                         {MINING_POOLS.map((pool) => (
@@ -1099,15 +1099,15 @@ export default function OnchainPage() {
                       </div>
                     ))}
                     <div className="pt-2 border-t border-border">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Total ETH Staked</span>
                         <span className="text-foreground font-mono">33.2M ETH</span>
                       </div>
-                      <div className="flex justify-between text-xs mt-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mt-1">
                         <span className="text-muted-foreground">Annualized Reward</span>
                         <span className="text-emerald-400 font-mono">+3.8% APR</span>
                       </div>
-                      <div className="flex justify-between text-xs mt-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mt-1">
                         <span className="text-muted-foreground">Withdrawal Queue</span>
                         <span className="text-muted-foreground font-mono">~2,400 ETH</span>
                       </div>
@@ -1137,7 +1137,7 @@ export default function OnchainPage() {
 
           {/* ── Tab 5: Market Signals ─────────────────────────────────────────── */}
           <TabsContent value="signals" className="data-[state=inactive]:hidden">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
               {/* Signal summary cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
@@ -1186,7 +1186,7 @@ export default function OnchainPage() {
                           <Badge
                             variant="outline"
                             className={cn(
-                              "text-xs border-0",
+                              "text-xs text-muted-foreground border-0",
                               zone === "overbought"
                                 ? "text-red-400 bg-red-900/30"
                                 : zone === "oversold"
@@ -1197,7 +1197,7 @@ export default function OnchainPage() {
                             {zone}
                           </Badge>
                         </div>
-                        <p className="text-2xl font-bold text-foreground mt-2">{sig.value}</p>
+                        <p className="text-lg font-medium text-foreground mt-2">{sig.value}</p>
                         <p className="text-xs text-muted-foreground mt-1">{sig.name}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">{sig.desc}</p>
                       </CardContent>

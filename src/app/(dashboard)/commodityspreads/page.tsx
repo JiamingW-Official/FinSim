@@ -587,7 +587,7 @@ function MetricChip({
     <div className="flex flex-col gap-0.5 bg-card border border-border rounded-lg px-3 py-2 min-w-[100px]">
       <span className="text-xs text-muted-foreground truncate">{label}</span>
       <span className="text-sm font-semibold text-foreground">{value}</span>
-      <span className={`text-xs font-medium ${posColor(chg)}`}>
+      <span className={`text-xs text-muted-foreground font-medium ${posColor(chg)}`}>
         {fmtChg(chg)}
       </span>
     </div>
@@ -612,7 +612,7 @@ export default function CommoditySpreadsPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
     >
       {/* HERO Header */}
       <div className="flex flex-col gap-1 border-l-4 border-l-primary rounded-md bg-card p-6">
@@ -643,27 +643,27 @@ export default function CommoditySpreadsPage() {
       {/* Main Tabs */}
       <Tabs defaultValue="crack">
         <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="crack" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="crack" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Flame className="w-3.5 h-3.5" />
             Crack Spreads
           </TabsTrigger>
-          <TabsTrigger value="spark" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="spark" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Zap className="w-3.5 h-3.5" />
             Spark Spreads
           </TabsTrigger>
-          <TabsTrigger value="crush" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="crush" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Wheat className="w-3.5 h-3.5" />
             Crush Spread
           </TabsTrigger>
-          <TabsTrigger value="calendar" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="calendar" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Calendar className="w-3.5 h-3.5" />
             Calendar Spreads
           </TabsTrigger>
-          <TabsTrigger value="weather" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="weather" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <CloudRain className="w-3.5 h-3.5" />
             Weather &amp; Seasonality
           </TabsTrigger>
-          <TabsTrigger value="strategies" className="flex items-center gap-1.5 text-xs">
+          <TabsTrigger value="strategies" className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <BarChart2 className="w-3.5 h-3.5" />
             Strategies
           </TabsTrigger>
@@ -678,7 +678,7 @@ export default function CommoditySpreadsPage() {
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Flame className="w-4 h-4 text-amber-400" />
                   3-2-1 Crack Spread
-                  <Badge className={`ml-auto text-xs ${posBg(crack321Current.chg)}`}>
+                  <Badge className={`ml-auto text-xs text-muted-foreground ${posBg(crack321Current.chg)}`}>
                     {fmtDollar(crack321Current.value)} ({fmtChg(crack321Current.chg)})
                   </Badge>
                 </CardTitle>
@@ -707,7 +707,7 @@ export default function CommoditySpreadsPage() {
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Flame className="w-4 h-4 text-indigo-400" />
                   5-3-2 Crack Spread
-                  <Badge className={`ml-auto text-xs ${posBg(crack532Current.chg)}`}>
+                  <Badge className={`ml-auto text-xs text-muted-foreground ${posBg(crack532Current.chg)}`}>
                     {fmtDollar(crack532Current.value)} ({fmtChg(crack532Current.chg)})
                   </Badge>
                 </CardTitle>
@@ -764,7 +764,7 @@ export default function CommoditySpreadsPage() {
                   <div key={item.title} className="bg-muted/50 rounded-lg p-3 space-y-1">
                     <div className="flex items-center gap-1.5">
                       {item.icon}
-                      <span className={`text-xs font-medium ${item.color}`}>{item.title}</span>
+                      <span className={`text-xs text-muted-foreground font-medium ${item.color}`}>{item.title}</span>
                     </div>
                     <p className="text-xs text-muted-foreground">{item.desc}</p>
                   </div>
@@ -827,7 +827,7 @@ export default function CommoditySpreadsPage() {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-muted-foreground font-normal">{sp.subtitle}</span>
-                      <Badge className={`text-xs ${sp.badgeClass}`}>
+                      <Badge className={`text-xs text-muted-foreground ${sp.badgeClass}`}>
                         {sp.current.value.toFixed(1)} ({fmtChg(sp.current.chg)})
                       </Badge>
                     </div>
@@ -836,7 +836,7 @@ export default function CommoditySpreadsPage() {
                 <CardContent className="space-y-3">
                   <SpreadLineChart bars={sp.bars} color={sp.color} unit={sp.unit} gradId={sp.gradId} />
                   <div className="bg-muted/50 rounded-lg p-2.5 space-y-1">
-                    <p className={`text-xs font-medium ${sp.accentColor}`}>Formula</p>
+                    <p className={`text-xs text-muted-foreground font-medium ${sp.accentColor}`}>Formula</p>
                     <p className="text-xs text-muted-foreground">{sp.formula}</p>
                     <p className="text-xs text-muted-foreground mt-1">{sp.detail}</p>
                   </div>
@@ -904,7 +904,7 @@ export default function CommoditySpreadsPage() {
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Wheat className="w-4 h-4 text-yellow-400" />
                   Board Crush Spread (12-Month History)
-                  <Badge className={`ml-auto text-xs ${posBg(crushCurrent.chg)}`}>
+                  <Badge className={`ml-auto text-xs text-muted-foreground ${posBg(crushCurrent.chg)}`}>
                     {crushCurrent.value.toFixed(1)}¢/bu ({fmtChg(crushCurrent.chg)})
                   </Badge>
                 </CardTitle>
@@ -968,7 +968,7 @@ export default function CommoditySpreadsPage() {
                   ].map((row) => (
                     <div key={row.label} className={`flex items-center justify-between rounded-md px-2.5 py-1.5 ${row.bg}`}>
                       <span className="text-xs text-muted-foreground">{row.label}</span>
-                      <span className={`text-xs font-medium ${row.color}`}>{row.value}</span>
+                      <span className={`text-xs text-muted-foreground font-medium ${row.color}`}>{row.value}</span>
                     </div>
                   ))}
                 </div>
@@ -1019,7 +1019,7 @@ export default function CommoditySpreadsPage() {
                   <div key={d.title} className="bg-muted/50 rounded-lg p-2.5 space-y-1">
                     <div className="flex items-center gap-1.5">
                       {d.icon}
-                      <span className={`text-xs font-medium ${d.color}`}>{d.title}</span>
+                      <span className={`text-xs text-muted-foreground font-medium ${d.color}`}>{d.title}</span>
                     </div>
                     <p className="text-xs text-muted-foreground">{d.desc}</p>
                   </div>
@@ -1036,7 +1036,7 @@ export default function CommoditySpreadsPage() {
               variant={calendarView === "table" ? "default" : "outline"}
               size="sm"
               onClick={() => setCalendarView("table")}
-              className="text-xs h-7"
+              className="text-xs text-muted-foreground h-7"
             >
               Table View
             </Button>
@@ -1044,7 +1044,7 @@ export default function CommoditySpreadsPage() {
               variant={calendarView === "chart" ? "default" : "outline"}
               size="sm"
               onClick={() => setCalendarView("chart")}
-              className="text-xs h-7"
+              className="text-xs text-muted-foreground h-7"
             >
               Curve Charts
             </Button>
@@ -1060,7 +1060,7 @@ export default function CommoditySpreadsPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Commodity", "Front Month", "Front Price", "Back Month", "Back Price", "Spread", "Structure", "Bull/Bear"].map(
@@ -1128,7 +1128,7 @@ export default function CommoditySpreadsPage() {
                       <span>{cs.icon}</span>
                       <span className="truncate">{cs.commodity}</span>
                       <Badge
-                        className={`ml-auto text-xs shrink-0 ${
+                        className={`ml-auto text-xs text-muted-foreground shrink-0 ${
                           cs.structure === "contango"
                             ? "bg-indigo-400/10 text-indigo-400 border-indigo-400/20"
                             : "bg-amber-400/10 text-amber-400 border-amber-400/20"
@@ -1140,7 +1140,7 @@ export default function CommoditySpreadsPage() {
                   </CardHeader>
                   <CardContent>
                     <CalendarCurveSVG isContango={cs.structure === "contango"} commodity={cs.commodity} />
-                    <div className="flex justify-between text-xs mt-2">
+                    <div className="flex justify-between text-xs text-muted-foreground mt-2">
                       <span className="text-muted-foreground">
                         Front: <span className="text-foreground font-mono">{cs.frontPrice.toFixed(2)}</span>
                       </span>
@@ -1221,7 +1221,7 @@ export default function CommoditySpreadsPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       {["Weather Event", "Affected Spread", "Direction", "Magnitude", "Season", "Mechanism"].map((h) => (
@@ -1281,7 +1281,7 @@ export default function CommoditySpreadsPage() {
                     { months: "Nov–Dec", event: "Pre-winter storage → Heating oil/gas premium", color: "text-sky-400" },
                   ].map((s) => (
                     <div key={s.months} className="flex items-center gap-3 bg-muted/40 rounded px-2.5 py-1.5">
-                      <span className={`text-xs font-mono font-medium w-16 shrink-0 ${s.color}`}>{s.months}</span>
+                      <span className={`text-xs text-muted-foreground font-mono font-medium w-16 shrink-0 ${s.color}`}>{s.months}</span>
                       <span className="text-xs text-muted-foreground">{s.event}</span>
                     </div>
                   ))}
@@ -1303,7 +1303,7 @@ export default function CommoditySpreadsPage() {
                     { months: "Dec", event: "USDA supply/demand estimates → Re-pricing spreads", color: "text-indigo-400" },
                   ].map((s) => (
                     <div key={s.months} className="flex items-center gap-3 bg-muted/40 rounded px-2.5 py-1.5">
-                      <span className={`text-xs font-mono font-medium w-16 shrink-0 ${s.color}`}>{s.months}</span>
+                      <span className={`text-xs text-muted-foreground font-mono font-medium w-16 shrink-0 ${s.color}`}>{s.months}</span>
                       <span className="text-xs text-muted-foreground">{s.event}</span>
                     </div>
                   ))}
@@ -1335,7 +1335,7 @@ export default function CommoditySpreadsPage() {
                       />
                       {strat.name}
                       <Badge
-                        className="text-xs"
+                        className="text-xs text-muted-foreground"
                         style={{
                           backgroundColor: `${strat.color}15`,
                           color: strat.color,
@@ -1398,7 +1398,7 @@ export default function CommoditySpreadsPage() {
                             >
                               <div className="flex items-center gap-1.5">
                                 {field.icon}
-                                <span className={`text-xs font-medium ${field.color}`}>{field.label}</span>
+                                <span className={`text-xs text-muted-foreground font-medium ${field.color}`}>{field.label}</span>
                               </div>
                               <p className="text-xs text-muted-foreground">{field.value}</p>
                             </div>
@@ -1410,7 +1410,7 @@ export default function CommoditySpreadsPage() {
                             <BarChart2 className="w-3.5 h-3.5 text-muted-foreground" />
                             <span className="text-xs text-muted-foreground">Risk/Reward</span>
                             <span
-                              className="text-xs font-medium"
+                              className="text-xs text-muted-foreground font-medium"
                               style={{ color: strat.color }}
                             >
                               {strat.rrRatio}

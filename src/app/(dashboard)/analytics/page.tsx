@@ -924,7 +924,7 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-4">
         <Tabs defaultValue="attribution">
           <TabsList className="bg-card border border-border mb-6 h-9 flex-wrap">
             <TabsTrigger value="attribution" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
@@ -1107,7 +1107,7 @@ export default function AnalyticsPage() {
                 <Card className="bg-card border-border p-4 h-full">
                   <h3 className="text-sm font-medium text-foreground mb-1">Portfolio Variance Decomposition</h3>
                   <p className="text-xs text-muted-foreground mb-4">Sources of total portfolio risk</p>
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-3">
                     <div className="w-[200px] shrink-0">
                       <DonutChart slices={donutSlices} />
                     </div>
@@ -1139,7 +1139,7 @@ export default function AnalyticsPage() {
                   <h3 className="text-sm font-medium text-foreground mb-1">Factor Beta Loadings</h3>
                   <p className="text-xs text-muted-foreground mb-3">t-stat &gt; 2.0 indicates statistical significance</p>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left py-2 text-muted-foreground font-medium">Factor</th>
@@ -1278,7 +1278,7 @@ export default function AnalyticsPage() {
                     return (
                       <div key={item.label} className={cn("rounded-md border p-3 text-center", bgColor)}>
                         <Icon className={cn("w-4 h-4 mx-auto mb-1.5", color)} />
-                        <div className={cn("text-2xl font-bold tabular-nums", color)}>{item.score}</div>
+                        <div className={cn("text-lg font-medium tabular-nums", color)}>{item.score}</div>
                         <div className="text-xs font-medium text-foreground mt-0.5">{item.label}</div>
                         <p className="text-xs text-muted-foreground mt-1 leading-tight">{item.description}</p>
                       </div>
@@ -1455,7 +1455,7 @@ export default function AnalyticsPage() {
                           <div className="flex items-center gap-2">
                             <span
                               className={cn(
-                                "text-xs font-medium w-5 h-5 rounded flex items-center justify-center",
+                                "text-xs text-muted-foreground font-medium w-5 h-5 rounded flex items-center justify-center",
                                 selectedDrawdown === i ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground"
                               )}
                             >
@@ -1601,7 +1601,7 @@ export default function AnalyticsPage() {
                           setScenarioVisible((prev) => ({ ...prev, [s.key]: !prev[s.key] }))
                         }
                         className={cn(
-                          "text-xs rounded-full px-2.5 py-0.5 border transition-all font-medium",
+                          "text-xs text-muted-foreground rounded-full px-2.5 py-0.5 border transition-all font-medium",
                           scenarioVisible[s.key]
                             ? "border-transparent text-foreground"
                             : "bg-background border-border text-muted-foreground"
@@ -1630,7 +1630,7 @@ export default function AnalyticsPage() {
               <Card className="bg-card border-border p-4">
                 <h3 className="text-sm font-medium text-foreground mb-3">Scenario Return Comparison</h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left py-2 text-muted-foreground font-medium">Scenario</th>

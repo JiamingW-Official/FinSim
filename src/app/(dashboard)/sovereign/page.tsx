@@ -464,7 +464,7 @@ function SWFOverviewTab() {
   const totalAUM = SWF_DATA.reduce((acc, d) => acc + d.aum, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard icon={DollarSign} label="Top-10 AUM" value="$8.0T" sub="USD trillions combined" color="bg-indigo-600" idx={0} />
@@ -545,7 +545,7 @@ function SWFOverviewTab() {
           <CardTitle className="text-sm font-semibold text-muted-foreground">Fund Details & Asset Allocation</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["#", "Fund", "AUM", "Founded", "Mandate", "Equities", "FI", "Real", "Alt", "Transparency"].map((h) => (
@@ -566,7 +566,7 @@ function SWFOverviewTab() {
                   <td className="py-2 px-2 text-foreground font-semibold">${fund.aum.toLocaleString()}B</td>
                   <td className="py-2 px-2 text-muted-foreground">{fund.founded}</td>
                   <td className="py-2 px-2">
-                    <span className={`px-1.5 py-0.5 rounded border text-xs ${mandateColor[fund.mandate]}`}>{fund.mandate}</span>
+                    <span className={`px-1.5 py-0.5 rounded border text-xs text-muted-foreground ${mandateColor[fund.mandate]}`}>{fund.mandate}</span>
                   </td>
                   <td className="py-2 px-2 text-indigo-300">{fund.allocation.equities}%</td>
                   <td className="py-2 px-2 text-muted-foreground">{fund.allocation.fixedIncome}%</td>
@@ -661,7 +661,7 @@ function AssetAllocationTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard icon={Layers} label="Avg. Equity Weight" value="48%" sub="Public + private" color="bg-indigo-600" idx={0} />
         <StatCard icon={Shield} label="Avg. Fixed Income" value="22%" sub="Gov't + credit" color="bg-cyan-600" idx={1} />
@@ -669,7 +669,7 @@ function AssetAllocationTab() {
         <StatCard icon={Target} label="Avg. Real Assets" value="12%" sub="Infra, RE, commodities" color="bg-emerald-600" idx={3} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Donut Chart */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
@@ -819,7 +819,7 @@ function NorwayModelTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard icon={DollarSign} label="GPFG AUM" value="$1.72T" sub="Largest single SWF" color="bg-indigo-600" idx={0} />
         <StatCard icon={TrendingUp} label="Since Inception" value="6.1% ann." sub="Net of mgmt. costs" color="bg-emerald-600" idx={1} />
@@ -899,7 +899,7 @@ function NorwayModelTab() {
       </Card>
 
       {/* Ethical Exclusions + Active Ownership */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
@@ -963,7 +963,7 @@ function NorwayModelTab() {
 
 function EndowmentModelTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard icon={BookOpen} label="Yale AUM" value="$41.4B" sub="FY2024" color="bg-indigo-600" idx={0} />
         <StatCard icon={TrendingUp} label="Yale 10Y Return" value="11.3%" sub="Annualized net" color="bg-emerald-600" idx={1} />
@@ -980,7 +980,7 @@ function EndowmentModelTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Institution", "AUM ($B)", "Equities", "Bonds", "Alts", "Real", "Illiquid", "Spending", "10Y Return"].map((h) => (
@@ -1071,7 +1071,7 @@ function EndowmentModelTab() {
       </Card>
 
       {/* Illiquidity Premium + Spending Rule explainer */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
@@ -1175,7 +1175,7 @@ function FactorInvestingTab() {
   const maxAdoption = Math.max(...FACTOR_DATA.map((f) => f.institutionAdoption));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard icon={BarChart3} label="Active Factors" value="7" sub="Academically validated" color="bg-indigo-600" idx={0} />
         <StatCard icon={DollarSign} label="Factor AUM" value="~$3.5T" sub="Smart beta + factor tilts" color="bg-emerald-600" idx={1} />
@@ -1183,7 +1183,7 @@ function FactorInvestingTab() {
         <StatCard icon={AlertCircle} label="Crowding Risk" value="Rising" sub="Momentum & Value most crowded" color="bg-amber-600" idx={3} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Factor Chart */}
         <div className="lg:col-span-2">
           <Card className="bg-card border-border">
@@ -1273,7 +1273,7 @@ function FactorInvestingTab() {
                   ))}
                   <div className="pt-1">
                     <p className="text-xs text-muted-foreground mb-1">Capacity</p>
-                    <Badge variant="outline" className={`text-xs ${capacityColor[selected.capacity]}`}>
+                    <Badge variant="outline" className={`text-xs text-muted-foreground ${capacityColor[selected.capacity]}`}>
                       {selected.capacity} Capacity
                     </Badge>
                   </div>
@@ -1291,7 +1291,7 @@ function FactorInvestingTab() {
               ) : (
                 <div className="flex flex-col items-center justify-center h-40 text-muted-foreground space-y-2">
                   <BarChart3 className="w-8 h-8" />
-                  <p className="text-xs text-center">Click a bar in the chart to explore factor details, capacity constraints, and implementation costs.</p>
+                  <p className="text-xs text-muted-foreground text-center">Click a bar in the chart to explore factor details, capacity constraints, and implementation costs.</p>
                 </div>
               )}
             </CardContent>
@@ -1305,7 +1305,7 @@ function FactorInvestingTab() {
           <CardTitle className="text-sm font-medium text-muted-foreground">Factor Summary — Institutional Implementation</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Factor", "Exp. Premium", "Sharpe", "Capacity", "Impl. Cost (bps)", "Net Premium", "Inst. Adoption", "Description"].map((h) => (
@@ -1324,7 +1324,7 @@ function FactorInvestingTab() {
                   <td className="py-2 px-2 text-emerald-300">{f.expectedPremium}%</td>
                   <td className="py-2 px-2 text-indigo-300">{f.sharpe.toFixed(2)}</td>
                   <td className="py-2 px-2">
-                    <Badge variant="outline" className={`text-xs ${capacityColor[f.capacity]}`}>{f.capacity}</Badge>
+                    <Badge variant="outline" className={`text-xs text-muted-foreground ${capacityColor[f.capacity]}`}>{f.capacity}</Badge>
                   </td>
                   <td className="py-2 px-2 text-red-300">{f.implementationCost}</td>
                   <td className="py-2 px-2 font-medium text-foreground">{(f.expectedPremium - f.implementationCost / 100).toFixed(2)}%</td>
@@ -1404,7 +1404,7 @@ function FactorInvestingTab() {
 export default function SovereignPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto p-6 space-y-6">
+      <div className="max-w-7xl mx-auto p-4 space-y-4">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex items-center gap-3 mb-1">

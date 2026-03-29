@@ -102,7 +102,7 @@ function InfoBox({
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -367,7 +367,7 @@ function Tab1CustodyArchitecture() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Industry Cold Storage %" value="80–95%" sub="Typical institutional target" highlight="pos" icon={<Lock size={13} />} />
@@ -434,7 +434,7 @@ function Tab1CustodyArchitecture() {
           <GitBranch size={14} /> MPC vs Multi-Sig Comparison
         </SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left text-muted-foreground font-medium py-2 pr-4 w-40">Feature</th>
@@ -617,7 +617,7 @@ function Tab2InstitutionalSolutions() {
   const [selectedCustodian, setSelectedCustodian] = useState<Custodian | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Custodians Globally" value="50+" sub="Licensed institutional custodians" highlight="neutral" icon={<Building2 size={13} />} />
@@ -632,7 +632,7 @@ function Tab2InstitutionalSolutions() {
           <Building2 size={14} /> Major Institutional Custodians
         </SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left text-muted-foreground font-medium py-2 pr-3">Custodian</th>
@@ -749,7 +749,7 @@ function Tab2InstitutionalSolutions() {
               { label: "Cosmos (ATOM)", value: "14–19%", note: "High inflation offset" },
               { label: "Slashing Insurance", value: "Available", note: "Unslashed, Nexus Mutual" },
             ].map((row, i) => (
-              <div key={i} className="flex items-center justify-between text-xs border-b border-border/50 pb-1.5">
+              <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border/50 pb-1.5">
                 <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
                   <span className="text-emerald-400 font-medium">{row.value}</span>
@@ -895,7 +895,7 @@ function Tab3RegulatoryFramework() {
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="OCC Charter (First)" value="2021" sub="Anchorage Digital federal bank" highlight="pos" icon={<Building2 size={13} />} />
@@ -926,7 +926,7 @@ function Tab3RegulatoryFramework() {
               <div className="flex items-center gap-3">
                 <Badge
                   className={cn(
-                    "text-xs shrink-0",
+                    "text-xs text-muted-foreground shrink-0",
                     evt.impact === "positive"
                       ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
                       : evt.impact === "negative"
@@ -976,7 +976,7 @@ function Tab3RegulatoryFramework() {
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-xs font-medium text-foreground">{reg.state}</span>
                     <Badge className={cn(
-                      "text-xs",
+                      "text-xs text-muted-foreground",
                       reg.status === "active" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
                         : reg.status === "pending" ? "bg-amber-500/20 text-amber-300 border-amber-500/30"
                         : "bg-rose-500/20 text-rose-300 border-rose-500/30"
@@ -1010,7 +1010,7 @@ function Tab3RegulatoryFramework() {
                 { label: "Insurance Required", value: "Professional indemnity insurance" },
                 { label: "Annual Report", value: "Audited financial statements required" },
               ].map((row, i) => (
-                <div key={i} className="flex justify-between text-xs border-b border-border/50 pb-1.5">
+                <div key={i} className="flex justify-between text-xs text-muted-foreground border-b border-border/50 pb-1.5">
                   <span className="text-muted-foreground">{row.label}</span>
                   <span className="text-foreground font-medium">{row.value}</span>
                 </div>
@@ -1183,7 +1183,7 @@ const SOC2_CONTROLS = [
 
 function Tab4SecurityInsurance() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Total Hack Losses" value="$3.8B+" sub="Tracked incidents 2014–2024" highlight="neg" icon={<ShieldAlert size={13} />} />
@@ -1256,7 +1256,7 @@ function Tab4SecurityInsurance() {
               { label: "Remediation SLA", value: "Critical: 24–72h", note: "High: 7 days; Medium: 30 days" },
               { label: "Reports", value: "Provided to auditors", note: "Required for SOC 2 + insurance" },
             ].map((row, i) => (
-              <div key={i} className="flex items-center justify-between text-xs border-b border-border/50 pb-1.5">
+              <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border/50 pb-1.5">
                 <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
                   <span className="text-foreground font-medium">{row.value}</span>
@@ -1279,7 +1279,7 @@ function Tab4SecurityInsurance() {
               { label: "Failover Testing", value: "Semi-annual", note: "Full DR drill required" },
               { label: "Runbook Documentation", value: "Required", note: "All recovery procedures documented" },
             ].map((row, i) => (
-              <div key={i} className="flex items-center justify-between text-xs border-b border-border/50 pb-1.5">
+              <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border/50 pb-1.5">
                 <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
                   <span className="text-foreground font-medium">{row.value}</span>
@@ -1303,7 +1303,7 @@ function Tab4SecurityInsurance() {
 
 export default function DigitalCustodyPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1328,7 +1328,7 @@ export default function DigitalCustodyPage() {
             { label: "Lloyd's Insurance", color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" },
             { label: "SOC 2 Type II", color: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30" },
           ].map((tag) => (
-            <Badge key={tag.label} className={cn("text-xs", tag.color)}>
+            <Badge key={tag.label} className={cn("text-xs text-muted-foreground", tag.color)}>
               {tag.label}
             </Badge>
           ))}

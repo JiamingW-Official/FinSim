@@ -574,7 +574,7 @@ function IndicatorCard({ ind }: { ind: IndicatorData }) {
             <span className="text-xs font-mono text-muted-foreground bg-muted/50 px-2 py-0.5 rounded">{ind.shortName}</span>
             <span
               className={cn(
-                "text-xs px-2 py-0.5 rounded border font-medium",
+                "text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium",
                 statusBg(ind.status)
               )}
             >
@@ -649,7 +649,7 @@ function FundingBadge({ rate }: { rate: number }) {
   const color = pct > 0.02 ? "text-emerald-400" : pct < -0.02 ? "text-red-400" : "text-muted-foreground";
   const bg = pct > 0.02 ? "bg-emerald-400/10 border-emerald-400/30" : pct < -0.02 ? "bg-red-400/10 border-red-400/30" : "bg-muted border-border";
   return (
-    <span className={cn("text-xs font-mono px-2 py-0.5 rounded border font-medium", color, bg)}>
+    <span className={cn("text-xs text-muted-foreground font-mono px-2 py-0.5 rounded border font-medium", color, bg)}>
       {pct >= 0 ? "+" : ""}{pct.toFixed(4)}%
     </span>
   );
@@ -685,7 +685,7 @@ export default function CryptoTradingPage() {
   // ── Tab 1: Crypto Technical Analysis ────────────────────────────────────────
 
   const renderTechAnalysis = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-amber-400/10">
           <Activity className="w-5 h-5 text-amber-400" />
@@ -735,7 +735,7 @@ export default function CryptoTradingPage() {
   // ── Tab 2: On-Chain Analytics ────────────────────────────────────────────────
 
   const renderOnChain = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
           <Globe className="w-5 h-5 text-primary" />
@@ -780,7 +780,7 @@ export default function CryptoTradingPage() {
           <div className="space-y-3">
             {onChain.hodlerData.map((h) => (
               <div key={h.period}>
-                <div className="flex justify-between text-xs mb-1">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
                   <span className="text-muted-foreground">Unmoved {h.period}</span>
                   <span className="text-indigo-400 font-medium">{h.pct.toFixed(1)}%</span>
                 </div>
@@ -850,7 +850,7 @@ export default function CryptoTradingPage() {
         <p className="text-xs text-muted-foreground mb-3">USDT + USDC market cap vs BTC market cap. Low SSR = lots of dry powder to buy BTC.</p>
         <div className="flex items-center gap-4">
           <div className="flex-1">
-            <div className="text-2xl font-bold text-green-400 font-mono">{onChain.stablecoinRatio.toFixed(3)}</div>
+            <div className="text-lg font-medium text-green-400 font-mono">{onChain.stablecoinRatio.toFixed(3)}</div>
             <p className="text-xs text-muted-foreground mt-1">
               {onChain.stablecoinRatio < 0.1
                 ? "Low SSR — stablecoins have high buying power relative to BTC. Bullish."
@@ -879,7 +879,7 @@ export default function CryptoTradingPage() {
   // ── Tab 3: Crypto Derivatives ────────────────────────────────────────────────
 
   const renderDerivatives = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
           <Layers className="w-5 h-5 text-primary" />
@@ -895,7 +895,7 @@ export default function CryptoTradingPage() {
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Perpetual Futures</h3>
         <p className="text-xs text-muted-foreground mb-3">Funding rate: positive = longs pay shorts (bullish sentiment), negative = shorts pay longs (bearish).</p>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50">
                 {["Pair", "Funding Rate", "Mark Price", "Spot Price", "Open Interest", "OI Chg 24h"].map((h) => (
@@ -958,7 +958,7 @@ export default function CryptoTradingPage() {
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-sm font-medium text-muted-foreground">Cash &amp; Carry (Basis Trade)</h3>
           <span className={cn(
-            "text-xs font-mono px-2 py-0.5 rounded border",
+            "text-xs text-muted-foreground font-mono px-2 py-0.5 rounded border",
             derivatives.basis > 0
               ? "bg-emerald-400/10 text-emerald-400 border-emerald-400/30"
               : "bg-red-400/10 text-red-400 border-red-400/30"
@@ -990,7 +990,7 @@ export default function CryptoTradingPage() {
   // ── Tab 4: Crypto Portfolio Strategies ────────────────────────────────────────
 
   const renderPortfolioStrategies = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-emerald-400/10">
           <PieChart className="w-5 h-5 text-emerald-400" />
@@ -1144,7 +1144,7 @@ export default function CryptoTradingPage() {
                 ["Volatility", col.volatility],
                 ["Max Drawdown", col.maxDD],
               ].map(([k, v]) => (
-                <div key={k} className="flex justify-between text-xs py-1 border-b border-border/20 last:border-0">
+                <div key={k} className="flex justify-between text-xs text-muted-foreground py-1 border-b border-border/20 last:border-0">
                   <span className="text-muted-foreground">{k}</span>
                   <span className="font-mono font-medium text-foreground">{v}</span>
                 </div>
@@ -1506,7 +1506,7 @@ function MarketSummaryStrip({ rng }: { rng: () => number }) {
                     : `$${price.toFixed(2)}`}
             </p>
             {isFG ? (
-              <p className={cn("text-xs font-medium", fgColor)}>{fgLabel}</p>
+              <p className={cn("text-xs text-muted-foreground font-medium", fgColor)}>{fgLabel}</p>
             ) : (
               <p className={cn("text-xs font-medium flex items-center gap-0.5", isPositive ? "text-emerald-400" : "text-red-400")}>
                 {isPositive ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}

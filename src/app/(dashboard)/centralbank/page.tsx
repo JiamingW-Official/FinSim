@@ -261,7 +261,7 @@ function StanceChip({ stance }: { stance: "hawkish" | "dovish" | "neutral" }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded px-1.5 py-0.5 text-xs font-semibold uppercase tracking-wide",
+        "inline-flex items-center rounded px-1.5 py-0.5 text-xs text-muted-foreground font-semibold uppercase tracking-wide",
         stance === "hawkish" && "bg-red-500/15 text-red-400",
         stance === "dovish" && "bg-emerald-500/15 text-emerald-400",
         stance === "neutral" && "bg-yellow-500/15 text-yellow-400",
@@ -412,7 +412,7 @@ function FedPolicyDashboard() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header stats */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
@@ -525,7 +525,7 @@ function FedPolicyDashboard() {
       <div className="rounded-lg border border-border/40 bg-card/60 p-4">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-medium">Fed Balance Sheet 2008–2024</h3>
-          <div className="flex items-center gap-3 text-xs">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-primary/70" />Treasuries</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-emerald-500/60" />MBS</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-amber-500/50" />Other</span>
@@ -635,12 +635,12 @@ function GlobalCentralBanks() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Cards */}
       <div>
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-medium">Central Bank Snapshot</h3>
-          <div className="flex items-center gap-1 rounded-md border border-border/40 p-0.5 text-xs">
+          <div className="flex items-center gap-1 rounded-md border border-border/40 p-0.5 text-xs text-muted-foreground">
             {(["rate", "realRate", "inflation"] as const).map((k) => (
               <button
                 key={k}
@@ -678,14 +678,14 @@ function GlobalCentralBanks() {
                   <StanceChip stance={bank.stance} />
                 </div>
                 <div className="mb-2 flex items-baseline gap-1">
-                  <span className="text-2xl font-bold tabular-nums">{bank.rate.toFixed(2)}</span>
+                  <span className="text-lg font-medium tabular-nums">{bank.rate.toFixed(2)}</span>
                   <span className="text-sm text-muted-foreground">%</span>
                 </div>
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <ChangeChip dir={bank.lastChange} bps={bank.lastChangeBps} />
                   <span className="text-muted-foreground/60">{bank.nextMeeting}</span>
                 </div>
-                <div className="mt-2 grid grid-cols-2 gap-1 rounded bg-muted/20 p-1.5 text-xs">
+                <div className="mt-2 grid grid-cols-2 gap-1 rounded bg-muted/20 p-1.5 text-xs text-muted-foreground">
                   <div>
                     <span className="text-muted-foreground/60">Inflation</span>
                     <p className="font-medium text-red-400">{bank.inflation}%</p>
@@ -707,14 +707,14 @@ function GlobalCentralBanks() {
       <div className="rounded-lg border border-border/40 bg-card/60 p-4">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-medium">Rate Decision Heatmap (Apr 25 – Mar 26)</h3>
-          <div className="flex items-center gap-3 text-xs">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-red-500/60" />Hike</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-emerald-500/60" />Cut</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-muted/40" />Hold</span>
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[520px] text-xs">
+          <table className="w-full min-w-[520px] text-xs text-muted-foreground">
             <thead>
               <tr>
                 <th className="w-12 pb-1 pr-2 text-left text-muted-foreground/60">Bank</th>
@@ -851,7 +851,7 @@ function YieldCurveAnalysis() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inversion alerts */}
       <div className="grid grid-cols-2 gap-3">
         {[
@@ -892,7 +892,7 @@ function YieldCurveAnalysis() {
       <div className="rounded-lg border border-border/40 bg-card/60 p-4">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-medium">US Treasury Yield Curve</h3>
-          <div className="flex items-center gap-3 text-xs">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 rounded bg-primary" />Current</span>
             <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 rounded bg-amber-400" />3M Ago</span>
             <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 rounded bg-muted-foreground/50" />1Y Ago</span>
@@ -987,7 +987,7 @@ function YieldCurveAnalysis() {
       <div className="rounded-lg border border-border/40 bg-card/60 p-4">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-medium">Fed Funds vs 10-Year Treasury (24 months)</h3>
-          <div className="flex items-center gap-3 text-xs">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 rounded bg-primary" />Fed Funds</span>
             <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 rounded bg-amber-400" />10Y Treasury</span>
           </div>
@@ -1073,7 +1073,7 @@ function PolicyTransmission() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="rounded-lg border border-border/40 bg-card/60 p-4">
         <h3 className="mb-1 text-sm font-medium">Monetary Policy Transmission Channels</h3>
         <p className="mb-4 text-[11px] text-muted-foreground">Click a channel to see details</p>
@@ -1091,7 +1091,7 @@ function PolicyTransmission() {
                 <span className="text-[11px] font-medium">{ch.name}</span>
                 <div className="flex items-center gap-3">
                   <span className="text-xs text-muted-foreground">Lag: {ch.lag}</span>
-                  <div className="flex items-center gap-1 text-xs">
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <span className="text-muted-foreground/60">Effect:</span>
                     <div className="h-1.5 w-16 rounded-full bg-muted/30">
                       <div
@@ -1230,7 +1230,7 @@ function ForwardGuidance() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Futures implied path */}
       <div className="rounded-lg border border-border/40 bg-card/60 p-4">
         <div className="mb-3 flex items-center justify-between">
@@ -1269,7 +1269,7 @@ function ForwardGuidance() {
         <h3 className="mb-3 text-sm font-medium">Rate Outcome Probabilities by Meeting</h3>
         <div className="space-y-2">
           {FED_FUTURES.map((d) => (
-            <div key={d.meeting} className="flex items-center gap-3 text-xs">
+            <div key={d.meeting} className="flex items-center gap-3 text-xs text-muted-foreground">
               <span className="w-16 shrink-0 text-muted-foreground">{d.meeting}</span>
               <div className="flex flex-1 gap-0.5 overflow-hidden rounded-sm">
                 <div
@@ -1294,7 +1294,7 @@ function ForwardGuidance() {
               <span className="w-16 shrink-0 text-right font-medium text-primary">{d.impliedRate.toFixed(3)}%</span>
             </div>
           ))}
-          <div className="flex items-center gap-4 pt-1 text-xs">
+          <div className="flex items-center gap-4 pt-1 text-xs text-muted-foreground">
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-emerald-500/50" />Cut</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-muted/40" />Hold</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded-sm bg-red-500/40" />Hike</span>
@@ -1311,7 +1311,7 @@ function ForwardGuidance() {
               <div className="mb-1.5 flex items-center justify-between">
                 <div className="flex items-center gap-1.5">
                   <span>{bank.flag}</span>
-                  <span className="text-xs font-medium">{bank.bank}</span>
+                  <span className="text-xs text-muted-foreground font-medium">{bank.bank}</span>
                 </div>
                 <StanceChip stance={bank.tone} />
               </div>
@@ -1395,7 +1395,7 @@ function CentralBankBalanceSheets() {
 
     return (
       <div>
-        <p className="mb-2 text-xs font-medium">{label}</p>
+        <p className="mb-2 text-xs text-muted-foreground font-medium">{label}</p>
         <div className="overflow-x-auto">
           <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="min-w-[320px]">
             {zeroLine && (
@@ -1421,7 +1421,7 @@ function CentralBankBalanceSheets() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* CB balance sheet % GDP */}
       <div className="rounded-lg border border-border/40 bg-card/60 p-4">
         <h3 className="mb-4 text-sm font-medium">Central Bank Balance Sheets (% of GDP)</h3>
@@ -1472,7 +1472,7 @@ function CentralBankBalanceSheets() {
           ].map((item) => (
             <div key={item.label} className="rounded-lg bg-muted/20 p-3">
               <div className={cn("mx-auto mb-2 h-1.5 w-12 rounded-full", item.color)} />
-              <p className="text-xs font-medium">{item.value}</p>
+              <p className="text-xs text-muted-foreground font-medium">{item.value}</p>
               <p className="text-muted-foreground/60">{item.label}</p>
               <p className="text-xs font-medium text-primary">{item.pct}</p>
             </div>
@@ -1540,7 +1540,7 @@ export default function CentralBankPage() {
               Fed policy · Global rates · Yield curves · Transmission mechanisms · Forward guidance
             </p>
           </div>
-          <div className="flex items-center gap-2 text-xs">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <span className="rounded-full bg-red-500/10 px-2 py-0.5 font-medium text-red-400">
               Fed Funds: 5.25–5.50%
             </span>

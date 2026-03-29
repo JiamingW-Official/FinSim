@@ -88,7 +88,7 @@ function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
   return (
     <span
       className={cn(
-        "inline-block rounded-full px-2 py-0.5 text-xs font-medium",
+        "inline-block rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium",
         cls[color] ?? cls.zinc
       )}
     >
@@ -335,7 +335,7 @@ function LPLedTab() {
               <div className="flex items-center gap-2 mb-2">
                 <span
                   className={cn(
-                    "w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center",
+                    "w-6 h-6 rounded-full text-xs text-muted-foreground font-bold flex items-center justify-center",
                     step.color === "blue"
                       ? "bg-primary text-foreground"
                       : step.color === "violet"
@@ -745,7 +745,7 @@ function GPLedTab() {
                       { k: "GP economics", v: "Fresh 20% carry on new vehicle" },
                       { k: "Example", v: "Vista Equity CV for single SaaS asset" },
                     ].map((r) => (
-                      <div key={r.k} className="flex justify-between text-xs">
+                      <div key={r.k} className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">{r.k}</span>
                         <span className="text-foreground">{r.v}</span>
                       </div>
@@ -781,7 +781,7 @@ function GPLedTab() {
                       { k: "Transaction time", v: "4–8 months" },
                       { k: "Example", v: "Advent International multi-company strip sale" },
                     ].map((r) => (
-                      <div key={r.k} className="flex justify-between text-xs">
+                      <div key={r.k} className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">{r.k}</span>
                         <span className="text-foreground">{r.v}</span>
                       </div>
@@ -1038,7 +1038,7 @@ function NAVFinancingTab() {
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Facility Structure vs Subscription Line" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left text-muted-foreground py-2 pr-4">Attribute</th>
@@ -1499,7 +1499,7 @@ function MarketDynamicsTab() {
       {/* Fund Construction */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Secondary Fund Portfolio Construction" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <p className="text-xs font-medium text-muted-foreground mb-3">Diversification Axes</p>
             <div className="space-y-2">
@@ -1643,7 +1643,7 @@ function MarketDynamicsTab() {
 
 export default function PESecondariesPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

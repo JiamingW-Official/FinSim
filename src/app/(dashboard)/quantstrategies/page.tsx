@@ -566,7 +566,7 @@ function ConfusionMatrix({ seed }: { seed: number }) {
           );
         })}
       </svg>
-      <div className="grid grid-cols-2 gap-2 w-full text-xs">
+      <div className="grid grid-cols-2 gap-2 w-full text-xs text-muted-foreground">
         {[
           { label: "Accuracy", val: accuracy.toFixed(1) + "%" },
           { label: "Precision", val: precision.toFixed(1) + "%" },
@@ -599,7 +599,7 @@ function MetricChip({ label, value, positive }: { label: string; value: string; 
 function SectionBadge({ children, color }: { children: React.ReactNode; color: string }) {
   return (
     <span
-      className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium"
+      className="inline-flex items-center px-2 py-0.5 rounded text-xs text-muted-foreground font-medium"
       style={{ background: color + "22", color }}
     >
       {children}
@@ -641,7 +641,7 @@ function FactorModelsTab() {
       </div>
 
       <Card className="bg-card border-border border-l-4 border-l-primary">
-        <CardHeader className="pb-2 p-6">
+        <CardHeader className="pb-2 p-4">
           <div className="flex items-center justify-between">
             <CardTitle className="text-lg text-foreground">{selected.name}</CardTitle>
             <SectionBadge color={selected.color}>R² = {(selected.rSquared * 100).toFixed(0)}%</SectionBadge>
@@ -675,7 +675,7 @@ function FactorModelsTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Model", "Factors", "Alpha", "Beta", "R²", "Sharpe"].map((h) => (
@@ -740,7 +740,7 @@ function MomentumTab() {
           <CardTitle className="text-sm text-foreground">Momentum Concepts</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
             {[
               {
                 title: "Cross-Sectional",
@@ -908,7 +908,7 @@ function MeanReversionTab() {
                     <span className="font-medium text-sm text-foreground">
                       {p.ticker1} / {p.ticker2}
                     </span>
-                    <div className="flex items-center gap-2 text-xs">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <span className="text-muted-foreground">corr:</span>
                       <span className="text-green-400">{p.correlation.toFixed(2)}</span>
                       <span className="text-muted-foreground">p:</span>
@@ -985,7 +985,7 @@ function StatArbTab() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                 <MetricChip label="Annual Return" value={`+${r.annualReturn.toFixed(1)}%`} positive={true} />
                 <MetricChip label="Sharpe" value={r.sharpe.toFixed(2)} positive={true} />
                 <MetricChip label="Max DD" value={`${r.maxDrawdown.toFixed(1)}%`} positive={false} />
@@ -1017,7 +1017,7 @@ function StatArbTab() {
           <CardTitle className="text-sm text-foreground">Market Neutrality & Risk Factors</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
             <div className="space-y-3">
               <div className="text-muted-foreground font-medium">Risk Controls</div>
               {[
@@ -1054,7 +1054,7 @@ function StatArbTab() {
                   { label: "Final selection", pct: 48 },
                 ].map((f) => (
                   <div key={f.label}>
-                    <div className="flex justify-between text-xs mb-0.5">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                       <span className="text-muted-foreground">{f.label}</span>
                       <span className="text-muted-foreground">{f.pct}%</span>
                     </div>
@@ -1098,7 +1098,7 @@ function MLSignalsTab() {
           <CardContent className="space-y-2">
             {ML_FEATURES.map((f) => (
               <div key={f.name} className="space-y-0.5">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <div className="flex items-center gap-1.5">
                     <span
                       className="inline-block w-1.5 h-1.5 rounded-full"
@@ -1128,7 +1128,7 @@ function MLSignalsTab() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border">
                     {["Feature", "IC", "ICIR", "Cat."].map((h) => (
@@ -1150,7 +1150,7 @@ function MLSignalsTab() {
                       </td>
                       <td className="py-1.5">
                         <span
-                          className="px-1.5 py-0.5 rounded text-xs"
+                          className="px-1.5 py-0.5 rounded text-xs text-muted-foreground"
                           style={{ background: categoryColors[f.category] + "22", color: categoryColors[f.category] }}
                         >
                           {f.category}
@@ -1226,7 +1226,7 @@ function MLSignalsTab() {
             {Object.entries(categoryColors).map(([cat, color]) => (
               <div
                 key={cat}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium"
                 style={{ background: color + "22", color }}
               >
                 <span className="w-2 h-2 rounded-full" style={{ background: color }} />
@@ -1255,7 +1255,7 @@ export default function QuantStrategiesPage() {
   rand(); // consume one to warm up
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-8">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1287,7 +1287,7 @@ export default function QuantStrategiesPage() {
           ].map((chip) => (
             <span
               key={chip.label}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs text-muted-foreground font-medium"
               style={{ background: chip.color + "22", color: chip.color }}
             >
               {chip.icon}

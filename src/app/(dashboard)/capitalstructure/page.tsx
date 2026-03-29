@@ -439,7 +439,7 @@ function MertonPanel() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {/* Asset Value */}
         <div className="space-y-2">
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Asset Value</span>
             <span className="text-foreground font-semibold">${assetValue}M</span>
           </div>
@@ -458,7 +458,7 @@ function MertonPanel() {
 
         {/* Debt Face */}
         <div className="space-y-2">
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Debt Face Value</span>
             <span className="text-foreground font-semibold">${debtFace}M</span>
           </div>
@@ -477,7 +477,7 @@ function MertonPanel() {
 
         {/* Asset Volatility */}
         <div className="space-y-2">
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Asset Volatility</span>
             <span className="text-foreground font-semibold">{assetVol}%</span>
           </div>
@@ -538,29 +538,29 @@ function MertonPanel() {
         {/* Key Metrics */}
         <div className="bg-muted/50 rounded-lg p-3 space-y-2">
           <p className="text-xs text-muted-foreground font-medium mb-2">Merton Outputs</p>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Distance-to-Default</span>
             <span className={`font-medium ${dtdColor}`}>{result.distanceToDefault.toFixed(2)}σ</span>
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Credit Spread</span>
             <span className="text-foreground font-medium">{result.spread.toFixed(0)} bps</span>
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">d₁</span>
             <span className="text-muted-foreground">{result.d1.toFixed(3)}</span>
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">d₂</span>
             <span className="text-muted-foreground">{result.d2.toFixed(3)}</span>
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Asset / Debt Ratio</span>
             <span className={assetValue >= debtFace ? "text-emerald-400 font-medium" : "text-red-400 font-medium"}>
               {(assetValue / debtFace).toFixed(2)}x
             </span>
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Default Signal</span>
             <span className={pdColor + " font-medium"}>
               {result.pd < 5 ? "Safe" : result.pd < 20 ? "Watch" : result.pd < 50 ? "At Risk" : "Distressed"}
@@ -702,30 +702,30 @@ function DistressedScreener() {
                     <span className="text-sm font-medium text-foreground">{co.name}</span>
                     <span className="text-xs text-muted-foreground ml-2 font-mono">{co.ticker}</span>
                   </div>
-                  <Badge className={`text-xs px-1.5 ${meta.color}`}>{meta.label}</Badge>
+                  <Badge className={`text-xs text-muted-foreground px-1.5 ${meta.color}`}>{meta.label}</Badge>
                 </div>
                 <ChevronRight
                   className={`w-4 h-4 text-muted-foreground transition-transform ${isSelected ? "rotate-90" : ""}`}
                 />
               </div>
               <div className="flex items-center gap-4 mt-2 flex-wrap">
-                <div className="text-xs">
+                <div className="text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Price </span>
                   <span className={`font-medium ${priceColor}`}>{co.price.toFixed(1)}¢</span>
                 </div>
-                <div className="text-xs">
+                <div className="text-xs text-muted-foreground">
                   <span className="text-muted-foreground">YTM </span>
                   <span className="text-red-400 font-medium">{co.ytm.toFixed(1)}%</span>
                 </div>
-                <div className="text-xs">
+                <div className="text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Duration </span>
                   <span className="text-muted-foreground">{co.duration.toFixed(1)}yr</span>
                 </div>
-                <div className="text-xs">
+                <div className="text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Lev </span>
                   <span className="text-muted-foreground">{co.leverage.toFixed(1)}x</span>
                 </div>
-                <div className="text-xs">
+                <div className="text-xs text-muted-foreground">
                   <span className="text-muted-foreground">EBITDA </span>
                   <span className="text-muted-foreground">${co.ebitda.toFixed(0)}M</span>
                 </div>
@@ -736,15 +736,15 @@ function DistressedScreener() {
               <div className="border-t border-border/40 px-3 py-2 space-y-2">
                 <p className="text-xs text-muted-foreground leading-relaxed">{co.situation}</p>
                 <div className="flex gap-2 flex-wrap">
-                  <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
+                  <div className="bg-muted/60 rounded p-2 text-xs text-muted-foreground flex-1 min-w-24">
                     <p className="text-muted-foreground mb-0.5">Implied Recovery</p>
                     <p className={`font-medium ${priceColor}`}>{co.price.toFixed(1)}¢ on $</p>
                   </div>
-                  <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
+                  <div className="bg-muted/60 rounded p-2 text-xs text-muted-foreground flex-1 min-w-24">
                     <p className="text-muted-foreground mb-0.5">Distress Ratio</p>
                     <p className="text-red-400 font-medium">{(co.ytm - 10).toFixed(0)} bps over HY</p>
                   </div>
-                  <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
+                  <div className="bg-muted/60 rounded p-2 text-xs text-muted-foreground flex-1 min-w-24">
                     <p className="text-muted-foreground mb-0.5">Coverage at EV</p>
                     <p className="text-muted-foreground font-medium">{((co.ebitda * 6) / (co.leverage * co.ebitda) * 100).toFixed(0)}%</p>
                   </div>
@@ -793,7 +793,7 @@ export default function CapitalStructurePage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="p-4 sm:p-6 space-y-5 max-w-5xl mx-auto"
+      className="p-4 sm:p-4 space-y-5 max-w-5xl mx-auto"
     >
       {/* HERO Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-md bg-card p-6">
@@ -839,7 +839,7 @@ export default function CapitalStructurePage() {
       {/* Fulcrum callout */}
       <div className="flex items-center gap-3 bg-muted/40 border border-border rounded-lg px-4 py-2.5">
         <AlertTriangle className="w-4 h-4 text-primary shrink-0" />
-        <div className="text-xs">
+        <div className="text-xs text-muted-foreground">
           <span className="text-muted-foreground">Fulcrum Security at EV ${ev}M: </span>
           <span className="text-primary font-medium">{fulcrumInfo}</span>
         </div>
@@ -895,16 +895,16 @@ export default function CapitalStructurePage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="bg-muted/60 border border-border/40 h-auto flex-wrap gap-1 p-1">
-          <TabsTrigger value="waterfall" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="waterfall" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Waterfall
           </TabsTrigger>
-          <TabsTrigger value="merton" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="merton" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Merton Model
           </TabsTrigger>
-          <TabsTrigger value="covenants" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="covenants" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Covenants
           </TabsTrigger>
-          <TabsTrigger value="screener" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="screener" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Distressed Screener
           </TabsTrigger>
         </TabsList>
@@ -923,7 +923,7 @@ export default function CapitalStructurePage() {
 
               {/* Tranche table */}
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border/50">
                       <th className="text-left py-1.5 text-muted-foreground font-medium">Tranche</th>

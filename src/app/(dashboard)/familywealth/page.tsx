@@ -317,7 +317,7 @@ function WealthTransferTab() {
   const [expandedStrategy, setExpandedStrategy] = useState<string | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Annual Gift Exclusion" value="$18,000" color="green" />
         <StatChip label="Lifetime Exemption" value="$13.61M" color="blue" />
@@ -357,7 +357,7 @@ function WealthTransferTab() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-sm text-foreground">{strat.name}</span>
-                      <Badge variant="outline" className="text-xs px-1.5 py-0">
+                      <Badge variant="outline" className="text-xs text-muted-foreground px-1.5 py-0">
                         {strat.full}
                       </Badge>
                     </div>
@@ -492,7 +492,7 @@ function FamilyGovernanceTab() {
   const [openComponent, setOpenComponent] = useState<string | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Wealth Retention (Gen 3)" value="~10%" color="red" />
         <StatChip label="Families with Written IPS" value="28%" color="amber" />
@@ -582,7 +582,7 @@ function FamilyGovernanceTab() {
                 <td className="py-3 px-4 font-medium text-foreground">{r.role}</td>
                 <td className="py-3 px-4 text-muted-foreground">{r.responsibility}</td>
                 <td className="py-3 px-4">
-                  <Badge variant="outline" className="text-xs">{r.term}</Badge>
+                  <Badge variant="outline" className="text-xs text-muted-foreground">{r.term}</Badge>
                 </td>
               </tr>
             ))}
@@ -717,7 +717,7 @@ const EDUCATION_VEHICLES = [
 
 function EducationFundingTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="4-Yr Public Cost (2024)" value="$108K" color="blue" />
         <StatChip label="4-Yr Private Cost (2024)" value="$240K" color="purple" />
@@ -743,7 +743,7 @@ function EducationFundingTab() {
               <Badge
                 variant="outline"
                 className={cn(
-                  "text-xs shrink-0",
+                  "text-xs text-muted-foreground shrink-0",
                   v.color === "green" && "border-green-500/30 text-green-400",
                   v.color === "blue" && "border-border text-primary",
                   v.color === "purple" && "border-border text-primary",
@@ -753,7 +753,7 @@ function EducationFundingTab() {
                 {v.color === "green" ? "Recommended" : v.color === "blue" ? "Tax-Efficient" : v.color === "amber" ? "Caution" : "Specialized"}
               </Badge>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
               <div>
                 <span className="text-muted-foreground block">Max Contribution</span>
                 <span className="text-foreground font-medium">{v.contribution}</span>
@@ -865,7 +865,7 @@ function PhilanthropyTab() {
   const [expandedVehicle, setExpandedVehicle] = useState<string | null>("Donor-Advised Fund (DAF)");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="US Charitable Giving (2023)" value="$557B" color="green" />
         <StatChip label="Avg DAF Payout Rate" value="~22%/yr" color="blue" />
@@ -1052,7 +1052,7 @@ function BusinessRealEstateTab() {
   const [openPhase, setOpenPhase] = useState<string | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Family Businesses (US)" value="19M+" color="blue" />
         <StatChip label="Survive to Gen 3" value="12%" color="red" />
@@ -1068,7 +1068,7 @@ function BusinessRealEstateTab() {
       {/* Entity diagram */}
       <div className="rounded-lg border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-4">Recommended Family Enterprise Structure</div>
-        <div className="flex flex-col items-center gap-2 text-xs">
+        <div className="flex flex-col items-center gap-2 text-xs text-muted-foreground">
           <div className="flex gap-3">
             <div className="rounded-md border border-border bg-primary/10 text-primary px-4 py-2 text-center font-medium">
               Family Trust / Estate Plan
@@ -1222,7 +1222,7 @@ export default function FamilyWealthPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
         {/* Header */}
         <div className="flex items-start justify-between">
           <div>
@@ -1260,25 +1260,25 @@ export default function FamilyWealthPage() {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="transfer" className="space-y-6">
+        <Tabs defaultValue="transfer" className="space-y-4">
           <TabsList className="grid grid-cols-5 h-auto gap-1 bg-muted/40 p-1">
-            <TabsTrigger value="transfer" className="text-xs py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
+            <TabsTrigger value="transfer" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
               <Gift className="w-3.5 h-3.5" />
               <span>Wealth Transfer</span>
             </TabsTrigger>
-            <TabsTrigger value="governance" className="text-xs py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
+            <TabsTrigger value="governance" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
               <Users className="w-3.5 h-3.5" />
               <span>Governance</span>
             </TabsTrigger>
-            <TabsTrigger value="education" className="text-xs py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
+            <TabsTrigger value="education" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
               <GraduationCap className="w-3.5 h-3.5" />
               <span>Education</span>
             </TabsTrigger>
-            <TabsTrigger value="philanthropy" className="text-xs py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
+            <TabsTrigger value="philanthropy" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
               <Heart className="w-3.5 h-3.5" />
               <span>Philanthropy</span>
             </TabsTrigger>
-            <TabsTrigger value="business" className="text-xs py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
+            <TabsTrigger value="business" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
               <Building2 className="w-3.5 h-3.5" />
               <span>Business & RE</span>
             </TabsTrigger>

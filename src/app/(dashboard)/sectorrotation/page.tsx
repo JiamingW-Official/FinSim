@@ -364,7 +364,7 @@ const TACTICAL_ALLOCATION: Record<CyclePhase, Record<string, number>> = {
 function SignalBadge({ signal }: { signal: SignalLevel }) {
   return (
     <span className={cn(
-      "inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium",
+      "inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs text-muted-foreground font-medium",
       signal === "bullish" && "bg-green-500/20 text-green-400",
       signal === "neutral" && "bg-yellow-500/20 text-yellow-400",
       signal === "bearish" && "bg-red-500/20 text-red-400",
@@ -414,7 +414,7 @@ function BusinessCycleClock() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
@@ -429,7 +429,7 @@ function BusinessCycleClock() {
         </Badge>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* SVG Clock */}
         <Card className="bg-card border-border/50">
           <CardContent className="pt-4 flex items-center justify-center">
@@ -651,7 +651,7 @@ function SectorPerformance() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-indigo-500/10">
           <BarChart3 className="w-5 h-5 text-indigo-400" />
@@ -744,7 +744,7 @@ function SectorPerformance() {
       </Card>
 
       {/* Legend */}
-      <div className="flex items-center gap-6 px-1">
+      <div className="flex items-center gap-3 px-1">
         <span className="text-xs text-muted-foreground">Return Legend:</span>
         {[
           { label: "> +10%", bg: "#166534", text: "#86efac" },
@@ -769,7 +769,7 @@ function SectorPerformance() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border/50">
                   <th className="px-4 py-2 text-left text-muted-foreground font-medium">Sector</th>
@@ -815,7 +815,7 @@ function RotationSignals() {
   const overallSignal: SignalLevel = bearCount >= 3 ? "bearish" : bullCount >= 3 ? "bullish" : "neutral";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-yellow-500/10">
           <Activity className="w-5 h-5 text-yellow-400" />
@@ -933,7 +933,7 @@ function RotationSignals() {
                 color === "red" && "border-red-500/30 bg-red-500/5",
               )}>
                 <p className={cn(
-                  "text-xs font-medium mb-2",
+                  "text-xs text-muted-foreground font-medium mb-2",
                   color === "green" && "text-green-400",
                   color === "yellow" && "text-yellow-400",
                   color === "red" && "text-red-400",
@@ -989,7 +989,7 @@ function FactorRotation() {
   const zeroY = valToY(0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
           <Layers className="w-5 h-5 text-primary" />
@@ -1171,7 +1171,7 @@ function ETFImplementation() {
   const sortedSectors = [...SECTORS].sort((a, b) => (alloc[b.etf] ?? 0) - (alloc[a.etf] ?? 0));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-green-500/10">
           <DollarSign className="w-5 h-5 text-green-400" />
@@ -1190,7 +1190,7 @@ function ETFImplementation() {
             key={ph}
             onClick={() => setSelectedPhase(ph)}
             className={cn(
-              "px-3 py-1 rounded text-xs font-medium border transition-all",
+              "px-3 py-1 rounded text-xs text-muted-foreground font-medium border transition-all",
               selectedPhase === ph
                 ? "text-foreground"
                 : "border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground bg-transparent",
@@ -1267,7 +1267,7 @@ function ETFImplementation() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border/50 bg-muted/50">
                   <th className="px-4 py-2 text-left text-muted-foreground font-medium">ETF</th>
@@ -1321,7 +1321,7 @@ function ETFImplementation() {
                           {sec.bestPhases.map((ph) => (
                             <span
                               key={ph}
-                              className="px-1.5 py-0.5 rounded text-xs"
+                              className="px-1.5 py-0.5 rounded text-xs text-muted-foreground"
                               style={{
                                 backgroundColor: `${phaseColors[ph]}20`,
                                 color: phaseColors[ph],
@@ -1413,7 +1413,7 @@ function ETFImplementation() {
 
 export default function SectorRotationPage() {
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-4 p-4">
       {/* Page header */}
       <div className="flex items-start justify-between gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div>
@@ -1457,19 +1457,19 @@ export default function SectorRotationPage() {
       {/* Main tabs */}
       <Tabs defaultValue="clock" className="mt-8 space-y-4">
         <TabsList className="bg-muted border border-border/50 h-auto flex-wrap">
-          <TabsTrigger value="clock" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="clock" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             Business Cycle Clock
           </TabsTrigger>
-          <TabsTrigger value="performance" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="performance" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             Sector Performance
           </TabsTrigger>
-          <TabsTrigger value="signals" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="signals" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             Rotation Signals
           </TabsTrigger>
-          <TabsTrigger value="factors" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="factors" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             Factor Rotation
           </TabsTrigger>
-          <TabsTrigger value="etf" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="etf" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             ETF Implementation
           </TabsTrigger>
         </TabsList>

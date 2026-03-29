@@ -442,10 +442,10 @@ function PitchStructureTab() {
     st === "complete" ? "Complete" : st === "in-progress" ? "In Progress" : "Pending";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Deal header card */}
       <Card className="bg-card border-border border-l-4 border-l-primary">
-        <CardContent className="p-6">
+        <CardContent className="p-4">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
@@ -501,7 +501,7 @@ function PitchStructureTab() {
                 {section.title}
               </p>
               <div className="mt-2">
-                <Badge className={`text-xs px-1.5 py-0 border ${statusColor(section.status)}`}>
+                <Badge className={`text-xs text-muted-foreground px-1.5 py-0 border ${statusColor(section.status)}`}>
                   {statusLabel(section.status)}
                 </Badge>
               </div>
@@ -526,7 +526,7 @@ function PitchStructureTab() {
               </CardTitle>
               <div className="flex items-center gap-3">
                 <span className="text-xs text-muted-foreground">Advisor: {active.owner}</span>
-                <Badge className={`text-xs border ${statusColor(active.status)}`}>
+                <Badge className={`text-xs text-muted-foreground border ${statusColor(active.status)}`}>
                   {statusLabel(active.status)}
                 </Badge>
               </div>
@@ -593,7 +593,7 @@ function PitchStructureTab() {
               <div key={step.phase} className="flex items-center flex-shrink-0">
                 <div className="text-center">
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs text-muted-foreground font-bold border ${
                       step.done
                         ? "bg-primary border-primary text-foreground"
                         : "bg-muted border-border text-muted-foreground"
@@ -622,7 +622,7 @@ function ValuationSummaryTab() {
   const [selectedMethod, setSelectedMethod] = useState<number>(0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Football field chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
@@ -725,7 +725,7 @@ function ValuationSummaryTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr>
                   <th className="text-muted-foreground font-medium text-left p-2">WACC \ TGR</th>
@@ -834,7 +834,7 @@ function ComparableCompaniesTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {stats.map((st) => (
@@ -871,7 +871,7 @@ function ComparableCompaniesTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left p-2 text-muted-foreground font-medium">Company</th>
@@ -1001,7 +1001,7 @@ function MAndAAccretionTab() {
     val >= 0 ? "text-emerald-400" : "text-red-400";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Controls */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -1094,7 +1094,7 @@ function MAndAAccretionTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left p-2 text-muted-foreground">Category</th>
@@ -1119,7 +1119,7 @@ function MAndAAccretionTab() {
                       <td className="p-2 text-muted-foreground">{syn.category}</td>
                       <td className="p-2 text-center">
                         <Badge
-                          className={`text-xs ${
+                          className={`text-xs text-muted-foreground ${
                             syn.type === "Revenue"
                               ? "bg-primary/20 text-primary border-border"
                               : "bg-primary/20 text-primary border-border"
@@ -1133,7 +1133,7 @@ function MAndAAccretionTab() {
                       <td className="p-2 text-right font-mono text-muted-foreground">${syn.year3}M</td>
                       <td className="p-2 text-right font-mono text-emerald-400 font-medium">${syn.fullyLoaded}M</td>
                       <td className="p-2 text-center">
-                        <Badge className={`text-xs border ${confColor}`}>{syn.confidence}</Badge>
+                        <Badge className={`text-xs text-muted-foreground border ${confColor}`}>{syn.confidence}</Badge>
                       </td>
                     </tr>
                   );
@@ -1168,7 +1168,7 @@ function MAndAAccretionTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left p-2 text-muted-foreground">Metric</th>
@@ -1258,7 +1258,7 @@ function FinancingStructureTab() {
   ].join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Leverage slider */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
@@ -1313,7 +1313,7 @@ function FinancingStructureTab() {
             <CardTitle className="text-sm text-muted-foreground">Sources &amp; Uses ($M)</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
               {/* Pie */}
               <svg width={140} height={140} viewBox={`0 0 ${pieCenter * 2} ${pieCenter * 2}`}>
                 <path d={debtPath} fill="#8b5cf6" opacity={0.8} />
@@ -1345,11 +1345,11 @@ function FinancingStructureTab() {
                   <p className="text-sm font-medium text-primary pl-5">${equity.toLocaleString()}M</p>
                 </div>
                 <div className="pt-2 border-t border-border">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Total Transaction</span>
                     <span className="font-medium text-foreground">$8,200M</span>
                   </div>
-                  <div className="flex justify-between text-xs mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span className="text-muted-foreground">Fees &amp; Expenses</span>
                     <span className="font-medium text-muted-foreground">$185M</span>
                   </div>
@@ -1372,12 +1372,12 @@ function FinancingStructureTab() {
             ].map((agency) => (
               <div key={agency.agency} className="flex items-center gap-3 p-2 rounded-lg bg-muted">
                 <div className={`w-10 h-10 rounded-lg border ${ratingInfo.bg} flex items-center justify-center`}>
-                  <span className={`text-xs font-medium ${ratingInfo.color}`}>{agency.rating}</span>
+                  <span className={`text-xs text-muted-foreground font-medium ${ratingInfo.color}`}>{agency.rating}</span>
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-medium text-foreground">{agency.agency}</span>
-                    <Badge className={`text-xs ${
+                    <Badge className={`text-xs text-muted-foreground ${
                       agency.outlook === "Stable"
                         ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
                         : "bg-amber-500/20 text-amber-300 border-amber-500/30"
@@ -1411,7 +1411,7 @@ function FinancingStructureTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left p-2 text-muted-foreground">Instrument</th>
@@ -1511,7 +1511,7 @@ function FinancingStructureTab() {
 
 export default function PitchbookPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1584,19 +1584,19 @@ export default function PitchbookPage() {
       >
         <Tabs defaultValue="pitch" className="space-y-4">
           <TabsList className="bg-card border border-border p-1 flex flex-wrap gap-1 h-auto">
-            <TabsTrigger value="pitch" className="data-[state=active]:bg-muted text-xs gap-1.5">
+            <TabsTrigger value="pitch" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
               <FileText className="w-3.5 h-3.5" /> Pitch Structure
             </TabsTrigger>
-            <TabsTrigger value="valuation" className="data-[state=active]:bg-muted text-xs gap-1.5">
+            <TabsTrigger value="valuation" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
               <BarChart3 className="w-3.5 h-3.5" /> Valuation Summary
             </TabsTrigger>
-            <TabsTrigger value="comps" className="data-[state=active]:bg-muted text-xs gap-1.5">
+            <TabsTrigger value="comps" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
               <Building2 className="w-3.5 h-3.5" /> Comparable Companies
             </TabsTrigger>
-            <TabsTrigger value="mna" className="data-[state=active]:bg-muted text-xs gap-1.5">
+            <TabsTrigger value="mna" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
               <TrendingUp className="w-3.5 h-3.5" /> M&amp;A Accretion/Dilution
             </TabsTrigger>
-            <TabsTrigger value="financing" className="data-[state=active]:bg-muted text-xs gap-1.5">
+            <TabsTrigger value="financing" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
               <Layers className="w-3.5 h-3.5" /> Financing Structure
             </TabsTrigger>
           </TabsList>

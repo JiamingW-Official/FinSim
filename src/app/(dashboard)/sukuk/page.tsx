@@ -690,7 +690,7 @@ function ShariahTab() {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-lg font-semibold text-foreground mb-1">The Five Core Prohibitions</h2>
         <p className="text-sm text-muted-foreground">Islamic finance is built around avoiding specific categories of harm. These prohibitions shape every sukuk structure.</p>
@@ -816,7 +816,7 @@ function StructuresTab() {
   const structure = SUKUK_STRUCTURES.find((s) => s.id === selected)!;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-lg font-medium text-foreground mb-1">Sukuk Structure Types</h2>
         <p className="text-sm text-muted-foreground">Different underlying contracts produce different sukuk structures. Each has distinct Shariah requirements, risk profiles, and market uses.</p>
@@ -829,7 +829,7 @@ function StructuresTab() {
             key={s.id}
             onClick={() => setSelected(s.id)}
             className={cn(
-              "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
+              "px-3 py-1.5 rounded-full text-xs text-muted-foreground font-medium border transition-all",
               selected === s.id
                 ? "text-foreground border-transparent"
                 : "bg-muted text-muted-foreground border-border hover:border-muted-foreground"
@@ -918,7 +918,7 @@ function StructuresTab() {
               { feat: "Yield", sov: "Reference benchmark", corp: "Spread over sovereign" },
               { feat: "Liquidity", sov: "Higher — benchmark issues", corp: "Lower — buy-and-hold" },
             ].map((row) => (
-              <div key={row.feat} className="grid grid-cols-3 gap-2 text-xs border-b border-border/40 pb-2 last:border-0">
+              <div key={row.feat} className="grid grid-cols-3 gap-2 text-xs text-muted-foreground border-b border-border/40 pb-2 last:border-0">
                 <span className="text-muted-foreground font-medium">{row.feat}</span>
                 <span className="text-primary">{row.sov}</span>
                 <span className="text-primary">{row.corp}</span>
@@ -935,7 +935,7 @@ function StructuresTab() {
 
 function MarketTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-lg font-medium text-foreground mb-1">Global Sukuk Market Overview</h2>
         <p className="text-sm text-muted-foreground">The global sukuk market has grown from ~$116B in 2015 to ~$816B outstanding in 2024, driven by GCC sovereign issuance and Southeast Asian corporate demand.</p>
@@ -1072,7 +1072,7 @@ function MarketTab() {
 
 function ComparisonTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <h2 className="text-lg font-medium text-foreground mb-1">Sukuk vs. Conventional Bonds</h2>
         <p className="text-sm text-muted-foreground">While sukuk and bonds may appear similar as fixed-income instruments, fundamental differences in structure, ownership, and return mechanics distinguish them.</p>
@@ -1080,7 +1080,7 @@ function ComparisonTab() {
 
       {/* Comparison table */}
       <div className="rounded-md border border-border overflow-hidden">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="bg-muted text-muted-foreground text-xs uppercase tracking-wide">
               <th className="text-left px-4 py-3 w-1/3">Feature</th>
@@ -1214,7 +1214,7 @@ export default function SukukPage() {
               { label: "$816B Market", color: "bg-muted/60 text-primary border-border" },
               { label: "AAOIFI Regulated", color: "bg-amber-900/40 text-amber-300 border-amber-700/40" },
             ].map((tag) => (
-              <span key={tag.label} className={cn("text-xs px-2.5 py-1 rounded-full border", tag.color)}>
+              <span key={tag.label} className={cn("text-xs text-muted-foreground px-2.5 py-1 rounded-full border", tag.color)}>
                 {tag.label}
               </span>
             ))}
@@ -1224,22 +1224,22 @@ export default function SukukPage() {
         {/* Tabs */}
         <Tabs defaultValue="shariah" className="mt-8">
           <TabsList className="grid grid-cols-4 w-full bg-muted/60 mb-6">
-            <TabsTrigger value="shariah" className="text-xs flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
+            <TabsTrigger value="shariah" className="text-xs text-muted-foreground flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
               <ShieldCheck className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Shariah Principles</span>
               <span className="sm:hidden">Shariah</span>
             </TabsTrigger>
-            <TabsTrigger value="structures" className="text-xs flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
+            <TabsTrigger value="structures" className="text-xs text-muted-foreground flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
               <Building2 className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Sukuk Structures</span>
               <span className="sm:hidden">Structures</span>
             </TabsTrigger>
-            <TabsTrigger value="market" className="text-xs flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
+            <TabsTrigger value="market" className="text-xs text-muted-foreground flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
               <Globe className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Market Overview</span>
               <span className="sm:hidden">Market</span>
             </TabsTrigger>
-            <TabsTrigger value="comparison" className="text-xs flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
+            <TabsTrigger value="comparison" className="text-xs text-muted-foreground flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
               <ArrowRightLeft className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">vs Conventional</span>
               <span className="sm:hidden">vs Bonds</span>

@@ -581,7 +581,7 @@ function EventImpactTab() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* stats bar */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
@@ -612,7 +612,7 @@ function EventImpactTab() {
           </CardHeader>
           <CardContent className="p-0">
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border text-muted-foreground">
                     <th className="text-left px-4 py-2 font-medium">Event</th>
@@ -671,7 +671,7 @@ function EventImpactTab() {
                   <CardTitle className="text-sm font-semibold text-foreground">{selectedEvent.name}</CardTitle>
                   <div className="text-xs text-muted-foreground">{selectedEvent.date}</div>
                 </CardHeader>
-                <CardContent className="space-y-4 text-xs">
+                <CardContent className="space-y-4 text-xs text-muted-foreground">
                   {/* SVG bar chart for returns */}
                   <div>
                     <div className="text-muted-foreground mb-2 font-medium">S&P 500 Return</div>
@@ -752,7 +752,7 @@ function SanctionsTradeTab() {
             key={s}
             onClick={() => setActiveSection(s)}
             className={cn(
-              "px-3 py-1.5 rounded text-xs font-medium transition-colors",
+              "px-3 py-1.5 rounded text-xs text-muted-foreground font-medium transition-colors",
               activeSection === s
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:bg-muted"
@@ -826,7 +826,7 @@ function SanctionsTradeTab() {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Russia: Key Metrics Before/After SWIFT Exclusion</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left px-4 py-2">Metric</th>
@@ -865,7 +865,7 @@ function SanctionsTradeTab() {
                 </CardHeader>
                 <CardContent>
                   <SvgDeDollarization />
-                  <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
+                  <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
                     {[
                       { label: "USD decline since 2000", value: "−14.2 ppts", color: "text-red-400" },
                       { label: "CNY share gain", value: "+3.2 ppts", color: "text-amber-400" },
@@ -893,7 +893,7 @@ function SanctionsTradeTab() {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Currency Weaponization — Escalation Ladder</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2 text-xs">
+                  <div className="space-y-2 text-xs text-muted-foreground">
                     {[
                       { level: 1, label: "Tariffs & Trade Restrictions", desc: "Import duties, quotas, anti-dumping measures", color: "#f59e0b" },
                       { level: 2, label: "Currency Manipulation Designation", desc: "Treasury labels; triggers IMF review, investment restrictions", color: "#f97316" },
@@ -930,7 +930,7 @@ function SanctionsTradeTab() {
                     {DECOUPLING_EVENTS.map((evt, i) => (
                       <div key={i} className="flex gap-4 relative">
                         <div
-                          className="w-16 text-xs font-medium flex-shrink-0 pt-0.5"
+                          className="w-16 text-xs text-muted-foreground font-medium flex-shrink-0 pt-0.5"
                           style={{ color: evt.impact === "high" ? "#ef4444" : evt.impact === "medium" ? "#f59e0b" : "#22c55e" }}
                         >
                           {evt.year}
@@ -968,7 +968,7 @@ function SanctionsTradeTab() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
                     {[
                       {
                         region: "Americas (Nearshoring)",
@@ -1043,7 +1043,7 @@ function RiskPremiumTab() {
         </CardHeader>
         <CardContent>
           <SvgGPRChart quarters={GPR.quarters} values={GPR.values} />
-          <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
+          <div className="mt-3 grid grid-cols-3 gap-3 text-xs text-muted-foreground">
             {[
               { label: "Current GPR (est.)", value: `${GPR.values[GPR.values.length - 1]}`, color: "text-orange-400" },
               { label: "Avg GPR (2015–2024)", value: "124", color: "text-muted-foreground" },
@@ -1091,7 +1091,7 @@ function RiskPremiumTab() {
           <CardContent className="space-y-3">
             {SAFE_HAVENS.map(sh => (
               <div key={sh.ticker} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <div>
                     <span className="font-medium text-foreground">{sh.asset}</span>
                     <span className="text-muted-foreground/70 ml-1.5">{sh.ticker}</span>
@@ -1116,7 +1116,7 @@ function RiskPremiumTab() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left px-4 py-2 font-medium">Scenario</th>
@@ -1132,7 +1132,7 @@ function RiskPremiumTab() {
                     {[row.energy, row.defense, row.tech, row.food, row.finance, row.travel].map((v, i) => (
                       <td key={i} className="px-3 py-2">
                         <div className="flex justify-center">
-                          <div className="px-2 py-0.5 rounded text-center font-mono text-xs min-w-[40px]"
+                          <div className="px-2 py-0.5 rounded text-center font-mono text-xs text-muted-foreground min-w-[40px]"
                             style={{ color: impactColor(v), background: impactBg(v) }}>
                             {v >= 0 ? `+${v}σ` : `${v}σ`}
                           </div>
@@ -1157,7 +1157,7 @@ function RiskPremiumTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
             {[
               {
                 asset: "Equities",
@@ -1226,7 +1226,7 @@ function PortfolioPositioningTab() {
             key={sc.id}
             onClick={() => setSelectedScenario(sc)}
             className={cn(
-              "rounded p-3 text-left text-xs transition-all border",
+              "rounded p-3 text-left text-xs text-muted-foreground transition-all border",
               selectedScenario.id === sc.id
                 ? "bg-red-900/30 border-red-700"
                 : "bg-card border-border hover:border-border"
@@ -1257,7 +1257,7 @@ function PortfolioPositioningTab() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mb-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-muted-foreground mb-4">
                 {[
                   { label: "S&P 500 Max Drawdown", value: `${selectedScenario.spDraw}%`, color: "text-red-400" },
                   { label: "Duration Estimate", value: `${selectedScenario.duration}M`, color: "text-amber-400" },
@@ -1307,7 +1307,7 @@ function PortfolioPositioningTab() {
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left px-4 py-2 font-medium">Strategy</th>
@@ -1357,7 +1357,7 @@ function PortfolioPositioningTab() {
               Geopolitical Diversification Metrics
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             {[
               { label: "Country Concentration Risk (HHI)", value: 0.42, threshold: 0.35, good: false, desc: "High if >0.35 — overexposed to single country" },
               { label: "Geopolitical Beta", value: 0.78, threshold: 0.60, good: false, desc: "Portfolio sensitivity to GPR index movements" },
@@ -1394,7 +1394,7 @@ function PortfolioPositioningTab() {
               Multinational Revenue Exposure Analysis
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-xs">
+          <CardContent className="space-y-2 text-xs text-muted-foreground">
             {[
               { ticker: "AAPL", name: "Apple", china: 19, russia: 0, em: 28, tariffRisk: "High" },
               { ticker: "NVDA", name: "Nvidia", china: 17, russia: 0, em: 32, tariffRisk: "High" },
@@ -1435,7 +1435,7 @@ function PortfolioPositioningTab() {
 
       {/* Political risk insurance note */}
       <Card className="bg-card border-amber-900/30">
-        <CardContent className="p-4 flex items-start gap-3 text-xs">
+        <CardContent className="p-4 flex items-start gap-3 text-xs text-muted-foreground">
           <Info className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <div className="font-medium text-amber-300 mb-1">Political Risk Insurance (PRI)</div>
@@ -1458,7 +1458,7 @@ function PortfolioPositioningTab() {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function GeopoliticsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1480,16 +1480,16 @@ export default function GeopoliticsPage() {
 
       <Tabs defaultValue="events" className="mt-8">
         <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="events" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="events" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <ShieldAlert className="w-3.5 h-3.5 mr-1.5" />Event Impact
           </TabsTrigger>
-          <TabsTrigger value="sanctions" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="sanctions" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Lock className="w-3.5 h-3.5 mr-1.5" />Sanctions & Trade
           </TabsTrigger>
-          <TabsTrigger value="premium" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="premium" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Activity className="w-3.5 h-3.5 mr-1.5" />Risk Premium
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="portfolio" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Target className="w-3.5 h-3.5 mr-1.5" />Portfolio Positioning
           </TabsTrigger>
         </TabsList>

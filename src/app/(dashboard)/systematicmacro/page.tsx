@@ -454,7 +454,7 @@ export default function SystematicMacroPage() {
   const finalBenchVal = equityCurve[equityCurve.length - 1]?.benchmark ?? 100;
 
   return (
-    <div className="p-4 md:p-6 space-y-6 min-h-screen bg-background text-foreground">
+    <div className="p-4 md:p-4 space-y-4 min-h-screen bg-background text-foreground">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -586,7 +586,7 @@ export default function SystematicMacroPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 px-2 font-medium">Asset</th>
@@ -643,7 +643,7 @@ export default function SystematicMacroPage() {
                 <Card key={i} className="bg-card border-border">
                   <CardContent className="pt-4 pb-3 px-4">
                     <p className="text-xs text-muted-foreground">{item.label}</p>
-                    <p className={`text-2xl font-bold mt-1 ${item.positive ? "text-green-400" : "text-red-400"}`}>{item.value}</p>
+                    <p className={`text-lg font-medium mt-1 ${item.positive ? "text-green-400" : "text-red-400"}`}>{item.value}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -712,7 +712,7 @@ export default function SystematicMacroPage() {
                       <div className="flex-1 bg-muted/30 rounded-full h-2.5">
                         <div className={`h-2.5 rounded-full ${item.color}`} style={{ width: `${item.pct}%` }} />
                       </div>
-                      <span className="w-8 text-right text-xs font-medium">{item.pct}%</span>
+                      <span className="w-8 text-right text-xs text-muted-foreground font-medium">{item.pct}%</span>
                     </div>
                   ))}
                 </div>

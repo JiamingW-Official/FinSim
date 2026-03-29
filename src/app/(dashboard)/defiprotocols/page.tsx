@@ -233,7 +233,7 @@ function AMMTab() {
   }, [plotW]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -252,7 +252,7 @@ function AMMTab() {
         ))}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         {/* Liquidity curve SVG */}
         <div>
           <Card className="bg-card border-border">
@@ -264,7 +264,7 @@ function AMMTab() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-6 text-xs px-2"
+                  className="h-6 text-xs text-muted-foreground px-2"
                   onClick={() => setShowV3(!showV3)}
                 >
                   {showV3 ? "Show V2" : "Show V3"}
@@ -371,7 +371,7 @@ function AMMTab() {
                   { label: "Price Impact", value: fmtPct(Math.abs(priceImpact)), color: priceImpact > 5 ? "text-red-400" : priceImpact > 1 ? "text-amber-400" : "text-emerald-400" },
                   { label: "Est. Slippage", value: fmtPct(Math.abs(slippage) * 0.95), color: "text-muted-foreground" },
                 ].map((row) => (
-                  <div key={row.label} className="flex justify-between text-xs">
+                  <div key={row.label} className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{row.label}</span>
                     <span className={`font-mono font-medium ${row.color}`}>{row.value}</span>
                   </div>
@@ -482,7 +482,7 @@ function LendingTab() {
   const isAtRisk = safeHealthFactor < 1.1;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -501,7 +501,7 @@ function LendingTab() {
         ))}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         {/* Interest rate curve */}
         <div>
           <Card className="bg-card border-border">
@@ -637,7 +637,7 @@ function LendingTab() {
                   { label: "Liquidation at Debt", value: `$${Math.round(collateralRatio * 100 * liquidationThreshold).toLocaleString()}` },
                   { label: "Effective LTV", value: fmtPct(100 / collateralRatio * 100) },
                 ].map((r) => (
-                  <div key={r.label} className="flex justify-between text-xs">
+                  <div key={r.label} className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{r.label}</span>
                     <span className="font-mono text-foreground">{r.value}</span>
                   </div>
@@ -685,7 +685,7 @@ function LendingTab() {
                 <div key={p.name} className={`rounded-lg border p-4 ${p.color}`}>
                   <div className="flex items-center justify-between mb-3">
                     <p className="text-sm font-medium">{p.name}</p>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${p.badgeColor}`}>{p.badge}</span>
+                    <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded-full ${p.badgeColor}`}>{p.badge}</span>
                   </div>
                   <ul className="space-y-1">
                     {p.features.map((f) => (
@@ -751,7 +751,7 @@ function YieldTab() {
   const compoundBonus = apyFinalValue - aprFinalValue;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "APR", value: fmtPct(apr), sub: "No compounding" },
@@ -769,7 +769,7 @@ function YieldTab() {
         ))}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         {/* Compound growth SVG */}
         <div>
           <Card className="bg-card border-border">
@@ -870,7 +870,7 @@ function YieldTab() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-3">
               <div className="space-y-3">
                 <code className="block text-sm font-mono text-primary bg-primary/5 rounded-md p-3 border border-border">
                   APY = (1 + APR/n)^n - 1
@@ -901,7 +901,7 @@ function YieldTab() {
                   { position: "$100,000", freq: "Hourly", gasCost: "$2 (L2)", breakevenApr: "1.8%" },
                   { position: "$1,000,000", freq: "Every 15m", gasCost: "$0.10 (L2)", breakevenApr: "0.35%" },
                 ].map((row) => (
-                  <div key={row.position} className="flex items-center justify-between text-xs border-b border-border/50 pb-1.5">
+                  <div key={row.position} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border/50 pb-1.5">
                     <span className="text-foreground w-24">{row.position}</span>
                     <span className="text-muted-foreground">{row.freq}</span>
                     <span className="text-amber-400">{row.gasCost}</span>
@@ -965,7 +965,7 @@ function LiquidityMiningTab() {
   const maxEmission = Math.max(...emissionsData);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Price Change", value: fmtPct(priceChange), sub: "Token price vs entry" },
@@ -983,7 +983,7 @@ function LiquidityMiningTab() {
         ))}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         {/* IL curve */}
         <div>
           <Card className="bg-card border-border">
@@ -1161,7 +1161,7 @@ function RiskTab() {
   const totalTVL = PROTOCOLS.reduce((sum, p) => sum + p.tvl, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Risk stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -1200,7 +1200,7 @@ function RiskTab() {
                   onClick={() => setExpandedRisk(expandedRisk === rf.name ? null : rf.name)}
                 >
                   <div className="flex items-center gap-3">
-                    <Badge variant="outline" className={`text-xs ${severityColors[rf.severity]}`}>
+                    <Badge variant="outline" className={`text-xs text-muted-foreground ${severityColors[rf.severity]}`}>
                       {rf.severity}
                     </Badge>
                     <span className="text-sm font-medium">{rf.name}</span>
@@ -1253,14 +1253,14 @@ function RiskTab() {
                 return (
                   <div key={p.name} className="flex items-center gap-3">
                     <div className="w-28 flex-shrink-0">
-                      <p className="text-xs font-medium truncate">{p.name}</p>
+                      <p className="text-xs text-muted-foreground font-medium truncate">{p.name}</p>
                       <p className="text-xs text-muted-foreground">{p.chain}</p>
                     </div>
                     <Badge variant="outline" className="text-xs border-border text-muted-foreground w-16 text-center justify-center">
                       {p.category}
                     </Badge>
                     <div className="flex-1 min-w-0">
-                      <div className="flex justify-between text-xs mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span className="text-muted-foreground">{fmtUSD(p.tvl)}</span>
                         <span className="text-muted-foreground">{tvlShare.toFixed(1)}% of total</span>
                       </div>
@@ -1346,7 +1346,7 @@ function RiskTab() {
                   <p className="text-xs font-medium text-muted-foreground mb-2">{section.category}</p>
                   <div className="space-y-1.5">
                     {section.items.map((item) => (
-                      <div key={item.label} className="flex items-center gap-2 text-xs">
+                      <div key={item.label} className="flex items-center gap-2 text-xs text-muted-foreground">
                         {item.green ? (
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                         ) : (
@@ -1403,27 +1403,27 @@ export default function DeFiProtocolsPage() {
         <Tabs defaultValue="amm" className="h-full flex flex-col">
           <div className="flex-shrink-0 px-6 pt-4 pb-0">
             <TabsList className="grid grid-cols-5 w-full">
-              <TabsTrigger value="amm" className="text-xs flex items-center gap-1.5">
+              <TabsTrigger value="amm" className="text-xs text-muted-foreground flex items-center gap-1.5">
                 <Droplets className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">AMM Mechanics</span>
                 <span className="sm:hidden">AMM</span>
               </TabsTrigger>
-              <TabsTrigger value="lending" className="text-xs flex items-center gap-1.5">
+              <TabsTrigger value="lending" className="text-xs text-muted-foreground flex items-center gap-1.5">
                 <Lock className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Lending</span>
                 <span className="sm:hidden">Lend</span>
               </TabsTrigger>
-              <TabsTrigger value="yield" className="text-xs flex items-center gap-1.5">
+              <TabsTrigger value="yield" className="text-xs text-muted-foreground flex items-center gap-1.5">
                 <TrendingUp className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Yield Optimization</span>
                 <span className="sm:hidden">Yield</span>
               </TabsTrigger>
-              <TabsTrigger value="mining" className="text-xs flex items-center gap-1.5">
+              <TabsTrigger value="mining" className="text-xs text-muted-foreground flex items-center gap-1.5">
                 <Zap className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Liquidity Mining</span>
                 <span className="sm:hidden">Mining</span>
               </TabsTrigger>
-              <TabsTrigger value="risk" className="text-xs flex items-center gap-1.5">
+              <TabsTrigger value="risk" className="text-xs text-muted-foreground flex items-center gap-1.5">
                 <Shield className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Risk Framework</span>
                 <span className="sm:hidden">Risk</span>

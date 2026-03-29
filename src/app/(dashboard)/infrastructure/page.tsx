@@ -688,7 +688,7 @@ export default function InfrastructurePage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
       {/* ── Header ── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -790,14 +790,14 @@ export default function InfrastructurePage() {
                           </div>
                         </td>
                         <td className="px-3 py-3 text-center">
-                          <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${riskBadgeColor[asset.risk]}`}>
+                          <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded-full border font-medium ${riskBadgeColor[asset.risk]}`}>
                             {asset.risk}
                           </span>
                         </td>
                         <td className="px-3 py-3 text-center font-mono text-foreground">{asset.yieldPct.toFixed(1)}%</td>
                         <td className="px-3 py-3 text-center font-mono text-green-400">{asset.totalReturn.toFixed(1)}%</td>
                         <td className="px-3 py-3 text-center">
-                          <span className={`text-xs px-2 py-0.5 rounded-full ${inflinkBadge[asset.inflationLink]}`}>
+                          <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded-full ${inflinkBadge[asset.inflationLink]}`}>
                             {asset.inflationLink}
                           </span>
                         </td>
@@ -807,7 +807,7 @@ export default function InfrastructurePage() {
                           </span>
                         </td>
                         <td className="px-3 py-3 text-center">
-                          <span className={`text-xs px-2 py-0.5 rounded-full ${cfvisBadge[asset.cashFlowVis]}`}>
+                          <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded-full ${cfvisBadge[asset.cashFlowVis]}`}>
                             {asset.cashFlowVis}
                           </span>
                         </td>
@@ -831,7 +831,7 @@ export default function InfrastructurePage() {
                   <div className="flex items-center gap-2">
                     <span className="text-primary">{selectedAsset.icon}</span>
                     <h3 className="font-semibold text-foreground">{selectedAsset.name}</h3>
-                    <span className={`text-xs px-2 py-0.5 rounded-full border ${riskBadgeColor[selectedAsset.risk]}`}>
+                    <span className={`text-xs text-muted-foreground px-2 py-0.5 rounded-full border ${riskBadgeColor[selectedAsset.risk]}`}>
                       {selectedAsset.risk}
                     </span>
                   </div>
@@ -964,7 +964,7 @@ export default function InfrastructurePage() {
                         <BarChart3 size={16} className="text-primary" />
                         <span className="font-semibold text-foreground">{vm.name}</span>
                       </div>
-                      <Badge variant="outline" className="text-xs font-mono">{vm.shortName}</Badge>
+                      <Badge variant="outline" className="text-xs text-muted-foreground font-mono">{vm.shortName}</Badge>
                     </div>
                     <p className="text-xs text-amber-400 font-medium">{vm.typical}</p>
                     <p className="text-xs text-muted-foreground">{vm.description}</p>

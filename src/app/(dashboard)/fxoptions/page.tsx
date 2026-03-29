@@ -366,7 +366,7 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
   const atmStrike = Math.round(spot * 10000) / 10000;
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs font-mono border-separate border-spacing-0">
+      <table className="w-full text-xs text-muted-foreground font-mono border-separate border-spacing-0">
         <thead>
           <tr className="text-muted-foreground">
             <th colSpan={5} className="text-emerald-400 py-2 text-left pl-2">
@@ -630,7 +630,7 @@ function GKCalculator() {
   const labelCls = "text-xs text-muted-foreground mb-1 block";
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       {/* Inputs */}
       <div className="space-y-3">
         <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
@@ -871,7 +871,7 @@ export default function FXOptionsPage() {
 
   return (
     <motion.div
-      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -981,7 +981,7 @@ export default function FXOptionsPage() {
             </CardHeader>
             <CardContent className="pt-0">
               {/* Greeks legend */}
-              <div className="flex gap-4 mb-3 text-xs flex-wrap">
+              <div className="flex gap-4 mb-3 text-xs text-muted-foreground flex-wrap">
                 {[
                   { label: "Δ Delta", color: "text-sky-400" },
                   { label: "Γ Gamma", color: "text-primary" },

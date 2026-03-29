@@ -434,7 +434,7 @@ export default function ESGIntegrationPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}
           className="border-l-4 border-l-primary rounded-lg bg-card p-6"
@@ -508,7 +508,7 @@ export default function ESGIntegrationPage() {
                             <p className="text-xs text-muted-foreground">{co.sector}</p>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Badge className={`text-xs border ${ratingBadgeColor(co.rating)}`}>{co.rating}</Badge>
+                            <Badge className={`text-xs text-muted-foreground border ${ratingBadgeColor(co.rating)}`}>{co.rating}</Badge>
                             {co.controversyFlag && <AlertTriangle className="w-3 h-3 text-yellow-400" />}
                           </div>
                         </div>
@@ -544,11 +544,11 @@ export default function ESGIntegrationPage() {
                     <CardTitle className="text-base flex items-center gap-2">
                       <Globe className="w-4 h-4 text-emerald-400" />
                       {selectedCompany.name} — ESG Radar
-                      <Badge className={`ml-auto text-xs border ${ratingBadgeColor(selectedCompany.rating)}`}>{selectedCompany.rating}</Badge>
+                      <Badge className={`ml-auto text-xs text-muted-foreground border ${ratingBadgeColor(selectedCompany.rating)}`}>{selectedCompany.rating}</Badge>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex flex-col md:flex-row gap-6 items-center">
+                    <div className="flex flex-col md:flex-row gap-3 items-center">
                       <div className="w-48 h-48 flex-shrink-0">
                         <RadarChart company={selectedCompany} />
                       </div>
@@ -569,19 +569,19 @@ export default function ESGIntegrationPage() {
                         <div className="grid grid-cols-2 gap-2 text-sm">
                           <div className="flex justify-between items-center border border-border rounded px-3 py-2">
                             <span className="text-muted-foreground text-xs">Carbon Intensity</span>
-                            <span className="font-medium text-xs">{selectedCompany.carbonFootprint.toFixed(1)} tCO2e</span>
+                            <span className="font-medium text-xs text-muted-foreground">{selectedCompany.carbonFootprint.toFixed(1)} tCO2e</span>
                           </div>
                           <div className="flex justify-between items-center border border-border rounded px-3 py-2">
                             <span className="text-muted-foreground text-xs">Water Usage</span>
-                            <span className="font-medium text-xs">{selectedCompany.waterUsage.toFixed(0)} m³</span>
+                            <span className="font-medium text-xs text-muted-foreground">{selectedCompany.waterUsage.toFixed(0)} m³</span>
                           </div>
                           <div className="flex justify-between items-center border border-border rounded px-3 py-2">
                             <span className="text-muted-foreground text-xs">Gender Diversity</span>
-                            <span className="font-medium text-xs">{selectedCompany.genderDiversityPct.toFixed(1)}%</span>
+                            <span className="font-medium text-xs text-muted-foreground">{selectedCompany.genderDiversityPct.toFixed(1)}%</span>
                           </div>
                           <div className="flex justify-between items-center border border-border rounded px-3 py-2">
                             <span className="text-muted-foreground text-xs">Board Independence</span>
-                            <span className="font-medium text-xs">{selectedCompany.boardIndependencePct.toFixed(1)}%</span>
+                            <span className="font-medium text-xs text-muted-foreground">{selectedCompany.boardIndependencePct.toFixed(1)}%</span>
                           </div>
                         </div>
 
@@ -603,7 +603,7 @@ export default function ESGIntegrationPage() {
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="overflow-x-auto">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-xs text-muted-foreground">
                         <thead>
                           <tr className="border-b border-border">
                             <th className="text-left p-3 text-muted-foreground font-medium">Company</th>
@@ -626,7 +626,7 @@ export default function ESGIntegrationPage() {
                               <td className="text-right p-3 text-primary">{co.gScore.toFixed(0)}</td>
                               <td className="text-right p-3 font-semibold">{co.total.toFixed(1)}</td>
                               <td className="text-right p-3">
-                                <Badge className={`text-xs border ${ratingBadgeColor(co.rating)}`}>{co.rating}</Badge>
+                                <Badge className={`text-xs text-muted-foreground border ${ratingBadgeColor(co.rating)}`}>{co.rating}</Badge>
                               </td>
                             </tr>
                           ))}
@@ -659,7 +659,7 @@ export default function ESGIntegrationPage() {
                         <Button
                           size="sm"
                           variant={c.enabled ? "destructive" : "outline"}
-                          className="h-6 text-xs px-2"
+                          className="h-6 text-xs text-muted-foreground px-2"
                           onClick={() => toggleCriteria(c.id)}
                         >
                           {c.enabled ? "Excluded" : "Include"}
@@ -684,7 +684,7 @@ export default function ESGIntegrationPage() {
                         <Button
                           size="sm"
                           variant={c.enabled ? "default" : "outline"}
-                          className="h-6 text-xs px-2"
+                          className="h-6 text-xs text-muted-foreground px-2"
                           onClick={() => toggleCriteria(c.id)}
                         >
                           {c.enabled ? "Active" : "Off"}
@@ -743,7 +743,7 @@ export default function ESGIntegrationPage() {
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Badge className={`text-xs border ${ratingBadgeColor(co.rating)}`}>{co.rating}</Badge>
+                            <Badge className={`text-xs text-muted-foreground border ${ratingBadgeColor(co.rating)}`}>{co.rating}</Badge>
                             {co.controversyFlag && <AlertTriangle className="w-3.5 h-3.5 text-yellow-400" />}
                             <Badge variant="outline" className={`text-xs ${passes ? "border-emerald-500/30 text-emerald-400" : "border-red-500/30 text-red-400"}`}>
                               {passes ? "PASS" : "FAIL"}
@@ -769,7 +769,7 @@ export default function ESGIntegrationPage() {
                         <div key={item.label} className="p-3 rounded-lg bg-muted/30 border border-border">
                           <div className="flex items-center gap-2 mb-1">
                             <item.icon className={`w-3.5 h-3.5 ${item.color}`} />
-                            <span className="text-xs font-medium">{item.label}</span>
+                            <span className="text-xs text-muted-foreground font-medium">{item.label}</span>
                           </div>
                           <p className="text-xs text-muted-foreground">{item.desc}</p>
                         </div>
@@ -897,7 +897,7 @@ export default function ESGIntegrationPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <p className="text-xs text-muted-foreground mb-2">Renewable Energy Share (%)</p>
                       <div className="space-y-2">
@@ -977,7 +977,7 @@ export default function ESGIntegrationPage() {
                   {sfdArticles.map((art) => (
                     <div key={art.id} className={`p-4 rounded-lg bg-muted/20 border ${art.border}`}>
                       <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="outline" className={`text-xs border ${art.border} ${art.color}`}>{art.label}</Badge>
+                        <Badge variant="outline" className={`text-xs text-muted-foreground border ${art.border} ${art.color}`}>{art.label}</Badge>
                       </div>
                       <p className={`text-sm font-medium ${art.color}`}>{art.id}</p>
                       <p className="text-xs text-muted-foreground mt-1">{art.desc}</p>

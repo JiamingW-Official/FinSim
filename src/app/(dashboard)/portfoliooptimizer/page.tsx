@@ -400,7 +400,7 @@ export default function PortfolioOptimizerPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
 
         {/* Header */}
         <motion.div
@@ -433,7 +433,7 @@ export default function PortfolioOptimizerPage() {
             <Badge
               key={label}
               variant="secondary"
-              className="gap-1.5 px-3 py-1 text-xs font-medium"
+              className="gap-1.5 px-3 py-1 text-xs text-muted-foreground font-medium"
               style={{ borderColor: color + "44", backgroundColor: color + "18", color }}
             >
               {label}: {(pt.ret * 100).toFixed(1)}% ret · {(pt.vol * 100).toFixed(1)}% vol · {pt.sharpe.toFixed(2)} SR
@@ -444,19 +444,19 @@ export default function PortfolioOptimizerPage() {
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="w-full justify-start overflow-x-auto h-auto flex-wrap gap-1 bg-muted/40 p-1 rounded-lg">
-            <TabsTrigger value="frontier" className="gap-1.5 text-xs">
+            <TabsTrigger value="frontier" className="gap-1.5 text-xs text-muted-foreground">
               <TrendingUp size={13} /> Efficient Frontier
             </TabsTrigger>
-            <TabsTrigger value="assets" className="gap-1.5 text-xs">
+            <TabsTrigger value="assets" className="gap-1.5 text-xs text-muted-foreground">
               <BarChart3 size={13} /> Asset Inputs
             </TabsTrigger>
-            <TabsTrigger value="portfolios" className="gap-1.5 text-xs">
+            <TabsTrigger value="portfolios" className="gap-1.5 text-xs text-muted-foreground">
               <PieChart size={13} /> Optimal Portfolios
             </TabsTrigger>
-            <TabsTrigger value="constraints" className="gap-1.5 text-xs">
+            <TabsTrigger value="constraints" className="gap-1.5 text-xs text-muted-foreground">
               <Shield size={13} /> Constraints
             </TabsTrigger>
-            <TabsTrigger value="resampling" className="gap-1.5 text-xs">
+            <TabsTrigger value="resampling" className="gap-1.5 text-xs text-muted-foreground">
               <BookOpen size={13} /> Resampling &amp; Robustness
             </TabsTrigger>
           </TabsList>
@@ -465,7 +465,7 @@ export default function PortfolioOptimizerPage() {
           <TabsContent value="frontier" className="mt-4 space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <Card className="lg:col-span-2 border-border/50 border-l-4 border-l-primary">
-                <CardHeader className="pb-2 p-6">
+                <CardHeader className="pb-2 p-4">
                   <CardTitle className="text-lg flex items-center gap-2">
                     <TrendingUp size={16} className="text-primary" />
                     Efficient Frontier — 200 Random Portfolios
@@ -585,7 +585,7 @@ export default function PortfolioOptimizerPage() {
                       <div className="flex items-center gap-2 font-medium text-sm" style={{ color }}>
                         {icon} {label}
                       </div>
-                      <div className="grid grid-cols-3 gap-1 text-xs">
+                      <div className="grid grid-cols-3 gap-1 text-xs text-muted-foreground">
                         <div className="text-center">
                           <div className="text-muted-foreground">Return</div>
                           <div className="font-semibold text-emerald-400">{(pt.ret * 100).toFixed(2)}%</div>
@@ -609,7 +609,7 @@ export default function PortfolioOptimizerPage() {
                                 style={{ width: `${(pt.weights[i] * 100).toFixed(1)}%`, backgroundColor: a.color }}
                               />
                             </div>
-                            <span className="text-xs font-mono w-10 text-right">{(pt.weights[i] * 100).toFixed(1)}%</span>
+                            <span className="text-xs text-muted-foreground font-mono w-10 text-right">{(pt.weights[i] * 100).toFixed(1)}%</span>
                           </div>
                         ))}
                       </div>
@@ -676,7 +676,7 @@ export default function PortfolioOptimizerPage() {
                                 {sharpe.toFixed(3)}
                               </td>
                               <td className="py-2 text-right">
-                                <Badge variant="secondary" className="text-xs">{a.sector}</Badge>
+                                <Badge variant="secondary" className="text-xs text-muted-foreground">{a.sector}</Badge>
                               </td>
                             </tr>
                           );
@@ -689,7 +689,7 @@ export default function PortfolioOptimizerPage() {
                   <div className="mt-4 space-y-2">
                     <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Volatility Comparison</p>
                     {ASSETS.map((a) => (
-                      <div key={a.ticker} className="flex items-center gap-2 text-xs">
+                      <div key={a.ticker} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span className="w-10 font-medium">{a.ticker}</span>
                         <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
                           <motion.div
@@ -791,7 +791,7 @@ export default function PortfolioOptimizerPage() {
                   {/* Key correlations */}
                   <div className="mt-3 space-y-1">
                     <p className="text-xs text-muted-foreground font-medium">Key Relationships:</p>
-                    <div className="flex flex-wrap gap-2 text-xs">
+                    <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                       <Badge variant="secondary" className="text-primary border-border">AAPL↔MSFT +0.82 (high)</Badge>
                       <Badge variant="secondary" className="text-rose-400 border-rose-400/30">BND↔AAPL -0.18 (hedge)</Badge>
                       <Badge variant="secondary" className="text-amber-400 border-amber-400/30">GLD↔BND +0.24 (mild)</Badge>
@@ -809,7 +809,7 @@ export default function PortfolioOptimizerPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="text-xs font-mono w-full">
+                  <table className="text-xs text-muted-foreground font-mono w-full">
                     <thead>
                       <tr className="border-b border-border/50">
                         <th className="text-left pb-2 text-muted-foreground font-medium pr-4">Asset</th>
@@ -875,7 +875,7 @@ export default function PortfolioOptimizerPage() {
                               {label}
                             </td>
                             {pt.weights.map((w, i) => (
-                              <td key={i} className="py-2 text-right font-mono text-xs">
+                              <td key={i} className="py-2 text-right font-mono text-xs text-muted-foreground">
                                 {(w * 100).toFixed(1)}%
                               </td>
                             ))}
@@ -958,7 +958,7 @@ export default function PortfolioOptimizerPage() {
                 </svg>
 
                 {/* Legend */}
-                <div className="flex flex-wrap gap-3 mt-1 text-xs">
+                <div className="flex flex-wrap gap-3 mt-1 text-xs text-muted-foreground">
                   {portfolios.map(({ label, color }) => (
                     <span key={label} className="flex items-center gap-1">
                       <span className="w-3 h-3 rounded-sm inline-block" style={{ backgroundColor: color }} />
@@ -1024,7 +1024,7 @@ export default function PortfolioOptimizerPage() {
                     <div className="text-xs text-muted-foreground font-medium mb-2 uppercase tracking-wide">Max Weight per Asset</div>
                     {ASSETS.map((a, i) => (
                       <div key={a.ticker} className="mb-3">
-                        <div className="flex justify-between text-xs mb-1">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-1">
                           <span style={{ color: a.color }} className="font-medium">{a.ticker}</span>
                           <span className="font-mono text-foreground">{maxWeightPct[i]}%</span>
                         </div>
@@ -1046,7 +1046,7 @@ export default function PortfolioOptimizerPage() {
 
                   <div>
                     <div className="text-xs text-muted-foreground font-medium mb-2 uppercase tracking-wide">Max Tech Sector (%)</div>
-                    <div className="flex justify-between text-xs mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span className="text-foreground">Tech limit</span>
                       <span className="font-mono text-foreground">{techLimit}%</span>
                     </div>
@@ -1143,14 +1143,14 @@ export default function PortfolioOptimizerPage() {
                   <div className="grid grid-cols-2 gap-3 mt-3">
                     <div className="bg-teal-500/10 border border-teal-500/20 rounded-lg p-3 space-y-1">
                       <div className="text-xs text-emerald-400 font-medium">Constrained Min Variance</div>
-                      <div className="grid grid-cols-3 gap-1 text-xs">
+                      <div className="grid grid-cols-3 gap-1 text-xs text-muted-foreground">
                         <div><span className="text-muted-foreground">Ret: </span><span className="text-emerald-400 font-mono">{(constrainedMinVar.ret * 100).toFixed(2)}%</span></div>
                         <div><span className="text-muted-foreground">Vol: </span><span className="text-rose-400 font-mono">{(constrainedMinVar.vol * 100).toFixed(2)}%</span></div>
                         <div><span className="text-muted-foreground">SR: </span><span className="text-primary font-mono">{constrainedMinVar.sharpe.toFixed(3)}</span></div>
                       </div>
                       <div className="space-y-0.5 mt-1">
                         {ASSETS.map((a, i) => (
-                          <div key={a.ticker} className="flex items-center gap-1 text-xs">
+                          <div key={a.ticker} className="flex items-center gap-1 text-xs text-muted-foreground">
                             <span className="w-10 text-muted-foreground">{a.ticker}</span>
                             <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                               <div className="h-full bg-teal-400 rounded-full" style={{ width: `${constrainedMinVar.weights[i] * 100}%` }} />
@@ -1162,14 +1162,14 @@ export default function PortfolioOptimizerPage() {
                     </div>
                     <div className="bg-primary/10 border border-border rounded-lg p-3 space-y-1">
                       <div className="text-xs text-primary font-medium">Unconstrained Min Variance</div>
-                      <div className="grid grid-cols-3 gap-1 text-xs">
+                      <div className="grid grid-cols-3 gap-1 text-xs text-muted-foreground">
                         <div><span className="text-muted-foreground">Ret: </span><span className="text-emerald-400 font-mono">{(minVarPt.ret * 100).toFixed(2)}%</span></div>
                         <div><span className="text-muted-foreground">Vol: </span><span className="text-rose-400 font-mono">{(minVarPt.vol * 100).toFixed(2)}%</span></div>
                         <div><span className="text-muted-foreground">SR: </span><span className="text-primary font-mono">{minVarPt.sharpe.toFixed(3)}</span></div>
                       </div>
                       <div className="space-y-0.5 mt-1">
                         {ASSETS.map((a, i) => (
-                          <div key={a.ticker} className="flex items-center gap-1 text-xs">
+                          <div key={a.ticker} className="flex items-center gap-1 text-xs text-muted-foreground">
                             <span className="w-10 text-muted-foreground">{a.ticker}</span>
                             <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                               <div className="h-full rounded-full" style={{ width: `${minVarPt.weights[i] * 100}%`, backgroundColor: a.color }} />
@@ -1317,7 +1317,7 @@ export default function PortfolioOptimizerPage() {
                   {/* Parameter sensitivity table */}
                   <div>
                     <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mb-2">Sensitivity to Parameter Errors</p>
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border/50 text-muted-foreground">
                           <th className="text-left pb-1">Parameter</th>
@@ -1358,7 +1358,7 @@ export default function PortfolioOptimizerPage() {
                         const normW = others.map((v, j) => (j === i ? altW[i] : (oSum > 0 ? (v / oSum) * rem : rem / (N - 1))));
                         const delta = Math.abs(normW[i] - baseW[i]) * 100;
                         return (
-                          <div key={a.ticker} className="flex items-center gap-2 text-xs mb-1">
+                          <div key={a.ticker} className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                             <span className="w-10 font-medium" style={{ color: a.color }}>{a.ticker}</span>
                             <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                               <div className="h-full rounded-full bg-amber-500" style={{ width: `${Math.min(delta * 3, 100)}%` }} />
@@ -1388,7 +1388,7 @@ export default function PortfolioOptimizerPage() {
                     <p className="text-xs text-muted-foreground">
                       Start with implied returns from market-cap weights (reverse optimization). These represent the &quot;neutral&quot; view — no alpha assumed. Implied return μ = λ Σ w_mkt where λ is risk aversion coefficient.
                     </p>
-                    <div className="bg-muted/30 rounded p-2 text-xs font-mono">
+                    <div className="bg-muted/30 rounded p-2 text-xs text-muted-foreground font-mono">
                       μ_eq = λ × Σ × w_mkt
                     </div>
                   </div>
@@ -1397,7 +1397,7 @@ export default function PortfolioOptimizerPage() {
                     <p className="text-xs text-muted-foreground">
                       Express views as P × μ = Q + ε, where P picks the assets, Q is the view return, and ε ~ N(0, Ω) captures uncertainty. Absolute views (&quot;AAPL returns 15%&quot;) and relative views (&quot;AAPL outperforms MSFT by 3%&quot;) are both supported.
                     </p>
-                    <div className="bg-muted/30 rounded p-2 text-xs font-mono">
+                    <div className="bg-muted/30 rounded p-2 text-xs text-muted-foreground font-mono">
                       P × μ = Q + ε, ε ~ N(0,Ω)
                     </div>
                   </div>
@@ -1406,7 +1406,7 @@ export default function PortfolioOptimizerPage() {
                     <p className="text-xs text-muted-foreground">
                       Bayesian update combines equilibrium prior with investor views. The posterior expected return blends market and analyst signals proportional to confidence (Ω⁻¹). This dramatically stabilizes optimal weights vs. pure historical estimates.
                     </p>
-                    <div className="bg-muted/30 rounded p-2 text-xs font-mono">
+                    <div className="bg-muted/30 rounded p-2 text-xs text-muted-foreground font-mono">
                       μ_BL = [(τΣ)⁻¹ + P&apos;Ω⁻¹P]⁻¹ × [...]
                     </div>
                   </div>
@@ -1505,7 +1505,7 @@ export default function PortfolioOptimizerPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border/50 text-muted-foreground">
                         <th className="text-left pb-2 font-medium">Method</th>
@@ -1527,7 +1527,7 @@ export default function PortfolioOptimizerPage() {
                         <tr key={i} className="border-b border-border/20 hover:bg-muted/20">
                           <td className="py-2 font-medium text-foreground">{row.method}</td>
                           <td className="py-2 text-center">
-                            <Badge variant="secondary" className="text-xs">
+                            <Badge variant="secondary" className="text-xs text-muted-foreground">
                               {row.complexity}
                             </Badge>
                           </td>

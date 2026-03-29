@@ -346,7 +346,7 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -432,7 +432,7 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
                       key={term}
                       type="button"
                       onClick={() => handleRecentSelect(term)}
-                      className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-accent/30 hover:text-foreground transition-colors"
+                      className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-accent/30 hover:text-foreground transition-colors"
                     >
                       <Clock className="h-3.5 w-3.5 shrink-0" />
                       <span>{term}</span>
@@ -543,7 +543,7 @@ function ResultsGroups({ grouped, flatList, activeIndex, onSelect, onHover }: Re
                 onClick={() => onSelect(result)}
                 onMouseEnter={() => onHover(flatIdx)}
                 className={cn(
-                  "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left transition-colors",
+                  "flex w-full items-center gap-3 rounded-md px-3 py-2 text-left transition-colors",
                   isActive ? "bg-accent/40 text-foreground" : "text-muted-foreground hover:bg-accent/20 hover:text-foreground",
                 )}
               >

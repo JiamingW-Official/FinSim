@@ -280,7 +280,7 @@ function RatingBadge({ rating }: { rating: string }) {
       ? "bg-muted text-muted-foreground"
       : "bg-rose-900/50 text-rose-300";
   return (
-    <span className={cn("inline-block rounded-full px-2 py-0.5 text-xs font-medium", cls)}>
+    <span className={cn("inline-block rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium", cls)}>
       {rating}
     </span>
   );
@@ -316,7 +316,7 @@ function StructureTab() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key stats */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard label="Total CLO Size" value="$500M" sub="6 tranches" />
@@ -388,7 +388,7 @@ function StructureTab() {
       <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Tranche Summary" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="py-2 text-left">Tranche</th>
@@ -480,7 +480,7 @@ function CoverageTab() {
   const allPass = COVERAGE_TESTS.every((t) => t.pass);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary banner */}
       <div
         className={cn(
@@ -556,7 +556,7 @@ function PortfolioTab() {
   const maxBal = Math.max(...LOANS.map((l) => l.balance));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard label="Total Pool Balance" value={`$${totalBal}M`} />
         <StatCard label="WAS" value={`${fmt(was, 0)} bps`} highlight="pos" sub="Wt. avg spread" />
@@ -568,7 +568,7 @@ function PortfolioTab() {
       <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Collateral Pool" sub="8 loan positions" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="py-2 text-left">Issuer</th>
@@ -683,7 +683,7 @@ function ReinvestmentTab() {
   }, [reinvestPeriod, prepayRate, equityIRR]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <StatCard label="Equity IRR (est.)" value={`${fmt(equityIRR)}%`} highlight={equityIRR >= 12 ? "pos" : equityIRR >= 8 ? "neutral" : "neg"} />
         <StatCard label="Reinvestment Period" value={`${reinvestPeriod}yr`} sub="Manager can reinvest" />
@@ -756,7 +756,7 @@ function ReinvestmentTab() {
       <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Projected Cash Flow Schedule" sub="Simplified illustration" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="py-2 text-left">Year</th>
@@ -806,7 +806,7 @@ function DefaultScenariosTab() {
   const lossAmt = lossGivenDefault * TOTAL_ASSETS;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Scenario selector */}
       <div className="grid grid-cols-3 gap-3">
         {DEFAULT_SCENARIOS.map((sc, idx) => (
@@ -862,7 +862,7 @@ function DefaultScenariosTab() {
                   />
                 </div>
                 <span className={cn(
-                  "w-24 text-xs text-right",
+                  "w-24 text-xs text-muted-foreground text-right",
                   status === "intact" ? "text-emerald-400" : status === "partial" ? "text-amber-400" : "text-rose-400"
                 )}>
                   {status === "intact" ? "Intact" : status === "partial" ? "Partial loss" : "Impaired"}
@@ -880,7 +880,7 @@ function DefaultScenariosTab() {
       <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Cross-Scenario Comparison" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="py-2 text-left">Scenario</th>
@@ -957,7 +957,7 @@ function EquityReturnsTab() {
   const irrMax = 20;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary stats */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard label="Base Case IRR" value="+14.2%" highlight="pos" sub="Equity tranche" />
@@ -1013,7 +1013,7 @@ function EquityReturnsTab() {
       {/* IRR by scenario bars */}
       <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="IRR Waterfall by Scenario" sub="Equity tranche returns" />
-        <div className="flex items-end gap-6 h-32 px-4">
+        <div className="flex items-end gap-3 h-32 px-4">
           {irrData.map((d) => {
             const pct = Math.max(0, (d.irr / irrMax) * 100);
             const isNeg = d.irr < 0;
@@ -1043,7 +1043,7 @@ function EquityReturnsTab() {
             { name: "Incentive / Performance Fee", rate: `${incentiveFee}% above 12% hurdle`, desc: "Aligns manager with equity. Only earned once equity IRR exceeds the hurdle rate.", color: "text-emerald-300" },
           ].map((fee) => (
             <div key={fee.name} className="rounded-lg bg-foreground/5 p-3">
-              <p className={cn("text-xs font-medium mb-1", fee.color)}>{fee.name}</p>
+              <p className={cn("text-xs text-muted-foreground font-medium mb-1", fee.color)}>{fee.name}</p>
               <p className="text-sm font-medium text-foreground mb-1">{fee.rate}</p>
               <p className="text-xs text-muted-foreground">{fee.desc}</p>
             </div>

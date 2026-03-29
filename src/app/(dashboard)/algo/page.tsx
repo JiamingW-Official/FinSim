@@ -1010,7 +1010,7 @@ export default function AlgoPage() {
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "px-5 py-2.5 text-xs font-medium transition-colors",
+              "px-5 py-2.5 text-xs text-muted-foreground font-medium transition-colors",
               activeTab === tab.id
                 ? "border-b-2 border-primary text-primary"
                 : "text-muted-foreground hover:text-muted-foreground"
@@ -1027,8 +1027,8 @@ export default function AlgoPage() {
       <div className="flex-1 overflow-y-auto">
         {/* ── Tab 1: Strategy Builder ── */}
         {activeTab === "builder" && (
-          <div className="p-6">
-            <div className="mx-auto max-w-5xl space-y-6">
+          <div className="p-4">
+            <div className="mx-auto max-w-5xl space-y-4">
               {/* Strategy Name */}
               <div className="flex items-center gap-4">
                 <div className="flex-1">
@@ -1185,15 +1185,15 @@ export default function AlgoPage() {
 
         {/* ── Tab 2: Backtest Results ── */}
         {activeTab === "results" && (
-          <div className="p-6">
-            <div className="mx-auto max-w-4xl space-y-6">
+          <div className="p-4">
+            <div className="mx-auto max-w-4xl space-y-4">
               {!result ? (
                 <div className="flex flex-col items-center justify-center gap-4 py-24 text-muted-foreground">
                   <Bot className="h-12 w-12 opacity-30" />
                   <p className="text-sm">No backtest results yet. Build a strategy and click &quot;Run Backtest&quot;.</p>
                   <Button
                     variant="outline"
-                    className="text-xs"
+                    className="text-xs text-muted-foreground"
                     onClick={() => setActiveTab("builder")}
                   >
                     Go to Builder
@@ -1275,7 +1275,7 @@ export default function AlgoPage() {
                       Trade Log ({result.trades.length} trades)
                     </h2>
                     <div className="overflow-x-auto">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-xs text-muted-foreground">
                         <thead>
                           <tr className="border-b border-border/50 text-left text-muted-foreground">
                             <th className="pb-2 pr-4 font-medium">#</th>
@@ -1326,7 +1326,7 @@ export default function AlgoPage() {
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground mb-0.5">Buy &amp; Hold Return</p>
-                        <p className={cn("text-2xl font-bold tabular-nums", result.buyAndHold >= 0 ? "text-green-300" : "text-red-300")}>
+                        <p className={cn("text-lg font-medium tabular-nums", result.buyAndHold >= 0 ? "text-green-300" : "text-red-300")}>
                           {result.buyAndHold >= 0 ? "+" : ""}{(result.buyAndHold * 100).toFixed(1)}%
                         </p>
                       </div>
@@ -1351,7 +1351,7 @@ export default function AlgoPage() {
 
         {/* ── Tab 3: Strategy Library ── */}
         {activeTab === "library" && (
-          <div className="p-6">
+          <div className="p-4">
             <div className="mx-auto max-w-5xl">
               <p className="mb-4 text-xs text-muted-foreground">
                 Pre-built strategies. Click &quot;Load Strategy&quot; to populate the builder and customize.
@@ -1400,8 +1400,8 @@ export default function AlgoPage() {
 
         {/* ── Tab 4: Optimization ── */}
         {activeTab === "optimization" && (
-          <div className="p-6">
-            <div className="mx-auto max-w-4xl space-y-6">
+          <div className="p-4">
+            <div className="mx-auto max-w-4xl space-y-4">
               {/* Parameter Sweep */}
               <Card className="border-border/50 bg-card/50 p-4 space-y-4">
                 <h2 className="text-xs font-medium text-foreground uppercase tracking-wide">Parameter Sweep</h2>
@@ -1472,21 +1472,21 @@ export default function AlgoPage() {
                   <div className="rounded-md border border-border/50 bg-card/60 p-3 space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">In-Sample (≈202 bars)</p>
                     <div className="space-y-0.5">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Return</span>
                         <span className={cn("font-medium", wfInSample.totalReturn >= 0 ? "text-green-400" : "text-red-400")}>
                           {(wfInSample.totalReturn * 100).toFixed(1)}%
                         </span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Win Rate</span>
                         <span className="text-muted-foreground">{(wfInSample.winRate * 100).toFixed(0)}%</span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Sharpe</span>
                         <span className="text-muted-foreground">{wfInSample.sharpe.toFixed(2)}</span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Trades</span>
                         <span className="text-muted-foreground">{wfInSample.numTrades}</span>
                       </div>
@@ -1495,21 +1495,21 @@ export default function AlgoPage() {
                   <div className="rounded-md border border-border/50 bg-card/60 p-3 space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Out-of-Sample (≈50 bars)</p>
                     <div className="space-y-0.5">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Return</span>
                         <span className={cn("font-medium", wfOutSample.totalReturn >= 0 ? "text-green-400" : "text-red-400")}>
                           {(wfOutSample.totalReturn * 100).toFixed(1)}%
                         </span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Win Rate</span>
                         <span className="text-muted-foreground">{(wfOutSample.winRate * 100).toFixed(0)}%</span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Sharpe</span>
                         <span className="text-muted-foreground">{wfOutSample.sharpe.toFixed(2)}</span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Trades</span>
                         <span className="text-muted-foreground">{wfOutSample.numTrades}</span>
                       </div>
@@ -1534,7 +1534,7 @@ export default function AlgoPage() {
                 {mcResults ? (
                   <div className="space-y-2">
                     <MonteCarloChart returns={mcResults} />
-                    <div className="flex gap-4 text-xs">
+                    <div className="flex gap-4 text-xs text-muted-foreground">
                       <div>
                         <span className="text-muted-foreground">Median: </span>
                         <span className="text-muted-foreground">

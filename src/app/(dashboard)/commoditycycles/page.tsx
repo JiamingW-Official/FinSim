@@ -854,7 +854,7 @@ function ChangeChip({ value }: { value: number }) {
   const pos = value >= 0;
   return (
     <span
-      className={`inline-flex items-center gap-0.5 text-xs font-medium px-1.5 py-0.5 rounded ${
+      className={`inline-flex items-center gap-0.5 text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded ${
         pos
           ? "bg-emerald-500/15 text-emerald-400"
           : "bg-red-500/15 text-red-400"
@@ -927,7 +927,7 @@ function CycleCard({
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="mt-4 grid grid-cols-2 gap-4 text-xs">
+            <div className="mt-4 grid grid-cols-2 gap-4 text-xs text-muted-foreground">
               <div>
                 <p className="text-muted-foreground mb-1.5 uppercase tracking-wide">Key Drivers</p>
                 <ul className="space-y-1">
@@ -945,7 +945,7 @@ function CycleCard({
                   {cycle.peakCommodities.map((c) => (
                     <span
                       key={c}
-                      className="px-2 py-0.5 rounded-full text-xs font-medium"
+                      className="px-2 py-0.5 rounded-full text-xs text-muted-foreground font-medium"
                       style={{
                         background: cycle.color + "20",
                         color: cycle.color,
@@ -987,7 +987,7 @@ export default function CommodityCyclesPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1026,7 +1026,7 @@ export default function CommodityCyclesPage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="flex items-center gap-1.5 text-xs px-3 py-1.5"
+              className="flex items-center gap-1.5 text-xs text-muted-foreground px-3 py-1.5"
             >
               {icon}
               {label}
@@ -1036,7 +1036,7 @@ export default function CommodityCyclesPage() {
 
         {/* ── Tab 1: Super Cycle History ─────────────────────────────────────── */}
         <TabsContent value="supercycle" className="data-[state=inactive]:hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="space-y-4">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
@@ -1060,11 +1060,11 @@ export default function CommodityCyclesPage() {
                       <p className="text-xs text-muted-foreground">Identified Cycles</p>
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-primary">25yr</p>
+                      <p className="text-lg font-medium text-primary">25yr</p>
                       <p className="text-xs text-muted-foreground">Avg Duration</p>
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-emerald-400">+299%</p>
+                      <p className="text-lg font-medium text-emerald-400">+299%</p>
                       <p className="text-xs text-muted-foreground">Avg Peak Gain</p>
                     </div>
                   </div>
@@ -1094,8 +1094,8 @@ export default function CommodityCyclesPage() {
 
         {/* ── Tab 2: Energy Complex ──────────────────────────────────────────── */}
         <TabsContent value="energy" className="data-[state=inactive]:hidden">
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
@@ -1142,7 +1142,7 @@ export default function CommodityCyclesPage() {
                     },
                   ].map(({ label, value, color, suffix }) => (
                     <div key={label}>
-                      <div className="flex justify-between text-xs mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span className="text-muted-foreground">{label}</span>
                         <span className="font-medium" style={{ color }}>
                           {value}
@@ -1172,7 +1172,7 @@ export default function CommodityCyclesPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-4">Commodity</th>
@@ -1269,8 +1269,8 @@ export default function CommodityCyclesPage() {
 
         {/* ── Tab 3: Metals ─────────────────────────────────────────────────── */}
         <TabsContent value="metals" className="data-[state=inactive]:hidden">
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -1298,7 +1298,7 @@ export default function CommodityCyclesPage() {
                     { metal: "Manganese", kg: 15, color: "#8b5cf6", note: "LFP cathode alternative" },
                   ].map(({ metal, kg, color, note }) => (
                     <div key={metal}>
-                      <div className="flex justify-between text-xs mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span className="font-medium text-foreground">{metal}</span>
                         <span style={{ color }} className="font-medium">
                           {kg} kg
@@ -1329,7 +1329,7 @@ export default function CommodityCyclesPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-4">Metal</th>
@@ -1449,8 +1449,8 @@ export default function CommodityCyclesPage() {
 
         {/* ── Tab 4: Agricultural ────────────────────────────────────────────── */}
         <TabsContent value="agri" className="data-[state=inactive]:hidden">
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
@@ -1477,7 +1477,7 @@ export default function CommodityCyclesPage() {
                     <p className="text-xs font-medium text-primary mb-1.5">
                       La Nina (cool Pacific)
                     </p>
-                    <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                       <div>
                         <p className="text-muted-foreground mb-1">Reduces yield:</p>
                         <p className="text-red-400">US corn, soybeans</p>
@@ -1496,7 +1496,7 @@ export default function CommodityCyclesPage() {
                     <p className="text-xs font-medium text-orange-400 mb-1.5">
                       El Nino (warm Pacific)
                     </p>
-                    <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                       <div>
                         <p className="text-muted-foreground mb-1">Reduces yield:</p>
                         <p className="text-red-400">SE Asia palm oil</p>
@@ -1524,7 +1524,7 @@ export default function CommodityCyclesPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-4">Commodity</th>
@@ -1565,7 +1565,7 @@ export default function CommodityCyclesPage() {
                           </td>
                           <td className="py-2 pr-4 text-center">
                             <Badge
-                              className={`text-xs ${
+                              className={`text-xs text-muted-foreground ${
                                 row.laNinaImpact === "Negative"
                                   ? "bg-red-500/15 text-red-400 border-red-500/25"
                                   : row.laNinaImpact === "Positive"
@@ -1702,7 +1702,7 @@ export default function CommodityCyclesPage() {
 
         {/* ── Tab 5: Investment Vehicles ────────────────────────────────────── */}
         <TabsContent value="vehicles" className="data-[state=inactive]:hidden">
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Quick compare table */}
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
@@ -1713,7 +1713,7 @@ export default function CommodityCyclesPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left py-2 pr-4">Vehicle</th>
@@ -1740,7 +1740,7 @@ export default function CommodityCyclesPage() {
                           </td>
                           <td className="py-2 pr-4">
                             <Badge
-                              className={`text-xs ${
+                              className={`text-xs text-muted-foreground ${
                                 v.type === "ETF"
                                   ? "bg-primary/15 text-primary border-border"
                                   : v.type === "Futures"
@@ -1794,7 +1794,7 @@ export default function CommodityCyclesPage() {
                   >
                     <div className="flex items-center gap-3">
                       <Badge
-                        className={`text-xs ${
+                        className={`text-xs text-muted-foreground ${
                           v.type === "ETF"
                             ? "bg-primary/15 text-primary border-border"
                             : v.type === "Futures"

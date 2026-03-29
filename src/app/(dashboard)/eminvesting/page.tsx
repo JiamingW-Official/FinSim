@@ -472,7 +472,7 @@ export default function EMInvestingPage() {
   void sv;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -590,7 +590,7 @@ export default function EMInvestingPage() {
                 ].map((v, i) => (
                   <div key={`val-${i}`} className="bg-muted/60 rounded-lg p-3 text-center">
                     <div className="text-xs text-muted-foreground mb-1">{v.metric}</div>
-                    <div className="flex justify-between text-xs mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span className="text-orange-400 font-medium">EM {v.em}</span>
                       <span className="text-indigo-400 font-medium">DM {v.dm}</span>
                     </div>
@@ -637,7 +637,7 @@ export default function EMInvestingPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left py-2 text-muted-foreground">Factor</th>
@@ -720,7 +720,7 @@ export default function EMInvestingPage() {
                   { event: "2008 GFC contagion", bps: "680 bps peak", color: "text-orange-400" },
                   { event: "2020 COVID taper tantrum", bps: "520 bps peak", color: "text-amber-400" },
                 ].map((e, i) => (
-                  <div key={`embi-evt-${i}`} className="text-xs bg-muted/50 rounded p-2">
+                  <div key={`embi-evt-${i}`} className="text-xs text-muted-foreground bg-muted/50 rounded p-2">
                     <div className={cn("font-medium", e.color)}>{e.bps}</div>
                     <div className="text-muted-foreground mt-0.5">{e.event}</div>
                   </div>
@@ -1046,7 +1046,7 @@ export default function EMInvestingPage() {
                     { choice: "Brazil / Mexico", picks: "Free capital + independent policy", gave: "Floating FX (managed float)" },
                     { choice: "Hong Kong / Saudi", picks: "Fixed rate + free capital", gave: "No monetary independence (Fed-linked rates)" },
                   ].map((ex, i) => (
-                    <div key={`tri-ex-${i}`} className="text-xs p-2 bg-muted/50 rounded flex gap-2">
+                    <div key={`tri-ex-${i}`} className="text-xs text-muted-foreground p-2 bg-muted/50 rounded flex gap-2">
                       <span className="text-amber-400 shrink-0 font-medium">{ex.choice}:</span>
                       <span className="text-muted-foreground">Chose <span className="text-emerald-400">{ex.picks}</span> → gave up <span className="text-red-400">{ex.gave}</span></span>
                     </div>
@@ -1088,7 +1088,7 @@ export default function EMInvestingPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto mb-3">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left py-2 text-muted-foreground">Country</th>

@@ -56,7 +56,7 @@ export function TutorialOverlay() {
         {/* Spotlight cutout */}
         {targetRect && (
           <div
-            className="absolute rounded-lg ring-2 ring-primary/50 shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"
+            className="absolute rounded-md ring-2 ring-primary/50 shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"
             style={{
               top: targetRect.top - 4,
               left: targetRect.left - 4,
@@ -76,7 +76,7 @@ export function TutorialOverlay() {
           transition={{ duration: 0.2 }}
           style={tooltipStyle}
         >
-          <div className="w-72 rounded-lg border border-primary/30 bg-card p-4 shadow-sm">
+          <div className="w-72 rounded-md border border-primary/30 bg-card p-4 shadow-sm">
             {/* Header */}
             <div className="mb-2 flex items-center justify-between">
               <span className="text-xs font-medium text-primary">

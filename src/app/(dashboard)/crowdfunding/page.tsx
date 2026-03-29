@@ -355,7 +355,7 @@ function BadgeChip({
     zinc: "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30",
   };
   return (
-    <span className={cn("px-2 py-0.5 rounded text-xs font-medium border", colorMap[color])}>
+    <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground font-medium border", colorMap[color])}>
       {label}
     </span>
   );
@@ -409,7 +409,7 @@ function RegulatoryTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* JOBS Act History */}
       <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-3">
@@ -487,7 +487,7 @@ function RegulatoryTab() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
                       {[
                         { label: "Max Raise", value: fw.maxRaise },
                         { label: "Investor Limits", value: fw.investorLimit },
@@ -516,7 +516,7 @@ function RegulatoryTab() {
           <Shield className="w-4 h-4 text-green-400" />
           <h3 className="text-sm font-semibold text-foreground">Accredited vs Non-Accredited Investor Rules</h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
           <div className="rounded-lg bg-green-500/5 border border-green-500/20 p-4 space-y-2">
             <div className="text-green-400 font-medium mb-2">Accredited Investor (SEC Rule 501)</div>
             <div className="flex items-start gap-2 text-muted-foreground">
@@ -622,7 +622,7 @@ function PlatformTab() {
   const maxDeals = Math.max(...PLATFORMS.map((p) => p.dealsClosed));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Platform Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {PLATFORMS.map((platform) => (
@@ -656,7 +656,7 @@ function PlatformTab() {
                 <span className="text-xs text-muted-foreground">{platform.region}</span>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-2 text-xs mt-3">
+            <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground mt-3">
               <div className="text-center">
                 <div className="text-muted-foreground">Min. Invest</div>
                 <div className="text-foreground font-medium">${platform.minInvestment}</div>
@@ -703,7 +703,7 @@ function PlatformTab() {
                   <p className="text-xs text-muted-foreground mt-3 pt-3 border-t border-border leading-relaxed">
                     {platform.description}
                   </p>
-                  <div className="grid grid-cols-2 gap-2 mt-2 text-xs">
+                  <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-muted-foreground">
                     <div className="bg-muted/60 rounded p-2">
                       <div className="text-muted-foreground">Total Raised</div>
                       <div className="text-foreground font-medium">
@@ -798,7 +798,7 @@ function PlatformTab() {
           <h3 className="text-sm font-medium text-foreground">Platform Economics — Fee Comparison</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 {["Platform", "Platform Fee", "Payment Processing", "Carry / Success Fee", "Min Investment", "Due Diligence"].map((h) => (
@@ -847,7 +847,7 @@ function PlatformTab() {
         </div>
         <div className="space-y-2">
           {[...PLATFORMS].sort((a, b) => b.dueDiligenceScore - a.dueDiligenceScore).map((p) => (
-            <div key={p.name} className="flex items-center gap-3 text-xs">
+            <div key={p.name} className="flex items-center gap-3 text-xs text-muted-foreground">
               <div className="w-24 text-muted-foreground shrink-0">{p.name}</div>
               <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                 <div
@@ -905,14 +905,14 @@ function DealAnalysisTab() {
   }, [valCap, discount, nextRoundVal, investmentAmount]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Valuation Challenges */}
       <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           <h3 className="text-sm font-medium text-foreground">Startup Valuation Challenges</h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
           {[
             {
               challenge: "No Revenue History",
@@ -973,7 +973,7 @@ function DealAnalysisTab() {
           <h3 className="text-sm font-medium text-foreground">SAFE vs Convertible Note vs Equity Round</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 {["Feature", "SAFE", "Convertible Note", "Equity Round"].map((h) => (
@@ -1013,9 +1013,9 @@ function DealAnalysisTab() {
           <h3 className="text-sm font-medium text-foreground">SAFE Dilution Calculator</h3>
           <span className="text-xs text-muted-foreground ml-auto">Post-Money YC SAFE</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {/* Inputs */}
-          <div className="space-y-4 text-xs">
+          <div className="space-y-4 text-xs text-muted-foreground">
             <div>
               <div className="flex justify-between mb-1 text-muted-foreground">
                 <span>Valuation Cap</span>
@@ -1091,7 +1091,7 @@ function DealAnalysisTab() {
           </div>
 
           {/* Results */}
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 text-xs text-muted-foreground">
             <div className="rounded-lg bg-muted/60 p-3 space-y-2">
               <div className="text-muted-foreground font-medium mb-2">Conversion Price</div>
               <div className="flex justify-between">
@@ -1191,7 +1191,7 @@ function PortfolioTab() {
   const maxReturn = Math.max(...dealReturns);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Portfolio Summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -1262,7 +1262,7 @@ function PortfolioTab() {
           </div>
           <div className="space-y-2">
             {sectorEntries.map(([sector, val], i) => (
-              <div key={sector} className="text-xs">
+              <div key={sector} className="text-xs text-muted-foreground">
                 <div className="flex justify-between mb-0.5">
                   <span className="text-muted-foreground">{sector}</span>
                   <span className="text-muted-foreground">{((val / totalSector) * 100).toFixed(1)}%</span>
@@ -1287,7 +1287,7 @@ function PortfolioTab() {
             <BarChart2 className="w-4 h-4 text-primary" />
             <h3 className="text-sm font-medium text-foreground">Success Rate by Stage / Sector</h3>
           </div>
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 text-xs text-muted-foreground">
             <div>
               <div className="text-muted-foreground mb-2 font-medium">By Stage (reach Series B+)</div>
               {Object.entries(SUCCESS_BY_STAGE).map(([stage, pct]) => (
@@ -1322,7 +1322,7 @@ function PortfolioTab() {
           <Zap className="w-4 h-4 text-amber-400" />
           <h3 className="text-sm font-medium text-foreground">Secondary Liquidity Options</h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
           {[
             {
               name: "Forge Global",
@@ -1422,7 +1422,7 @@ function PortfolioTab() {
           <span className="text-xs text-muted-foreground ml-auto">Seed: 875</span>
         </div>
         <div className="overflow-x-auto max-h-72 overflow-y-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead className="sticky top-0 bg-card">
               <tr className="border-b border-border text-muted-foreground">
                 {["Company", "Sector", "Stage", "Invested ($K)", "Current ($K)", "Multiple", "Status", "Year"].map((h) => (
@@ -1515,7 +1515,7 @@ function PortfolioTab() {
 
 export default function CrowdfundingPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">

@@ -634,7 +634,7 @@ function FSOCHeatmap() {
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs border-collapse">
+      <table className="w-full text-xs text-muted-foreground border-collapse">
         <thead>
           <tr>
             <th className="text-left text-muted-foreground p-2 w-32">Category</th>
@@ -652,7 +652,7 @@ function FSOCHeatmap() {
                 {cells.map((cell, j) => (
                   <td key={j} className="p-1">
                     <div
-                      className="rounded text-center py-1.5 px-2 text-xs font-semibold"
+                      className="rounded text-center py-1.5 px-2 text-xs text-muted-foreground font-semibold"
                       style={{ backgroundColor: heatBg(cell.level), color: heatText(cell.level), border: `1px solid ${heatColor(cell.level)}` }}
                     >
                       {cell.label}
@@ -744,7 +744,7 @@ function InfoCard({ title, children, icon: Icon }: { title: string; children: Re
 
 function ContagionTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Network SVG */}
       <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
@@ -786,7 +786,7 @@ function ContagionTab() {
 
         <InfoCard title="Liquidity Spiral Mechanism" icon={RefreshCw}>
           <p>A self-reinforcing cycle where funding stress forces deleveraging, which reduces market liquidity, raising margins and triggering further deleveraging.</p>
-          <div className="mt-2 flex flex-wrap gap-2 text-xs">
+          <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
             {["Losses", "→ Margin Calls", "→ Asset Sales", "→ Price Drops", "→ More Losses"].map((step, i) => (
               <span key={i} className="bg-red-950/50 text-red-300 border border-red-800/50 rounded px-2 py-1">{step}</span>
             ))}
@@ -815,7 +815,7 @@ function ContagionTab() {
         </CardHeader>
         <CardContent>
           <Crisis2008SVG />
-          <div className="flex gap-4 mt-3 flex-wrap text-xs">
+          <div className="flex gap-4 mt-3 flex-wrap text-xs text-muted-foreground">
             {(["moderate", "severe", "critical"] as const).map(s => {
               const c = s === "moderate" ? "#fbbf24" : s === "severe" ? "#fb923c" : "#f87171";
               return (
@@ -854,7 +854,7 @@ function GSIBTab() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* G-SIB Identification Methodology */}
       <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
@@ -907,7 +907,7 @@ function GSIBTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Bank", "Country", "Bucket", "Surcharge", "Total Capital", ""].map((h, i) => (
@@ -972,7 +972,7 @@ function GSIBTab() {
               { label: "Post-Dodd-Frank reduction", value: "~40%", color: "#4ade80" },
               { label: "IMF global estimate (2014)", value: "$590B/yr", color: "#f87171" },
             ].map((item, i) => (
-              <div key={i} className="flex justify-between items-center text-xs border-b border-border pb-2">
+              <div key={i} className="flex justify-between items-center text-xs text-muted-foreground border-b border-border pb-2">
                 <span className="text-muted-foreground">{item.label}</span>
                 <span className="font-medium" style={{ color: item.color }}>{item.value}</span>
               </div>
@@ -1009,7 +1009,7 @@ function MetricsTab() {
   const riskColors = { low: "#4ade80", medium: "#fbbf24", high: "#fb923c", critical: "#f87171" };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Metrics grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {SRISK_METRICS.map((m, i) => (
@@ -1097,7 +1097,7 @@ function MetricsTab() {
               <EWIBar key={i} row={row} />
             ))}
           </div>
-          <div className="flex gap-3 mt-4 text-xs flex-wrap">
+          <div className="flex gap-3 mt-4 text-xs text-muted-foreground flex-wrap">
             {["green", "amber", "red"].map(s => (
               <div key={s} className="flex items-center gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: statusColor(s) }} />
@@ -1132,7 +1132,7 @@ function MacroPruTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Tool list */}
       <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
@@ -1154,7 +1154,7 @@ function MacroPruTab() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div
-                      className="text-xs font-medium rounded px-2 py-1 font-mono"
+                      className="text-xs text-muted-foreground font-medium rounded px-2 py-1 font-mono"
                       style={{ backgroundColor: typeColor(tool.type) + "20", color: typeColor(tool.type), border: `1px solid ${typeColor(tool.type)}40` }}
                     >
                       {tool.acronym}
@@ -1199,7 +1199,7 @@ function MacroPruTab() {
         </CardHeader>
         <CardContent>
           <CCyBTimelineSVG />
-          <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
             {[
               { phase: "Build-up Phase (2013–2019)", color: "#3b82f6", desc: "Regulators raise CCyB as credit gap widens and asset prices rise" },
               { phase: "COVID Release (2020)", color: "#f87171", desc: "CCyB immediately released to 0% to maintain bank lending capacity" },
@@ -1227,7 +1227,7 @@ function MacroPruTab() {
             <div className="bg-muted/50 rounded p-3 font-mono text-xs text-green-300">
               LCR = HQLA / Net Cash Outflows (30-day) ≥ 100%
             </div>
-            <ul className="list-disc ml-4 space-y-1 text-xs">
+            <ul className="list-disc ml-4 space-y-1 text-xs text-muted-foreground">
               <li><strong className="text-muted-foreground">HQLA Level 1:</strong> Cash, central bank reserves, sovereign debt (0% haircut)</li>
               <li><strong className="text-muted-foreground">HQLA Level 2A:</strong> Agency/GSE debt, covered bonds (15% haircut, max 40% of HQLA)</li>
               <li><strong className="text-muted-foreground">HQLA Level 2B:</strong> Corporate bonds, equities (25–50% haircut, max 15%)</li>
@@ -1248,7 +1248,7 @@ function MacroPruTab() {
             <div className="bg-muted/50 rounded p-3 font-mono text-xs text-green-300">
               NSFR = Available Stable Funding / Required Stable Funding ≥ 100%
             </div>
-            <ul className="list-disc ml-4 space-y-1 text-xs">
+            <ul className="list-disc ml-4 space-y-1 text-xs text-muted-foreground">
               <li>ASF: Tier 1 equity + deposits with &gt;1yr maturity (100% stable)</li>
               <li>RSF: Assets weighted by liquidity (illiquid assets require more stable funding)</li>
               <li><strong className="text-muted-foreground">OTC clearing mandate (Dodd-Frank §723):</strong> standardized derivatives must clear through central counterparties (CCPs)</li>
@@ -1309,7 +1309,7 @@ function MacroPruTab() {
               { year: "2023", name: "Basel III Endgame", desc: "Proposed expanded capital requirements including operational risk; revised market risk (FRTB) charges", color: "#60a5fa" },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <div className="text-xs font-medium rounded px-2 py-1 shrink-0 mt-0.5"
+                <div className="text-xs text-muted-foreground font-medium rounded px-2 py-1 shrink-0 mt-0.5"
                   style={{ backgroundColor: item.color + "20", color: item.color, border: `1px solid ${item.color}40` }}>
                   {item.year}
                 </div>
@@ -1331,7 +1331,7 @@ function MacroPruTab() {
 // ---------------------------------------------------------------------------
 export default function SystemicRiskPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1358,7 +1358,7 @@ export default function SystemicRiskPage() {
             { label: "Shadow Banking", value: "$68T", color: "text-orange-400 border-orange-800 bg-orange-950/30" },
             { label: "LCR Requirement", value: "≥100%", color: "text-green-400 border-green-800 bg-green-950/30" },
           ].map((chip, i) => (
-            <div key={i} className={`rounded-full border px-3 py-1 text-xs flex items-center gap-1.5 ${chip.color}`}>
+            <div key={i} className={`rounded-full border px-3 py-1 text-xs text-muted-foreground flex items-center gap-1.5 ${chip.color}`}>
               <span className="text-muted-foreground">{chip.label}:</span>
               <span className="font-medium">{chip.value}</span>
             </div>

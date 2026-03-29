@@ -322,7 +322,7 @@ function DebtOverviewTab() {
   const barGap = 8;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
@@ -343,7 +343,7 @@ function DebtOverviewTab() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Debt Portfolio Builder */}
         <div className="lg:col-span-2">
           <Card className="bg-card border-border">
@@ -363,7 +363,7 @@ function DebtOverviewTab() {
                       {fmtPct(debt.rate)} APR
                     </Badge>
                   </div>
-                  <div className="grid grid-cols-3 gap-3 text-xs">
+                  <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
                     <div>
                       <div className="text-muted-foreground mb-1">Balance: {fmtK(debt.balance)}</div>
                       <Slider
@@ -457,7 +457,7 @@ function DebtOverviewTab() {
                 <text x="148" y="30" fill="#6b7280" fontSize="8">43%</text>
                 <text x="172" y="112" fill="#6b7280" fontSize="8">60%</text>
               </svg>
-              <div className="grid grid-cols-3 gap-1 text-center text-xs mt-1">
+              <div className="grid grid-cols-3 gap-1 text-center text-xs text-muted-foreground mt-1">
                 {[
                   { label: "Healthy", color: "text-green-400", range: "<28%" },
                   { label: "Caution", color: "text-amber-400", range: "28-43%" },
@@ -553,7 +553,7 @@ function DebtOverviewTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 gap-6 mb-4">
+          <div className="grid grid-cols-2 gap-3 mb-4">
             {[
               { label: "Minimum Payments", sim: minSim, color: "#ef4444" },
               { label: `Accelerated (+${fmt(extraPayment)}/mo)`, sim: accelSim, color: "#22c55e" },
@@ -646,7 +646,7 @@ function PayoffStrategiesTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Single debt calculator */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
@@ -656,7 +656,7 @@ function PayoffStrategiesTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
             <div>
               <div className="text-xs text-muted-foreground mb-1">Balance: {fmtK(balance)}</div>
               <Slider min={1000} max={100000} step={500} value={[balance]} onValueChange={([v]) => setBalance(v)} />
@@ -730,7 +730,7 @@ function PayoffStrategiesTab() {
       </Card>
 
       {/* Balance Transfer + Consolidation */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Balance Transfer */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
@@ -755,15 +755,15 @@ function PayoffStrategiesTab() {
               </div>
             </div>
             <div className="space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Transfer fee:</span>
                 <span className="text-red-400">{fmt(feeAmount)}</span>
               </div>
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Interest saved:</span>
                 <span className="text-green-400">{fmtK(Math.max(0, accelResult.totalInterest - btResult.totalInterest))}</span>
               </div>
-              <div className="flex justify-between text-xs border-t border-border pt-2">
+              <div className="flex justify-between text-xs text-muted-foreground border-t border-border pt-2">
                 <span className="text-muted-foreground font-medium">Net benefit:</span>
                 <span className={cn("font-medium", btSavings > 0 ? "text-green-400" : "text-red-400")}>
                   {btSavings > 0 ? "+" : ""}{fmtK(btSavings)}
@@ -793,17 +793,17 @@ function PayoffStrategiesTab() {
               <Slider min={5} max={25} step={0.25} value={[consolidationRate]} onValueChange={([v]) => setConsolidationRate(v)} />
             </div>
             <div className="space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Current total interest:</span>
                 <span className="text-red-400">{fmtK(accelResult.totalInterest)}</span>
               </div>
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Consolidated interest:</span>
                 <span className={consolidationRate < rate ? "text-green-400" : "text-red-400"}>
                   {fmtK(consResult.totalInterest)}
                 </span>
               </div>
-              <div className="flex justify-between text-xs border-t border-border pt-2">
+              <div className="flex justify-between text-xs text-muted-foreground border-t border-border pt-2">
                 <span className="text-muted-foreground font-medium">Total savings:</span>
                 <span className={cn("font-medium", consSavings > 0 ? "text-green-400" : "text-red-400")}>
                   {consSavings > 0 ? "+" : ""}{fmtK(consSavings)}
@@ -905,7 +905,7 @@ function MortgageOptimizationTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 15 vs 30 Year Comparison */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
@@ -955,7 +955,7 @@ function MortgageOptimizationTab() {
             ].map((item) => (
               <div key={item.term} className="p-4 rounded-lg bg-muted/60 border border-border/50">
                 <div className="text-sm font-semibold mb-3" style={{ color: item.color }}>{item.term}</div>
-                <div className="space-y-1 text-xs">
+                <div className="space-y-1 text-xs text-muted-foreground">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Monthly Payment</span>
                     <span className="text-foreground font-medium">{fmt(item.mp)}</span>
@@ -1020,7 +1020,7 @@ function MortgageOptimizationTab() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Refinance Break-Even */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
@@ -1049,11 +1049,11 @@ function MortgageOptimizationTab() {
               </div>
             </div>
             <div className="space-y-2 border-t border-border pt-3">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Monthly savings:</span>
                 <span className={monthlySavings > 0 ? "text-green-400" : "text-red-400"}>{fmt(monthlySavings)}</span>
               </div>
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Break-even:</span>
                 <span className="text-foreground font-medium">
                   {breakEvenMonths === Infinity ? "Never" : `${breakEvenMonths} months (${(breakEvenMonths / 12).toFixed(1)} yrs)`}
@@ -1123,7 +1123,7 @@ function MortgageOptimizationTab() {
             </svg>
 
             {/* Points analysis */}
-            <div className="p-3 rounded-lg bg-muted/60 border border-border/50 text-xs space-y-1">
+            <div className="p-3 rounded-lg bg-muted/60 border border-border/50 text-xs text-muted-foreground space-y-1">
               <div className="font-medium text-foreground mb-2">Mortgage Points Strategy</div>
               <div className="text-muted-foreground">1 point = 1% of loan amount ({fmtK(loanAmount * 0.01)})</div>
               <div className="text-muted-foreground">Typically reduces rate by 0.25% per point</div>
@@ -1220,8 +1220,8 @@ function CreditBehavioralTab() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Credit Score Donut */}
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
@@ -1265,7 +1265,7 @@ function CreditBehavioralTab() {
               <div className="space-y-2 flex-1">
                 {creditComponents.map((c) => (
                   <div key={c.label}>
-                    <div className="flex justify-between text-xs mb-0.5">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                       <span className="text-muted-foreground">{c.label}</span>
                       <span style={{ color: c.color }}>{c.pct}%</span>
                     </div>
@@ -1304,7 +1304,7 @@ function CreditBehavioralTab() {
 
             {/* Utilization gauge */}
             <div className="space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Utilization</span>
                 <span className={cn("font-medium", currentUtil < 10 ? "text-green-400" : currentUtil < 30 ? "text-primary" : currentUtil < 50 ? "text-amber-400" : "text-red-400")}>
                   {fmtPct(currentUtil)}
@@ -1337,7 +1337,7 @@ function CreditBehavioralTab() {
               </div>
             )}
 
-            <div className="grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground">
               {[
                 { range: "<10%", label: "Excellent", color: "text-green-400", score: "+50 pts" },
                 { range: "10–30%", label: "Good", color: "text-primary", score: "+20 pts" },
@@ -1410,7 +1410,7 @@ function CreditBehavioralTab() {
       </Card>
 
       {/* Debt Psychology + Net Worth Impact */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
@@ -1418,7 +1418,7 @@ function CreditBehavioralTab() {
               Debt Psychology — Snowball Science
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             <p className="text-muted-foreground leading-relaxed">
               Research by Harvard Business Review (2016) found that focusing on small debts first — the snowball method — increases the likelihood of complete debt payoff by <span className="text-primary font-medium">14%</span> compared to purely mathematical approaches.
             </p>
@@ -1559,7 +1559,7 @@ export default function DebtManagementPage() {
   void NOISE;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

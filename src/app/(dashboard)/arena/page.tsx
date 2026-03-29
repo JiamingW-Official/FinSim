@@ -141,18 +141,18 @@ export default function ArenaPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="border-b border-border px-4 py-5">
+      <div className="border-b border-border px-4 py-4">
         <div className="flex items-center gap-3">
           <motion.div
-            className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10"
+            className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10"
             initial={{ scale: 0, rotate: -15 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            <Crosshair className="h-5 w-5 text-primary" />
+            <Crosshair className="h-4.5 w-4.5 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-medium">Practice Arena</h1>
+            <h1 className="text-base font-medium">Practice Arena</h1>
             <p className="text-[11px] text-muted-foreground">
               Test your skills in simulated competitive challenges
             </p>
@@ -161,8 +161,8 @@ export default function ArenaPage() {
         </div>
 
         {/* Hero — Current rank + educational framing */}
-        <div className="mt-4 border-l-4 border-l-primary bg-card rounded-lg p-6">
-          <div className="flex items-center gap-4 mb-3">
+        <div className="mt-3 border-l-4 border-l-primary bg-card rounded-lg p-5">
+          <div className="flex items-center gap-4 mb-2">
             {totalMatches > 0 ? (
               <>
                 <ArenaRankBadge rank={rank} size="sm" />
@@ -210,7 +210,7 @@ export default function ArenaPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div className="flex-1 overflow-y-auto px-4 pt-6 pb-4">
         {activeTab === "modes" && (
           <>
             <ArenaLobby onSelectType={handleSelectType} />

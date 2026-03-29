@@ -199,7 +199,7 @@ function StatChip({ label, value, variant = "default" }: { label: string; value:
 function TrafficLight({ status }: { status: "ok" | "warn" | "fail" }) {
   return (
     <span className={cn(
-      "inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full",
+      "inline-flex items-center gap-1 text-xs text-muted-foreground font-medium px-2 py-0.5 rounded-full",
       status === "ok"   && "bg-emerald-500/15 text-emerald-400",
       status === "warn" && "bg-amber-500/15 text-amber-400",
       status === "fail" && "bg-red-500/15 text-red-400",
@@ -514,7 +514,7 @@ export default function LongShortPage() {
   }, [positions, metrics]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-4">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -549,11 +549,11 @@ export default function LongShortPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/30 p-1">
-          <TabsTrigger value="builder" className="text-xs">Portfolio Builder</TabsTrigger>
-          <TabsTrigger value="factor"  className="text-xs">Factor Exposure</TabsTrigger>
-          <TabsTrigger value="pnl"     className="text-xs">P&L Attribution</TabsTrigger>
-          <TabsTrigger value="pairs"   className="text-xs">Pair Analysis</TabsTrigger>
-          <TabsTrigger value="risk"    className="text-xs">Risk Dashboard</TabsTrigger>
+          <TabsTrigger value="builder" className="text-xs text-muted-foreground">Portfolio Builder</TabsTrigger>
+          <TabsTrigger value="factor"  className="text-xs text-muted-foreground">Factor Exposure</TabsTrigger>
+          <TabsTrigger value="pnl"     className="text-xs text-muted-foreground">P&L Attribution</TabsTrigger>
+          <TabsTrigger value="pairs"   className="text-xs text-muted-foreground">Pair Analysis</TabsTrigger>
+          <TabsTrigger value="risk"    className="text-xs text-muted-foreground">Risk Dashboard</TabsTrigger>
         </TabsList>
 
         {/* ── TAB 1: Portfolio Builder ────────────────────────────────────────── */}
@@ -571,7 +571,7 @@ export default function LongShortPage() {
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border/50">
                           <th className="text-left px-3 py-2 text-muted-foreground font-medium">Ticker</th>
@@ -620,7 +620,7 @@ export default function LongShortPage() {
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border/50">
                           <th className="text-left px-3 py-2 text-muted-foreground font-medium">Ticker</th>
@@ -668,7 +668,7 @@ export default function LongShortPage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <DonutChart longGross={metrics.longGross} shortGross={metrics.shortGross} />
-                  <div className="space-y-2 text-xs">
+                  <div className="space-y-2 text-xs text-muted-foreground">
                     {[
                       { label: "Gross Exposure",       value: `${metrics.grossExposure.toFixed(1)}%`, color: "text-foreground" },
                       { label: "Net Exposure",          value: `${metrics.netExposure > 0 ? "+" : ""}${metrics.netExposure.toFixed(1)}%`, color: metrics.netExposure > 0 ? "text-emerald-400" : "text-red-400" },
@@ -713,7 +713,7 @@ export default function LongShortPage() {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {factorExposures.map((f) => (
-                    <div key={f.factor} className="flex items-center justify-between text-xs">
+                    <div key={f.factor} className="flex items-center justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground w-20">{f.factor}</span>
                       <span className={cn("font-mono", f.portfolio >= 0 ? "text-primary" : "text-red-400")}>
                         {f.portfolio > 0 ? "+" : ""}{f.portfolio.toFixed(2)}
@@ -764,7 +764,7 @@ export default function LongShortPage() {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3">
                     {waterfallItems.map((it) => (
                       <div key={it.label} className={cn(
-                        "text-center px-2 py-1.5 rounded-lg border text-xs",
+                        "text-center px-2 py-1.5 rounded-lg border text-xs text-muted-foreground",
                         it.value >= 0 ? "border-emerald-500/20 bg-emerald-500/5" : "border-red-500/20 bg-red-500/5",
                       )}>
                         <div className="text-muted-foreground text-xs">{it.label}</div>
@@ -783,7 +783,7 @@ export default function LongShortPage() {
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm">Book Breakdown</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3 text-xs">
+                <CardContent className="space-y-3 text-xs text-muted-foreground">
                   <div className="flex justify-between items-center pb-2 border-b border-border/50">
                     <span className="text-muted-foreground flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 text-emerald-400" />Long Book P&L</span>
                     <span className={cn("font-medium", metrics.longPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -809,7 +809,7 @@ export default function LongShortPage() {
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm">Sharpe Decomposition</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2 text-xs">
+                <CardContent className="space-y-2 text-xs text-muted-foreground">
                   {[
                     { label: "Total Sharpe",      value: "1.42",  color: "text-emerald-400" },
                     { label: "Factor Sharpe",     value: "0.48",  color: "text-primary" },
@@ -852,7 +852,7 @@ export default function LongShortPage() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-xs",
+                          "text-xs text-muted-foreground",
                           pair.pnl >= 0 ? "text-emerald-400 border-emerald-500/30" : "text-red-400 border-red-500/30",
                         )}
                       >
@@ -881,7 +881,7 @@ export default function LongShortPage() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border/50">
                       <th className="text-left px-3 py-2 text-muted-foreground font-medium">Long</th>
@@ -924,7 +924,7 @@ export default function LongShortPage() {
                   VaR &amp; CVaR (95%)
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs">
+              <CardContent className="space-y-3 text-xs text-muted-foreground">
                 {[
                   { label: "Daily VaR (%)",   value: `${riskMetrics.varPct.toFixed(2)}%`,  color: "text-amber-400" },
                   { label: "Daily VaR ($)",   value: `$${(riskMetrics.varDollar * 1e6).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`, color: "text-amber-400" },
@@ -954,7 +954,7 @@ export default function LongShortPage() {
                   .sort((a, b) => b[1] - a[1])
                   .map(([sector, weight]) => (
                     <div key={sector} className="space-y-0.5">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground truncate max-w-[120px]">{sector}</span>
                         <span className={cn("font-medium", weight > 35 ? "text-red-400" : weight > 25 ? "text-amber-400" : "text-foreground")}>
                           {weight.toFixed(1)}%
@@ -979,7 +979,7 @@ export default function LongShortPage() {
                   Risk Checks
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-xs">
+              <CardContent className="space-y-2 text-xs text-muted-foreground">
                 {[
                   {
                     label: "Max Position Size",
@@ -1034,7 +1034,7 @@ export default function LongShortPage() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border/50">
                       <th className="text-left px-4 py-2.5 text-muted-foreground font-medium">Scenario</th>
@@ -1090,7 +1090,7 @@ export default function LongShortPage() {
                     const betaContrib = (p.weight / 100) * p.beta * (p.side === "long" ? 1 : -1);
                     const barPct = Math.abs(betaContrib) / 0.3 * 100;
                     return (
-                      <div key={`${p.ticker}-${p.side}`} className="flex items-center gap-2 text-xs">
+                      <div key={`${p.ticker}-${p.side}`} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span className={cn("w-12 font-medium", p.side === "long" ? "text-emerald-400" : "text-red-400")}>{p.ticker}</span>
                         <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                           <div

@@ -378,7 +378,7 @@ function InfoRow({ icon: Icon, title, body }: {
 // ── Tab 1: Insurance Company Portfolios ───────────────────────────────────────
 function PortfoliosTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="IG Bond Allocation" value="70–80%" sub="Life insurer avg" color="text-indigo-400" />
@@ -467,7 +467,7 @@ function AnnuitiesTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="US Annuity Market" value="$3.7T" sub="Total assets in-force" color="text-primary" />
@@ -483,7 +483,7 @@ function AnnuitiesTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Type", "Return", "Risk", "Liquidity Risk", "Tax", "Best For"].map((h) => (
@@ -501,7 +501,7 @@ function AnnuitiesTab() {
                       <td className="py-2 pr-3 font-medium text-foreground">{row.type}</td>
                       <td className="py-2 pr-3 text-muted-foreground">{row.returnType}</td>
                       <td className="py-2 pr-3">
-                        <Badge variant="outline" className={cn("text-xs",
+                        <Badge variant="outline" className={cn("text-xs text-muted-foreground",
                           row.risk === "Low" || row.risk.includes("Low") ? "border-emerald-500/40 text-emerald-400" :
                           row.risk === "High" ? "border-red-500/40 text-red-400" :
                           "border-amber-500/40 text-amber-400"
@@ -615,7 +615,7 @@ function AnnuitiesTab() {
 // ── Tab 3: Life Settlements & ILS ──────────────────────────────────────────────
 function SettlementsILSTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Life Settlement Market" value="$4B/yr" sub="Secondary policy sales" color="text-indigo-400" />
@@ -676,7 +676,7 @@ function SettlementsILSTab() {
                   { risk: "Premium Drag", desc: "Ongoing premiums must be paid or policy lapses (investor loses all)" },
                   { risk: "Regulatory Risk", desc: "Some states restrict life settlement transactions" },
                 ].map((r, i) => (
-                  <div key={i} className="text-xs">
+                  <div key={i} className="text-xs text-muted-foreground">
                     <span className="text-amber-400 font-medium">{r.risk}: </span>
                     <span className="text-muted-foreground">{r.desc}</span>
                   </div>
@@ -706,7 +706,7 @@ function SettlementsILSTab() {
               { name: "Collateralized Re", desc: "Private, fully collateralized reinsurance contract. Higher returns (8–15%) but less liquid than cat bonds. Forms largest segment of ILS market.", color: "text-primary" },
             ].map((t) => (
               <div key={t.name} className="bg-muted/50 rounded-md p-3 border border-border/30">
-                <div className={cn("text-xs font-medium mb-1", t.color)}>{t.name}</div>
+                <div className={cn("text-xs text-muted-foreground font-medium mb-1", t.color)}>{t.name}</div>
                 <div className="text-xs text-muted-foreground">{t.desc}</div>
               </div>
             ))}
@@ -744,7 +744,7 @@ function SettlementsILSTab() {
 // ── Tab 4: Insurance Stock Analysis ───────────────────────────────────────────
 function StockAnalysisTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Screening Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="CR Screen Threshold" value="&lt;95%" sub="Profitable underwriting" color="text-emerald-400" />
@@ -771,7 +771,7 @@ function StockAnalysisTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Company", "Ticker", "Type", "Comb. Ratio", "ROE", "P/B", "Rating"].map((h) => (
@@ -793,7 +793,7 @@ function StockAnalysisTab() {
                     </td>
                     <td className="py-2 pr-4 text-muted-foreground">{stock.pb.toFixed(1)}×</td>
                     <td className="py-2 pr-4">
-                      <Badge variant="outline" className={cn("text-xs",
+                      <Badge variant="outline" className={cn("text-xs text-muted-foreground",
                         stock.rating === "Buy" ? "border-emerald-500/40 text-emerald-400" :
                         stock.rating === "Watch" ? "border-amber-500/40 text-amber-400" :
                         "border-muted-foreground/40 text-muted-foreground"
@@ -898,7 +898,7 @@ export default function InsuranceInvestingPage() {
               { icon: Activity, label: "$112B+ ILS outstanding", color: "text-amber-400" },
               { icon: BookOpen, label: "Berkshire float model", color: "text-primary" },
             ].map(({ icon: Icon, label, color }) => (
-              <div key={label} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/60 border border-border/40 text-xs">
+              <div key={label} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/60 border border-border/40 text-xs text-muted-foreground">
                 <Icon className={cn("w-3 h-3", color)} />
                 <span className="text-muted-foreground">{label}</span>
               </div>

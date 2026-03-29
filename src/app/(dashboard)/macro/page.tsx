@@ -583,11 +583,11 @@ export default function MacroDashboardPage() {
   const fadeIn = { initial: { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.35 } };
 
   return (
-    <div className="p-6 space-y-6 min-h-screen bg-background text-foreground">
+    <div className="p-4 space-y-4 min-h-screen bg-background text-foreground">
       {/* Header */}
       <motion.div {...fadeIn} className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
             <Globe size={22} className="text-indigo-400" />
             Macroeconomics Dashboard
           </h1>
@@ -833,7 +833,7 @@ export default function MacroDashboardPage() {
                       { name: "Medical Care", contribution: 0.2, color: "bg-pink-500" },
                     ].map((comp) => (
                       <div key={comp.name}>
-                        <div className="flex justify-between text-xs mb-1">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-1">
                           <span className="text-muted-foreground">{comp.name}</span>
                           <span className={comp.contribution >= 0 ? "text-foreground" : "text-emerald-400"}>
                             {comp.contribution >= 0 ? "+" : ""}{comp.contribution.toFixed(1)}pp
@@ -979,7 +979,7 @@ export default function MacroDashboardPage() {
                         </div>
                         <div className="text-xs text-foreground font-medium w-10 text-right">{sec.growth}%</div>
                         <Badge
-                          className={`text-xs py-0 px-1.5 border ${
+                          className={`text-xs text-muted-foreground py-0 px-1.5 border ${
                             sec.pressure === "High"
                               ? "bg-red-500/10 text-red-400 border-red-500/30"
                               : sec.pressure === "Medium"
@@ -1110,7 +1110,7 @@ export default function MacroDashboardPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left py-2 text-muted-foreground font-medium">Country</th>
@@ -1202,7 +1202,7 @@ export default function MacroDashboardPage() {
                     {leadingIndicators.map((li) => {
                       const passed = li.direction === "above" ? li.value > li.threshold : li.value < li.threshold;
                       return (
-                        <div key={li.name} className="flex items-center justify-between text-xs">
+                        <div key={li.name} className="flex items-center justify-between text-xs text-muted-foreground">
                           <div className="flex items-center gap-2">
                             {passed ? (
                               <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
@@ -1249,7 +1249,7 @@ export default function MacroDashboardPage() {
                       { label: "Recession Probability", value: "18%", sub: "12-month ahead (NY Fed)", color: "amber" },
                     ].map((stat) => (
                       <div key={stat.label} className={`bg-${stat.color}-500/10 border border-${stat.color}-500/20 rounded-lg p-3`}>
-                        <div className={`text-xs text-${stat.color}-400 font-medium mb-0.5`}>{stat.label}</div>
+                        <div className={`text-xs text-muted-foreground text-${stat.color}-400 font-medium mb-0.5`}>{stat.label}</div>
                         <div className="text-lg font-medium text-foreground">{stat.value}</div>
                         <div className="text-xs text-muted-foreground">{stat.sub}</div>
                       </div>

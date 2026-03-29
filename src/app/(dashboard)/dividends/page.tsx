@@ -196,7 +196,7 @@ function DividendStocksTab() {
             key={k}
             onClick={() => toggleSort(k)}
             className={cn(
-              "px-3 py-1 rounded-full border text-xs font-medium transition-all",
+              "px-3 py-1 rounded-full border text-xs text-muted-foreground font-medium transition-all",
               sortKey === k
                 ? "bg-primary/20 border-primary/50 text-primary"
                 : "border-border/40 text-muted-foreground hover:border-border hover:text-foreground"
@@ -235,7 +235,7 @@ function DividendStocksTab() {
                       <div className="text-xs text-muted-foreground truncate max-w-[140px]">{r.name}</div>
                     </td>
                     <td className="px-3 py-2.5">
-                      <span className={cn("px-2 py-0.5 rounded text-xs font-medium border", sc.bg, sc.text, sc.border)}>
+                      <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground font-medium border", sc.bg, sc.text, sc.border)}>
                         {r.sector}
                       </span>
                     </td>
@@ -369,7 +369,7 @@ function IncomeCalculatorTab() {
   const portTicks = [0, 1, 2, 3, 4].map((i) => portStep * i);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Investment */}
@@ -585,7 +585,7 @@ function ExDividendCalendarTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Upcoming strip */}
       <div className="bg-muted/20 border border-border/40 rounded-lg p-4">
         <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
@@ -600,7 +600,7 @@ function ExDividendCalendarTab() {
               <div key={r.ticker} className="flex items-center gap-3 text-sm">
                 <span className="font-mono font-medium w-12 text-foreground">{r.ticker}</span>
                 <span className={cn(
-                  "px-2 py-0.5 rounded text-xs font-medium border",
+                  "px-2 py-0.5 rounded text-xs text-muted-foreground font-medium border",
                   SECTOR_COLORS[r.sector]?.bg,
                   SECTOR_COLORS[r.sector]?.text,
                   SECTOR_COLORS[r.sector]?.border,
@@ -623,7 +623,7 @@ function ExDividendCalendarTab() {
       </div>
 
       {/* Calendar grids */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {months.map(({ year, month, name }) => {
           const daysInMonth = getDaysInMonth(year, month);
           const firstDay = getFirstDayOfWeek(year, month);
@@ -634,7 +634,7 @@ function ExDividendCalendarTab() {
           return (
             <div key={name} className="bg-muted/20 border border-border/40 rounded-lg p-4">
               <h4 className="text-sm font-medium mb-3">{name}</h4>
-              <div className="grid grid-cols-7 gap-0.5 text-center text-xs mb-1">
+              <div className="grid grid-cols-7 gap-0.5 text-center text-xs text-muted-foreground mb-1">
                 {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
                   <div key={d} className="text-muted-foreground py-1 font-medium">{d}</div>
                 ))}
@@ -649,7 +649,7 @@ function ExDividendCalendarTab() {
                     <div
                       key={i}
                       className={cn(
-                        "rounded p-0.5 min-h-[44px] text-xs",
+                        "rounded p-0.5 min-h-[44px] text-xs text-muted-foreground",
                         isToday ? "bg-primary/20 border border-primary/40" : "hover:bg-muted/30",
                         (exDivStocks.length > 0 || payStocks.length > 0) ? "bg-muted/20" : ""
                       )}
@@ -783,7 +783,7 @@ function DividendGrowthTab() {
             key={d.ticker}
             onClick={() => setSelectedTicker(d.ticker)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-medium border transition-all",
+              "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-all",
               selectedTicker === d.ticker
                 ? "bg-primary/20 border-primary/50 text-primary"
                 : "border-border/40 text-muted-foreground hover:border-border hover:text-foreground"
@@ -921,7 +921,7 @@ function DividendGrowthTab() {
           </div>
           <div className="text-right">
             <div className={cn("text-2xl font-bold", scoreColor)}>{score}<span className="text-sm text-muted-foreground">/10</span></div>
-            <div className={cn("text-xs font-medium", scoreColor)}>
+            <div className={cn("text-xs text-muted-foreground font-medium", scoreColor)}>
               {score >= 8 ? "Excellent" : score >= 6 ? "Good" : score >= 4 ? "Fair" : "Caution"}
             </div>
           </div>
@@ -939,7 +939,7 @@ function DividendGrowthTab() {
             const isPositive = d.includes("Low") || d.includes("Strong") || d.includes("Good") || d.includes("Very low") || d.includes("Healthy") || d.includes("proven");
             const isNegative = d.includes("risk") || d.includes("Risk") || d.includes("High") || d.includes("Weak") || d.includes("exceed");
             return (
-              <div key={i} className="flex items-start gap-2 text-xs">
+              <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                 {isNegative ? (
                   <AlertTriangle className="w-3.5 h-3.5 text-red-400 mt-0.5 flex-shrink-0" />
                 ) : isPositive ? (
@@ -961,7 +961,7 @@ function DividendGrowthTab() {
 
 export default function DividendsPage() {
   return (
-    <div className="p-4 sm:p-6 space-y-4">
+    <div className="p-4 sm:p-4 space-y-4">
       {/* Header — Hero */}
       <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-center justify-between">
         <div>
@@ -976,27 +976,27 @@ export default function DividendsPage() {
       {/* Tabs */}
       <Tabs defaultValue="stocks" className="mt-8">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="stocks" className="flex items-center gap-1.5 text-xs sm:text-sm">
+          <TabsTrigger value="stocks" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
             <TrendingUp className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Dividend Stocks</span>
             <span className="sm:hidden">Stocks</span>
           </TabsTrigger>
-          <TabsTrigger value="calculator" className="flex items-center gap-1.5 text-xs sm:text-sm">
+          <TabsTrigger value="calculator" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
             <DollarSign className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Income Calculator</span>
             <span className="sm:hidden">Calc</span>
           </TabsTrigger>
-          <TabsTrigger value="calendar" className="flex items-center gap-1.5 text-xs sm:text-sm">
+          <TabsTrigger value="calendar" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
             <Calendar className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Ex-Div Calendar</span>
             <span className="sm:hidden">Calendar</span>
           </TabsTrigger>
-          <TabsTrigger value="analysis" className="flex items-center gap-1.5 text-xs sm:text-sm">
+          <TabsTrigger value="analysis" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
             <BarChart3 className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Growth Analysis</span>
             <span className="sm:hidden">Growth</span>
           </TabsTrigger>
-          <TabsTrigger value="tracker" className="flex items-center gap-1.5 text-xs sm:text-sm">
+          <TabsTrigger value="tracker" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
             <Activity className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Income Tracker</span>
             <span className="sm:hidden">Tracker</span>

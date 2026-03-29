@@ -231,7 +231,7 @@ function FactorPerfTab() {
   const maxRet = Math.max(...FACTORS.map((f) => Math.abs(f[period])));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Factors Tracked" value="5" sub="MSCI definitions" />
         <StatCard label="Best Sharpe" value="0.93" sub="Low Volatility" highlight="pos" />
@@ -246,7 +246,7 @@ function FactorPerfTab() {
             key={p}
             onClick={() => setPeriod(p)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
+              "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-colors",
               period === p
                 ? "bg-indigo-600 text-foreground"
                 : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
@@ -357,7 +357,7 @@ function ExposureAnalyzerTab() {
   const [selected, setSelected] = useState<StockLoading | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Factor Loading Heatmap"
@@ -391,7 +391,7 @@ function ExposureAnalyzerTab() {
                     return (
                       <td key={k} className="py-2.5 px-3 text-center">
                         <span
-                          className="inline-block px-2 py-0.5 rounded text-xs font-bold tabular-nums"
+                          className="inline-block px-2 py-0.5 rounded text-xs text-muted-foreground font-bold tabular-nums"
                           style={{
                             background: heatColor(z) + "30",
                             color: heatColor(z),
@@ -500,7 +500,7 @@ function FactorCycleTab() {
   const monthLabels = [0, 6, 12, 18, 24, 30, 35];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="36-Month Rolling Factor Performance"
@@ -513,7 +513,7 @@ function FactorCycleTab() {
             <button
               key={f.name}
               className={cn(
-                "flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all",
+                "flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs text-muted-foreground font-medium transition-all",
                 hoveredFactor === null || hoveredFactor === f.name
                   ? "opacity-100"
                   : "opacity-30",
@@ -650,7 +650,7 @@ function TiltBuilderTab() {
   const sharpeDelta = sharpe - BASE_SHARPE;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard
           label="Expected Return"
@@ -778,7 +778,7 @@ function FamaFrenchTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Fama-French 3-Factor Regression"
@@ -796,7 +796,7 @@ function FamaFrenchTab() {
               key={t.ticker}
               onClick={() => setSelectedTicker(t)}
               className={cn(
-                "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
+                "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-colors",
                 selectedTicker.ticker === t.ticker
                   ? "bg-indigo-600 text-foreground"
                   : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
@@ -860,7 +860,7 @@ function FamaFrenchTab() {
                           />
                         </div>
                         <span className="text-xs text-muted-foreground">{t.ticker}</span>
-                        <span className={cn("text-xs font-medium", coefDef.colorFn(val))}>
+                        <span className={cn("text-xs text-muted-foreground font-medium", coefDef.colorFn(val))}>
                           {val >= 0 ? "+" : ""}{val.toFixed(1)}
                         </span>
                       </div>
@@ -925,7 +925,7 @@ function SmartBetaTab() {
     v >= 0.6 ? "text-emerald-400" : v >= 0.3 ? "text-amber-400" : v <= -0.3 ? "text-red-400" : "text-muted-foreground";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="ETFs Analyzed" value="6" sub="US Smart Beta universe" />
         <StatCard label="Avg Expense Ratio" value="0.17%" sub="vs 0.03% plain S&P" highlight="neutral" />
@@ -1035,7 +1035,7 @@ export default function FactorInvestingPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="p-6 space-y-6 min-h-screen"
+      className="p-4 space-y-4 min-h-screen"
     >
       {/* Header */}
       <div className="flex items-start justify-between">
@@ -1107,27 +1107,27 @@ export default function FactorInvestingPage() {
       {/* Main tabs */}
       <Tabs defaultValue="performance" className="mt-8">
         <TabsList className="bg-foreground/5 border border-border w-full flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="performance" className="text-xs">
+          <TabsTrigger value="performance" className="text-xs text-muted-foreground">
             <BarChart3 className="h-3 w-3 mr-1" />
             Performance
           </TabsTrigger>
-          <TabsTrigger value="exposure" className="text-xs">
+          <TabsTrigger value="exposure" className="text-xs text-muted-foreground">
             <Layers className="h-3 w-3 mr-1" />
             Exposure
           </TabsTrigger>
-          <TabsTrigger value="cycle" className="text-xs">
+          <TabsTrigger value="cycle" className="text-xs text-muted-foreground">
             <Activity className="h-3 w-3 mr-1" />
             Factor Cycle
           </TabsTrigger>
-          <TabsTrigger value="builder" className="text-xs">
+          <TabsTrigger value="builder" className="text-xs text-muted-foreground">
             <Target className="h-3 w-3 mr-1" />
             Tilt Builder
           </TabsTrigger>
-          <TabsTrigger value="famafrench" className="text-xs">
+          <TabsTrigger value="famafrench" className="text-xs text-muted-foreground">
             <TrendingUp className="h-3 w-3 mr-1" />
             Fama-French
           </TabsTrigger>
-          <TabsTrigger value="smartbeta" className="text-xs">
+          <TabsTrigger value="smartbeta" className="text-xs text-muted-foreground">
             <DollarSign className="h-3 w-3 mr-1" />
             Smart Beta ETFs
           </TabsTrigger>

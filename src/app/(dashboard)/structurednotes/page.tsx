@@ -975,7 +975,7 @@ export default function StructuredNotesPage() {
   const selectedProductData = PRODUCTS.find((p) => p.id === selectedProduct) ?? PRODUCTS[0];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <div className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div className="flex items-center gap-3 mb-2">
@@ -1123,7 +1123,7 @@ export default function StructuredNotesPage() {
                     </div>
                     <span
                       className={cn(
-                        "text-xs px-2 py-0.5 rounded-full font-medium",
+                        "text-xs text-muted-foreground px-2 py-0.5 rounded-full font-medium",
                         product.risk === "Low"
                           ? "bg-emerald-500/15 text-emerald-400"
                           : product.risk === "Medium"
@@ -1272,7 +1272,7 @@ export default function StructuredNotesPage() {
                 </h3>
 
                 <div className="space-y-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Participation Rate</span>
                     <span className="font-mono text-primary">
                       {participationRate}%
@@ -1292,7 +1292,7 @@ export default function StructuredNotesPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Barrier Level</span>
                     <span className="font-mono text-amber-400">
                       {barrierLevel}%
@@ -1313,7 +1313,7 @@ export default function StructuredNotesPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Capital Protection</span>
                     <span className="font-mono text-emerald-400">
                       {capitalProtection}%
@@ -1384,7 +1384,7 @@ export default function StructuredNotesPage() {
                   ].map((m) => (
                     <div
                       key={m.label}
-                      className="flex justify-between text-xs"
+                      className="flex justify-between text-xs text-muted-foreground"
                     >
                       <span className="text-muted-foreground">{m.label}</span>
                       <span className={cn("font-mono font-medium", m.color)}>
@@ -1446,7 +1446,7 @@ export default function StructuredNotesPage() {
                 </h3>
 
                 <div className="space-y-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Risk-Free Rate</span>
                     <span className="font-mono text-emerald-400">
                       {pricingYield.toFixed(1)}%
@@ -1467,7 +1467,7 @@ export default function StructuredNotesPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Credit Spread</span>
                     <span className="font-mono text-red-400">
                       {creditSpreadBps} bps
@@ -1488,7 +1488,7 @@ export default function StructuredNotesPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Participation Rate</span>
                     <span className="font-mono text-primary">
                       {participationRate}%
@@ -1537,7 +1537,7 @@ export default function StructuredNotesPage() {
                       sign: "−",
                     },
                   ].map((item) => (
-                    <div key={item.label} className="flex justify-between text-xs">
+                    <div key={item.label} className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">{item.label}</span>
                       <span
                         className="font-mono font-medium"
@@ -1554,7 +1554,7 @@ export default function StructuredNotesPage() {
                       {fairValue.toFixed(2)}
                     </span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Offer Price</span>
                     <span className="font-mono text-foreground">
                       {offerPrice.toFixed(2)}
@@ -1562,7 +1562,7 @@ export default function StructuredNotesPage() {
                   </div>
                   <div
                     className={cn(
-                      "flex justify-between text-xs font-medium",
+                      "flex justify-between text-xs text-muted-foreground font-medium",
                       discount > 0 ? "text-red-400" : "text-emerald-400"
                     )}
                   >
@@ -1701,7 +1701,7 @@ export default function StructuredNotesPage() {
                 Investor Suitability Matrix
               </h3>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left py-2 px-2 text-muted-foreground font-medium">

@@ -92,7 +92,7 @@ function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
   return (
     <span
       className={cn(
-        "inline-block rounded-full px-2 py-0.5 text-xs font-medium",
+        "inline-block rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium",
         cls[color] ?? cls.zinc
       )}
     >
@@ -347,7 +347,7 @@ function ValuationMethodsTab() {
             <div
               key={i}
               className={cn(
-                "flex items-center justify-between rounded-lg px-3 py-2 text-xs",
+                "flex items-center justify-between rounded-lg px-3 py-2 text-xs text-muted-foreground",
                 row.bold ? "border border-border bg-foreground/10" : "bg-foreground/[0.03]"
               )}
             >
@@ -379,7 +379,7 @@ function ValuationMethodsTab() {
           sub="All share classes included to compute true per-share value (illustrative example)"
         />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium">Share Class</th>
@@ -446,7 +446,7 @@ function ValuationMethodsTab() {
       {/* Filing Process */}
       <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="SEC S-1 Registration & JOBS Act Confidential Filing" sub="IPO regulatory process overview" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <p className="text-xs font-medium text-muted-foreground mb-3">Traditional S-1 Filing Timeline</p>
             <div className="space-y-2">
@@ -458,7 +458,7 @@ function ValuationMethodsTab() {
                 { step: "5", label: "Pricing night", time: "Day before trading", note: "Final S-1 (424B4) filed" },
                 { step: "6", label: "Trading commences", time: "IPO day", note: "Stabilization period begins" },
               ].map((s) => (
-                <div key={s.step} className="flex gap-3 text-xs">
+                <div key={s.step} className="flex gap-3 text-xs text-muted-foreground">
                   <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-foreground flex-shrink-0">
                     {s.step}
                   </div>
@@ -683,7 +683,7 @@ function BookbuildingTab() {
           sub="Underwriters allocate strategically to maximize long-term investor relations"
         />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium w-8">Rank</th>
@@ -762,7 +762,7 @@ function BookbuildingTab() {
       <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="NYSE vs. NASDAQ Listing Requirements" sub="Minimum standards to list on US exchanges" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium">Requirement</th>
@@ -796,7 +796,7 @@ function BookbuildingTab() {
       <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Dual-Class Share Structures" sub="Founders retain voting control while selling economic interest" />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium">Company</th>
@@ -1098,7 +1098,7 @@ function UnderpricingTab() {
           sub="IPO activity is highly cyclical; sector-specific underpricing varies significantly"
         />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium">Period</th>
@@ -1225,7 +1225,7 @@ function PostIPOTab() {
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
           {lockupTimeline.map((ev) => (
-            <div key={ev.day} className="flex gap-3 text-xs">
+            <div key={ev.day} className="flex gap-3 text-xs text-muted-foreground">
               <div className="w-12 flex-shrink-0 font-mono text-muted-foreground">D+{ev.day}</div>
               <div>
                 <span className="text-foreground font-medium">{ev.event}</span>
@@ -1283,7 +1283,7 @@ function PostIPOTab() {
           sub="Three routes to public market liquidity; each with distinct trade-offs"
         />
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium">Feature</th>
@@ -1329,7 +1329,7 @@ function PostIPOTab() {
           sub="Quiet period ends Day 25; MiFID II unbundling has reduced sell-side initiation in Europe"
         />
         <div className="overflow-x-auto mb-4">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 text-left text-muted-foreground font-medium">Company</th>
@@ -1486,16 +1486,16 @@ export default function IPOPricingPage() {
         {/* Tabs */}
         <Tabs defaultValue="valuation" className="mt-8">
           <TabsList className="grid w-full grid-cols-4 mb-6 bg-card border border-border">
-            <TabsTrigger value="valuation" className="text-xs">
+            <TabsTrigger value="valuation" className="text-xs text-muted-foreground">
               Valuation Methods
             </TabsTrigger>
-            <TabsTrigger value="bookbuilding" className="text-xs">
+            <TabsTrigger value="bookbuilding" className="text-xs text-muted-foreground">
               Bookbuilding
             </TabsTrigger>
-            <TabsTrigger value="underpricing" className="text-xs">
+            <TabsTrigger value="underpricing" className="text-xs text-muted-foreground">
               Underpricing
             </TabsTrigger>
-            <TabsTrigger value="postipo" className="text-xs">
+            <TabsTrigger value="postipo" className="text-xs text-muted-foreground">
               Post-IPO
             </TabsTrigger>
           </TabsList>

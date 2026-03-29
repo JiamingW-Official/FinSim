@@ -74,7 +74,7 @@ function TypeBadge({ type }: { type: "continuation" | "reversal" }) {
   return (
     <Badge
       className={cn(
-        "text-xs",
+        "text-xs text-muted-foreground",
         type === "continuation"
           ? "bg-primary/15 text-primary border-border"
           : "bg-amber-500/15 text-amber-400 border-amber-500/20"
@@ -350,7 +350,7 @@ function DictionaryTab() {
               onClick={() => scrollTo(letter)}
               disabled={!presentLetters.has(letter)}
               className={cn(
-                "h-7 w-7 rounded text-xs font-medium transition-colors",
+                "h-7 w-7 rounded text-xs text-muted-foreground font-medium transition-colors",
                 presentLetters.has(letter)
                   ? "bg-muted hover:bg-accent text-foreground/80 cursor-pointer"
                   : "text-muted-foreground/25 cursor-default"
@@ -369,7 +369,7 @@ function DictionaryTab() {
       </p>
 
       {/* Groups */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-3">
         {Object.keys(grouped)
           .sort()
           .map((letter) => (
@@ -391,7 +391,7 @@ function DictionaryTab() {
                     >
                       <div className="flex items-start justify-between gap-2">
                         <span className="text-sm font-semibold leading-tight">{entry.term}</span>
-                        <Badge className={cn("text-xs shrink-0", cat.color)}>
+                        <Badge className={cn("text-xs text-muted-foreground shrink-0", cat.color)}>
                           {cat.label}
                         </Badge>
                       </div>
@@ -438,7 +438,7 @@ function IndicatorsTab() {
             key={f}
             onClick={() => setFilter(f)}
             className={cn(
-              "rounded-full px-3 py-1 text-xs font-medium border transition-colors",
+              "rounded-full px-3 py-1 text-xs text-muted-foreground font-medium border transition-colors",
               filter === f
                 ? "bg-primary text-primary-foreground border-primary"
                 : "border-border/50 text-muted-foreground hover:border-primary/50 hover:text-foreground"
@@ -637,7 +637,7 @@ function CandlestickPatternsTab() {
             key={f}
             onClick={() => setFilter(f)}
             className={cn(
-              "rounded-full px-3 py-1 text-xs font-medium border transition-colors capitalize",
+              "rounded-full px-3 py-1 text-xs text-muted-foreground font-medium border transition-colors capitalize",
               filter === f
                 ? "bg-primary text-primary-foreground border-primary"
                 : "border-border/50 text-muted-foreground hover:border-primary/50 hover:text-foreground"
@@ -676,7 +676,7 @@ function CandlestickPatternsTab() {
                   )}
                 </div>
                 <div className="flex items-center gap-2 mb-3">
-                  <Badge className={cn("text-xs", typeColor)}>
+                  <Badge className={cn("text-xs text-muted-foreground", typeColor)}>
                     {pattern.type}
                   </Badge>
                   <div className="flex items-center gap-1 ml-auto">
@@ -748,7 +748,7 @@ function MarketWisdomTab() {
             key={c}
             onClick={() => setFilter(c)}
             className={cn(
-              "rounded-full px-3 py-1 text-xs font-medium border transition-colors capitalize",
+              "rounded-full px-3 py-1 text-xs text-muted-foreground font-medium border transition-colors capitalize",
               filter === c
                 ? "bg-primary text-primary-foreground border-primary"
                 : "border-border/50 text-muted-foreground hover:border-primary/50 hover:text-foreground"
@@ -767,7 +767,7 @@ function MarketWisdomTab() {
             </p>
             <p className="text-xs text-primary font-medium">— {wisdom.author}</p>
             <div className="mt-1 pt-2 border-t border-border/30">
-              <Badge className={cn("text-xs mb-1.5", categoryColors[wisdom.category])}>
+              <Badge className={cn("text-xs text-muted-foreground mb-1.5", categoryColors[wisdom.category])}>
                 {wisdom.category}
               </Badge>
               <p className="text-xs text-muted-foreground leading-relaxed">{wisdom.lesson}</p>
@@ -819,10 +819,10 @@ function EconomicIndicatorsTab() {
               <div className="flex flex-col gap-1">
                 <span className="text-sm font-medium">{ind.name}</span>
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <Badge className={cn("text-xs", frequencyBadgeColor(ind.frequency))}>
+                  <Badge className={cn("text-xs text-muted-foreground", frequencyBadgeColor(ind.frequency))}>
                     {ind.frequency}
                   </Badge>
-                  <Badge className={cn("text-xs", leadingBadgeColor(ind.leadingOrLagging))}>
+                  <Badge className={cn("text-xs text-muted-foreground", leadingBadgeColor(ind.leadingOrLagging))}>
                     {ind.leadingOrLagging}
                   </Badge>
                   <span className="text-[11px] text-muted-foreground/60">{ind.source}</span>

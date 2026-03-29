@@ -322,7 +322,7 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
 
         {bars.map((bar) => (
           <div key={bar.label} className="space-y-1.5">
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">{bar.label}</span>
               <span className="text-foreground font-mono">{bar.value.toFixed(2)}%</span>
             </div>
@@ -690,7 +690,7 @@ function RiskFactorsPanel() {
                   <span className="text-sm text-foreground">{rf.label}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", sc.bg, sc.text)}>
+                  <span className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded-full font-medium", sc.bg, sc.text)}>
                     {rf.severity}
                   </span>
                   {isOpen ? (
@@ -954,12 +954,12 @@ export default function MergerArbPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
     >
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
             <TrendingDown className="w-6 h-6 text-primary" />
             Merger Arbitrage
           </h1>
@@ -984,16 +984,16 @@ export default function MergerArbPage() {
       {/* Main tabs */}
       <Tabs defaultValue="dashboard" className="mt-8">
         <TabsList className="bg-card border border-border">
-          <TabsTrigger value="dashboard" className="data-[state=active]:bg-muted text-xs sm:text-sm">
+          <TabsTrigger value="dashboard" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
             Deal Dashboard
           </TabsTrigger>
-          <TabsTrigger value="analysis" className="data-[state=active]:bg-muted text-xs sm:text-sm">
+          <TabsTrigger value="analysis" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
             Analysis
           </TabsTrigger>
-          <TabsTrigger value="risk" className="data-[state=active]:bg-muted text-xs sm:text-sm">
+          <TabsTrigger value="risk" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
             Risk Factors
           </TabsTrigger>
-          <TabsTrigger value="calculator" className="data-[state=active]:bg-muted text-xs sm:text-sm">
+          <TabsTrigger value="calculator" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
             Calculator
           </TabsTrigger>
         </TabsList>
@@ -1047,7 +1047,7 @@ export default function MergerArbPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="text-muted-foreground border-b border-border text-left">
                       <th className="py-2 pr-4 font-medium">Target</th>
@@ -1161,12 +1161,12 @@ export default function MergerArbPage() {
                 variant={selectedDealId === deal.id ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedDealId(deal.id)}
-                className="text-xs"
+                className="text-xs text-muted-foreground"
               >
                 {deal.targetTicker}
                 <span
                   className={cn(
-                    "ml-1.5 text-xs",
+                    "ml-1.5 text-xs text-muted-foreground",
                     selectedDealId === deal.id ? "text-foreground/80" : "text-emerald-400"
                   )}
                 >

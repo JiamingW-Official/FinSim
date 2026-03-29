@@ -419,7 +419,7 @@ function ReturnBadge({ value }: { value: number }) {
   return (
     <span
       className={cn(
-        "text-xs font-mono font-semibold tabular-nums",
+        "text-xs text-muted-foreground font-mono font-semibold tabular-nums",
         pos ? "text-emerald-400" : "text-red-400"
       )}
     >
@@ -437,7 +437,7 @@ function ConvictionBadge({ level }: { level: Conviction }) {
       ? "bg-yellow-900/60 text-yellow-300 border-yellow-700/50"
       : "bg-muted text-muted-foreground border-border/50";
   return (
-    <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full border", cls)}>
+    <span className={cn("text-xs text-muted-foreground font-medium px-2 py-0.5 rounded-full border", cls)}>
       {level}
     </span>
   );
@@ -451,7 +451,7 @@ function RegimeDashboard() {
   const current = REGIMES.find((r) => r.name === CURRENT_REGIME)!;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 2×2 Quadrant */}
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-3">
@@ -518,7 +518,7 @@ function RegimeDashboard() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {SIGNAL_STRENGTH.map((sig) => (
               <div key={sig.label}>
-                <div className="flex justify-between text-xs mb-1">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
                   <span className="text-muted-foreground">{sig.label}</span>
                   <span className="text-muted-foreground font-mono">{sig.value}/100</span>
                 </div>
@@ -545,7 +545,7 @@ function RegimeDashboard() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50">
                 <th className="text-left text-muted-foreground py-2 pr-4 font-medium">Asset</th>
@@ -586,7 +586,7 @@ function RegimeDashboard() {
 function LeadingIndicators() {
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-3 gap-3 text-xs text-center mb-2">
+      <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground text-center mb-2">
         {(["green", "yellow", "red"] as SignalColor[]).map((c) => {
           const label =
             c === "green" ? "Expansion" : c === "yellow" ? "Caution" : "Contraction";
@@ -638,7 +638,7 @@ function LeadingIndicators() {
                         </span>
                         <span
                           className={cn(
-                            "text-xs font-mono",
+                            "text-xs text-muted-foreground font-mono",
                             ind.change.startsWith("+") || ind.change.startsWith("-8")
                               ? "text-emerald-400"
                               : "text-muted-foreground"
@@ -799,7 +799,7 @@ function RateCyclePlaybook() {
   const info = PHASE_INFO[selectedPhase];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Cycle Wheel + Phase Selector */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-card/60 border-border/50">
@@ -864,7 +864,7 @@ function RateCyclePlaybook() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/50">
                 <th className="text-left text-muted-foreground py-2 pr-4 font-medium">Asset</th>
@@ -916,7 +916,7 @@ function MagnitudeBadge({ magnitude }: { magnitude: CrossAssetSignal["magnitude"
       ? "bg-muted text-primary border-border"
       : "bg-muted text-muted-foreground border-border/50";
   return (
-    <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full border capitalize", cls)}>
+    <span className={cn("text-xs text-muted-foreground font-medium px-2 py-0.5 rounded-full border capitalize", cls)}>
       {magnitude}
     </span>
   );
@@ -959,7 +959,7 @@ function CrossAssetSignals() {
                       <span className="text-sm font-medium text-foreground">{sig.driver}</span>
                       <span
                         className={cn(
-                          "text-xs font-medium px-2 py-0.5 rounded-full",
+                          "text-xs text-muted-foreground font-medium px-2 py-0.5 rounded-full",
                           sig.direction === "up"
                             ? "bg-emerald-900/60 text-emerald-300"
                             : "bg-red-900/60 text-red-300"
@@ -981,7 +981,7 @@ function CrossAssetSignals() {
                         return (
                           <span
                             key={a.name}
-                            className={cn("text-xs px-2 py-1 rounded-md border flex items-center gap-0.5", cls)}
+                            className={cn("text-xs text-muted-foreground px-2 py-1 rounded-md border flex items-center gap-0.5", cls)}
                           >
                             <EffectChip effect={a.effect} />
                             {a.name}
@@ -1053,7 +1053,7 @@ function CrossAssetSignals() {
                       </div>
                       <span
                         className={cn(
-                          "text-xs font-mono w-10 text-right shrink-0",
+                          "text-xs text-muted-foreground font-mono w-10 text-right shrink-0",
                           pos ? "text-emerald-400" : "text-red-400"
                         )}
                       >
@@ -1115,7 +1115,7 @@ function TradeIdeas() {
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     <div
                       className={cn(
-                        "mt-0.5 rounded-md border px-2 py-0.5 text-xs font-medium uppercase shrink-0",
+                        "mt-0.5 rounded-md border px-2 py-0.5 text-xs text-muted-foreground font-medium uppercase shrink-0",
                         dirBg,
                         dirColor
                       )}
@@ -1169,7 +1169,7 @@ function TradeIdeas() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2 text-xs">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <Zap className="w-3.5 h-3.5 text-yellow-400 shrink-0" />
                           <span className="text-muted-foreground">
                             <span className="text-muted-foreground">Catalyst: </span>
@@ -1268,7 +1268,7 @@ export default function MacroTradingPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div>

@@ -925,10 +925,10 @@ function QuestionCard({
           <span className="text-xs text-muted-foreground">
             Q{currentIdx + 1}/{totalQuestions}
           </span>
-          <span className={cn("text-xs border rounded px-1.5 py-0.5", CATEGORY_COLORS[question.category])}>
+          <span className={cn("text-xs text-muted-foreground border rounded px-1.5 py-0.5", CATEGORY_COLORS[question.category])}>
             {question.category}
           </span>
-          <span className={cn("text-xs font-medium", DIFFICULTY_COLOR[question.difficulty])}>
+          <span className={cn("text-xs text-muted-foreground font-medium", DIFFICULTY_COLOR[question.difficulty])}>
             {DIFFICULTY_LABEL[question.difficulty]}
           </span>
           {question.type === "calc" && (
@@ -1110,17 +1110,17 @@ function FinalScoreScreen({
           {grade}
         </motion.div>
         <p className="text-muted-foreground text-sm">{label}</p>
-        <div className="flex items-center justify-center gap-6 mt-4">
+        <div className="flex items-center justify-center gap-3 mt-4">
           <div className="text-center">
             <div className="text-2xl font-bold text-foreground">{correct}/{answers.length}</div>
             <div className="text-xs text-muted-foreground">Correct</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-yellow-400">{totalPoints}</div>
+            <div className="text-lg font-medium text-yellow-400">{totalPoints}</div>
             <div className="text-xs text-muted-foreground">Points</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-primary">+{xpGained}</div>
+            <div className="text-lg font-medium text-primary">+{xpGained}</div>
             <div className="text-xs text-muted-foreground">XP</div>
           </div>
         </div>
@@ -1245,7 +1245,7 @@ function DailyChallengeTab() {
 
   if (phase === "idle") {
     return (
-      <div className="flex flex-col items-center gap-6 py-8">
+      <div className="flex flex-col items-center gap-3 py-8">
         <div className="text-center">
           <div className="text-2xl mb-3">
             <Brain className="h-12 w-12 text-primary mx-auto" />
@@ -1256,7 +1256,7 @@ function DailyChallengeTab() {
           </p>
           <div className="flex items-center justify-center gap-4 mt-4">
             {(["Fundamentals", "Options", "Macro"] as Category[]).map((cat) => (
-              <span key={cat} className={cn("text-xs border rounded px-2 py-1", CATEGORY_COLORS[cat])}>
+              <span key={cat} className={cn("text-xs text-muted-foreground border rounded px-2 py-1", CATEGORY_COLORS[cat])}>
                 {cat}
               </span>
             ))}
@@ -1382,7 +1382,7 @@ function WeeklyLeagueTab() {
             <div>
               <div className="text-xs text-muted-foreground mb-0.5">Your Standing</div>
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-foreground">#{userPlayer.rank}</span>
+                <span className="text-lg font-medium text-foreground">#{userPlayer.rank}</span>
                 <span className={cn("text-sm font-semibold", TIER_COLOR[userPlayer.tier])}>
                   {userPlayer.tier}
                 </span>
@@ -1427,7 +1427,7 @@ function WeeklyLeagueTab() {
               )}
             >
               <span className="text-xs font-medium text-muted-foreground">{s.day}</span>
-              <span className={cn("text-xs",
+              <span className={cn("text-xs text-muted-foreground",
                 s.status === "done" ? "text-green-400" :
                 s.status === "today" ? "text-primary" : "text-muted-foreground"
               )}>
@@ -1486,7 +1486,7 @@ function WeeklyLeagueTab() {
                 <span className={cn("text-sm font-medium", player.isUser ? "text-primary" : "text-foreground")}>
                   {player.username}
                 </span>
-                <span className={cn("text-xs font-medium", TIER_COLOR[player.tier])}>
+                <span className={cn("text-xs text-muted-foreground font-medium", TIER_COLOR[player.tier])}>
                   {player.tier}
                 </span>
               </div>
@@ -1619,7 +1619,7 @@ function SpeedRoundTab() {
 
   if (state === "idle") {
     return (
-      <div className="flex flex-col items-center gap-6 py-8">
+      <div className="flex flex-col items-center gap-3 py-8">
         <div className="text-center">
           <Zap className="h-12 w-12 text-yellow-400 mx-auto mb-3" />
           <h2 className="text-xl font-medium text-foreground">Speed Round</h2>
@@ -1669,14 +1669,14 @@ function SpeedRoundTab() {
     return (
       <div className="space-y-4">
         <div className="text-center py-4">
-          <div className="text-2xl font-bold text-yellow-400 mb-1">{totalPoints}</div>
+          <div className="text-lg font-medium text-yellow-400 mb-1">{totalPoints}</div>
           <div className="text-muted-foreground text-sm">Points Scored</div>
           {totalPoints >= personalBest && personalBest > 0 && (
             <div className="mt-2 text-xs text-yellow-400 flex items-center justify-center gap-1">
               <Star className="h-3 w-3" /> New Personal Best!
             </div>
           )}
-          <div className="flex justify-center gap-6 mt-4">
+          <div className="flex justify-center gap-3 mt-4">
             <div className="text-center">
               <div className="text-lg font-medium text-foreground">{correct}/{answers.length}</div>
               <div className="text-xs text-muted-foreground">Correct</div>
@@ -1746,7 +1746,7 @@ function SpeedRoundTab() {
             {current + 1}/{SPEED_QUESTIONS}
           </div>
           <div className={cn(
-            "flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium",
+            "flex items-center gap-1 px-2 py-0.5 rounded-full text-xs text-muted-foreground font-medium",
             multiplier === 1 ? "bg-muted text-muted-foreground" :
             multiplier === 2 ? "bg-primary/20 text-primary" :
             multiplier === 3 ? "bg-primary/20 text-primary" :
@@ -1781,7 +1781,7 @@ function SpeedRoundTab() {
         >
           <Card className="bg-card/70 border-border/50 p-4 mb-3">
             <div className="flex items-center gap-2 mb-2">
-              <span className={cn("text-xs border rounded px-1.5 py-0.5", CATEGORY_COLORS[q.category])}>
+              <span className={cn("text-xs text-muted-foreground border rounded px-1.5 py-0.5", CATEGORY_COLORS[q.category])}>
                 {q.category}
               </span>
             </div>
@@ -1922,7 +1922,7 @@ function BossChallengesTab() {
                 </p>
               </>
             )}
-            <div className="flex justify-center gap-6 mt-4">
+            <div className="flex justify-center gap-3 mt-4">
               <div className="text-center">
                 <div className="text-lg font-medium text-foreground">{correctCount}/10</div>
                 <div className="text-xs text-muted-foreground">Correct</div>
@@ -1974,7 +1974,7 @@ function BossChallengesTab() {
         {/* Boss HP bars */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <div className="flex items-center justify-between text-xs mb-1">
+            <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">You</span>
               <span className={cn("font-medium", playerHP > 50 ? "text-green-400" : playerHP > 25 ? "text-yellow-400" : "text-red-400")}>
                 {playerHP} HP
@@ -1983,7 +1983,7 @@ function BossChallengesTab() {
             <Progress value={playerHP} className="h-2 bg-muted" />
           </div>
           <div>
-            <div className="flex items-center justify-between text-xs mb-1">
+            <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
               <span className="text-muted-foreground">{activeBoss.name}</span>
               <span className="text-red-400 font-medium">{bossHP} HP</span>
             </div>
@@ -2283,10 +2283,10 @@ function QuestionBuilderTab() {
               <div className="flex items-start gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className={cn("text-xs border rounded px-1.5 py-0.5", CATEGORY_COLORS[cq.category])}>
+                    <span className={cn("text-xs text-muted-foreground border rounded px-1.5 py-0.5", CATEGORY_COLORS[cq.category])}>
                       {cq.category}
                     </span>
-                    <span className={cn("text-xs font-medium", DIFFICULTY_COLOR[cq.difficulty])}>
+                    <span className={cn("text-xs text-muted-foreground font-medium", DIFFICULTY_COLOR[cq.difficulty])}>
                       {DIFFICULTY_LABEL[cq.difficulty]}
                     </span>
                     <span className="text-xs text-muted-foreground">by {cq.author}</span>
@@ -2335,7 +2335,7 @@ export default function QuizTournamentPage() {
   const [activeTab, setActiveTab] = useState<TabId>("daily");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       <div className="max-w-2xl mx-auto space-y-5">
         {/* Header */}
         <div className="flex items-center gap-3 border-l-4 border-l-primary rounded-lg bg-card p-6">

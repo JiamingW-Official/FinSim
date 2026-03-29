@@ -641,7 +641,7 @@ function SOTPTab() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -659,7 +659,7 @@ function SOTPTab() {
       </div>
 
       {/* Donut + Segment table */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <PieChart className="w-4 h-4 text-primary" />
@@ -732,7 +732,7 @@ function SOTPTab() {
                 >
                   <div className="px-4 pb-3 pt-1 border-t border-border">
                     <p className="text-xs text-muted-foreground mb-2">{seg.description}</p>
-                    <div className="grid grid-cols-3 gap-2 text-xs">
+                    <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                       <div>
                         <span className="text-muted-foreground">Revenue</span>
                         <p className="font-mono text-foreground">${seg.revenue}M</p>
@@ -823,7 +823,7 @@ function SOTPTab() {
             <p className="text-xs text-muted-foreground mb-2">
               Graham's net-net framework: buy stocks trading below 2/3 of (Current Assets − All Liabilities). Extremely conservative; assets valued at liquidation, not going-concern.
             </p>
-            <div className="font-mono text-xs space-y-0.5">
+            <div className="font-mono text-xs text-muted-foreground space-y-0.5">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Current Assets</span>
                 <span className="text-primary">+$X</span>
@@ -847,7 +847,7 @@ function SOTPTab() {
             <p className="text-xs text-muted-foreground">
               For holding companies like BRK, value = sum of operating subsidiaries at fair value + publicly-traded portfolio at market + cash − debt. Buffett explicitly tracks look-through earnings.
             </p>
-            <div className="mt-2 space-y-1 text-xs">
+            <div className="mt-2 space-y-1 text-xs text-muted-foreground">
               {[
                 "Assign multiples by segment quality (ROE, reinvestment rate)",
                 "Mark-to-market public equity portfolio daily",
@@ -897,9 +897,9 @@ function PrimaryResearchTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Info advantage pyramid */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         <div className="bg-muted border border-border rounded-md p-4 flex flex-col items-center">
           <InfoPyramidSVG />
           <p className="text-xs text-muted-foreground text-center mt-2">
@@ -1050,7 +1050,7 @@ function ForensicTab() {
     s === "high" ? "bg-red-500" : s === "medium" ? "bg-amber-500" : "bg-muted-foreground";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Intro */}
       <div className="bg-amber-950/20 border border-amber-800/40 rounded-md p-4">
         <div className="flex gap-3 items-start">
@@ -1093,7 +1093,7 @@ function ForensicTab() {
                         <div key={j} className={cn("rounded-lg border p-2.5 cursor-pointer", severityColor(flag.severity))} onClick={() => setExpandedFlag(expandedFlag === key ? null : key)}>
                           <div className="flex items-start gap-2">
                             <div className={cn("w-2 h-2 rounded-full mt-1.5 flex-shrink-0", severityDot(flag.severity))} />
-                            <span className="text-xs font-medium flex-1">{flag.label}</span>
+                            <span className="text-xs text-muted-foreground font-medium flex-1">{flag.label}</span>
                             <span className={cn("text-xs font-medium uppercase px-1.5 py-0.5 rounded", flag.severity === "high" ? "bg-red-900/60 text-red-300" : flag.severity === "medium" ? "bg-amber-900/60 text-amber-300" : "bg-muted text-muted-foreground")}>
                               {flag.severity}
                             </span>
@@ -1161,7 +1161,7 @@ function ForensicTab() {
             Altman Z-Score
           </h3>
           <p className="text-xs text-muted-foreground mb-2">Predicts bankruptcy probability using 5 financial ratios. Originally for manufacturing; Z&apos; model for private, Z&ldquo; for non-manufacturers.</p>
-          <div className="space-y-1 text-xs font-mono">
+          <div className="space-y-1 text-xs text-muted-foreground font-mono">
             {[
               { var: "X1", def: "Working Capital / Assets", wt: "×1.2" },
               { var: "X2", def: "Retained Earnings / Assets", wt: "×1.4" },
@@ -1176,7 +1176,7 @@ function ForensicTab() {
               </div>
             ))}
           </div>
-          <div className="mt-2 space-y-0.5 text-xs">
+          <div className="mt-2 space-y-0.5 text-xs text-muted-foreground">
             <div className="flex justify-between"><span className="text-emerald-400">Z &gt; 2.99</span><span className="text-muted-foreground">Safe zone</span></div>
             <div className="flex justify-between"><span className="text-amber-400">1.81–2.99</span><span className="text-muted-foreground">Grey zone</span></div>
             <div className="flex justify-between"><span className="text-red-400">Z &lt; 1.81</span><span className="text-muted-foreground">Distress zone</span></div>
@@ -1232,7 +1232,7 @@ function ThesisTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Thesis steps */}
       <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
@@ -1247,7 +1247,7 @@ function ThesisTab() {
               key={i}
               onClick={() => setActiveStep(i)}
               className={cn(
-                "text-xs px-2.5 py-1 rounded-lg font-medium transition-colors",
+                "text-xs text-muted-foreground px-2.5 py-1 rounded-lg font-medium transition-colors",
                 activeStep === i ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
@@ -1347,7 +1347,7 @@ function ThesisTab() {
       </div>
 
       {/* Moat radar */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-3">
         <div className="bg-muted border border-border rounded-md p-4 flex flex-col items-center">
           <h3 className="text-sm font-medium text-foreground mb-3 w-full flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
@@ -1458,7 +1458,7 @@ function ThesisTab() {
               ].map((item, i) => (
                 <div key={i} className="flex gap-2 items-start">
                   <XCircle className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
-                  <div className="text-xs">
+                  <div className="text-xs text-muted-foreground">
                     <span className="font-medium text-foreground">{item.trigger}: </span>
                     <span className="text-muted-foreground">{item.action}</span>
                   </div>
@@ -1480,7 +1480,7 @@ export default function EquityResearch3Page() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
         {/* Header — Hero */}
         <div className="border-l-4 border-l-primary rounded-lg bg-card p-6">
           <div className="flex items-center gap-2 mb-1">

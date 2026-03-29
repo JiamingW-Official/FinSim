@@ -563,7 +563,7 @@ function PatternScannerTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-medium tabular-nums",
+                        "text-xs text-muted-foreground font-medium tabular-nums",
                         r.reliability >= 70
                           ? "text-emerald-500"
                           : r.reliability >= 50
@@ -580,7 +580,7 @@ function PatternScannerTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "tabular-nums text-xs font-medium",
+                        "tabular-nums text-xs text-muted-foreground font-medium",
                         r.changePct >= 0 ? "text-emerald-500" : "text-rose-500",
                       )}
                     >
@@ -708,7 +708,7 @@ function TechnicalScannerTab() {
             type="button"
             onClick={() => toggleCondition(c.id)}
             className={cn(
-              "rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors",
+              "rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground font-medium transition-colors",
               selectedConditions.has(c.id)
                 ? c.direction === "bullish"
                   ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-500"
@@ -795,7 +795,7 @@ function TechnicalScannerTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "tabular-nums text-xs font-medium",
+                        "tabular-nums text-xs text-muted-foreground font-medium",
                         r.changePct >= 0 ? "text-emerald-500" : "text-rose-500",
                       )}
                     >
@@ -806,7 +806,7 @@ function TechnicalScannerTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold",
+                        "inline-flex h-5 w-5 items-center justify-center rounded-full text-xs text-muted-foreground font-bold",
                         r.signalCount >= 4
                           ? "bg-primary/20 text-primary"
                           : r.signalCount >= 2
@@ -966,7 +966,7 @@ function SetupFinderTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "tabular-nums text-xs font-medium",
+                        "tabular-nums text-xs text-muted-foreground font-medium",
                         s.riskReward >= 2 ? "text-emerald-500" : s.riskReward >= 1 ? "text-amber-500" : "text-rose-500",
                       )}
                     >
@@ -1026,7 +1026,7 @@ export default function ScannerPage() {
               type="button"
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                "relative border-b-2 px-3 py-2.5 text-xs font-medium transition-colors",
+                "relative border-b-2 px-3 py-2.5 text-xs text-muted-foreground font-medium transition-colors",
                 activeTab === tab.id
                   ? "border-primary text-primary"
                   : "border-transparent text-muted-foreground hover:text-foreground",

@@ -104,9 +104,9 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
   return (
     <div className="flex flex-col p-3 gap-3">
       {/* Header */}
-      <div className="flex items-center gap-2">
-        <Activity className="h-4 w-4 text-orange-400" />
-        <span className="text-sm font-medium">Order Entry</span>
+      <div className="flex items-center gap-1.5">
+        <Activity className="h-3.5 w-3.5 text-orange-400" />
+        <span className="text-xs font-medium">Order Entry</span>
       </div>
 
       {/* Strategy name */}
@@ -187,7 +187,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           {totalGreeks && <GreeksPanel greeks={totalGreeks} />}
 
           {/* Cost summary */}
-          <div className="space-y-1 rounded-lg border border-border bg-card/50 p-2.5">
+          <div className="space-y-1 rounded-lg border border-border/40 bg-card/50 p-2.5">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">
                 {isDebit ? "Net Debit" : "Net Credit"}
@@ -204,7 +204,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
                 {formatCurrency(commission)}
               </span>
             </div>
-            <div className="divider-glow" />
+            <div className="border-t border-border/30" />
             <div className="flex items-center justify-between text-[11px]">
               <span className="font-medium">Total</span>
               <span
@@ -242,7 +242,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
               onClick={handleExecute}
               disabled={!canAfford}
               className={cn(
-                "flex-1 rounded-lg px-3 py-2 text-[11px] font-medium transition-colors",
+                "flex-1 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
                 canAfford
                   ? "bg-orange-500 text-primary-foreground hover:bg-orange-600 active:bg-orange-700"
                   : "cursor-not-allowed bg-orange-500/30 text-orange-400/50",

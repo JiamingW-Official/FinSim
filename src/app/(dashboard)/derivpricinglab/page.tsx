@@ -395,7 +395,7 @@ export default function DerivPricingLabPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -429,11 +429,11 @@ export default function DerivPricingLabPage() {
         transition={{ duration: 0.4, delay: 0.1 }}
       >
         <Card className="bg-card border-border border-l-4 border-l-primary">
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <p className="text-xs text-muted-foreground mb-4 font-medium">
               Shared Option Parameters — all tabs update in real time
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
               <SliderParam
                 label="Spot Price (S)"
                 value={bsS}
@@ -507,7 +507,7 @@ export default function DerivPricingLabPage() {
           </TabsList>
 
           {/* ── Black-Scholes Tab ───────────────────────────────────────── */}
-          <TabsContent value="bs" className="space-y-6">
+          <TabsContent value="bs" className="space-y-4">
             {/* Prices + Greeks */}
             <div className="grid grid-cols-2 gap-4">
               <PriceCard title="Call Price" price={bs.callPrice} color="emerald" icon={<TrendingUp className="w-4 h-4" />} />
@@ -593,7 +593,7 @@ export default function DerivPricingLabPage() {
           </TabsContent>
 
           {/* ── Binomial Tree Tab ───────────────────────────────────────── */}
-          <TabsContent value="binomial" className="space-y-6">
+          <TabsContent value="binomial" className="space-y-4">
             <div className="grid grid-cols-3 gap-4">
               <Card className="bg-card border-border">
                 <CardContent className="p-4">
@@ -625,7 +625,7 @@ export default function DerivPricingLabPage() {
               </Card>
               <Card className="bg-card border-border p-4">
                 <p className="text-xs text-muted-foreground mb-1">Black-Scholes Call Price</p>
-                <p className="text-2xl font-bold text-primary">${bs.callPrice.toFixed(4)}</p>
+                <p className="text-lg font-medium text-primary">${bs.callPrice.toFixed(4)}</p>
                 <p className="text-xs text-muted-foreground mt-1">
                   Diff: ${Math.abs(binomial.callPrice - bs.callPrice).toFixed(4)} (converges with more steps)
                 </p>
@@ -659,11 +659,11 @@ export default function DerivPricingLabPage() {
           </TabsContent>
 
           {/* ── Monte Carlo Tab ─────────────────────────────────────────── */}
-          <TabsContent value="mc" className="space-y-6">
+          <TabsContent value="mc" className="space-y-4">
             {/* Path count control */}
             <Card className="bg-card border-border">
               <CardContent className="p-4">
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
                   <div className="flex-1">
                     <p className="text-xs text-muted-foreground mb-2">Number of Simulations: <span className="text-foreground font-medium">{mcPaths.toLocaleString()}</span></p>
                     <Slider
@@ -689,7 +689,7 @@ export default function DerivPricingLabPage() {
               <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <p className="text-xs text-muted-foreground mb-1">MC Call Price</p>
-                  <p className="text-2xl font-bold text-emerald-400">${mc.callPrice.toFixed(4)}</p>
+                  <p className="text-lg font-medium text-emerald-400">${mc.callPrice.toFixed(4)}</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     95% CI: [${mc.callCI[0].toFixed(3)}, ${mc.callCI[1].toFixed(3)}]
                   </p>
@@ -701,7 +701,7 @@ export default function DerivPricingLabPage() {
               <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <p className="text-xs text-muted-foreground mb-1">MC Put Price</p>
-                  <p className="text-2xl font-bold text-rose-400">${mc.putPrice.toFixed(4)}</p>
+                  <p className="text-lg font-medium text-rose-400">${mc.putPrice.toFixed(4)}</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     95% CI: [${mc.putCI[0].toFixed(3)}, ${mc.putCI[1].toFixed(3)}]
                   </p>
@@ -847,7 +847,7 @@ function PriceCard({ title, price, color, icon }: PriceCardProps) {
           <span className={text}>{icon}</span>
           <p className="text-sm text-muted-foreground">{title}</p>
         </div>
-        <p className={`text-2xl font-bold ${text}`}>${price.toFixed(4)}</p>
+        <p className={`text-lg font-medium ${text}`}>${price.toFixed(4)}</p>
       </CardContent>
     </Card>
   );
@@ -1327,11 +1327,11 @@ function ExoticCard({ ex, vanillaCall }: { ex: ExoticResult; vanillaCall: number
         <div className="flex gap-4">
           <div>
             <p className="text-xs text-muted-foreground mb-0.5">Exotic Price</p>
-            <p className="text-2xl font-bold text-amber-400">${ex.price.toFixed(4)}</p>
+            <p className="text-lg font-medium text-amber-400">${ex.price.toFixed(4)}</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-0.5">Vanilla Call</p>
-            <p className="text-2xl font-bold text-primary">${vanillaCall.toFixed(4)}</p>
+            <p className="text-lg font-medium text-primary">${vanillaCall.toFixed(4)}</p>
           </div>
           <div className="ml-auto text-right">
             <p className="text-xs text-muted-foreground mb-0.5">{ex.metricLabel}</p>
@@ -1357,7 +1357,7 @@ function ExoticCard({ ex, vanillaCall }: { ex: ExoticResult; vanillaCall: number
               style={{ width: `${clamp((ex.price / (Math.max(ex.price, vanillaCall) * 1.1)) * 100, 0, 100)}%`, top: 4 }}
             />
           </div>
-          <div className="flex gap-3 mt-1 text-xs">
+          <div className="flex gap-3 mt-1 text-xs text-muted-foreground">
             <span className="text-primary">■ Vanilla</span>
             <span className="text-amber-400">■ Exotic</span>
           </div>

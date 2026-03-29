@@ -598,7 +598,7 @@ export default function BondsPage() {
         </div>
         <div className="ml-auto flex items-center gap-2">
           <span className={cn(
-            "rounded-full px-2.5 py-1 text-xs font-semibold",
+            "rounded-full px-2.5 py-1 text-xs text-muted-foreground font-semibold",
             isInverted ? "bg-red-500/15 text-red-400" :
             isFlat ? "bg-amber-500/15 text-amber-400" :
             "bg-green-500/15 text-green-400",
@@ -613,23 +613,23 @@ export default function BondsPage() {
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0">
         <TabsList className="shrink-0 mx-6 mt-3 w-fit">
-          <TabsTrigger value="overview" className="text-xs gap-1.5">
+          <TabsTrigger value="overview" className="text-xs text-muted-foreground gap-1.5">
             <TrendingUp className="h-3.5 w-3.5" />
             Bond Market
           </TabsTrigger>
-          <TabsTrigger value="calculator" className="text-xs gap-1.5">
+          <TabsTrigger value="calculator" className="text-xs text-muted-foreground gap-1.5">
             <Calculator className="h-3.5 w-3.5" />
             Pricing Calculator
           </TabsTrigger>
-          <TabsTrigger value="yieldcurve" className="text-xs gap-1.5">
+          <TabsTrigger value="yieldcurve" className="text-xs text-muted-foreground gap-1.5">
             <BarChart3 className="h-3.5 w-3.5" />
             Yield Curve
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="text-xs gap-1.5">
+          <TabsTrigger value="portfolio" className="text-xs text-muted-foreground gap-1.5">
             <ShieldCheck className="h-3.5 w-3.5" />
             Portfolio Builder
           </TabsTrigger>
-          <TabsTrigger value="credit" className="text-xs gap-1.5">
+          <TabsTrigger value="credit" className="text-xs text-muted-foreground gap-1.5">
             <AlertCircle className="h-3.5 w-3.5" />
             Credit Analysis
           </TabsTrigger>
@@ -694,7 +694,7 @@ export default function BondsPage() {
                 "High Yield Bonds";
               return (
                 <div key={type} className="mb-5">
-                  <h3 className={cn("mb-3 text-xs font-medium",
+                  <h3 className={cn("mb-3 text-xs text-muted-foreground font-medium",
                     type === "treasury" ? "text-primary" :
                     type === "corporate-ig" ? "text-primary" :
                     "text-red-400"
@@ -723,7 +723,7 @@ export default function BondsPage() {
                               {b.creditRating}
                             </span>
                           </div>
-                          <div className="grid grid-cols-2 gap-1.5 text-xs">
+                          <div className="grid grid-cols-2 gap-1.5 text-xs text-muted-foreground">
                             <div className="flex flex-col">
                               <span className="text-muted-foreground">Coupon</span>
                               <span className="font-medium text-foreground">{b.coupon.toFixed(2)}%</span>
@@ -804,7 +804,7 @@ export default function BondsPage() {
                     <div className="flex gap-2">
                       {([1, 2] as const).map(f => (
                         <button key={f} onClick={() => setCalcFreq(f)} className={cn(
-                          "flex-1 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors",
+                          "flex-1 rounded-md border px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                           calcFreq === f
                             ? "border-primary bg-primary/10 text-primary"
                             : "border-border/60 text-muted-foreground hover:border-primary/40",
@@ -864,7 +864,7 @@ export default function BondsPage() {
                               background: delta < 0 ? "rgba(34,197,94,0.4)" : delta > 0 ? "rgba(239,68,68,0.4)" : "rgba(99,102,241,0.4)",
                             }} />
                           </div>
-                          <div className={cn("w-24 text-right text-xs font-medium tabular-nums",
+                          <div className={cn("w-24 text-right text-xs text-muted-foreground font-medium tabular-nums",
                             chg > 0 ? "text-green-400" : chg < 0 ? "text-red-400" : "text-primary")}>
                             ${price.toFixed(2)} ({chg >= 0 ? "+" : ""}{chg.toFixed(2)}%)
                           </div>
@@ -954,7 +954,7 @@ export default function BondsPage() {
                       <div key={s.shape} className="flex items-start gap-2">
                         <div className={cn("mt-1 h-1.5 w-1.5 shrink-0 rounded-full", s.bg)} />
                         <div>
-                          <span className={cn("text-xs font-medium", s.color)}>{s.shape}</span>
+                          <span className={cn("text-xs text-muted-foreground font-medium", s.color)}>{s.shape}</span>
                           <span className="ml-1.5 text-[11px] text-muted-foreground">{s.desc}</span>
                         </div>
                       </div>
@@ -969,7 +969,7 @@ export default function BondsPage() {
               <div className="rounded-lg border border-border/50 bg-card p-5">
                 <h3 className="mb-4 text-sm font-medium">Spread Analysis (bps)</h3>
                 <SpreadBarSVG />
-                <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
+                <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                   {[
                     { label: "10Y–2Y Spread", value: `${spreads.spread10y2y >= 0 ? "+" : ""}${spreads.spread10y2y.toFixed(1)} bps`, color: spreads.spread10y2y < 0 ? "text-red-400" : "text-green-400" },
                     { label: "IG Credit Spread", value: `+${spreads.igCreditSpread.toFixed(1)} bps`, color: "text-primary" },
@@ -1020,7 +1020,7 @@ export default function BondsPage() {
                       <div key={item.title} className="flex items-start gap-2.5">
                         <Icon className={cn("h-3.5 w-3.5 mt-0.5 shrink-0", item.color)} />
                         <div>
-                          <div className={cn("text-xs font-medium", item.color)}>{item.title}</div>
+                          <div className={cn("text-xs text-muted-foreground font-medium", item.color)}>{item.title}</div>
                           <div className="mt-0.5 text-[11px] text-muted-foreground leading-relaxed">{item.desc}</div>
                         </div>
                       </div>
@@ -1042,7 +1042,7 @@ export default function BondsPage() {
 
                 {/* Target duration slider */}
                 <div className="mb-4 rounded-md border border-border/40 bg-muted/20 p-3">
-                  <div className="mb-2 flex items-center justify-between text-xs">
+                  <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Target Portfolio Duration</span>
                     <span className="font-medium text-primary">{targetDuration.toFixed(1)} yrs</span>
                   </div>
@@ -1107,7 +1107,7 @@ export default function BondsPage() {
                     ))}
                   </div>
                 ) : (
-                  <div className="rounded-lg border border-dashed border-border/50 bg-card/50 p-6 text-center">
+                  <div className="rounded-lg border border-dashed border-border/50 bg-card/50 p-4 text-center">
                     <Landmark className="mx-auto h-7 w-7 text-muted-foreground/30" />
                     <p className="mt-2 text-sm font-medium text-muted-foreground">Add bonds to build your portfolio</p>
                     <p className="mt-1 text-xs text-muted-foreground/60">Click the + icon on any bond in the universe.</p>
@@ -1118,7 +1118,7 @@ export default function BondsPage() {
                 {portfolio.length > 0 && (
                   <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
                     <div className="overflow-x-auto">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-xs text-muted-foreground">
                         <thead>
                           <tr className="border-b border-border/50 bg-muted/30">
                             {["Bond", "Weight %", "Dur Contrib", "Yield Contrib", "Remove"].map(h => (
@@ -1300,7 +1300,7 @@ export default function BondsPage() {
                     <div className="mt-3 rounded border border-border/30 bg-muted/20 px-3 py-2">
                       <div className="flex items-center justify-between">
                         <span className="text-[11px] text-muted-foreground">Altman Z-Score</span>
-                        <span className={cn("text-xs font-medium tabular-nums", zColor)}>
+                        <span className={cn("text-xs text-muted-foreground font-medium tabular-nums", zColor)}>
                           {ca.zScore.toFixed(2)} — {zLabel}
                         </span>
                       </div>
@@ -1370,7 +1370,7 @@ export default function BondsPage() {
                     <div className="space-y-1.5">
                       {g.thresholds.map(t => (
                         <div key={t.label} className="flex items-start gap-2">
-                          <span className={cn("mt-0.5 text-xs font-medium w-14 shrink-0 tabular-nums", t.color)}>{t.label}</span>
+                          <span className={cn("mt-0.5 text-xs text-muted-foreground font-medium w-14 shrink-0 tabular-nums", t.color)}>{t.label}</span>
                           <span className="text-[11px] text-muted-foreground">{t.desc}</span>
                         </div>
                       ))}

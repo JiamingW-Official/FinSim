@@ -755,7 +755,7 @@ export default function BehavioralLabPage() {
   const allAnswered = QUIZ_QUESTIONS.every((q) => quizAnswers[q.id] !== undefined);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
@@ -785,16 +785,16 @@ export default function BehavioralLabPage() {
 
       <Tabs defaultValue="detector" className="space-y-4">
         <TabsList className="bg-card border border-border grid grid-cols-4 w-full md:w-auto">
-          <TabsTrigger value="detector" className="text-xs sm:text-sm">
+          <TabsTrigger value="detector" className="text-xs text-muted-foreground sm:text-sm">
             Bias Detector
           </TabsTrigger>
-          <TabsTrigger value="experiments" className="text-xs sm:text-sm">
+          <TabsTrigger value="experiments" className="text-xs text-muted-foreground sm:text-sm">
             Experiments
           </TabsTrigger>
-          <TabsTrigger value="impact" className="text-xs sm:text-sm">
+          <TabsTrigger value="impact" className="text-xs text-muted-foreground sm:text-sm">
             Portfolio Impact
           </TabsTrigger>
-          <TabsTrigger value="debiasing" className="text-xs sm:text-sm">
+          <TabsTrigger value="debiasing" className="text-xs text-muted-foreground sm:text-sm">
             Debiasing
           </TabsTrigger>
         </TabsList>
@@ -906,7 +906,7 @@ export default function BehavioralLabPage() {
                                 {s.label}
                               </div>
                               <span
-                                className="text-xs font-bold"
+                                className="text-xs text-muted-foreground font-bold"
                                 style={{ color: s.color }}
                               >
                                 {s.score}%
@@ -926,7 +926,7 @@ export default function BehavioralLabPage() {
 
                       {/* Dominant bias callout */}
                       <div
-                        className="mt-3 p-3 rounded-lg border text-xs"
+                        className="mt-3 p-3 rounded-lg border text-xs text-muted-foreground"
                         style={{
                           borderColor: dominantBias.color + "44",
                           backgroundColor: dominantBias.color + "11",
@@ -1145,7 +1145,7 @@ export default function BehavioralLabPage() {
                         {exp2Result.biasDetected}
                       </div>
                       <p className="text-muted-foreground leading-relaxed">{exp2Result.explanation}</p>
-                      <div className="grid grid-cols-3 gap-2 pt-2 text-xs">
+                      <div className="grid grid-cols-3 gap-2 pt-2 text-xs text-muted-foreground">
                         <div className="text-center p-2 bg-muted rounded">
                           <p className="text-muted-foreground">Your Anchor</p>
                           <p className="text-yellow-400 font-medium">${exp2Anchor}B</p>
@@ -1213,7 +1213,7 @@ export default function BehavioralLabPage() {
 
               <div className="space-y-4">
                 <div>
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span className="text-muted-foreground">Lower bound</span>
                     <span className="text-foreground font-medium">{exp3Low[0]}</span>
                   </div>
@@ -1228,7 +1228,7 @@ export default function BehavioralLabPage() {
                   />
                 </div>
                 <div>
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span className="text-muted-foreground">Upper bound</span>
                     <span className="text-foreground font-medium">{exp3High[0]}</span>
                   </div>
@@ -1309,7 +1309,7 @@ export default function BehavioralLabPage() {
                         {exp3Result.biasDetected}
                       </div>
                       <p className="text-muted-foreground leading-relaxed">{exp3Result.explanation}</p>
-                      <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
+                      <div className="grid grid-cols-2 gap-2 pt-1 text-xs text-muted-foreground">
                         <div className="p-2 bg-muted rounded">
                           <p className="text-muted-foreground">Your interval</p>
                           <p className="text-foreground font-medium">{exp3Low[0]} – {exp3High[0]}</p>
@@ -1348,7 +1348,7 @@ export default function BehavioralLabPage() {
               </CardHeader>
               <CardContent>
                 <PortfolioChart paths={portfolioPaths} />
-                <div className="flex gap-6 mt-3 justify-center text-xs">
+                <div className="flex gap-3 mt-3 justify-center text-xs text-muted-foreground">
                   <div className="flex items-center gap-1.5">
                     <div className="w-6 h-0.5 bg-green-500" />
                     <span className="text-muted-foreground">Rational investor</span>
@@ -1366,7 +1366,7 @@ export default function BehavioralLabPage() {
                 </div>
                 <div className="mt-3 p-3 rounded-lg bg-muted/60 border border-border text-center">
                   <p className="text-xs text-muted-foreground">20-period terminal gap</p>
-                  <p className="text-2xl font-bold text-red-400 mt-0.5">
+                  <p className="text-lg font-medium text-red-400 mt-0.5">
                     −
                     {(
                       portfolioPaths[portfolioPaths.length - 1].rational -
@@ -1402,7 +1402,7 @@ export default function BehavioralLabPage() {
                     </div>
                     <Badge
                       variant="outline"
-                      className="text-xs"
+                      className="text-xs text-muted-foreground"
                       style={{
                         borderColor: BIAS_META[bc.bias].color + "44",
                         color: BIAS_META[bc.bias].color,
@@ -1432,7 +1432,7 @@ export default function BehavioralLabPage() {
                   <div>
                     <p className="text-xs text-muted-foreground mb-0.5">Estimated total annual drag from biases</p>
                     <p
-                      className="text-2xl font-bold"
+                      className="text-lg font-medium"
                       style={{ color: totalCostPct > 3 ? "#ef4444" : "#22c55e" }}
                     >
                       −{totalCostPct.toFixed(2)}% / year
@@ -1486,7 +1486,7 @@ export default function BehavioralLabPage() {
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <p className="text-xs text-muted-foreground">Bias Resistance Score</p>
-                  <p className="text-2xl font-bold text-foreground">{resistanceScore}%</p>
+                  <p className="text-lg font-medium text-foreground">{resistanceScore}%</p>
                 </div>
                 <div className="p-3 rounded-full border-2" style={{ borderColor: resistanceScore > 60 ? "#22c55e" : resistanceScore > 30 ? "#f97316" : "#ef4444" }}>
                   <Shield
@@ -1532,7 +1532,7 @@ export default function BehavioralLabPage() {
                           <p className="text-sm font-medium text-foreground">{t.title}</p>
                           <Badge
                             variant="outline"
-                            className="text-xs shrink-0 ml-2"
+                            className="text-xs text-muted-foreground shrink-0 ml-2"
                             style={{
                               borderColor: targetMeta.color + "44",
                               color: targetMeta.color,
@@ -1588,7 +1588,7 @@ export default function BehavioralLabPage() {
                                 </div>
                                 <span
                                   className={cn(
-                                    "text-xs leading-relaxed transition-colors",
+                                    "text-xs text-muted-foreground leading-relaxed transition-colors",
                                     done ? "text-muted-foreground line-through" : "text-muted-foreground group-hover:text-foreground"
                                   )}
                                 >
@@ -1603,7 +1603,7 @@ export default function BehavioralLabPage() {
                           <motion.div
                             initial={{ opacity: 0, y: 4 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mt-3 flex items-center gap-1.5 text-xs font-medium"
+                            className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground font-medium"
                             style={{ color: targetMeta.color }}
                           >
                             <Star className="w-3.5 h-3.5" />

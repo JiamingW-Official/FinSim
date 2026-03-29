@@ -297,9 +297,9 @@ function DigitalTwinTab() {
   const goalPct = Math.min(100, (projectedAtGoalYear / inputs.goalAmount) * 100);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Input Panel */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium">Financial Profile</CardTitle>
@@ -322,7 +322,7 @@ function DigitalTwinTab() {
               suffix?: string;
             }>).map(({ key, label, min, max, step, prefix, suffix }) => (
               <div key={key} className="space-y-1.5">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{label}</span>
                   <span className="font-mono font-medium text-foreground">
                     {prefix}
@@ -392,13 +392,13 @@ function DigitalTwinTab() {
                 </div>
               </div>
               <div className="space-y-1.5">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">
                     Projected in {goalIdx} yrs: {fmtK(projectedAtGoalYear)}
                   </span>
                   <Badge
                     variant={goalAchievable ? "default" : "secondary"}
-                    className="text-xs h-4"
+                    className="text-xs text-muted-foreground h-4"
                   >
                     {goalAchievable ? "Achievable" : "Needs Adjustment"}
                   </Badge>
@@ -603,8 +603,8 @@ function CompoundCalculatorTab() {
   const rule72 = inp.annualRate > 0 ? (72 / inp.annualRate).toFixed(1) : "—";
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Inputs */}
         <Card>
           <CardHeader className="pb-3">
@@ -626,7 +626,7 @@ function CompoundCalculatorTab() {
               suffix?: string;
             }>).map(({ key, label, min, max, step, prefix, suffix }) => (
               <div key={key} className="space-y-1.5">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{label}</span>
                   <span className="font-mono font-medium text-foreground">
                     {prefix}
@@ -909,7 +909,7 @@ function ScenarioSimulatorTab() {
   const activeScenario = SCENARIOS.find((s) => s.id === scenario.active);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Scenario cards */}
       <Card>
         <CardHeader className="pb-3">
@@ -930,7 +930,7 @@ function ScenarioSimulatorTab() {
                     : "border-border/60 bg-card"
                 }`}
               >
-                <p className="text-xs font-medium leading-tight">{s.label}</p>
+                <p className="text-xs text-muted-foreground font-medium leading-tight">{s.label}</p>
                 <p className="text-xs text-muted-foreground mt-1 leading-tight">{s.description}</p>
               </button>
             ))}
@@ -939,7 +939,7 @@ function ScenarioSimulatorTab() {
           {/* Scenario params */}
           {scenario.active === "layoff" && (
             <div className="mt-4 space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Months without income</span>
                 <span className="font-mono font-medium">{scenario.layoffMonths} months</span>
               </div>
@@ -954,7 +954,7 @@ function ScenarioSimulatorTab() {
           )}
           {scenario.active === "promotion" && (
             <div className="mt-4 space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Income increase</span>
                 <span className="font-mono font-medium">+{scenario.promotionPct}%</span>
               </div>
@@ -970,7 +970,7 @@ function ScenarioSimulatorTab() {
           {scenario.active === "house" && (
             <div className="mt-4 grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Monthly mortgage</span>
                   <span className="font-mono font-medium">${fmt(scenario.houseMortgage)}</span>
                 </div>
@@ -983,7 +983,7 @@ function ScenarioSimulatorTab() {
                 />
               </div>
               <div className="space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Tax + maintenance/mo</span>
                   <span className="font-mono font-medium">${fmt(scenario.houseOther)}</span>
                 </div>
@@ -1153,8 +1153,8 @@ function TaxCalculatorTab() {
   const seTaxResult = useMemo(() => computeTax({ ...inp, selfEmployed: true }), [inp]);
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Inputs */}
         <Card>
           <CardHeader className="pb-3">
@@ -1162,7 +1162,7 @@ function TaxCalculatorTab() {
           </CardHeader>
           <CardContent className="space-y-5">
             <div className="space-y-1.5">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Gross Income</span>
                 <span className="font-mono font-medium">${fmt(inp.grossIncome)}</span>
               </div>
@@ -1183,7 +1183,7 @@ function TaxCalculatorTab() {
                     key={s}
                     size="sm"
                     variant={inp.filingStatus === s ? "default" : "outline"}
-                    className="text-xs h-7"
+                    className="text-xs text-muted-foreground h-7"
                     onClick={() => set("filingStatus", s)}
                   >
                     {s === "single" ? "Single" : s === "mfj" ? "Married Filing Jointly" : "Head of Household"}
@@ -1193,7 +1193,7 @@ function TaxCalculatorTab() {
             </div>
 
             <div className="space-y-1.5">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">401(k) Contribution</span>
                 <span className="font-mono font-medium">${fmt(inp.k401)}</span>
               </div>
@@ -1207,7 +1207,7 @@ function TaxCalculatorTab() {
             </div>
 
             <div className="space-y-1.5">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">HSA Contribution</span>
                 <span className="font-mono font-medium">${fmt(inp.hsa)}</span>
               </div>
@@ -1230,12 +1230,12 @@ function TaxCalculatorTab() {
                 }`}
               >
                 <span
-                  className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-sm ring-0 transition-transform ${
+                  className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-white ring-0 transition-transform ${
                     inp.selfEmployed ? "translate-x-4" : "translate-x-0"
                   }`}
                 />
               </button>
-              <span className="text-xs">Self-employed (adds SE tax, removes FICA)</span>
+              <span className="text-xs text-muted-foreground">Self-employed (adds SE tax, removes FICA)</span>
             </div>
           </CardContent>
         </Card>
@@ -1269,7 +1269,7 @@ function TaxCalculatorTab() {
               <CardTitle className="text-sm font-medium">W2 vs Self-Employed Comparison</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-2 text-xs">
+              <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                 <div className="text-muted-foreground" />
                 <div className="text-center font-medium text-muted-foreground">W2</div>
                 <div className="text-center font-medium text-muted-foreground">Self-Employed</div>
@@ -1302,7 +1302,7 @@ function TaxCalculatorTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border/60">
                   <th className="text-left text-muted-foreground font-medium pb-2">Bracket</th>
@@ -1529,8 +1529,8 @@ function LoanCalculatorTab() {
     d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Inputs */}
         <Card>
           <CardHeader className="pb-3">
@@ -1552,7 +1552,7 @@ function LoanCalculatorTab() {
               suffix?: string;
             }>).map(({ key, label, min, max, step, prefix, suffix }) => (
               <div key={key} className="space-y-1.5">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{label}</span>
                   <span className="font-mono font-medium text-foreground">
                     {prefix}
@@ -1643,7 +1643,7 @@ function LoanCalculatorTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border/60">
                   <th className="text-left text-muted-foreground font-medium pb-2">Month</th>
@@ -1991,7 +1991,7 @@ function MacroSimulatorTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Scenario presets */}
       <Card>
         <CardHeader className="pb-3">
@@ -2006,7 +2006,7 @@ function MacroSimulatorTab() {
                 onClick={() => setVars(s.vars)}
                 className="rounded-lg border border-border/60 bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
               >
-                <p className="text-xs font-medium leading-tight">{s.label}</p>
+                <p className="text-xs text-muted-foreground font-medium leading-tight">{s.label}</p>
                 <p className="text-xs text-muted-foreground mt-1 leading-tight">{s.desc}</p>
               </button>
             ))}
@@ -2014,14 +2014,14 @@ function MacroSimulatorTab() {
               onClick={() => setVars(MACRO_DEFAULTS)}
               className="rounded-lg border border-border/60 bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
             >
-              <p className="text-xs font-medium leading-tight">Reset to Default</p>
+              <p className="text-xs text-muted-foreground font-medium leading-tight">Reset to Default</p>
               <p className="text-xs text-muted-foreground mt-1 leading-tight">Current macro baseline</p>
             </button>
           </div>
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Economic Variables sliders */}
         <Card>
           <CardHeader className="pb-3">
@@ -2034,7 +2034,7 @@ function MacroSimulatorTab() {
               const isWarn = key === "vix" ? val > 22 : key === "inflation" ? val > 4 : false;
               return (
                 <div key={key} className="space-y-1.5">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{label}</span>
                     <span
                       className={`font-mono font-medium ${
@@ -2071,7 +2071,7 @@ function MacroSimulatorTab() {
                 const barPct = Math.min(100, Math.abs(val) * 4);
                 return (
                   <div key={key} className="space-y-1">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">{label}</span>
                       <span className={`font-mono font-medium ${isPos ? "text-green-500" : "text-red-400"}`}>
                         {isPos ? "+" : ""}{val.toFixed(1)}%
@@ -2118,7 +2118,7 @@ function MacroSimulatorTab() {
             {stressResults.map((s) => {
               const pos = s.dollarImpact >= 0;
               return (
-                <div key={s.label} className="flex items-center gap-3 text-xs">
+                <div key={s.label} className="flex items-center gap-3 text-xs text-muted-foreground">
                   <span className="w-36 shrink-0 text-muted-foreground">{s.label}</span>
                   <span className="w-14 shrink-0 text-muted-foreground text-right font-mono">
                     {(s.weight * 100).toFixed(0)}%
@@ -2198,7 +2198,7 @@ export default function ToolsPage() {
             Interactive calculators for wealth planning, taxes, and macro analysis.
           </p>
         </div>
-        <Badge variant="secondary" className="ml-auto text-xs shrink-0">
+        <Badge variant="secondary" className="ml-auto text-xs text-muted-foreground shrink-0">
           Simulated
         </Badge>
       </div>
@@ -2224,7 +2224,7 @@ export default function ToolsPage() {
               key={t.id}
               onClick={() => setActiveTab(t.id)}
               className={cn(
-                "rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
+                "rounded-md px-2.5 py-1 text-xs text-muted-foreground font-medium transition-colors",
                 activeTab === t.id
                   ? "bg-primary/15 text-primary border border-primary/30"
                   : "bg-muted/30 text-muted-foreground border border-border hover:text-foreground"

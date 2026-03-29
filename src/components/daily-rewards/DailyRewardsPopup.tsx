@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Check, Lock, X, Crown, Flame, Gift, Star, Coins, Gem, Rocket, Sparkles } from "lucide-react";
+import { Check, Lock, X, Crown, Flame, Gift, Star, Coins, Gem, Rocket } from "lucide-react";
 import { useDailyRewardsStore, DAY_REWARDS } from "@/stores/daily-rewards-store";
 import { soundEngine } from "@/services/audio/sound-engine";
 
@@ -48,9 +48,9 @@ export function DailyRewardsPopup() {
       setClaimed(true);
       soundEngine.playAchievement();
 
-      // 40 confetti particles from center
-      const newParticles = Array.from({ length: 40 }, (_, i) => {
-        const angle = (i / 40) * Math.PI * 2;
+      // Confetti particles from center
+      const newParticles = Array.from({ length: 20 }, (_, i) => {
+        const angle = (i / 20) * Math.PI * 2;
         const spread = 80 + Math.random() * 80;
         return {
           id: i,
@@ -96,7 +96,7 @@ export function DailyRewardsPopup() {
           role="dialog"
           aria-modal="true"
           aria-label="Daily check-in rewards"
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm"
           onClick={handleClose}
         >
           <motion.div
@@ -113,7 +113,7 @@ export function DailyRewardsPopup() {
               onClick={handleClose}
               title="Close"
               aria-label="Close"
-              className="absolute right-3 top-3 z-10 rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors"
+              className="absolute right-3 top-3 z-10 rounded-md p-1.5 text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors"
             >
               <X className="h-4 w-4" />
             </button>
@@ -126,26 +126,23 @@ export function DailyRewardsPopup() {
                 : "bg-primary/8",
             )}>
               {/* Animated icon */}
-              <motion.div
-                className="flex h-16 w-16 items-center justify-center rounded-md border border-border/40"
-                initial={{ scale: 0, rotate: -20 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.1 }}
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-md border border-border/40"
               >
                 {isDay7 ? (
-                  <Crown className="h-7 w-7 text-amber-400" />
+                  <Crown className="h-6 w-6 text-amber-400" />
                 ) : (
-                  <Gift className="h-7 w-7 text-primary" />
+                  <Gift className="h-6 w-6 text-primary" />
                 )}
-              </motion.div>
+              </div>
 
               <div className="text-center">
-                <h2 className="text-xl font-bold tracking-tight">Daily Check-In</h2>
+                <h2 className="text-lg font-semibold tracking-tight">Daily Check-In</h2>
                 {streakCount > 0 ? (
                   <div className="flex items-center justify-center gap-1.5 mt-1">
                     <Flame className="h-3.5 w-3.5 text-orange-400" />
-                    <span className="text-[12px] font-bold text-orange-400">
-                      {streakCount} day streak!
+                    <span className="text-[12px] font-medium text-orange-400">
+                      {streakCount} day streak
                     </span>
                   </div>
                 ) : (
@@ -204,13 +201,11 @@ export function DailyRewardsPopup() {
                         ) : isFuture ? (
                           <Lock className="h-3.5 w-3.5 text-muted-foreground/30" />
                         ) : (
-                          <motion.span
+                          <span
                             className="text-base leading-none"
-                            animate={isCurrent ? { scale: [1, 1.1, 1] } : {}}
-                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1, type: "tween" }}
                           >
                             {(() => { const DayIcon = DAY_ICONS[i] ?? Gift; return <DayIcon className={cn("h-4 w-4", isLastDay ? "text-amber-400" : "text-muted-foreground")} />; })()}
-                          </motion.span>
+                          </span>
                         )}
                       </div>
 
@@ -262,14 +257,14 @@ export function DailyRewardsPopup() {
                   transition={{ delay: 0.45 }}
                 >
                   <div>
-                    <p className="text-xs font-bold text-muted-foreground/70">
+                    <p className="text-xs font-medium text-muted-foreground/70">
                       Today's Reward
                     </p>
                     <p className={cn(
-                      "text-2xl font-bold tabular-nums mt-0.5",
+                      "text-xl font-semibold tabular-nums mt-0.5",
                       isDay7 ? "text-amber-400" : "text-primary",
                     )}>
-                      +{todayXP} <span className="text-sm font-bold">XP</span>
+                      +{todayXP} <span className="text-sm font-medium">XP</span>
                     </p>
                   </div>
                   {(() => { const RewardIcon = DAY_ICONS[dayIndex] ?? Gift; return <RewardIcon className={cn("h-8 w-8", isDay7 ? "text-amber-400" : "text-primary")} />; })()}
@@ -289,11 +284,10 @@ export function DailyRewardsPopup() {
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 14 }}
                   >
-                    <Sparkles className="h-5 w-5 text-emerald-400" />
-                    <span className="text-base font-bold text-emerald-400">
-                      +{earnedXP} XP Claimed!
+                    <Check className="h-4 w-4 text-emerald-400" />
+                    <span className="text-sm font-semibold text-emerald-400">
+                      +{earnedXP} XP Claimed
                     </span>
-                    <Sparkles className="h-5 w-5 text-emerald-400" />
                   </motion.div>
                 ) : canClaim ? (
                   <motion.button
@@ -302,7 +296,7 @@ export function DailyRewardsPopup() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.96 }}
                     className={cn(
-                      "w-full rounded-md py-3 text-sm font-bold text-primary-foreground transition-all",
+                      "w-full rounded-md py-3 text-sm font-semibold text-primary-foreground transition-all",
                       isDay7
                         ? "bg-amber-500 hover:bg-amber-400"
                         : "bg-primary hover:brightness-110",
@@ -313,7 +307,7 @@ export function DailyRewardsPopup() {
                 ) : (
                   <div className="flex items-center justify-center gap-2 rounded-md border border-border/30 bg-muted/10 px-5 py-3">
                     <Check className="h-4 w-4 text-emerald-400" />
-                    <span className="text-sm font-bold text-muted-foreground">Today's reward claimed!</span>
+                    <span className="text-sm font-medium text-muted-foreground">Today's reward claimed</span>
                   </div>
                 )}
               </motion.div>

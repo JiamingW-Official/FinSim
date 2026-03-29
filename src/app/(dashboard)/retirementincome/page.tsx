@@ -172,7 +172,7 @@ function WithdrawalStrategiesTab() {
   const successPct = closestSuccess.success;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-start gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
           <TrendingUp className="w-5 h-5 text-primary" />
@@ -302,13 +302,13 @@ function WithdrawalStrategiesTab() {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-between text-xs">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">
               Historical Success Rate (30yr)
             </span>
             <Badge
               className={cn(
-                "text-xs",
+                "text-xs text-muted-foreground",
                 successPct >= 80
                   ? "bg-green-500/20 text-green-400"
                   : successPct >= 60
@@ -359,7 +359,7 @@ function WithdrawalStrategiesTab() {
                 )}
               />
               <div>
-                <p className={cn("text-xs font-medium", strat.colorCls)}>
+                <p className={cn("text-xs text-muted-foreground font-medium", strat.colorCls)}>
                   {strat.name}
                 </p>
                 <p className="text-xs text-muted-foreground mt-0.5">
@@ -514,7 +514,7 @@ function WithdrawalStrategiesTab() {
               </div>
               <span
                 className={cn(
-                  "text-xs font-medium w-10 text-right",
+                  "text-xs text-muted-foreground font-medium w-10 text-right",
                   row.success >= 90
                     ? "text-green-400"
                     : row.success >= 70
@@ -611,7 +611,7 @@ function SequenceRiskTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-start gap-3">
         <div className="p-2 rounded-lg bg-red-500/10">
           <AlertTriangle className="w-5 h-5 text-red-400" />
@@ -643,7 +643,7 @@ function SequenceRiskTab() {
           average return produces radically different outcomes depending purely
           on sequence.
         </p>
-        <div className="grid grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div className="rounded-lg bg-green-500/10 p-3">
             <p className="font-medium text-green-400 mb-1">
               Early Bull, Late Bear
@@ -766,7 +766,7 @@ function SequenceRiskTab() {
             </g>
           </svg>
         </div>
-        <div className="grid grid-cols-2 gap-3 mt-2 text-xs">
+        <div className="grid grid-cols-2 gap-3 mt-2 text-xs text-muted-foreground">
           <div className="text-center">
             <p className="text-muted-foreground">Early Bull final value</p>
             <p className="font-medium text-green-400">
@@ -824,7 +824,7 @@ function SequenceRiskTab() {
               key={strat.name}
               className={cn("rounded-lg p-3", strat.bgCls)}
             >
-              <p className={cn("text-xs font-medium mb-1", strat.colorCls)}>
+              <p className={cn("text-xs text-muted-foreground font-medium mb-1", strat.colorCls)}>
                 {strat.name}
               </p>
               <p className="text-xs text-muted-foreground">{strat.desc}</p>
@@ -852,7 +852,7 @@ function SequenceRiskTab() {
                 }}
               >
                 <p
-                  className="text-xs font-medium"
+                  className="text-xs text-muted-foreground font-medium"
                   style={{ color: b.color }}
                 >
                   Bucket {i + 1}
@@ -971,7 +971,7 @@ function SocialSecurityTab() {
   const be6670 = rawBe6670 > 0 ? 62 + rawBe6670 : 82;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-start gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
           <Landmark className="w-5 h-5 text-primary" />
@@ -1018,7 +1018,7 @@ function SocialSecurityTab() {
             key={opt.age}
             className={cn("p-3 border-border text-center", opt.bgCls)}
           >
-            <p className={cn("text-xs font-medium", opt.colorCls)}>
+            <p className={cn("text-xs text-muted-foreground font-medium", opt.colorCls)}>
               Age {opt.age}
             </p>
             <p className="text-xs text-muted-foreground">{opt.label}</p>
@@ -1026,7 +1026,7 @@ function SocialSecurityTab() {
               {fmtK(opt.monthly)}/mo
             </p>
             <Badge
-              className={cn("text-xs mt-1", opt.bgCls, opt.colorCls)}
+              className={cn("text-xs text-muted-foreground mt-1", opt.bgCls, opt.colorCls)}
             >
               {opt.reduction}
             </Badge>
@@ -1170,7 +1170,7 @@ function SocialSecurityTab() {
             </g>
           </svg>
         </div>
-        <div className="grid grid-cols-2 gap-3 mt-2 text-xs">
+        <div className="grid grid-cols-2 gap-3 mt-2 text-xs text-muted-foreground">
           <div className="rounded-lg bg-muted/20 p-2">
             <p className="text-muted-foreground">62 vs 66 breakeven</p>
             <p className="font-medium text-foreground">Age {be6266}</p>
@@ -1223,7 +1223,7 @@ function SocialSecurityTab() {
               Taxability and Offsets
             </span>
           </div>
-          <div className="space-y-2 text-xs">
+          <div className="space-y-2 text-xs text-muted-foreground">
             <div className="rounded-lg bg-amber-500/10 p-2">
               <p className="font-medium text-amber-400 mb-1">
                 Taxable Thresholds
@@ -1291,7 +1291,7 @@ function SocialSecurityTab() {
             const pct = (total / 80000) * 100;
             return (
               <div key={row.label}>
-                <div className="flex justify-between text-xs mb-1">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
                   <span className="text-muted-foreground">{row.label}</span>
                   <span className="font-medium text-foreground">
                     {fmtK(total)}/yr ({pct.toFixed(0)}%)
@@ -1398,7 +1398,7 @@ function IncomeFlooringTab() {
   const tH = 160;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-start gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
           <Umbrella className="w-5 h-5 text-primary" />
@@ -1485,7 +1485,7 @@ function IncomeFlooringTab() {
           </span>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground font-medium">
@@ -1822,7 +1822,7 @@ function IncomeFlooringTab() {
           portfolio more aggressively in the 65–85 window knowing backup income
           arrives at 85.
         </p>
-        <div className="grid grid-cols-3 gap-3 text-xs">
+        <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
           {[
             {
               label: "Premium at 65",

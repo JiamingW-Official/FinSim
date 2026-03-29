@@ -216,7 +216,7 @@ function SliderRow({
 }) {
   return (
     <div className="space-y-1">
-      <div className="flex justify-between text-xs">
+      <div className="flex justify-between text-xs text-muted-foreground">
         <span className="text-foreground/50">{label}</span>
         <span className="text-foreground font-mono">{format(value)}</span>
       </div>
@@ -340,7 +340,7 @@ function SwapPricerTab() {
           <div className="flex gap-2">
             <button
               onClick={() => setPayFixed(true)}
-              className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
+              className={`flex-1 py-1.5 rounded text-xs text-muted-foreground font-medium transition-colors ${
                 payFixed
                   ? "bg-primary/30 text-primary border border-primary/50"
                   : "bg-foreground/5 text-foreground/40 border border-transparent"
@@ -350,7 +350,7 @@ function SwapPricerTab() {
             </button>
             <button
               onClick={() => setPayFixed(false)}
-              className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
+              className={`flex-1 py-1.5 rounded text-xs text-muted-foreground font-medium transition-colors ${
                 !payFixed
                   ? "bg-primary/30 text-primary border border-primary/50"
                   : "bg-foreground/5 text-foreground/40 border border-transparent"
@@ -519,7 +519,7 @@ function SwapPricerTab() {
                 >
                   <div className="text-[11px] text-foreground/40">{`Q${i + 1}`}</div>
                   <div
-                    className={`text-xs font-mono font-medium ${
+                    className={`text-xs text-muted-foreground font-mono font-medium ${
                       net >= 0 ? "text-emerald-400" : "text-red-400"
                     }`}
                   >
@@ -631,7 +631,7 @@ function SwapCurveTab() {
       <Card>
         <h3 className="text-sm font-medium text-foreground/80 mb-3">Bootstrapped Rates</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-1.5 text-foreground/40 font-medium">Tenor</th>
@@ -803,7 +803,7 @@ function SwaptionTab() {
           <div className="flex gap-2">
             <button
               onClick={() => setIsPayer(true)}
-              className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
+              className={`flex-1 py-1.5 rounded text-xs text-muted-foreground font-medium transition-colors ${
                 isPayer
                   ? "bg-pink-500/30 text-pink-300 border border-pink-500/50"
                   : "bg-foreground/5 text-foreground/40 border border-transparent"
@@ -813,7 +813,7 @@ function SwaptionTab() {
             </button>
             <button
               onClick={() => setIsPayer(false)}
-              className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
+              className={`flex-1 py-1.5 rounded text-xs text-muted-foreground font-medium transition-colors ${
                 !isPayer
                   ? "bg-primary/30 text-primary border border-primary/50"
                   : "bg-foreground/5 text-foreground/40 border border-transparent"
@@ -1435,7 +1435,7 @@ function DurationHedgingTab() {
 
         {/* Scenario table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-1 text-foreground/40">Shift (bps)</th>

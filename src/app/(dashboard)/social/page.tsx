@@ -350,7 +350,7 @@ const REGIME_VOTES = { bull: 318, bear: 142, sideways: 227 };
 // ─── Helper components ────────────────────────────────────────────────────────
 
 function Avatar({ initials, color, size = "md" }: { initials: string; color: string; size?: "sm" | "md" | "lg" }) {
-  const sizeClass = size === "sm" ? "h-7 w-7 text-xs" : size === "lg" ? "h-12 w-12 text-base" : "h-9 w-9 text-xs";
+  const sizeClass = size === "sm" ? "h-7 w-7 text-xs text-muted-foreground" : size === "lg" ? "h-12 w-12 text-base" : "h-9 w-9 text-xs text-muted-foreground";
   return (
     <div className={cn("shrink-0 rounded-full flex items-center justify-center font-bold text-foreground", color, sizeClass)}>
       {initials}
@@ -400,7 +400,7 @@ function PodiumCard({ trader, place }: { trader: Trader; place: 1 | 2 | 3 }) {
       {place === 1 && <Crown className={cn("h-5 w-5", crownColors[place])} />}
       <Avatar initials={trader.initials} color={trader.avatarColor} size="lg" />
       <div className="text-center">
-        <p className="text-xs font-semibold">{trader.username}</p>
+        <p className="text-xs text-muted-foreground font-semibold">{trader.username}</p>
         <ReturnBadge value={trader.returnPct} />
       </div>
       <div className={cn("w-full rounded-t-md border-t border-x flex items-end justify-center pb-1 min-w-[72px]", heights[place], colors[place])}>
@@ -434,7 +434,7 @@ function LeaderboardTab() {
     <button
       onClick={() => setSort(field)}
       className={cn(
-        "px-2.5 py-1 rounded text-xs font-medium transition-colors",
+        "px-2.5 py-1 rounded text-xs text-muted-foreground font-medium transition-colors",
         sort === field ? "bg-primary/15 text-primary" : "text-muted-foreground hover:text-foreground",
       )}
     >
@@ -452,8 +452,8 @@ function LeaderboardTab() {
               key={p}
               onClick={() => setPeriod(p)}
               className={cn(
-                "px-3 py-1 rounded text-xs font-medium capitalize transition-colors",
-                period === p ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                "px-3 py-1 rounded text-xs text-muted-foreground font-medium capitalize transition-colors",
+                period === p ? "bg-background text-foreground" : "text-muted-foreground hover:text-foreground",
               )}
             >
               {p === "allTime" ? "All Time" : p.charAt(0).toUpperCase() + p.slice(1)}
@@ -487,7 +487,7 @@ function LeaderboardTab() {
       </div>
 
       {/* Podium */}
-      <div className="bg-card border border-border/50 rounded-md p-6">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <p className="text-xs font-semibold text-muted-foreground/60 mb-4 text-center">Top Performers</p>
         <div className="flex items-end justify-center gap-4">
           {top3[1] && <PodiumCard trader={top3[1]} place={2} />}
@@ -503,7 +503,7 @@ function LeaderboardTab() {
             <Star className="h-3.5 w-3.5 text-primary" />
             <span className="text-xs font-medium text-primary">Your rank</span>
           </div>
-          <div className="flex items-center gap-4 text-xs">
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <span className="font-medium text-foreground">#{youRow.rank}</span>
             <ReturnBadge value={youRow.returnPct} />
             <span className="text-muted-foreground">Sharpe {youRow.sharpe}</span>
@@ -593,7 +593,7 @@ function IdeaCard({
         <div className="flex items-center gap-2.5">
           <Avatar initials={idea.trader.initials} color={idea.trader.avatarColor} size="sm" />
           <div>
-            <p className="text-xs font-medium">{idea.trader.username}</p>
+            <p className="text-xs text-muted-foreground font-medium">{idea.trader.username}</p>
             <p className="text-xs text-muted-foreground">{idea.hoursAgo}h ago</p>
           </div>
         </div>
@@ -606,7 +606,7 @@ function IdeaCard({
       {/* Direction + Ticker */}
       <div className="flex items-center gap-3">
         <span className={cn(
-          "px-2 py-0.5 rounded text-xs font-medium uppercase",
+          "px-2 py-0.5 rounded text-xs text-muted-foreground font-medium uppercase",
           isLong ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400",
         )}>
           {idea.direction}
@@ -614,7 +614,7 @@ function IdeaCard({
         <span className="font-medium text-sm">{idea.ticker}</span>
         {idea.closed && idea.closedPnlPct !== undefined && (
           <span className={cn(
-            "ml-auto text-xs font-medium px-2 py-0.5 rounded",
+            "ml-auto text-xs text-muted-foreground font-medium px-2 py-0.5 rounded",
             idea.closedPnlPct >= 0 ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400",
           )}>
             Closed {idea.closedPnlPct >= 0 ? "+" : ""}{idea.closedPnlPct}%
@@ -623,7 +623,7 @@ function IdeaCard({
       </div>
 
       {/* Price levels */}
-      <div className="flex gap-4 text-xs">
+      <div className="flex gap-4 text-xs text-muted-foreground">
         <div>
           <p className="text-muted-foreground/60">Entry</p>
           <p className="font-mono font-medium">${idea.entry}</p>
@@ -672,7 +672,7 @@ function IdeaCard({
         <button
           onClick={() => onToggleLike(idea.id)}
           className={cn(
-            "flex items-center gap-1 text-xs transition-colors",
+            "flex items-center gap-1 text-xs text-muted-foreground transition-colors",
             liked ? "text-rose-400" : "text-muted-foreground hover:text-rose-400",
           )}
         >
@@ -726,7 +726,7 @@ function PostIdeaModal({ onClose }: { onClose: () => void }) {
             <button
               onClick={() => setDirection("long")}
               className={cn(
-                "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
+                "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
                 direction === "long"
                   ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-400"
                   : "border-border text-muted-foreground hover:text-foreground",
@@ -737,7 +737,7 @@ function PostIdeaModal({ onClose }: { onClose: () => void }) {
             <button
               onClick={() => setDirection("short")}
               className={cn(
-                "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
+                "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
                 direction === "short"
                   ? "bg-rose-500/15 border-rose-500/40 text-rose-400"
                   : "border-border text-muted-foreground hover:text-foreground",
@@ -884,12 +884,12 @@ function TradeIdeasTab() {
               </div>
               <div className="flex items-center gap-2">
                 <span className={cn(
-                  "text-xs font-medium px-1.5 py-0.5 rounded uppercase",
+                  "text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded uppercase",
                   idea.direction === "long" ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400",
                 )}>
                   {idea.direction}
                 </span>
-                <span className="text-xs font-medium">{idea.ticker}</span>
+                <span className="text-xs text-muted-foreground font-medium">{idea.ticker}</span>
               </div>
               <div className="flex items-center gap-1 text-xs text-muted-foreground">
                 <Heart className="h-3 w-3" />
@@ -941,7 +941,7 @@ function CopyTraderCard({
         <button
           onClick={() => onToggleFollow(trader.id)}
           className={cn(
-            "px-3 py-1 rounded-lg text-xs font-medium border transition-colors",
+            "px-3 py-1 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
             following
               ? "border-primary/40 bg-primary/10 text-primary hover:bg-rose-500/10 hover:text-rose-400 hover:border-rose-500/40"
               : "border-border text-muted-foreground hover:border-primary/40 hover:text-primary hover:bg-primary/5",
@@ -951,7 +951,7 @@ function CopyTraderCard({
         </button>
       </div>
 
-      <div className="flex gap-4 text-xs">
+      <div className="flex gap-4 text-xs text-muted-foreground">
         <div>
           <p className="text-muted-foreground/60">Return</p>
           <ReturnBadge value={trader.returnPct} />
@@ -992,10 +992,10 @@ function CopyTraderCard({
             <div className="border-t border-border/40 pt-3 space-y-1">
               <p className="text-xs font-medium text-muted-foreground/60 mb-2">Recent trades</p>
               {trader.recentTrades.map((trade, idx) => (
-                <div key={idx} className="flex items-center justify-between text-xs">
+                <div key={idx} className="flex items-center justify-between text-xs text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <span className={cn(
-                      "text-xs font-medium px-1.5 rounded",
+                      "text-xs text-muted-foreground font-medium px-1.5 rounded",
                       trade.direction === "Long" ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400",
                     )}>
                       {trade.direction}
@@ -1047,7 +1047,7 @@ function CopyTradingTab() {
           <Settings2 className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-xs font-medium text-muted-foreground/80">Auto-Copy Settings</h3>
         </div>
-        <div className="flex flex-wrap gap-6 items-center">
+        <div className="flex flex-wrap gap-3 items-center">
           <div>
             <label className="text-xs font-medium text-muted-foreground block mb-1">Max copy size ($)</label>
             <input
@@ -1233,7 +1233,7 @@ function CommunityStatsTab() {
             const contrarian = s.longPct > 80 || s.longPct < 20;
             return (
               <div key={s.ticker} className="flex items-center gap-3">
-                <span className="text-xs font-mono font-medium w-10">{s.ticker}</span>
+                <span className="text-xs text-muted-foreground font-mono font-medium w-10">{s.ticker}</span>
                 <div className="flex-1 flex items-center gap-1">
                   <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden flex">
                     <div
@@ -1243,14 +1243,14 @@ function CommunityStatsTab() {
                     <div className="h-full bg-rose-500 flex-1" />
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-xs w-32 justify-end">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground w-32 justify-end">
                   <span className="text-emerald-400">{s.longPct}% L</span>
                   <span className="text-rose-400">{s.shortPct}% S</span>
                   {contrarian && (
                     <span className="text-amber-400 font-medium">!</span>
                   )}
                 </div>
-                <div className="flex items-center gap-1 text-xs w-20 justify-end">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground w-20 justify-end">
                   {s.change >= 0
                     ? <ArrowUpRight className="h-3 w-3 text-emerald-400" />
                     : <ArrowDownRight className="h-3 w-3 text-rose-400" />}
@@ -1298,7 +1298,7 @@ function CommunityStatsTab() {
                 <p className="text-lg mb-1">
                   {r === "bull" ? "🐂" : r === "bear" ? "🐻" : "↔"}
                 </p>
-                <p className="text-xs font-medium capitalize">{r}</p>
+                <p className="text-xs text-muted-foreground font-medium capitalize">{r}</p>
                 <p className="text-xl font-medium mt-1">{pct}%</p>
                 <p className="text-xs text-muted-foreground">{votes.toLocaleString()} votes</p>
               </button>
@@ -1349,7 +1349,7 @@ function CommunityStatsTab() {
                 <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-primary/10 text-primary">{c.category}</span>
                 <span className="text-xs text-muted-foreground">Ends in {c.endsIn}</span>
               </div>
-              <p className="text-xs font-medium">{c.title}</p>
+              <p className="text-xs text-muted-foreground font-medium">{c.title}</p>
               <p className="text-[11px] text-muted-foreground/80 leading-relaxed">{c.description}</p>
               <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">

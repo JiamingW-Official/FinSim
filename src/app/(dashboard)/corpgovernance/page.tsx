@@ -459,7 +459,7 @@ function OwnershipDonut({ data }: { data: Shareholder[] }) {
   });
 
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-3">
       <svg width={W} height={W} viewBox={`0 0 ${W} ${W}`}>
         {slices.map((sl) => (
           <path key={sl.t} d={sl.d} fill={sl.color} opacity={0.85} />
@@ -568,7 +568,7 @@ function ProxyVoteSimulator() {
                     key={v}
                     onClick={() => cast(res.id, v)}
                     className={cn(
-                      "text-xs px-2 py-1 rounded-md border font-medium transition-all",
+                      "text-xs text-muted-foreground px-2 py-1 rounded-md border font-medium transition-all",
                       voted === v
                         ? v === "For"
                           ? "bg-emerald-500 border-emerald-500 text-foreground"
@@ -662,12 +662,12 @@ export default function CorpGovernancePage() {
   const [expandedDefense, setExpandedDefense] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="max-w-6xl mx-auto space-y-6"
+        className="max-w-6xl mx-auto space-y-4"
       >
         {/* HERO Header */}
         <div className="border-l-4 border-l-primary rounded-md bg-card p-6">
@@ -691,12 +691,12 @@ export default function CorpGovernancePage() {
         {/* Tabs */}
         <Tabs defaultValue="board">
           <TabsList className="bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="board" className="text-xs gap-1.5"><Users className="w-3 h-3" />Board Composition</TabsTrigger>
-            <TabsTrigger value="activist" className="text-xs gap-1.5"><Target className="w-3 h-3" />Activist Campaigns</TabsTrigger>
-            <TabsTrigger value="proxy" className="text-xs gap-1.5"><Vote className="w-3 h-3" />Proxy Vote Sim</TabsTrigger>
-            <TabsTrigger value="esg" className="text-xs gap-1.5"><Award className="w-3 h-3" />ESG Scorecard</TabsTrigger>
-            <TabsTrigger value="defense" className="text-xs gap-1.5"><Shield className="w-3 h-3" />Takeover Defenses</TabsTrigger>
-            <TabsTrigger value="ownership" className="text-xs gap-1.5"><BarChart2 className="w-3 h-3" />Institutional Ownership</TabsTrigger>
+            <TabsTrigger value="board" className="text-xs text-muted-foreground gap-1.5"><Users className="w-3 h-3" />Board Composition</TabsTrigger>
+            <TabsTrigger value="activist" className="text-xs text-muted-foreground gap-1.5"><Target className="w-3 h-3" />Activist Campaigns</TabsTrigger>
+            <TabsTrigger value="proxy" className="text-xs text-muted-foreground gap-1.5"><Vote className="w-3 h-3" />Proxy Vote Sim</TabsTrigger>
+            <TabsTrigger value="esg" className="text-xs text-muted-foreground gap-1.5"><Award className="w-3 h-3" />ESG Scorecard</TabsTrigger>
+            <TabsTrigger value="defense" className="text-xs text-muted-foreground gap-1.5"><Shield className="w-3 h-3" />Takeover Defenses</TabsTrigger>
+            <TabsTrigger value="ownership" className="text-xs text-muted-foreground gap-1.5"><BarChart2 className="w-3 h-3" />Institutional Ownership</TabsTrigger>
           </TabsList>
 
           {/* ── Board Composition ── */}
@@ -715,7 +715,7 @@ export default function CorpGovernancePage() {
                         key={c.ticker}
                         onClick={() => setSelectedCompany(c)}
                         className={cn(
-                          "text-xs px-2 py-1 rounded-md border transition-all",
+                          "text-xs text-muted-foreground px-2 py-1 rounded-md border transition-all",
                           selectedCompany.ticker === c.ticker
                             ? "bg-indigo-500 border-indigo-500 text-foreground"
                             : "border-border text-muted-foreground hover:border-border"
@@ -727,7 +727,7 @@ export default function CorpGovernancePage() {
                   </div>
                   <div className="space-y-2">
                     <p className="text-sm font-medium text-foreground">{selectedCompany.name}</p>
-                    <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                       <div className="flex justify-between"><span className="text-muted-foreground">Board Size</span><span className="text-foreground font-medium">{selectedCompany.boardSize} members</span></div>
                       <div className="flex justify-between"><span className="text-muted-foreground">Independent</span><span className={cn("font-medium", scoreColor(selectedCompany.independentPct))}>{selectedCompany.independentPct}%</span></div>
                       <div className="flex justify-between"><span className="text-muted-foreground">Female Directors</span><span className={cn("font-medium", scoreColor(selectedCompany.femalePct))}>{selectedCompany.femalePct}%</span></div>
@@ -739,7 +739,7 @@ export default function CorpGovernancePage() {
                       )}
                     </div>
                     <div className="mt-3">
-                      <div className="flex justify-between text-xs mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span className="text-muted-foreground">Governance Score</span>
                         <span className={cn("font-medium", scoreColor(selectedCompany.govScore))}>{selectedCompany.govScore}/100</span>
                       </div>
@@ -750,7 +750,7 @@ export default function CorpGovernancePage() {
               </div>
               <div className="rounded-md border border-border bg-foreground/5 p-4 overflow-x-auto">
                 <h3 className="text-sm font-medium text-foreground mb-3">Full Comparison Table</h3>
-                <table className="w-full text-xs min-w-[580px]">
+                <table className="w-full text-xs text-muted-foreground min-w-[580px]">
                   <thead>
                     <tr className="text-muted-foreground border-b border-border">
                       <th className="text-left pb-2 font-medium">Company</th>
@@ -773,7 +773,7 @@ export default function CorpGovernancePage() {
                         <td className={cn("text-center py-2", c.avgTenure > 10 ? "text-rose-400" : "text-emerald-400")}>{c.avgTenure}y</td>
                         <td className="text-center py-2">{c.ceoChairSplit ? <CheckCircle className="w-3.5 h-3.5 text-emerald-400 inline" /> : <XCircle className="w-3.5 h-3.5 text-rose-400 inline" />}</td>
                         <td className="text-center py-2">{c.staggeredBoard ? <AlertTriangle className="w-3.5 h-3.5 text-amber-400 inline" /> : <CheckCircle className="w-3.5 h-3.5 text-emerald-400 inline" />}</td>
-                        <td className="text-center py-2"><Badge className={cn("text-xs", scoreBg(c.govScore))}>{c.govScore}</Badge></td>
+                        <td className="text-center py-2"><Badge className={cn("text-xs text-muted-foreground", scoreBg(c.govScore))}>{c.govScore}</Badge></td>
                       </tr>
                     ))}
                   </tbody>
@@ -806,7 +806,7 @@ export default function CorpGovernancePage() {
                         <span>Stock reaction: <span className={cn("font-medium", c.stockReaction >= 0 ? "text-emerald-400" : "text-rose-400")}>{c.stockReaction >= 0 ? "+" : ""}{c.stockReaction}%</span></span>
                       </div>
                     </div>
-                    <Badge className={cn("text-xs flex-shrink-0", statusColor[c.status])}>{c.status}</Badge>
+                    <Badge className={cn("text-xs text-muted-foreground flex-shrink-0", statusColor[c.status])}>{c.status}</Badge>
                   </div>
                   <div className="mt-2">
                     <p className="text-xs text-muted-foreground mb-1.5">Key Demands:</p>
@@ -854,7 +854,7 @@ export default function CorpGovernancePage() {
                         { label: "Transparency", value: e.transparency },
                       ].map((m) => (
                         <div key={m.label}>
-                          <div className="flex justify-between text-xs mb-0.5">
+                          <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                             <span className="text-muted-foreground">{m.label}</span>
                             <span className={cn("font-medium", scoreColor(m.value))}>{m.value}</span>
                           </div>
@@ -864,14 +864,14 @@ export default function CorpGovernancePage() {
                     </div>
                     <div className="mt-3 flex justify-between items-center">
                       <span className="text-xs text-muted-foreground">Overall Score</span>
-                      <Badge className={cn("text-xs font-medium", scoreBg(e.overall))}>{e.overall}</Badge>
+                      <Badge className={cn("text-xs text-muted-foreground font-medium", scoreBg(e.overall))}>{e.overall}</Badge>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="rounded-md border border-border bg-foreground/5 p-4">
                 <h3 className="text-sm font-medium text-foreground mb-3">Score Interpretation</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500 mt-0.5 flex-shrink-0" /><div><p className="text-emerald-400 font-medium">80–100: Strong Governance</p><p className="text-muted-foreground mt-0.5">Majority independent board, pay tied to performance, robust shareholder rights, full disclosure</p></div></div>
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-amber-500 mt-0.5 flex-shrink-0" /><div><p className="text-amber-400 font-medium">65–79: Adequate Governance</p><p className="text-muted-foreground mt-0.5">Some concerns — tenure concentration, partial disclosure gaps, or minor pay misalignment</p></div></div>
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-rose-500 mt-0.5 flex-shrink-0" /><div><p className="text-rose-400 font-medium">Below 65: Governance Risk</p><p className="text-muted-foreground mt-0.5">Material weaknesses — entrenched board, pay-for-no-performance, activist target profile</p></div></div>
@@ -947,7 +947,7 @@ export default function CorpGovernancePage() {
                 <div className="rounded-md border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-medium text-foreground mb-4">Ownership Breakdown — Vertex Financial (VTXF)</h3>
                   <OwnershipDonut data={SHAREHOLDERS} />
-                  <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
+                  <div className="mt-4 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
                     <div className="rounded-lg border border-border bg-foreground/5 p-3">
                       <p className="text-muted-foreground mb-1">Passive (Index)</p>
                       <p className="text-xl font-medium text-primary">
@@ -981,7 +981,7 @@ export default function CorpGovernancePage() {
                       <div key={sh.name} className="flex items-center gap-3">
                         <span className="text-xs text-muted-foreground w-4">{i + 1}</span>
                         <div className="flex-1">
-                          <div className="flex justify-between text-xs mb-0.5">
+                          <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                             <span className="text-foreground font-medium">{sh.name}</span>
                             <span className="text-foreground font-medium">{sh.pct}%</span>
                           </div>
@@ -1002,7 +1002,7 @@ export default function CorpGovernancePage() {
               </div>
               <div className="rounded-md border border-border bg-foreground/5 p-4">
                 <h3 className="text-sm font-medium text-foreground mb-3">Voting Power Dynamics</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-muted-foreground">
                   <div className="space-y-1.5">
                     <p className="text-muted-foreground font-medium flex items-center gap-1"><TrendingUp className="w-3 h-3 text-primary" />Index Funds (Passive)</p>
                     <p className="text-muted-foreground">Control ~20.5% of votes but historically rubber-stamp management. The "Big Three" (Vanguard, BlackRock, State Street) are increasingly exercising stewardship via proxy voting guidelines.</p>

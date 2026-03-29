@@ -569,7 +569,7 @@ function FuturesCurveTab() {
 
             {/* Contract table */}
             <div className="mt-3 overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="text-muted-foreground">
                     <th className="text-left py-1">Contract</th>
@@ -846,7 +846,7 @@ function SeasonalityTab() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex justify-between text-xs mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span className="text-muted-foreground">Seasonal Strength</span>
                 <span className="text-foreground font-medium">{comm.patternStrength}%</span>
               </div>
@@ -873,7 +873,7 @@ function SeasonalityTab() {
                 </div>
               </div>
 
-              <div className="mt-2 space-y-1 text-xs">
+              <div className="mt-2 space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Peak-to-Trough</span>
                   <span className="text-foreground">
@@ -1035,7 +1035,7 @@ function HedgingTab() {
             {/* Sliders */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Hedge Ratio</span>
                   <span className="text-foreground font-medium">
                     {hedgeRatio.toFixed(0)}%
@@ -1050,9 +1050,9 @@ function HedgingTab() {
                 />
               </div>
               <div className="space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Price Move</span>
-                  <span className={`font-medium text-xs ${pos(priceMove)}`}>
+                  <span className={`font-medium text-xs text-muted-foreground ${pos(priceMove)}`}>
                     {fmtPct(priceMove)}
                   </span>
                 </div>
@@ -1177,7 +1177,7 @@ function HedgingTab() {
                 Hedge Calculator
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs">
+            <CardContent className="space-y-2 text-xs text-muted-foreground">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Commodity Exposure</span>
                 <span className="text-foreground font-mono">
@@ -1216,7 +1216,7 @@ function HedgingTab() {
                 Basis Risk
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs">
+            <CardContent className="space-y-2 text-xs text-muted-foreground">
               <p className="text-muted-foreground">
                 Basis = Spot Price − Futures Price. Imperfect hedge creates residual
                 risk.
@@ -1374,7 +1374,7 @@ function SectorsTab() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground">
                   <th className="text-left py-1">Commodity</th>
@@ -1426,7 +1426,7 @@ function SectorsTab() {
             </CardTitle>
           </CardHeader>
           <CardContent className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground">
                   <th className="text-left py-1">Commodity</th>
@@ -1492,7 +1492,7 @@ function SectorsTab() {
               <p className="text-xs text-muted-foreground uppercase tracking-wide">
                 Stocks-to-Use Interpretation
               </p>
-              <div className="flex gap-3 text-xs">
+              <div className="flex gap-3 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-red-400" />
                   <span className="text-muted-foreground">&lt;15% = Tight</span>
@@ -1518,7 +1518,7 @@ function SectorsTab() {
 
 export default function CommoditiesFuturesPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* HERO Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div>

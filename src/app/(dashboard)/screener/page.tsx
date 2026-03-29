@@ -530,7 +530,7 @@ function FilterChip({ f, onRemove, onToggle }: { f: FilterCriterion; onRemove: (
   return (
     <div
       className={cn(
-        "flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs cursor-pointer select-none transition-colors",
+        "flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs text-muted-foreground cursor-pointer select-none transition-colors",
         f.enabled
           ? "border-primary/40 bg-primary/10 text-primary"
           : "border-border bg-muted/30 text-muted-foreground",
@@ -779,17 +779,17 @@ export default function ScreenerPage() {
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col overflow-hidden">
         <TabsList className="mx-6 mt-3 mb-0 shrink-0 w-fit h-8">
-          <TabsTrigger value="builder" className="text-xs px-3">Screen Builder</TabsTrigger>
-          <TabsTrigger value="results" className="text-xs px-3">
+          <TabsTrigger value="builder" className="text-xs text-muted-foreground px-3">Screen Builder</TabsTrigger>
+          <TabsTrigger value="results" className="text-xs text-muted-foreground px-3">
             Results {hasRun && <span className="ml-1.5 rounded-full bg-primary/20 px-1.5 py-0.5 text-[11px] font-semibold text-primary">{filteredStocks.length}</span>}
           </TabsTrigger>
-          <TabsTrigger value="ai" className="text-xs px-3">AI Recommendations</TabsTrigger>
-          <TabsTrigger value="saved" className="text-xs px-3">Saved Screens</TabsTrigger>
+          <TabsTrigger value="ai" className="text-xs text-muted-foreground px-3">AI Recommendations</TabsTrigger>
+          <TabsTrigger value="saved" className="text-xs text-muted-foreground px-3">Saved Screens</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Screen Builder ──────────────────────────────────────────── */}
         <TabsContent value="builder" className="flex-1 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4">
             {/* Preset loader */}
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs font-medium text-muted-foreground">Load preset:</span>
@@ -838,7 +838,7 @@ export default function ScreenerPage() {
                       type="button"
                       onClick={() => setMarketCapFilter(cat)}
                       className={cn(
-                        "rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors",
+                        "rounded-full border px-3 py-1 text-xs text-muted-foreground font-medium capitalize transition-colors",
                         marketCapFilter === cat
                           ? "border-primary/40 bg-primary/10 text-primary"
                           : "border-border text-muted-foreground hover:border-primary/30 hover:text-foreground",
@@ -856,7 +856,7 @@ export default function ScreenerPage() {
                     type="button"
                     onClick={() => setSectorFilter("all")}
                     className={cn(
-                      "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                      "rounded-full border px-3 py-1 text-xs text-muted-foreground font-medium transition-colors",
                       sectorFilter === "all"
                         ? "border-primary/40 bg-primary/10 text-primary"
                         : "border-border text-muted-foreground hover:border-primary/30",
@@ -870,7 +870,7 @@ export default function ScreenerPage() {
                       type="button"
                       onClick={() => setSectorFilter(s)}
                       className={cn(
-                        "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                        "rounded-full border px-3 py-1 text-xs text-muted-foreground font-medium transition-colors",
                         sectorFilter === s
                           ? "border-primary/40 bg-primary/10 text-primary"
                           : "border-border text-muted-foreground hover:border-primary/30",
@@ -907,7 +907,7 @@ export default function ScreenerPage() {
                         type="button"
                         onClick={() => setAddFilterCategory(cat)}
                         className={cn(
-                          "rounded-md border px-3 py-1 text-xs font-medium transition-colors",
+                          "rounded-md border px-3 py-1 text-xs text-muted-foreground font-medium transition-colors",
                           addFilterCategory === cat
                             ? "border-primary/40 bg-primary/10 text-primary"
                             : "border-border text-muted-foreground hover:border-primary/30",
@@ -963,7 +963,7 @@ export default function ScreenerPage() {
           <div className="flex h-full">
             {/* Table */}
             <div className="flex-1 overflow-auto">
-              <table className="w-full min-w-[1100px] text-xs">
+              <table className="w-full min-w-[1100px] text-xs text-muted-foreground">
                 <thead className="sticky top-0 z-10 bg-card border-b border-border">
                   <tr>
                     {(
@@ -1079,7 +1079,7 @@ export default function ScreenerPage() {
                 <div className="flex items-center justify-between rounded-lg bg-muted/20 p-3">
                   <div>
                     <p className="text-xl font-medium">${selectedStock.price.toFixed(2)}</p>
-                    <p className={cn("text-xs", returnColor(selectedStock.return1M))}>
+                    <p className={cn("text-xs text-muted-foreground", returnColor(selectedStock.return1M))}>
                       {selectedStock.return1M > 0 ? "+" : ""}{selectedStock.return1M}% (1M)
                     </p>
                   </div>
@@ -1089,7 +1089,7 @@ export default function ScreenerPage() {
                 {/* AI Score */}
                 <div className="rounded-lg border border-border p-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-medium">AI Score</span>
+                    <span className="text-xs text-muted-foreground font-medium">AI Score</span>
                     <span className={cn("text-lg font-bold", scoreColor(selectedStock.score))}>{selectedStock.score}/100</span>
                   </div>
                   <div className="h-2 rounded-full bg-muted overflow-hidden">
@@ -1121,7 +1121,7 @@ export default function ScreenerPage() {
                   ].map(({ label, value }) => (
                     <div key={label} className="flex items-center justify-between py-1 border-b border-border/30 last:border-0">
                       <span className="text-xs text-muted-foreground">{label}</span>
-                      <span className="text-xs font-medium">{value}</span>
+                      <span className="text-xs text-muted-foreground font-medium">{value}</span>
                     </div>
                   ))}
                 </div>
@@ -1156,7 +1156,7 @@ export default function ScreenerPage() {
                         <div className="flex items-center gap-2">
                           <span className="font-mono font-medium text-primary text-base">{pick.ticker}</span>
                           <span className={cn(
-                            "rounded-full px-2 py-0.5 text-xs font-medium",
+                            "rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium",
                             pick.category === "Value" ? "bg-primary/10 text-primary" :
                             pick.category === "Growth" ? "bg-emerald-500/10 text-emerald-400" :
                             pick.category === "Income" ? "bg-amber-500/10 text-amber-400" :
@@ -1171,7 +1171,7 @@ export default function ScreenerPage() {
                       </div>
                       <div className="text-right">
                         <p className="text-base font-medium">${pick.price.toFixed(2)}</p>
-                        <p className={cn("text-xs", returnColor(pick.return1M))}>
+                        <p className={cn("text-xs text-muted-foreground", returnColor(pick.return1M))}>
                           {pick.return1M > 0 ? "+" : ""}{pick.return1M}% 1M
                         </p>
                       </div>
@@ -1191,7 +1191,7 @@ export default function ScreenerPage() {
                     <div className="space-y-2">
                       <div className="rounded-md bg-muted/30 p-2.5">
                         <p className="text-xs font-medium text-muted-foreground mb-1">Why this stock</p>
-                        <p className="text-xs leading-relaxed">{pick.rationale}</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{pick.rationale}</p>
                       </div>
                       <div className="rounded-md bg-red-500/5 border border-red-500/10 p-2.5">
                         <p className="text-xs font-medium text-red-400 mb-1">Risk factors</p>
@@ -1200,7 +1200,7 @@ export default function ScreenerPage() {
                     </div>
 
                     <div className="flex items-center justify-between pt-1">
-                      <span className={cn("text-xs font-medium", scoreColor(pick.score))}>Score {pick.score}/100</span>
+                      <span className={cn("text-xs text-muted-foreground font-medium", scoreColor(pick.score))}>Score {pick.score}/100</span>
                       <button type="button" className="flex items-center gap-1 text-xs text-primary hover:underline">
                         <Star className="h-3 w-3" />
                         Watchlist
@@ -1219,7 +1219,7 @@ export default function ScreenerPage() {
                 <span className="text-xs text-muted-foreground">· Best AI score per sector</span>
               </div>
               <div className="rounded-md border border-border overflow-hidden">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead className="bg-muted/30 border-b border-border">
                     <tr>
                       <th className="px-4 py-2.5 text-left font-medium text-muted-foreground">Sector</th>
@@ -1275,15 +1275,15 @@ export default function ScreenerPage() {
                     </div>
                     <p className="text-xs text-muted-foreground truncate">{s.company}</p>
                     <div className="space-y-1">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Score</span>
                         <span className={cn("font-medium", scoreColor(s.score))}>{s.score}</span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Rev Grw</span>
                         <span className="text-emerald-400">+{s.revenueGrowth}%</span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Mkt Cap</span>
                         <span>{formatMarketCap(s.marketCapB)}</span>
                       </div>
@@ -1309,15 +1309,15 @@ export default function ScreenerPage() {
                     </div>
                     <p className="text-xs text-muted-foreground truncate">{s.company}</p>
                     <div className="space-y-1">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">RSI</span>
                         <span className="text-emerald-400">{s.rsi}</span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">1M Ret</span>
                         <span className="text-red-400">{s.return1M}%</span>
                       </div>
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Score</span>
                         <span className={cn("font-medium", scoreColor(s.score))}>{s.score}</span>
                       </div>
@@ -1351,7 +1351,7 @@ export default function ScreenerPage() {
                             {screen.criteria.length} criteri{screen.criteria.length !== 1 ? "a" : "on"} · Last run {screen.lastRun}
                           </p>
                         </div>
-                        <span className={cn("text-xs font-medium", scoreColor(screen.resultCount * 5))}>
+                        <span className={cn("text-xs text-muted-foreground font-medium", scoreColor(screen.resultCount * 5))}>
                           {screen.resultCount} results
                         </span>
                       </div>
@@ -1431,13 +1431,13 @@ export default function ScreenerPage() {
 
                 {showCompare && compareResults && (
                   <div className="mt-4 space-y-4">
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3">
                       <VennDiagram
                         overlapCount={compareResults.overlap.length}
                         aOnly={compareResults.onlyA.length}
                         bOnly={compareResults.onlyB.length}
                       />
-                      <div className="space-y-2 text-xs">
+                      <div className="space-y-2 text-xs text-muted-foreground">
                         <div>
                           <p className="font-medium">{compareResults.sA.name}</p>
                           <p className="text-muted-foreground">{compareResults.onlyA.length} unique stocks</p>
@@ -1483,7 +1483,7 @@ export default function ScreenerPage() {
                   const isPos = parseFloat(ret) >= 0;
                   return (
                     <div key={screen.id} className="rounded-md border border-border bg-card p-4">
-                      <p className="text-xs font-medium mb-1">{screen.name}</p>
+                      <p className="text-xs text-muted-foreground font-medium mb-1">{screen.name}</p>
                       <p className="text-xs text-muted-foreground mb-3">Top 5 from last month's run</p>
                       <div className="flex items-end gap-2">
                         <span className={cn("text-2xl font-bold", isPos ? "text-emerald-400" : "text-red-400")}>
@@ -1517,13 +1517,13 @@ export default function ScreenerPage() {
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
-                        <p className="text-xs font-medium">{cs.name}</p>
+                        <p className="text-xs text-muted-foreground font-medium">{cs.name}</p>
                         <span className="text-xs text-muted-foreground/60">by {cs.author}</span>
                       </div>
                       <p className="text-xs text-muted-foreground truncate">{cs.description}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-xs font-medium">{cs.resultCount} stocks</p>
+                      <p className="text-xs text-muted-foreground font-medium">{cs.resultCount} stocks</p>
                       <p className="text-xs text-muted-foreground">{cs.runs.toLocaleString()} runs</p>
                     </div>
                     <button
@@ -1543,7 +1543,7 @@ export default function ScreenerPage() {
       {/* Save dialog */}
       {saveDialogOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="rounded-md border border-border bg-card p-6 shadow-sm w-80 space-y-4">
+          <div className="rounded-md border border-border bg-card p-4 w-80 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-medium">Save Screen</h3>
               <button type="button" onClick={() => setSaveDialogOpen(false)} className="rounded-md p-1 hover:bg-accent">

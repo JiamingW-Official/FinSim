@@ -1002,7 +1002,7 @@ export default function TransitionFinancePage() {
   void gapData;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1093,7 +1093,7 @@ export default function TransitionFinancePage() {
               </CardHeader>
               <CardContent className="space-y-2">
                 {BLENDED_STRUCTURES.map((b) => (
-                  <div key={b.name} className="flex items-start gap-2 p-2 bg-muted/50 rounded-lg text-xs">
+                  <div key={b.name} className="flex items-start gap-2 p-2 bg-muted/50 rounded-lg text-xs text-muted-foreground">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                     <div>
                       <div className="font-medium text-foreground">{b.name}</div>
@@ -1167,7 +1167,7 @@ export default function TransitionFinancePage() {
                   <button
                     key={f.name}
                     onClick={() => setSelectedDisclosure(i)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                    className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors ${
                       selectedDisclosure === i
                         ? "bg-emerald-600 border-emerald-500 text-foreground"
                         : "bg-muted border-border text-muted-foreground hover:border-border"
@@ -1195,7 +1195,7 @@ export default function TransitionFinancePage() {
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 text-xs">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span className="text-muted-foreground">Mandatory in: <span className="text-foreground">{f.mandatory}</span></span>
                     </div>
@@ -1259,7 +1259,7 @@ export default function TransitionFinancePage() {
               <EuEtsPriceChart />
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-3">
                 {EU_ETS_EVENTS.map((e) => (
-                  <div key={e.year} className="flex items-center gap-1.5 text-xs bg-muted/50 rounded px-2 py-1">
+                  <div key={e.year} className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/50 rounded px-2 py-1">
                     <span className="text-amber-400 font-mono">{e.year}</span>
                     <span className="text-muted-foreground">{e.note}</span>
                   </div>
@@ -1279,7 +1279,7 @@ export default function TransitionFinancePage() {
                   <button
                     key={m.name}
                     onClick={() => setSelectedMarket(i)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                    className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors ${
                       selectedMarket === i
                         ? "bg-emerald-600 border-emerald-500 text-foreground"
                         : "bg-muted border-border text-muted-foreground hover:border-border"
@@ -1468,7 +1468,7 @@ export default function TransitionFinancePage() {
               <CardTitle className="text-sm">NGFS Climate Scenarios — Asset Repricing (%)</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-2 mb-3 text-xs">
+              <div className="grid grid-cols-3 gap-2 mb-3 text-xs text-muted-foreground">
                 {[
                   { name: "Orderly", color: "border-emerald-500 text-emerald-300", desc: "Early, ambitious policy; smooth 1.5°C transition" },
                   { name: "Disorderly", color: "border-amber-500 text-amber-300", desc: "Late, abrupt policy action; high transition risk" },
@@ -1506,7 +1506,7 @@ export default function TransitionFinancePage() {
               <CardTitle className="text-sm">Real Estate Climate Risk Overlay</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs text-muted-foreground">
                 {[
                   { hazard: "Coastal Flood", at_risk: "$1.1T US", driver: "SLR + storm surge", horizon: "2030–2050" },
                   { hazard: "Wildfire WUI", at_risk: "$0.9T US", driver: "Aridity + fuel load", horizon: "2025–2040" },
@@ -1538,7 +1538,7 @@ export default function TransitionFinancePage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       {["Type", "Use of Proceeds", "Standard", "Issuers", "Greenwash Risk", "2024 Volume"].map((h) => (
@@ -1608,7 +1608,7 @@ export default function TransitionFinancePage() {
                   </div>
                 ))}
               </div>
-              <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 text-xs">
+              <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 text-xs text-muted-foreground">
                 <div className="font-medium text-amber-300 mb-1">Do No Significant Harm (DNSH) Test</div>
                 <p className="text-muted-foreground">
                   An activity can only be Taxonomy-aligned for one objective if it does <em>not significantly harm</em> any of the other five. This cross-cutting requirement substantially narrows eligible activities — e.g. a hydropower plant that substantially harms biodiversity cannot be aligned under Objective 1 (mitigation).
@@ -1674,7 +1674,7 @@ export default function TransitionFinancePage() {
                           ))}
                         </div>
                       </div>
-                      <div className="flex items-start gap-1.5 text-xs">
+                      <div className="flex items-start gap-1.5 text-xs text-muted-foreground">
                         <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
                         <span className="text-muted-foreground">{s.challenge}</span>
                       </div>
@@ -1700,7 +1700,7 @@ export default function TransitionFinancePage() {
                   return (
                     <div
                       key={g.flag}
-                      className={`flex items-center gap-3 rounded-lg px-3 py-2 text-xs ${
+                      className={`flex items-center gap-3 rounded-lg px-3 py-2 text-xs text-muted-foreground ${
                         high ? "bg-red-500/10 border border-red-500/20" : "bg-amber-500/10 border border-amber-500/20"
                       }`}
                     >
@@ -1713,7 +1713,7 @@ export default function TransitionFinancePage() {
                       <span className="ml-auto text-muted-foreground whitespace-nowrap">{g.type}</span>
                       <Badge
                         variant="outline"
-                        className={`text-xs whitespace-nowrap ${
+                        className={`text-xs text-muted-foreground whitespace-nowrap ${
                           high ? "border-red-500/40 text-red-300" : "border-amber-500/40 text-amber-300"
                         }`}
                       >

@@ -540,7 +540,7 @@ function HedgeAccountingDiagram() {
             <span className="text-sm font-bold" style={{ color: item.color }}>{item.type}</span>
             <span className="text-xs text-muted-foreground">(IFRS 9 / ASC 815)</span>
           </div>
-          <div className="grid grid-cols-1 gap-1 text-xs sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-1 text-xs text-muted-foreground sm:grid-cols-3">
             <div>
               <p className="text-muted-foreground/70 text-xs uppercase tracking-wide mb-0.5">Hedged Item</p>
               <p className="text-foreground/80">{item.hedgedItem}</p>
@@ -629,7 +629,7 @@ function CashLiquidityTab() {
   const [selectedTier, setSelectedTier] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
           { label: "Avg Corporate Cash", value: "$142B", sub: "S&P 500 non-fin median", color: "text-primary" },
@@ -651,7 +651,7 @@ function CashLiquidityTab() {
           <h3 className="text-sm font-semibold">Cash Pooling Structures</h3>
         </div>
         <CashPoolingDiagram />
-        <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
+        <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div className="rounded-lg bg-primary/5 border border-border p-2.5">
             <p className="font-semibold text-primary mb-1">Physical Pooling — Pros</p>
             <ul className="space-y-0.5 text-muted-foreground">
@@ -692,7 +692,7 @@ function CashLiquidityTab() {
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-xs font-medium text-foreground">{tier.label}</span>
                 <span className={cn(
-                  "text-xs rounded px-1.5 py-0.5 font-medium",
+                  "text-xs text-muted-foreground rounded px-1.5 py-0.5 font-medium",
                   tier.risk === "none"     ? "bg-emerald-500/15 text-emerald-400" :
                   tier.risk === "very-low" ? "bg-primary/15 text-primary"       :
                   tier.risk === "low"      ? "bg-yellow-500/15 text-yellow-400"   :
@@ -726,7 +726,7 @@ function CashLiquidityTab() {
           <h3 className="text-sm font-medium">Cash Conversion Cycle (CCC)</h3>
         </div>
         <CashConversionCycleSVG />
-        <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+        <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
           {[
             { label: "Reduce DIO",   action: "Just-in-time inventory, faster fulfillment, vendor-managed inventory",         icon: <TrendingDown className="w-3 h-3 text-indigo-400" /> },
             { label: "Reduce DSO",   action: "Faster invoicing, early payment discounts (2/10 net 30), dynamic discounting", icon: <TrendingDown className="w-3 h-3 text-emerald-400" /> },
@@ -748,7 +748,7 @@ function CashLiquidityTab() {
           <Activity className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Treasury Technology Stack</h3>
         </div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 text-xs">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 text-xs text-muted-foreground">
           {[
             { label: "TMS",             full: "Treasury Mgmt System",      examples: "Kyriba, GTreasury, FIS Quantum",     desc: "Central hub for cash positions, deals, and reporting" },
             { label: "ERP",             full: "Enterprise Resource Planning", examples: "SAP S/4HANA, Oracle Fusion",      desc: "Source of AR/AP data for cash forecasting" },
@@ -774,7 +774,7 @@ function FXRiskTab() {
   const [activeRow, setActiveRow] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
           { label: "Total FX Exposure",  value: "$42B",   sub: "Enterprise-wide (8 currencies)", color: "text-primary" },
@@ -847,7 +847,7 @@ function FXRiskTab() {
           <h3 className="text-sm font-medium">Enterprise FX Exposure Dashboard</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/40">
                 {["Currency", "Transaction ($M)", "Translation ($M)", "Economic ($M)", "Hedge Ratio", "Instrument"].map((h) => (
@@ -908,7 +908,7 @@ function FXRiskTab() {
       <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-4">
         <div className="flex items-start gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-          <div className="text-xs">
+          <div className="text-xs text-muted-foreground">
             <p className="font-medium text-amber-400 mb-1">Emerging Market FX Hedging Challenges</p>
             <p className="text-muted-foreground mb-2">
               In markets like BRL, INR, CNY, and NGN, hedging is expensive (wide bid/ask, NDF structure) or outright restricted. Companies must weigh hedging cost vs FX risk reduction benefit carefully.
@@ -950,7 +950,7 @@ function DebtMarketsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
           { label: "US IG Issuance YTD",  value: "$620B",  sub: "vs $540B prior year",       color: "text-primary" },
@@ -1006,7 +1006,7 @@ function DebtMarketsTab() {
           <h3 className="text-sm font-medium">Debt Maturity Profile — Managing Refinancing Risk</h3>
         </div>
         <DebtMaturityChart />
-        <div className="mt-3 grid grid-cols-1 gap-2 text-xs sm:grid-cols-3">
+        <div className="mt-3 grid grid-cols-1 gap-2 text-xs text-muted-foreground sm:grid-cols-3">
           {[
             { label: "Refinancing Cliff Risk",    desc: "Too much debt maturing in a single year — dangerous in rising rate environments. Best practice: spread maturities 2–3 years apart.",               icon: <AlertTriangle className="w-3 h-3 text-red-400" /> },
             { label: "Revolving Credit Facility", desc: "Committed backup liquidity ($1–5B typical for large IG). Revolver itself has 3–5Y tenor. Acts as bridge to bond markets when needed.",             icon: <RefreshCw className="w-3 h-3 text-primary" /> },
@@ -1029,7 +1029,7 @@ function DebtMarketsTab() {
           <h3 className="text-sm font-medium">IG Corporate vs LBO Debt Structure</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/40">
                 {["Feature", "Investment Grade Corp", "LBO / Leveraged Buyout"].map((h) => (
@@ -1068,7 +1068,7 @@ function CapitalAllocationTab() {
   const [activeMethod, setActiveMethod] = useState<number | null>(0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
           { label: "S&P 500 Buybacks (LTM)",  value: "$940B",  sub: "All-time record run rate",    color: "text-primary" },
@@ -1091,7 +1091,7 @@ function CapitalAllocationTab() {
           <span className="text-xs text-muted-foreground ml-1">(Illustrative $120B EBITDA company)</span>
         </div>
         <CapAllocWaterfall />
-        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 text-xs">
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 text-xs text-muted-foreground">
           {CAP_ALLOC_WATERFALL.filter((item) => !item.label.startsWith("=")).map((item) => (
             <div key={item.label} className="flex items-start gap-2">
               <span className="w-2.5 h-2.5 rounded-sm mt-0.5 shrink-0" style={{ backgroundColor: item.color }} />
@@ -1110,7 +1110,7 @@ function CapitalAllocationTab() {
           <h3 className="text-sm font-medium">WACC Calculation &amp; Hurdle Rate</h3>
         </div>
         <WaccBreakdown />
-        <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
+        <div className="mt-4 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
           {[
             { metric: "NPV",     desc: "Net present value of future cash flows discounted at WACC. Accept if NPV > 0. Best for comparing projects of different scale.", pro: "Time-value correct",  con: "Terminal value sensitive" },
             { metric: "IRR",     desc: "Discount rate that makes NPV = 0. Accept if IRR > hurdle rate. Easy to communicate to non-finance managers.",                  pro: "Intuitive %",          con: "Multiple IRR problem" },
@@ -1150,7 +1150,7 @@ function CapitalAllocationTab() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="grid grid-cols-3 gap-2 text-xs pt-2 border-t border-border/40"
+                  className="grid grid-cols-3 gap-2 text-xs text-muted-foreground pt-2 border-t border-border/40"
                 >
                   <div>
                     <p className="text-muted-foreground/60 uppercase text-[11px] mb-0.5">Speed</p>
@@ -1177,7 +1177,7 @@ function CapitalAllocationTab() {
           <h3 className="text-sm font-medium">Big Tech Capital Allocation Comparison</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border/40">
                 {["Company", "Cash ($B)", "FCF Yield", "Div Yield", "Buyback Yield", "Capex %FCF", "M&A %FCF", "Cash Return %FCF", "Rating"].map((h) => (
@@ -1200,7 +1200,7 @@ function CapitalAllocationTab() {
                   <td className="py-2 pr-4 tabular-nums text-muted-foreground">{co.maPct}%</td>
                   <td className="py-2 pr-4">
                     <span className={cn(
-                      "text-xs font-medium rounded px-1.5 py-0.5",
+                      "text-xs text-muted-foreground font-medium rounded px-1.5 py-0.5",
                       co.cashReturnPct >= 100 ? "bg-emerald-500/15 text-emerald-400" :
                       co.cashReturnPct >= 80  ? "bg-primary/15 text-primary"       :
                       "bg-orange-500/15 text-orange-400",
@@ -1214,7 +1214,7 @@ function CapitalAllocationTab() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">
+        <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-muted-foreground sm:grid-cols-4">
           {[
             { company: "Apple",     insight: "Cash return > 100% FCF — funded by issuing debt at low rates; highly efficient capital structure leveraged by AAA balance sheet.",  color: "#22c55e" },
             { company: "Microsoft", insight: "Significant M&A capex (Activision $69B); excluding that, return profile is similar to Apple. AI capex now accelerating.",          color: "#6366f1" },
@@ -1234,7 +1234,7 @@ function CapitalAllocationTab() {
           <Info className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Dividend vs Buyback Signaling Theory</h3>
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 text-xs">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 text-xs text-muted-foreground">
           {[
             {
               title: "Dividend Signaling",
@@ -1283,7 +1283,7 @@ export default function CorpTreasuryPage() {
   }, []);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 space-y-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

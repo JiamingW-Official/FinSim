@@ -262,7 +262,7 @@ export default function LeaderboardPage() {
                         type="button"
                         onClick={() => setDimension(dim.id)}
                         className={cn(
-                          "flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition-colors whitespace-nowrap",
+                          "flex items-center gap-1 rounded-md px-2.5 py-1 text-xs text-muted-foreground font-medium transition-colors whitespace-nowrap",
                           isActive
                             ? "bg-primary/20 border border-primary/40 text-primary"
                             : "bg-muted/20 border border-border text-muted-foreground hover:text-foreground",
@@ -287,9 +287,9 @@ export default function LeaderboardPage() {
                         type="button"
                         onClick={() => setTimePeriod(p)}
                         className={cn(
-                          "rounded-md px-2.5 py-1 text-xs font-medium transition-colors",
+                          "rounded-md px-2.5 py-1 text-xs text-muted-foreground font-medium transition-colors",
                           timePeriod === p
-                            ? "bg-card text-foreground shadow-sm"
+                            ? "bg-card text-foreground"
                             : "text-muted-foreground hover:text-foreground",
                         )}
                       >
@@ -307,7 +307,7 @@ export default function LeaderboardPage() {
                   <span className="text-base font-medium">Top 3 — {dimConfig.label}</span>
                 </div>
 
-                <div className="flex items-end justify-center gap-6">
+                <div className="flex items-end justify-center gap-3">
                   {top3[1] && <PodiumSlot entry={top3[1]} dimConfig={dimConfig} place={2} />}
                   {top3[0] && <PodiumSlot entry={top3[0]} dimConfig={dimConfig} place={1} />}
                   {top3[2] && <PodiumSlot entry={top3[2]} dimConfig={dimConfig} place={3} />}
@@ -338,7 +338,7 @@ export default function LeaderboardPage() {
                   <div className="rounded-md border border-border bg-card/50 p-3">
                     <div className="flex items-center gap-2 mb-2">
                       <Gem className="h-3.5 w-3.5 text-muted-foreground" />
-                      <span className="text-xs font-medium">Leagues</span>
+                      <span className="text-xs text-muted-foreground font-medium">Leagues</span>
                     </div>
 
                     <div className="space-y-2">
@@ -639,7 +639,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             <Star className="h-4 w-4 text-amber-400" />
             <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Percentile</span>
           </div>
-          <div className="text-2xl font-bold tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
+          <div className="text-lg font-medium tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
           <div className="mt-2 h-2 rounded-full bg-muted/30 overflow-hidden">
             <div
               className="h-full rounded-full bg-amber-400 transition-all duration-200"
@@ -787,7 +787,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
             <p className="text-xs text-muted-foreground mt-0.5">{unlockedCount} of {allDefs.length} unlocked</p>
           </div>
           <div className="text-right">
-            <span className="text-2xl font-bold tabular-nums text-amber-400">{unlockedCount}</span>
+            <span className="text-lg font-medium tabular-nums text-amber-400">{unlockedCount}</span>
             <span className="text-xs text-muted-foreground">/{allDefs.length}</span>
           </div>
         </div>
@@ -872,7 +872,7 @@ function PodiumSlot({
     >
       {/* Place label (no emoji) */}
       <span className={cn(
-        "text-xs font-medium tabular-nums",
+        "text-xs text-muted-foreground font-medium tabular-nums",
         place === 1 ? "text-amber-400" : place === 2 ? "text-muted-foreground" : "text-orange-400",
       )}>{placeLabels[place - 1]}</span>
 

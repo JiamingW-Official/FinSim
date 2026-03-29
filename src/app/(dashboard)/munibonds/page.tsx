@@ -428,7 +428,7 @@ function ScreenerTab() {
                 </td>
                 <td className="py-2 px-3 text-muted-foreground">{bond.state}</td>
                 <td className="py-2 px-3">
-                  <Badge className={cn("text-xs",
+                  <Badge className={cn("text-xs text-muted-foreground",
                     bond.type === "GO"
                       ? "bg-indigo-500/20 text-indigo-400 border-indigo-500/30"
                       : "bg-cyan-500/20 text-muted-foreground border-cyan-500/30"
@@ -510,7 +510,7 @@ function ScreenerTab() {
             <div className="bg-muted rounded p-2 font-mono text-xs text-emerald-400">
               TEY = Muni Yield / (1 - Tax Bracket)
             </div>
-            <p className="text-xs">
+            <p className="text-xs text-muted-foreground">
               Example: 3.82% muni at 37% bracket: TEY = 3.82 / 0.63 = <span className="text-indigo-400 font-medium">6.06%</span>
             </p>
           </CardContent>
@@ -529,8 +529,8 @@ function CalculatorTab() {
   const tey = calcTEY(muniYield, targetBracket);
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -655,7 +655,7 @@ function CalculatorTab() {
 // ── Component: Credit Analysis Tab ───────────────────────────────────────────
 function AnalysisTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -671,7 +671,7 @@ function AnalysisTab() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -729,7 +729,7 @@ function AnalysisTab() {
 // ── Component: State Fiscal Health Tab ────────────────────────────────────────
 function StateFiscalTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -834,7 +834,7 @@ function AMTTab() {
   const nonAmtBonds = BONDS.filter((b) => !b.isAMT);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -879,7 +879,7 @@ function AMTTab() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">AMT Bonds in This Screener</CardTitle>
@@ -921,7 +921,7 @@ function AMTTab() {
                 )}
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <span className={cn("text-xs font-medium px-1.5 py-0.5 rounded",
+                  <span className={cn("text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded",
                     item.avoid ? "bg-red-500/20 text-red-400" : "bg-emerald-500/20 text-emerald-400"
                   )}>
                     {item.avoid ? "AVOID" : "OK"}
@@ -967,7 +967,7 @@ export default function MuniBondsPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="p-6 space-y-6 max-w-7xl mx-auto"
+      className="p-4 space-y-4 max-w-7xl mx-auto"
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">

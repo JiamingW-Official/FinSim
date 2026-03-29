@@ -449,7 +449,7 @@ function RiskBadge({ level }: { level: CMOTranche["risk"] }) {
     "Very High": "bg-red-500/15 text-red-300 border-red-500/25",
   };
   return (
-    <span className={cn("text-xs px-2 py-0.5 rounded border font-medium", map[level])}>
+    <span className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium", map[level])}>
       {level}
     </span>
   );
@@ -464,7 +464,7 @@ function AgencyMarketTab() {
   const totalMarket = AGENCIES.reduce((a, b) => a + b.marketShare, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Agency comparison cards */}
       <SectionCard title="Agency Comparison: Fannie / Freddie / Ginnie" icon={<Building2 size={16} />}>
         <div className="grid grid-cols-3 gap-3 mb-5">
@@ -483,7 +483,7 @@ function AgencyMarketTab() {
                 <span className="font-semibold text-foreground text-sm">{ag.name}</span>
                 <span
                   className={cn(
-                    "text-xs px-2 py-0.5 rounded border font-medium",
+                    "text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium",
                     ag.guarantee === "Explicit"
                       ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/25"
                       : "bg-amber-500/15 text-amber-300 border-amber-500/25"
@@ -627,7 +627,7 @@ function AgencyMarketTab() {
       {/* Pool characteristics table */}
       <SectionCard title="Pool Characteristics (WAC / WALA / WAM)" icon={<BarChart3 size={16} />}>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 text-muted-foreground font-medium">Characteristic</th>
@@ -685,7 +685,7 @@ function AgencyMarketTab() {
           the implied repo rate exceeds financing costs, rolling is advantageous.
         </p>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-center py-2 text-muted-foreground">Coupon</th>
@@ -717,7 +717,7 @@ function AgencyMarketTab() {
                     <td className="py-2.5 text-center">
                       <span
                         className={cn(
-                          "text-xs px-2 py-0.5 rounded border",
+                          "text-xs text-muted-foreground px-2 py-0.5 rounded border",
                           special
                             ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/25"
                             : "bg-muted text-muted-foreground border-border"
@@ -773,7 +773,7 @@ function PrepaymentAnalysisTab() {
   const psaMonths = Array.from({ length: 30 }, (_, i) => i + 1);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* CPR history */}
       <SectionCard title="CPR History — 36 Months (Fannie 4.5% Coupon)" icon={<TrendingUp size={16} />}>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
@@ -936,7 +936,7 @@ function PrepaymentAnalysisTab() {
             );
           })}
         </svg>
-        <div className="flex gap-6 mt-1 text-xs text-muted-foreground">
+        <div className="flex gap-3 mt-1 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded bg-primary opacity-70" /> Above baseline (summer surge)</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded bg-red-500 opacity-70" /> Below baseline (winter slowdown)</span>
         </div>
@@ -1011,7 +1011,7 @@ function PrepaymentAnalysisTab() {
         })()}
 
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["PSA Speed", "Month 1 CPR", "Month 30+ CPR", "Avg Life", "Dollar Price", "Yield"].map((h) => (
@@ -1075,7 +1075,7 @@ function CMOStructuresTab() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* CMO tranche cards */}
       <SectionCard title="CMO Tranche Types" icon={<Layers size={16} />}>
         <div className="space-y-2">
@@ -1411,7 +1411,7 @@ function ConvexityRiskTab() {
   ]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Negative convexity explainer */}
       <SectionCard title="Negative Convexity: Price / Yield Curve" icon={<Activity size={16} />}>
         <div className="grid grid-cols-5 gap-4">
@@ -1561,7 +1561,7 @@ function ConvexityRiskTab() {
 
       {/* OAS vs Z-Spread */}
       <SectionCard title="OAS vs Z-Spread: Prepayment-Adjusted Spread" icon={<Info size={16} />}>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-3">
           <div className="space-y-3 text-sm text-muted-foreground">
             <div className="bg-muted rounded-md p-4 border border-border">
               <div className="font-medium text-primary mb-2">Z-Spread</div>
@@ -1622,7 +1622,7 @@ function ConvexityRiskTab() {
       {/* Prepayment scenario analysis */}
       <SectionCard title="Prepayment Scenario Analysis" icon={<BarChart3 size={16} />}>
         <div className="overflow-x-auto mb-4">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Scenario", "PSA Speed", "CPR", "Dollar Price", "Eff. Duration", "OAS", "Z-Spread"].map((h) => (
@@ -1676,7 +1676,7 @@ function ConvexityRiskTab() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <div className="font-medium text-foreground text-sm mb-1">{row.instrument}</div>
-                  <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
                     <div>
                       <div className="text-emerald-400 font-medium mb-0.5">Pros</div>
                       <div className="text-muted-foreground">{row.pros}</div>
@@ -1720,7 +1720,7 @@ function ConvexityRiskTab() {
 
 export default function AgencyMBSPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">

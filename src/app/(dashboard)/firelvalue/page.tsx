@@ -563,7 +563,7 @@ function YieldCurveTab() {
                 size="sm"
                 variant={tradeType === t ? "default" : "outline"}
                 className={cn(
-                  "capitalize text-xs",
+                  "capitalize text-xs text-muted-foreground",
                   tradeType === t
                     ? "bg-primary hover:bg-primary/80 text-foreground"
                     : "border-border text-muted-foreground hover:bg-muted",
@@ -584,7 +584,7 @@ function YieldCurveTab() {
                     key={p.tenor}
                     onClick={() => setShortLeg(i)}
                     className={cn(
-                      "text-left px-3 py-1.5 rounded text-xs border transition-colors",
+                      "text-left px-3 py-1.5 rounded text-xs text-muted-foreground border transition-colors",
                       shortLeg === i
                         ? "bg-red-900/40 border-red-700 text-red-300"
                         : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
@@ -603,7 +603,7 @@ function YieldCurveTab() {
                     key={p.tenor}
                     onClick={() => setLongLeg(i)}
                     className={cn(
-                      "text-left px-3 py-1.5 rounded text-xs border transition-colors",
+                      "text-left px-3 py-1.5 rounded text-xs text-muted-foreground border transition-colors",
                       longLeg === i
                         ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
                         : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
@@ -686,7 +686,7 @@ function YieldCurveTab() {
                         </div>
                         <Badge
                           className={cn(
-                            "text-xs font-medium",
+                            "text-xs text-muted-foreground font-medium",
                             pnl >= 0
                               ? "bg-emerald-900/50 text-emerald-300 border-emerald-800"
                               : "bg-red-900/50 text-red-300 border-red-800",
@@ -783,7 +783,7 @@ function SpreadTradesTab() {
             size="sm"
             variant={selectedPair === i ? "default" : "outline"}
             className={cn(
-              "text-xs",
+              "text-xs text-muted-foreground",
               selectedPair === i
                 ? "bg-primary/80 hover:bg-primary/70 text-foreground"
                 : "border-border text-muted-foreground hover:bg-muted",
@@ -803,7 +803,7 @@ function SpreadTradesTab() {
             On-the-Run vs Off-the-Run
             <Badge
               className={cn(
-                "ml-auto text-xs",
+                "ml-auto text-xs text-muted-foreground",
                 tradeSignal === "RICH OFR"
                   ? "bg-emerald-900/50 text-emerald-300 border-emerald-800"
                   : tradeSignal === "RICH OTR"
@@ -827,7 +827,7 @@ function SpreadTradesTab() {
               </div>
               <p className="text-sm font-medium text-foreground">{activePair.otr.label}</p>
               <p className="text-xs text-muted-foreground mb-2">{activePair.otr.cusip}</p>
-              <div className="grid grid-cols-3 gap-2 text-xs">
+              <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                 <div>
                   <p className="text-muted-foreground">Yield</p>
                   <p className="text-foreground font-medium">{activePair.otr.yieldPct.toFixed(3)}%</p>
@@ -865,7 +865,7 @@ function SpreadTradesTab() {
               </div>
               <p className="text-sm font-medium text-foreground">{activePair.ofr.label}</p>
               <p className="text-xs text-muted-foreground mb-2">{activePair.ofr.cusip}</p>
-              <div className="grid grid-cols-3 gap-2 text-xs">
+              <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                 <div>
                   <p className="text-muted-foreground">Yield</p>
                   <p className="text-foreground font-medium">{activePair.ofr.yieldPct.toFixed(3)}%</p>
@@ -1187,7 +1187,7 @@ function ButterflyTab() {
                   key={p.tenor}
                   onClick={() => setWing1Idx(i)}
                   className={cn(
-                    "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
+                    "w-full text-left px-2 py-1.5 rounded text-xs text-muted-foreground border mb-1 transition-colors",
                     wing1Idx === i
                       ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
                       : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
@@ -1206,7 +1206,7 @@ function ButterflyTab() {
                   key={p.tenor}
                   onClick={() => setBellyIdx(i)}
                   className={cn(
-                    "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
+                    "w-full text-left px-2 py-1.5 rounded text-xs text-muted-foreground border mb-1 transition-colors",
                     bellyIdx === i
                       ? "bg-red-900/40 border-red-700 text-red-300"
                       : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
@@ -1225,7 +1225,7 @@ function ButterflyTab() {
                   key={p.tenor}
                   onClick={() => setWing2Idx(i)}
                   className={cn(
-                    "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
+                    "w-full text-left px-2 py-1.5 rounded text-xs text-muted-foreground border mb-1 transition-colors",
                     wing2Idx === i
                       ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
                       : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
@@ -1296,7 +1296,7 @@ function ButterflyTab() {
                   className={cn("rounded-lg px-3 py-2 border flex items-center justify-between", bg)}
                 >
                   <div>
-                    <span className={cn("text-xs font-medium mr-2", color)}>{dir}</span>
+                    <span className={cn("text-xs text-muted-foreground font-medium mr-2", color)}>{dir}</span>
                     <span className="text-xs text-foreground">{bond.tenor} — {bond.yield.toFixed(3)}%</span>
                   </div>
                   <div className="flex items-center gap-4 text-right">
@@ -1489,7 +1489,7 @@ function SwapSpreadsTab() {
             size="sm"
             variant={view === key ? "default" : "outline"}
             className={cn(
-              "text-xs",
+              "text-xs text-muted-foreground",
               view === key
                 ? "bg-primary hover:bg-primary/80 text-foreground"
                 : "border-border text-muted-foreground hover:bg-muted",
@@ -1733,7 +1733,7 @@ function SwapSpreadsTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   {["Tenor", "Tsy Yield", "Swap Rate", "ASW", "Z-Sprd", "Carry", "Signal"].map(
@@ -1776,7 +1776,7 @@ function SwapSpreadsTab() {
                       <td className="py-2 px-2">
                         <Badge
                           className={cn(
-                            "text-xs",
+                            "text-xs text-muted-foreground",
                             signal === "BUY ASW"
                               ? "bg-emerald-900/50 text-emerald-300 border-emerald-800"
                               : signal === "SELL ASW"
@@ -1805,7 +1805,7 @@ function SwapSpreadsTab() {
 
 export default function FIRelValuePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header — Hero */}
       <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-1">

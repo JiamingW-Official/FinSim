@@ -104,7 +104,7 @@ function InfoBox({
     violet: "bg-orange-500/10 border-orange-500/30 text-orange-200",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -351,7 +351,7 @@ function SaasTab() {
   const sorted = [...SAAS_COMPANIES].sort((a, b) => b.nrr - a.nrr);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Page header */}
       <div className="flex items-start justify-between">
         <div>
@@ -417,7 +417,7 @@ function SaasTab() {
           <BarChart3 className="w-4 h-4" /> SaaS Company Metrics
         </SectionTitle>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
@@ -517,7 +517,7 @@ function SaasTab() {
       </AnimatePresence>
 
       {/* NRR Leaderboard */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div>
           <SectionTitle>
             <TrendingUp className="w-4 h-4 text-emerald-400" /> NRR Leaderboard (Top Expansion)
@@ -644,7 +644,7 @@ function AiInfraTab() {
   const [activeHyperscaler, setActiveHyperscaler] = useState<string | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-medium text-foreground">AI & Infrastructure</h2>
@@ -668,7 +668,7 @@ function AiInfraTab() {
           <Zap className="w-4 h-4 text-yellow-400" /> AI Hyperscaler Comparison
         </SectionTitle>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Company</th>
@@ -714,7 +714,7 @@ function AiInfraTab() {
       </div>
 
       {/* Two-column section: AI chip market + Cloud share */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* AI Chip market share */}
         <div>
           <SectionTitle>
@@ -868,7 +868,7 @@ function AiInfraTab() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-xs",
+                    "text-xs text-muted-foreground",
                     item.color === "emerald" ? "text-emerald-300 border-emerald-500/40"
                     : item.color === "blue" ? "text-primary border-primary/40"
                     : "text-amber-300 border-amber-500/40"
@@ -910,7 +910,7 @@ function SemiCycleTab() {
   const maxBookBill = Math.max(...SEMI_COMPANIES.map((c) => c.bookToBill));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-medium text-foreground">Semiconductor Cycle</h2>
@@ -968,7 +968,7 @@ function SemiCycleTab() {
           <BarChart3 className="w-4 h-4" /> Key Semiconductor Companies
         </SectionTitle>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Company</th>
@@ -1095,7 +1095,7 @@ function MegaCapTab() {
   const company = MEGA_CAPS.find((c) => c.ticker === selected)!;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-medium text-foreground">Mega-Cap Tech Comparison</h2>
@@ -1125,7 +1125,7 @@ function MegaCapTab() {
             key={c.ticker}
             onClick={() => setSelected(c.ticker)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors",
+              "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-mono font-medium transition-colors",
               selected === c.ticker
                 ? "bg-primary text-foreground"
                 : "bg-foreground/5 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
@@ -1144,7 +1144,7 @@ function MegaCapTab() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-3"
         >
           {/* Left: metrics */}
           <div className="space-y-4">
@@ -1162,7 +1162,7 @@ function MegaCapTab() {
                   { label: "Buyback Yield", value: `${company.buybackYield}%`, cls: company.buybackYield > 1 ? "text-emerald-400" : "text-muted-foreground" },
                   { label: "Net Cash", value: fmtB(Math.abs(company.netCashB)), cls: company.netCashB >= 0 ? "text-emerald-400" : "text-rose-400" },
                 ].map((m) => (
-                  <div key={m.label} className="flex justify-between text-xs border-b border-border/50 py-1.5">
+                  <div key={m.label} className="flex justify-between text-xs text-muted-foreground border-b border-border/50 py-1.5">
                     <span className="text-muted-foreground">{m.label}</span>
                     <span className={cn("font-mono font-medium", m.cls ?? "text-foreground")}>{m.value}</span>
                   </div>
@@ -1225,7 +1225,7 @@ function MegaCapTab() {
           <BarChart3 className="w-4 h-4" /> Valuation Comparison
         </SectionTitle>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
                 <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
@@ -1301,7 +1301,7 @@ function MegaCapTab() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-xs",
+                    "text-xs text-muted-foreground",
                     item.risk === "High" ? "text-rose-300 border-rose-500/40"
                     : item.risk === "Medium" ? "text-amber-300 border-amber-500/40"
                     : "text-muted-foreground border-muted-foreground/40"
@@ -1350,7 +1350,7 @@ function FintechTab() {
     : FINTECH_DATA.filter((c) => c.category === activeCategory);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-medium text-foreground">Fintech &amp; Internet</h2>
@@ -1375,7 +1375,7 @@ function FintechTab() {
             key={cat}
             onClick={() => setActiveCategory(cat)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border",
+              "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-colors border",
               activeCategory === cat
                 ? "bg-primary text-foreground border-primary"
                 : "bg-foreground/5 text-muted-foreground border-border hover:bg-muted/50 hover:text-foreground"
@@ -1388,7 +1388,7 @@ function FintechTab() {
 
       {/* Company table */}
       <div className="overflow-x-auto rounded-md border border-border">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="border-b border-border bg-foreground/5">
               <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
@@ -1443,7 +1443,7 @@ function FintechTab() {
       </div>
 
       {/* Payment take rates */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div>
           <SectionTitle>
             <DollarSign className="w-4 h-4 text-primary" /> Payment Take Rates (% of GMV)
@@ -1522,7 +1522,7 @@ function FintechTab() {
 export default function TechSectorPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Page header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

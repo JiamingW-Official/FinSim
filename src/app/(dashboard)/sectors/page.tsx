@@ -402,7 +402,7 @@ function sectorTiltRecs(factorRets: Record<Factor, number>): string[] {
 
 function RetCell({ v }: { v: number }) {
   return (
-    <span className={cn("tabular-nums text-xs", retColor(v))}>
+    <span className={cn("tabular-nums text-xs text-muted-foreground", retColor(v))}>
       {fmt(v)}
     </span>
   );
@@ -453,7 +453,7 @@ function PerformanceTable({
               <td className="py-2 pl-3 pr-4">
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: p.color }} />
-                  <span className="text-xs font-medium">{p.name}</span>
+                  <span className="text-xs text-muted-foreground font-medium">{p.name}</span>
                   <span className="text-xs text-muted-foreground">{p.etf}</span>
                 </div>
               </td>
@@ -622,12 +622,12 @@ function TopStocksPanel({ sectorName, perfs }: { sectorName: string; perfs: Sect
       <div className="mb-2 flex items-center justify-between">
         <span className="text-xs font-medium text-muted-foreground">Top Holdings — {sectorName}</span>
         {perf && (
-          <span className={cn("text-xs font-medium tabular-nums", retColor(perf.ret1d))}>
+          <span className={cn("text-xs text-muted-foreground font-medium tabular-nums", retColor(perf.ret1d))}>
             {fmt(perf.ret1d)} today
           </span>
         )}
       </div>
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border/30">
             <th className="pb-1 text-left text-xs font-medium text-muted-foreground">Ticker</th>
@@ -851,7 +851,7 @@ function FactorBarChart({ factorRets }: { factorRets: Record<Factor, number> }) 
 function FactorLoadingsTable({ factorData }: { factorData: SectorFactorData[] }) {
   return (
     <div className="overflow-x-auto rounded-lg border border-border/40">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border/40 bg-muted/20">
             <th className="py-2 pl-3 pr-4 text-left text-xs font-medium text-muted-foreground">Sector</th>
@@ -863,12 +863,12 @@ function FactorLoadingsTable({ factorData }: { factorData: SectorFactorData[] })
         <tbody>
           {factorData.map((row) => (
             <tr key={row.name} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
-              <td className="py-1.5 pl-3 pr-4 text-xs font-medium">{row.name}</td>
+              <td className="py-1.5 pl-3 pr-4 text-xs text-muted-foreground font-medium">{row.name}</td>
               {FACTORS.map((f) => {
                 const v = row.loadings[f];
                 return (
                   <td key={f} className="px-2 py-1.5 text-center">
-                    <span className={cn("rounded px-1.5 py-0.5 text-xs tabular-nums font-mono", loadingColor(v))}>
+                    <span className={cn("rounded px-1.5 py-0.5 text-xs text-muted-foreground tabular-nums font-mono", loadingColor(v))}>
                       {v >= 0 ? "+" : ""}{v.toFixed(1)}
                     </span>
                   </td>
@@ -1027,7 +1027,7 @@ function PortfolioWeightsTable({
 
   return (
     <div className="overflow-x-auto rounded-lg border border-border/40">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border/40 bg-muted/20">
             <th className="py-2 pl-3 pr-4 text-left text-xs font-medium text-muted-foreground">Sector ETF</th>
@@ -1071,7 +1071,7 @@ function EtfComparisonTable({
 }) {
   return (
     <div className="overflow-x-auto rounded-lg border border-border/40">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border/40 bg-muted/20">
             <th className="py-2 pl-3 pr-4 text-left text-xs font-medium text-muted-foreground">ETF</th>
@@ -1172,7 +1172,7 @@ export default function SectorsPage() {
           <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-400">
             EARLY RECOVERY
           </span>
-          <span className="text-xs">Current Cycle Phase</span>
+          <span className="text-xs text-muted-foreground">Current Cycle Phase</span>
         </div>
       </div>
 
@@ -1190,7 +1190,7 @@ export default function SectorsPage() {
               <TabsTrigger
                 key={t.value}
                 value={t.value}
-                className="rounded-none border-b-2 border-transparent px-4 py-2 text-xs font-medium data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+                className="rounded-none border-b-2 border-transparent px-4 py-2 text-xs text-muted-foreground font-medium data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
               >
                 {t.label}
               </TabsTrigger>
@@ -1199,7 +1199,7 @@ export default function SectorsPage() {
         </div>
 
         {/* ── Tab 1: Sector Performance ─────────────────────────────────────── */}
-        <TabsContent value="performance" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+        <TabsContent value="performance" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
           <div className="mx-auto max-w-5xl space-y-4">
             {/* Heatmap */}
             <SectorHeatmap perfs={perfs} selectedSector={selectedSector} onSelect={setSelectedSector} />
@@ -1216,9 +1216,9 @@ export default function SectorsPage() {
         </TabsContent>
 
         {/* ── Tab 2: Rotation Model ─────────────────────────────────────────── */}
-        <TabsContent value="rotation" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+        <TabsContent value="rotation" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
           <div className="mx-auto max-w-5xl space-y-4">
-            <div className="grid gap-6 lg:grid-cols-[auto_1fr]">
+            <div className="grid gap-3 lg:grid-cols-[auto_1fr]">
               {/* Cycle wheel */}
               <CycleWheel />
 
@@ -1233,7 +1233,7 @@ export default function SectorsPage() {
                       return (
                         <span
                           key={l}
-                          className="flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium"
+                          className="flex items-center gap-1 rounded-full px-3 py-1 text-xs text-muted-foreground font-medium"
                           style={{ background: s.color + "30", color: s.color, border: `1px solid ${s.color}50` }}
                         >
                           <TrendingUp className="h-3 w-3" /> {s.etf} — {l}
@@ -1296,7 +1296,7 @@ export default function SectorsPage() {
         </TabsContent>
 
         {/* ── Tab 3: Factor Exposure ────────────────────────────────────────── */}
-        <TabsContent value="factors" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+        <TabsContent value="factors" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
           <div className="mx-auto max-w-5xl space-y-4">
             {/* Factor bar chart + style box side by side */}
             <div className="grid gap-4 lg:grid-cols-[1fr_auto]">
@@ -1342,7 +1342,7 @@ export default function SectorsPage() {
         </TabsContent>
 
         {/* ── Tab 4: Sector ETFs ────────────────────────────────────────────── */}
-        <TabsContent value="etfs" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+        <TabsContent value="etfs" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
           <div className="mx-auto max-w-6xl space-y-4">
             {/* ETF comparison */}
             <div>
@@ -1372,7 +1372,7 @@ export default function SectorsPage() {
             {/* Watchlist status */}
             {watchlist.size > 0 && (
               <div className="rounded-lg border border-primary/30 bg-primary/5 p-3">
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Star className="h-3.5 w-3.5 text-amber-400 fill-current" />
                   <span className="font-medium text-foreground/80">Watchlist:</span>
                   <span className="font-mono text-primary">{[...watchlist].join(", ")}</span>
@@ -1383,7 +1383,7 @@ export default function SectorsPage() {
           </div>
         </TabsContent>
         {/* ── Tab 5: Rotation Strategy ──────────────────────────────────────── */}
-        <TabsContent value="strategy" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
+        <TabsContent value="strategy" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
           <div className="mx-auto max-w-5xl">
             <SectorRotationStrategy />
           </div>

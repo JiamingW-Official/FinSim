@@ -326,7 +326,7 @@ function ReadinessTab() {
             </div>
             <Progress value={Math.min(100, calc.coverageRatio * 100)} className="h-3" />
           </div>
-          <div className="grid grid-cols-3 gap-3 text-center text-xs">
+          <div className="grid grid-cols-3 gap-3 text-center text-xs text-muted-foreground">
             <div className="rounded-lg bg-muted/50 p-2">
               <p className="text-muted-foreground">Years to Retire</p>
               <p className="font-bold text-lg">{state.retirementAge - state.currentAge}</p>
@@ -449,7 +449,7 @@ function AccountsTab() {
       {/* Account table */}
       <Card className="p-0 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-muted/30">
                 <th className="text-left p-3 font-medium text-muted-foreground">Account</th>
@@ -471,7 +471,7 @@ function AccountsTab() {
                   <td className="p-3 font-mono">{a.catchUp}</td>
                   <td className="p-3">{a.match}</td>
                   <td className="p-3">
-                    <Badge variant="outline" className="text-xs py-0">
+                    <Badge variant="outline" className="text-xs text-muted-foreground py-0">
                       {a.taxTreatment}
                     </Badge>
                   </td>
@@ -673,7 +673,7 @@ function SocialSecurityTab() {
           </div>
           <Slider min={65} max={95} step={1} value={[lifeExpectancy]} onValueChange={([v]) => setLifeExpectancy(v)} />
         </div>
-        <div className="grid grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div className="rounded-lg bg-muted/40 p-2">
             <p className="text-muted-foreground">62 vs 67 Break-Even</p>
             <p className="font-medium text-base">Age {be62_67}</p>
@@ -940,7 +940,7 @@ function InvestmentStrategyTab() {
                   <div style={{ width: `${bondBar}%`, backgroundColor: "#f59e0b" }} title={`Bonds ${bondBar}%`} />
                   <div style={{ width: `${cashBar}%`, backgroundColor: "#6b7280" }} title={`Cash ${cashBar}%`} />
                 </div>
-                <div className="space-y-0.5 text-xs">
+                <div className="space-y-0.5 text-xs text-muted-foreground">
                   <div className="flex justify-between"><span className="text-primary">Stocks</span><span>{stockBar}%</span></div>
                   <div className="flex justify-between"><span className="text-amber-400">Bonds</span><span>{bondBar}%</span></div>
                   <div className="flex justify-between"><span className="text-muted-foreground">Cash</span><span>{cashBar}%</span></div>
@@ -1034,7 +1034,7 @@ function InvestmentStrategyTab() {
             <div key={b.label} className={cn("rounded-lg border p-3 space-y-1.5", b.border, b.bg)}>
               <div className="flex items-center justify-between">
                 <p className={cn("font-medium text-sm", b.color)}>{b.label}</p>
-                <Badge variant="outline" className="text-xs">{b.pct}</Badge>
+                <Badge variant="outline" className="text-xs text-muted-foreground">{b.pct}</Badge>
               </div>
               <p className="text-xs font-medium text-foreground">{b.horizon}</p>
               <p className="text-xs text-muted-foreground font-medium">{b.assets}</p>
@@ -1091,8 +1091,8 @@ function HealthcareRMDsTab() {
             { age: "Age 65+", event: "Special Enrollment", detail: "If covered by employer plan at 65, you have 8 months to enroll in Part B after losing employer coverage.", color: "bg-emerald-500/20 border-emerald-500/40" },
           ].map((e) => (
             <div key={e.age} className={cn("flex-1 min-w-[200px] rounded-lg border p-3 space-y-1", e.color)}>
-              <p className="font-medium text-xs">{e.age}</p>
-              <p className="text-xs font-medium">{e.event}</p>
+              <p className="font-medium text-xs text-muted-foreground">{e.age}</p>
+              <p className="text-xs text-muted-foreground font-medium">{e.event}</p>
               <p className="text-xs text-muted-foreground">{e.detail}</p>
             </div>
           ))}
@@ -1117,7 +1117,7 @@ function HealthcareRMDsTab() {
                 <span className={cn("font-medium text-sm", p.color)}>{p.part}</span>
                 <span className="text-xs text-muted-foreground">— {p.name}</span>
               </div>
-              <p className="text-xs font-medium">{p.premium}</p>
+              <p className="text-xs text-muted-foreground font-medium">{p.premium}</p>
               <p className="text-xs text-muted-foreground">{p.covers}</p>
               <p className="text-xs text-muted-foreground">{p.deductible}</p>
             </div>
@@ -1187,7 +1187,7 @@ function HealthcareRMDsTab() {
 
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left p-1.5 text-muted-foreground font-medium">Age</th>
@@ -1264,7 +1264,7 @@ export default function RetirementPage() {
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <Badge variant="outline" className="text-xs gap-1">
+            <Badge variant="outline" className="text-xs text-muted-foreground gap-1">
               <Activity className="h-3 w-3" />
               4% Rule
             </Badge>
@@ -1281,7 +1281,7 @@ export default function RetirementPage() {
                 <TabsTrigger
                   key={t.value}
                   value={t.value}
-                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  className="flex items-center gap-1.5 text-xs text-muted-foreground px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:"
                 >
                   <Icon className="h-3 w-3" />
                   {t.label}

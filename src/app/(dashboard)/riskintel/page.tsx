@@ -843,7 +843,7 @@ export default function RiskIntelPage() {
   const corrExplanation = corrKey ? CORR_EXPLANATIONS[corrKey] : null;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 lg:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 lg:p-4">
       {/* Page header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -893,12 +893,12 @@ export default function RiskIntelPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Overall score banner */}
             <Card className="bg-card border-border border-l-4 border-l-primary">
-              <CardContent className="p-6">
-                <div className="flex flex-col sm:flex-row items-center gap-6">
+              <CardContent className="p-4">
+                <div className="flex flex-col sm:flex-row items-center gap-3">
                   <div className="relative">
                     <ArcGauge
                       value={metrics.overall}
@@ -908,7 +908,7 @@ export default function RiskIntelPage() {
                       strokeWidth={12}
                     />
                     <div className="absolute inset-0 flex flex-col items-center justify-center mt-2">
-                      <span className="text-2xl font-bold" style={{ color: riskColor(metrics.overall) }}>
+                      <span className="text-lg font-medium" style={{ color: riskColor(metrics.overall) }}>
                         {metrics.overall}
                       </span>
                       <span className="text-xs text-muted-foreground">/ 100</span>
@@ -918,7 +918,7 @@ export default function RiskIntelPage() {
                     <div className="flex items-center gap-2 mb-1">
                       <h2 className="text-lg font-semibold">Overall Risk Score</h2>
                       <Badge
-                        className="text-xs"
+                        className="text-xs text-muted-foreground"
                         style={{
                           backgroundColor: riskColor(metrics.overall) + "22",
                           color: riskColor(metrics.overall),
@@ -942,7 +942,7 @@ export default function RiskIntelPage() {
                       ].map((d) => (
                         <div key={d.label} className="text-center">
                           <div
-                            className="text-xs font-mono font-semibold"
+                            className="text-xs text-muted-foreground font-mono font-semibold"
                             style={{ color: riskColor(d.val) }}
                           >
                             {d.val}
@@ -968,7 +968,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-2xl font-bold text-orange-400">{metrics.concentration.toFixed(1)}%</span>
+                    <span className="text-lg font-medium text-orange-400">{metrics.concentration.toFixed(1)}%</span>
                     <span className="text-muted-foreground text-sm mb-1">top-3 holdings</span>
                   </div>
                   <MeterBar
@@ -984,7 +984,7 @@ export default function RiskIntelPage() {
                   </div>
                   <div className="space-y-1 pt-1">
                     {POSITIONS.slice().sort((a, b) => b.weight - a.weight).slice(0, 4).map((p) => (
-                      <div key={p.ticker} className="flex items-center gap-2 text-xs">
+                      <div key={p.ticker} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: p.color }} />
                         <span className="text-muted-foreground w-12">{p.ticker}</span>
                         <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
@@ -1010,7 +1010,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-2xl font-bold text-primary">
+                    <span className="text-lg font-medium text-primary">
                       {metrics.avgCorr.toFixed(2)}
                     </span>
                     <span className="text-muted-foreground text-sm mb-1">avg pairwise</span>
@@ -1049,7 +1049,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-2xl font-bold text-primary">
+                    <span className="text-lg font-medium text-primary">
                       {metrics.beta.toFixed(2)}
                     </span>
                     <span className="text-muted-foreground text-sm mb-1">vs S&P 500</span>
@@ -1061,7 +1061,7 @@ export default function RiskIntelPage() {
                   </div>
                   <div className="space-y-1 pt-1">
                     {[...POSITIONS].sort((a, b) => Math.abs(b.beta) - Math.abs(a.beta)).slice(0, 3).map((p) => (
-                      <div key={p.ticker} className="flex items-center gap-2 text-xs">
+                      <div key={p.ticker} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span className="text-muted-foreground w-12">{p.ticker}</span>
                         <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
                           <div
@@ -1094,7 +1094,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-2xl font-bold text-muted-foreground">
+                    <span className="text-lg font-medium text-muted-foreground">
                       {metrics.liquidity.toFixed(0)}%
                     </span>
                     <span className="text-muted-foreground text-sm mb-1">1-day exit</span>
@@ -1121,7 +1121,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-2xl font-bold text-red-400">
+                    <span className="text-lg font-medium text-red-400">
                       -{metrics.es.toFixed(1)}%
                     </span>
                     <span className="text-muted-foreground text-sm mb-1">expected shortfall</span>
@@ -1132,7 +1132,7 @@ export default function RiskIntelPage() {
                     the average loss would be {metrics.es.toFixed(1)}% of portfolio value.
                     Based on portfolio vol of {(computePortfolioVol() * 100).toFixed(1)}%.
                   </div>
-                  <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
+                  <div className="grid grid-cols-2 gap-2 pt-1 text-xs text-muted-foreground">
                     <div className="bg-muted rounded-lg p-2">
                       <div className="text-muted-foreground">1-day VaR 95%</div>
                       <div className="text-red-400 font-medium font-mono">
@@ -1160,7 +1160,7 @@ export default function RiskIntelPage() {
                 <CardContent className="px-4 pb-4">
                   <div className="space-y-1.5">
                     {POSITIONS.map((p) => (
-                      <div key={p.ticker} className="flex items-center gap-2 text-xs">
+                      <div key={p.ticker} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: p.color }} />
                         <span className="text-muted-foreground w-10 font-medium">{p.ticker}</span>
                         <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
@@ -1223,7 +1223,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4">
                   <div className="overflow-x-auto">
-                    <table className="text-xs border-collapse mx-auto">
+                    <table className="text-xs text-muted-foreground border-collapse mx-auto">
                       <thead>
                         <tr>
                           <th className="w-10 h-10" />
@@ -1351,7 +1351,7 @@ export default function RiskIntelPage() {
                   </CardHeader>
                   <CardContent className="px-4 pb-4 space-y-3">
                     <div className="flex items-end gap-2">
-                      <span className="text-2xl font-bold text-emerald-400">3.8</span>
+                      <span className="text-lg font-medium text-emerald-400">3.8</span>
                       <span className="text-muted-foreground text-sm mb-0.5">independent bets (PCA)</span>
                     </div>
                     <Progress value={38} className="h-1.5 bg-muted" />
@@ -1360,7 +1360,7 @@ export default function RiskIntelPage() {
                       First principal component (market beta) explains 62% of variance.
                       Adding uncorrelated assets (commodities, TIPS, REITs) would increase this score.
                     </p>
-                    <div className="space-y-1 text-xs">
+                    <div className="space-y-1 text-xs text-muted-foreground">
                       {[
                         { label: "PC1 — Market Beta",     pct: 62 },
                         { label: "PC2 — Tech/Growth",     pct: 16 },
@@ -1393,7 +1393,7 @@ export default function RiskIntelPage() {
               </CardHeader>
               <CardContent className="px-4 pb-4">
                 <DendrogramChart />
-                <div className="flex flex-wrap gap-3 mt-2 justify-center text-xs">
+                <div className="flex flex-wrap gap-3 mt-2 justify-center text-xs text-muted-foreground">
                   {[
                     { label: "Tech Core",  color: "#60a5fa", members: "AAPL, MSFT, GOOGL, AMZN" },
                     { label: "High Beta",  color: "#a78bfa", members: "NVDA, TSLA" },
@@ -1492,7 +1492,7 @@ export default function RiskIntelPage() {
               </CardHeader>
               <CardContent className="px-4 pb-4">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="text-muted-foreground border-b border-border">
                         <th className="text-left pb-2 pr-4 font-medium">Period</th>
@@ -1532,7 +1532,7 @@ export default function RiskIntelPage() {
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm font-medium text-muted-foreground">Drawdown Statistics</CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pb-4 space-y-2 text-xs">
+                <CardContent className="px-4 pb-4 space-y-2 text-xs text-muted-foreground">
                   {[
                     { label: "Number of drawdowns (>2%)",  val: "5" },
                     { label: "Average drawdown depth",     val: "-11.0%" },
@@ -1559,12 +1559,12 @@ export default function RiskIntelPage() {
                   </p>
                   <div className="flex items-end gap-3">
                     <div>
-                      <div className="text-2xl font-bold text-orange-400">{ddData.paintIndex.toFixed(2)}</div>
+                      <div className="text-lg font-medium text-orange-400">{ddData.paintIndex.toFixed(2)}</div>
                       <div className="text-xs text-muted-foreground mt-0.5">Portfolio Pain Index</div>
                     </div>
                     <div className="text-muted-foreground text-xl">vs</div>
                     <div>
-                      <div className="text-2xl font-bold text-muted-foreground">4.12</div>
+                      <div className="text-lg font-medium text-muted-foreground">4.12</div>
                       <div className="text-xs text-muted-foreground mt-0.5">S&P 500 (same period)</div>
                     </div>
                   </div>
@@ -1650,7 +1650,7 @@ export default function RiskIntelPage() {
                               className="overflow-hidden"
                             >
                               <div className="pt-3 border-t border-border mt-3 space-y-2">
-                                <div className="grid grid-cols-3 gap-2 text-xs">
+                                <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                                   <div className="bg-muted rounded-lg p-2">
                                     <div className="text-muted-foreground">Equity shock</div>
                                     <div className="font-mono text-red-400">{s.equityShock > 0 ? "+" : ""}{s.equityShock}%</div>
@@ -1700,7 +1700,7 @@ export default function RiskIntelPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 pb-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="space-y-5">
                     {[
                       {
@@ -1737,7 +1737,7 @@ export default function RiskIntelPage() {
                       },
                     ].map((ctrl) => (
                       <div key={ctrl.label} className="space-y-2">
-                        <div className="flex justify-between text-xs">
+                        <div className="flex justify-between text-xs text-muted-foreground">
                           <span className="text-muted-foreground">{ctrl.label}</span>
                           <span className="font-mono font-medium" style={{ color: ctrl.color }}>
                             {ctrl.format(ctrl.value)}
@@ -1756,11 +1756,11 @@ export default function RiskIntelPage() {
                   </div>
 
                   {/* Impact summary */}
-                  <div className="flex flex-col justify-center items-center bg-muted/50 rounded-md p-6 space-y-4">
+                  <div className="flex flex-col justify-center items-center bg-muted/50 rounded-md p-4 space-y-4">
                     <div className="text-center">
                       <div className="text-muted-foreground text-sm mb-2">Estimated Portfolio Impact</div>
                       <div
-                        className="text-2xl font-bold font-mono"
+                        className="text-lg font-medium font-mono"
                         style={{ color: customImpact < 0 ? "#ef4444" : "#22c55e" }}
                       >
                         {customImpact > 0 ? "+" : ""}{customImpact.toFixed(1)}%
@@ -1769,7 +1769,7 @@ export default function RiskIntelPage() {
                         ${Math.abs(100000 * customImpact / 100).toFixed(0)} on $100k portfolio
                       </div>
                     </div>
-                    <div className="w-full space-y-2 text-xs">
+                    <div className="w-full space-y-2 text-xs text-muted-foreground">
                       {[
                         { label: "Equity contribution",   val: (POSITIONS.filter(p => p.sector !== "Bonds" && p.sector !== "Commodities").reduce((s, p) => s + (p.weight / 100) * customEquity[0] * p.beta * 0.85, 0)).toFixed(1) + "%" },
                         { label: "Bond contribution",     val: (POSITIONS.filter(p => p.sector === "Bonds").reduce((s, p) => s + (p.weight / 100) * customRate[0] * -0.008, 0)).toFixed(1) + "%" },
@@ -1837,7 +1837,7 @@ export default function RiskIntelPage() {
                     },
                   ].map((ctrl) => (
                     <div key={ctrl.label} className="space-y-2">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">{ctrl.label}</span>
                         <span className="font-mono font-medium" style={{ color: ctrl.color }}>
                           {ctrl.format(ctrl.value)}
@@ -1863,7 +1863,7 @@ export default function RiskIntelPage() {
                           size="sm"
                           variant={kellyFraction === f ? "default" : "outline"}
                           onClick={() => setKellyFraction(f)}
-                          className={`text-xs flex-1 ${
+                          className={`text-xs text-muted-foreground flex-1 ${
                             kellyFraction !== f ? "border-border text-muted-foreground" : ""
                           }`}
                         >
@@ -1879,7 +1879,7 @@ export default function RiskIntelPage() {
                       <div>
                         <div className="text-xs text-muted-foreground mb-1">Full Kelly</div>
                         <div
-                          className="text-2xl font-bold font-mono"
+                          className="text-lg font-medium font-mono"
                           style={{ color: kelly.raw > 0 ? "#34d399" : "#ef4444" }}
                         >
                           {(kelly.raw * 100).toFixed(1)}%
@@ -1891,7 +1891,7 @@ export default function RiskIntelPage() {
                           {kellyFraction === "full" ? "Full" : kellyFraction === "half" ? "½"  : "¼"} Kelly
                         </div>
                         <div
-                          className="text-2xl font-bold font-mono"
+                          className="text-lg font-medium font-mono"
                           style={{ color: kelly.adjusted > 0 ? "#22d3ee" : "#f87171" }}
                         >
                           {(kelly.adjusted * 100).toFixed(1)}%
@@ -1931,7 +1931,7 @@ export default function RiskIntelPage() {
                       const cappedSize = Math.min(targetSize, 0.30);
                       const currentOk = Math.abs((p.weight / 100) - cappedSize) < 0.05;
                       return (
-                        <div key={p.ticker} className="grid grid-cols-5 gap-2 text-xs items-center">
+                        <div key={p.ticker} className="grid grid-cols-5 gap-2 text-xs text-muted-foreground items-center">
                           <span className="text-muted-foreground font-medium">{p.ticker}</span>
                           <div className="col-span-2 bg-muted rounded-full h-1.5 overflow-hidden relative">
                             {/* Target */}
@@ -1977,7 +1977,7 @@ export default function RiskIntelPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 pb-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs text-muted-foreground mb-2">
                       <span>Position</span>
@@ -1994,7 +1994,7 @@ export default function RiskIntelPage() {
                       const targetVarPct = 100 / POSITIONS.length; // equal risk budget
                       return (
                         <div key={p.ticker} className="space-y-0.5">
-                          <div className="flex justify-between text-xs">
+                          <div className="flex justify-between text-xs text-muted-foreground">
                             <span className="text-muted-foreground">{p.ticker}</span>
                             <span className="font-mono text-muted-foreground">
                               {varPct.toFixed(1)}% → {targetVarPct.toFixed(1)}%
@@ -2020,7 +2020,7 @@ export default function RiskIntelPage() {
                     })}
                   </div>
                   <div className="space-y-3">
-                    <div className="bg-muted rounded-lg p-3 text-xs space-y-2">
+                    <div className="bg-muted rounded-lg p-3 text-xs text-muted-foreground space-y-2">
                       <div className="font-medium text-muted-foreground">Risk Budget Insights</div>
                       <p className="text-muted-foreground">
                         TSLA and NVDA are consuming disproportionate risk budget due to high volatility (62% and 52% annualized).
@@ -2034,7 +2034,7 @@ export default function RiskIntelPage() {
                       </div>
                     </div>
                     {/* Leverage analysis */}
-                    <div className="bg-muted rounded-lg p-3 text-xs space-y-1.5">
+                    <div className="bg-muted rounded-lg p-3 text-xs text-muted-foreground space-y-1.5">
                       <div className="font-medium text-muted-foreground">Leverage Analysis</div>
                       {[
                         { label: "Portfolio leverage ratio",  val: "1.0× (no leverage)" },
@@ -2066,7 +2066,7 @@ export default function RiskIntelPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 pb-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="space-y-4">
                     <div>
                       <label className="text-xs text-muted-foreground block mb-1.5">New Position Ticker</label>
@@ -2075,7 +2075,7 @@ export default function RiskIntelPage() {
                           <button
                             key={t}
                             onClick={() => setNewTicker(t)}
-                            className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+                            className={`px-2.5 py-1 rounded text-xs text-muted-foreground font-medium transition-colors ${
                               newTicker === t
                                 ? "bg-primary text-foreground"
                                 : "bg-muted text-muted-foreground hover:bg-muted"
@@ -2087,7 +2087,7 @@ export default function RiskIntelPage() {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Position Weight</span>
                         <span className="font-mono text-primary">{newWeight[0]}%</span>
                       </div>
@@ -2100,7 +2100,7 @@ export default function RiskIntelPage() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <div className="flex justify-between text-xs">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">Estimated Beta</span>
                         <span className="font-mono text-primary">{newBeta[0]}</span>
                       </div>

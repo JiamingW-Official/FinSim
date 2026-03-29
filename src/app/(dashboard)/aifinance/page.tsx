@@ -82,7 +82,7 @@ function InfoBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium border",
+        "inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs text-muted-foreground font-medium border",
         cls[color]
       )}
     >
@@ -191,7 +191,7 @@ function MLTradingTab() {
     .join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -366,7 +366,7 @@ function CreditScoringTab() {
   const maxFeat = Math.max(...CREDIT_FEATURES.map((f) => Math.max(f.traditional, f.ml)));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* FICO vs ML overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
@@ -411,7 +411,7 @@ function CreditScoringTab() {
       <Card>
         <div className="flex items-center justify-between mb-4">
           <SectionTitle>Feature Importance Comparison</SectionTitle>
-          <div className="flex gap-3 text-xs">
+          <div className="flex gap-3 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5">
               <span className="w-3 h-3 rounded-sm bg-primary inline-block" />
               FICO weight
@@ -475,7 +475,7 @@ function CreditScoringTab() {
                 {SHAP_DATA.map((item) => {
                   const barW = Math.abs(item.value) * 160;
                   return (
-                    <div key={item.feature} className="flex items-center gap-2 text-xs">
+                    <div key={item.feature} className="flex items-center gap-2 text-xs text-muted-foreground">
                       <span className="w-40 text-muted-foreground truncate flex-shrink-0">{item.feature}</span>
                       <div className="flex-1 relative h-5 bg-muted rounded overflow-hidden">
                         <div
@@ -614,7 +614,7 @@ function FraudDetectionTab() {
   }).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -731,7 +731,7 @@ function FraudDetectionTab() {
           <SectionTitle>Threshold vs. Cost ($B annualized)</SectionTitle>
           <div className="space-y-2">
             {FP_COSTS.map((row) => (
-              <div key={row.threshold} className="flex items-center gap-2 text-xs">
+              <div key={row.threshold} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span className="w-14 text-muted-foreground flex-shrink-0">θ={row.threshold}</span>
                 <span className="w-16 text-rose-400">FP: {row.fpRate}%</span>
                 <span className="w-16 text-amber-400">FN: {row.fnRate}%</span>
@@ -845,7 +845,7 @@ function AIResearchTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* NLP pipeline */}
       <Card>
         <SectionTitle>NLP Earnings Call Analysis Pipeline</SectionTitle>
@@ -1084,7 +1084,7 @@ function RiskRegulationTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* SR 11-7 */}
       <Card>
         <SectionTitle>SR 11-7 Model Risk Management Framework</SectionTitle>
@@ -1196,7 +1196,7 @@ function RiskRegulationTab() {
               </text>
             ))}
           </svg>
-          <div className="flex gap-4 text-xs mt-1">
+          <div className="flex gap-4 text-xs text-muted-foreground mt-1">
             {[
               { color: "bg-rose-500", label: "Critical (≥15)" },
               { color: "bg-amber-500", label: "High (9–14)" },
@@ -1283,7 +1283,7 @@ export default function AIFinancePage() {
   void rand(); void rand(); void rand();
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Page header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">

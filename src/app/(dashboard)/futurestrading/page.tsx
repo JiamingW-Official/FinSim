@@ -735,7 +735,7 @@ function FuturesBasicsTab() {
   const [selectedContract, setSelectedContract] = useState<ContractSpec | null>(null);
 
   return (
-    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-6">
+    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
       {/* Intro */}
       <Card className="border-border bg-card">
         <CardContent className="pt-4 pb-3">
@@ -789,7 +789,7 @@ function FuturesBasicsTab() {
                       </div>
                     </td>
                     <td className="px-3 py-2.5 text-right">
-                      <Badge variant="outline" className="text-xs">{c.exchange}</Badge>
+                      <Badge variant="outline" className="text-xs text-muted-foreground">{c.exchange}</Badge>
                     </td>
                     <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">{c.contractSize}</td>
                     <td className="px-3 py-2.5 text-right text-muted-foreground">{c.tickSize}</td>
@@ -819,7 +819,7 @@ function FuturesBasicsTab() {
                   {selectedContract.icon}
                   <h3 className="font-semibold text-foreground">{selectedContract.name} ({selectedContract.symbol})</h3>
                 </div>
-                <Button variant="ghost" size="sm" className="h-6 text-xs" onClick={() => setSelectedContract(null)}>✕</Button>
+                <Button variant="ghost" size="sm" className="h-6 text-xs text-muted-foreground" onClick={() => setSelectedContract(null)}>✕</Button>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="space-y-1">
@@ -863,7 +863,7 @@ function FuturesBasicsTab() {
           <div className="space-y-3">
             {Object.entries(CONTRACT_EXPIRATIONS).map(([sym, dates]) => (
               <div key={sym} className="flex items-start gap-3">
-                <Badge variant="outline" className="text-xs w-10 flex-shrink-0 justify-center">{sym}</Badge>
+                <Badge variant="outline" className="text-xs text-muted-foreground w-10 flex-shrink-0 justify-center">{sym}</Badge>
                 <div className="flex flex-wrap gap-1.5">
                   {dates.map((d) => (
                     <span key={d} className="text-xs px-2 py-0.5 rounded bg-muted border border-border text-muted-foreground">{d}</span>
@@ -918,7 +918,7 @@ function FuturesBasicsTab() {
 // ── Tab: Contango & Backwardation ─────────────────────────────────────────────
 function ContangoTab() {
   return (
-    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-6">
+    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
       {/* Explanation Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="border-red-500/30 bg-red-500/5">
@@ -931,7 +931,7 @@ function ContangoTab() {
             <p className="text-sm text-muted-foreground">
               Future prices are <span className="text-red-300 font-medium">higher than spot</span>. Normal for storable commodities — reflects storage costs, insurance, and financing. Crude oil is typically in contango during oversupply.
             </p>
-            <div className="mt-3 p-2 bg-muted/40 rounded text-xs space-y-1">
+            <div className="mt-3 p-2 bg-muted/40 rounded text-xs text-muted-foreground space-y-1">
               <p className="text-foreground font-medium">Cost of Carry Formula:</p>
               <p className="text-muted-foreground font-mono">F = S × e^(r + u - y)T</p>
               <p className="text-muted-foreground">r = risk-free rate, u = storage cost, y = convenience yield, T = time</p>
@@ -948,7 +948,7 @@ function ContangoTab() {
             <p className="text-sm text-muted-foreground">
               Spot prices are <span className="text-green-300 font-medium">higher than futures</span>. Indicates tight supply or high immediate demand. Oil enters backwardation during supply disruptions. Gold rarely bacwardates.
             </p>
-            <div className="mt-3 p-2 bg-muted/40 rounded text-xs space-y-1">
+            <div className="mt-3 p-2 bg-muted/40 rounded text-xs text-muted-foreground space-y-1">
               <p className="text-foreground font-medium">Convenience Yield:</p>
               <p className="text-muted-foreground">High convenience yield (scarcity premium) pulls futures below spot, creating backwardation. Holders of physical enjoy scarcity benefits.</p>
             </div>
@@ -966,7 +966,7 @@ function ContangoTab() {
         </CardHeader>
         <CardContent>
           <ForwardCurveChart />
-          <div className="mt-3 grid grid-cols-3 gap-3 text-center text-xs">
+          <div className="mt-3 grid grid-cols-3 gap-3 text-center text-xs text-muted-foreground">
             <div className="rounded p-2 bg-orange-500/10 border border-orange-500/20">
               <p className="text-orange-400 font-medium">Crude Oil (CL)</p>
               <p className="text-muted-foreground mt-0.5">Mild contango — storage & financing cost ~$0.22/month</p>
@@ -1000,7 +1000,7 @@ function ContangoTab() {
             ].map((row) => (
               <div key={row.label} className="rounded-lg border border-border p-3">
                 <p className="text-sm font-medium text-foreground mb-2">{row.label}</p>
-                <div className="grid grid-cols-3 gap-3 text-center text-xs">
+                <div className="grid grid-cols-3 gap-3 text-center text-xs text-muted-foreground">
                   <div>
                     <p className="text-muted-foreground">Spot Return</p>
                     <p className="text-primary font-medium">+{row.spotReturn}%</p>
@@ -1034,7 +1034,7 @@ function BasisTab() {
   const [selectedSpread, setSelectedSpread] = useState<SpreadType>(SPREAD_TYPES[0]);
 
   return (
-    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-6">
+    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
       <Card className="border-border bg-card">
         <CardContent className="pt-4 pb-3">
           <div className="flex gap-3">
@@ -1056,7 +1056,7 @@ function BasisTab() {
         </CardHeader>
         <CardContent>
           <BasisChart />
-          <div className="mt-3 flex gap-6 text-xs text-muted-foreground">
+          <div className="mt-3 flex gap-3 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded bg-green-500/40 border border-green-500/60" />
               <span>Positive basis (Cash &gt; Futures)</span>
@@ -1083,7 +1083,7 @@ function BasisTab() {
               <button
                 key={sp.name}
                 onClick={() => setSelectedSpread(sp)}
-                className={`text-left p-2 rounded-lg border transition-all text-xs ${
+                className={`text-left p-2 rounded-lg border transition-all text-xs text-muted-foreground ${
                   selectedSpread.name === sp.name
                     ? "border-primary bg-primary/10"
                     : "border-border bg-muted/40 hover:border-primary/40"
@@ -1183,7 +1183,7 @@ function HedgingTab() {
     : scenario.targetPrice - futuresPnL / scenario.quantity;
 
   return (
-    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-6">
+    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
       {/* Concept */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="border-border bg-card">
@@ -1195,7 +1195,7 @@ function HedgingTab() {
             <p className="text-xs text-muted-foreground">
               Used by producers (farmers, miners, oil companies) who own the underlying asset and fear price decline. <span className="text-foreground">SELL futures</span> to lock in a selling price. If spot falls, futures gain offsets cash market loss.
             </p>
-            <div className="mt-2 p-2 bg-muted/40 rounded text-xs">
+            <div className="mt-2 p-2 bg-muted/40 rounded text-xs text-muted-foreground">
               <p className="text-muted-foreground">Examples: Corn farmer, gold miner, oil producer, airline short-selling jet fuel inventory</p>
             </div>
           </CardContent>
@@ -1209,7 +1209,7 @@ function HedgingTab() {
             <p className="text-xs text-muted-foreground">
               Used by consumers who need to buy the underlying asset in the future and fear price increases. <span className="text-foreground">BUY futures</span> to lock in a purchase price. If spot rises, futures gain offsets higher cash cost.
             </p>
-            <div className="mt-2 p-2 bg-muted/40 rounded text-xs">
+            <div className="mt-2 p-2 bg-muted/40 rounded text-xs text-muted-foreground">
               <p className="text-muted-foreground">Examples: Airline buying jet fuel, food company buying wheat, manufacturer buying copper</p>
             </div>
           </CardContent>
@@ -1223,7 +1223,7 @@ function HedgingTab() {
             key={sc.title}
             variant={activeScenario === i ? "default" : "outline"}
             size="sm"
-            className="text-xs"
+            className="text-xs text-muted-foreground"
             onClick={() => setActiveScenario(i)}
           >
             {i === 0 ? "Airline" : i === 1 ? "Corn Farm" : "Portfolio"}
@@ -1311,7 +1311,7 @@ function HedgingTab() {
           <p className="text-sm text-muted-foreground">
             When no futures contract exists for the exact asset, cross-hedge using a correlated contract. The hedge ratio adjusts for the correlation.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
             {[
               { asset: "Jet Fuel", hedgeWith: "Crude Oil (CL)", corr: 0.92, hr: 0.88, note: "Jet fuel has no futures; crude is close enough with 0.88× ratio" },
               { asset: "Soybean Oil", hedgeWith: "Soybeans (ZS)", corr: 0.84, hr: 0.71, note: "Oil is ~34% of bean weight; adjust for crush margin exposure" },
@@ -1356,7 +1356,7 @@ function SpeculativeTab() {
   const worstMonth = SEASONAL_DATA.reduce((worst, d) => d[selectedCommodity] < worst[selectedCommodity] ? d : worst);
 
   return (
-    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-6">
+    <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
       {/* Strategies Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
@@ -1439,7 +1439,7 @@ function SpeculativeTab() {
               </div>
             ))}
           </div>
-          <div className="rounded p-3 bg-amber-500/10 border border-amber-500/20 text-xs space-y-1">
+          <div className="rounded p-3 bg-amber-500/10 border border-amber-500/20 text-xs text-muted-foreground space-y-1">
             <p className="text-amber-400 font-medium">COT Interpretation Rules</p>
             <p className="text-muted-foreground">• Commercials (Producers/Merchants) are usually right at extremes — they have fundamental information</p>
             <p className="text-muted-foreground">• Managed Money at extreme net long = contrarian bearish signal (crowded trade)</p>
@@ -1463,7 +1463,7 @@ function SpeculativeTab() {
                 key={c.key}
                 variant={selectedCommodity === c.key ? "default" : "outline"}
                 size="sm"
-                className="text-xs"
+                className="text-xs text-muted-foreground"
                 onClick={() => setSelectedCommodity(c.key)}
               >
                 {c.label}
@@ -1471,7 +1471,7 @@ function SpeculativeTab() {
             ))}
           </div>
           <SeasonalChart commodity={selectedCommodity} />
-          <div className="grid grid-cols-3 gap-3 text-center text-xs">
+          <div className="grid grid-cols-3 gap-3 text-center text-xs text-muted-foreground">
             <div className="rounded p-2 bg-green-500/10 border border-green-500/20">
               <p className="text-muted-foreground">Best Month</p>
               <p className="text-green-400 font-medium">{bestMonth.month}</p>
@@ -1548,7 +1548,7 @@ function SpeculativeTab() {
 export default function FuturesTradingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" className="border-l-4 border-l-primary rounded-lg bg-card p-6 space-y-1">
           <div className="flex items-center gap-3">
@@ -1586,11 +1586,11 @@ export default function FuturesTradingPage() {
         {/* Tabs */}
         <Tabs defaultValue="basics" className="mt-8 space-y-4">
           <TabsList className="flex flex-wrap gap-1 h-auto bg-muted/40 p-1 rounded-lg">
-            <TabsTrigger value="basics" className="text-xs">Futures Basics</TabsTrigger>
-            <TabsTrigger value="contango" className="text-xs">Contango &amp; Backwardation</TabsTrigger>
-            <TabsTrigger value="basis" className="text-xs">Basis &amp; Spreads</TabsTrigger>
-            <TabsTrigger value="hedging" className="text-xs">Hedging</TabsTrigger>
-            <TabsTrigger value="speculative" className="text-xs">Speculative Strategies</TabsTrigger>
+            <TabsTrigger value="basics" className="text-xs text-muted-foreground">Futures Basics</TabsTrigger>
+            <TabsTrigger value="contango" className="text-xs text-muted-foreground">Contango &amp; Backwardation</TabsTrigger>
+            <TabsTrigger value="basis" className="text-xs text-muted-foreground">Basis &amp; Spreads</TabsTrigger>
+            <TabsTrigger value="hedging" className="text-xs text-muted-foreground">Hedging</TabsTrigger>
+            <TabsTrigger value="speculative" className="text-xs text-muted-foreground">Speculative Strategies</TabsTrigger>
           </TabsList>
 
           <TabsContent value="basics" className="mt-0">

@@ -455,7 +455,7 @@ function DarkPoolLandscapeTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatChip label="ATS Registered" value="~60" color="text-primary" />
@@ -464,7 +464,7 @@ function DarkPoolLandscapeTab() {
         <StatChip label="Avg Block Size" value="$1.4M" color="text-emerald-400" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Donut chart */}
         <div className="bg-muted/50 rounded-md p-4 border border-border/50">
           <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -489,7 +489,7 @@ function DarkPoolLandscapeTab() {
               x={DONUT_CX}
               y={DONUT_CY - 8}
               textAnchor="middle"
-              className="fill-white text-xs font-bold"
+              className="fill-white text-xs text-muted-foreground font-bold"
               fontSize={11}
               fontWeight="bold"
               fill="white"
@@ -712,7 +712,7 @@ function WhyDarkPoolsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Reason selector */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {reasons.map((r, i) => (
@@ -797,7 +797,7 @@ function WhyDarkPoolsTab() {
           Price Improvement Statistics by Pool
         </h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border/50">
                 <th className="text-left pb-2 font-medium">Dark Pool</th>
@@ -924,7 +924,7 @@ function OrderTypesTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Order type pills */}
       <div className="flex flex-wrap gap-2">
         {ORDER_TYPES.map((o) => (
@@ -932,7 +932,7 @@ function OrderTypesTab() {
             key={o.name}
             onClick={() => setSelected(o.name)}
             className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
+              "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
               selected === o.name
                 ? "bg-primary/30 border-primary/60 text-primary"
                 : "bg-muted/60 border-border/50 text-muted-foreground hover:text-foreground hover:border-border"
@@ -965,23 +965,23 @@ function OrderTypesTab() {
             </div>
             <p className="text-sm text-muted-foreground mb-4">{order.description}</p>
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Price Impact</span>
                 <span className={cn("font-medium", impactColor[order.priceImpact])}>
                   {order.priceImpact}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Complexity</span>
                 <span className={cn("font-medium", complexityColor[order.complexity])}>
                   {order.complexity}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Fill Probability</span>
                 <span className="font-medium text-foreground">{order.fillProbability}</span>
               </div>
-              <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Dark Pool Friendly</span>
                 {order.darkPoolFriendly ? (
                   <CheckCircle className="w-4 h-4 text-emerald-400" />
@@ -1163,7 +1163,7 @@ function HFTInteractionTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* HFT concerns grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {hftConcerns.map((c) => (
@@ -1304,7 +1304,7 @@ function LitVsDarkTab() {
   const maxVal = Math.max(...TOXICITY_METRICS.flatMap((m) => [m.lit, m.dark]));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header callouts */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[
@@ -1347,7 +1347,7 @@ function LitVsDarkTab() {
           <BarChart3 className="w-4 h-4 text-primary" />
           Lit vs Dark: Key Microstructure Metrics
         </h3>
-        <div className="flex gap-4 mb-4 text-xs">
+        <div className="flex gap-4 mb-4 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-sm bg-primary/70" />
             <span className="text-muted-foreground">Lit Market</span>
@@ -1367,7 +1367,7 @@ function LitVsDarkTab() {
               <div key={m.metric}>
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs text-muted-foreground">{m.metric}</span>
-                  <div className="flex items-center gap-2 text-xs">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <span className={cn("tabular-nums", litBetter ? "text-emerald-400" : "text-muted-foreground")}>
                       Lit: {m.lit}{m.unit}
                     </span>
@@ -1539,7 +1539,7 @@ function LitVsDarkTab() {
 export default function DarkPoolsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
         {/* Page header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

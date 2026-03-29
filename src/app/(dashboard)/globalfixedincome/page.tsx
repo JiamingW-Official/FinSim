@@ -261,7 +261,7 @@ function MarketOverviewTab() {
   const aggWidth = 420;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Hero stats */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
@@ -281,7 +281,7 @@ function MarketOverviewTab() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         {/* Donut chart */}
         <FadeCard>
           <h3 className="mb-3 text-sm font-semibold text-foreground/80">Global Bond Market by Region ($128T)</h3>
@@ -356,7 +356,7 @@ function MarketOverviewTab() {
       <FadeCard>
         <h3 className="mb-3 text-sm font-semibold text-foreground/80">10-Year Government Bond Yields — 15 Countries</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-foreground/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Country</th>
@@ -376,7 +376,7 @@ function MarketOverviewTab() {
                   <td className="py-1.5">
                     <span
                       className={cn(
-                        "rounded px-1.5 py-0.5 text-xs font-medium",
+                        "rounded px-1.5 py-0.5 text-xs text-muted-foreground font-medium",
                         row.rating.startsWith("AA") || row.rating === "AAA"
                           ? "bg-emerald-500/20 text-emerald-300"
                           : row.rating.startsWith("A")
@@ -476,7 +476,7 @@ function EMBondsTab() {
   const barVals = EM_COUNTRIES.map((c) => (view === "hard" ? c.spreadHC : c.spreadLC));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Explainer cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FadeCard className="border-border bg-primary/5">
@@ -519,7 +519,7 @@ function EMBondsTab() {
                 key={v}
                 onClick={() => setView(v)}
                 className={cn(
-                  "rounded px-2 py-1 text-xs font-medium transition-colors",
+                  "rounded px-2 py-1 text-xs text-muted-foreground font-medium transition-colors",
                   view === v ? "bg-primary/30 text-primary" : "text-foreground/40 hover:text-foreground/60"
                 )}
               >
@@ -557,7 +557,7 @@ function EMBondsTab() {
                 </span>
                 <span
                   className={cn(
-                    "w-12 text-right text-xs",
+                    "w-12 text-right text-xs text-muted-foreground",
                     c.rating.startsWith("BBB") ? "text-yellow-300" : c.rating.startsWith("BB") ? "text-orange-300" : "text-red-300"
                   )}
                 >
@@ -573,7 +573,7 @@ function EMBondsTab() {
       <FadeCard>
         <h3 className="mb-3 text-sm font-medium text-foreground/80">EM Sovereign Default &amp; Restructuring History</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-foreground/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Country</th>
@@ -676,7 +676,7 @@ function CurrencyHedgingTab() {
   const scaleY = (v: number) => chartH - 20 - (v / maxY) * (chartH - 40);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Concept cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {[
@@ -783,7 +783,7 @@ function CurrencyHedgingTab() {
       <FadeCard>
         <h3 className="mb-3 text-sm font-medium text-foreground/80">FX Hedging Cost by Currency Pair</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-foreground/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Pair</th>
@@ -841,7 +841,7 @@ function CurrencyHedgingTab() {
               <ArrowUpDown size={14} className="text-primary" />
               <h3 className="text-sm font-medium text-primary">{selected.pair} Hedge Analysis</h3>
             </div>
-            <div className="grid grid-cols-2 gap-4 text-xs sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 text-xs text-muted-foreground sm:grid-cols-4">
               <div>
                 <p className="text-foreground/40 mb-0.5">Interest Rate Diff</p>
                 <p className={cn("font-medium", selected.rateDiff < 0 ? "text-red-300" : "text-emerald-300")}>
@@ -945,9 +945,9 @@ function PortfolioConstructionTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Efficient frontier + correlation side by side */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         {/* Efficient frontier */}
         <FadeCard>
           <h3 className="mb-2 text-sm font-medium text-foreground/80">Efficient Frontier — Global Bond Portfolios</h3>
@@ -1024,7 +1024,7 @@ function PortfolioConstructionTab() {
           <h3 className="mb-3 text-sm font-medium text-foreground/80">Correlation Matrix — Global Bond Sectors</h3>
           <p className="mb-3 text-xs text-foreground/40">Lower correlations improve portfolio efficiency. EM Local Currency adds most diversification.</p>
           <div className="overflow-x-auto">
-            <table className="text-xs border-collapse">
+            <table className="text-xs text-muted-foreground border-collapse">
               <thead>
                 <tr>
                   <th className="pb-1 pr-2 text-right text-foreground/30 text-xs font-normal w-20"></th>
@@ -1042,7 +1042,7 @@ function PortfolioConstructionTab() {
                     {row.map((val, ci) => (
                       <td key={ci} className="py-0.5 px-0.5">
                         <div
-                          className="w-12 h-8 rounded flex items-center justify-center text-xs font-mono font-medium"
+                          className="w-12 h-8 rounded flex items-center justify-center text-xs text-muted-foreground font-mono font-medium"
                           style={{
                             background: ri === ci ? "rgba(255,255,255,0.15)" : `${corrColor(val)}20`,
                             color: ri === ci ? "white" : corrColor(val),
@@ -1104,7 +1104,7 @@ function PortfolioConstructionTab() {
                   />
                 ))}
               </div>
-              <div className="space-y-1 text-xs">
+              <div className="space-y-1 text-xs text-muted-foreground">
                 {strat.pros.map((p) => (
                   <div key={p} className="flex gap-1.5">
                     <span className="text-emerald-400 mt-0.5">+</span>

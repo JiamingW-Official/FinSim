@@ -895,7 +895,7 @@ function CategoryPills({
           type="button"
           onClick={() => onChange(c)}
           className={cn(
-            "rounded-full px-3 py-1 text-xs font-medium transition-colors",
+            "rounded-full px-3 py-1 text-xs text-muted-foreground font-medium transition-colors",
             active === c
               ? "bg-primary text-primary-foreground"
               : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground",
@@ -997,7 +997,7 @@ export default function NewsPage() {
         </div>
         <div className="ml-auto flex items-center gap-2">
           <span className="text-xs text-muted-foreground">Last updated:</span>
-          <span className="text-xs font-medium">Mar 27, 2026 · 4:32 PM ET</span>
+          <span className="text-xs text-muted-foreground font-medium">Mar 27, 2026 · 4:32 PM ET</span>
         </div>
       </div>
 
@@ -1108,7 +1108,7 @@ export default function NewsPage() {
                               type="button"
                               onClick={() => addToWatchlist(t)}
                               className={cn(
-                                "inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-mono font-medium transition-colors",
+                                "inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs text-muted-foreground font-mono font-medium transition-colors",
                                 watchlist.has(t)
                                   ? "bg-primary/20 text-primary"
                                   : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary",
@@ -1167,7 +1167,7 @@ export default function NewsPage() {
                       </div>
                       <span
                         className={cn(
-                          "w-10 text-right text-xs font-medium",
+                          "w-10 text-right text-xs text-muted-foreground font-medium",
                           ts.bullishPct >= 55
                             ? "text-emerald-400"
                             : ts.bullishPct <= 40
@@ -1211,7 +1211,7 @@ export default function NewsPage() {
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-sm">Insider Trading Sentiment</CardTitle>
-                  <div className="flex gap-3 text-xs">
+                  <div className="flex gap-3 text-xs text-muted-foreground">
                     <span className="text-emerald-400 font-medium">{insiderBuys} Buys</span>
                     <span className="text-red-400 font-medium">{insiderSells} Sells</span>
                   </div>
@@ -1219,7 +1219,7 @@ export default function NewsPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border/50">
                         <th className="pb-1.5 text-left font-medium text-muted-foreground">Date</th>
@@ -1261,7 +1261,7 @@ export default function NewsPage() {
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-sm">Analyst Rating Changes This Week</CardTitle>
-                  <div className="flex gap-3 text-xs">
+                  <div className="flex gap-3 text-xs text-muted-foreground">
                     <span className="text-emerald-400 font-medium">{upgrades} Upgrades</span>
                     <span className="text-red-400 font-medium">{downgrades} Downgrades</span>
                   </div>
@@ -1270,7 +1270,7 @@ export default function NewsPage() {
               <CardContent>
                 <div className="space-y-2">
                   {ANALYST_CHANGES.map((row, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs">
+                    <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                       <span className="text-muted-foreground w-12">{row.date}</span>
                       <span className="font-mono font-medium w-12">{row.ticker}</span>
                       <span className="flex-1 text-muted-foreground text-xs truncate">{row.firm}</span>
@@ -1306,7 +1306,7 @@ export default function NewsPage() {
                 <CardContent>
                   <div className="space-y-2">
                     {divergences.map((item) => (
-                      <div key={item.id} className="flex items-start gap-3 text-xs">
+                      <div key={item.id} className="flex items-start gap-3 text-xs text-muted-foreground">
                         <SentimentBadge s={item.sentiment} />
                         <span className="text-muted-foreground flex-1">
                           <span className="font-medium text-foreground">{item.tickers.join(", ")}</span>
@@ -1336,7 +1336,7 @@ export default function NewsPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border/50">
                         <th className="pb-2 text-left font-medium text-muted-foreground">Ticker</th>
@@ -1443,7 +1443,7 @@ export default function NewsPage() {
                     {overreactions.map((row) => {
                       const reversed = (row.day1Reaction > 0 && row.day5Drift < 0) || (row.day1Reaction < 0 && row.day5Drift > 0);
                       return (
-                        <div key={row.ticker} className="rounded-md bg-amber-500/10 p-3 text-xs">
+                        <div key={row.ticker} className="rounded-md bg-amber-500/10 p-3 text-xs text-muted-foreground">
                           <div className="flex items-center gap-2 mb-1">
                             <span className="font-mono font-medium">{row.ticker}</span>
                             <span className="text-muted-foreground">{row.company}</span>
@@ -1472,7 +1472,7 @@ export default function NewsPage() {
                       { ticker: "TSLA", date: "Apr 2", score: 38 },
                       { ticker: "JPM", date: "Apr 9", score: 65 },
                     ].map((item) => (
-                      <div key={item.ticker} className="flex items-center gap-2 text-xs">
+                      <div key={item.ticker} className="flex items-center gap-2 text-xs text-muted-foreground">
                         <span className="font-mono font-medium w-12">{item.ticker}</span>
                         <span className="text-muted-foreground w-12">{item.date}</span>
                         <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
@@ -1650,7 +1650,7 @@ export default function NewsPage() {
                       className="rounded-md border border-border/50 bg-muted/30 px-3 py-2"
                     >
                       <p className="text-xs text-muted-foreground">{event.date}</p>
-                      <p className="text-xs font-medium leading-snug mt-0.5">{event.event}</p>
+                      <p className="text-xs text-muted-foreground font-medium leading-snug mt-0.5">{event.event}</p>
                       <ImpactDot impact={event.impact} />
                     </div>
                   ))}

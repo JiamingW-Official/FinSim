@@ -772,7 +772,7 @@ export default function InstitutionalAllocPage() {
   const latestFundingRatio = pensionFunding[pensionFunding.length - 1].fundingRatio;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -833,7 +833,7 @@ export default function InstitutionalAllocPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Stats row */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
@@ -934,7 +934,7 @@ export default function InstitutionalAllocPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Illiquidity premium theory */}
             <Card className="bg-card/60 border-border">
@@ -989,7 +989,7 @@ export default function InstitutionalAllocPage() {
                         <span className="text-sm font-medium text-foreground w-10 text-right">{ac.pct}%</span>
                         <Badge
                           variant="outline"
-                          className="text-xs shrink-0"
+                          className="text-xs text-muted-foreground shrink-0"
                           style={{ borderColor: ac.illiquid ? "#f59e0b55" : "#4ec9a055", color: ac.illiquid ? "#f59e0b" : "#4ec9a0" }}
                         >
                           {ac.illiquid ? "Illiquid" : "Liquid"}
@@ -1077,7 +1077,7 @@ export default function InstitutionalAllocPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* LDI basics */}
             <Card className="bg-card/60 border-border">
@@ -1140,7 +1140,7 @@ export default function InstitutionalAllocPage() {
             </Card>
 
             {/* Funding ratio gauge */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Card className="bg-card/60 border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
@@ -1157,7 +1157,7 @@ export default function InstitutionalAllocPage() {
                       { range: "85–100%", label: "Adequate", color: "#4f8ef7", action: "Target 100%; grow LDI sleeve; partial equity de-risking" },
                       { range: "> 100%", label: "Surplus", color: "#4ec9a0", action: "Annuitize liabilities; consider risk transfer; contribution holiday possible" },
                     ].map((z) => (
-                      <div key={z.range} className="flex items-start gap-2 text-xs">
+                      <div key={z.range} className="flex items-start gap-2 text-xs text-muted-foreground">
                         <span className="font-mono w-16 shrink-0" style={{ color: z.color }}>{z.range}</span>
                         <span className="font-medium w-16 shrink-0" style={{ color: z.color }}>{z.label}</span>
                         <span className="text-muted-foreground">{z.action}</span>
@@ -1246,7 +1246,7 @@ export default function InstitutionalAllocPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Mandate types */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -1300,7 +1300,7 @@ export default function InstitutionalAllocPage() {
             </div>
 
             {/* Selected SWF detail */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <Card className="bg-card/60 border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">

@@ -297,7 +297,7 @@ function IRSPricer() {
   const groupW = barArea / results.cashFlows.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inputs */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         <NumberInput
@@ -570,7 +570,7 @@ function SwapCurveBuilder() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Curve SVG */}
       <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>SOFR OIS Curve + Implied Forwards</SectionTitle>
@@ -803,7 +803,7 @@ function CDSPricer() {
   const survPath = survPts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inputs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <SelectInput
@@ -957,7 +957,7 @@ function CDSPricer() {
           </div>
           <div className="bg-rose-500/10 border border-rose-500/20 rounded-lg p-3 space-y-1">
             <div className="text-xs text-foreground/40 uppercase">CDX.NA.HY (100 names)</div>
-            <div className="text-2xl font-bold text-rose-400">450 bps</div>
+            <div className="text-lg font-medium text-rose-400">450 bps</div>
             <div className="text-xs text-foreground/50">High Yield — avg per-name: 4.5 bps</div>
           </div>
         </div>
@@ -1011,7 +1011,7 @@ function TRSPage() {
   const barW = chartW / scenarios.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         <NumberInput
           label="TRS Notional ($)"
@@ -1234,7 +1234,7 @@ function SwaptionsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Inputs */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         <div className="flex flex-col gap-1">
@@ -1492,7 +1492,7 @@ function InflationSwapsPage() {
   const inflPath = inflPts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         <NumberInput
           label="Tenor (years)"
@@ -1705,7 +1705,7 @@ export default function SwapsPage() {
         </div>
       </div>
 
-      <div className="px-6 py-6 max-w-6xl mx-auto space-y-6">
+      <div className="px-6 py-6 max-w-6xl mx-auto space-y-4">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="bg-foreground/5 border border-border p-1 flex-wrap h-auto gap-1">
             {TABS.map((tab) => (

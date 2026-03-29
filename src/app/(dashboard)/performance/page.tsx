@@ -1007,10 +1007,10 @@ export default function PerformancePage() {
         <div className="flex items-center gap-2">
           <TrendingUp className="h-5 w-5 text-primary" />
           <h1 className="text-lg font-semibold">Performance</h1>
-          <Badge variant="outline" className="text-xs">YTD 2026</Badge>
+          <Badge variant="outline" className="text-xs text-muted-foreground">YTD 2026</Badge>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="text-xs h-7">
+          <Button variant="outline" size="sm" className="text-xs text-muted-foreground h-7">
             <Calendar className="h-3 w-3 mr-1" />
             Export
           </Button>
@@ -1145,7 +1145,7 @@ export default function PerformancePage() {
           <Card className="p-4">
             <h3 className="text-sm font-medium mb-3">Comparison Table</h3>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border/50">
                     <th className="text-left pb-2 text-muted-foreground font-medium">Metric</th>
@@ -1237,7 +1237,7 @@ export default function PerformancePage() {
                 <TrendingUp className="h-4 w-4 text-green-500" />
                 <h3 className="text-sm font-medium">Best Relative Month</h3>
               </div>
-              <p className="text-2xl font-bold text-green-500">+4.8%</p>
+              <p className="text-lg font-medium text-green-500">+4.8%</p>
               <p className="text-xs text-muted-foreground mt-1">Feb 2026 — outperformed S&P by 4.8%</p>
             </Card>
             <Card className="p-4">
@@ -1245,7 +1245,7 @@ export default function PerformancePage() {
                 <TrendingDown className="h-4 w-4 text-red-400" />
                 <h3 className="text-sm font-medium">Worst Relative Month</h3>
               </div>
-              <p className="text-2xl font-bold text-red-400">-3.2%</p>
+              <p className="text-lg font-medium text-red-400">-3.2%</p>
               <p className="text-xs text-muted-foreground mt-1">Nov 2025 — underperformed S&P by 3.2%</p>
             </Card>
           </div>
@@ -1410,7 +1410,7 @@ export default function PerformancePage() {
                 <div className="space-y-3">
                   <div>
                     <p className="text-xs text-muted-foreground">Current YTD Return</p>
-                    <p className={cn("text-2xl font-bold", stats.totalReturn >= 0 ? "text-green-500" : "text-red-400")}>
+                    <p className={cn("text-lg font-medium", stats.totalReturn >= 0 ? "text-green-500" : "text-red-400")}>
                       {stats.totalReturn >= 0 ? "+" : ""}{stats.totalReturn.toFixed(2)}%
                     </p>
                   </div>
@@ -1433,7 +1433,7 @@ export default function PerformancePage() {
             <div className="flex items-center gap-2 mb-3">
               <Award className="h-4 w-4 text-primary" />
               <h3 className="text-sm font-medium">Achievement Timeline</h3>
-              <Badge variant="outline" className="ml-auto text-xs">
+              <Badge variant="outline" className="ml-auto text-xs text-muted-foreground">
                 {milestones.filter((m) => m.achieved).length} / {milestones.length} achieved
               </Badge>
             </div>
@@ -1446,7 +1446,7 @@ export default function PerformancePage() {
                 <div
                   key={m.label}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs border",
+                    "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs text-muted-foreground border",
                     m.achieved
                       ? "border-green-500/40 bg-green-500/10 text-green-400"
                       : "border-border/40 bg-muted/30 text-muted-foreground",
@@ -1465,7 +1465,7 @@ export default function PerformancePage() {
             <div className="flex items-center gap-2 mb-3">
               <BarChart3 className="h-4 w-4 text-muted-foreground" />
               <h3 className="text-sm font-medium">12-Month Projection Scenarios</h3>
-              <div className="ml-auto flex items-center gap-3 text-xs">
+              <div className="ml-auto flex items-center gap-3 text-xs text-muted-foreground">
                 <span className="text-red-400">— Bear (-8%)</span>
                 <span className="text-primary">— Base (+18%)</span>
                 <span className="text-green-400">— Bull (+38%)</span>

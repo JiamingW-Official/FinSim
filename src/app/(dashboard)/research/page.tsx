@@ -708,7 +708,7 @@ function ResearchDashboard() {
               className="w-full text-left"
               onClick={() => toggle(theme.id)}
             >
-              <CardHeader className={cn("py-3 px-4", idx === 0 && "p-6")}>
+              <CardHeader className={cn("py-3 px-4", idx === 0 && "p-4")}>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-indigo-950/60 border border-indigo-800/50 flex items-center justify-center text-indigo-400 shrink-0">
                     {theme.icon}
@@ -716,7 +716,7 @@ function ResearchDashboard() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <CardTitle className={cn("text-sm text-foreground", idx === 0 && "text-lg")}>{theme.title}</CardTitle>
-                      <Badge variant="outline" className={cn("text-xs px-2 py-0", convictionColor(theme.conviction))}>
+                      <Badge variant="outline" className={cn("text-xs text-muted-foreground px-2 py-0", convictionColor(theme.conviction))}>
                         {theme.conviction} Conviction
                       </Badge>
                     </div>
@@ -802,7 +802,7 @@ function ResearchDashboard() {
 
 function ValuationMonitor() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Market Valuation Dashboard */}
       <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
@@ -824,7 +824,7 @@ function ValuationMonitor() {
                 <GaugeArc percentile={m.percentile} size={80} />
                 <p className="text-xs font-medium text-muted-foreground text-center leading-tight mt-1">{m.label}</p>
                 <p className="text-lg font-bold text-foreground">{m.current}{m.unit}</p>
-                <div className="flex items-center gap-1 text-xs">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Avg: {m.historicalAvg}{m.unit}</span>
                   <span className={cn("font-medium", m.percentile >= 80 ? "text-red-400" : m.percentile >= 60 ? "text-yellow-400" : "text-emerald-400")}>
                     {m.percentile}th pct
@@ -882,7 +882,7 @@ function ValuationMonitor() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left text-muted-foreground font-medium py-2 pr-3 w-40">Sector</th>
@@ -905,13 +905,13 @@ function ValuationMonitor() {
                     >
                       <td className="py-2 pr-3 text-muted-foreground font-medium">{s.sector}</td>
                       <td className="text-center py-2 px-2">
-                        <span className={cn("px-1.5 py-0.5 rounded text-xs", peColor)}>{s.pe}x</span>
+                        <span className={cn("px-1.5 py-0.5 rounded text-xs text-muted-foreground", peColor)}>{s.pe}x</span>
                       </td>
                       <td className="text-center py-2 px-2 text-muted-foreground">{s.pb}x</td>
                       <td className="text-center py-2 px-2 text-muted-foreground">{s.ps}x</td>
                       <td className="text-center py-2 px-2 text-muted-foreground">{s.evEb}x</td>
                       <td className="text-center py-2 px-2">
-                        <span className={cn("font-medium text-xs", relColor)}>
+                        <span className={cn("font-medium text-xs text-muted-foreground", relColor)}>
                           {s.rel > 0 ? "+" : ""}{s.rel.toFixed(2)}
                         </span>
                       </td>
@@ -939,7 +939,7 @@ function ValuationMonitor() {
           <div className="overflow-x-auto">
             <BuffettIndicatorChart width={540} height={120} />
           </div>
-          <div className="flex items-center gap-6 mt-2 text-xs">
+          <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
             <div className="flex items-center gap-1.5"><span className="w-3 h-1 bg-emerald-500/60 inline-block rounded" />Fairly Valued (&lt;100%)</div>
             <div className="flex items-center gap-1.5"><span className="w-3 h-1 bg-yellow-500/60 inline-block rounded" />Moderately Overvalued (100–150%)</div>
             <div className="flex items-center gap-1.5"><span className="w-3 h-1 bg-red-500/60 inline-block rounded" />Significantly Overvalued (&gt;150%)</div>
@@ -960,7 +960,7 @@ function ValuationMonitor() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {[
               { label: "Investment Grade Spread", current: 92, avg: 130, min: 45, max: 600, unit: "bps", color: "#3b82f6" },
               { label: "High Yield Spread", current: 310, avg: 500, min: 200, max: 2200, unit: "bps", color: "#f59e0b" },
@@ -1021,7 +1021,7 @@ function EconCalendar() {
   const targetRange = maxTarget - minTarget;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Economic Calendar */}
       <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
@@ -1032,7 +1032,7 @@ function EconCalendar() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left text-muted-foreground font-medium py-2 w-16">Date</th>
@@ -1056,7 +1056,7 @@ function EconCalendar() {
                     <td className="py-2 text-center text-muted-foreground">{ev.prior}</td>
                     <td className="py-2 text-center text-foreground font-medium">{ev.consensus}</td>
                     <td className="py-2 text-center">
-                      <Badge variant="outline" className={cn("text-xs px-1.5 py-0", impColor(ev.importance))}>
+                      <Badge variant="outline" className={cn("text-xs text-muted-foreground px-1.5 py-0", impColor(ev.importance))}>
                         {ev.importance}
                       </Badge>
                     </td>
@@ -1078,7 +1078,7 @@ function EconCalendar() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left text-muted-foreground font-medium py-2">Variable</th>
@@ -1143,7 +1143,7 @@ function EconCalendar() {
                     />
                     <div className="absolute inset-0 flex items-center px-3 gap-2">
                       <span className="font-medium text-sm text-foreground">{b.target.toLocaleString()}</span>
-                      <Badge variant="outline" className={cn("text-xs px-1.5 py-0", stanceColor(b.stance))}>{b.stance}</Badge>
+                      <Badge variant="outline" className={cn("text-xs text-muted-foreground px-1.5 py-0", stanceColor(b.stance))}>{b.stance}</Badge>
                     </div>
                   </div>
                 </motion.div>
@@ -1153,13 +1153,13 @@ function EconCalendar() {
           {/* Thesis detail */}
           <div className="space-y-2 border-t border-border pt-3">
             {BANK_FORECASTS.map(b => (
-              <div key={b.bank} className="flex gap-2 text-xs">
+              <div key={b.bank} className="flex gap-2 text-xs text-muted-foreground">
                 <span className="text-muted-foreground font-medium w-24 shrink-0">{b.bank}:</span>
                 <span className="text-muted-foreground">{b.thesis}</span>
               </div>
             ))}
           </div>
-          <div className="flex items-center justify-between mt-3 p-2 bg-muted/50 rounded-lg text-xs">
+          <div className="flex items-center justify-between mt-3 p-2 bg-muted/50 rounded-lg text-xs text-muted-foreground">
             <span className="text-muted-foreground">Consensus (avg):</span>
             <span className="text-foreground font-medium text-base">
               {Math.round(BANK_FORECASTS.reduce((s, b) => s + b.target, 0) / BANK_FORECASTS.length).toLocaleString()}
@@ -1189,7 +1189,7 @@ function EconCalendar() {
                 onClick={() => setSelectedSurprise(prev => prev === s.event ? null : s.event)}
               >
                 <div className={cn(
-                  "w-8 h-8 rounded-lg flex items-center justify-center text-xs font-medium shrink-0",
+                  "w-8 h-8 rounded-lg flex items-center justify-center text-xs text-muted-foreground font-medium shrink-0",
                   s.surprise > 0 ? "bg-emerald-950/60 text-emerald-400" : "bg-red-950/60 text-red-400"
                 )}>
                   {s.surprise > 0 ? "+" : ""}{s.surprise.toFixed(1)}σ
@@ -1329,7 +1329,7 @@ function DataLibrary() {
     trend === "up" ? "text-emerald-400" : trend === "down" ? "text-red-400" : "text-muted-foreground";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Economic Indicators */}
       <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
@@ -1341,7 +1341,7 @@ function DataLibrary() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left text-muted-foreground font-medium py-2 w-52">Indicator</th>
@@ -1375,7 +1375,7 @@ function DataLibrary() {
                         {ind.yoy}
                       </td>
                       <td className="py-2 text-center">
-                        <span className={cn("flex items-center justify-center gap-1 text-xs", trendColor(ind.trend))}>
+                        <span className={cn("flex items-center justify-center gap-1 text-xs text-muted-foreground", trendColor(ind.trend))}>
                           {trendIcon(ind.trend)}
                           {ind.trend}
                         </span>
@@ -1527,7 +1527,7 @@ function DataLibrary() {
 export default function ResearchPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -8 }}

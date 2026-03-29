@@ -361,7 +361,7 @@ function InfoBadge({ label, value, color }: { label: string; value: string; colo
   return (
     <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-muted border border-border`}>
       <span className="text-xs text-muted-foreground">{label}:</span>
-      <span className={`text-xs font-semibold ${color}`}>{value}</span>
+      <span className={`text-xs text-muted-foreground font-semibold ${color}`}>{value}</span>
     </div>
   );
 }
@@ -400,7 +400,7 @@ function DBvsDCTab() {
   const maxAssets = Math.max(...GLOBAL_PENSION_SYSTEMS.map((s) => s.assets));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <Card className="bg-muted/60 border-border">
@@ -413,21 +413,21 @@ function DBvsDCTab() {
         <Card className="bg-muted/60 border-border">
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground mb-1">US DB Coverage</p>
-            <p className="text-2xl font-bold text-amber-400">15%</p>
+            <p className="text-lg font-medium text-amber-400">15%</p>
             <p className="text-xs text-muted-foreground mt-0.5">Private workers (2023)</p>
           </CardContent>
         </Card>
         <Card className="bg-muted/60 border-border">
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground mb-1">US DC Coverage</p>
-            <p className="text-2xl font-bold text-emerald-400">65%</p>
+            <p className="text-lg font-medium text-emerald-400">65%</p>
             <p className="text-xs text-muted-foreground mt-0.5">Private workers (2023)</p>
           </CardContent>
         </Card>
         <Card className="bg-muted/60 border-border">
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground mb-1">PBGC Max Benefit</p>
-            <p className="text-2xl font-bold text-primary">$7,131</p>
+            <p className="text-lg font-medium text-primary">$7,131</p>
             <p className="text-xs text-muted-foreground mt-0.5">Per month (2025)</p>
           </CardContent>
         </Card>
@@ -435,7 +435,7 @@ function DBvsDCTab() {
 
       {/* Comparison Matrix */}
       <Card className="bg-muted/60 border-border border-l-4 border-l-primary">
-        <CardHeader className="pb-3 p-6">
+        <CardHeader className="pb-3 p-4">
           <CardTitle className="text-lg text-foreground flex items-center gap-2">
             <Users className="w-4 h-4 text-primary" />
             DB vs DC Plan Comparison (10 Dimensions)
@@ -474,7 +474,7 @@ function DBvsDCTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-4 mb-4 text-xs">
+          <div className="flex items-center gap-4 mb-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-1.5">
               <div className="w-8 h-0.5 bg-amber-400"></div>
               <span className="text-muted-foreground">DB Plans</span>
@@ -617,7 +617,7 @@ function DBvsDCTab() {
                   {CLIFF_VESTING.years.map((yr, i) => (
                     <div key={yr} className="flex-1 text-center">
                       <div
-                        className={`h-10 rounded flex items-center justify-center text-xs font-medium ${
+                        className={`h-10 rounded flex items-center justify-center text-xs text-muted-foreground font-medium ${
                           CLIFF_VESTING.vestedPct[i] === 100
                             ? "bg-emerald-500/80 text-foreground"
                             : "bg-muted text-muted-foreground"
@@ -676,7 +676,7 @@ function DBvsDCTab() {
               {showPublic ? "Showing: Public Sector" : "Showing: Private Sector"} (click to toggle)
             </button>
             {showPublic ? (
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <div className="flex justify-between p-2 rounded bg-card/50">
                   <span className="text-muted-foreground">CalPERS (CA)</span>
                   <span className="text-primary font-medium">$500B AUM</span>
@@ -704,7 +704,7 @@ function DBvsDCTab() {
                 </div>
               </div>
             ) : (
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <div className="flex justify-between p-2 rounded bg-card/50">
                   <span className="text-muted-foreground">Boeing Pension</span>
                   <span className="text-primary font-medium">~$68B AUM</span>
@@ -806,7 +806,7 @@ function LDITab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -818,7 +818,7 @@ function LDITab() {
           <Card key={s.label} className="bg-muted/60 border-border">
             <CardContent className="p-4">
               <p className="text-xs text-muted-foreground mb-1">{s.label}</p>
-              <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
+              <p className={`text-lg font-medium ${s.color}`}>{s.value}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{s.sub}</p>
             </CardContent>
           </Card>
@@ -834,7 +834,7 @@ function LDITab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <p className="text-xs text-muted-foreground mb-3">
                 <span className="text-foreground font-medium">PBO (Projected Benefit Obligation)</span> = Present value of all future pension benefits earned to date,
@@ -918,7 +918,7 @@ function LDITab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <p className="text-xs text-muted-foreground mb-4">
                 LDI shifts assets from return-seeking (equities, growth) toward liability-hedging (long-duration bonds, interest rate swaps)
@@ -927,7 +927,7 @@ function LDITab() {
               <div className="space-y-3">
                 {ldiStages.map((stage) => (
                   <div key={stage.label} className="space-y-1">
-                    <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground font-medium">{stage.label}</span>
                       <span className="text-muted-foreground">Funded: {stage.funded}%</span>
                     </div>
@@ -948,7 +948,7 @@ function LDITab() {
                   </div>
                 ))}
               </div>
-              <div className="flex items-center gap-4 mt-3 text-xs">
+              <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-primary"></div><span className="text-muted-foreground">Return-Seeking</span></div>
                 <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-emerald-500"></div><span className="text-muted-foreground">Liability Hedge</span></div>
               </div>
@@ -976,7 +976,7 @@ function LDITab() {
                 </p>
               </div>
               <div className="p-3 rounded-lg bg-card/60 border border-border">
-                <div className="flex items-center justify-between text-xs mb-1">
+                <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
                   <span className="font-medium text-primary">PBGC Variable Premium</span>
                 </div>
                 <p className="text-xs text-muted-foreground">
@@ -998,7 +998,7 @@ function LDITab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col md:flex-row items-start gap-6">
+          <div className="flex flex-col md:flex-row items-start gap-3">
             <div className="flex-1">
               <svg viewBox="0 0 400 100" className="w-full h-auto">
                 {/* Liabilities bar */}
@@ -1016,7 +1016,7 @@ function LDITab() {
                 <text x={(10 + 375 * (5 / 20) + 10 + 375 * (15 / 20)) / 2} y="52" textAnchor="middle" fill="#f59e0b" fontSize="10" fontWeight="600">10yr GAP</text>
               </svg>
             </div>
-            <div className="flex-1 space-y-2 text-xs">
+            <div className="flex-1 space-y-2 text-xs text-muted-foreground">
               <p className="text-muted-foreground">
                 When interest rates <span className="text-red-400 font-medium">fall by 1%</span>, liabilities increase ~15% ($750M on $5B PBO)
                 while a 5yr-duration asset portfolio increases only ~5% ($230M on $4.6B). Net funded status deteriorates by ~$520M.
@@ -1088,7 +1088,7 @@ function ActuarialTab() {
   const yScen = (v: number) => padT + innerH2 - ((v - minVal) / (maxVal - minVal)) * innerH2;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Mortality Tables */}
       <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-3">
@@ -1152,7 +1152,7 @@ function ActuarialTab() {
                   className="w-full flex items-center justify-between p-3 rounded-lg bg-card/60 border border-border hover:border-primary/60 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`px-2 py-0.5 rounded text-xs font-medium ${
+                    <div className={`px-2 py-0.5 rounded text-xs text-muted-foreground font-medium ${
                       assumption.sensitivity === "Very High" ? "bg-red-900/60 text-red-400" :
                       assumption.sensitivity === "High" ? "bg-amber-900/60 text-amber-400" :
                       assumption.sensitivity === "Medium" ? "bg-muted text-primary" :
@@ -1192,7 +1192,7 @@ function ActuarialTab() {
               Asset Smoothing Methods
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             <div className="p-3 rounded bg-card/60 border border-border">
               <p className="font-medium text-primary mb-1">5-Year Average Value</p>
               <p className="text-muted-foreground">
@@ -1225,7 +1225,7 @@ function ActuarialTab() {
               Funding Strategy: Min vs Target
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             <div className="space-y-2">
               {[
                 {
@@ -1266,7 +1266,7 @@ function ActuarialTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-4 mb-4 text-xs">
+          <div className="flex items-center gap-4 mb-4 text-xs text-muted-foreground">
             {scenarios.map((sc) => (
               <div key={sc.label} className="flex items-center gap-1.5">
                 <div className="w-8 h-0.5" style={{ background: sc.color }}></div>
@@ -1361,7 +1361,7 @@ function InvestmentStrategyTab() {
   const altPath = ALTERNATIVES_GROWTH.map((d, i) => `${i === 0 ? "M" : "L"}${xAlt(d.year)},${yAlt(d.pct)}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -1373,7 +1373,7 @@ function InvestmentStrategyTab() {
           <Card key={s.label} className="bg-muted/60 border-border">
             <CardContent className="p-4">
               <p className="text-xs text-muted-foreground mb-1">{s.label}</p>
-              <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
+              <p className={`text-lg font-medium ${s.color}`}>{s.value}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{s.sub}</p>
             </CardContent>
           </Card>
@@ -1460,7 +1460,7 @@ function InvestmentStrategyTab() {
               The Canadian Model
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             <p className="text-muted-foreground">
               Led by CPPIB, OTPP, and OMERS, the Canadian model is characterized by:
             </p>
@@ -1491,7 +1491,7 @@ function InvestmentStrategyTab() {
               Norway GPFG: The Benchmark
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             <div className="flex items-center gap-3 mb-2">
               <span className="text-2xl">🇳🇴</span>
               <div>
@@ -1543,7 +1543,7 @@ function InvestmentStrategyTab() {
                 ].map((row) => (
                   <div key={row.funded} className="p-2 rounded bg-card/60 border border-border">
                     <div className="flex items-center justify-between mb-0.5">
-                      <span className={`text-xs font-medium ${row.color}`}>{row.funded}</span>
+                      <span className={`text-xs text-muted-foreground font-medium ${row.color}`}>{row.funded}</span>
                     </div>
                     <p className="text-xs text-muted-foreground">{row.strategy}</p>
                   </div>
@@ -1552,7 +1552,7 @@ function InvestmentStrategyTab() {
             </div>
             <div>
               <p className="text-xs font-medium text-primary mb-3">Risk Factor Approach</p>
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 {[
                   { factor: "Growth", exposures: "Equities, PE, HY credit, EM debt", alloc: "45%" },
                   { factor: "Defensive", exposures: "IG bonds, liability hedge, quality equities", alloc: "35%" },
@@ -1571,7 +1571,7 @@ function InvestmentStrategyTab() {
             </div>
             <div>
               <p className="text-xs font-medium text-amber-400 mb-3">ESG & Investment Committee</p>
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <div className="p-2 rounded bg-card/60 border border-border">
                   <p className="text-amber-300 font-medium mb-1">ESG Evolution</p>
                   <p className="text-muted-foreground">
@@ -1610,7 +1610,7 @@ function InvestmentStrategyTab() {
 
 export default function PensionFundsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* Page Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1623,7 +1623,7 @@ export default function PensionFundsPage() {
             <Shield className="w-7 h-7 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Pension Fund Management</h1>
+            <h1 className="text-lg font-medium text-foreground">Pension Fund Management</h1>
             <p className="text-muted-foreground text-sm mt-1">
               DB vs DC plans, liability-driven investing, actuarial assumptions, and institutional investment strategies
             </p>
@@ -1640,19 +1640,19 @@ export default function PensionFundsPage() {
       {/* Tabs */}
       <Tabs defaultValue="dbvsdc">
         <TabsList className="grid grid-cols-4 w-full mb-6 bg-muted border border-border">
-          <TabsTrigger value="dbvsdc" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary">
+          <TabsTrigger value="dbvsdc" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-primary">
             <Users className="w-3.5 h-3.5" />
             DB vs DC Plans
           </TabsTrigger>
-          <TabsTrigger value="ldi" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary">
+          <TabsTrigger value="ldi" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-primary">
             <Target className="w-3.5 h-3.5" />
             Liability-Driven
           </TabsTrigger>
-          <TabsTrigger value="actuarial" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary">
+          <TabsTrigger value="actuarial" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-primary">
             <Activity className="w-3.5 h-3.5" />
             Actuarial
           </TabsTrigger>
-          <TabsTrigger value="strategy" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary">
+          <TabsTrigger value="strategy" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-primary">
             <BarChart3 className="w-3.5 h-3.5" />
             Investment Strategy
           </TabsTrigger>

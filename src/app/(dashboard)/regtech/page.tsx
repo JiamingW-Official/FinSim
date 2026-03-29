@@ -725,7 +725,7 @@ function ROICalculator() {
 
 function AMLKYCTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* KPI Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
@@ -775,7 +775,7 @@ function AMLKYCTab() {
             { label: "Fully Automated KYC", value: 2, unit: "hrs", color: "bg-green-500/70" },
           ].map((item) => (
             <div key={item.label} className="space-y-1">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{item.label}</span>
                 <span className="text-muted-foreground">{item.unit}</span>
               </div>
@@ -823,7 +823,7 @@ function AMLKYCTab() {
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Top AML/Sanctions Fines in History
         </h3>
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead>
             <tr className="text-muted-foreground border-b border-border">
               <th className="text-left py-2">Institution</th>
@@ -850,7 +850,7 @@ function AMLKYCTab() {
 
 function RegulatoryReportingTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* KPI Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
@@ -954,7 +954,7 @@ function RegulatoryReportingTab() {
 
 function SanctionsTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* KPI Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
@@ -980,7 +980,7 @@ function SanctionsTab() {
           {SANCTION_LISTS.map((lst) => (
             <div key={lst.name} className="flex items-center gap-3">
               <div className="w-28 text-xs text-muted-foreground">{lst.name}</div>
-              <Badge variant="outline" className="text-xs shrink-0">{lst.jurisdiction}</Badge>
+              <Badge variant="outline" className="text-xs text-muted-foreground shrink-0">{lst.jurisdiction}</Badge>
               <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
@@ -1007,7 +1007,7 @@ function SanctionsTab() {
           </h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground bg-muted/50">
                 <th className="text-left px-4 py-3">Algorithm</th>
@@ -1113,7 +1113,7 @@ function SanctionsTab() {
                   <p className="text-muted-foreground text-xs mt-0.5">{p.desc}</p>
                 </div>
                 <Badge
-                  className={`text-xs shrink-0 ${
+                  className={`text-xs text-muted-foreground shrink-0 ${
                     p.risk === "Extreme" ? "bg-red-900/50 text-red-300 border-red-700" :
                     p.risk === "High" ? "bg-orange-900/50 text-orange-300 border-orange-700" :
                     p.risk === "Medium" ? "bg-amber-900/50 text-amber-300 border-amber-700" :
@@ -1141,7 +1141,7 @@ function SanctionsTab() {
               { category: "Human Trafficking", coverage: 67, sources: "NGOs, news" },
             ].map((item) => (
               <div key={item.category} className="space-y-1">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{item.category}</span>
                   <span className="text-muted-foreground">{item.sources}</span>
                 </div>
@@ -1165,7 +1165,7 @@ function SanctionsTab() {
 
 function MarketFutureTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* KPI Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
@@ -1199,7 +1199,7 @@ function MarketFutureTab() {
           </h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground bg-muted/50">
                 <th className="text-left px-4 py-3">Vendor</th>
@@ -1215,7 +1215,7 @@ function MarketFutureTab() {
                   <td className="px-4 py-3 text-primary">{v.focus}</td>
                   <td className="px-4 py-3 text-muted-foreground">{v.region}</td>
                   <td className="px-4 py-3">
-                    <Badge variant="outline" className={`text-xs ${
+                    <Badge variant="outline" className={`text-xs text-muted-foreground ${
                       v.stage === "Enterprise" ? "text-primary border-border" :
                       v.stage === "Scale-up" ? "text-green-300 border-green-700" :
                       "text-amber-300 border-amber-700"
@@ -1260,7 +1260,7 @@ function MarketFutureTab() {
             <div key={item.use} className="bg-muted/50 rounded-md border border-border p-4">
               <div className="flex justify-between items-start mb-2">
                 <span className="text-sm font-medium text-foreground">{item.use}</span>
-                <Badge variant="outline" className={`text-xs shrink-0 ml-2 ${
+                <Badge variant="outline" className={`text-xs text-muted-foreground shrink-0 ml-2 ${
                   item.maturity === "Mature" ? "text-green-300 border-green-700" :
                   item.maturity === "Growing" ? "text-primary border-border" :
                   "text-amber-300 border-amber-700"
@@ -1329,7 +1329,7 @@ function MarketFutureTab() {
               { area: "Predictive enforcement", pct: 18 },
             ].map((item) => (
               <div key={item.area} className="space-y-1">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{item.area}</span>
                   <span className="text-primary">{item.pct}%</span>
                 </div>
@@ -1359,7 +1359,7 @@ function MarketFutureTab() {
               { role: "FinCrime Investigators", open: 15000, fill: 67, color: "bg-yellow-500" },
             ].map((item) => (
               <div key={item.role} className="space-y-1">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{item.role}</span>
                   <span className="text-muted-foreground">{item.open.toLocaleString()} open roles</span>
                 </div>
@@ -1385,7 +1385,7 @@ function MarketFutureTab() {
 
 export default function RegtechPage() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

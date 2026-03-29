@@ -208,8 +208,8 @@ export default function LearnPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
-        <div className="mx-auto max-w-2xl space-y-4">
+      <div className="flex-1 overflow-y-auto px-4 py-5">
+        <div className="mx-auto max-w-2xl space-y-3">
 
           {/* ============ LEARNING PATH TAB ============ */}
           {activeTab === "path" && (
@@ -225,8 +225,8 @@ export default function LearnPage() {
                     <span className="text-xs font-medium text-primary">Up next</span>
                   </div>
                   <p className="text-xl font-bold mb-1 leading-tight">{recommendedLesson.lesson.title}</p>
-                  <p className="text-sm font-normal text-muted-foreground mb-4 leading-relaxed">{recommendedLesson.lesson.description}</p>
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-6">
+                  <p className="text-sm font-normal text-muted-foreground mb-3 leading-relaxed">{recommendedLesson.lesson.description}</p>
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-5">
                     <span className="font-medium">{recommendedLesson.unit.title}</span>
                     <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{recommendedLesson.lesson.duration ?? 10} min</span>
                     <span className="flex items-center gap-1 text-primary font-medium"><Zap className="h-3 w-3" />+{recommendedLesson.lesson.xpReward} XP</span>
@@ -512,33 +512,33 @@ export default function LearnPage() {
               )}
 
               {/* Stats grid */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-md bg-muted/30 p-3">
-                  <div className="flex items-center gap-2 mb-2">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded-md bg-muted/30 p-2.5">
+                  <div className="flex items-center gap-2 mb-1.5">
                     <Trophy className="h-4 w-4 text-amber-400" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">Lessons</span>
                   </div>
                   <p className="text-xl font-medium tabular-nums">{completedCount}</p>
                   <p className="text-[11px] font-normal text-muted-foreground">of {totalLessons} completed</p>
                 </div>
-                <div className="rounded-md bg-muted/30 p-3">
-                  <div className="flex items-center gap-2 mb-2">
+                <div className="rounded-md bg-muted/30 p-2.5">
+                  <div className="flex items-center gap-2 mb-1.5">
                     <Zap className="h-4 w-4 text-primary" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">XP Earned</span>
                   </div>
                   <p className="text-xl font-normal tabular-nums">{xp.toLocaleString()}</p>
                   <p className="text-[11px] font-normal text-muted-foreground">total experience</p>
                 </div>
-                <div className="rounded-md bg-muted/30 p-3">
-                  <div className="flex items-center gap-2 mb-2">
+                <div className="rounded-md bg-muted/30 p-2.5">
+                  <div className="flex items-center gap-2 mb-1.5">
                     <Flame className="h-4 w-4 text-amber-500" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">Streak</span>
                   </div>
                   <p className="text-xl font-normal tabular-nums">{learningStreak}</p>
                   <p className="text-[11px] font-normal text-muted-foreground">days in a row</p>
                 </div>
-                <div className="rounded-md bg-muted/30 p-3">
-                  <div className="flex items-center gap-2 mb-2">
+                <div className="rounded-md bg-muted/30 p-2.5">
+                  <div className="flex items-center gap-2 mb-1.5">
                     <Brain className="h-4 w-4 text-orange-400" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">Mastery</span>
                   </div>
@@ -548,10 +548,10 @@ export default function LearnPage() {
               </div>
 
               {/* Unit-by-unit breakdown */}
-              <h3 className="text-xs text-muted-foreground">
+              <h3 className="mt-6 text-xs text-muted-foreground">
                 Unit breakdown
               </h3>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {UNITS.map((unit) => {
                   const done = unit.lessons.filter((l) => completedLessons.includes(l.id)).length;
                   const pct = unit.lessons.length > 0 ? Math.round((done / unit.lessons.length) * 100) : 0;

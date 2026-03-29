@@ -578,7 +578,7 @@ export default function OptionsFlowPage() {
                     key={f}
                     variant={selectedSentimentFilter === f ? "default" : "outline"}
                     size="sm"
-                    className="capitalize text-xs h-7"
+                    className="capitalize text-xs text-muted-foreground h-7"
                     onClick={() => setSelectedSentimentFilter(f)}
                   >
                     {f}
@@ -620,7 +620,7 @@ export default function OptionsFlowPage() {
                             <td className="px-4 py-2.5 font-semibold text-foreground">{trade.ticker}</td>
                             <td className="px-4 py-2.5">
                               <span
-                                className={`text-xs font-medium px-2 py-0.5 rounded ${
+                                className={`text-xs text-muted-foreground font-medium px-2 py-0.5 rounded ${
                                   trade.type === "CALL"
                                     ? "bg-emerald-500/15 text-emerald-400"
                                     : "bg-red-500/15 text-red-400"
@@ -629,12 +629,12 @@ export default function OptionsFlowPage() {
                                 {trade.type}
                               </span>
                             </td>
-                            <td className="px-4 py-2.5 text-right font-mono text-xs">${trade.strike}</td>
+                            <td className="px-4 py-2.5 text-right font-mono text-xs text-muted-foreground">${trade.strike}</td>
                             <td className="px-4 py-2.5 text-xs text-muted-foreground font-mono">{trade.expiry}</td>
                             <td className="px-4 py-2.5 text-right font-semibold text-primary font-mono text-xs">
                               ${trade.premium}M
                             </td>
-                            <td className="px-4 py-2.5 text-right text-xs font-mono">
+                            <td className="px-4 py-2.5 text-right text-xs text-muted-foreground font-mono">
                               {trade.contracts.toLocaleString()}
                             </td>
                             <td className="px-4 py-2.5">
@@ -701,13 +701,13 @@ export default function OptionsFlowPage() {
                               {print.time}
                             </td>
                             <td className="px-4 py-2.5 font-semibold text-foreground">{print.ticker}</td>
-                            <td className="px-4 py-2.5 text-right font-mono text-xs">
+                            <td className="px-4 py-2.5 text-right font-mono text-xs text-muted-foreground">
                               {print.size.toLocaleString()}
                             </td>
-                            <td className="px-4 py-2.5 text-right font-mono text-xs">${print.price}</td>
+                            <td className="px-4 py-2.5 text-right font-mono text-xs text-muted-foreground">${print.price}</td>
                             <td className="px-4 py-2.5 text-right">
                               <span
-                                className={`text-xs font-medium ${
+                                className={`text-xs text-muted-foreground font-medium ${
                                   print.advPct > 8 ? "text-amber-400" : "text-foreground"
                                 }`}
                               >
@@ -716,7 +716,7 @@ export default function OptionsFlowPage() {
                             </td>
                             <td className="px-4 py-2.5">
                               <span
-                                className={`text-xs px-2 py-0.5 rounded font-medium ${
+                                className={`text-xs text-muted-foreground px-2 py-0.5 rounded font-medium ${
                                   print.notation === "above ask"
                                     ? "bg-emerald-500/15 text-emerald-400"
                                     : print.notation === "below bid"
@@ -804,7 +804,7 @@ export default function OptionsFlowPage() {
                       },
                     ].map((item) => (
                       <div key={item.label} className={`p-2 rounded border ${item.border} bg-background/40`}>
-                        <p className={`text-xs font-medium ${item.color} mb-1`}>{item.label}</p>
+                        <p className={`text-xs text-muted-foreground font-medium ${item.color} mb-1`}>{item.label}</p>
                         <p className="text-xs text-muted-foreground">{item.desc}</p>
                       </div>
                     ))}
@@ -849,7 +849,7 @@ export default function OptionsFlowPage() {
                             <td className="px-4 py-2.5 font-medium text-foreground">{sweep.ticker}</td>
                             <td className="px-4 py-2.5">
                               <span
-                                className={`text-xs font-medium px-2 py-0.5 rounded ${
+                                className={`text-xs text-muted-foreground font-medium px-2 py-0.5 rounded ${
                                   sweep.type === "CALL"
                                     ? "bg-emerald-500/15 text-emerald-400"
                                     : "bg-red-500/15 text-red-400"
@@ -858,9 +858,9 @@ export default function OptionsFlowPage() {
                                 {sweep.type}
                               </span>
                             </td>
-                            <td className="px-4 py-2.5 text-right font-mono text-xs">${sweep.strike}</td>
+                            <td className="px-4 py-2.5 text-right font-mono text-xs text-muted-foreground">${sweep.strike}</td>
                             <td className="px-4 py-2.5 text-xs text-muted-foreground font-mono">{sweep.expiry}</td>
-                            <td className="px-4 py-2.5 text-right text-xs font-mono">{sweep.legs}</td>
+                            <td className="px-4 py-2.5 text-right text-xs text-muted-foreground font-mono">{sweep.legs}</td>
                             <td className="px-4 py-2.5 text-right font-medium text-amber-400 font-mono text-xs">
                               ${sweep.premium}M
                             </td>
@@ -890,7 +890,7 @@ export default function OptionsFlowPage() {
             </TabsContent>
 
             {/* ── Sentiment Tab ── */}
-            <TabsContent value="sentiment" className="data-[state=inactive]:hidden space-y-6">
+            <TabsContent value="sentiment" className="data-[state=inactive]:hidden space-y-4">
               {/* PCR Chart */}
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2 pt-4">
@@ -928,7 +928,7 @@ export default function OptionsFlowPage() {
                 </CardHeader>
                 <CardContent className="pb-4">
                   <SectorHeatmap data={SECTOR_SENTIMENT} />
-                  <div className="flex items-center gap-6 mt-3 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-3 mt-3 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1.5">
                       <span className="w-3 h-3 rounded bg-emerald-500/40 border border-emerald-500/50" />
                       Bullish call flow dominant

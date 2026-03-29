@@ -268,7 +268,7 @@ function BlackSwanTab() {
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Taleb Definition Card */}
       <div className="rounded-md border border-red-900/40 bg-red-950/20 p-4">
         <div className="flex items-start gap-3">
@@ -286,7 +286,7 @@ function BlackSwanTab() {
       <div>
         <h3 className="text-sm font-semibold text-muted-foreground mb-3">Historical Tail Events</h3>
         <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-card/60">
                 <th className="px-3 py-2.5 text-left text-muted-foreground font-medium">Year</th>
@@ -312,7 +312,7 @@ function BlackSwanTab() {
                   <td className="px-3 py-2 text-foreground font-medium">{ev.name}</td>
                   <td className="px-3 py-2">
                     <span
-                      className="px-1.5 py-0.5 rounded text-xs font-medium"
+                      className="px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium"
                       style={{ backgroundColor: CATEGORY_COLORS[ev.category] + "30", color: CATEGORY_COLORS[ev.category] }}
                     >
                       {ev.category}
@@ -350,7 +350,7 @@ function BlackSwanTab() {
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Correlation Breakdown in Crises</h3>
         <p className="text-xs text-muted-foreground mb-3">In calm markets, assets appear diversified. During crises, correlations converge toward +1 — diversification fails precisely when you need it most.</p>
         <CorrelationMatrixSVG />
-        <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
+        <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
           <div className="rounded-lg bg-muted/40 border border-border p-2.5">
             <p className="text-primary font-medium mb-1">Normal Regime</p>
             <p className="text-muted-foreground">Bonds negatively correlated with equities (-0.3). Gold and commodities provide diversification. Classic 60/40 portfolio appears resilient.</p>
@@ -555,7 +555,7 @@ function HedgingInstrumentsTab() {
   const sel = selected !== null ? HEDGE_INSTRUMENTS[selected] : null;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* OTM Put Payoff */}
       <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">OTM Put Option Payoff Profiles</h3>
@@ -860,13 +860,13 @@ function CostBenefitTab() {
   const finalHedged = hedgedPath[hedgedPath.length - 1].toFixed(1);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Drag cost */}
       <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Compound Drag Cost of Continuous Hedging</h3>
         <p className="text-xs text-muted-foreground mb-3">Paying 1–3%/year in option premium or fund fees creates a compounding drag. Over 20 years at 8% base return, a 3% hedge cost reduces final wealth by ~35%.</p>
         <DragCostSVG />
-        <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
+        <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground">
           {[
             { drag: "1%/yr", final20: (Math.pow(1.07, 20)).toFixed(2), color: "text-green-400" },
             { drag: "2%/yr", final20: (Math.pow(1.06, 20)).toFixed(2), color: "text-yellow-400" },
@@ -958,7 +958,7 @@ function CostBenefitTab() {
           },
         ].map((card) => (
           <div key={card.title} className={cn("rounded-md border p-3", card.color)}>
-            <p className={cn("text-xs font-medium mb-1", card.titleColor)}>{card.title}</p>
+            <p className={cn("text-xs text-muted-foreground font-medium mb-1", card.titleColor)}>{card.title}</p>
             <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>
           </div>
         ))}
@@ -1150,7 +1150,7 @@ function TailAssetPerformanceSVG() {
 
 function PortfolioConstructionTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Convexity */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-card/40 p-4">
@@ -1173,7 +1173,7 @@ function PortfolioConstructionTab() {
           <p className="text-xs text-muted-foreground leading-relaxed">
             Traditional risk parity equalizes volatility contributions. Tail-risk parity equalizes the <span className="text-primary">Expected Tail Loss (CVaR)</span> contribution of each asset. This results in larger allocations to crisis-resilient assets (Treasuries, gold) and smaller equity exposure than standard risk parity.
           </p>
-          <div className="mt-3 flex gap-2 text-xs">
+          <div className="mt-3 flex gap-2 text-xs text-muted-foreground">
             <div className="px-2 py-1 rounded bg-muted/50 border border-border text-primary">Equities: 25%</div>
             <div className="px-2 py-1 rounded bg-muted/50 border border-border text-primary">Bonds: 45%</div>
             <div className="px-2 py-1 rounded bg-yellow-950/40 border border-yellow-900/30 text-yellow-300">Gold: 20%</div>
@@ -1208,7 +1208,7 @@ function PortfolioConstructionTab() {
               "border-red-900/40 bg-red-950/10": r.color === "red",
             })}>
               <div className="min-w-[120px]">
-                <p className={cn("text-xs font-medium", {
+                <p className={cn("text-xs text-muted-foreground font-medium", {
                   "text-green-400": r.color === "green",
                   "text-primary": r.color === "blue",
                   "text-yellow-400": r.color === "yellow",
@@ -1236,7 +1236,7 @@ function PortfolioConstructionTab() {
         <div className="overflow-x-auto">
           <TailScenarioHeatmapSVG />
         </div>
-        <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-xs">
+        <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-xs text-muted-foreground">
           {HEDGE_OVERLAYS.map((ov) => (
             <div key={ov.name} className="rounded-lg bg-muted/60 p-1.5">
               <div className="w-2 h-2 rounded-full mx-auto mb-1" style={{ backgroundColor: ov.color }} />
@@ -1272,7 +1272,7 @@ export default function TailRiskPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-5xl px-4 py-6 space-y-6">
+      <div className="mx-auto max-w-5xl px-4 py-6 space-y-4">
         {/* Header */}
         <div className="flex items-start gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="rounded-md bg-red-950/40 border border-red-900/40 p-3">

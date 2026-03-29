@@ -186,7 +186,7 @@ function EstatePlanningBasicsTab() {
   const [openSection, setOpenSection] = useState<string | null>("Core Documents");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Avg Estate Plan Cost" value="$2,000–$5,000" color="blue" />
         <StatChip label="Estates Going Through Probate" value="~55%" color="amber" />
@@ -223,7 +223,7 @@ function EstatePlanningBasicsTab() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "text-xs",
+                      "text-xs text-muted-foreground",
                       d.probate === "No — private" || d.probate === "No — direct transfer"
                         ? "border-green-500/30 text-green-400"
                         : d.probate === "Yes — public record"
@@ -257,7 +257,7 @@ function EstatePlanningBasicsTab() {
             >
               <span className="font-medium text-sm text-foreground">{section.category}</span>
               <div className="flex items-center gap-2">
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs text-muted-foreground">
                   {section.items.length} items
                 </Badge>
                 {openSection === section.category ? (
@@ -441,7 +441,7 @@ function TrustsTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="US Trust Assets (est.)" value="$5.8 Trillion" color="blue" />
         <StatChip label="Avg GRAT Hurdle Rate" value="5.0% (2024)" color="amber" />
@@ -487,7 +487,7 @@ function TrustsTab() {
               <h3 className="font-semibold text-foreground">{trust.name}</h3>
               <Badge
                 variant="outline"
-                className={cn("text-xs mt-1", badgeColorMap[trust.color])}
+                className={cn("text-xs text-muted-foreground mt-1", badgeColorMap[trust.color])}
               >
                 {trust.abbrev}
               </Badge>
@@ -576,7 +576,7 @@ function TaxStrategiesTab() {
   const barW = svgW / giftData.length - 8;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="2024 Estate Tax Exemption" value="$13.61M" color="green" />
         <StatChip label="Annual Gift Exclusion" value="$18,000" color="blue" />
@@ -677,7 +677,7 @@ function TaxStrategiesTab() {
 
       <div className="rounded-lg border border-border p-4">
         <div className="text-sm font-medium text-foreground mb-3">State Estate Tax Summary</div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs text-muted-foreground">
           {[
             { state: "Massachusetts", exemption: "$2.0M", rate: "0.8–16%" },
             { state: "Oregon", exemption: "$1.0M", rate: "10–16%" },
@@ -773,7 +773,7 @@ function CharitableGivingTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Total US Charitable Giving" value="$557B (2023)" color="green" />
         <StatChip label="DAF Assets" value="$229B" color="blue" />
@@ -977,7 +977,7 @@ function BusinessSuccessionTab() {
   const [buySellView, setBuySellView] = useState<"cross" | "entity">("cross");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Family Business Transfers Failing" value="~70%" color="red" />
         <StatChip label="Owners Without Succession Plan" value="58%" color="amber" />
@@ -1119,7 +1119,7 @@ function BusinessSuccessionTab() {
                 {p.items.map((item) => (
                   <li key={item} className="flex items-start gap-1">
                     <ArrowRight className="w-3 h-3 mt-0.5 shrink-0 text-primary" />
-                    <span className="text-xs">{item}</span>
+                    <span className="text-xs text-muted-foreground">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -1143,7 +1143,7 @@ const TABS = [
 
 export default function EstatePlanningPage() {
   return (
-    <div className="flex flex-col h-full min-h-0 overflow-y-auto bg-background p-4 md:p-6 space-y-6">
+    <div className="flex flex-col h-full min-h-0 overflow-y-auto bg-background p-4 md:p-4 space-y-4">
       {/* Header */}
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
@@ -1171,7 +1171,7 @@ export default function EstatePlanningPage() {
       <Tabs defaultValue="basics" className="flex-1 mt-8">
         <TabsList className="grid w-full grid-cols-5 mb-4">
           {TABS.map((t) => (
-            <TabsTrigger key={t.id} value={t.id} className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger key={t.id} value={t.id} className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <t.icon className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{t.label}</span>
             </TabsTrigger>

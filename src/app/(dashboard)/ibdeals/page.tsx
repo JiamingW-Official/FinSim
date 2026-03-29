@@ -679,7 +679,7 @@ export default function IBDealsPage() {
 
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-4">
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -721,7 +721,7 @@ export default function IBDealsPage() {
         </TabsList>
 
         {/* ── Tab 1: Live Deal Tracker ────────────────────────────────────────── */}
-        <TabsContent value="tracker" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="tracker" className="data-[state=inactive]:hidden space-y-4">
           {/* Filters */}
           <div className="bg-card border border-border rounded-md p-4">
             <div className="flex flex-wrap gap-4 items-center">
@@ -733,7 +733,7 @@ export default function IBDealsPage() {
                       key={t}
                       onClick={() => setFilterType(t)}
                       className={cn(
-                        "px-2 py-1 text-xs rounded border transition-colors",
+                        "px-2 py-1 text-xs text-muted-foreground rounded border transition-colors",
                         filterType === t
                           ? "bg-primary border-primary text-foreground"
                           : "bg-muted border-border text-muted-foreground hover:text-foreground"
@@ -752,7 +752,7 @@ export default function IBDealsPage() {
                       key={t}
                       onClick={() => setFilterStatus(t)}
                       className={cn(
-                        "px-2 py-1 text-xs rounded border transition-colors",
+                        "px-2 py-1 text-xs text-muted-foreground rounded border transition-colors",
                         filterStatus === t
                           ? "bg-primary border-primary text-foreground"
                           : "bg-muted border-border text-muted-foreground hover:text-foreground"
@@ -771,7 +771,7 @@ export default function IBDealsPage() {
                       key={t}
                       onClick={() => setFilterSize(t)}
                       className={cn(
-                        "px-2 py-1 text-xs rounded border transition-colors",
+                        "px-2 py-1 text-xs text-muted-foreground rounded border transition-colors",
                         filterSize === t
                           ? "bg-primary border-primary text-foreground"
                           : "bg-muted border-border text-muted-foreground hover:text-foreground"
@@ -797,7 +797,7 @@ export default function IBDealsPage() {
               </h2>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead className="bg-muted/50">
                   <tr className="text-muted-foreground">
                     <th className="text-left px-4 py-2">Acquirer</th>
@@ -824,12 +824,12 @@ export default function IBDealsPage() {
                       <td className="px-4 py-2 text-muted-foreground">{d.target}</td>
                       <td className="px-4 py-2 text-right font-semibold text-emerald-400">{fmtB(d.value)}</td>
                       <td className="px-4 py-2 text-center">
-                        <span className={cn("px-2 py-0.5 rounded text-xs border", typeColor(d.type))}>
+                        <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground border", typeColor(d.type))}>
                           {d.type}
                         </span>
                       </td>
                       <td className="px-4 py-2 text-center">
-                        <span className={cn("px-2 py-0.5 rounded text-xs border", statusColor(d.status))}>
+                        <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground border", statusColor(d.status))}>
                           {d.status}
                         </span>
                       </td>
@@ -971,7 +971,7 @@ export default function IBDealsPage() {
         </TabsContent>
 
         {/* ── Tab 2: Deal Structuring ─────────────────────────────────────────── */}
-        <TabsContent value="structure" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="structure" className="data-[state=inactive]:hidden space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
             <div className="bg-card border border-border rounded-md p-4 space-y-4">
@@ -994,7 +994,7 @@ export default function IBDealsPage() {
               </div>
 
               {dealCalcs && (
-                <div className="bg-muted/50 rounded p-2 text-xs space-y-1">
+                <div className="bg-muted/50 rounded p-2 text-xs text-muted-foreground space-y-1">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Revenue</span>
                     <span className="text-foreground">{fmtB(dealCalcs.comp.revenue)}</span>
@@ -1184,7 +1184,7 @@ export default function IBDealsPage() {
         </TabsContent>
 
         {/* ── Tab 3: Fairness Opinion ─────────────────────────────────────────── */}
-        <TabsContent value="fairness" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="fairness" className="data-[state=inactive]:hidden space-y-4">
           {/* Comps */}
           <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
@@ -1192,7 +1192,7 @@ export default function IBDealsPage() {
               Comparable Company Analysis
             </h2>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead className="bg-muted/50">
                   <tr className="text-muted-foreground">
                     <th className="text-left px-3 py-2">Company</th>
@@ -1244,7 +1244,7 @@ export default function IBDealsPage() {
               Precedent Transaction Analysis
             </h2>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead className="bg-muted/50">
                   <tr className="text-muted-foreground">
                     <th className="text-left px-3 py-2">Transaction</th>
@@ -1374,7 +1374,7 @@ export default function IBDealsPage() {
                   {valuationRanges.inRange ? <CheckCircle size={14} /> : <AlertTriangle size={14} />}
                   Board Recommendation
                 </div>
-                <p className="text-xs opacity-90">
+                <p className="text-xs text-muted-foreground opacity-90">
                   {valuationRanges.inRange
                     ? `The offered EV of $${valuationRanges.offeredEV.toFixed(1)}B falls within or near the combined valuation range of $${valuationRanges.allLow.toFixed(1)}B–$${valuationRanges.allHigh.toFixed(1)}B. The board can issue a FAIRNESS OPINION supporting the transaction.`
                     : `The offered EV of $${valuationRanges.offeredEV.toFixed(1)}B falls outside the combined valuation range of $${valuationRanges.allLow.toFixed(1)}B–$${valuationRanges.allHigh.toFixed(1)}B. The board should seek a HIGHER OFFER or special committee review.`}
@@ -1385,7 +1385,7 @@ export default function IBDealsPage() {
         </TabsContent>
 
         {/* ── Tab 4: Regulatory Review ────────────────────────────────────────── */}
-        <TabsContent value="regulatory" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="regulatory" className="data-[state=inactive]:hidden space-y-4">
           {/* Timeline */}
           <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-4 flex items-center gap-2">
@@ -1534,7 +1534,7 @@ export default function IBDealsPage() {
               Historical Regulatory Outcomes
             </h2>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead className="bg-muted/50">
                   <tr className="text-muted-foreground">
                     <th className="text-left px-3 py-2">Deal</th>
@@ -1552,7 +1552,7 @@ export default function IBDealsPage() {
                       <td className="px-3 py-2 text-right text-muted-foreground">{r.year}</td>
                       <td className="px-3 py-2 text-muted-foreground">{r.regulator}</td>
                       <td className="px-3 py-2 text-center">
-                        <span className={cn("px-2 py-0.5 rounded text-xs", outcomeColor(r.outcome))}>
+                        <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground", outcomeColor(r.outcome))}>
                           {r.outcome}
                         </span>
                       </td>
@@ -1567,7 +1567,7 @@ export default function IBDealsPage() {
         </TabsContent>
 
         {/* ── Tab 5: LBO Analysis ─────────────────────────────────────────────── */}
-        <TabsContent value="lbo" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="lbo" className="data-[state=inactive]:hidden space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* LBO controls */}
             <div className="bg-card border border-border rounded-md p-4 space-y-4">
@@ -1590,7 +1590,7 @@ export default function IBDealsPage() {
               </div>
 
               {lboCalcs && (
-                <div className="bg-muted/50 rounded p-2 text-xs space-y-1">
+                <div className="bg-muted/50 rounded p-2 text-xs text-muted-foreground space-y-1">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Revenue</span>
                     <span className="text-foreground">{fmtB(lboCalcs.target.revenue)}</span>
@@ -1671,7 +1671,7 @@ export default function IBDealsPage() {
                     Returns at Different Exit Scenarios
                   </h3>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead className="bg-muted/50">
                         <tr className="text-muted-foreground">
                           <th className="text-center px-3 py-2">Exit Multiple</th>
@@ -1783,7 +1783,7 @@ export default function IBDealsPage() {
         </TabsContent>
 
         {/* ── Tab 6: League Tables ────────────────────────────────────────────── */}
-        <TabsContent value="league" className="data-[state=inactive]:hidden space-y-6">
+        <TabsContent value="league" className="data-[state=inactive]:hidden space-y-4">
           {/* Sub-tabs for league type */}
           <div className="flex gap-2">
             {[
@@ -1795,7 +1795,7 @@ export default function IBDealsPage() {
                 key={t.key}
                 onClick={() => setLeagueTab(t.key)}
                 className={cn(
-                  "px-3 py-1.5 text-xs rounded border transition-colors",
+                  "px-3 py-1.5 text-xs text-muted-foreground rounded border transition-colors",
                   leagueTab === t.key
                     ? "bg-primary border-primary text-foreground"
                     : "bg-muted border-border text-muted-foreground hover:text-foreground"
@@ -1827,7 +1827,7 @@ export default function IBDealsPage() {
                 const maxValue = Math.max(...data.map((d) => d.value));
                 return (
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead className="bg-muted/50">
                         <tr className="text-muted-foreground">
                           <th className="text-center px-4 py-2 w-10">Rank</th>
@@ -1848,7 +1848,7 @@ export default function IBDealsPage() {
                             className="border-t border-border hover:bg-muted/20"
                           >
                             <td className="px-4 py-2 text-center">
-                              <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium mx-auto",
+                              <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs text-muted-foreground font-medium mx-auto",
                                 i === 0 ? "bg-amber-500/20 text-amber-400" :
                                 i === 1 ? "bg-muted-foreground/20 text-muted-foreground" :
                                 i === 2 ? "bg-orange-600/20 text-orange-400" :
@@ -1911,7 +1911,7 @@ export default function IBDealsPage() {
               IB Analyst / Associate Compensation (Top Banks, 2025)
             </h2>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead className="bg-muted/50">
                   <tr className="text-muted-foreground">
                     <th className="text-left px-3 py-2">Title</th>

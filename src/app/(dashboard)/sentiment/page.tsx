@@ -422,7 +422,7 @@ function CotBar({ entry }: { entry: CotEntry }) {
 
   return (
     <div className="space-y-1.5">
-      <div className="flex justify-between items-center text-xs">
+      <div className="flex justify-between items-center text-xs text-muted-foreground">
         <span className="text-muted-foreground font-medium">{entry.label}</span>
         <div className="flex gap-3 text-[11px]">
           <span className={entry.commercial > 0 ? "text-emerald-400" : "text-red-400"}>
@@ -1041,7 +1041,7 @@ export default function SentimentPage() {
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center justify-between">
                 <span>Historical Fear & Greed (90 days)</span>
-                <div className="flex gap-2 text-xs">
+                <div className="flex gap-2 text-xs text-muted-foreground">
                   {[
                     { color: "#ef4444", label: "Extreme Fear" },
                     { color: "#f97316", label: "Fear" },
@@ -1133,7 +1133,7 @@ export default function SentimentPage() {
                   </div>
                 </div>
                 {/* 52-week range */}
-                <div className="space-y-2 text-xs">
+                <div className="space-y-2 text-xs text-muted-foreground">
                   <div>
                     <div className="flex justify-between text-muted-foreground mb-1">
                       <span>Bulls 52W range</span>
@@ -1181,11 +1181,11 @@ export default function SentimentPage() {
               <CardContent className="space-y-3">
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-muted/60 rounded-lg p-3 text-center">
-                    <div className="text-2xl font-bold text-amber-400">0.82</div>
+                    <div className="text-lg font-medium text-amber-400">0.82</div>
                     <div className="text-xs text-muted-foreground">Current</div>
                   </div>
                   <div className="bg-muted/60 rounded-lg p-3 text-center">
-                    <div className="text-2xl font-bold text-muted-foreground">0.78</div>
+                    <div className="text-lg font-medium text-muted-foreground">0.78</div>
                     <div className="text-xs text-muted-foreground">10-day MA</div>
                   </div>
                 </div>
@@ -1247,7 +1247,7 @@ export default function SentimentPage() {
                   {shortInterest.map((s) => (
                     <div
                       key={s.ticker}
-                      className="grid grid-cols-4 text-xs py-0.5"
+                      className="grid grid-cols-4 text-xs text-muted-foreground py-0.5"
                     >
                       <span className="font-mono font-medium text-foreground">
                         {s.ticker}
@@ -1287,7 +1287,7 @@ export default function SentimentPage() {
             </CardHeader>
             <CardContent>
               <AdLineChart adLine={adLine} sp500={adSp500} />
-              <div className="flex gap-4 mt-2 text-xs">
+              <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <span className="w-3 h-0.5 bg-primary inline-block" />
                   A/D Line
@@ -1310,7 +1310,7 @@ export default function SentimentPage() {
               </CardHeader>
               <CardContent>
                 <HighsLowsChart data={hlData} />
-                <div className="flex gap-4 mt-2 text-xs">
+                <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <span className="w-2 h-2 rounded-sm bg-emerald-500/80 inline-block" />
                     New Highs
@@ -1364,7 +1364,7 @@ export default function SentimentPage() {
                     </div>
                     <Badge
                       className={cn(
-                        "text-xs",
+                        "text-xs text-muted-foreground",
                         mclellanOscillator > 60
                           ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
                           : mclellanOscillator > 0
@@ -1415,7 +1415,7 @@ export default function SentimentPage() {
                         <td className="py-1.5 text-muted-foreground pr-4">{s.sector}</td>
                         <td className="text-center py-1.5 px-2">
                           <span
-                            className="inline-block px-2 py-0.5 rounded text-xs font-medium"
+                            className="inline-block px-2 py-0.5 rounded text-xs text-muted-foreground font-medium"
                             style={{
                               background: heatColor(s.above50ma) + "28",
                               color: heatColor(s.above50ma),
@@ -1426,7 +1426,7 @@ export default function SentimentPage() {
                         </td>
                         <td className="text-center py-1.5 px-2">
                           <span
-                            className="inline-block px-2 py-0.5 rounded text-xs font-medium"
+                            className="inline-block px-2 py-0.5 rounded text-xs text-muted-foreground font-medium"
                             style={{
                               background: heatColor(s.above200ma) + "28",
                               color: heatColor(s.above200ma),
@@ -1437,7 +1437,7 @@ export default function SentimentPage() {
                         </td>
                         <td className="text-center py-1.5 px-2">
                           <span
-                            className="inline-block px-2 py-0.5 rounded text-xs font-medium"
+                            className="inline-block px-2 py-0.5 rounded text-xs text-muted-foreground font-medium"
                             style={{
                               background: heatColor(s.rsiAvg, 30, 70) + "28",
                               color: heatColor(s.rsiAvg, 30, 70),
@@ -1452,7 +1452,7 @@ export default function SentimentPage() {
                 </table>
               </div>
               {/* Legend */}
-              <div className="flex gap-3 mt-3 text-xs">
+              <div className="flex gap-3 mt-3 text-xs text-muted-foreground">
                 {[
                   { color: "#ef4444", label: "Weak (<30%)" },
                   { color: "#f97316", label: "Below avg" },
@@ -1485,7 +1485,7 @@ export default function SentimentPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Legend */}
-              <div className="flex gap-4 text-xs">
+              <div className="flex gap-4 text-xs text-muted-foreground">
                 {[
                   { color: "#10b981", label: "Commercial (long)" },
                   { color: "#ef4444", label: "Commercial (short)" },
@@ -1525,7 +1525,7 @@ export default function SentimentPage() {
                     <span className="text-right">Vol (M)</span>
                   </div>
                   {darkPoolData.map((d) => (
-                    <div key={d.ticker} className="grid grid-cols-3 text-xs py-0.5 items-center">
+                    <div key={d.ticker} className="grid grid-cols-3 text-xs text-muted-foreground py-0.5 items-center">
                       <span className="font-mono font-medium text-foreground">{d.ticker}</span>
                       <div className="flex items-center justify-end gap-2">
                         <div className="w-16 h-1.5 bg-muted rounded overflow-hidden">
@@ -1714,7 +1714,7 @@ export default function SentimentPage() {
               <CardContent className="space-y-1.5">
                 {socialTickers.map((s) => (
                   <div key={s.ticker} className="space-y-0.5">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="font-mono font-medium text-muted-foreground w-12">{s.ticker}</span>
                       <span className="text-muted-foreground">{s.mentions.toLocaleString()} mentions</span>
                       <div className="flex gap-2">
@@ -1760,7 +1760,7 @@ export default function SentimentPage() {
                     );
                   })()}
                 </svg>
-                <div className="flex gap-4 mt-1 text-xs">
+                <div className="flex gap-4 mt-1 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <span className="w-3 h-0.5 bg-orange-400 inline-block" />
                     Margin Debt (% mkt cap)
@@ -1790,7 +1790,7 @@ export default function SentimentPage() {
                 <div key={q.question} className="space-y-1">
                   <div className="flex justify-between items-start">
                     <span className="text-[11px] text-muted-foreground">{q.question}</span>
-                    <div className="flex gap-2 text-xs flex-shrink-0 ml-4">
+                    <div className="flex gap-2 text-xs text-muted-foreground flex-shrink-0 ml-4">
                       <span className="text-emerald-400">{q.agree}% agree</span>
                       <span className="text-red-400">{q.disagree}% disagree</span>
                     </div>
@@ -1817,7 +1817,7 @@ export default function SentimentPage() {
                   </div>
                 </div>
               ))}
-              <div className="flex gap-3 text-xs pt-1">
+              <div className="flex gap-3 text-xs text-muted-foreground pt-1">
                 <span className="flex items-center gap-1">
                   <span className="w-2 h-2 rounded-sm bg-emerald-500 inline-block" />
                   Agree

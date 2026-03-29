@@ -705,7 +705,7 @@ function IcmaComponent({
         onClick={() => setOpen((v) => !v)}
       >
         <span
-          className="text-xs font-bold px-2 py-1 rounded"
+          className="text-xs text-muted-foreground font-bold px-2 py-1 rounded"
           style={{ background: color + "33", color }}
         >
           {num}
@@ -785,7 +785,7 @@ export default function GreenBondsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header — Hero */}
       <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
@@ -803,16 +803,16 @@ export default function GreenBondsPage() {
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8 space-y-4">
         <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="overview" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Market Overview
           </TabsTrigger>
-          <TabsTrigger value="frameworks" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="frameworks" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Frameworks
           </TabsTrigger>
-          <TabsTrigger value="deals" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="deals" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Deal Analysis
           </TabsTrigger>
-          <TabsTrigger value="impact" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="impact" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Impact Reporting
           </TabsTrigger>
         </TabsList>
@@ -870,7 +870,7 @@ export default function GreenBondsPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0 overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border text-muted-foreground">
                       <th className="pb-2 text-left font-medium">Issuer</th>
@@ -891,7 +891,7 @@ export default function GreenBondsPage() {
                         <td className="py-1.5 font-medium text-foreground">{iss.name}</td>
                         <td className="py-1.5 text-center">
                           <span
-                            className={`px-1.5 py-0.5 rounded text-xs border ${
+                            className={`px-1.5 py-0.5 rounded text-xs text-muted-foreground border ${
                               iss.type === "Sovereign"
                                 ? "bg-amber-900/40 text-amber-300 border-amber-800"
                                 : iss.type === "Corporate"
@@ -905,7 +905,7 @@ export default function GreenBondsPage() {
                         <td className="py-1.5 text-right font-mono text-green-400">
                           {iss.totalIssuance.toFixed(1)}
                         </td>
-                        <td className={`py-1.5 text-center font-mono text-xs ${ratingColor(iss.rating)}`}>
+                        <td className={`py-1.5 text-center font-mono text-xs text-muted-foreground ${ratingColor(iss.rating)}`}>
                           {iss.rating}
                         </td>
                       </motion.tr>
@@ -1035,8 +1035,8 @@ export default function GreenBondsPage() {
                     className={`p-3 rounded-lg border ${item.bg} ${item.border}`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className={`text-xs font-medium ${item.color}`}>{item.article}</span>
-                      <span className={`text-xs font-medium ${item.color}`}>{item.title}</span>
+                      <span className={`text-xs text-muted-foreground font-medium ${item.color}`}>{item.article}</span>
+                      <span className={`text-xs text-muted-foreground font-medium ${item.color}`}>{item.title}</span>
                       {item.applicable ? (
                         <CheckCircle size={12} className="text-green-500" />
                       ) : (
@@ -1117,7 +1117,7 @@ export default function GreenBondsPage() {
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-medium text-foreground">{obj.title}</span>
                         <span
-                          className={`text-xs px-1.5 py-0.5 rounded border ${
+                          className={`text-xs text-muted-foreground px-1.5 py-0.5 rounded border ${
                             obj.aligned
                               ? "bg-green-900/40 text-green-300 border-green-800"
                               : "bg-muted text-muted-foreground border-border"
@@ -1159,7 +1159,7 @@ export default function GreenBondsPage() {
               <p className="text-xs text-muted-foreground">Click a row to view spread details</p>
             </CardHeader>
             <CardContent className="overflow-x-auto">
-              <table className="w-full text-xs min-w-[620px]">
+              <table className="w-full text-xs text-muted-foreground min-w-[620px]">
                 <thead>
                   <tr className="border-b border-border text-muted-foreground">
                     <th className="pb-2 text-left font-medium">Issuer</th>
@@ -1189,7 +1189,7 @@ export default function GreenBondsPage() {
                     >
                       <td className="py-2 font-medium text-foreground">{bond.issuer}</td>
                       <td className="py-2 text-center">
-                        <span className={`px-1.5 py-0.5 rounded text-xs border ${typeColor(bond.type)}`}>
+                        <span className={`px-1.5 py-0.5 rounded text-xs text-muted-foreground border ${typeColor(bond.type)}`}>
                           {bond.type}
                         </span>
                       </td>
@@ -1232,12 +1232,12 @@ export default function GreenBondsPage() {
                           {selectedBond.issuer}
                         </span>
                         <span
-                          className={`text-xs px-2 py-0.5 rounded border ${typeColor(selectedBond.type)}`}
+                          className={`text-xs text-muted-foreground px-2 py-0.5 rounded border ${typeColor(selectedBond.type)}`}
                         >
                           {selectedBond.type}
                         </span>
                       </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-muted-foreground">
                         <div>
                           <p className="text-muted-foreground">Maturity</p>
                           <p className="font-medium text-foreground">{selectedBond.maturity}Y</p>
@@ -1459,7 +1459,7 @@ export default function GreenBondsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="overflow-x-auto">
-              <table className="w-full text-xs min-w-[540px]">
+              <table className="w-full text-xs text-muted-foreground min-w-[540px]">
                 <thead>
                   <tr className="border-b border-border text-muted-foreground">
                     <th className="pb-2 text-left font-medium">KPI Metric</th>
@@ -1570,7 +1570,7 @@ export default function GreenBondsPage() {
                   { sdg: "SDG 15", title: "Life on Land", pct: 38, color: "#84cc16" },
                 ].map((row) => (
                   <div key={row.sdg}>
-                    <div className="flex justify-between text-xs mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span className="text-muted-foreground">
                         <span className="font-medium" style={{ color: row.color }}>{row.sdg}</span>
                         {" — "}
@@ -1640,7 +1640,7 @@ export default function GreenBondsPage() {
                       key={block.side}
                       className={`p-3 rounded-lg border ${block.bg} ${block.border}`}
                     >
-                      <p className={`text-xs font-medium mb-2 ${block.color}`}>{block.side}</p>
+                      <p className={`text-xs text-muted-foreground font-medium mb-2 ${block.color}`}>{block.side}</p>
                       <ul className="space-y-1">
                         {block.points.map((pt) => (
                           <li key={pt} className="flex items-start gap-2 text-xs text-muted-foreground">

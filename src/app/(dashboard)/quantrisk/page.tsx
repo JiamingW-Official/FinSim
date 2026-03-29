@@ -533,7 +533,7 @@ export default function QuantRiskPage() {
   const totalFactorContrib = riskFactors.reduce((s, f) => s + f.contribution, 0);
 
   return (
-    <div className="p-6 space-y-6 max-w-7xl mx-auto">
+    <div className="p-4 space-y-4 max-w-7xl mx-auto">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -551,8 +551,8 @@ export default function QuantRiskPage() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Badge variant="outline" className="text-xs">Portfolio: $10M</Badge>
-          <Badge variant="outline" className="text-xs">Basel III / FRTB</Badge>
+          <Badge variant="outline" className="text-xs text-muted-foreground">Portfolio: $10M</Badge>
+          <Badge variant="outline" className="text-xs text-muted-foreground">Basel III / FRTB</Badge>
         </div>
       </motion.div>
 
@@ -596,7 +596,7 @@ export default function QuantRiskPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
             <Card className="border-border bg-card border-l-4 border-l-primary">
-              <CardHeader className="pb-2 p-6">
+              <CardHeader className="pb-2 p-4">
                 <CardTitle className="text-lg font-semibold flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-500" />
                   Parameters
@@ -614,7 +614,7 @@ export default function QuantRiskPage() {
                         key={l}
                         size="sm"
                         variant={confidenceIdx === i ? "default" : "outline"}
-                        className="flex-1 text-xs h-7"
+                        className="flex-1 text-xs text-muted-foreground h-7"
                         onClick={() => setConfidenceIdx(i)}
                       >
                         {l}
@@ -633,7 +633,7 @@ export default function QuantRiskPage() {
                         key={l}
                         size="sm"
                         variant={holdingIdx === i ? "default" : "outline"}
-                        className="flex-1 text-xs h-7"
+                        className="flex-1 text-xs text-muted-foreground h-7"
                         onClick={() => setHoldingIdx(i)}
                       >
                         {l}
@@ -661,7 +661,7 @@ export default function QuantRiskPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left py-2 text-muted-foreground font-medium">Method</th>
@@ -742,7 +742,7 @@ export default function QuantRiskPage() {
                     <div key={cl} className="p-3 rounded-lg border border-border bg-muted/20">
                       <div className="flex justify-between mb-2">
                         <span className="text-xs font-medium text-foreground">Confidence: {cl}</span>
-                        <Badge variant="outline" className="text-xs">ES/VaR ratio: {esRatio.toFixed(2)}x</Badge>
+                        <Badge variant="outline" className="text-xs text-muted-foreground">ES/VaR ratio: {esRatio.toFixed(2)}x</Badge>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                         <div>
@@ -857,7 +857,7 @@ export default function QuantRiskPage() {
                     <Badge
                       variant="outline"
                       style={{ color: sc.color, borderColor: `${sc.color}50` }}
-                      className="text-xs"
+                      className="text-xs text-muted-foreground"
                     >
                       {fmtPct(sc.portfolioLoss)}
                     </Badge>
@@ -866,7 +866,7 @@ export default function QuantRiskPage() {
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="mt-2 pt-2 border-t border-border/50 grid grid-cols-2 gap-1 text-xs"
+                      className="mt-2 pt-2 border-t border-border/50 grid grid-cols-2 gap-1 text-xs text-muted-foreground"
                     >
                       <span className="text-muted-foreground">Equity P&L:</span>
                       <span className="text-right text-red-400">{fmtPct(sc.equityLoss)}</span>
@@ -921,7 +921,7 @@ export default function QuantRiskPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left py-2 text-muted-foreground">Scenario</th>
@@ -1006,8 +1006,8 @@ export default function QuantRiskPage() {
                       <div className="flex justify-between items-center mb-1.5">
                         <span className="text-xs font-medium" style={{ color: f.color }}>{f.name} Factor</span>
                         <div className="flex gap-2">
-                          <Badge variant="outline" className="text-xs">{mvarPct.toFixed(3)}%</Badge>
-                          <Badge variant="outline" className="text-xs">{fmtUSD(mvarUSD)}</Badge>
+                          <Badge variant="outline" className="text-xs text-muted-foreground">{mvarPct.toFixed(3)}%</Badge>
+                          <Badge variant="outline" className="text-xs text-muted-foreground">{fmtUSD(mvarUSD)}</Badge>
                         </div>
                       </div>
                       <Progress value={(f.marginalVaR / riskFactors[0].marginalVaR) * 100} className="h-1.5" />
@@ -1031,7 +1031,7 @@ export default function QuantRiskPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left py-2 text-muted-foreground">Asset / Factor</th>

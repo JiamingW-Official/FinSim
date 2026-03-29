@@ -712,7 +712,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
     <div className="space-y-4">
       {/* Composite Score */}
       <SectionCard title="Economic Composite Score">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
           <div className="text-center">
             <div className={cn("text-2xl font-bold", scoreColor)}>{compositeScore}</div>
             <div className="text-xs text-muted-foreground mt-1">out of 100</div>
@@ -734,7 +734,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
               <span>Expansion</span>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-3 text-xs">
+          <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
             {(["green", "yellow", "red"] as TrafficLight[]).map((t) => {
               const count = indicators.filter((i) => i.traffic === t).length;
               return (
@@ -854,7 +854,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
                   <div className="text-xs font-medium text-foreground truncate">{sp.name}</div>
                   <div className="text-xs text-muted-foreground">{sp.date}</div>
                 </div>
-                <div className="text-xs px-2 py-0.5 rounded-full" style={{
+                <div className="text-xs text-muted-foreground px-2 py-0.5 rounded-full" style={{
                   backgroundColor: sp.score > 55 ? "#ef444420" : sp.score < 40 ? "#10b98120" : "#6b728020",
                   color: sp.score > 55 ? "#f87171" : sp.score < 40 ? "#34d399" : "#9ca3af",
                 }}>
@@ -878,7 +878,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
       {/* Meeting Calendar */}
       <SectionCard title="Fed Meeting Calendar — Implied Probabilities">
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-1.5 pr-4">Meeting</th>
@@ -922,7 +922,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
           </div>
           <div className="space-y-1.5 shrink-0">
             {balanceSheetSeries.series.map((s) => (
-              <div key={s.label} className="flex items-center gap-2 text-xs">
+              <div key={s.label} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />
                 <span className="text-muted-foreground">{s.label}</span>
               </div>
@@ -992,7 +992,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
       {/* Country Table */}
       <SectionCard title="Global Macro Comparison">
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-1.5 w-32">Country</th>
@@ -1074,7 +1074,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className={cn("text-2xl font-bold", consensusProb >= 50 ? "text-red-400" : consensusProb >= 33 ? "text-amber-400" : "text-emerald-400")}>{consensusProb}%</span>
+                <span className={cn("text-lg font-medium", consensusProb >= 50 ? "text-red-400" : consensusProb >= 33 ? "text-amber-400" : "text-emerald-400")}>{consensusProb}%</span>
                 <span className="text-xs text-muted-foreground">consensus</span>
               </div>
             </div>
@@ -1090,7 +1090,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
         <SectionCard title="Signal Scorecard" className="lg:col-span-2">
           <div className="grid grid-cols-3 gap-2">
             {recessionIndicators.map((ri, i) => (
-              <div key={i} className={cn("p-2 rounded-lg border text-xs", ri.triggered ? "border-red-500/30 bg-red-500/5" : "border-emerald-500/30 bg-emerald-500/5")}>
+              <div key={i} className={cn("p-2 rounded-lg border text-xs text-muted-foreground", ri.triggered ? "border-red-500/30 bg-red-500/5" : "border-emerald-500/30 bg-emerald-500/5")}>
                 <div className="flex items-center gap-1 mb-0.5">
                   {ri.triggered ? <AlertTriangle className="w-3 h-3 text-red-400" /> : <Activity className="w-3 h-3 text-emerald-400" />}
                   <span className={cn("font-medium", ri.triggered ? "text-red-300" : "text-emerald-300")}>{ri.name}</span>
@@ -1122,7 +1122,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.06 }}
-            className={cn("p-3 rounded-lg border text-xs", ri.triggered ? "border-red-500/20 bg-red-500/5" : "border-border bg-foreground/[0.02]")}
+            className={cn("p-3 rounded-lg border text-xs text-muted-foreground", ri.triggered ? "border-red-500/20 bg-red-500/5" : "border-border bg-foreground/[0.02]")}
           >
             <div className="flex items-center justify-between mb-1">
               <span className="font-medium text-foreground">{ri.name}</span>
@@ -1168,7 +1168,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
       {/* Sector Table */}
       <SectionCard title="GICS Sector Fundamentals">
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-1.5 w-36">Sector</th>
@@ -1224,7 +1224,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
       <SectionCard title="Sector Credit Quality — IG vs HY Breakdown">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {sectorData.map((s) => (
-            <div key={s.name} className="text-xs">
+            <div key={s.name} className="text-xs text-muted-foreground">
               <div className="flex items-center gap-1 mb-1">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />
                 <span className="text-muted-foreground truncate">{s.name}</span>
@@ -1271,7 +1271,7 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
         <SectionCard title="Current Regime">
           <div className="flex flex-col items-center gap-3">
             <div
-              className="text-2xl font-bold px-4 py-2 rounded-md"
+              className="text-lg font-medium px-4 py-2 rounded-md"
               style={{ color: currentColor, backgroundColor: currentColor + "20", border: `1px solid ${currentColor}40` }}
             >
               {current.regime}
@@ -1289,7 +1289,7 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
         <SectionCard title="Regime Transition History" className="lg:col-span-2">
           <div className="space-y-1.5">
             {regimeHistory.map((r, i) => (
-              <div key={i} className="flex items-center gap-3 text-xs">
+              <div key={i} className="flex items-center gap-3 text-xs text-muted-foreground">
                 <span className="text-muted-foreground w-16 shrink-0">{r.period}</span>
                 <div className="flex-1 h-5 rounded flex items-center px-2" style={{ backgroundColor: regimeColors[r.regime] + "20" }}>
                   <span className="font-medium" style={{ color: regimeColors[r.regime] }}>{r.regime}</span>
@@ -1329,7 +1329,7 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="space-y-2">
             {leadingSignals.map((ls, i) => (
-              <div key={i} className="flex items-center gap-3 text-xs">
+              <div key={i} className="flex items-center gap-3 text-xs text-muted-foreground">
                 <TrendIcon trend={ls.direction} />
                 <span className="text-muted-foreground flex-1">{ls.indicator}</span>
                 <span className={cn("font-medium", ls.direction === "up" ? "text-emerald-400" : ls.direction === "down" ? "text-red-400" : "text-muted-foreground")}>
@@ -1340,7 +1340,7 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
           </div>
           <div className="p-3 rounded-lg border border-emerald-500/30 bg-emerald-500/5">
             <div className="text-xs text-muted-foreground mb-1">Predicted Next Regime</div>
-            <div className="text-2xl font-bold text-emerald-400">{predictedRegime}</div>
+            <div className="text-lg font-medium text-emerald-400">{predictedRegime}</div>
             <div className="text-xs text-muted-foreground mt-2">Confidence: High (4/5 signals aligned)</div>
             <div className="text-xs text-muted-foreground mt-1">Leading indicators suggest continued growth deceleration with inflation normalizing — consistent with late Goldilocks transition.</div>
           </div>

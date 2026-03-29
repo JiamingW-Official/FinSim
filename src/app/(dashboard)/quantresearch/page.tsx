@@ -515,7 +515,7 @@ export default function QuantResearchPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
     >
       {/* Header */}
       <div className="flex flex-col gap-1">
@@ -531,18 +531,18 @@ export default function QuantResearchPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="signals" className="text-xs">Alpha Library</TabsTrigger>
-          <TabsTrigger value="combo" className="text-xs">Signal Combo</TabsTrigger>
-          <TabsTrigger value="ic" className="text-xs">IC / ICIR</TabsTrigger>
-          <TabsTrigger value="factor" className="text-xs">Factor Momentum</TabsTrigger>
-          <TabsTrigger value="altdata" className="text-xs">Alt Data</TabsTrigger>
-          <TabsTrigger value="ml" className="text-xs">ML in Quant</TabsTrigger>
+          <TabsTrigger value="signals" className="text-xs text-muted-foreground">Alpha Library</TabsTrigger>
+          <TabsTrigger value="combo" className="text-xs text-muted-foreground">Signal Combo</TabsTrigger>
+          <TabsTrigger value="ic" className="text-xs text-muted-foreground">IC / ICIR</TabsTrigger>
+          <TabsTrigger value="factor" className="text-xs text-muted-foreground">Factor Momentum</TabsTrigger>
+          <TabsTrigger value="altdata" className="text-xs text-muted-foreground">Alt Data</TabsTrigger>
+          <TabsTrigger value="ml" className="text-xs text-muted-foreground">ML in Quant</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Alpha Signal Library ── */}
         <TabsContent value="signals" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <Card className="bg-card/60 border-border border-l-4 border-l-primary">
-            <CardHeader className="pb-2 p-6">
+            <CardHeader className="pb-2 p-4">
               <CardTitle className="text-lg flex items-center gap-2">
                 <BarChart2 className="h-4 w-4 text-primary" />
                 Alpha Signal Library
@@ -553,7 +553,7 @@ export default function QuantResearchPage() {
               </p>
             </CardHeader>
             <CardContent className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="border-b border-border text-muted-foreground">
                     <th className="text-left py-2 pr-3 font-medium">Signal</th>
@@ -570,7 +570,7 @@ export default function QuantResearchPage() {
                     <tr key={sig.id} className="group hover:bg-muted/30 transition-colors">
                       <td className="py-2 pr-3 font-medium text-foreground">{sig.name}</td>
                       <td className="py-2 pr-3">
-                        <span className={cn("px-2 py-0.5 rounded text-xs border font-medium capitalize", CATEGORY_COLORS[sig.category])}>
+                        <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground border font-medium capitalize", CATEGORY_COLORS[sig.category])}>
                           {sig.category}
                         </span>
                       </td>
@@ -666,7 +666,7 @@ export default function QuantResearchPage() {
                       key={sig.id}
                       onClick={() => toggleSignal(sig)}
                       className={cn(
-                        "px-2.5 py-1 rounded-full text-xs border transition-colors",
+                        "px-2.5 py-1 rounded-full text-xs text-muted-foreground border transition-colors",
                         isSelected(sig)
                           ? "bg-primary/20 border-primary/50 text-primary"
                           : "bg-muted/50 border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
@@ -817,7 +817,7 @@ export default function QuantResearchPage() {
                 <div key={src.name} className="rounded-lg bg-muted/50 border border-border/50 p-3 space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <span className="text-sm font-medium text-foreground">{src.name}</span>
-                    <span className={cn("text-xs font-medium shrink-0", COST_COLORS[src.cost])}>{src.cost} cost</span>
+                    <span className={cn("text-xs text-muted-foreground font-medium shrink-0", COST_COLORS[src.cost])}>{src.cost} cost</span>
                   </div>
                   <p className="text-[11px] text-muted-foreground leading-relaxed">{src.description}</p>
                   <div className="space-y-1.5">
@@ -886,9 +886,9 @@ export default function QuantResearchPage() {
                   <div key={m.name} className="rounded-lg bg-muted/50 border border-border/50 p-3 space-y-2">
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-sm font-medium text-foreground">{m.name}</span>
-                      <span className={cn("text-xs font-medium", overfitColor)}>Overfit: {m.overfit}</span>
+                      <span className={cn("text-xs text-muted-foreground font-medium", overfitColor)}>Overfit: {m.overfit}</span>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 text-xs">
+                    <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                       <div>
                         <p className="text-muted-foreground text-xs">In-Sample R²</p>
                         <p className="text-primary font-mono font-semibold">{m.r2InSample.toFixed(2)}</p>

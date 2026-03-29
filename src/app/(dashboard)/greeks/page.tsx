@@ -326,7 +326,7 @@ function GreekCard({
             key={delta.curr.toFixed(6)}
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`text-xs font-mono px-1.5 py-0.5 rounded ${
+            className={`text-xs text-muted-foreground font-mono px-1.5 py-0.5 rounded ${
               delta.diff > 0
                 ? "bg-green-500/10 text-green-400"
                 : delta.diff < 0
@@ -862,7 +862,7 @@ function GreeksExplorer() {
   ];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
       {/* Left: Controls */}
       <div className="flex flex-col gap-4">
         {/* Option type toggle */}
@@ -998,7 +998,7 @@ function GreeksExplorer() {
                 {deltas.map((d) => (
                   <span
                     key={d.name}
-                    className={`text-xs px-2 py-1 rounded-full font-mono ${
+                    className={`text-xs text-muted-foreground px-2 py-1 rounded-full font-mono ${
                       d.diff > 0
                         ? "bg-green-500/10 text-green-400"
                         : "bg-red-500/10 text-red-400"
@@ -1280,7 +1280,7 @@ function GreeksQuiz() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="flex flex-col items-center justify-center gap-6 py-12"
+        className="flex flex-col items-center justify-center gap-3 py-12"
       >
         <div className="text-6xl">{pct >= 80 ? "🏆" : pct >= 60 ? "📈" : "📚"}</div>
         <div className="text-center">
@@ -1296,7 +1296,7 @@ function GreeksQuiz() {
           {QUIZ_QUESTIONS.map((question, i) => (
             <div
               key={question.id}
-              className={`flex items-center gap-3 p-2 rounded-lg text-xs ${
+              className={`flex items-center gap-3 p-2 rounded-lg text-xs text-muted-foreground ${
                 answers[i] === question.correct
                   ? "bg-green-500/10 text-green-400"
                   : "bg-red-500/10 text-red-400"
@@ -1340,7 +1340,7 @@ function GreeksQuiz() {
           key={flashIdx}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="rounded-md border border-border bg-card p-6 cursor-pointer min-h-[200px] flex flex-col justify-between"
+          className="rounded-md border border-border bg-card p-4 cursor-pointer min-h-[200px] flex flex-col justify-between"
           onClick={() => setShowFlashAnswer(!showFlashAnswer)}
         >
           <div>
@@ -1459,7 +1459,7 @@ function GreeksQuiz() {
               }
               return (
                 <button key={i} className={cls} onClick={() => handleAnswer(i)}>
-                  <span className="font-mono text-xs mr-2 opacity-60">{String.fromCharCode(65 + i)}.</span>
+                  <span className="font-mono text-xs text-muted-foreground mr-2 opacity-60">{String.fromCharCode(65 + i)}.</span>
                   {choice}
                 </button>
               );

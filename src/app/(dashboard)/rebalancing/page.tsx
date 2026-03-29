@@ -408,7 +408,7 @@ export default function RebalancingPage() {
   const volDrag = (maxAbsDrift * 0.04).toFixed(2);
 
   return (
-    <div className="p-6 space-y-6 max-w-7xl mx-auto">
+    <div className="p-4 space-y-4 max-w-7xl mx-auto">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -491,10 +491,10 @@ export default function RebalancingPage() {
 
           {/* ── Tab 1: Current Portfolio ─────────────────────────────────────── */}
           <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {/* Donut charts */}
               <Card className="bg-muted/50 border-border border-l-4 border-l-primary">
-                <CardHeader className="p-6 pb-2">
+                <CardHeader className="p-4 pb-2">
                   <CardTitle className="text-lg text-muted-foreground">Current vs Target Allocation</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -504,7 +504,7 @@ export default function RebalancingPage() {
                   </div>
                   <div className="mt-3 space-y-1">
                     {currentSlices.map(sl => (
-                      <div key={sl.label} className="flex items-center justify-between text-xs">
+                      <div key={sl.label} className="flex items-center justify-between text-xs text-muted-foreground">
                         <div className="flex items-center gap-1.5">
                           <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: sl.color }} />
                           <span className="text-muted-foreground">{sl.label}</span>
@@ -522,7 +522,7 @@ export default function RebalancingPage() {
                   <CardTitle className="text-sm text-muted-foreground">Holdings — Drift Analysis</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left text-muted-foreground px-4 py-2">Ticker</th>
@@ -552,7 +552,7 @@ export default function RebalancingPage() {
                             <td className="text-right px-2 py-2 text-muted-foreground">{h.currentWeight.toFixed(1)}%</td>
                             <td className="text-right px-2 py-2 text-muted-foreground">{h.targetWeight.toFixed(1)}%</td>
                             <td className="text-right px-2 py-2">
-                              <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${driftBg(h.drift, driftThreshold)}`}>
+                              <span className={`px-1.5 py-0.5 rounded text-xs text-muted-foreground font-medium ${driftBg(h.drift, driftThreshold)}`}>
                                 {fmtPct(h.drift)}
                               </span>
                             </td>
@@ -588,7 +588,7 @@ export default function RebalancingPage() {
                         />
                         <div className="absolute inset-y-0 left-1/2 w-px bg-muted-foreground" />
                       </div>
-                      <span className={`text-xs w-12 font-mono ${driftColor(h.drift, driftThreshold)}`}>
+                      <span className={`text-xs text-muted-foreground w-12 font-mono ${driftColor(h.drift, driftThreshold)}`}>
                         {fmtPct(h.drift)}
                       </span>
                     </div>
@@ -603,7 +603,7 @@ export default function RebalancingPage() {
 
           {/* ── Tab 2: Rebalancing Engine ─────────────────────────────────────── */}
           <TabsContent value="engine" className="data-[state=inactive]:hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {/* Config panel */}
               <div className="space-y-4">
                 <Card className="bg-muted/50 border-border">
@@ -619,7 +619,7 @@ export default function RebalancingPage() {
                         <button
                           key={m}
                           onClick={() => setCalendarMode(m)}
-                          className={`flex-1 py-2 rounded text-xs font-medium capitalize transition-all ${
+                          className={`flex-1 py-2 rounded text-xs text-muted-foreground font-medium capitalize transition-all ${
                             calendarMode === m
                               ? "bg-primary text-foreground"
                               : "bg-muted text-muted-foreground hover:bg-muted"
@@ -680,7 +680,7 @@ export default function RebalancingPage() {
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm text-muted-foreground">Cost Summary</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-2 text-xs">
+                  <CardContent className="space-y-2 text-xs text-muted-foreground">
                     {[
                       { label: "Trades to Execute",    value: String(trades.length),   color: "text-foreground" },
                       { label: "Total Trade Volume",    value: fmt$(trades.reduce((a,t) => a+t.amount, 0)), color: "text-foreground" },
@@ -747,10 +747,10 @@ export default function RebalancingPage() {
                     <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
                       <CheckCircle2 className="w-10 h-10 mb-2 text-emerald-500/50" />
                       <p className="text-sm">All positions within {driftThreshold}% threshold</p>
-                      <p className="text-xs mt-1">Lower the threshold to see more trades</p>
+                      <p className="text-xs text-muted-foreground mt-1">Lower the threshold to see more trades</p>
                     </div>
                   ) : (
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left text-muted-foreground px-4 py-2">Ticker</th>
@@ -800,7 +800,7 @@ export default function RebalancingPage() {
 
           {/* ── Tab 3: Tax-Loss Harvesting ────────────────────────────────────── */}
           <TabsContent value="harvest" className="data-[state=inactive]:hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {/* Summary + controls */}
               <div className="space-y-4">
                 <Card className="bg-muted/50 border-border">
@@ -811,15 +811,15 @@ export default function RebalancingPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Loss Candidates</span>
                       <span className="text-foreground">{lossPositions.length} positions</span>
                     </div>
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Total Harvestable Loss</span>
                       <span className="text-red-400">{fmt$(lossPositions.reduce((a, p) => a + Math.abs(p.unrealizedLoss), 0))}</span>
                     </div>
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">Max Tax Savings (all)</span>
                       <span className="text-emerald-400">{fmt$(lossPositions.reduce((a, p) => a + p.taxSavings, 0))}</span>
                     </div>
@@ -854,7 +854,7 @@ export default function RebalancingPage() {
                   <CardTitle className="text-sm text-muted-foreground">Loss Positions</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left text-muted-foreground px-4 py-2 w-8"></th>
@@ -937,7 +937,7 @@ export default function RebalancingPage() {
 
           {/* ── Tab 4: Asset Location ──────────────────────────────────────────── */}
           <TabsContent value="location" className="data-[state=inactive]:hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {/* Score + account selector */}
               <div className="space-y-4">
                 <Card className="bg-muted/50 border-border">
@@ -964,7 +964,7 @@ export default function RebalancingPage() {
                         <text x={60} y={68} textAnchor="middle" fill="#64748b" fontSize={9}>out of 100</text>
                       </svg>
                     </div>
-                    <div className="space-y-1 text-xs">
+                    <div className="space-y-1 text-xs text-muted-foreground">
                       <div className="flex justify-between text-muted-foreground">
                         <span>Rating</span>
                         <Badge className="bg-emerald-500/20 text-emerald-300 text-xs">Good</Badge>
@@ -985,7 +985,7 @@ export default function RebalancingPage() {
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm text-muted-foreground">Account Sizes</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-2 text-xs">
+                  <CardContent className="space-y-2 text-xs text-muted-foreground">
                     {[
                       { label: "Taxable",         pct: 55, color: "bg-primary" },
                       { label: "Traditional IRA",  pct: 30, color: "bg-amber-500" },
@@ -1029,7 +1029,7 @@ export default function RebalancingPage() {
                     <CardTitle className="text-sm text-muted-foreground">Asset Location Rules</CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left text-muted-foreground px-4 py-2">Asset Class</th>
@@ -1049,7 +1049,7 @@ export default function RebalancingPage() {
                           >
                             <td className="px-4 py-2 text-foreground font-medium">{rule.assetClass}</td>
                             <td className="px-2 py-2 text-center">
-                              <Badge className={`text-xs ${
+                              <Badge className={`text-xs text-muted-foreground ${
                                 rule.ideal === "roth"       ? "bg-emerald-500/20 text-emerald-300" :
                                 rule.ideal === "traditional" ? "bg-amber-500/20 text-amber-300" :
                                                               "bg-primary/20 text-primary"
@@ -1076,7 +1076,7 @@ export default function RebalancingPage() {
                   </CardHeader>
                   <CardContent>
                     <AllocationMatrix entries={locationEntries} />
-                    <div className="flex gap-4 mt-3 text-xs">
+                    <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
                       {[["#10b981","80–100 Excellent"],["#f59e0b","50–79 Adequate"],["#ef4444","0–49 Poor"]].map(([c,l]) => (
                         <div key={l} className="flex items-center gap-1 text-muted-foreground">
                           <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: c as string }} />
@@ -1092,7 +1092,7 @@ export default function RebalancingPage() {
 
           {/* ── Tab 5: Drift Analysis ──────────────────────────────────────────── */}
           <TabsContent value="drift" className="data-[state=inactive]:hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {/* Stats */}
               <div className="space-y-4">
                 <Card className="bg-muted/50 border-border">
@@ -1110,7 +1110,7 @@ export default function RebalancingPage() {
                       { label: "Volatility Drag Est.", value: `${volDrag}%`,    sub: "Annualized drag from drift" },
                     ].map((s, i) => (
                       <div key={i} className="border-b border-border/50 pb-2">
-                        <div className="flex justify-between text-xs">
+                        <div className="flex justify-between text-xs text-muted-foreground">
                           <span className="text-muted-foreground">{s.label}</span>
                           <span className="text-foreground font-medium">{s.value}</span>
                         </div>
@@ -1127,7 +1127,7 @@ export default function RebalancingPage() {
                   <CardContent>
                     <div className="space-y-1.5">
                       {DRIFT_HISTORY.map(d => (
-                        <div key={d.month} className="flex items-center gap-2 text-xs">
+                        <div key={d.month} className="flex items-center gap-2 text-xs text-muted-foreground">
                           <span className="text-muted-foreground w-8">{d.month}</span>
                           <div className="flex-1 h-3 bg-muted/50 rounded-full overflow-hidden relative">
                             <div
@@ -1153,7 +1153,7 @@ export default function RebalancingPage() {
                 </CardHeader>
                 <CardContent>
                   <DriftLineChart data={DRIFT_HISTORY} />
-                  <div className="flex gap-4 mt-3 text-xs">
+                  <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
                     {[
                       { color: "#3b82f6", label: "Equity Drift" },
                       { color: "#10b981", label: "Bond Drift" },

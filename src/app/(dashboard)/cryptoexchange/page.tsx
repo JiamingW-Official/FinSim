@@ -712,23 +712,23 @@ export default function CryptoExchangePage() {
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="spot" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="spot" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <BarChart2 className="w-3 h-3 mr-1.5" />
             Spot Trading
           </TabsTrigger>
-          <TabsTrigger value="perp" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="perp" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <Zap className="w-3 h-3 mr-1.5" />
             Perpetuals
           </TabsTrigger>
-          <TabsTrigger value="market" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="market" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <TrendingUp className="w-3 h-3 mr-1.5" />
             Market Overview
           </TabsTrigger>
-          <TabsTrigger value="defi" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="defi" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <Layers className="w-3 h-3 mr-1.5" />
             DeFi Dashboard
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="data-[state=active]:bg-muted text-xs">
+          <TabsTrigger value="portfolio" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             <Wallet className="w-3 h-3 mr-1.5" />
             Portfolio
           </TabsTrigger>
@@ -747,7 +747,7 @@ export default function CryptoExchangePage() {
                       key={pair}
                       onClick={() => setSelectedPair(pair)}
                       className={cn(
-                        "px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
+                        "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-all",
                         selectedPair === pair
                           ? "bg-indigo-600 text-foreground"
                           : "bg-muted text-muted-foreground hover:bg-muted"
@@ -807,7 +807,7 @@ export default function CryptoExchangePage() {
                         key={`trade-${i}-${tick}`}
                         initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="grid grid-cols-3 text-xs px-1 py-0.5 rounded hover:bg-muted/50"
+                        className="grid grid-cols-3 text-xs text-muted-foreground px-1 py-0.5 rounded hover:bg-muted/50"
                       >
                         <span className={cn("font-mono", trade.side === "buy" ? "text-green-400" : "text-red-400")}>
                           {fmtPrice(trade.price)}
@@ -836,7 +836,7 @@ export default function CryptoExchangePage() {
                   {[...asks].reverse().map((a, i) => {
                     const barPct = (a.total / (asks[asks.length - 1]?.total || 1)) * 100;
                     return (
-                      <div key={`ask-${i}`} className="relative grid grid-cols-3 text-xs py-0.5 px-1 rounded overflow-hidden">
+                      <div key={`ask-${i}`} className="relative grid grid-cols-3 text-xs text-muted-foreground py-0.5 px-1 rounded overflow-hidden">
                         <div className="absolute inset-0 right-0" style={{ width: `${barPct}%`, background: "rgba(239,68,68,0.08)", marginLeft: "auto" }} />
                         <span className="relative text-red-400 font-mono">{fmtPrice(a.price)}</span>
                         <span className="relative text-center text-muted-foreground font-mono">{a.size.toFixed(3)}</span>
@@ -854,7 +854,7 @@ export default function CryptoExchangePage() {
                   {bids.map((b, i) => {
                     const barPct = (b.total / (bids[bids.length - 1]?.total || 1)) * 100;
                     return (
-                      <div key={`bid-${i}`} className="relative grid grid-cols-3 text-xs py-0.5 px-1 rounded overflow-hidden">
+                      <div key={`bid-${i}`} className="relative grid grid-cols-3 text-xs text-muted-foreground py-0.5 px-1 rounded overflow-hidden">
                         <div className="absolute inset-0 right-0" style={{ width: `${barPct}%`, background: "rgba(34,197,94,0.08)", marginLeft: "auto" }} />
                         <span className="relative text-green-400 font-mono">{fmtPrice(b.price)}</span>
                         <span className="relative text-center text-muted-foreground font-mono">{b.size.toFixed(3)}</span>
@@ -875,7 +875,7 @@ export default function CryptoExchangePage() {
                       key={t}
                       onClick={() => setOrderType(t)}
                       className={cn(
-                        "flex-1 py-1 rounded text-xs font-medium transition-all",
+                        "flex-1 py-1 rounded text-xs text-muted-foreground font-medium transition-all",
                         orderType === t ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                       )}
                     >
@@ -985,7 +985,7 @@ export default function CryptoExchangePage() {
                     key={`perp-price-${tick}`}
                     initial={{ opacity: 0.6 }}
                     animate={{ opacity: 1 }}
-                    className="text-2xl font-bold font-mono"
+                    className="text-lg font-medium font-mono"
                   >
                     {fmtPrice(perpPrice)}
                   </motion.span>
@@ -1049,7 +1049,7 @@ export default function CryptoExchangePage() {
                 <div className="flex justify-center mb-2">
                   <LongShortGauge longPct={longPct} />
                 </div>
-                <div className="flex justify-between text-xs mt-2">
+                <div className="flex justify-between text-xs text-muted-foreground mt-2">
                   <div className="text-center">
                     <div className="text-green-400 font-medium text-sm">{longPct.toFixed(1)}%</div>
                     <div className="text-muted-foreground">Longs</div>
@@ -1117,7 +1117,7 @@ export default function CryptoExchangePage() {
                     />
                   </div>
                 </div>
-                <div className="bg-muted/60 rounded-lg p-3 space-y-2 text-xs">
+                <div className="bg-muted/60 rounded-lg p-3 space-y-2 text-xs text-muted-foreground">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Margin Required</span>
                     <span className="text-foreground font-mono">${marginReq.toLocaleString()}</span>
@@ -1177,7 +1177,7 @@ export default function CryptoExchangePage() {
           <div className="bg-card border border-border rounded-md p-4">
             <h3 className="text-sm font-medium text-muted-foreground mb-3">Top 20 by Market Cap</h3>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="text-muted-foreground border-b border-border">
                     <th className="text-left pb-2 pr-3 font-medium">#</th>
@@ -1346,7 +1346,7 @@ export default function CryptoExchangePage() {
           <div className="bg-card border border-border rounded-md p-4">
             <h3 className="text-sm font-medium text-muted-foreground mb-3">Top Liquidity Pools</h3>
             <div className="overflow-x-auto">
-              <table className="w-full text-xs">
+              <table className="w-full text-xs text-muted-foreground">
                 <thead>
                   <tr className="text-muted-foreground border-b border-border">
                     <th className="text-left pb-2 pr-4 font-medium">Protocol</th>
@@ -1399,7 +1399,7 @@ export default function CryptoExchangePage() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-xs",
+                          "text-xs text-muted-foreground",
                           y.risk === "Low" ? "border-green-500/40 text-green-400" :
                           y.risk === "Medium" ? "border-amber-500/40 text-amber-400" :
                           "border-red-500/40 text-red-400"
@@ -1429,7 +1429,7 @@ export default function CryptoExchangePage() {
                     Optimism: "text-red-400",
                   };
                   return (
-                    <div key={i} className="flex items-center gap-2 text-xs">
+                    <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                       <span className={cn("font-medium w-16", chainColors[flow.from] || "text-muted-foreground")}>{flow.from}</span>
                       <span className="text-muted-foreground">→</span>
                       <span className={cn("font-medium w-16", chainColors[flow.to] || "text-muted-foreground")}>{flow.to}</span>
@@ -1491,7 +1491,7 @@ export default function CryptoExchangePage() {
             <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
               <PieChart className="w-4 h-4" /> Holdings
             </h3>
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left pb-2 pr-4 font-medium">Token</th>
@@ -1563,7 +1563,7 @@ export default function CryptoExchangePage() {
                   const total = feesPaid.exchange + feesPaid.gas + feesPaid.bridge;
                   return (
                     <div key={fee.label}>
-                      <div className="flex justify-between text-xs mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span className="text-muted-foreground">{fee.label}</span>
                         <span className="font-mono text-muted-foreground">${fee.value.toFixed(2)}</span>
                       </div>
@@ -1584,7 +1584,7 @@ export default function CryptoExchangePage() {
               <h3 className="text-sm font-medium text-muted-foreground mb-3">Trade History (Last 20)</h3>
               <div className="overflow-y-auto max-h-64 space-y-1">
                 {tradeHistory.map((trade) => (
-                  <div key={trade.id} className="flex items-center justify-between text-xs px-2 py-1.5 rounded hover:bg-muted/50">
+                  <div key={trade.id} className="flex items-center justify-between text-xs text-muted-foreground px-2 py-1.5 rounded hover:bg-muted/50">
                     <div className="flex items-center gap-2">
                       <span className={cn("px-1.5 py-0.5 rounded font-medium", trade.side === "buy" ? "bg-green-900/50 text-green-400" : "bg-red-900/50 text-red-400")}>
                         {trade.side.toUpperCase()}

@@ -15,12 +15,10 @@ import { UNITS } from "@/data/lessons";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import {
-  Shield,
   BarChart3,
   BookOpen,
   TrendingUp,
   TrendingDown,
-  Trophy,
   Briefcase,
   Award,
   Target,
@@ -295,10 +293,10 @@ export default function PortfolioPage() {
       </div>
 
       {/* Quiet zone — breathing room between hero (dense) and tabs (moderate) */}
-      <div className="mb-14" />
+      <div className="mb-10" />
 
       {/* ── TABS: compact, subdued ── */}
-      <div className="px-4 pb-4">
+      <div className="px-4 pb-6">
         <Tabs defaultValue="overview">
           <div className="mb-3 overflow-x-auto">
             <TabsList className="flex h-6 min-w-max w-full gap-0.5 rounded-md bg-muted/20 p-0.5">
@@ -396,18 +394,18 @@ export default function PortfolioPage() {
           </div>
 
           {/* ── Overview tab ── */}
-          <TabsContent value="overview" className="space-y-3">
+          <TabsContent value="overview" className="space-y-4">
             <LivePnLDashboard />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="rounded-lg bg-muted/30 p-3">
+            <div className="grid grid-cols-1 sm:grid-cols-5 gap-2">
+              <div className="rounded-lg bg-muted/30 p-4 sm:col-span-3">
                 <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
                   <Target className="h-3 w-3" />
                   Win Rate (Rolling 10)
                 </div>
                 <WinRateChart />
               </div>
-              <div className="rounded-lg bg-muted/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3 sm:col-span-2">
                 <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
                   <Calendar className="h-3 w-3" />
                   Trade Calendar
@@ -415,6 +413,9 @@ export default function PortfolioPage() {
                 <TradeCalendar />
               </div>
             </div>
+
+            {/* Breathing room before attribution */}
+            <div className="mt-5" />
 
             <div className="rounded-lg bg-muted/30 p-3">
               <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
@@ -436,7 +437,7 @@ export default function PortfolioPage() {
           </TabsContent>
 
           {/* ── Analytics tab ── */}
-          <TabsContent value="analytics" className="space-y-3">
+          <TabsContent value="analytics" className="space-y-5">
             <div className="rounded-lg bg-muted/30 p-3">
               <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
                 <Activity className="h-3 w-3" />
@@ -463,7 +464,7 @@ export default function PortfolioPage() {
           </TabsContent>
 
           {/* ── Rebalance tab ── */}
-          <TabsContent value="rebalance" className="space-y-3">
+          <TabsContent value="rebalance" className="space-y-4">
             <div className="rounded-lg bg-muted/30 p-3">
               <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
                 <RefreshCw className="h-3 w-3" />
@@ -515,7 +516,7 @@ export default function PortfolioPage() {
           </TabsContent>
 
           {/* ── Journal tab ── */}
-          <TabsContent value="journal" className="space-y-3">
+          <TabsContent value="journal" className="space-y-4">
             <RecentTradesPreview />
 
             <div className="rounded-lg bg-muted/30 p-3">
@@ -596,7 +597,7 @@ export default function PortfolioPage() {
           </TabsContent>
 
           {/* ── Deep Analytics tab ── */}
-          <TabsContent value="deep" className="space-y-3">
+          <TabsContent value="deep" className="space-y-6">
             <div className="rounded-lg bg-muted/30 p-3">
               <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
                 <BarChart3 className="h-3 w-3" />

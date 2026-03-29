@@ -432,7 +432,7 @@ export default function MomentumBuilderPage() {
   const botDecile = stocks.slice(27, 30);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-4">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
@@ -443,11 +443,11 @@ export default function MomentumBuilderPage() {
           <p className="text-sm text-muted-foreground">Quantitative momentum strategy construction, backtesting &amp; signal analysis</p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className="text-xs">
+          <Badge variant="outline" className="text-xs text-muted-foreground">
             <Activity className="w-3 h-3 mr-1" />
             Quant Engine
           </Badge>
-          <Badge variant="secondary" className="text-xs">20-Year Backtest</Badge>
+          <Badge variant="secondary" className="text-xs text-muted-foreground">20-Year Backtest</Badge>
         </div>
       </div>
 
@@ -458,19 +458,19 @@ export default function MomentumBuilderPage() {
 
       <Tabs defaultValue="builder" className="w-full mt-8">
         <TabsList className="grid w-full grid-cols-5 mb-4">
-          <TabsTrigger value="builder" className="text-xs">
+          <TabsTrigger value="builder" className="text-xs text-muted-foreground">
             <SlidersHorizontal className="w-3 h-3 mr-1" />Signal Builder
           </TabsTrigger>
-          <TabsTrigger value="screener" className="text-xs">
+          <TabsTrigger value="screener" className="text-xs text-muted-foreground">
             <BarChart3 className="w-3 h-3 mr-1" />Universe
           </TabsTrigger>
-          <TabsTrigger value="backtest" className="text-xs">
+          <TabsTrigger value="backtest" className="text-xs text-muted-foreground">
             <Activity className="w-3 h-3 mr-1" />Backtest
           </TabsTrigger>
-          <TabsTrigger value="decay" className="text-xs">
+          <TabsTrigger value="decay" className="text-xs text-muted-foreground">
             <Zap className="w-3 h-3 mr-1" />Decay
           </TabsTrigger>
-          <TabsTrigger value="crash" className="text-xs">
+          <TabsTrigger value="crash" className="text-xs text-muted-foreground">
             <AlertTriangle className="w-3 h-3 mr-1" />Crashes
           </TabsTrigger>
         </TabsList>
@@ -486,7 +486,7 @@ export default function MomentumBuilderPage() {
                   Strategy Parameters
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4">
                 {/* Lookback */}
                 <div className="space-y-2">
                   <div className="flex justify-between">
@@ -619,19 +619,19 @@ export default function MomentumBuilderPage() {
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex justify-between">
                       <span>Formation: {lookback}M − {skipPeriod}M skip</span>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs text-muted-foreground">
                         {lookback <= 3 ? "Short-Term" : lookback <= 6 ? "Medium" : "Classic"}
                       </Badge>
                     </div>
                     <div className="flex justify-between">
                       <span>Rebalance: {rebalFreq === 1 ? "Monthly" : rebalFreq === 3 ? "Quarterly" : rebalFreq === 6 ? "Semi" : "Annual"}</span>
-                      <Badge variant={rebalFreq <= 3 ? "destructive" : "secondary"} className="text-xs">
+                      <Badge variant={rebalFreq <= 3 ? "destructive" : "secondary"} className="text-xs text-muted-foreground">
                         {rebalFreq <= 1 ? "High Cost" : rebalFreq <= 3 ? "Med Cost" : "Low Cost"}
                       </Badge>
                     </div>
                     <div className="flex justify-between">
                       <span>Size: Top {Math.round((portfolioSize / 500) * 100)}% of universe</span>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs text-muted-foreground">
                         {volTargeting ? "Vol-Adjusted" : "Equal Weight"}
                       </Badge>
                     </div>
@@ -666,7 +666,7 @@ export default function MomentumBuilderPage() {
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-auto max-h-[480px]">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead className="sticky top-0 bg-card border-b border-border">
                         <tr>
                           <th className="text-left p-2 font-medium text-muted-foreground">Rank</th>
@@ -721,7 +721,7 @@ export default function MomentumBuilderPage() {
                               <td className="p-2 text-right">
                                 <Badge
                                   variant={isTop ? "default" : isBot ? "destructive" : "secondary"}
-                                  className="text-xs"
+                                  className="text-xs text-muted-foreground"
                                 >
                                   D{stock.decile}
                                 </Badge>
@@ -743,7 +743,7 @@ export default function MomentumBuilderPage() {
                 </CardHeader>
                 <CardContent>
                   <MomentumHistogram stocks={stocks} />
-                  <div className="flex gap-3 mt-2 text-xs">
+                  <div className="flex gap-3 mt-2 text-xs text-muted-foreground">
                     <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-green-500" />Top decile</div>
                     <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-primary opacity-60" />Mid</div>
                     <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-red-500" />Bottom decile</div>
@@ -840,7 +840,7 @@ export default function MomentumBuilderPage() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-auto max-h-[320px]">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead className="sticky top-0 bg-card border-b border-border">
                     <tr>
                       <th className="text-left p-2 font-medium text-muted-foreground">Year</th>
@@ -899,7 +899,7 @@ export default function MomentumBuilderPage() {
               <CardContent>
                 <ICDecaySVG rows={holdingRows} />
                 <div className="mt-3 overflow-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left p-2 font-medium text-muted-foreground">Period</th>
@@ -942,7 +942,7 @@ export default function MomentumBuilderPage() {
                   <div className="space-y-3">
                     {turnoverCosts.map(row => (
                       <div key={row.label} className="space-y-1">
-                        <div className="flex justify-between text-xs">
+                        <div className="flex justify-between text-xs text-muted-foreground">
                           <span className="font-medium">{row.label}</span>
                           <div className="flex gap-3 text-muted-foreground">
                             <span>Turnover: {row.turnover}%</span>
@@ -1022,7 +1022,7 @@ export default function MomentumBuilderPage() {
                           <p className="text-sm font-medium">{ev.name}</p>
                           <p className="text-xs text-muted-foreground">{ev.period}</p>
                         </div>
-                        <Badge variant="destructive" className="text-xs">{ev.peakDD}% DD</Badge>
+                        <Badge variant="destructive" className="text-xs text-muted-foreground">{ev.peakDD}% DD</Badge>
                       </div>
                       <div className="grid grid-cols-3 gap-2 text-center mt-3">
                         <div className="p-2 bg-muted/50 rounded">
@@ -1062,7 +1062,7 @@ export default function MomentumBuilderPage() {
                 </CardHeader>
                 <CardContent>
                   <CrashComparisonSVG events={CRASH_EVENTS} />
-                  <div className="flex gap-3 mt-1 text-xs">
+                  <div className="flex gap-3 mt-1 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-500 inline-block" />Momentum</span>
                     <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-muted-foreground inline-block" />S&P 500</span>
                     <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-green-500 inline-block" />+Vol Target</span>
@@ -1088,7 +1088,7 @@ export default function MomentumBuilderPage() {
                       { label: "Max Leverage", value: "2.0×" },
                       { label: "Avg DD Reduction", value: "−38%" },
                     ].map(item => (
-                      <div key={item.label} className="flex justify-between text-xs">
+                      <div key={item.label} className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground">{item.label}</span>
                         <span className="font-mono text-green-400">{item.value}</span>
                       </div>

@@ -666,7 +666,7 @@ export default function QuantPortfolioPage() {
   const selectedViewObj = BL_VIEWS.find((v) => v.id === selectedView) ?? null;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -687,7 +687,7 @@ export default function QuantPortfolioPage() {
             { label: "Risk Model",    value: "Ledoit-Wolf" },
             { label: "Rebal",         value: "Threshold + Tax" },
           ].map((chip) => (
-            <div key={chip.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted border border-border text-xs">
+            <div key={chip.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted border border-border text-xs text-muted-foreground">
               <span className="text-muted-foreground">{chip.label}:</span>
               <span className="text-foreground font-medium">{chip.value}</span>
             </div>
@@ -697,19 +697,19 @@ export default function QuantPortfolioPage() {
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid grid-cols-4 bg-card border border-border mb-6 w-full">
-          <TabsTrigger value="mvo" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="mvo" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
             Mean-Variance
           </TabsTrigger>
-          <TabsTrigger value="bl" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="bl" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Activity className="w-3.5 h-3.5 mr-1.5" />
             Black-Litterman
           </TabsTrigger>
-          <TabsTrigger value="rp" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="rp" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <Shield className="w-3.5 h-3.5 mr-1.5" />
             Risk Parity
           </TabsTrigger>
-          <TabsTrigger value="tc" className="text-xs data-[state=active]:bg-muted">
+          <TabsTrigger value="tc" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             <ArrowRightLeft className="w-3.5 h-3.5 mr-1.5" />
             Txn Cost Opt
           </TabsTrigger>
@@ -723,7 +723,7 @@ export default function QuantPortfolioPage() {
             {/* Controls */}
             <div className="space-y-4">
               <Card className="bg-card border-border border-l-4 border-l-primary">
-                <CardHeader className="pb-2 p-6">
+                <CardHeader className="pb-2 p-4">
                   <CardTitle className="text-lg flex items-center gap-2">
                     <SlidersHorizontal className="w-4 h-4 text-indigo-400" />
                     Optimization Settings
@@ -737,7 +737,7 @@ export default function QuantPortfolioPage() {
                         <button
                           key={c}
                           onClick={() => setSelectedConstraint(c)}
-                          className={`flex-1 py-1.5 rounded text-xs font-medium border transition-colors ${
+                          className={`flex-1 py-1.5 rounded text-xs text-muted-foreground font-medium border transition-colors ${
                             selectedConstraint === c
                               ? "bg-indigo-600 border-indigo-500 text-foreground"
                               : "bg-muted border-border text-muted-foreground hover:text-foreground"
@@ -767,7 +767,7 @@ export default function QuantPortfolioPage() {
                         <button
                           key={m.key}
                           onClick={() => setCovMethod(m.key)}
-                          className={`w-full text-left px-3 py-2 rounded border text-xs transition-colors ${
+                          className={`w-full text-left px-3 py-2 rounded border text-xs text-muted-foreground transition-colors ${
                             covMethod === m.key
                               ? "bg-muted border-indigo-500/50 text-foreground"
                               : "bg-card border-border text-muted-foreground hover:border-border"
@@ -898,7 +898,7 @@ export default function QuantPortfolioPage() {
                     <button
                       key={view.id}
                       onClick={() => setSelectedView(selectedView === view.id ? null : view.id)}
-                      className={`w-full text-left px-3 py-2.5 rounded border text-xs transition-colors ${
+                      className={`w-full text-left px-3 py-2.5 rounded border text-xs text-muted-foreground transition-colors ${
                         selectedView === view.id
                           ? "bg-indigo-600/20 border-indigo-500/50"
                           : "bg-muted border-border hover:border-border"
@@ -1047,11 +1047,11 @@ export default function QuantPortfolioPage() {
                 <CardContent className="space-y-3">
                   {RISK_PARITY_ASSETS.map((asset) => (
                     <div key={asset.ticker} className="space-y-1">
-                      <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <span className="font-medium" style={{ color: asset.color }}>{asset.ticker}</span>
                         <span className="text-muted-foreground">{asset.name}</span>
                       </div>
-                      <div className="grid grid-cols-3 gap-1 text-xs text-center">
+                      <div className="grid grid-cols-3 gap-1 text-xs text-muted-foreground text-center">
                         {[
                           { label: "Mkt Cap", val: `${asset.mktWeight}%`,  cls: "text-muted-foreground"  },
                           { label: "Equal",   val: "20%",                   cls: "text-sky-400"   },
@@ -1079,7 +1079,7 @@ export default function QuantPortfolioPage() {
                   {CRISIS_PERIODS.map((cp) => (
                     <div key={cp.name}>
                       <p className="text-xs font-medium text-muted-foreground mb-1">{cp.name}</p>
-                      <div className="grid grid-cols-3 gap-1 text-xs text-center">
+                      <div className="grid grid-cols-3 gap-1 text-xs text-muted-foreground text-center">
                         {[
                           { label: "Risk Parity", val: cp.rp  },
                           { label: "60/40",        val: cp.mkt },
@@ -1222,12 +1222,12 @@ export default function QuantPortfolioPage() {
                     { name: "Factor Drift",   period: "Factor exposure",    pro: "Maintains factor purity",    con: "Complex, model-dependent" },
                     { name: "Vol Target",     period: "Vol regime shift",   pro: "Dynamic risk management",    con: "High turnover in vol spikes" },
                   ].map((t) => (
-                    <div key={t.name} className="px-3 py-2 rounded bg-muted border border-border text-xs">
+                    <div key={t.name} className="px-3 py-2 rounded bg-muted border border-border text-xs text-muted-foreground">
                       <div className="flex items-center justify-between mb-1">
                         <span className="font-medium text-foreground">{t.name}</span>
                         <Badge variant="outline" className="text-xs border-border text-muted-foreground">{t.period}</Badge>
                       </div>
-                      <div className="grid grid-cols-2 gap-1 text-xs">
+                      <div className="grid grid-cols-2 gap-1 text-xs text-muted-foreground">
                         <span className="text-green-400">+ {t.pro}</span>
                         <span className="text-red-400">- {t.con}</span>
                       </div>

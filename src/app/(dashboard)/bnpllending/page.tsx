@@ -121,7 +121,7 @@ function InfoBox({
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -308,7 +308,7 @@ const BNPL_PLAYERS: BNPLPlayer[] = [
 
 function Tab1BNPLModel() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Global BNPL GMV (2024)" value="$450B" sub="↑ 22% YoY" highlight="pos" icon={<DollarSign size={13} />} />
@@ -378,7 +378,7 @@ function Tab1BNPLModel() {
           Major Players Comparison
         </SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Provider", "GMV (2024)", "Take Rate", "Credit Loss", "Model", "Positioning", "Profitable"].map((h) => (
@@ -593,7 +593,7 @@ const ALT_DATA_FEATURES = [
 
 function Tab2DigitalScoring() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Thin-File Americans" value="45M" sub="No scoreable credit history" highlight="warn" icon={<Users size={13} />} />
@@ -618,7 +618,7 @@ function Tab2DigitalScoring() {
               { factor: "New Credit Inquiries", weight: 10, color: "bg-primary/10" },
             ].map((f) => (
               <div key={f.factor} className="space-y-0.5">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span className="text-muted-foreground">{f.factor}</span>
                   <span className="text-muted-foreground">{f.weight}%</span>
                 </div>
@@ -643,7 +643,7 @@ function Tab2DigitalScoring() {
               <div key={cat.category} className="rounded-lg border border-border bg-foreground/5 p-3">
                 <div className="flex items-center gap-1.5 mb-2 text-muted-foreground">
                   {cat.icon}
-                  <span className="text-xs font-semibold">{cat.category}</span>
+                  <span className="text-xs text-muted-foreground font-semibold">{cat.category}</span>
                 </div>
                 <ul className="space-y-0.5">
                   {cat.features.map((f) => (
@@ -883,7 +883,7 @@ const CASE_STUDIES: CaseStudy[] = [
 
 function Tab3EmbeddedFinance() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Embedded Finance Market (2024)" value="$124B" sub="↑ 34% CAGR 2020-2028" highlight="pos" icon={<Layers size={13} />} />
@@ -1191,7 +1191,7 @@ function DefaultRateComparisonSVG() {
 
 function Tab4RiskRegulation() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="BNPL Users w/ 3+ Providers" value="28%" sub="Up from 12% in 2020" highlight="neg" icon={<AlertTriangle size={13} />} />
@@ -1266,7 +1266,7 @@ function Tab4RiskRegulation() {
               return (
                 <div key={item.event} className="rounded-lg border border-border bg-foreground/5 p-3">
                   <div className="flex items-center gap-2 mb-1">
-                    <Badge className={cn("text-xs", severityColor)}>{item.date}</Badge>
+                    <Badge className={cn("text-xs text-muted-foreground", severityColor)}>{item.date}</Badge>
                     <span className="text-xs font-medium text-foreground">{item.event}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">{item.detail}</p>
@@ -1361,7 +1361,7 @@ export default function BNPLLendingPage() {
               { label: "Thin-File Problem", val: "45M Americans", color: "bg-amber-500/20 text-amber-300 border-amber-500/30" },
               { label: "Embedded Finance", val: "$124B Market", color: "bg-primary/20 text-primary border-border" },
             ].map((chip) => (
-              <Badge key={chip.label} className={cn("text-xs", chip.color)}>
+              <Badge key={chip.label} className={cn("text-xs text-muted-foreground", chip.color)}>
                 {chip.label}: {chip.val}
               </Badge>
             ))}

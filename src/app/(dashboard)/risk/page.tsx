@@ -470,7 +470,7 @@ function OverviewTab() {
         <Card>
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Sharpe Ratio</p>
-            <p className={`mt-1 text-2xl font-bold ${stats.sharpe >= 1 ? "text-green-500" : stats.sharpe >= 0 ? "text-amber-500" : "text-red-500"}`}>
+            <p className={`mt-1 text-lg font-medium ${stats.sharpe >= 1 ? "text-green-500" : stats.sharpe >= 0 ? "text-amber-500" : "text-red-500"}`}>
               {stats.sharpe.toFixed(2)}
             </p>
             <p className="text-xs text-muted-foreground">Annualized</p>
@@ -479,7 +479,7 @@ function OverviewTab() {
         <Card>
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Max Drawdown</p>
-            <p className="mt-1 text-2xl font-bold text-red-500">
+            <p className="mt-1 text-lg font-medium text-red-500">
               {(stats.maxDD * 100).toFixed(1)}%
             </p>
             <p className="text-xs text-muted-foreground">
@@ -491,8 +491,8 @@ function OverviewTab() {
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Risk Score</p>
             <div className="mt-1 flex items-center gap-2">
-              <p className="text-2xl font-bold">{stats.riskScore}</p>
-              <Badge variant={rl.variant} className="text-xs">{rl.label}</Badge>
+              <p className="text-lg font-medium">{stats.riskScore}</p>
+              <Badge variant={rl.variant} className="text-xs text-muted-foreground">{rl.label}</Badge>
             </div>
             <Progress value={stats.riskScore} className="mt-2 h-1.5" />
           </CardContent>
@@ -501,7 +501,7 @@ function OverviewTab() {
 
       {/* VaR */}
       <Card className="border-l-4 border-l-primary">
-        <CardHeader className="p-6 pb-2">
+        <CardHeader className="p-4 pb-2">
           <CardTitle className="text-lg font-semibold">Value at Risk (VaR) — 1 Day Parametric</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -565,7 +565,7 @@ function OverviewTab() {
               const posVaR = posValue * 0.012 * 1.645;
               return (
                 <div key={p.ticker} className="flex items-center gap-3">
-                  <span className="w-12 text-xs font-medium">{p.ticker}</span>
+                  <span className="w-12 text-xs text-muted-foreground font-medium">{p.ticker}</span>
                   <div className="flex-1">
                     <Progress value={pctOfPortfolio} className="h-1.5" />
                   </div>
@@ -623,7 +623,7 @@ function ScenariosTab() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Portfolio Drop</span>
                 <span className="font-medium text-red-500">-{customDrop}%</span>
               </div>
@@ -634,7 +634,7 @@ function ScenariosTab() {
               />
             </div>
             <div className="space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Rate Change (bps)</span>
                 <span className="font-medium">+{rateChange}bps</span>
               </div>
@@ -645,7 +645,7 @@ function ScenariosTab() {
               />
             </div>
             <div className="space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">VIX Spike</span>
                 <span className="font-medium">{vixSpike}</span>
               </div>
@@ -658,8 +658,8 @@ function ScenariosTab() {
           </div>
 
           <div className="rounded-lg border border-border/50 bg-muted/20 p-3 space-y-2">
-            <p className="text-xs font-medium">Estimated Impact</p>
-            <div className="grid grid-cols-3 gap-2 text-xs">
+            <p className="text-xs text-muted-foreground font-medium">Estimated Impact</p>
+            <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
               <div>
                 <p className="text-muted-foreground">Price shock</p>
                 <p className="font-medium text-red-500">${customImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
@@ -674,7 +674,7 @@ function ScenariosTab() {
               </div>
             </div>
             <div className="flex items-center justify-between border-t border-border/40 pt-2">
-              <span className="text-xs font-medium">Total Estimated Loss</span>
+              <span className="text-xs text-muted-foreground font-medium">Total Estimated Loss</span>
               <span className="text-sm font-medium text-red-500">
                 ${totalCustomImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                 &nbsp;({((totalCustomImpact / pv) * 100).toFixed(1)}%)
@@ -684,12 +684,12 @@ function ScenariosTab() {
 
           {/* Position-level impact */}
           <div className="space-y-1.5">
-            <p className="text-xs font-medium">Position Impact</p>
+            <p className="text-xs text-muted-foreground font-medium">Position Impact</p>
             {positions.slice(0, 5).map((p) => {
               const posValue = p.currentPrice * p.quantity;
               const impact = -(posValue * customDrop) / 100;
               return (
-                <div key={p.ticker} className="flex items-center justify-between text-xs">
+                <div key={p.ticker} className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="font-medium">{p.ticker}</span>
                   <span className="text-muted-foreground">${posValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
                   <span className="text-red-500">{impact.toLocaleString("en-US", { maximumFractionDigits: 0, style: "currency", currency: "USD" })}</span>
@@ -835,7 +835,7 @@ function PositionSizingTab() {
               />
             </div>
             <div className="space-y-1.5 col-span-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Risk per Trade</span>
                 <span className="font-medium">{riskPct}% = ${riskDollar.toFixed(0)}</span>
               </div>
@@ -843,7 +843,7 @@ function PositionSizingTab() {
             </div>
           </div>
           <div className="space-y-1.5">
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">Stop Distance</span>
               <span className="font-medium">{stopPct}% = ${stopDollar.toFixed(2)}/share</span>
             </div>
@@ -1065,27 +1065,27 @@ function StressTestsTab() {
               <CardContent className="p-4 space-y-2">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-medium leading-tight">{s.name}</p>
-                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${rl.cls}`}>{rl.label}</span>
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium ${rl.cls}`}>{rl.label}</span>
                 </div>
                 <p className="text-[11px] text-muted-foreground leading-relaxed">{s.context}</p>
                 <div className="border-t border-border/40 pt-2 space-y-1">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Market Drop</span>
                     <span className="font-medium text-red-500">{s.drop}%</span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Portfolio Impact</span>
                     <span className="font-medium text-red-500">
                       ${dollarImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                     </span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Remaining Value</span>
                     <span className="font-medium">
                       ${newPortfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                     </span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">VIX Peak</span>
                     <span className="font-medium">{s.vix}</span>
                   </div>
@@ -1110,7 +1110,7 @@ function StressTestsTab() {
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="space-y-2">
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span className="text-muted-foreground">Portfolio Change (%)</span>
               <span className="font-medium text-red-500">-{customPct}%</span>
             </div>
@@ -1131,7 +1131,7 @@ function StressTestsTab() {
           </Button>
           {customResult !== null && (
             <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-3 space-y-1.5">
-              <p className="text-xs font-medium">Stress Test Result</p>
+              <p className="text-xs text-muted-foreground font-medium">Stress Test Result</p>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Estimated Loss</span>
                 <span className="font-medium text-red-500">
@@ -1199,7 +1199,7 @@ function CorrelationAnalysisTab() {
 
 export default function RiskPage() {
   return (
-    <div className="flex flex-col gap-4 p-4 md:p-6">
+    <div className="flex flex-col gap-4 p-4 md:p-4">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-medium">Risk Management</h1>

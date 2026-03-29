@@ -350,7 +350,7 @@ function BondUniverseTab({
               key={f}
               onClick={() => setRatingFilter(f)}
               className={cn(
-                "px-3 py-1 rounded text-xs font-medium transition-colors",
+                "px-3 py-1 rounded text-xs text-muted-foreground font-medium transition-colors",
                 ratingFilter === f
                   ? "bg-primary text-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted"
@@ -366,7 +366,7 @@ function BondUniverseTab({
               key={s}
               onClick={() => setSectorFilter(s)}
               className={cn(
-                "px-3 py-1 rounded text-xs font-medium transition-colors",
+                "px-3 py-1 rounded text-xs text-muted-foreground font-medium transition-colors",
                 sectorFilter === s
                   ? "bg-indigo-600 text-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted"
@@ -382,7 +382,7 @@ function BondUniverseTab({
               key={f}
               onClick={() => setCallableFilter(f)}
               className={cn(
-                "px-3 py-1 rounded text-xs font-medium transition-colors",
+                "px-3 py-1 rounded text-xs text-muted-foreground font-medium transition-colors",
                 callableFilter === f
                   ? "bg-primary text-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted"
@@ -396,7 +396,7 @@ function BondUniverseTab({
 
       {/* Table */}
       <div className="overflow-x-auto rounded-lg border border-border">
-        <table className="w-full text-xs">
+        <table className="w-full text-xs text-muted-foreground">
           <thead className="bg-muted text-muted-foreground">
             <tr>
               <th className="text-left px-3 py-2">Bond / Issuer</th>
@@ -466,7 +466,7 @@ function BondUniverseTab({
                 <td className="px-3 py-2 text-right text-muted-foreground">{bond.modDur.toFixed(2)}</td>
                 <td className="px-3 py-2 text-right text-muted-foreground">{bond.convexity.toFixed(2)}</td>
                 <td className="px-3 py-2 text-right">
-                  <span className={cn("text-xs font-semibold px-1.5 py-0.5 rounded border", ratingBg(bond.rating))}>
+                  <span className={cn("text-xs text-muted-foreground font-semibold px-1.5 py-0.5 rounded border", ratingBg(bond.rating))}>
                     {bond.rating}
                   </span>
                 </td>
@@ -601,7 +601,7 @@ function YieldCurveTab() {
   const approxPrice = selectedBond2 ? bondPrice(selectedBond2.ytm, Math.max(selectedBond2.tenor.years, 0.1), selectedBond2.ytm) : 100;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key Spreads */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         {[
@@ -630,7 +630,7 @@ function YieldCurveTab() {
                   key={label}
                   onClick={() => setShowOverlays((p) => ({ ...p, [label]: !p[label] }))}
                   className={cn(
-                    "flex items-center gap-1 text-xs px-2 py-1 rounded transition-colors",
+                    "flex items-center gap-1 text-xs text-muted-foreground px-2 py-1 rounded transition-colors",
                     showOverlays[label] ? "opacity-100" : "opacity-40"
                   )}
                   style={{ color: c.color }}
@@ -727,7 +727,7 @@ function YieldCurveTab() {
                       <div className={cn("text-base font-bold", sc.color)}>
                         {chg > 0 ? "+" : ""}{chg.toFixed(3)}
                       </div>
-                      <div className={cn("text-xs", sc.color)}>
+                      <div className={cn("text-xs text-muted-foreground", sc.color)}>
                         ({pct > 0 ? "+" : ""}{pct.toFixed(3)}%)
                       </div>
                     </div>
@@ -866,7 +866,7 @@ function PortfolioBuilderTab({
                 key={m}
                 onClick={() => setAllocationMode(m)}
                 className={cn(
-                  "px-3 py-1 rounded text-xs font-medium transition-colors capitalize",
+                  "px-3 py-1 rounded text-xs text-muted-foreground font-medium transition-colors capitalize",
                   allocationMode === m ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 )}
               >
@@ -1193,7 +1193,7 @@ function CreditAnalysisTab() {
                 <h3 className="text-sm font-medium text-foreground">{item.label}</h3>
                 <span className="text-xl font-medium" style={{ color: item.color }}>{item.spread}bps</span>
               </div>
-              <div className="flex gap-4 text-xs mb-2">
+              <div className="flex gap-4 text-xs text-muted-foreground mb-2">
                 <span className="text-muted-foreground">24M avg: <span className="text-muted-foreground">{item.avg}bps</span></span>
                 <span className={item.spread > item.avg ? "text-amber-400" : "text-emerald-400"}>
                   vs avg: {item.spread > item.avg ? "+" : ""}{item.spread - item.avg}bps
@@ -1260,7 +1260,7 @@ function CreditAnalysisTab() {
                   className={cn("absolute top-0 h-full rounded", rv.vsMedian > 0 ? "bg-amber-500/40" : "bg-emerald-500/40")}
                 />
               </div>
-              <span className={cn("text-xs w-16 text-right font-medium",
+              <span className={cn("text-xs text-muted-foreground w-16 text-right font-medium",
                 rv.label === "Wide" ? "text-amber-400" : rv.label === "Tight" ? "text-emerald-400" : "text-muted-foreground"
               )}>
                 {rv.label} {rv.vsMedian > 0 ? "+" : ""}{rv.vsMedian}bps
@@ -1285,7 +1285,7 @@ function CreditAnalysisTab() {
                 <span className="text-xs font-medium text-foreground">{b.name}</span>
                 <span className="text-xs text-muted-foreground ml-2">{b.issuer}</span>
               </div>
-              <span className={cn("text-xs font-medium px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
+              <span className={cn("text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
               <span className="text-xs text-amber-400">+{b.spreadBps}bps</span>
               <span className="text-xs text-muted-foreground">Watch</span>
             </div>
@@ -1387,7 +1387,7 @@ function TaxExemptTab() {
                   key={r}
                   onClick={() => setMarginalRate(r)}
                   className={cn(
-                    "flex-1 py-1 rounded text-xs font-medium transition-colors",
+                    "flex-1 py-1 rounded text-xs text-muted-foreground font-medium transition-colors",
                     marginalRate === r ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                   )}
                 >
@@ -1430,7 +1430,7 @@ function TaxExemptTab() {
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">After-Tax Return Comparison</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead className="text-muted-foreground border-b border-border">
               <tr>
                 <th className="text-left py-2">Bond Type</th>
@@ -1458,7 +1458,7 @@ function TaxExemptTab() {
                     <td className="py-2 text-right text-muted-foreground">{b.coupon.toFixed(2)}%</td>
                     <td className="py-2 text-right">
                       <span className={cn(
-                        "px-1.5 py-0.5 rounded text-xs",
+                        "px-1.5 py-0.5 rounded text-xs text-muted-foreground",
                         b.taxable ? "bg-red-500/20 text-red-400" : isTriple ? "bg-orange-500/20 text-orange-400" : "bg-emerald-500/20 text-emerald-400"
                       )}>
                         {b.taxable ? (b.isBab ? "BAB (taxable)" : "Taxable") : isTriple ? "Triple Exempt" : "Tax-Exempt"}
@@ -1506,7 +1506,7 @@ function TaxExemptTab() {
                     {isTriple && <span className="text-xs px-1 bg-orange-500/20 text-orange-400 rounded">3x Exempt</span>}
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className={cn("text-xs font-medium px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
+                    <span className={cn("text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
                     <span className="text-xs text-muted-foreground">{b.coupon.toFixed(2)}%</span>
                     <span className="text-xs font-medium text-primary">TEY: {teYield.toFixed(2)}%</span>
                   </div>
@@ -1594,7 +1594,7 @@ export default function FixedIncomePage() {
   const portfolioCount = portfolio.length;
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}

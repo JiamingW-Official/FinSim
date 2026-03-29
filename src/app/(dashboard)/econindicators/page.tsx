@@ -746,7 +746,7 @@ export default function EconIndicatorsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -786,10 +786,10 @@ export default function EconIndicatorsPage() {
                   <span className="text-xs text-muted-foreground">{m.label}</span>
                 </div>
                 <div className="flex items-end gap-2">
-                  <span className="text-2xl font-bold">{m.value}</span>
+                  <span className="text-lg font-medium">{m.value}</span>
                   <span
                     className={cn(
-                      "text-xs font-medium flex items-center gap-0.5 mb-0.5",
+                      "text-xs text-muted-foreground font-medium flex items-center gap-0.5 mb-0.5",
                       m.positive ? "text-green-400" : "text-red-400"
                     )}
                   >
@@ -839,7 +839,7 @@ export default function EconIndicatorsPage() {
                           key={v}
                           variant={selectedPMIView === v ? "secondary" : "ghost"}
                           size="sm"
-                          className="h-6 px-2 text-xs"
+                          className="h-6 px-2 text-xs text-muted-foreground"
                           onClick={() => setSelectedPMIView(v)}
                         >
                           {v.toUpperCase()}
@@ -923,7 +923,7 @@ export default function EconIndicatorsPage() {
                         {r.trend === "neutral" && <Minus className="h-3 w-3 text-amber-400" />}
                         <span
                           className={cn(
-                            "text-xs",
+                            "text-xs text-muted-foreground",
                             r.trend === "up"
                               ? "text-green-400"
                               : r.trend === "down"
@@ -1072,7 +1072,7 @@ export default function EconIndicatorsPage() {
                   <Card key={stat.label} className="bg-card border-border">
                     <CardContent className="p-4">
                       <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
-                      <p className={cn("text-2xl font-bold", stat.color)}>{stat.value}</p>
+                      <p className={cn("text-lg font-medium", stat.color)}>{stat.value}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{stat.sub}</p>
                     </CardContent>
                   </Card>
@@ -1157,7 +1157,7 @@ export default function EconIndicatorsPage() {
                               <Badge
                                 variant="outline"
                                 className={cn(
-                                  "text-xs",
+                                  "text-xs text-muted-foreground",
                                   row.outlook === "bullish"
                                     ? "border-green-500/40 text-green-400"
                                     : row.outlook === "bearish"
@@ -1218,7 +1218,7 @@ export default function EconIndicatorsPage() {
                       <td className="py-2 text-center">
                         <Badge
                           variant="outline"
-                          className={cn("text-xs", importanceColor[evt.importance])}
+                          className={cn("text-xs text-muted-foreground", importanceColor[evt.importance])}
                         >
                           {evt.importance}
                         </Badge>

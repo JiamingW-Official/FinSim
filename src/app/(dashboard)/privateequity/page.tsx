@@ -108,7 +108,7 @@ function InfoBox({
     violet: "bg-primary/10 border-border text-primary",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -133,7 +133,7 @@ function SliderInput({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <div className="flex justify-between text-xs">
+      <div className="flex justify-between text-xs text-muted-foreground">
         <span className="text-muted-foreground">{label}</span>
         <span className="text-foreground font-medium">{format(value)}</span>
       </div>
@@ -315,7 +315,7 @@ function IndustryOverview() {
             <text x={10} y={90} textAnchor="middle" fontSize={8} fill="#71717a">{(maxVol / 2).toFixed(0)}</text>
             <text x={10} y={18} textAnchor="middle" fontSize={8} fill="#71717a">{maxVol}</text>
           </svg>
-          <div className="flex gap-6 justify-center mt-2 text-xs text-muted-foreground">
+          <div className="flex gap-3 justify-center mt-2 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <span className="w-3 h-3 rounded bg-primary inline-block" /> Volume ($B)
             </span>
@@ -381,7 +381,7 @@ function IndustryOverview() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span className="text-muted-foreground">Risk</span>
                     <span className="text-rose-400">{s.risk}%</span>
                   </div>
@@ -390,7 +390,7 @@ function IndustryOverview() {
                   </div>
                 </div>
                 <div>
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span className="text-muted-foreground">Return Potential</span>
                     <span className="text-emerald-400">{s.return}%</span>
                   </div>
@@ -562,7 +562,7 @@ function LBOModeling() {
             >
               <p className="text-xs font-medium text-foreground truncate">{t.name}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{t.sector}</p>
-              <div className="flex gap-2 mt-2 text-xs">
+              <div className="flex gap-2 mt-2 text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Rev: <strong className="text-foreground">${t.revenue}M</strong></span>
               </div>
               <div className="text-xs text-muted-foreground mt-0.5">
@@ -688,7 +688,7 @@ function LBOModeling() {
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> Debt Schedule</SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 pr-4">Year</th>
@@ -717,7 +717,7 @@ function LBOModeling() {
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> IRR Sensitivity: Entry Multiple × Exit Multiple</SectionTitle>
         <div className="rounded-md border border-border bg-foreground/5 p-4 overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="text-muted-foreground">
                 <th className="text-left py-2 pr-4">Entry \ Exit</th>
@@ -880,7 +880,7 @@ function ValueCreation() {
                 key={d.label}
                 onClick={() => setSelectedDriver(selectedDriver === i ? null : i)}
                 className={cn(
-                  "flex items-center gap-1.5 text-xs transition-opacity",
+                  "flex items-center gap-1.5 text-xs text-muted-foreground transition-opacity",
                   selectedDriver !== null && selectedDriver !== i ? "opacity-40" : "opacity-100"
                 )}
               >
@@ -938,7 +938,7 @@ function ValueCreation() {
                 <p className="text-sm font-medium text-foreground">{bo.name}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">Acquired Year {bo.year}</p>
               </div>
-              <div className="flex flex-wrap gap-4 text-xs">
+              <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
                 <div>
                   <span className="text-muted-foreground">Price: </span>
                   <span className="text-foreground font-medium">${bo.price}M</span>
@@ -1004,11 +1004,11 @@ function ValueCreation() {
                   <Badge className="bg-emerald-500/30 text-emerald-200 text-xs border-emerald-500/30">Best</Badge>
                 )}
               </div>
-              <div className="flex gap-4 text-xs mb-3">
+              <div className="flex gap-4 text-xs text-muted-foreground mb-3">
                 <span className="text-muted-foreground">Avg MOIC: <strong className="text-foreground">{opt.avgMOIC}x</strong></span>
                 <span className="text-muted-foreground">Timeline: <strong className="text-foreground">{opt.timeToClose}</strong></span>
               </div>
-              <div className="space-y-1 text-xs">
+              <div className="space-y-1 text-xs text-muted-foreground">
                 {opt.pros.map((p) => (
                   <p key={p} className="flex items-start gap-1.5 text-muted-foreground">
                     <CheckCircle className="w-3 h-3 text-emerald-500 mt-0.5 flex-shrink-0" /> {p}
@@ -1160,7 +1160,7 @@ function FundEconomics() {
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> LP vs GP Economics at Various Fund IRR Levels</SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 pr-4">Gross IRR</th>
@@ -1306,7 +1306,7 @@ function DealSourcing() {
                   {ch.dealShare}% of deals
                 </Badge>
               </div>
-              <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
                 <div>
                   <span className="text-muted-foreground">Avg Competitors: </span>
                   <span className="text-foreground font-medium">{ch.avgCompetitors}</span>
@@ -1503,7 +1503,7 @@ function DealSourcing() {
 export default function PrivateEquityPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-8 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

@@ -575,7 +575,7 @@ function OECDConsensusTab() {
             { cat: "Cat 7", examples: "Sudan, Zimbabwe, Syria, Venezuela", color: "text-red-400" },
           ].map((item) => (
             <div key={item.cat} className="bg-muted/20 rounded-lg p-2">
-              <div className={cn("text-xs font-medium mb-1", item.color)}>{item.cat}</div>
+              <div className={cn("text-xs text-muted-foreground font-medium mb-1", item.color)}>{item.cat}</div>
               <div className="text-xs text-muted-foreground">{item.examples}</div>
             </div>
           ))}
@@ -1146,7 +1146,7 @@ function DealStructuringTab() {
                 <div className="mt-4 p-4 bg-muted/20 rounded-lg">
                   <div className="text-sm font-medium text-foreground mb-1">Hypothetical: $800m Power Plant in Sub-Saharan Africa</div>
                   <div className="text-xs text-muted-foreground mb-3">Illustrative deal combining multiple ECA products</div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
                     {[
                       { k: "Exporter", v: "German turbine manufacturer (Euler Hermes backed)" },
                       { k: "Borrower", v: "State power utility, Cat 6 country" },
@@ -1234,16 +1234,16 @@ export default function ExportCreditPage() {
         {/* Tabs */}
         <Tabs defaultValue="overview" className="w-full mt-8">
           <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-muted/30 p-1 rounded-lg">
-            <TabsTrigger value="overview" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="overview" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Globe size={13} /> ECA Overview
             </TabsTrigger>
-            <TabsTrigger value="consensus" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="consensus" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <FileText size={13} /> OECD Consensus
             </TabsTrigger>
-            <TabsTrigger value="products" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="products" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Layers size={13} /> Products
             </TabsTrigger>
-            <TabsTrigger value="structuring" className="flex items-center gap-1.5 text-xs">
+            <TabsTrigger value="structuring" className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Briefcase size={13} /> Deal Structuring
             </TabsTrigger>
           </TabsList>

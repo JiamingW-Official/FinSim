@@ -545,7 +545,7 @@ function ResearchProcessTab() {
   const active = RESEARCH_STEPS.find((s) => s.id === activeStep)!;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Step selector */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {RESEARCH_STEPS.map((step, i) => (
@@ -564,7 +564,7 @@ function ResearchProcessTab() {
             <div className="flex items-center gap-2 mb-1">
               <span
                 className={cn(
-                  "text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center",
+                  "text-xs text-muted-foreground font-bold w-5 h-5 rounded-full flex items-center justify-center",
                   activeStep === step.id
                     ? dotColorMap[step.color] + " text-foreground"
                     : "bg-foreground/10 text-muted-foreground"
@@ -691,7 +691,7 @@ function ResearchProcessTab() {
             <div key={col.label}>
               <div
                 className={cn(
-                  "text-xs font-medium mb-1",
+                  "text-xs text-muted-foreground font-medium mb-1",
                   col.label === "Permitted"
                     ? "text-emerald-400"
                     : col.label === "Gray Area"
@@ -724,7 +724,7 @@ function FinancialModelTab() {
   )?.value ?? 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 3-Statement Model Flow SVG */}
       <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
@@ -1054,7 +1054,7 @@ function FinancialModelTab() {
           DCF Sensitivity — WACC vs. Terminal Growth Rate (Price, $)
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-1.5 pr-3 text-foreground/30 font-normal">
@@ -1122,7 +1122,7 @@ function ValuationFrameworkTab() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Method weight visualization */}
       <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
@@ -1131,7 +1131,7 @@ function ValuationFrameworkTab() {
         <div className="space-y-3">
           {VALUATION_METHODS.map((method) => (
             <div key={method.name} className="space-y-1">
-              <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <span
                     className="w-2.5 h-2.5 rounded-full"
@@ -1224,7 +1224,7 @@ function ValuationFrameworkTab() {
           Peer Group Comparison
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {[
@@ -1392,7 +1392,7 @@ function ValuationFrameworkTab() {
                   </span>
                   <span
                     className={cn(
-                      "text-xs px-1.5 py-0.5 rounded font-medium",
+                      "text-xs text-muted-foreground px-1.5 py-0.5 rounded font-medium",
                       row.dir === "up"
                         ? "bg-emerald-500/15 text-emerald-400"
                         : row.dir === "down"
@@ -1446,14 +1446,14 @@ function BuyVsSellSideTab() {
     .join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Comparison table */}
       <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           Buy-Side vs. Sell-Side — 9 Dimensions
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-2 pr-4 text-foreground/30 font-normal w-1/4">
@@ -1774,7 +1774,7 @@ function BuyVsSellSideTab() {
 export default function EquityResearch2Page() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -16 }}
@@ -1805,7 +1805,7 @@ export default function EquityResearch2Page() {
               <div
                 key={chip.label}
                 className={cn(
-                  "flex items-center gap-1.5 text-xs px-3 py-1 rounded-full border",
+                  "flex items-center gap-1.5 text-xs text-muted-foreground px-3 py-1 rounded-full border",
                   colorMap[chip.color]
                 )}
               >

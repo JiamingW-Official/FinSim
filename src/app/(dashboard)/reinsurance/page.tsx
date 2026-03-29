@@ -213,7 +213,7 @@ const MAJOR_REINSURERS = [
 
 function BasicsTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <SectionHeader
           title="Risk Transfer: Cedent to Reinsurer"
@@ -540,7 +540,7 @@ const TRIGGER_TYPES = [
 
 function CatBondsTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <SectionHeader
           title="Cat Bond Structure"
@@ -566,7 +566,7 @@ function CatBondsTab() {
                 <div className={cn("text-sm font-medium mb-1.5", colorCls?.title)}>{t.type} Trigger</div>
                 <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{t.desc}</p>
                 <div className="flex gap-2 flex-wrap">
-                  <span className={cn("rounded px-2 py-0.5 text-xs border", colorCls?.badge)}>+ {t.pro}</span>
+                  <span className={cn("rounded px-2 py-0.5 text-xs text-muted-foreground border", colorCls?.badge)}>+ {t.pro}</span>
                   <span className="rounded px-2 py-0.5 text-xs bg-red-500/10 text-red-400 border border-red-500/20">- {t.con}</span>
                 </div>
               </div>
@@ -738,7 +738,7 @@ function BasicsRiskSVG() {
 
 function ILSTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <SectionHeader
           title="Insurance-Linked Securities Taxonomy"
@@ -834,7 +834,7 @@ function ILSTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <InfoBox title="Leading ILS Fund Managers" variant="blue">
-          <ul className="space-y-1 text-xs">
+          <ul className="space-y-1 text-xs text-muted-foreground">
             {[
               "Fermat Capital Management — pioneer, ~$9B AUM",
               "Nephila Capital (Markel) — ~$12B AUM",
@@ -1001,7 +1001,7 @@ const UNDERWRITING_PHASES = [
 
 function CyclesTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <SectionHeader
           title="Hard vs Soft Market Cycle"

@@ -661,7 +661,7 @@ function SovereignYieldsTab() {
     <button
       onClick={() => toggle(col)}
       className={cn(
-        "flex items-center gap-1 text-xs font-medium transition-colors",
+        "flex items-center gap-1 text-xs text-muted-foreground font-medium transition-colors",
         sortBy === col ? "text-primary" : "text-muted-foreground hover:text-foreground"
       )}
     >
@@ -671,7 +671,7 @@ function SovereignYieldsTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary chips */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
@@ -854,7 +854,7 @@ function SovereignYieldsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-medium",
+                        "text-xs text-muted-foreground font-medium",
                         bond.change1D > 0
                           ? "text-red-400"
                           : bond.change1D < 0
@@ -869,7 +869,7 @@ function SovereignYieldsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-semibold",
+                        "text-xs text-muted-foreground font-semibold",
                         ratingColor(bond.ratingClass)
                       )}
                     >
@@ -879,7 +879,7 @@ function SovereignYieldsTab() {
                   <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {bond.debtGDP.toFixed(1)}%
                   </td>
-                  <td className="px-3 py-2.5 text-right text-xs">
+                  <td className="px-3 py-2.5 text-right text-xs text-muted-foreground">
                     <span
                       className={
                         bond.inflation > 4 ? "text-red-400" : "text-muted-foreground"
@@ -1106,7 +1106,7 @@ function YieldCurveTab() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Individual curves */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {curves.map((c) => (
@@ -1127,7 +1127,7 @@ function YieldCurveTab() {
         </h3>
         <div className="flex gap-4 mb-3">
           {curves.map((c) => (
-            <div key={c.code} className="flex items-center gap-1.5 text-xs">
+            <div key={c.code} className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <div
                 className="w-4 h-1 rounded"
                 style={{ backgroundColor: c.color }}
@@ -1221,7 +1221,7 @@ function YieldCurveTab() {
                   <span className="text-xs font-medium text-foreground">{a.label}</span>
                   <span
                     className={cn(
-                      "text-xs font-bold",
+                      "text-xs text-muted-foreground font-bold",
                       a.value < 0 ? "text-red-400" : "text-green-400"
                     )}
                   >
@@ -1231,7 +1231,7 @@ function YieldCurveTab() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "text-xs px-1.5 py-0",
+                      "text-xs text-muted-foreground px-1.5 py-0",
                       a.value < 0
                         ? "border-red-500/40 text-red-400"
                         : "border-green-500/40 text-green-400"
@@ -1253,7 +1253,7 @@ function YieldCurveTab() {
 // Currency-Hedged Returns Tab
 function HedgedReturnsTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Info panel */}
       <div className="bg-primary/10 border border-border rounded-lg p-4 flex gap-3">
         <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
@@ -1359,7 +1359,7 @@ function HedgedReturnsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-medium",
+                        "text-xs text-muted-foreground font-medium",
                         h.hedgingCostAnnualized < 0
                           ? "text-green-400"
                           : "text-orange-400"
@@ -1372,7 +1372,7 @@ function HedgedReturnsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs",
+                        "text-xs text-muted-foreground",
                         h.interestDiff > 0 ? "text-green-400" : "text-red-400"
                       )}
                     >
@@ -1386,7 +1386,7 @@ function HedgedReturnsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-medium",
+                        "text-xs text-muted-foreground font-medium",
                         h.hedgedReturn < 0 ? "text-red-400" : "text-green-400"
                       )}
                     >
@@ -1398,7 +1398,7 @@ function HedgedReturnsTab() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-xs",
+                        "text-xs text-muted-foreground",
                         h.hedgedReturn > 3
                           ? "border-green-500/40 text-green-400"
                           : h.hedgedReturn > 1
@@ -1532,7 +1532,7 @@ function EMBondsTab() {
   const maxSpread = Math.max(...EM_BONDS.map((e) => e.embiSpread));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
@@ -1711,7 +1711,7 @@ function EMBondsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-medium",
+                        "text-xs text-muted-foreground font-medium",
                         yieldColor(em.localCurrencyYield)
                       )}
                     >
@@ -1721,7 +1721,7 @@ function EMBondsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-medium",
+                        "text-xs text-muted-foreground font-medium",
                         em.embiSpread > 500
                           ? "text-red-400"
                           : em.embiSpread > 300
@@ -1737,7 +1737,7 @@ function EMBondsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-medium",
+                        "text-xs text-muted-foreground font-medium",
                         ratingColor(em.ratingClass)
                       )}
                     >
@@ -1747,7 +1747,7 @@ function EMBondsTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "text-xs font-medium",
+                        "text-xs text-muted-foreground font-medium",
                         em.fxChangeYTD >= 0 ? "text-green-400" : "text-red-400"
                       )}
                     >
@@ -1762,7 +1762,7 @@ function EMBondsTab() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-xs",
+                        "text-xs text-muted-foreground",
                         em.ratingClass === "bbb"
                           ? "border-yellow-500/40 text-yellow-400"
                           : em.ratingClass === "bb"
@@ -1820,7 +1820,7 @@ function EMBondsTab() {
               key={panel.title}
               className={cn("rounded-lg p-3 border", panel.color)}
             >
-              <h4 className={cn("text-xs font-medium mb-2", panel.textColor)}>
+              <h4 className={cn("text-xs text-muted-foreground font-medium mb-2", panel.textColor)}>
                 {panel.title}
               </h4>
               <ul className="space-y-1">
@@ -1847,7 +1847,7 @@ function CentralBankTab() {
   const maxRate = Math.max(...CENTRAL_BANKS.map((cb) => cb.policyRate));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Policy rate differential chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-medium text-foreground mb-4">
@@ -1987,7 +1987,7 @@ function CentralBankTab() {
                 </div>
                 <Badge
                   variant="outline"
-                  className={cn("text-xs border", stanceColor(cb.stance))}
+                  className={cn("text-xs text-muted-foreground border", stanceColor(cb.stance))}
                 >
                   {cb.stance.charAt(0).toUpperCase() + cb.stance.slice(1)}
                 </Badge>
@@ -1999,7 +1999,7 @@ function CentralBankTab() {
                 </span>
                 <span
                   className={cn(
-                    "text-xs font-medium mb-1",
+                    "text-xs text-muted-foreground font-medium mb-1",
                     rateChange > 0
                       ? "text-red-400"
                       : rateChange < 0
@@ -2046,7 +2046,7 @@ function CentralBankTab() {
                   <div className="text-[11px] text-muted-foreground">QE/QT Status</div>
                   <div
                     className={cn(
-                      "text-xs font-medium",
+                      "text-xs text-muted-foreground font-medium",
                       cb.qeStatus === "QT"
                         ? "text-red-400"
                         : cb.qeStatus === "QE"
@@ -2104,7 +2104,7 @@ function CentralBankTab() {
             },
           ].map((p) => (
             <div key={p.title} className={cn("border rounded-lg p-3", p.bg)}>
-              <div className={cn("text-xs font-medium mb-1", p.color)}>
+              <div className={cn("text-xs text-muted-foreground font-medium mb-1", p.color)}>
                 {p.title}
               </div>
               <div className={cn("text-lg font-medium mb-1", p.color)}>

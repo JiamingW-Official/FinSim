@@ -964,7 +964,7 @@ export default function PaymentSystemsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1019,7 +1019,7 @@ export default function PaymentSystemsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Rails table */}
             <Card className="bg-card border-border border-l-4 border-l-primary">
-              <CardHeader className="pb-2 p-6">
+              <CardHeader className="pb-2 p-4">
                 <CardTitle className="text-lg flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-primary" />
                   Global Payment Rails Comparison
@@ -1027,7 +1027,7 @@ export default function PaymentSystemsPage() {
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Rail", "Region", "Settlement", "Type", "Max Tx"].map((h) => (
@@ -1055,7 +1055,7 @@ export default function PaymentSystemsPage() {
                             <Badge
                               variant="outline"
                               className={cn(
-                                "text-xs",
+                                "text-xs text-muted-foreground",
                                 r.type === "gross"
                                   ? "border-green-500/40 text-green-400"
                                   : "border-yellow-500/40 text-yellow-400"
@@ -1123,7 +1123,7 @@ export default function PaymentSystemsPage() {
             </CardHeader>
             <CardContent>
               <SWIFTChainSVG />
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 text-xs text-muted-foreground">
                 <div className="bg-muted/50 rounded p-2">
                   <div className="text-yellow-400 font-medium mb-1">Nostro Account</div>
                   <div className="text-muted-foreground">
@@ -1226,7 +1226,7 @@ export default function PaymentSystemsPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <FourPartyModelSVG />
-                <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                   <div className="bg-primary/10 border border-border rounded p-2">
                     <div className="text-primary font-medium mb-1">4-Party (Visa/MC)</div>
                     <div className="text-muted-foreground">
@@ -1256,7 +1256,7 @@ export default function PaymentSystemsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <InterchangeBar />
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
                 {[
                   {
                     label: "Issuer (70%)",
@@ -1317,7 +1317,7 @@ export default function PaymentSystemsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
                 {[
                   {
                     icon: Wifi,
@@ -1367,7 +1367,7 @@ export default function PaymentSystemsPage() {
                     <ul className="space-y-1 text-muted-foreground">
                       {sec.points.map((p) => (
                         <li key={p} className="flex items-start gap-1">
-                          <span className={cn("mt-0.5 text-xs", sec.color)}>•</span>
+                          <span className={cn("mt-0.5 text-xs text-muted-foreground", sec.color)}>•</span>
                           {p}
                         </li>
                       ))}
@@ -1408,7 +1408,7 @@ export default function PaymentSystemsPage() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="px-3 py-2 text-left text-muted-foreground">Feature</th>
@@ -1623,7 +1623,7 @@ export default function PaymentSystemsPage() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       {["Corridor", "Annual Flow", "Bank Cost", "Fintech Cost", "Crypto Cost", "Avg Days"].map((h) => (
@@ -1754,7 +1754,7 @@ export default function PaymentSystemsPage() {
                 BIS Innovation Hub — Cross-Border CBDC Projects
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+            <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-muted-foreground">
               {[
                 {
                   name: "mBridge",
@@ -1791,7 +1791,7 @@ export default function PaymentSystemsPage() {
               ].map((p) => (
                 <div key={p.name} className={cn("border rounded p-3 space-y-1.5", p.bg)}>
                   <div className={cn("font-medium text-sm", p.color)}>{p.name}</div>
-                  <Badge variant="outline" className={cn("text-xs border-border", p.color)}>
+                  <Badge variant="outline" className={cn("text-xs text-muted-foreground border-border", p.color)}>
                     {p.status}
                   </Badge>
                   <div className="text-muted-foreground">{p.participants}</div>
@@ -1809,7 +1809,7 @@ export default function PaymentSystemsPage() {
                 CBDC Interoperability Challenges
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+            <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs text-muted-foreground">
               {[
                 {
                   title: "Technical Standards",

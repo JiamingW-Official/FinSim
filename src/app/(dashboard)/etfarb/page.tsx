@@ -454,7 +454,7 @@ function ArbCalculator() {
             size="sm"
             variant={i === scenarioIdx ? "default" : "outline"}
             onClick={() => setScenarioIdx(i)}
-            className="text-xs"
+            className="text-xs text-muted-foreground"
           >
             {sc.label}
           </Button>
@@ -581,7 +581,7 @@ function FixedIncomSection() {
               <div key={row.label} className="mb-3">
                 <div className="flex justify-between text-xs text-muted-foreground mb-1">
                   <span>{row.label}</span>
-                  <span className="text-xs">
+                  <span className="text-xs text-muted-foreground">
                     Normal: <span style={{ color: row.color }}>{row.normal.toFixed(2)}%</span>
                     {" "}&nbsp; Stress: <span className="text-amber-400">{row.stress.toFixed(2)}%</span>
                   </span>
@@ -620,7 +620,7 @@ export default function ETFArbPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -797,7 +797,7 @@ export default function ETFArbPage() {
                     { dir: "Discount", icon: TrendingDown, color: "text-green-400", reasons: ["Market stress / flight to safety", "Illiquid underlying bonds or EM stocks", "APs withdrawing from market-making", "End-of-day institutional selling"] },
                   ].map((section) => (
                     <div key={section.dir} className="p-3 rounded-lg bg-muted/20 border border-border/50">
-                      <p className={`text-xs font-medium ${section.color} mb-2 flex items-center gap-1`}>
+                      <p className={`text-xs text-muted-foreground font-medium ${section.color} mb-2 flex items-center gap-1`}>
                         <section.icon className="h-3 w-3" /> {section.dir} Causes
                       </p>
                       <ul className="space-y-1">

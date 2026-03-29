@@ -462,7 +462,7 @@ function StrategyCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-sm font-semibold text-foreground truncate">{strategy.name}</h3>
-            <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${meta.bg} ${meta.color}`}>
+            <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium ${meta.bg} ${meta.color}`}>
               {meta.label}
             </span>
           </div>
@@ -486,7 +486,7 @@ function StrategyCard({
       <div className="grid grid-cols-4 gap-2 rounded-lg border border-border/50 bg-black/20 px-3 py-2">
         <div className="flex flex-col items-center gap-0.5">
           <span className="text-[11px] text-muted-foreground">Sharpe</span>
-          <span className={`text-xs font-bold tabular-nums ${sharpeColor}`}>
+          <span className={`text-xs text-muted-foreground font-bold tabular-nums ${sharpeColor}`}>
             {resultSharpe ?? strategy.sharpe}
           </span>
         </div>
@@ -507,7 +507,7 @@ function StrategyCard({
       {/* Quick Backtest progress */}
       {backtestState === "running" && (
         <div className="space-y-1">
-          <div className="flex items-center justify-between text-xs">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span className="text-muted-foreground">Running backtest...</span>
             <span className="text-muted-foreground tabular-nums">{progress}%</span>
           </div>
@@ -531,7 +531,7 @@ function StrategyCard({
         <button
           onClick={handleQuickBacktest}
           disabled={backtestState === "running"}
-          className={`flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium transition-colors ${
+          className={`flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors ${
             backtestState === "running"
               ? "cursor-not-allowed bg-foreground/5 text-muted-foreground"
               : "bg-foreground/5 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
@@ -844,7 +844,7 @@ export default function StrategiesPage() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-5 py-2.5 text-xs font-medium transition-colors ${
+            className={`flex items-center gap-2 px-5 py-2.5 text-xs text-muted-foreground font-medium transition-colors ${
               activeTab === tab.id
                 ? "border-b-2 border-primary text-primary"
                 : "text-muted-foreground hover:text-muted-foreground"
@@ -863,7 +863,7 @@ export default function StrategiesPage() {
 
       {/* Save toast */}
       {saveToast && (
-        <div className="absolute top-16 right-6 z-50 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs text-emerald-300 shadow-sm">
+        <div className="absolute top-16 right-6 z-50 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs text-emerald-300">
           <Save className="h-3.5 w-3.5" />
           Strategy saved to library
         </div>
@@ -883,7 +883,7 @@ export default function StrategiesPage() {
                   <button
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
-                    className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                    className={`rounded-full px-3 py-1 text-xs text-muted-foreground font-medium transition-colors ${
                       categoryFilter === cat
                         ? cat === "all"
                           ? "bg-muted text-foreground"
@@ -899,7 +899,7 @@ export default function StrategiesPage() {
             </div>
 
             {/* Cards grid */}
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-4">
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4">
                 {filteredStrategies.map((strategy) => (
                   <StrategyCard key={strategy.id} strategy={strategy} onClone={handleClone} />
@@ -912,7 +912,7 @@ export default function StrategiesPage() {
         {/* Tab 2: My Strategies */}
         {activeTab === "my-strategies" && (
           <div className="flex h-full flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-4">
               <div className="mx-auto max-w-4xl space-y-4">
                 {/* Compare header */}
                 {selectedIds.length > 0 && (
@@ -1006,7 +1006,7 @@ export default function StrategiesPage() {
         {/* Tab 3: Strategy Builder */}
         {activeTab === "builder" && (
           <div className="flex h-full flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-4">
               <div className="mx-auto max-w-2xl space-y-4">
                 {/* Save to Library button row */}
                 <div className="flex items-center justify-between">

@@ -255,7 +255,7 @@ function REITUniverseTab() {
 
       {/* Table */}
       <Card className="bg-card/60 border-border/50 border-l-4 border-l-primary">
-        <CardHeader className="p-6 pb-2">
+        <CardHeader className="p-4 pb-2">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
             REIT Universe — 8 REITs across 8 Sectors
@@ -294,7 +294,7 @@ function REITUniverseTab() {
                       </td>
                       <td className="px-3 py-2.5">
                         <Badge
-                          className="text-xs font-medium gap-1"
+                          className="text-xs text-muted-foreground font-medium gap-1"
                           style={{ backgroundColor: `${color}22`, color, borderColor: `${color}44`, border: "1px solid" }}
                         >
                           {SECTOR_ICONS[r.sector]}
@@ -408,7 +408,7 @@ function ValuationTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between mb-1">
@@ -476,7 +476,7 @@ function ValuationTab() {
                 const maxVal = 8.62;
                 const pct = (abs / maxVal) * 100;
                 return (
-                  <div key={i} className="flex items-center gap-3 text-xs">
+                  <div key={i} className="flex items-center gap-3 text-xs text-muted-foreground">
                     <div className="w-44 shrink-0 text-right text-muted-foreground">{item.label}</div>
                     <div className="flex-1 h-5 bg-muted/20 rounded overflow-hidden relative">
                       <motion.div
@@ -620,7 +620,7 @@ function DividendsTab() {
               key={r.ticker}
               size="sm"
               variant={selected === r.ticker ? "default" : "outline"}
-              className="h-6 text-xs px-2"
+              className="h-6 text-xs text-muted-foreground px-2"
               onClick={() => setSelected(r.ticker === selected ? null : r.ticker)}
             >
               {r.ticker}
@@ -774,7 +774,7 @@ function DividendsTab() {
                 <text x={150} y={108} fontSize={8} fill="#10b981">Safe</text>
               </svg>
             </div>
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2 text-xs text-muted-foreground">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">AFFO Payout Ratio</span>
                 <span className={affoPayout > 90 ? "text-rose-400" : affoPayout > 75 ? "text-amber-400" : "text-emerald-400"}>
@@ -796,7 +796,7 @@ function DividendsTab() {
               Dividend Analysis — Key Concepts
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             {[
               { term: "FFO Payout Ratio", desc: "Dividends paid as % of FFO. REITs must distribute 90%+ of taxable income to maintain REIT status.", value: `${fmt(payoutRatio, 1)}%` },
               { term: "AFFO Payout Ratio", desc: "More conservative; uses AFFO (after maintenance CapEx). Better indicator of long-term sustainability.", value: `${fmt(affoPayout, 1)}%` },
@@ -925,7 +925,7 @@ function PortfolioTab() {
               </svg>
               <div className="space-y-1.5 flex-1">
                 {portfolio.map((h) => (
-                  <div key={h.ticker} className="flex items-center gap-2 text-xs">
+                  <div key={h.ticker} className="flex items-center gap-2 text-xs text-muted-foreground">
                     <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: SECTOR_COLORS[h.sector] }} />
                     <span className="font-medium w-10">{h.ticker}</span>
                     <div className="flex-1 h-1.5 bg-muted/30 rounded overflow-hidden">
@@ -962,7 +962,7 @@ function PortfolioTab() {
                 const pct = Math.abs(c.corr) * 100;
                 return (
                   <div key={c.factor} className="space-y-0.5">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span className="text-muted-foreground">{c.factor}</span>
                       <span className={isPos ? "text-emerald-400 font-mono" : "text-rose-400 font-mono"}>
                         {isPos ? "+" : ""}{c.corr.toFixed(2)}
@@ -1051,7 +1051,7 @@ function PortfolioTab() {
 
 export default function REITsPage() {
   return (
-    <div className="p-4 md:p-6 space-y-5 max-w-7xl mx-auto">
+    <div className="p-4 md:p-4 space-y-5 max-w-7xl mx-auto">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}
@@ -1081,19 +1081,19 @@ export default function REITsPage() {
       {/* Tabs */}
       <Tabs defaultValue="universe">
         <TabsList className="grid grid-cols-4 w-full max-w-xl">
-          <TabsTrigger value="universe" className="text-xs gap-1.5">
+          <TabsTrigger value="universe" className="text-xs text-muted-foreground gap-1.5">
             <Building2 className="w-3.5 h-3.5" />
             REIT Universe
           </TabsTrigger>
-          <TabsTrigger value="valuation" className="text-xs gap-1.5">
+          <TabsTrigger value="valuation" className="text-xs text-muted-foreground gap-1.5">
             <Calculator className="w-3.5 h-3.5" />
             Valuation
           </TabsTrigger>
-          <TabsTrigger value="dividends" className="text-xs gap-1.5">
+          <TabsTrigger value="dividends" className="text-xs text-muted-foreground gap-1.5">
             <DollarSign className="w-3.5 h-3.5" />
             Dividends
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="text-xs gap-1.5">
+          <TabsTrigger value="portfolio" className="text-xs text-muted-foreground gap-1.5">
             <PieChart className="w-3.5 h-3.5" />
             Portfolio
           </TabsTrigger>

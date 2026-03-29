@@ -209,7 +209,7 @@ function StatChip({
   };
   return (
     <div className={cn("rounded-md border px-3 py-2 text-center", colors[color])}>
-      <div className="text-xs opacity-70 mb-0.5">{label}</div>
+      <div className="text-xs text-muted-foreground opacity-70 mb-0.5">{label}</div>
       <div className="text-sm font-semibold">{value}</div>
     </div>
   );
@@ -219,7 +219,7 @@ function StatChip({
 
 function LoanStructureTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatChip label="Market Size" value="$1.4T" color="blue" />
@@ -249,7 +249,7 @@ function LoanStructureTab() {
           <h3 className="text-sm font-semibold text-foreground">Facility Type Comparison</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-muted/40">
                 {["Feature", "Revolver", "Term Loan A (TLA)", "Term Loan B (TLB)", "Term Loan C (TLC)"].map((h) => (
@@ -434,7 +434,7 @@ function SyndicationTab() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatChip label="Lead Arranger Fee" value="1–2.5% OID" color="blue" />
         <StatChip label="Syndication Period" value="4–8 weeks" color="green" />
@@ -530,7 +530,7 @@ function SyndicationTab() {
       {/* Investor pie chart */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Investor Base Composition</h3>
-        <div className="flex flex-col sm:flex-row items-center gap-6">
+        <div className="flex flex-col sm:flex-row items-center gap-3">
           <svg viewBox="0 0 160 160" className="w-40 h-40 flex-shrink-0">
             {pieSlices.map((slice, i) => (
               <path key={i} d={slice.path} fill={slice.color} opacity="0.85" />
@@ -591,7 +591,7 @@ function CLOStructureTab() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatChip label="CLO Market (US)" value="~$1T+ AUM" color="blue" />
         <StatChip label="Typical CLO Size" value="$400M–$700M" color="green" />
@@ -643,7 +643,7 @@ function CLOStructureTab() {
           <h3 className="text-sm font-medium text-foreground">Tranche Stack Detail</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border bg-muted/40">
                 {["Tranche", "% of Cap", "Rating", "Typical Spread", "Buyers", "Credit Enhancement"].map((h) => (
@@ -807,7 +807,7 @@ function MarketDynamicsTab() {
   const hyPath = spreadData.map((d, i) => `${i === 0 ? "M" : "L"} ${spx(d.year)} ${spy(d.hySpread)}`).join(" ");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatChip label="US LL Market (2024)" value="$1.4T" color="blue" />
         <StatChip label="Cov-Lite Share (2024)" value="~90%" color="amber" />
@@ -1059,7 +1059,7 @@ export default function LeveragedLoansPage() {
               { icon: Shield, label: "Senior Secured", color: "text-amber-400" },
               { icon: Activity, label: "Floating Rate", color: "text-primary" },
             ].map((badge, i) => (
-              <div key={i} className="flex items-center gap-1.5 text-xs bg-card border border-border rounded-full px-3 py-1">
+              <div key={i} className="flex items-center gap-1.5 text-xs text-muted-foreground bg-card border border-border rounded-full px-3 py-1">
                 <badge.icon className={cn("w-3 h-3", badge.color)} />
                 <span className="text-muted-foreground">{badge.label}</span>
               </div>

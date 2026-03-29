@@ -319,7 +319,7 @@ function CreditMigrationMatrix() {
   };
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs border-collapse">
+      <table className="w-full text-xs text-muted-foreground border-collapse">
         <thead>
           <tr>
             <th className="py-1 px-2 text-muted-foreground text-left">From \ To</th>
@@ -656,7 +656,7 @@ function ModelInventoryTable() {
   const psiColor = (v: number) => v > 0.1 ? "text-red-400" : v > 0.05 ? "text-amber-400" : "text-emerald-400";
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs">
+      <table className="w-full text-xs text-muted-foreground">
         <thead>
           <tr className="border-b border-border">
             {["Model Name", "Type", "Tier", "PSI", "Gini", "Last Val", "Status"].map((h) => (
@@ -747,7 +747,7 @@ function Chip({ label, value, color = "text-foreground" }: { label: string; valu
 
 export default function RiskModelsPage() {
   return (
-    <div className="p-6 space-y-6 max-w-6xl mx-auto">
+    <div className="p-4 space-y-4 max-w-6xl mx-auto">
       {/* Header */}
       <div className="flex items-start gap-4">
         <div className="p-3 rounded-md bg-red-500/10 border border-red-500/20">
@@ -771,16 +771,16 @@ export default function RiskModelsPage() {
 
       <Tabs defaultValue="market" className="space-y-4">
         <TabsList className="bg-card border border-border">
-          <TabsTrigger value="market" className="data-[state=active]:bg-muted text-xs sm:text-sm">
+          <TabsTrigger value="market" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
             Market Risk
           </TabsTrigger>
-          <TabsTrigger value="credit" className="data-[state=active]:bg-muted text-xs sm:text-sm">
+          <TabsTrigger value="credit" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
             Credit Risk
           </TabsTrigger>
-          <TabsTrigger value="stress" className="data-[state=active]:bg-muted text-xs sm:text-sm">
+          <TabsTrigger value="stress" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
             Stress Testing
           </TabsTrigger>
-          <TabsTrigger value="modelrisk" className="data-[state=active]:bg-muted text-xs sm:text-sm">
+          <TabsTrigger value="modelrisk" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
             Model Risk
           </TabsTrigger>
         </TabsList>
@@ -836,7 +836,7 @@ export default function RiskModelsPage() {
 
           {/* Historical VaR chart */}
           <Card className="bg-card border-border border-l-4 border-l-primary">
-            <CardHeader className="p-6 pb-2">
+            <CardHeader className="p-4 pb-2">
               <CardTitle className="text-lg font-medium text-muted-foreground flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-indigo-400" />
                 Historical Simulation VaR — 500-Day P&L Distribution
@@ -934,7 +934,7 @@ export default function RiskModelsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
                 <div>
                   <CorrelationMatrixSVG />
                   <p className="text-xs text-muted-foreground mt-2">Cross-asset correlation matrix. Green = positive correlation, red = negative.</p>
@@ -995,7 +995,7 @@ export default function RiskModelsPage() {
                 ].map((c) => (
                   <div key={c.abbr} className="bg-muted/40 rounded-lg p-4 space-y-2">
                     <div className="flex items-center gap-2">
-                      <span className={cn("text-2xl font-bold font-mono", c.color)}>{c.abbr}</span>
+                      <span className={cn("text-lg font-medium font-mono", c.color)}>{c.abbr}</span>
                       <span className="text-xs text-muted-foreground">{c.name}</span>
                     </div>
                     <p className="text-xs text-muted-foreground">{c.def}</p>
@@ -1122,7 +1122,7 @@ export default function RiskModelsPage() {
                   { abbr: "CVA", name: "Credit Valuation Adjustment", color: "text-red-400" },
                 ].map((m) => (
                   <div key={m.abbr} className="bg-muted/30 rounded p-2">
-                    <div className={cn("text-xs font-medium font-mono", m.color)}>{m.abbr}</div>
+                    <div className={cn("text-xs text-muted-foreground font-medium font-mono", m.color)}>{m.abbr}</div>
                     <div className="text-xs text-muted-foreground">{m.name}</div>
                   </div>
                 ))}
@@ -1147,7 +1147,7 @@ export default function RiskModelsPage() {
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
+                <table className="w-full text-xs text-muted-foreground">
                   <thead>
                     <tr className="border-b border-border">
                       {["Scenario", "Type", "Equity Δ", "Credit Spread Δ", "Rates Δ (bps)", "FX Δ", "Liquidity"].map((h) => (
@@ -1215,7 +1215,7 @@ export default function RiskModelsPage() {
                   { name: "Hot House World", desc: "Current policies only. High chronic physical risk. >3°C warming.", color: "text-red-400" },
                 ].map((sc, i) => (
                   <div key={i} className="bg-muted/30 rounded p-2">
-                    <div className={cn("text-xs font-medium", sc.color)}>{sc.name}</div>
+                    <div className={cn("text-xs text-muted-foreground font-medium", sc.color)}>{sc.name}</div>
                     <div className="text-xs text-muted-foreground mt-1">{sc.desc}</div>
                   </div>
                 ))}
@@ -1308,7 +1308,7 @@ export default function RiskModelsPage() {
                   },
                 ].map((p, i) => (
                   <div key={i} className={cn("rounded-lg border p-3 space-y-2", p.color.split(" ")[0])}>
-                    <div className={cn("text-xs font-medium", p.color.split(" ")[1])}>{p.pillar}</div>
+                    <div className={cn("text-xs text-muted-foreground font-medium", p.color.split(" ")[1])}>{p.pillar}</div>
                     {p.items.map((item, j) => (
                       <div key={j} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                         <span className="text-muted-foreground">•</span>
@@ -1380,7 +1380,7 @@ export default function RiskModelsPage() {
             icon={<Activity className="w-4 h-4 text-primary" />}
             defaultOpen
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-muted-foreground">
               <div className="space-y-2">
                 <div className="text-foreground font-medium">Backtesting</div>
                 <p className="text-muted-foreground">Compares model predictions against actual observed outcomes over historical period. Tests predictive accuracy. Example: VaR backtesting (exceptions count), PD backtesting (realised default rates vs predicted PDs). Statistical tests: Kupiec (proportion of failures), Christoffersen (independence of failures).</p>

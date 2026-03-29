@@ -432,7 +432,7 @@ function MarketOverviewTab() {
   const avgSpread = CAT_BONDS.reduce((s, b) => s + b.spread, 0) / CAT_BONDS.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div>
         <SectionHeader
           title="ILS Market Overview"
@@ -459,7 +459,7 @@ function MarketOverviewTab() {
       {/* Perils breakdown */}
       <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Peril Exposure Breakdown</div>
-        <div className="flex gap-6 items-start">
+        <div className="flex gap-3 items-start">
           <PerilPieChart />
           <div className="flex-1 grid grid-cols-1 gap-2">
             {PERILS.map((p) => (
@@ -620,7 +620,7 @@ function CatBondMechanicsTab() {
   const triggers: CatBond["trigger"][] = ["indemnity", "industry index", "parametric", "modeled loss"];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Cat Bond Mechanics"
         subtitle="How catastrophe bonds are structured, triggered, and settled"
@@ -655,7 +655,7 @@ function CatBondMechanicsTab() {
               key={t}
               onClick={() => setSelectedTrigger(t)}
               className={cn(
-                "text-xs px-3 py-1.5 rounded-md border transition-colors capitalize",
+                "text-xs text-muted-foreground px-3 py-1.5 rounded-md border transition-colors capitalize",
                 selectedTrigger === t
                   ? "bg-primary/10 text-primary border-primary/30"
                   : "bg-muted text-muted-foreground border-border hover:bg-muted/80"
@@ -706,7 +706,7 @@ function CatBondMechanicsTab() {
               key={b.name}
               onClick={() => setSelectedBond(b)}
               className={cn(
-                "text-xs px-2 py-1 rounded border transition-colors",
+                "text-xs text-muted-foreground px-2 py-1 rounded border transition-colors",
                 selectedBond.name === b.name
                   ? "bg-primary/10 text-primary border-primary/30"
                   : "bg-muted text-muted-foreground border-border hover:bg-muted/80"
@@ -803,7 +803,7 @@ function PricingReturnsTab() {
   const catBondSharpe = 1.05;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Pricing & Returns"
         subtitle="Cat bond pricing is driven by expected loss, risk premium, and prevailing interest rates"
@@ -821,7 +821,7 @@ function PricingReturnsTab() {
       <div className="rounded-md border border-border bg-card overflow-hidden">
         <div className="text-sm font-medium text-foreground p-4 pb-2">Current Cat Bond Universe — Pricing Matrix</div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left px-4 py-2">Instrument</th>
@@ -850,7 +850,7 @@ function PricingReturnsTab() {
                     </td>
                     <td className="px-3 py-2 text-right text-green-400">{totalYield.toFixed(1)}%</td>
                     <td className="px-3 py-2 text-right">
-                      <Badge variant="outline" className="text-xs">{b.rating}</Badge>
+                      <Badge variant="outline" className="text-xs text-muted-foreground">{b.rating}</Badge>
                     </td>
                   </tr>
                 );
@@ -978,7 +978,7 @@ function ExceedanceCurveChart() {
 
 function PerilAnalysisTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Peril Analysis"
         subtitle="Understanding catastrophe modelling, return periods, and diversification across perils"
@@ -988,7 +988,7 @@ function PerilAnalysisTab() {
       <div className="rounded-md border border-border bg-card overflow-hidden">
         <div className="text-sm font-medium text-foreground p-4 pb-2">Industry Loss Scenarios by Return Period</div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left px-4 py-2">Return Period</th>
@@ -1033,7 +1033,7 @@ function PerilAnalysisTab() {
             <li><span className="text-foreground/90">Vulnerability module:</span> damage functions</li>
             <li><span className="text-foreground/90">Financial module:</span> insurance structures, limits</li>
           </ul>
-          <p className="mt-1.5 text-xs">Major vendors: AIR Worldwide, RMS (Moody's), Verisk.</p>
+          <p className="mt-1.5 text-xs text-muted-foreground">Major vendors: AIR Worldwide, RMS (Moody's), Verisk.</p>
         </InfoBox>
         <InfoBox title="PML & Return Period" variant="purple">
           <p className="mb-1.5">Probable Maximum Loss (PML) is the maximum expected loss at a given confidence level/return period:</p>
@@ -1042,7 +1042,7 @@ function PerilAnalysisTab() {
             <li><span className="text-foreground/90">1-in-250 PML:</span> used by many reinsurers as capital reference</li>
             <li><span className="text-foreground/90">Tail Value at Risk (TVaR):</span> expected loss beyond threshold</li>
           </ul>
-          <p className="mt-1.5 text-xs">Cat bonds are often placed to cover losses between the 1-in-50 and 1-in-150 return period levels.</p>
+          <p className="mt-1.5 text-xs text-muted-foreground">Cat bonds are often placed to cover losses between the 1-in-50 and 1-in-150 return period levels.</p>
         </InfoBox>
       </div>
 
@@ -1232,7 +1232,7 @@ function PortfolioConstructionTab() {
   const portSharpe = (portReturn - 5.3) / portVolApprox;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Portfolio Construction"
         subtitle="Cat bonds as a diversifier — near-zero correlation to financial markets enables unique portfolio benefits"
@@ -1241,7 +1241,7 @@ function PortfolioConstructionTab() {
       {/* Correlation matrix */}
       <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Asset Correlation Matrix</div>
-        <div className="flex gap-6 items-start">
+        <div className="flex gap-3 items-start">
           <CorrMatrixHeatmap />
           <div className="flex-1 space-y-3">
             <InfoBox title="Why Correlations Matter" variant="blue">
@@ -1361,7 +1361,7 @@ export default function CatBondsPage() {
 
   return (
     <div className="h-full overflow-y-auto">
-      <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
@@ -1379,7 +1379,7 @@ export default function CatBondsPage() {
             </p>
           </div>
           <div className="flex gap-2">
-            <Badge variant="outline" className="text-xs">
+            <Badge variant="outline" className="text-xs text-muted-foreground">
               <DollarSign size={10} className="mr-1" />
               $48B Market
             </Badge>

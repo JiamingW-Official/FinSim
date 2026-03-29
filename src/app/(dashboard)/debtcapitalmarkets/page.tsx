@@ -432,12 +432,12 @@ export default function DebtCapitalMarketsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <motion.div {...fadeUp}>
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
               <Building2 size={24} className="text-primary" />
               Debt Capital Markets
             </h1>
@@ -446,11 +446,11 @@ export default function DebtCapitalMarketsPage() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="text-xs border-border">
+            <Badge variant="outline" className="text-xs text-muted-foreground border-border">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5 animate-pulse" />
               Live Market
             </Badge>
-            <Badge variant="outline" className="text-xs border-border">
+            <Badge variant="outline" className="text-xs text-muted-foreground border-border">
               YTD 2026
             </Badge>
           </div>
@@ -495,16 +495,16 @@ export default function DebtCapitalMarketsPage() {
       <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }} className="mt-8">
         <Tabs defaultValue="issuance" className="space-y-4">
           <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
-            <TabsTrigger value="issuance" className="text-xs gap-1.5">
+            <TabsTrigger value="issuance" className="text-xs text-muted-foreground gap-1.5">
               <BarChart3 size={13} /> New Issuance
             </TabsTrigger>
-            <TabsTrigger value="pricing" className="text-xs gap-1.5">
+            <TabsTrigger value="pricing" className="text-xs text-muted-foreground gap-1.5">
               <Clock size={13} /> Pricing Process
             </TabsTrigger>
-            <TabsTrigger value="bookbuild" className="text-xs gap-1.5">
+            <TabsTrigger value="bookbuild" className="text-xs text-muted-foreground gap-1.5">
               <BookOpen size={13} /> Book Building
             </TabsTrigger>
-            <TabsTrigger value="leagues" className="text-xs gap-1.5">
+            <TabsTrigger value="leagues" className="text-xs text-muted-foreground gap-1.5">
               <Award size={13} /> League Tables
             </TabsTrigger>
           </TabsList>
@@ -547,7 +547,7 @@ export default function DebtCapitalMarketsPage() {
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border bg-muted/20">
                           {["Issuer", "Rating", "Size", "Tenor", "Spd", "NIC"].map((h) => (
@@ -565,7 +565,7 @@ export default function DebtCapitalMarketsPage() {
                               </div>
                             </td>
                             <td className="px-3 py-2">
-                              <Badge variant="outline" className={`text-xs px-1.5 py-0 ${ratingColor(deal.rating)}`}>
+                              <Badge variant="outline" className={`text-xs text-muted-foreground px-1.5 py-0 ${ratingColor(deal.rating)}`}>
                                 {deal.rating.split("/")[1]}
                               </Badge>
                             </td>
@@ -859,7 +859,7 @@ export default function DebtCapitalMarketsPage() {
                       const pct = ((item.value - item.min) / (item.max - item.min)) * 100;
                       return (
                         <div key={item.label}>
-                          <div className="flex justify-between text-xs mb-1">
+                          <div className="flex justify-between text-xs text-muted-foreground mb-1">
                             <span className="text-muted-foreground">{item.label}</span>
                             <span className="font-medium text-foreground">{item.value}bps</span>
                           </div>

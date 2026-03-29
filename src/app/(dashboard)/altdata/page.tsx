@@ -550,7 +550,7 @@ function AltDataCategoriesTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">
@@ -597,7 +597,7 @@ function AltDataCategoriesTab() {
                   <div className="flex items-center gap-2">
                     <Badge
                       variant="outline"
-                      className="text-xs"
+                      className="text-xs text-muted-foreground"
                       style={{ borderColor: cat.color + "66", color: cat.color }}
                     >
                       {cat.exclusivity} excl.
@@ -719,7 +719,7 @@ function SatelliteTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {statChips.map((stat, i) => (
           <Card key={`ss-${i}`} className="bg-card/60 border-border">
@@ -787,7 +787,7 @@ function SatelliteTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground font-medium">Capability</th>
@@ -886,7 +886,7 @@ function ConsumerWebTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="grid grid-cols-3 gap-3">
         {statChips.map((stat, i) => (
           <Card key={`cs-${i}`} className="bg-card/60 border-border">
@@ -911,7 +911,7 @@ function ConsumerWebTab() {
                 <span className="text-xs font-semibold text-foreground">{sig.source}</span>
                 <Badge
                   variant="outline"
-                  className={cn("text-xs", reliabilityColor(sig.reliability))}
+                  className={cn("text-xs text-muted-foreground", reliabilityColor(sig.reliability))}
                 >
                   {sig.reliability}
                 </Badge>
@@ -995,7 +995,7 @@ function BuildingEdgeTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground">Signal Extraction Pipeline</CardTitle>
@@ -1088,7 +1088,7 @@ function BuildingEdgeTab() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground font-medium">Factor</th>
@@ -1164,8 +1164,8 @@ export default function AltDataPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+      <div className="max-w-4xl mx-auto space-y-4">
         {/* HERO Header */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
@@ -1189,7 +1189,7 @@ export default function AltDataPage() {
             {headerChips.map((chip, i) => (
               <div
                 key={`chip-${i}`}
-                className={cn("px-3 py-1 rounded-full text-xs font-medium", chip.color)}
+                className={cn("px-3 py-1 rounded-full text-xs text-muted-foreground font-medium", chip.color)}
               >
                 {chip.label}: <span className="font-medium">{chip.value}</span>
               </div>

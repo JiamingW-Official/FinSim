@@ -464,24 +464,17 @@ export default function HomePage() {
           {/* Market Pulse — hero reference card, spans 2 cols */}
           <div className="rounded bg-muted/20 px-5 py-4 lg:col-span-2">
             <p className="mb-2 text-xs font-normal text-muted-foreground">Market Pulse</p>
-            <div className="space-y-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">Regime</span>
-                <span className={cn("text-xs tabular-nums", marketPulse.regime === "Bull" ? "text-emerald-400" : marketPulse.regime === "Bear" ? "text-red-400" : "text-amber-400")}>{marketPulse.regime}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">VIX</span>
-                <span className={cn("text-xs tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">F&G</span>
-                <span className={cn("text-xs tabular-nums", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>{marketPulse.fg} {marketPulse.fgLabel}</span>
-              </div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+              <span className="text-muted-foreground">Regime <span className={cn("tabular-nums", marketPulse.regime === "Bull" ? "text-emerald-400" : marketPulse.regime === "Bear" ? "text-red-400" : "text-amber-400")}>{marketPulse.regime}</span></span>
+              <span className="text-border/30">·</span>
+              <span className="text-muted-foreground">VIX <span className={cn("tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span></span>
+              <span className="text-border/30">·</span>
+              <span className="text-muted-foreground">F&G <span className={cn("tabular-nums", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>{marketPulse.fg} {marketPulse.fgLabel}</span></span>
             </div>
           </div>
 
-          {/* Economic Calendar — dense */}
-          <div className="rounded bg-muted/20 px-4 py-3">
+          {/* Economic Calendar — compact secondary */}
+          <div className="rounded bg-muted/20 px-3 py-2">
             <p className="mb-2 text-xs font-normal text-muted-foreground">Economic Calendar</p>
             <div className="space-y-1">
               {ECONOMIC_EVENTS.slice(dayIndex % 4, (dayIndex % 4) + 3).map((ev, i) => (
@@ -513,11 +506,11 @@ export default function HomePage() {
         </div>
 
         {/* QUIET ZONE — rest between market intelligence and personal data */}
-        <div className="my-8" />
+        <div className="my-10" />
 
-        {/* Personal data — nearly invisible reference */}
+        {/* Personal data — nearly invisible reference, asymmetric */}
         <div className="grid grid-cols-1 gap-1.5 lg:grid-cols-3 opacity-50">
-          <div className="rounded bg-muted/20 px-4 py-3">
+          <div className="rounded bg-muted/20 px-5 py-4 lg:col-span-2">
             <div className="flex items-center justify-between mb-1.5"><p className="text-xs text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-primary hover:underline">All</Link>}</div>
             {recentTrades.length === 0 ? (
               <p className="text-xs text-muted-foreground/60">No trades yet. <Link href="/trade" className="text-primary hover:underline">Start</Link></p>
@@ -537,21 +530,22 @@ export default function HomePage() {
             )}
           </div>
 
-          <div className="rounded bg-muted/20 px-4 py-3">
-            <div className="flex items-center justify-between mb-1.5"><p className="text-xs text-muted-foreground">Learning</p><Link href="/learn" className="text-[11px] text-primary hover:underline">Continue</Link></div>
-            <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-xs tabular-nums">{learnProgress.completed}/{learnProgress.total}</span>
-              <span className="text-[11px] text-muted-foreground">lessons ({learnProgress.pct}%)</span>
+          {/* Learning + Activity stacked in single column */}
+          <div className="flex flex-col gap-1.5">
+            <div className="rounded bg-muted/20 px-3 py-2">
+              <div className="flex items-center justify-between mb-1"><p className="text-xs text-muted-foreground">Learning</p><Link href="/learn" className="text-[11px] text-primary hover:underline">Continue</Link></div>
+              <div className="flex items-center gap-2 text-[11px] text-muted-foreground flex-wrap">
+                <span className="tabular-nums">{learnProgress.completed}/{learnProgress.total} lessons</span>
+                <span className="text-border/30">·</span>
+                <span>{learnProgress.sRankCount} A/S</span>
+                <span className="text-border/30">·</span>
+                <span>{learningStreak > 0 ? `${learningStreak}d streak` : "--"}</span>
+              </div>
+              {nextLesson && <p className="mt-1 text-[11px] text-muted-foreground truncate">Next: <span className="text-foreground">{nextLesson.lesson.title}</span></p>}
             </div>
-            {nextLesson && <p className="text-[11px] text-muted-foreground truncate">Next: <span className="text-foreground">{nextLesson.lesson.title}</span></p>}
-            <div className="mt-1.5 flex items-center gap-3 text-[11px] text-muted-foreground">
-              <span>{learnProgress.sRankCount} A/S</span>
-              <span>{learningStreak > 0 ? `${learningStreak}d streak` : "--"}</span>
-            </div>
-          </div>
 
-          <div className="rounded bg-muted/20 px-4 py-3">
-            <p className="text-xs text-muted-foreground mb-1.5">Activity</p>
+            <div className="rounded bg-muted/20 px-3 py-2">
+              <p className="text-xs text-muted-foreground mb-1">Activity</p>
             {activityFeed.length === 0 ? (
               <p className="text-[11px] text-muted-foreground/60">No recent activity</p>
             ) : (
@@ -568,7 +562,8 @@ export default function HomePage() {
                 })}
               </div>
             )}
-          </div>
+            </div>
+          </div>{/* end stacked column */}
         </div>
 
         {/* Quick nav — smallest possible */}

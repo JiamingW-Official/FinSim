@@ -121,7 +121,7 @@ function InfoBox({
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -135,7 +135,7 @@ function StageBadge({ stage }: { stage: CBDCStage }) {
     cancelled: "bg-rose-500/20 text-rose-300 border-rose-500/30",
   };
   return (
-    <Badge className={cn("text-xs capitalize", map[stage])}>
+    <Badge className={cn("text-xs text-muted-foreground capitalize", map[stage])}>
       {stage}
     </Badge>
   );
@@ -332,7 +332,7 @@ function FundamentalsTab() {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="CBDCs in Research/Pilot" value="134" sub="as of 2026" icon={<Globe className="w-3.5 h-3.5" />} />
@@ -348,7 +348,7 @@ function FundamentalsTab() {
           CBDC Types — Retail vs Wholesale vs Synthetic
         </SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Attribute</th>
@@ -472,7 +472,7 @@ function FundamentalsTab() {
           Tiered remuneration prevents CBDC from becoming a dominant savings vehicle while still rewarding everyday use. Different rates apply to different holding tiers.
         </p>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-1.5 pr-4 text-left text-muted-foreground">Tier</th>
@@ -673,7 +673,7 @@ function WorldMapSVG({ selected, onSelect }: { selected: string | null; onSelect
           <Globe className="w-3.5 h-3.5" />
           Global CBDC Status Map
         </SectionTitle>
-        <div className="flex items-center gap-3 text-xs">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
           {(["launched", "pilot", "research", "cancelled"] as CBDCStage[]).map((st) => (
             <div key={st} className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full" style={{ background: stageColor[st] }} />
@@ -762,7 +762,7 @@ function GlobalTrackerTab() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="Launched" value={String(stageCounts.launched)} highlight="pos" icon={<CheckCircle className="w-3.5 h-3.5" />} />
@@ -795,7 +795,7 @@ function GlobalTrackerTab() {
                 <div className="text-xs text-muted-foreground">{selectedCard.country}</div>
               </div>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-3 text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-3 text-xs text-muted-foreground">
               <div>
                 <span className="text-muted-foreground block">Technology</span>
                 <span className="text-foreground">{selectedCard.tech}</span>
@@ -828,7 +828,7 @@ function GlobalTrackerTab() {
             key={f}
             onClick={() => setFilter(f)}
             className={cn(
-              "px-3 py-1 rounded-full text-xs capitalize border transition-colors",
+              "px-3 py-1 rounded-full text-xs text-muted-foreground capitalize border transition-colors",
               filter === f
                 ? "bg-primary/30 border-primary/50 text-primary"
                 : "border-border text-muted-foreground hover:border-border"
@@ -990,7 +990,7 @@ function FinancialInclusionSVG() {
 
 function MonetaryPolicyTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Key concepts stat row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="Rate Transmission Speed" value="Instant" sub="vs 6–18mo for traditional tools" highlight="pos" icon={<Zap className="w-3.5 h-3.5" />} />
@@ -1077,7 +1077,7 @@ function MonetaryPolicyTab() {
                 ["Consumer Spending Changes", "Months 3–6", "amber"],
                 ["Inflation Impact", "Months 6–18", "rose"],
               ].map(([step, time, color]) => (
-                <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-foreground/5">
+                <div key={step as string} className="flex items-center justify-between text-xs text-muted-foreground px-2 py-1.5 rounded bg-foreground/5">
                   <span className="text-muted-foreground">{step as string}</span>
                   <span className={cn("font-medium", color === "rose" ? "text-rose-400" : color === "amber" ? "text-amber-400" : "text-muted-foreground")}>{time as string}</span>
                 </div>
@@ -1094,7 +1094,7 @@ function MonetaryPolicyTab() {
                 ["Consumer Spending Shifts", "Days 1–7", "emerald"],
                 ["Inflation Impact", "Weeks 4–12", "blue"],
               ].map(([step, time, color]) => (
-                <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-foreground/5">
+                <div key={step as string} className="flex items-center justify-between text-xs text-muted-foreground px-2 py-1.5 rounded bg-foreground/5">
                   <span className="text-muted-foreground">{step as string}</span>
                   <span className={cn("font-medium", color === "emerald" ? "text-emerald-400" : color === "blue" ? "text-primary" : "text-muted-foreground")}>{time as string}</span>
                 </div>
@@ -1249,7 +1249,7 @@ function MBridgeFlowSVG() {
 
 function CrossBorderTab() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="Correspondent Banking Cost" value="6.35%" sub="avg cross-border fee" highlight="neg" icon={<TrendingDown className="w-3.5 h-3.5" />} />
@@ -1268,7 +1268,7 @@ function CrossBorderTab() {
           SWIFT vs CBDC Cross-Border Comparison
         </SectionTitle>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Dimension</th>
@@ -1402,7 +1402,7 @@ function CrossBorderTab() {
                 <span
                   key={i}
                   className={cn(
-                    "text-xs px-2 py-1 rounded",
+                    "text-xs text-muted-foreground px-2 py-1 rounded",
                     node === "→"
                       ? "text-muted-foreground"
                       : "border border-border bg-foreground/5 text-muted-foreground"
@@ -1431,7 +1431,7 @@ function CrossBorderTab() {
                 <span
                   key={i}
                   className={cn(
-                    "text-xs px-2 py-1 rounded",
+                    "text-xs text-muted-foreground px-2 py-1 rounded",
                     node === "→"
                       ? "text-muted-foreground"
                       : "border border-emerald-500/30 bg-emerald-500/5 text-emerald-200"

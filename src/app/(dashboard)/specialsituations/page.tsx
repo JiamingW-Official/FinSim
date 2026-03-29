@@ -303,7 +303,7 @@ function RiskBadge({ level }: { level: RiskLevel }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium border",
+        "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs text-muted-foreground font-medium border",
         RISK_COLORS[level]
       )}
     >
@@ -862,7 +862,7 @@ function ActivistTab() {
       <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Top Activist Funds</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Fund", "AUM", "Style", "Success Rate", "Avg Hold", "Notable Wins"].map((h) => (
@@ -985,7 +985,7 @@ function ActivistTab() {
             <div key={criterion} className="flex items-start gap-3 py-2 border-b border-border/50 last:border-0">
               <span
                 className={cn(
-                  "text-xs px-1.5 py-0.5 rounded font-medium shrink-0",
+                  "text-xs text-muted-foreground px-1.5 py-0.5 rounded font-medium shrink-0",
                   weight === "High" ? "bg-red-900/40 text-red-400" :
                   weight === "Medium" ? "bg-amber-900/40 text-amber-400" :
                   "bg-muted text-muted-foreground"
@@ -1228,7 +1228,7 @@ function StubTradesTab() {
                 <div className="flex items-center gap-2">
                   <span
                     className={cn(
-                      "text-xs font-mono",
+                      "text-xs text-muted-foreground font-mono",
                       stub.impliedStubValue < 0 ? "text-red-400" : "text-emerald-400"
                     )}
                   >
@@ -1318,7 +1318,7 @@ function StubTradesTab() {
 export default function SpecialSituationsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
         {/* Header */}
         <div className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex items-center gap-2">

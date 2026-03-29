@@ -538,7 +538,7 @@ function TaxLossHarvestingTab() {
                   <div className="flex items-center gap-2">
                     <span className="font-mono font-medium text-sm">{p.ticker}</span>
                     {p.washSaleRisk && (
-                      <Badge variant="destructive" className="text-xs">Wash Sale Risk</Badge>
+                      <Badge variant="destructive" className="text-xs text-muted-foreground">Wash Sale Risk</Badge>
                     )}
                     {!p.washSaleRisk && (
                       <Badge className="text-xs bg-green-500/20 text-green-400 border-green-500/30">Eligible</Badge>
@@ -1233,7 +1233,7 @@ function CapitalGainsTab() {
 
 export default function TaxEfficientPage() {
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-6 max-w-5xl mx-auto">
+    <div className="flex flex-col gap-3 p-4 md:p-4 max-w-5xl mx-auto">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1281,19 +1281,19 @@ export default function TaxEfficientPage() {
       {/* Tabs */}
       <Tabs defaultValue="location" className="mt-8 space-y-4">
         <TabsList className="grid grid-cols-4 w-full">
-          <TabsTrigger value="location" className="flex items-center gap-1 text-xs">
+          <TabsTrigger value="location" className="flex items-center gap-1 text-xs text-muted-foreground">
             <MapPin className="h-3 w-3" />
             Asset Location
           </TabsTrigger>
-          <TabsTrigger value="tlh" className="flex items-center gap-1 text-xs">
+          <TabsTrigger value="tlh" className="flex items-center gap-1 text-xs text-muted-foreground">
             <Scissors className="h-3 w-3" />
             TLH
           </TabsTrigger>
-          <TabsTrigger value="roth" className="flex items-center gap-1 text-xs">
+          <TabsTrigger value="roth" className="flex items-center gap-1 text-xs text-muted-foreground">
             <RefreshCw className="h-3 w-3" />
             Roth Conversion
           </TabsTrigger>
-          <TabsTrigger value="gains" className="flex items-center gap-1 text-xs">
+          <TabsTrigger value="gains" className="flex items-center gap-1 text-xs text-muted-foreground">
             <TrendingUp className="h-3 w-3" />
             Capital Gains
           </TabsTrigger>

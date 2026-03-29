@@ -208,7 +208,7 @@ function RoboLandscape() {
   const maxAUM = Math.max(...PROVIDERS.map((p) => p.aum));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* AUM Bar Chart */}
       <Card className="p-6 bg-card border-border border-l-4 border-l-primary">
         <h3 className="text-lg font-semibold text-muted-foreground mb-4">Assets Under Management (Billions)</h3>
@@ -427,7 +427,7 @@ function PortfolioConstruction() {
   const pieSlices = buildPie(allocations);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Risk Tolerance Slider */}
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center justify-between mb-4">
@@ -454,7 +454,7 @@ function PortfolioConstruction() {
         </div>
       </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Efficient Frontier SVG */}
         <Card className="p-5 bg-card border-border">
           <h3 className="text-sm font-medium text-muted-foreground mb-4">Efficient Frontier (MPT)</h3>
@@ -538,7 +538,7 @@ function PortfolioConstruction() {
         {/* Allocation Pie */}
         <Card className="p-5 bg-card border-border">
           <h3 className="text-sm font-medium text-muted-foreground mb-4">Recommended Allocation</h3>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             <svg viewBox="0 0 120 120" className="w-28 h-28 flex-shrink-0">
               {pieSlices.map((sl) => (
                 <path key={sl.label} d={sl.d} fill={sl.color} />
@@ -652,11 +652,11 @@ function CostComparison() {
   const roboSavings = humanVals[years] - roboVals[years];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Controls */}
       <Card className="p-5 bg-card border-border">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">Simulation Parameters</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <div className="flex justify-between mb-2">
               <label className="text-xs text-muted-foreground">Initial Investment</label>
@@ -762,7 +762,7 @@ function CostComparison() {
             <CheckCircle className="w-4 h-4 text-emerald-400" />
             <p className="text-xs font-medium text-emerald-400">Robo vs Human Savings</p>
           </div>
-          <p className="text-2xl font-bold text-emerald-300">{fmtDollars(roboSavings)}</p>
+          <p className="text-lg font-medium text-emerald-300">{fmtDollars(roboSavings)}</p>
           <p className="text-xs text-muted-foreground mt-1">Saved by choosing robo over human advisor over 30 years</p>
         </Card>
       </div>
@@ -821,7 +821,7 @@ function SmartFeatures() {
   const tlhYield = (0.3 + rand() * 0.7).toFixed(2);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Feature Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {[
@@ -899,7 +899,7 @@ function SmartFeatures() {
                       setAnswers(next);
                     }}
                     className={cn(
-                      "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
+                      "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
                       answers[qi] === oi
                         ? "bg-primary border-primary text-foreground"
                         : "bg-muted border-border text-muted-foreground hover:border-border"
@@ -979,7 +979,7 @@ const TIMELINE: TimelineEvent[] = [
 
 function AIAndFuture() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Next-Gen Features */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
@@ -1045,7 +1045,7 @@ function AIAndFuture() {
               >
                 <div
                   className={cn(
-                    "w-12 h-12 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 border-2 relative z-10",
+                    "w-12 h-12 rounded-full flex items-center justify-center text-xs text-muted-foreground font-medium flex-shrink-0 border-2 relative z-10",
                     ev.status === "past"
                       ? "bg-muted border-border text-muted-foreground"
                       : ev.status === "current"
@@ -1121,7 +1121,7 @@ export default function RoboAdvisorPage() {
   const [tab, setTab] = useState("landscape");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1130,7 +1130,7 @@ export default function RoboAdvisorPage() {
       >
         <div className="flex items-center gap-3 mb-1">
           <Cpu className="w-7 h-7 text-primary" />
-          <h1 className="text-2xl font-bold text-foreground">Robo-Advisor & Wealth Tech</h1>
+          <h1 className="text-lg font-medium text-foreground">Robo-Advisor & Wealth Tech</h1>
         </div>
         <p className="text-sm text-muted-foreground">
           Automated investing, MPT portfolio construction, cost analysis, smart features, and the algorithmic future of wealth management.

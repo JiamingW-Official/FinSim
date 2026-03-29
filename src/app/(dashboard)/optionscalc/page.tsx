@@ -614,7 +614,7 @@ function MetricRow({ label, value, colored, info }: { label: string; value: stri
         {label}
         {info && <Info size={10} className="text-muted-foreground" aria-label={info} />}
       </span>
-      <span className={`text-xs font-mono font-medium ${color}`}>{value}</span>
+      <span className={`text-xs text-muted-foreground font-mono font-medium ${color}`}>{value}</span>
     </div>
   );
 }
@@ -723,7 +723,7 @@ function SingleOptionTab() {
         <Card className="bg-card border-border p-4">
           <h3 className="text-sm font-medium text-foreground mb-3">What-If P&L Scenarios at Expiry</h3>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left text-muted-foreground pb-1.5 font-medium">Move</th>
@@ -858,7 +858,7 @@ function StrategyBuilderTab() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 max-h-40 overflow-y-auto">
             {Object.entries(presets).map(([name, preset]) => (
               <button key={name} onClick={() => applyPreset(name)}
-                className={`text-left p-2 rounded border text-xs transition-all ${selectedPreset === name ? "border-primary bg-muted/50" : "border-border bg-muted/50 hover:border-border"}`}>
+                className={`text-left p-2 rounded border text-xs text-muted-foreground transition-all ${selectedPreset === name ? "border-primary bg-muted/50" : "border-border bg-muted/50 hover:border-border"}`}>
                 <div className="font-medium text-foreground truncate">{name}</div>
                 <div className="flex flex-wrap gap-0.5 mt-1">
                   {preset.tags.map(t => <span key={t} className={`px-1 py-0.5 rounded text-[11px] ${tagColors[t] ?? "bg-muted text-muted-foreground"}`}>{t}</span>)}
@@ -963,7 +963,7 @@ function VolatilityTab() {
           ))}
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Ticker", "IV (30d)", "HV (30d)", "IV/HV", "IV %ile", "IV Rank", "Signal"].map(h => (
@@ -1005,7 +1005,7 @@ function VolatilityTab() {
               <GaugeSVG value={tickerVol.ivRank * 100} label="IV Rank" color="#34D399" />
             </div>
           </div>
-          <div className={`text-center text-xs font-medium ${richCheap.color}`}>{richCheap.signal}</div>
+          <div className={`text-center text-xs text-muted-foreground font-medium ${richCheap.color}`}>{richCheap.signal}</div>
           <p className="text-xs text-muted-foreground text-center">{richCheap.desc}</p>
         </Card>
 
@@ -1138,7 +1138,7 @@ function StrategyComparisonTab() {
       <Card className="bg-card border-border p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">Side-by-Side Comparison</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left text-muted-foreground pb-2 font-medium">Metric</th>
@@ -1289,7 +1289,7 @@ function GreeksDashboardTab() {
           </Button>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs text-muted-foreground">
             <thead>
               <tr className="border-b border-border">
                 {["Ticker", "Side", "Type", "Strike", "DTE", "Qty", "Price", "Delta", "Gamma", "Theta", "Vega", ""].map(h => (
@@ -1366,7 +1366,7 @@ export default function OptionsCalcPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="flex items-center gap-3 mb-1">

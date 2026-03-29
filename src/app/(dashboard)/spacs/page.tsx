@@ -302,7 +302,7 @@ function StatusBadge({ status }: { status: SpacStatus }) {
   };
   const Icon = icons[status];
   return (
-    <span className={cn("inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-semibold", cfg)}>
+    <span className={cn("inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs text-muted-foreground font-semibold", cfg)}>
       <Icon className="h-2.5 w-2.5" />
       {status}
     </span>
@@ -318,7 +318,7 @@ function DeltaBadge({ delta }: { delta: number }) {
     delta >= 0.2 ? "bg-amber-500/20 text-amber-400 border-amber-500/30" :
     "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30";
   return (
-    <span className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold tabular-nums", color)}>
+    <span className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-xs text-muted-foreground font-semibold tabular-nums", color)}>
       Δ {delta.toFixed(2)}
     </span>
   );
@@ -399,7 +399,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
         <p className="mb-2 text-xs font-medium text-muted-foreground/60">
           Warrant Details
         </p>
-        <div className="grid grid-cols-2 gap-2 text-xs">
+        <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
           <div>
             <span className="text-muted-foreground">Per unit:</span>{" "}
             <span className="font-medium text-foreground">{warrantsLabel} warrant</span>
@@ -478,7 +478,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
         <p className="mb-2 text-xs font-medium text-muted-foreground/60">
           Term Sheet
         </p>
-        <div className="grid grid-cols-2 gap-2 text-xs">
+        <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
           <div>
             <span className="text-muted-foreground">Face Value:</span>{" "}
             <span className="font-medium text-foreground">${bond.faceValue.toLocaleString()}</span>
@@ -513,7 +513,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
         <p className="mb-2 text-xs font-medium text-muted-foreground/60">
           Call / Put Provisions
         </p>
-        <div className="space-y-2 text-xs">
+        <div className="space-y-2 text-xs text-muted-foreground">
           <div className="flex items-start gap-1.5">
             <span className="mt-0.5 text-amber-400">Call:</span>
             <span className="text-foreground/80">{bond.callProvision}</span>
@@ -667,7 +667,7 @@ function SpacTrackerTab({ spacs }: { spacs: SPAC[] }) {
               key={f}
               onClick={() => setFilter(f)}
               className={cn(
-                "rounded-full px-3 py-1 text-xs font-medium transition-colors",
+                "rounded-full px-3 py-1 text-xs text-muted-foreground font-medium transition-colors",
                 filter === f
                   ? "bg-primary text-primary-foreground"
                   : "bg-accent/50 text-muted-foreground hover:bg-accent hover:text-foreground",
@@ -681,7 +681,7 @@ function SpacTrackerTab({ spacs }: { spacs: SPAC[] }) {
 
         {/* Table */}
         <div className="flex-1 overflow-auto">
-          <table className="w-full min-w-[700px] text-xs">
+          <table className="w-full min-w-[700px] text-xs text-muted-foreground">
             <thead className="sticky top-0 bg-background/95 backdrop-blur-sm">
               <tr className="border-b border-border/50">
                 <th className="px-3 py-2.5 text-left font-medium text-muted-foreground/70">SPAC</th>
@@ -901,7 +901,7 @@ function ConvertibleBondsTab({ bonds }: { bonds: ConvertibleBond[] }) {
       {/* Left: table */}
       <div className={cn("flex flex-col", selectedBond ? "flex-1 min-w-0" : "w-full")}>
         <div className="flex-1 overflow-auto">
-          <table className="w-full min-w-[780px] text-xs">
+          <table className="w-full min-w-[780px] text-xs text-muted-foreground">
             <thead className="sticky top-0 bg-background/95 backdrop-blur-sm">
               <tr className="border-b border-border/50">
                 <th className="px-3 py-2.5 text-left font-medium text-muted-foreground/70">Issuer</th>

@@ -640,12 +640,12 @@ export default function NeobanksPage() {
   const handleRevChange = useCallback((v: number[]) => setMonthlyRevPerUser(v[0]), []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="max-w-6xl mx-auto space-y-6"
+        className="max-w-6xl mx-auto space-y-4"
       >
         {/* Header */}
         <div className="flex items-start justify-between flex-wrap gap-3">
@@ -686,9 +686,9 @@ export default function NeobanksPage() {
           </TabsList>
 
           {/* ── TAB 1: Business Model ─────────────────────────────────────── */}
-          <TabsContent value="business-model" className="mt-4 space-y-6 data-[state=inactive]:hidden">
+          <TabsContent value="business-model" className="mt-4 space-y-4 data-[state=inactive]:hidden">
             <AnimatePresence mode="wait">
-              <motion.div key="bm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+              <motion.div key="bm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
 
                 {/* Comparison Table */}
                 <Card className="bg-card border-border border-l-4 border-l-primary">
@@ -697,9 +697,9 @@ export default function NeobanksPage() {
                       <Users className="w-4 h-4 text-indigo-400" /> Neobank Profiles — Key Metrics
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="overflow-x-auto">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-xs text-muted-foreground">
                         <thead>
                           <tr className="border-b border-border">
                             {["Bank", "Customers", "Revenue", "Valuation", "Rev/User", "CAC", "Market", "Profitable"].map((h) => (
@@ -749,7 +749,7 @@ export default function NeobanksPage() {
                 </Card>
 
                 {/* Revenue Breakdown + Product Roadmap */}
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-semibold text-foreground">
@@ -818,9 +818,9 @@ export default function NeobanksPage() {
           </TabsContent>
 
           {/* ── TAB 2: Unit Economics ─────────────────────────────────────── */}
-          <TabsContent value="unit-economics" className="mt-4 space-y-6 data-[state=inactive]:hidden">
+          <TabsContent value="unit-economics" className="mt-4 space-y-4 data-[state=inactive]:hidden">
             <AnimatePresence mode="wait">
-              <motion.div key="ue" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+              <motion.div key="ue" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
 
                 {/* CAC Calculator */}
                 <Card className="bg-card border-border">
@@ -830,9 +830,9 @@ export default function NeobanksPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                       <div>
-                        <div className="flex justify-between text-xs mb-2">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-2">
                           <span className="text-muted-foreground">Customer Acquisition Cost (CAC)</span>
                           <span className="text-foreground font-medium">${cac}</span>
                         </div>
@@ -850,7 +850,7 @@ export default function NeobanksPage() {
                         </div>
                       </div>
                       <div>
-                        <div className="flex justify-between text-xs mb-2">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-2">
                           <span className="text-muted-foreground">Monthly Revenue per Active User</span>
                           <span className="text-foreground font-medium">${monthlyRevPerUser}</span>
                         </div>
@@ -892,7 +892,7 @@ export default function NeobanksPage() {
                 </Card>
 
                 {/* Cohort Retention + Funnel */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-medium text-foreground">
@@ -956,7 +956,7 @@ export default function NeobanksPage() {
                             <p className="text-sm font-medium text-foreground">{item.lever}</p>
                             <Badge
                               variant="outline"
-                              className={`text-xs border-${item.color}-500/40 text-${item.color}-400`}
+                              className={`text-xs text-muted-foreground border-${item.color}-500/40 text-${item.color}-400`}
                             >
                               {item.impact} Impact
                             </Badge>
@@ -972,9 +972,9 @@ export default function NeobanksPage() {
           </TabsContent>
 
           {/* ── TAB 3: vs Traditional Banks ──────────────────────────────── */}
-          <TabsContent value="vs-traditional" className="mt-4 space-y-6 data-[state=inactive]:hidden">
+          <TabsContent value="vs-traditional" className="mt-4 space-y-4 data-[state=inactive]:hidden">
             <AnimatePresence mode="wait">
-              <motion.div key="vt" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+              <motion.div key="vt" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
 
                 {/* Cost-to-Income Ratio */}
                 <Card className="bg-card border-border">
@@ -992,7 +992,7 @@ export default function NeobanksPage() {
                 </Card>
 
                 {/* NIM + Acquisition Cost comparison */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-medium text-foreground">
@@ -1097,14 +1097,14 @@ export default function NeobanksPage() {
                 </Card>
 
                 {/* Regulatory + Embedded Finance */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                         <Shield className="w-4 h-4 text-red-400" /> Regulatory Capital Requirements
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-3 text-xs">
+                    <CardContent className="space-y-3 text-xs text-muted-foreground">
                       {[
                         { item: "Full banking license (UK)", req: "Min £5M capital + CET1 ≥ 8%", color: "text-red-400" },
                         { item: "E-money institution (EU)", req: "Min €350K capital, no lending", color: "text-amber-400" },
@@ -1162,9 +1162,9 @@ export default function NeobanksPage() {
           </TabsContent>
 
           {/* ── TAB 4: Market Dynamics ────────────────────────────────────── */}
-          <TabsContent value="market-dynamics" className="mt-4 space-y-6 data-[state=inactive]:hidden">
+          <TabsContent value="market-dynamics" className="mt-4 space-y-4 data-[state=inactive]:hidden">
             <AnimatePresence mode="wait">
-              <motion.div key="md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+              <motion.div key="md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
 
                 {/* Global Users Chart */}
                 <Card className="bg-card border-border">
@@ -1182,7 +1182,7 @@ export default function NeobanksPage() {
                 </Card>
 
                 {/* Penetration + Profitability */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-sm font-medium text-foreground">
@@ -1318,7 +1318,7 @@ export default function NeobanksPage() {
                     <CardTitle className="text-sm font-medium text-foreground">Key Takeaways</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-muted-foreground">
                       {[
                         {
                           title: "Profitability is achievable",

@@ -463,12 +463,12 @@ function GreeniumCalculator() {
         </div>
         <div className="rounded-lg border border-border bg-primary/5 p-4 text-center">
           <p className="text-xs text-muted-foreground mb-1">Annual Savings</p>
-          <p className="text-2xl font-bold text-primary">${(annualSaving / 1000).toFixed(0)}K</p>
+          <p className="text-lg font-medium text-primary">${(annualSaving / 1000).toFixed(0)}K</p>
           <p className="text-xs text-muted-foreground mt-1">per year on ${issuanceSize}M</p>
         </div>
         <div className="rounded-lg border border-border bg-primary/5 p-4 text-center">
           <p className="text-xs text-muted-foreground mb-1">10-Year Savings</p>
-          <p className="text-2xl font-bold text-primary">${(tenYearSaving / 1e6).toFixed(2)}M</p>
+          <p className="text-lg font-medium text-primary">${(tenYearSaving / 1e6).toFixed(2)}M</p>
           <p className="text-xs text-muted-foreground mt-1">cumulative interest reduction</p>
         </div>
       </div>
@@ -544,7 +544,7 @@ export default function GreenFinancePage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
     >
       {/* Header */}
       <div className="flex items-center gap-3">
@@ -676,9 +676,9 @@ export default function GreenFinancePage() {
                 </Card>
               ) : (
                 <Card className="bg-card border-border">
-                  <CardContent className="p-6 text-center text-muted-foreground">
+                  <CardContent className="p-4 text-center text-muted-foreground">
                     <Info size={28} className="mx-auto mb-2 opacity-40" />
-                    <p className="text-xs">Select a bond from the list to view details</p>
+                    <p className="text-xs text-muted-foreground">Select a bond from the list to view details</p>
                   </CardContent>
                 </Card>
               )}
@@ -689,19 +689,19 @@ export default function GreenFinancePage() {
                   <CardTitle className="text-xs text-muted-foreground">Market Summary</CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 pt-0 space-y-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Total tracked issuance</span>
                     <span className="text-foreground font-mono">{fmtB(totalIssuance)}</span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Avg greenium (bps)</span>
                     <span className="text-emerald-400 font-mono">{avgGreenium.toFixed(1)} bps</span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">CBI-certified</span>
                     <span className="text-foreground font-mono">{GREEN_BONDS.filter((b) => b.certification === "CBI").length} of {GREEN_BONDS.length}</span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Avg maturity</span>
                     <span className="text-foreground font-mono">{(GREEN_BONDS.reduce((a, b) => a + b.maturity, 0) / GREEN_BONDS.length).toFixed(1)} yrs</span>
                   </div>
@@ -850,7 +850,7 @@ export default function GreenFinancePage() {
                       </Badge>
                     </div>
                     <p className="text-xs text-muted-foreground mb-2">{credit.description}</p>
-                    <div className="space-y-1 text-xs">
+                    <div className="space-y-1 text-xs text-muted-foreground">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Price</span>
                         <span className="text-foreground font-mono">${credit.price}/t</span>
@@ -885,7 +885,7 @@ export default function GreenFinancePage() {
               </p>
             </CardHeader>
             <CardContent className="p-3 pt-0 overflow-x-auto">
-              <table className="w-full text-xs border-collapse min-w-[560px]">
+              <table className="w-full text-xs text-muted-foreground border-collapse min-w-[560px]">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="text-left p-2 text-muted-foreground font-medium">Instrument</th>
@@ -915,7 +915,7 @@ export default function GreenFinancePage() {
                       <tr key={i} className={cn("border-b border-border/50 hover:bg-muted/30 transition-colors")}>
                         <td className="p-2">
                           <span className={cn(
-                            "inline-block px-2 py-0.5 rounded text-xs font-medium",
+                            "inline-block px-2 py-0.5 rounded text-xs text-muted-foreground font-medium",
                             bgMap[ins.color] ?? "bg-muted",
                             colorMap[ins.color] ?? "text-muted-foreground"
                           )}>{ins.abbr}</span>
@@ -1027,7 +1027,7 @@ export default function GreenFinancePage() {
                   <p className={cn("text-sm font-medium mb-1", colors[i])}>{tier.article}</p>
                   <p className="text-xs text-foreground mb-1">{tier.label}</p>
                   <p className="text-xs text-muted-foreground mb-2">{tier.desc}</p>
-                  <div className="space-y-1 text-xs">
+                  <div className="space-y-1 text-xs text-muted-foreground">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">AUM</span>
                       <span className="text-foreground">${tier.aum}B</span>

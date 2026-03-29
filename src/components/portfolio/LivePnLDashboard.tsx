@@ -468,7 +468,7 @@ export function LivePnLDashboard() {
           {/* Unrealized */}
           <div>
             <p className="text-xs text-muted-foreground mb-0.5">Unrealized P&L</p>
-            <p className="text-2xl font-bold leading-none">
+            <p className="text-2xl font-semibold leading-none">
               <AnimatedNumber
                 value={unrealizedPnL}
                 formatter={(v) =>
@@ -524,7 +524,7 @@ export function LivePnLDashboard() {
             </p>
             <p
               className={cn(
-                "text-xs font-bold tabular-nums",
+                "text-xs font-semibold tabular-nums",
                 totalPnLPct >= 0 ? "text-emerald-400/70" : "text-red-400/70",
               )}
             >

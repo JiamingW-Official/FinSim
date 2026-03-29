@@ -267,7 +267,7 @@ function InfoBox({
   return (
     <div
       className={cn(
-        "flex items-start gap-2 rounded-lg border p-3 text-xs",
+        "flex items-start gap-2 rounded-lg border p-3 text-xs text-muted-foreground",
         styles[variant]
       )}
     >
@@ -697,7 +697,7 @@ function RBFCalculator() {
   }, [funding, monthlyRev, shareRate]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="RBF Cost of Capital Calculator"
         subtitle="Revenue-Based Financing payback under different growth scenarios"
@@ -759,26 +759,26 @@ function RBFCalculator() {
             className="rounded-md border border-border bg-card p-4"
           >
             <div
-              className="mb-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium"
+              className="mb-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium"
               style={{ background: sc.color + "22", color: sc.color }}
             >
               <Activity className="h-3 w-3" />
               {sc.growthLabel}
             </div>
             <div className="mt-3 space-y-2">
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Payback Period</span>
                 <span className="font-medium text-foreground">
                   {sc.months} months
                 </span>
               </div>
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Total Cost (1.35x)</span>
                 <span className="font-medium text-foreground">
                   ${(sc.totalCost / 1000).toFixed(0)}K
                 </span>
               </div>
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span className="text-muted-foreground">Effective IRR</span>
                 <span className="font-medium" style={{ color: sc.color }}>
                   {sc.effectiveRate.toFixed(1)}%
@@ -835,7 +835,7 @@ const VD_TERMS = [
 function VentureDebtTab() {
   return (
     <div className="space-y-8">
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-3">
         <div className="space-y-4">
           <SectionHeader
             title="How Venture Debt Works"
@@ -870,7 +870,7 @@ function VentureDebtTab() {
             subtitle="Capital stack from seed to exit"
           />
           <FinancingWaterfallChart />
-          <div className="mt-2 flex flex-wrap gap-2 text-xs">
+          <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <span className="inline-block h-2.5 w-2.5 rounded-sm bg-chart-3" />
               <span className="text-muted-foreground">Equity rounds</span>
@@ -945,7 +945,7 @@ function VentureDebtTab() {
 function RBFTab() {
   return (
     <div className="space-y-8">
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-3">
         <div className="space-y-4">
           <SectionHeader
             title="Revenue-Based Financing"
@@ -1093,7 +1093,7 @@ function RBFTab() {
                   Pros
                 </p>
                 {item.pros.map((p) => (
-                  <div key={p} className="flex items-start gap-1.5 text-xs">
+                  <div key={p} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                     <span className="mt-0.5 text-emerald-400">+</span>
                     <span className="text-muted-foreground">{p}</span>
                   </div>
@@ -1102,7 +1102,7 @@ function RBFTab() {
               <div>
                 <p className="mb-1.5 text-xs font-medium text-rose-400">Cons</p>
                 {item.cons.map((c) => (
-                  <div key={c} className="flex items-start gap-1.5 text-xs">
+                  <div key={c} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                     <span className="mt-0.5 text-rose-400">–</span>
                     <span className="text-muted-foreground">{c}</span>
                   </div>
@@ -1237,7 +1237,7 @@ function StageStackChart() {
 function GrowthEquityTab() {
   return (
     <div className="space-y-8">
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-3">
         <div className="space-y-4">
           <SectionHeader
             title="Growth Equity Overview"
@@ -1333,14 +1333,14 @@ function GrowthEquityTab() {
 function ComparisonTab() {
   return (
     <div className="space-y-8">
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-3">
         <div>
           <SectionHeader
             title="Lender Comparison Table"
             subtitle="Key venture debt providers and their terms"
           />
           <div className="overflow-hidden rounded-md border border-border">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="border-b border-border bg-muted/50">
                   {[
@@ -1428,21 +1428,21 @@ function ComparisonTab() {
                   <p className="text-xs text-muted-foreground">{l.type}</p>
                 </div>
                 <div className="space-y-1.5">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Gross IRR</span>
                     <span className="text-emerald-400 font-mono">{l.irr}%</span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Loss Rate</span>
                     <span className="text-rose-400 font-mono">{l.lossRate}</span>
                   </div>
-                  <div className="flex justify-between text-xs border-t border-border pt-1.5">
+                  <div className="flex justify-between text-xs text-muted-foreground border-t border-border pt-1.5">
                     <span className="text-muted-foreground">Net Yield</span>
                     <span className="text-foreground font-medium font-mono">
                       ~{netYield}%
                     </span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Warrants</span>
                     <span className="text-amber-400 font-mono">
                       {l.warrantCoverage}
@@ -1465,7 +1465,7 @@ function ComparisonTab() {
                 </div>
                 <Badge
                   variant="outline"
-                  className="text-xs"
+                  className="text-xs text-muted-foreground"
                   style={{ borderColor: l.statusColor.replace("text-", "") }}
                 >
                   <span className={l.statusColor}>{l.stage}</span>

@@ -1023,7 +1023,7 @@ export default function EquityDerivativesPage() {
   void fmtPct; // suppress if unused
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1066,19 +1066,19 @@ export default function EquityDerivativesPage() {
       {/* Tabs */}
       <Tabs defaultValue="sso" className="mt-8">
         <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full mb-6 bg-card/80 border border-border">
-          <TabsTrigger value="sso" className="text-xs md:text-sm">
+          <TabsTrigger value="sso" className="text-xs text-muted-foreground md:text-sm">
             <Target className="w-3.5 h-3.5 mr-1.5 hidden sm:inline" />
             Single-Stock Options
           </TabsTrigger>
-          <TabsTrigger value="swaps" className="text-xs md:text-sm">
+          <TabsTrigger value="swaps" className="text-xs text-muted-foreground md:text-sm">
             <ArrowRightLeft className="w-3.5 h-3.5 mr-1.5 hidden sm:inline" />
             Equity Swaps & TRS
           </TabsTrigger>
-          <TabsTrigger value="vol" className="text-xs md:text-sm">
+          <TabsTrigger value="vol" className="text-xs text-muted-foreground md:text-sm">
             <Activity className="w-3.5 h-3.5 mr-1.5 hidden sm:inline" />
             Volatility Products
           </TabsTrigger>
-          <TabsTrigger value="cb" className="text-xs md:text-sm">
+          <TabsTrigger value="cb" className="text-xs text-muted-foreground md:text-sm">
             <Shield className="w-3.5 h-3.5 mr-1.5 hidden sm:inline" />
             Convertible Bonds
           </TabsTrigger>
@@ -1155,7 +1155,7 @@ export default function EquityDerivativesPage() {
                   <StatChip label="Tax (ISO)" value="AMT risk" sub="Incentive SO" color="text-sky-400" />
                 </div>
                 <div className="overflow-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Company", "Type", "Strike", "Vesting", "Expiry", "Dilution"].map((h) => (
@@ -1272,7 +1272,7 @@ export default function EquityDerivativesPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <TrsMechanicsSVG />
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
                   <div className="bg-muted/60 rounded p-2">
                     <div className="text-emerald-400 font-medium mb-1">Equity Leg</div>
                     <div className="text-muted-foreground">Receiver gets: price appreciation + dividends. Payer hedged by holding stock.</div>
@@ -1299,7 +1299,7 @@ export default function EquityDerivativesPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Strategy", "Receiver", "Motivation", "Key Risk"].map((h) => (
@@ -1541,7 +1541,7 @@ export default function EquityDerivativesPage() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <CbPricingSVG />
-                  <div className="grid grid-cols-3 gap-2 mt-2 text-xs">
+                  <div className="grid grid-cols-3 gap-2 mt-2 text-xs text-muted-foreground">
                     {[
                       { label: "Busted CB", desc: "Stock far OTM; trades near bond floor. Bond-like delta ~0.1.", color: "text-red-400" },
                       { label: "Balanced CB", desc: "ATM region. High gamma, optionality premium maximized. Delta 0.4–0.6.", color: "text-amber-400" },
@@ -1572,7 +1572,7 @@ export default function EquityDerivativesPage() {
                       <StatChip label="Typical Maturity" value="5–7 yr" sub="callable after Yr3" color="text-sky-400" />
                     </div>
                     <div className="overflow-auto mt-2">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-xs text-muted-foreground">
                         <thead>
                           <tr className="border-b border-border">
                             {["Issuer", "Coupon", "Mat.", "Conv. Prem.", "Delta", "Rating"].map((h) => (
@@ -1700,7 +1700,7 @@ export default function EquityDerivativesPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border">
                         {["Stock/Conv. Price", "Region", "Delta", "Duration", "Credit Sensitivity", "Behavior"].map((h) => (

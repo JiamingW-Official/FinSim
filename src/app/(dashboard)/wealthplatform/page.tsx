@@ -1111,7 +1111,7 @@ export default function WealthPlatformPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div>
@@ -1173,7 +1173,7 @@ export default function WealthPlatformPage() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <div className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold",
+                    "w-8 h-8 rounded-full flex items-center justify-center text-xs text-muted-foreground font-bold",
                     selectedClient === c.id ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground"
                   )}>
                     {c.name.charAt(0)}
@@ -1204,7 +1204,7 @@ export default function WealthPlatformPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
                   <DonutChart
                     data={client.netWorthBreakdown}
                     size={160}
@@ -1301,7 +1301,7 @@ export default function WealthPlatformPage() {
                         <span className="text-sm font-medium text-foreground">{goal.name}</span>
                         <Badge
                           variant="outline"
-                          className={cn("text-xs ml-auto px-1.5 py-0", priorityColor)}
+                          className={cn("text-xs text-muted-foreground ml-auto px-1.5 py-0", priorityColor)}
                         >
                           {goal.priority}
                         </Badge>
@@ -1366,7 +1366,7 @@ export default function WealthPlatformPage() {
                   {portfolioData.map((d) => {
                     const diff = d.current - d.model;
                     return (
-                      <div key={d.label} className="flex items-center justify-between text-xs">
+                      <div key={d.label} className="flex items-center justify-between text-xs text-muted-foreground">
                         <span className="text-muted-foreground w-24">{d.label}</span>
                         <span className="text-muted-foreground w-12">{d.current}%</span>
                         <span className="text-muted-foreground w-12">{d.model}%</span>
@@ -1397,7 +1397,7 @@ export default function WealthPlatformPage() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-xs w-12 justify-center",
+                        "text-xs text-muted-foreground w-12 justify-center",
                         trade.action === "Buy"
                           ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/10"
                           : "border-red-500/40 text-red-400 bg-red-500/10"
@@ -1656,7 +1656,7 @@ export default function WealthPlatformPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-auto">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-xs text-muted-foreground">
                     <thead>
                       <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left pb-2 font-medium">Ticker</th>

@@ -324,7 +324,7 @@ function GlobalDemographicsTab() {
   const dChartH = 140;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Population pyramids */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
@@ -340,7 +340,7 @@ function GlobalDemographicsTab() {
                 key={c.name}
                 onClick={() => setSelectedCountry(c.name)}
                 className={cn(
-                  "px-3 py-1.5 rounded text-xs font-medium border transition-colors",
+                  "px-3 py-1.5 rounded text-xs text-muted-foreground font-medium border transition-colors",
                   selectedCountry === c.name
                     ? "bg-primary border-primary text-foreground"
                     : "bg-muted border-border text-muted-foreground hover:text-foreground",
@@ -500,7 +500,7 @@ function GlobalDemographicsTab() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-xs",
+                          "text-xs text-muted-foreground",
                           row.category === "aging" && "border-red-500/50 text-red-400",
                           row.category === "transitioning" && "border-amber-500/50 text-amber-400",
                           row.category === "young" && "border-green-500/50 text-green-400",
@@ -560,7 +560,7 @@ function AgingTrendsTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Old-age dependency ratio chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
@@ -721,7 +721,7 @@ function AgingTrendsTab() {
             ].map((p) => (
               <div key={p.country} className="bg-muted rounded-lg p-4">
                 <div className="text-sm font-medium mb-1">{p.country}</div>
-                <div className={cn("text-2xl font-bold", p.color)}>{p.unfunded}</div>
+                <div className={cn("text-lg font-medium", p.color)}>{p.unfunded}</div>
                 <div className="text-xs text-muted-foreground mt-1">Unfunded liability — {p.status}</div>
               </div>
             ))}
@@ -774,7 +774,7 @@ function InvestmentImplicationsTab() {
   const colW = matrixW / SECTOR_IMPACTS.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Visual impact matrix */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
@@ -863,13 +863,13 @@ function InvestmentImplicationsTab() {
                     <span className="font-semibold text-sm">{selectedSector.sector}</span>
                     <div className="flex items-center gap-1.5">
                       <div className={cn("w-2 h-2 rounded-full", IMPACT_DOT[selectedSector.impact])} />
-                      <span className="text-xs">{IMPACT_LABEL[selectedSector.impact]}</span>
+                      <span className="text-xs text-muted-foreground">{IMPACT_LABEL[selectedSector.impact]}</span>
                     </div>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed mb-2">{selectedSector.rationale}</p>
                   <div className="flex gap-1.5 flex-wrap">
                     {selectedSector.examples.map((ex) => (
-                      <span key={ex} className="text-xs px-2 py-0.5 bg-muted rounded font-mono">{ex}</span>
+                      <span key={ex} className="text-xs text-muted-foreground px-2 py-0.5 bg-muted rounded font-mono">{ex}</span>
                     ))}
                   </div>
                 </div>
@@ -892,13 +892,13 @@ function InvestmentImplicationsTab() {
               <span className="text-sm font-semibold">{s.sector}</span>
               <div className="flex items-center gap-1.5">
                 <div className={cn("w-2 h-2 rounded-full", IMPACT_DOT[s.impact])} />
-                <span className="text-xs">{IMPACT_LABEL[s.impact]}</span>
+                <span className="text-xs text-muted-foreground">{IMPACT_LABEL[s.impact]}</span>
               </div>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">{s.rationale}</p>
             <div className="flex gap-1 mt-2 flex-wrap">
               {s.examples.map((ex) => (
-                <span key={ex} className="text-xs px-1.5 py-0.5 bg-card/70 rounded font-mono">{ex}</span>
+                <span key={ex} className="text-xs text-muted-foreground px-1.5 py-0.5 bg-card/70 rounded font-mono">{ex}</span>
               ))}
             </div>
           </motion.div>
@@ -955,7 +955,7 @@ function JapanCaseStudyTab() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Correlation chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
@@ -1129,7 +1129,7 @@ function EmergingMarketTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Working-age population growth rate chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
@@ -1308,7 +1308,7 @@ function EmergingMarketTab() {
             <CardContent>
               <div className="space-y-1.5 mb-3">
                 {c.stats.map((stat) => (
-                  <div key={stat.label} className="flex justify-between text-xs">
+                  <div key={stat.label} className="flex justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">{stat.label}</span>
                     <span className="text-muted-foreground font-medium">{stat.value}</span>
                   </div>
@@ -1398,7 +1398,7 @@ export default function DemographicsPage() {
           ].map((stat) => (
             <Card key={stat.label} className="bg-card border-border">
               <CardContent className="p-3 text-center">
-                <div className={cn("text-2xl font-bold", stat.color)}>{stat.value}</div>
+                <div className={cn("text-lg font-medium", stat.color)}>{stat.value}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
               </CardContent>
@@ -1409,11 +1409,11 @@ export default function DemographicsPage() {
         {/* Tabs */}
         <Tabs defaultValue="global" className="space-y-4">
           <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="global"   className="text-xs data-[state=active]:bg-muted">Global Demographics</TabsTrigger>
-            <TabsTrigger value="aging"    className="text-xs data-[state=active]:bg-muted">Aging Trends</TabsTrigger>
-            <TabsTrigger value="invest"   className="text-xs data-[state=active]:bg-muted">Investment Implications</TabsTrigger>
-            <TabsTrigger value="japan"    className="text-xs data-[state=active]:bg-muted">Japan Case Study</TabsTrigger>
-            <TabsTrigger value="emerging" className="text-xs data-[state=active]:bg-muted">Emerging Market Dividend</TabsTrigger>
+            <TabsTrigger value="global"   className="text-xs text-muted-foreground data-[state=active]:bg-muted">Global Demographics</TabsTrigger>
+            <TabsTrigger value="aging"    className="text-xs text-muted-foreground data-[state=active]:bg-muted">Aging Trends</TabsTrigger>
+            <TabsTrigger value="invest"   className="text-xs text-muted-foreground data-[state=active]:bg-muted">Investment Implications</TabsTrigger>
+            <TabsTrigger value="japan"    className="text-xs text-muted-foreground data-[state=active]:bg-muted">Japan Case Study</TabsTrigger>
+            <TabsTrigger value="emerging" className="text-xs text-muted-foreground data-[state=active]:bg-muted">Emerging Market Dividend</TabsTrigger>
           </TabsList>
 
           <TabsContent value="global"   className="data-[state=inactive]:hidden"><GlobalDemographicsTab /></TabsContent>

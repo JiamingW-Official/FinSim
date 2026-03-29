@@ -682,7 +682,7 @@ export default function CleantechPage() {
 
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
@@ -812,7 +812,7 @@ export default function CleantechPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left text-muted-foreground py-2">Metric</th>
@@ -857,7 +857,7 @@ export default function CleantechPage() {
                 </CardHeader>
                 <CardContent>
                   <LearningCurveChart />
-                  <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                  <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
                     {[
                       { label: "Solar cost drop since 2010", value: "~93%", color: "text-amber-400" },
                       { label: "Wind cost drop since 2010", value: "~70%", color: "text-primary" },
@@ -903,7 +903,7 @@ export default function CleantechPage() {
                           {co.segment}
                         </Badge>
                         <p className="text-muted-foreground text-xs">{co.description}</p>
-                        <div className="mt-2 flex gap-4 text-xs">
+                        <div className="mt-2 flex gap-4 text-xs text-muted-foreground">
                           <span className="text-muted-foreground">Mkt Cap: <span className="text-muted-foreground">${co.mktCap}B</span></span>
                           <span className="text-muted-foreground">P/E: <span className="text-muted-foreground">{co.pe ?? "N/A"}</span></span>
                           {co.capacityGW > 0 && (
@@ -925,7 +925,7 @@ export default function CleantechPage() {
                     <CardTitle className="text-sm">Capacity Factor Comparison</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-2 text-xs">
+                    <div className="space-y-2 text-xs text-muted-foreground">
                       {[
                         { tech: "Offshore Wind", cf: 45, color: "#6366f1" },
                         { tech: "Onshore Wind", cf: 32, color: "#3b82f6" },
@@ -954,7 +954,7 @@ export default function CleantechPage() {
                     <CardTitle className="text-sm">Grid Parity Milestones</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-2 text-xs">
+                    <div className="space-y-2 text-xs text-muted-foreground">
                       {[
                         { year: "2013", region: "Germany residential solar", status: "achieved" },
                         { year: "2015", region: "US utility-scale solar vs gas", status: "achieved" },
@@ -1031,7 +1031,7 @@ export default function CleantechPage() {
                     <CardTitle className="text-sm">Grid-Scale Storage Economics</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3 text-xs">
+                    <div className="space-y-3 text-xs text-muted-foreground">
                       {[
                         {
                           metric: "4-hour Li-Ion BESS",
@@ -1074,7 +1074,7 @@ export default function CleantechPage() {
                     <CardTitle className="text-sm">Green Hydrogen Economics</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3 text-xs">
+                    <div className="space-y-3 text-xs text-muted-foreground">
                       <div className="bg-muted rounded p-3">
                         <div className="font-medium text-foreground mb-2">Production Cost by Route ($/kg H₂)</div>
                         {[
@@ -1127,7 +1127,7 @@ export default function CleantechPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left text-muted-foreground py-2">Ticker</th>
@@ -1172,7 +1172,7 @@ export default function CleantechPage() {
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">YieldCo Structures</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3 text-xs">
+                  <CardContent className="space-y-3 text-xs text-muted-foreground">
                     <p className="text-muted-foreground">
                       YieldCos are publicly listed subsidiaries that own contracted, cash-flowing renewable energy assets.
                       They distribute most of their cash flows as dividends.
@@ -1190,7 +1190,7 @@ export default function CleantechPage() {
                       <div className="font-medium text-foreground mb-1">Notable YieldCos</div>
                       <div className="grid grid-cols-2 gap-1 text-muted-foreground">
                         {["BEP (Brookfield Renewable)", "NEP (NextEra Energy Partners)", "CWEN (Clearway Energy)", "AY (Atlantica Sustainable)"].map((n) => (
-                          <div key={n} className="text-xs">{n}</div>
+                          <div key={n} className="text-xs text-muted-foreground">{n}</div>
                         ))}
                       </div>
                     </div>
@@ -1201,7 +1201,7 @@ export default function CleantechPage() {
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Green Bonds & Infrastructure Funds</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3 text-xs">
+                  <CardContent className="space-y-3 text-xs text-muted-foreground">
                     <div className="bg-muted rounded p-3">
                       <div className="font-medium text-foreground mb-2">Green Bond Market (2025)</div>
                       {[
@@ -1242,7 +1242,7 @@ export default function CleantechPage() {
                   <CardTitle className="text-sm text-amber-400">Key Investment Risks</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
                     {[
                       { title: "Interest Rate Sensitivity", desc: "YieldCos and green bonds are long-duration assets highly sensitive to rate moves. Rising rates compress valuations." },
                       { title: "Policy Reversal Risk", desc: "Subsidies and tax credits can be reduced or eliminated. IRA rollback risk elevated post-election cycles." },
@@ -1273,7 +1273,7 @@ export default function CleantechPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
                     {[
                       { credit: "Investment Tax Credit (ITC) §48E", amount: "30–50%", desc: "Solar, wind, storage, geothermal. Bonus for domestic content (+10%) and energy communities (+10%)." },
                       { credit: "Production Tax Credit (PTC) §45Y", amount: "$27.5/MWh", desc: "Wind, solar, hydro, nuclear. Inflation adjusted. 10-year credit period per project." },
@@ -1314,10 +1314,10 @@ export default function CleantechPage() {
                         low: "bg-emerald-900/40 border-emerald-800 text-emerald-300",
                       };
                       return (
-                        <div key={item.event} className={`border rounded p-2 text-xs ${impactColors[item.impact]}`}>
+                        <div key={item.event} className={`border rounded p-2 text-xs text-muted-foreground ${impactColors[item.impact]}`}>
                           <div className="flex items-center gap-2 mb-0.5">
                             <span className="font-bold">{item.year}</span>
-                            <Badge variant="outline" className="text-xs border-current py-0">{item.region}</Badge>
+                            <Badge variant="outline" className="text-xs text-muted-foreground border-current py-0">{item.region}</Badge>
                             <span className="font-medium">{item.event}</span>
                           </div>
                           <p className="text-muted-foreground">{item.detail}</p>
@@ -1340,7 +1340,7 @@ export default function CleantechPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-xs">
+                    <table className="w-full text-xs text-muted-foreground">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left text-muted-foreground py-2">Region / System</th>
@@ -1367,7 +1367,7 @@ export default function CleantechPage() {
                       </tbody>
                     </table>
                   </div>
-                  <div className="mt-4 bg-muted rounded p-3 text-xs">
+                  <div className="mt-4 bg-muted rounded p-3 text-xs text-muted-foreground">
                     <div className="font-medium text-foreground mb-2">Impact on Fossil vs Renewables</div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>

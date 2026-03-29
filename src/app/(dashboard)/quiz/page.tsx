@@ -295,7 +295,7 @@ function QuickQuizTab() {
 
   if (phase === "setup") {
     return (
-      <div className="flex flex-col items-center gap-6 py-8 max-w-xl mx-auto">
+      <div className="flex flex-col items-center gap-3 py-8 max-w-xl mx-auto">
         <div className="text-center">
           <div className="inline-flex h-14 w-14 items-center justify-center rounded-md bg-primary/10 mb-3">
             <Brain className="h-7 w-7 text-primary" />
@@ -317,7 +317,7 @@ function QuickQuizTab() {
                 <button
                   key={u.id}
                   onClick={() => setTopicFilter(u.id)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  className={`px-3 py-1.5 rounded-full text-xs text-muted-foreground font-medium transition-colors ${
                     topicFilter === u.id
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted text-muted-foreground hover:bg-accent"
@@ -388,7 +388,7 @@ function QuickQuizTab() {
                         style={{ width: `${pct}%` }}
                       />
                     </div>
-                    <span className="text-xs font-medium w-10 text-right">
+                    <span className="text-xs text-muted-foreground font-medium w-10 text-right">
                       {pct}%
                     </span>
                   </div>
@@ -409,7 +409,7 @@ function QuickQuizTab() {
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col items-center gap-6 py-8 max-w-md mx-auto"
+        className="flex flex-col items-center gap-3 py-8 max-w-md mx-auto"
       >
         <div className="text-center">
           <div
@@ -498,7 +498,7 @@ function QuickQuizTab() {
         </div>
         {timerEnabled && !revealed && (
           <div
-            className={`flex items-center gap-1 text-xs font-medium tabular-nums ${
+            className={`flex items-center gap-1 text-xs text-muted-foreground font-medium tabular-nums ${
               timeLeft <= 10 ? "text-rose-400" : "text-muted-foreground"
             }`}
           >
@@ -514,7 +514,7 @@ function QuickQuizTab() {
           {q.unitTitle}
         </span>
         <span
-          className={`text-xs px-2 py-0.5 rounded-full ${
+          className={`text-xs text-muted-foreground px-2 py-0.5 rounded-full ${
             q.difficulty === 1
               ? "bg-emerald-500/10 text-emerald-400"
               : q.difficulty === 2
@@ -568,7 +568,7 @@ function QuickQuizTab() {
                       : "border-border/50 bg-muted/30 hover:bg-accent hover:border-border"
                   }`}
                 >
-                  <span className="mr-2 font-mono text-xs opacity-60">
+                  <span className="mr-2 font-mono text-xs text-muted-foreground opacity-60">
                     {["A", "B", "C", "D"][idx]}.
                   </span>
                   {opt}
@@ -714,7 +714,7 @@ function FlashcardsTab() {
               setCardIndex(0);
               setFlipped(false);
             }}
-            className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+            className={`px-2.5 py-1 rounded-full text-xs text-muted-foreground font-medium transition-colors ${
               categoryFilter === cat.id
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:bg-accent"
@@ -753,7 +753,7 @@ function FlashcardsTab() {
             {/* Front */}
             <div
               style={{ backfaceVisibility: "hidden" }}
-              className="absolute inset-0 flex flex-col items-center justify-center rounded-md border border-border/60 bg-card px-6 py-8 text-center shadow-sm"
+              className="absolute inset-0 flex flex-col items-center justify-center rounded-md border border-border/60 bg-card px-6 py-8 text-center"
             >
               <span className="mb-3 text-xs font-medium text-muted-foreground">
                 {card.category}
@@ -768,7 +768,7 @@ function FlashcardsTab() {
             {/* Back */}
             <div
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-              className="absolute inset-0 flex flex-col items-center justify-center rounded-md border border-primary/30 bg-primary/5 px-6 py-8 text-center shadow-sm"
+              className="absolute inset-0 flex flex-col items-center justify-center rounded-md border border-primary/30 bg-primary/5 px-6 py-8 text-center"
             >
               <p className="text-sm leading-relaxed text-foreground/90 whitespace-pre-line">
                 {card.back}
@@ -989,7 +989,7 @@ function DailyChallengeTab() {
                   onClick={() => handleAnswer(idx)}
                   className={`w-full text-left rounded-md border px-4 py-3 text-sm font-medium transition-all ${cls}`}
                 >
-                  <span className="mr-2 font-mono text-xs opacity-60">
+                  <span className="mr-2 font-mono text-xs text-muted-foreground opacity-60">
                     {["A", "B", "C", "D"][idx]}.
                   </span>
                   {opt}
@@ -1041,7 +1041,7 @@ function DailyChallengeTab() {
                 }`}
               >
                 <span
-                  className={`w-5 text-xs font-medium text-center ${
+                  className={`w-5 text-xs text-muted-foreground font-medium text-center ${
                     i === 0
                       ? "text-yellow-400"
                       : i === 1
@@ -1062,7 +1062,7 @@ function DailyChallengeTab() {
                 </span>
                 <div className="flex items-center gap-1">
                   <Flame className="h-3.5 w-3.5 text-amber-400" />
-                  <span className="text-xs font-medium tabular-nums">
+                  <span className="text-xs text-muted-foreground font-medium tabular-nums">
                     {entry.streak}
                   </span>
                 </div>
@@ -1134,19 +1134,19 @@ function MyStatsTab() {
       {/* Summary stats */}
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
-          <div className="text-2xl font-bold text-primary">{overallAccuracy}%</div>
+          <div className="text-lg font-medium text-primary">{overallAccuracy}%</div>
           <div className="text-xs text-muted-foreground mt-0.5">Overall Accuracy</div>
         </div>
         <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
-          <div className="text-2xl font-bold text-amber-400">{totalQuizXP}</div>
+          <div className="text-lg font-medium text-amber-400">{totalQuizXP}</div>
           <div className="text-xs text-muted-foreground mt-0.5">Total Quiz XP</div>
         </div>
         <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
-          <div className="text-2xl font-bold text-emerald-400">{dueCardIds.length}</div>
+          <div className="text-lg font-medium text-emerald-400">{dueCardIds.length}</div>
           <div className="text-xs text-muted-foreground mt-0.5">Cards Due Today</div>
         </div>
         <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
-          <div className="text-2xl font-bold">{currentStreak}</div>
+          <div className="text-lg font-medium">{currentStreak}</div>
           <div className="text-xs text-muted-foreground mt-0.5">Daily Streak</div>
         </div>
       </div>
@@ -1283,7 +1283,7 @@ function MyStatsTab() {
                     {grade}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium truncate">{label}</p>
+                    <p className="text-xs text-muted-foreground font-medium truncate">{label}</p>
                     <p className="text-xs text-muted-foreground">
                       {session.score}/{session.totalQuestions} correct
                     </p>

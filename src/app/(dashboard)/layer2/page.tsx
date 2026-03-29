@@ -327,7 +327,7 @@ function ScalingLandscape() {
   const totalTvl = L2_PROTOCOLS.reduce((a, b) => a + b.tvlB, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="L2 Scaling Landscape"
         subtitle="Overview of leading Ethereum Layer 2 networks by TVL, throughput, and adoption"
@@ -373,7 +373,7 @@ function ScalingLandscape() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-xs border",
+                        "text-xs text-muted-foreground border",
                         p.type === "zk"
                           ? "border-border text-primary"
                           : "border-orange-700 text-orange-300"
@@ -502,7 +502,7 @@ function RollupTechnology() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Rollup Technology Deep Dive"
         subtitle="How Optimistic and ZK Rollups scale Ethereum through different cryptographic approaches"
@@ -714,7 +714,7 @@ function FeeComparisonChart() {
 
 function L2TokenEconomics() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="L2 Token Economics"
         subtitle="Sequencer revenue models, token utility frameworks, and L2 vs L1 fee dynamics"
@@ -903,7 +903,7 @@ function DeveloperEcosystem() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Developer Ecosystem"
         subtitle="EVM compatibility, protocol deployments, bridge activity, and developer tooling across L2 networks"
@@ -1065,7 +1065,7 @@ function InvestmentThesis() {
     s === "live" ? "text-emerald-400 border-emerald-700" : s === "upcoming" ? "text-primary border-border" : "text-primary border-border";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <SectionHeader
         title="Investment Thesis"
         subtitle="L2 vs L1 positioning, Ethereum roadmap catalysts, modular blockchain thesis, and valuation frameworks"
@@ -1134,12 +1134,12 @@ function InvestmentThesis() {
               <div className="pb-4">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-medium text-foreground">{item.title}</span>
-                  <Badge variant="outline" className={cn("text-xs border", statusColor(item.status))}>
+                  <Badge variant="outline" className={cn("text-xs text-muted-foreground border", statusColor(item.status))}>
                     {item.phase}
                   </Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mb-1">{item.description}</p>
-                <div className="flex items-center gap-1 text-xs">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <ArrowRight size={11} className="text-emerald-500" />
                   <span className="text-emerald-400">{item.impact}</span>
                 </div>
@@ -1179,7 +1179,7 @@ function InvestmentThesis() {
                   <td className="px-4 py-3 text-center">
                     <Badge
                       variant="outline"
-                      className={cn("text-xs border",
+                      className={cn("text-xs text-muted-foreground border",
                         v.riskLevel === "Low" ? "border-emerald-700 text-emerald-400" :
                         v.riskLevel === "Medium" ? "border-yellow-700 text-yellow-400" :
                         "border-red-700 text-red-400"
@@ -1280,7 +1280,7 @@ export default function Layer2Page() {
               { label: "Avg Fee", value: "$0.04", color: "text-green-400" },
               { label: "Networks", value: "6 major", color: "text-primary" },
             ].map((chip) => (
-              <div key={chip.label} className="flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs">
+              <div key={chip.label} className="flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
                 <span className="text-muted-foreground">{chip.label}:</span>
                 <span className={chip.color}>{chip.value}</span>
               </div>

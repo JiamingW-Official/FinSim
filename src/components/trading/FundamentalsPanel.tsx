@@ -43,7 +43,7 @@ function Row({ label, metric, value, valueClass }: { label: string; metric?: str
       <span className="text-xs text-muted-foreground">
         {metric ? <MetricTooltip metric={metric}>{label}</MetricTooltip> : label}
       </span>
-      <span className={cn("text-[11px] font-semibold tabular-nums", valueClass)}>{value}</span>
+      <span className={cn("text-[11px] font-medium tabular-nums", valueClass)}>{value}</span>
     </div>
   );
 }
@@ -56,7 +56,7 @@ function MarginBar({ label, value, max = 100 }: { label: string; value: number; 
     <div className="space-y-0.5">
       <div className="flex justify-between text-[11px]">
         <span className="text-muted-foreground">{label}</span>
-        <span className={cn("font-bold tabular-nums", value > 50 ? "text-emerald-400" : value > 20 ? "text-amber-400" : "text-red-400")}>
+        <span className={cn("font-semibold tabular-nums", value > 50 ? "text-emerald-400" : value > 20 ? "text-amber-400" : "text-red-400")}>
           {fmt(value)}%
         </span>
       </div>
@@ -164,7 +164,7 @@ export function FundamentalsPanel() {
         <div className="border-l-4 border-l-primary rounded-lg bg-card p-4">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-lg font-bold text-foreground">{currentTicker}</div>
+              <div className="text-lg font-semibold text-foreground">{currentTicker}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{data.industry}</div>
             </div>
             <div className="text-right">
@@ -268,7 +268,7 @@ export function FundamentalsPanel() {
               <div className="flex-1">
                 <div className="flex justify-between text-[11px] mb-0.5">
                   <span className="text-muted-foreground">{currentTicker}</span>
-                  <span className={cn("font-bold", pePremium > 10 ? "text-red-400" : pePremium < -10 ? "text-emerald-400" : "text-amber-400")}>
+                  <span className={cn("font-semibold", pePremium > 10 ? "text-red-400" : pePremium < -10 ? "text-emerald-400" : "text-amber-400")}>
                     {fmt(data.peRatio)}×
                   </span>
                 </div>
@@ -280,7 +280,7 @@ export function FundamentalsPanel() {
                 </div>
               </div>
             </div>
-            <div className={cn("text-[11px] font-bold pt-0.5", pePremium > 25 ? "text-red-400" : pePremium < -15 ? "text-emerald-400" : "text-amber-400")}>
+            <div className={cn("text-[11px] font-semibold pt-0.5", pePremium > 25 ? "text-red-400" : pePremium < -15 ? "text-emerald-400" : "text-amber-400")}>
               {pePremium > 25
                 ? `Premium: ${pePremium}% above sector avg — needs consistent earnings beats`
                 : pePremium < -15

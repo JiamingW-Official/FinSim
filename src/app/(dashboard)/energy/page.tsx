@@ -80,7 +80,7 @@ function InfoBox({
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
   };
   return (
-    <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
+    <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
       {children}
     </div>
   );
@@ -284,7 +284,7 @@ function DonutChart({ data }: { data: { source: string; pct: number; color: stri
   });
 
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-3">
       <svg width={200} height={200} viewBox="0 0 200 200">
         {slices.map((sl) => (
           <path key={sl.source} d={sl.path} fill={sl.color} opacity={0.9} />
@@ -298,7 +298,7 @@ function DonutChart({ data }: { data: { source: string; pct: number; color: stri
       </svg>
       <div className="grid grid-cols-2 gap-x-4 gap-y-1">
         {data.map((d) => (
-          <div key={d.source} className="flex items-center gap-1.5 text-xs">
+          <div key={d.source} className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: d.color }} />
             <span className="text-muted-foreground">{d.source}</span>
             <span className="text-muted-foreground">{d.pct}%</span>
@@ -498,7 +498,7 @@ function OilDemandForecastChart() {
 
 function Tab1() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Energy Prices */}
       <div>
         <SectionTitle>
@@ -515,7 +515,7 @@ function Tab1() {
                 <span className="w-2.5 h-2.5 rounded-full mt-1" style={{ backgroundColor: ep.color }} />
               </div>
               <div className="text-2xl font-bold text-foreground mb-2">{ep.name.includes("EU") ? "€" : "$"}{ep.price.toFixed(2)}</div>
-              <div className="flex gap-3 text-xs">
+              <div className="flex gap-3 text-xs text-muted-foreground">
                 <span className="text-muted-foreground">1M</span>
                 <span className={posNeg(ep.change1m)}>{fmtPct(ep.change1m)}</span>
                 <span className="text-muted-foreground">1Y</span>
@@ -551,7 +551,7 @@ function Tab1() {
         </SectionTitle>
         <Card>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Category</th>
@@ -612,7 +612,7 @@ function Tab1() {
         </SectionTitle>
         <Card>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Company</th>
@@ -670,7 +670,7 @@ function Tab2() {
   const [selectedOilPrice, setSelectedOilPrice] = useState<OilPrice>(80);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Breakeven by Basin */}
       <div>
         <SectionTitle>
@@ -695,7 +695,7 @@ function Tab2() {
                         "#f87171",
                     }}
                   />
-                  <span className="absolute left-2 top-0 h-full flex items-center text-xs font-medium text-background">
+                  <span className="absolute left-2 top-0 h-full flex items-center text-xs text-muted-foreground font-medium text-background">
                     ${b.breakeven}/bbl
                   </span>
                 </div>
@@ -703,7 +703,7 @@ function Tab2() {
               </div>
             ))}
           </div>
-          <div className="flex gap-3 mt-3 text-xs">
+          <div className="flex gap-3 mt-3 text-xs text-muted-foreground">
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded bg-emerald-400" />Under $35 — Profitable even in downturns</span>
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded bg-amber-400" />$35–$50 — Moderate risk</span>
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded bg-rose-400" />Over $50 — Vulnerable to price drops</span>
@@ -718,7 +718,7 @@ function Tab2() {
         </SectionTitle>
         <Card>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Basin</th>
@@ -755,7 +755,7 @@ function Tab2() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-xs",
+                          "text-xs text-muted-foreground",
                           b.co2perBbl > 25 ? "border-rose-500/50 text-rose-400" :
                           b.co2perBbl > 12 ? "border-amber-500/50 text-amber-400" :
                           "border-emerald-500/50 text-emerald-400"
@@ -784,7 +784,7 @@ function Tab2() {
                 key={p}
                 onClick={() => setSelectedOilPrice(p)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-xs font-medium transition-colors",
+                  "px-3 py-1 rounded-full text-xs text-muted-foreground font-medium transition-colors",
                   selectedOilPrice === p
                     ? "bg-amber-500 text-black"
                     : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
@@ -837,7 +837,7 @@ function Tab2() {
             <Card key={h.name} className="flex flex-col gap-2">
               <div className="text-sm font-medium text-foreground">{h.name}</div>
               <div className="text-xs text-muted-foreground flex-1">{h.desc}</div>
-              <div className="flex gap-2 text-xs mt-1">
+              <div className="flex gap-2 text-xs text-muted-foreground mt-1">
                 <Badge variant="outline" className="border-primary/40 text-primary">Risk: {h.risk}</Badge>
                 <Badge variant="outline" className={cn(
                   h.upside === "Full" ? "border-emerald-500/40 text-emerald-400" :
@@ -859,7 +859,7 @@ function Tab2() {
 
 function Tab3() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Solar LCOE */}
       <div>
         <SectionTitle>
@@ -869,15 +869,15 @@ function Tab3() {
           <LcoeCurve />
           <div className="mt-3 grid grid-cols-3 gap-3 text-center">
             <div>
-              <div className="text-2xl font-bold text-amber-400">90%</div>
+              <div className="text-lg font-medium text-amber-400">90%</div>
               <div className="text-xs text-muted-foreground">cost decline 2010→2024</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-foreground">$24</div>
+              <div className="text-lg font-medium text-foreground">$24</div>
               <div className="text-xs text-muted-foreground">LCOE per MWh in 2024</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-emerald-400">&lt;$20</div>
+              <div className="text-lg font-medium text-emerald-400">&lt;$20</div>
               <div className="text-xs text-muted-foreground">projected by 2030</div>
             </div>
           </div>
@@ -942,7 +942,7 @@ function Tab3() {
         </SectionTitle>
         <Card>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Ticker</th>
@@ -1066,7 +1066,7 @@ function Tab3() {
                     ${h.cost}/kg
                   </span>
                 </div>
-                <div className="w-20 text-right text-xs">
+                <div className="w-20 text-right text-xs text-muted-foreground">
                   {h.co2 === 0 ? (
                     <span className="text-emerald-400">Zero CO₂</span>
                   ) : (
@@ -1091,7 +1091,7 @@ function Tab3() {
 
 function Tab4() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Regulated Utilities */}
       <div>
         <SectionTitle>
@@ -1099,7 +1099,7 @@ function Tab4() {
         </SectionTitle>
         <Card>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Company</th>
@@ -1160,7 +1160,7 @@ function Tab4() {
               },
             ].map((s) => (
               <div key={s.step} className="flex gap-3">
-                <div className={cn("text-2xl font-bold shrink-0", s.color)}>{s.step}</div>
+                <div className={cn("text-lg font-medium shrink-0", s.color)}>{s.step}</div>
                 <div>
                   <div className="text-sm font-medium text-foreground mb-1">{s.title}</div>
                   <div className="text-xs text-muted-foreground">{s.desc}</div>
@@ -1185,7 +1185,7 @@ function Tab4() {
               <div key={u.ticker} className="flex items-center gap-3">
                 <div className="w-12 font-medium text-foreground text-xs">{u.ticker}</div>
                 <div className="flex-1">
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span className="text-muted-foreground">Annual CapEx: <span className="text-foreground">${u.capex}B</span></span>
                     <span className="text-emerald-400">Rate Base +{u.rateBaseGrowth}%/yr</span>
                   </div>
@@ -1261,7 +1261,7 @@ function Tab4() {
               { label: "US transmission investment (2024)", value: "$32B", unit: "per year", color: "text-emerald-400" },
             ].map((stat) => (
               <div key={stat.label} className="p-3 rounded-lg bg-foreground/5">
-                <div className={cn("text-2xl font-bold", stat.color)}>{stat.value}</div>
+                <div className={cn("text-lg font-medium", stat.color)}>{stat.value}</div>
                 <div className="text-xs text-muted-foreground mt-1">{stat.unit}</div>
                 <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
               </div>
@@ -1282,7 +1282,7 @@ function Tab4() {
 
 function Tab5() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* EV Adoption */}
       <div>
         <SectionTitle>
@@ -1332,7 +1332,7 @@ function Tab5() {
         </SectionTitle>
         <Card>
           <div className="overflow-x-auto">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
                 <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2">Mineral</th>
@@ -1368,7 +1368,7 @@ function Tab5() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-xs",
+                          "text-xs text-muted-foreground",
                           m.riskLevel === "Critical" ? "border-red-500/60 text-red-400" :
                           m.riskLevel === "High" ? "border-rose-500/50 text-rose-400" :
                           "border-amber-500/50 text-amber-400"
@@ -1427,7 +1427,7 @@ function Tab5() {
             <Card key={a.asset} className={cn("flex flex-col gap-3 border", a.border)}>
               <div>
                 <div className="text-sm font-medium text-foreground">{a.asset}</div>
-                <Badge variant="outline" className={cn("text-xs mt-1", `border-current ${a.color}`)}>{a.severity} Risk</Badge>
+                <Badge variant="outline" className={cn("text-xs text-muted-foreground mt-1", `border-current ${a.color}`)}>{a.severity} Risk</Badge>
               </div>
               <div className="flex gap-4 text-center">
                 <div>
@@ -1466,7 +1466,7 @@ function Tab5() {
                       backgroundColor: c.cost < 60 ? "#34d399" : c.cost < 130 ? "#fbbf24" : "#f87171",
                     }}
                   />
-                  <span className="absolute left-2 top-0 h-full flex items-center text-xs font-medium text-background">
+                  <span className="absolute left-2 top-0 h-full flex items-center text-xs text-muted-foreground font-medium text-background">
                     ${c.cost}/tonne CO₂
                   </span>
                 </div>
@@ -1501,7 +1501,7 @@ function Tab5() {
                 { sector: "Low-Carbon E&P (Permian)", thesis: "Low breakeven + low carbon intensity = last barrels standing." },
                 { sector: "Critical Mineral Miners", thesis: "Lithium, copper demand surge driven by EV + renewables buildout." },
               ].map((w) => (
-                <div key={w.sector} className="flex gap-2 text-xs">
+                <div key={w.sector} className="flex gap-2 text-xs text-muted-foreground">
                   <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-foreground font-medium">{w.sector}:</span>
@@ -1524,7 +1524,7 @@ function Tab5() {
                 { sector: "Thermal Power Developers", thesis: "New gas/coal plants face financing challenges and early retirement pressure." },
                 { sector: "European Gas Importers", thesis: "2022 price shock has permanently impaired LNG import dependency economics." },
               ].map((l) => (
-                <div key={l.sector} className="flex gap-2 text-xs">
+                <div key={l.sector} className="flex gap-2 text-xs text-muted-foreground">
                   <AlertTriangle className="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-foreground font-medium">{l.sector}:</span>
