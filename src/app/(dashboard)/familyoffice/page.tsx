@@ -1,1304 +1,1314 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Building2,
-  DollarSign,
-  TrendingUp,
   Shield,
   Heart,
-  Users,
-  BarChart3,
-  Scale,
-  BookOpen,
-  Award,
-  Target,
-  CheckCircle,
-  Info,
-  Landmark,
-  PieChart,
+  Briefcase,
   Layers,
-  ArrowUpRight,
-  Star,
-  Gift,
+  DollarSign,
+  TrendingUp,
+  Users,
+  Globe,
+  Scale,
+  ChevronDown,
+  ChevronUp,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ─────────────────────────────────────────────────────────────
-let s = 652008;
+let s = 991;
 const rand = () => {
   s = (s * 1103515245 + 12345) & 0x7fffffff;
   return s / 0x7fffffff;
 };
+const _pregenerated = Array.from({ length: 500 }, () => rand());
+let _vi = 0;
+const sv = () => _pregenerated[_vi++ % _pregenerated.length];
+void sv;
 
-// ── Types ────────────────────────────────────────────────────────────────────
+// ── Format helpers ───────────────────────────────────────────────────────────
+const fmtM = (n: number) =>
+  n >= 1000 ? `$${(n / 1000).toFixed(1)}B` : `$${n}M`;
+const fmtPct = (n: number) => `${n.toFixed(1)}%`;
+const posColor = (v: number) => (v >= 0 ? "text-emerald-400" : "text-red-400");
 
-interface WealthTier {
+// ── Asset Allocation Data ────────────────────────────────────────────────────
+interface AssetClass {
+  name: string;
+  pct: number;
+  aum: number;
+  color: string;
+  ytd: number;
+}
+
+const ASSET_CLASSES: AssetClass[] = [
+  { name: "Public Equity", pct: 22, aum: 110, color: "#6366f1", ytd: 14.2 },
+  { name: "Private Equity", pct: 18, aum: 90, color: "#8b5cf6", ytd: 18.7 },
+  { name: "Hedge Funds", pct: 12, aum: 60, color: "#a78bfa", ytd: 7.4 },
+  { name: "Real Estate", pct: 10, aum: 50, color: "#22c55e", ytd: 9.1 },
+  { name: "Infrastructure", pct: 8, aum: 40, color: "#16a34a", ytd: 11.3 },
+  { name: "Direct Lending", pct: 7, aum: 35, color: "#f59e0b", ytd: 8.9 },
+  { name: "Venture Capital", pct: 6, aum: 30, color: "#ef4444", ytd: 22.5 },
+  { name: "Fixed Income", pct: 6, aum: 30, color: "#3b82f6", ytd: 4.2 },
+  { name: "Art & Collectibles", pct: 4, aum: 20, color: "#ec4899", ytd: 6.8 },
+  { name: "Commodities", pct: 3, aum: 15, color: "#f97316", ytd: 3.1 },
+  { name: "Crypto / Digital", pct: 2, aum: 10, color: "#fbbf24", ytd: 41.2 },
+  { name: "Cash & Equivalents", pct: 2, aum: 10, color: "#6b7280", ytd: 5.1 },
+];
+
+// ── SVG Donut Chart ──────────────────────────────────────────────────────────
+function DonutChart({ data }: { data: AssetClass[] }) {
+  const [hovered, setHovered] = useState<string | null>(null);
+  const total = data.reduce((a, b) => a + b.pct, 0);
+  const cx = 150;
+  const cy = 150;
+  const r = 110;
+  const innerR = 65;
+
+  let cumAngle = -90;
+  const slices = data.map((d) => {
+    const angle = (d.pct / total) * 360;
+    const startAngle = cumAngle;
+    cumAngle += angle;
+    return { ...d, startAngle, endAngle: cumAngle };
+  });
+
+  const polarToCart = (pcx: number, pcy: number, pr: number, angleDeg: number) => {
+    const rad = ((angleDeg - 90) * Math.PI) / 180;
+    return { x: pcx + pr * Math.cos(rad), y: pcy + pr * Math.sin(rad) };
+  };
+
+  const arcPath = (
+    startDeg: number,
+    endDeg: number,
+    outerR: number,
+    iR: number
+  ) => {
+    const s1 = polarToCart(cx, cy, outerR, startDeg);
+    const e1 = polarToCart(cx, cy, outerR, endDeg);
+    const s2 = polarToCart(cx, cy, iR, endDeg);
+    const e2 = polarToCart(cx, cy, iR, startDeg);
+    const largeArc = endDeg - startDeg > 180 ? 1 : 0;
+    return [
+      `M ${s1.x} ${s1.y}`,
+      `A ${outerR} ${outerR} 0 ${largeArc} 1 ${e1.x} ${e1.y}`,
+      `L ${s2.x} ${s2.y}`,
+      `A ${iR} ${iR} 0 ${largeArc} 0 ${e2.x} ${e2.y}`,
+      "Z",
+    ].join(" ");
+  };
+
+  const hoveredSlice = slices.find((sl) => sl.name === hovered);
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <svg viewBox="0 0 300 300" className="w-64 h-64">
+        {slices.map((slice) => {
+          const isHov = hovered === slice.name;
+          const expandedR = isHov ? r + 8 : r;
+          return (
+            <path
+              key={slice.name}
+              d={arcPath(slice.startAngle, slice.endAngle, expandedR, innerR)}
+              fill={slice.color}
+              opacity={hovered && !isHov ? 0.4 : 1}
+              style={{ cursor: "pointer", transition: "all 0.15s" }}
+              onMouseEnter={() => setHovered(slice.name)}
+              onMouseLeave={() => setHovered(null)}
+            />
+          );
+        })}
+        {hoveredSlice ? (
+          <>
+            <text
+              x={cx}
+              y={cy - 14}
+              textAnchor="middle"
+              fill="#f1f5f9"
+              fontSize={11}
+              fontWeight={600}
+            >
+              {hoveredSlice.name}
+            </text>
+            <text
+              x={cx}
+              y={cy + 6}
+              textAnchor="middle"
+              fill="#f1f5f9"
+              fontSize={16}
+              fontWeight={700}
+            >
+              {hoveredSlice.pct}%
+            </text>
+            <text
+              x={cx}
+              y={cy + 22}
+              textAnchor="middle"
+              fill="#94a3b8"
+              fontSize={10}
+            >
+              {fmtM(hoveredSlice.aum)}
+            </text>
+          </>
+        ) : (
+          <>
+            <text
+              x={cx}
+              y={cy - 8}
+              textAnchor="middle"
+              fill="#94a3b8"
+              fontSize={11}
+            >
+              Total AUM
+            </text>
+            <text
+              x={cx}
+              y={cy + 12}
+              textAnchor="middle"
+              fill="#f1f5f9"
+              fontSize={18}
+              fontWeight={700}
+            >
+              $500M
+            </text>
+          </>
+        )}
+      </svg>
+    </div>
+  );
+}
+
+// ── Family Office Structure Section ─────────────────────────────────────────
+interface FoType {
+  id: string;
   label: string;
   aumMin: string;
-  aumMax: string;
-  color: string;
-  bgColor: string;
-  serviceModel: string;
-  feeStructure: string;
-  keyServices: string[];
-  pyramidHeight: number;
-  width: number;
-}
-
-interface AllocationSlice {
-  label: string;
-  uhnwPct: number;
-  retailPct: number;
+  cost: string;
+  staff: string;
+  pros: string[];
+  cons: string[];
   color: string;
 }
 
-interface TaxStrategy {
+const FO_TYPES: FoType[] = [
+  {
+    id: "sfo",
+    label: "Single Family Office",
+    aumMin: "$250M+",
+    cost: "~1.0–2.5% AUM/yr",
+    staff: "10–30 FTEs",
+    pros: [
+      "Complete privacy & confidentiality",
+      "Fully bespoke strategy",
+      "Deep family alignment",
+      "Control of entire operation",
+    ],
+    cons: [
+      "High fixed costs ($2–5M/yr)",
+      "Talent concentration risk",
+      "Governance complexity",
+      "Operational overhead",
+    ],
+    color: "#6366f1",
+  },
+  {
+    id: "mfo",
+    label: "Multi-Family Office",
+    aumMin: "$50M–$250M",
+    cost: "~0.5–1.2% AUM/yr",
+    staff: "Shared (20–200)",
+    pros: [
+      "Economies of scale",
+      "Access to top talent",
+      "Peer learning across families",
+      "Lower break-even AUM",
+    ],
+    cons: [
+      "Less customization",
+      "Potential conflicts of interest",
+      "Shared attention",
+      "Some loss of privacy",
+    ],
+    color: "#8b5cf6",
+  },
+  {
+    id: "ocio",
+    label: "Outsourced CIO",
+    aumMin: "$10M–$100M",
+    cost: "~0.2–0.6% AUM/yr",
+    staff: "External provider",
+    pros: [
+      "Lowest cost structure",
+      "Institutional-quality process",
+      "Scalable engagement",
+      "Flexibility to change providers",
+    ],
+    cons: [
+      "Limited bespoke customization",
+      "Less direct family involvement",
+      "Provider dependency",
+      "Potential misaligned incentives",
+    ],
+    color: "#22c55e",
+  },
+];
+
+function FoStructureTab() {
+  const [selected, setSelected] = useState<string>("sfo");
+  const sel = FO_TYPES.find((f) => f.id === selected)!;
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-3 gap-3">
+        {FO_TYPES.map((fo) => (
+          <button
+            key={fo.id}
+            onClick={() => setSelected(fo.id)}
+            className={`rounded-xl border p-4 text-left transition-all ${
+              selected === fo.id
+                ? "border-white/30 bg-white/10"
+                : "border-white/10 bg-white/5 hover:bg-white/8"
+            }`}
+          >
+            <div
+              className="mb-2 h-2 w-8 rounded-full"
+              style={{ backgroundColor: fo.color }}
+            />
+            <div className="font-semibold text-sm text-slate-100">{fo.label}</div>
+            <div className="text-xs text-slate-400 mt-1">Min: {fo.aumMin}</div>
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="border-white/10 bg-white/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-slate-300">Key Metrics</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex justify-between text-sm">
+              <span className="text-slate-400">Min AUM</span>
+              <span className="font-semibold text-slate-100">{sel.aumMin}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-slate-400">Annual Cost</span>
+              <span className="font-semibold text-slate-100">{sel.cost}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-slate-400">Staffing</span>
+              <span className="font-semibold text-slate-100">{sel.staff}</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-white/10 bg-white/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-emerald-400">Advantages</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {sel.pros.map((p) => (
+              <div key={p} className="flex items-start gap-2 text-xs text-slate-300">
+                <CheckCircle className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald-400" />
+                {p}
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card className="border-white/10 bg-white/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-red-400">Disadvantages</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {sel.cons.map((c) => (
+              <div key={c} className="flex items-start gap-2 text-xs text-slate-300">
+                <AlertCircle className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-red-400" />
+                {c}
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="border-white/10 bg-white/5">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-slate-300">
+            Typical SFO Services Breakdown
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { label: "Investment Mgmt", cost: "40%", icon: TrendingUp },
+              { label: "Tax & Accounting", cost: "20%", icon: Scale },
+              { label: "Legal & Estate", cost: "15%", icon: Shield },
+              { label: "Family Governance", cost: "10%", icon: Users },
+              { label: "Philanthropy", cost: "8%", icon: Heart },
+              { label: "Concierge/Admin", cost: "5%", icon: Globe },
+              { label: "Technology", cost: "2%", icon: Layers },
+            ].map(({ label, cost, icon: Icon }) => (
+              <div
+                key={label}
+                className="flex flex-col items-center rounded-lg border border-white/10 bg-white/5 p-3 text-center"
+              >
+                <Icon className="mb-1.5 h-5 w-5 text-indigo-400" />
+                <div className="text-xs font-semibold text-slate-100">{cost}</div>
+                <div className="mt-0.5 text-xs text-slate-400">{label}</div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ── Asset Allocation Tab ─────────────────────────────────────────────────────
+function AllocationTab() {
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="border-white/10 bg-white/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-slate-300">
+              Portfolio Allocation — $500M AUM
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <DonutChart data={ASSET_CLASSES} />
+          </CardContent>
+        </Card>
+
+        <Card className="border-white/10 bg-white/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-slate-300">Asset Class Detail</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {ASSET_CLASSES.map((ac) => (
+              <div key={ac.name} className="flex items-center gap-2">
+                <div
+                  className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
+                  style={{ backgroundColor: ac.color }}
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-300 truncate">{ac.name}</span>
+                    <div className="flex items-center gap-3 ml-2">
+                      <span className="text-xs font-mono text-slate-400">{fmtM(ac.aum)}</span>
+                      <span className="text-xs font-mono text-slate-200 w-8 text-right">
+                        {ac.pct}%
+                      </span>
+                      <span
+                        className={`text-xs font-mono w-14 text-right ${posColor(ac.ytd)}`}
+                      >
+                        +{fmtPct(ac.ytd)}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-0.5 h-1 w-full rounded-full bg-white/10">
+                    <div
+                      className="h-1 rounded-full"
+                      style={{ width: `${ac.pct * 4}%`, backgroundColor: ac.color }}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { label: "Weighted YTD Return", value: "+12.4%", sub: "vs 60/40: +8.1%", positive: true },
+          { label: "Illiquidity Premium", value: "+3.8%", sub: "vs liquid-only portfolio", positive: true },
+          { label: "Sharpe Ratio", value: "1.42", sub: "3-year trailing", positive: true },
+          { label: "Max Drawdown (3yr)", value: "-8.2%", sub: "COVID stress: -22%", positive: false },
+        ].map(({ label, value, sub, positive }) => (
+          <Card key={label} className="border-white/10 bg-white/5">
+            <CardContent className="pt-4">
+              <div className="text-xs text-slate-400">{label}</div>
+              <div
+                className={`mt-1 text-lg font-bold ${
+                  positive ? "text-emerald-400" : "text-red-400"
+                }`}
+              >
+                {value}
+              </div>
+              <div className="text-xs text-slate-500">{sub}</div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Estate Planning Tab ──────────────────────────────────────────────────────
+interface EstateTool {
   name: string;
-  category: string;
-  description: string;
-  savingsPotential: string;
+  desc: string;
+  taxBenefit: string;
+  minAum: string;
   complexity: "Low" | "Medium" | "High";
-  icon: string;
 }
 
-interface GivingVehicle {
-  name: string;
-  abbrev: string;
-  minAsset: string;
-  taxDeduction: string;
-  control: number;
-  flexibility: number;
-  adminBurden: number;
-  color: string;
-  description: string;
-}
-
-interface GovernanceElement {
-  title: string;
-  description: string;
-  components: string[];
-  importance: "Critical" | "High" | "Medium";
-  icon: React.ReactNode;
-}
-
-// ── Static Data ───────────────────────────────────────────────────────────────
-
-const WEALTH_TIERS: WealthTier[] = [
+const ESTATE_TOOLS: EstateTool[] = [
   {
-    label: "Mass Affluent",
-    aumMin: "$100K",
-    aumMax: "$1M",
-    color: "text-slate-300",
-    bgColor: "bg-slate-700",
-    serviceModel: "Digital/Robo + Self-directed",
-    feeStructure: "0.25–0.50% AUM or flat fee",
-    keyServices: ["Retirement planning", "Basic portfolio mgmt", "Tax prep assistance", "Life insurance"],
-    pyramidHeight: 40,
-    width: 320,
-  },
-  {
-    label: "High Net Worth",
-    aumMin: "$1M",
-    aumMax: "$10M",
-    color: "text-blue-300",
-    bgColor: "bg-blue-900/50",
-    serviceModel: "Private Banking / Wealth Advisory",
-    feeStructure: "0.75–1.25% AUM",
-    keyServices: ["Comprehensive financial plan", "Estate planning basics", "Tax optimization", "Alternative access"],
-    pyramidHeight: 55,
-    width: 240,
-  },
-  {
-    label: "Very High Net Worth",
-    aumMin: "$10M",
-    aumMax: "$100M",
-    color: "text-violet-300",
-    bgColor: "bg-violet-900/50",
-    serviceModel: "Private Wealth Management",
-    feeStructure: "0.50–0.90% AUM",
-    keyServices: ["Multi-generational planning", "Direct PE/VC access", "Philanthropic advisory", "Family governance"],
-    pyramidHeight: 65,
-    width: 160,
-  },
-  {
-    label: "Ultra High Net Worth",
-    aumMin: "$100M",
-    aumMax: "$1B",
-    color: "text-amber-300",
-    bgColor: "bg-amber-900/50",
-    serviceModel: "Single/Multi-Family Office",
-    feeStructure: "0.25–0.50% AUM or fixed retainer",
-    keyServices: ["Co-investment deals", "Bespoke structuring", "Dynasty trust planning", "Impact investing"],
-    pyramidHeight: 75,
-    width: 100,
-  },
-  {
-    label: "Family Office Tier",
-    aumMin: "$1B+",
-    aumMax: "∞",
-    color: "text-yellow-300",
-    bgColor: "bg-yellow-900/50",
-    serviceModel: "Dedicated Single Family Office",
-    feeStructure: "Fixed $2–10M+ annual budget",
-    keyServices: ["Full staff (CIO, CFO, legal)", "Proprietary deal flow", "Foundation management", "Family concierge"],
-    pyramidHeight: 80,
-    width: 56,
-  },
-];
-
-const ALLOCATION_DATA: AllocationSlice[] = [
-  { label: "Public Equities", uhnwPct: 28, retailPct: 55, color: "#3b82f6" },
-  { label: "Private Equity / VC", uhnwPct: 22, retailPct: 2, color: "#8b5cf6" },
-  { label: "Real Assets", uhnwPct: 15, retailPct: 5, color: "#f59e0b" },
-  { label: "Hedge Funds", uhnwPct: 12, retailPct: 1, color: "#10b981" },
-  { label: "Fixed Income", uhnwPct: 14, retailPct: 30, color: "#06b6d4" },
-  { label: "Cash & Equivalents", uhnwPct: 9, retailPct: 7, color: "#6b7280" },
-];
-
-const TAX_STRATEGIES: TaxStrategy[] = [
-  {
-    name: "Grantor Retained Annuity Trust (GRAT)",
-    category: "Estate Planning",
-    description: "Transfer appreciation above IRS hurdle rate (7520 rate) to heirs gift-tax free. Zeroed-out GRATs are common for high-growth assets.",
-    savingsPotential: "$1M–$50M+ estate tax savings",
+    name: "Dynasty Trust (GST)",
+    desc: "Multi-generational trust that skips estate tax at each generation transfer using the GST exemption.",
+    taxBenefit: "Avoid 40% estate tax across 3+ generations",
+    minAum: "$10M+",
     complexity: "High",
-    icon: "🏛️",
   },
   {
-    name: "Irrevocable Life Insurance Trust (ILIT)",
-    category: "Estate Planning",
-    description: "Removes life insurance proceeds from taxable estate. Policy owned by trust; death benefit passes outside estate, funding liquidity for heirs.",
-    savingsPotential: "40% estate tax on policy proceeds avoided",
+    name: "GRAT (Grantor Retained Annuity Trust)",
+    desc: "Transfers appreciation above IRS hurdle rate (7520 rate) to heirs gift-tax free over a 2–10 year term.",
+    taxBenefit: "Transfer appreciation tax-free",
+    minAum: "$5M+",
     complexity: "Medium",
-    icon: "🛡️",
-  },
-  {
-    name: "Qualified Personal Residence Trust (QPRT)",
-    category: "Estate Planning",
-    description: "Transfer home to heirs at a discounted gift-tax value by retaining use for a term. Works best in low-interest-rate environments.",
-    savingsPotential: "30–50% discount on residence value",
-    complexity: "Medium",
-    icon: "🏡",
-  },
-  {
-    name: "Tax-Loss Harvesting at Scale",
-    category: "Portfolio Tax",
-    description: "Systematic harvesting of unrealized losses to offset capital gains across a multi-account portfolio, maintaining market exposure via swaps.",
-    savingsPotential: "0.5–1.5% annualized after-tax alpha",
-    complexity: "Medium",
-    icon: "📉",
-  },
-  {
-    name: "Charitable Remainder Trust (CRT)",
-    category: "Charitable Giving",
-    description: "Donor transfers appreciated assets; trust sells tax-free, pays annuity to donor for life or term, remainder to charity. Immediate partial deduction.",
-    savingsPotential: "30–50% of contribution as income deduction",
-    complexity: "High",
-    icon: "💝",
-  },
-  {
-    name: "Opportunity Zone Investment",
-    category: "Capital Gains Deferral",
-    description: "Invest capital gains in a Qualified Opportunity Fund within 180 days. Defer gains to 2026, exclude future appreciation after 10-year hold.",
-    savingsPotential: "Tax-free appreciation on 10+ year gains",
-    complexity: "High",
-    icon: "🏗️",
   },
   {
     name: "Donor-Advised Fund (DAF)",
-    category: "Charitable Giving",
-    description: "Contribute appreciated assets, take immediate deduction, invest grant funds for growth, distribute to charities over time at donor's discretion.",
-    savingsPotential: "Avoid capital gains + income deduction up to 60% AGI",
+    desc: "Immediate charitable deduction on contribution; invest assets tax-free and recommend grants over time.",
+    taxBenefit: "Full deduction in year of contribution",
+    minAum: "$250K+",
     complexity: "Low",
-    icon: "🎁",
   },
   {
-    name: "Qualified Small Business Stock (QSBS)",
-    category: "Capital Gains Exclusion",
-    description: "Section 1202 exclusion: up to $10M or 10× basis in gains excluded from federal tax on original-issue C-corp stock held 5+ years.",
-    savingsPotential: "Up to $10M federal gain excluded per issuer",
+    name: "Charitable Lead Trust (CLT)",
+    desc: "Charity receives income stream for a set term; remainder passes to heirs with gift tax savings.",
+    taxBenefit: "Reduce taxable estate by PV of lead interest",
+    minAum: "$2M+",
+    complexity: "High",
+  },
+  {
+    name: "Charitable Remainder Trust (CRT)",
+    desc: "Donor receives income stream; remainder to charity. Avoids capital gains on appreciated assets.",
+    taxBenefit: "Defer/eliminate cap gains + income stream",
+    minAum: "$1M+",
     complexity: "Medium",
-    icon: "🚀",
+  },
+  {
+    name: "IDGT (Intentionally Defective Grantor Trust)",
+    desc: "Sell assets to trust in exchange for note. Grantor pays income tax (additional gift), trust grows tax-free.",
+    taxBenefit: "Freeze estate + income tax as additional gift",
+    minAum: "$5M+",
+    complexity: "High",
   },
 ];
 
-const GIVING_VEHICLES: GivingVehicle[] = [
-  {
-    name: "Donor-Advised Fund",
-    abbrev: "DAF",
-    minAsset: "$5,000",
-    taxDeduction: "Immediate (up to 60% AGI cash / 30% appreciated)",
-    control: 75,
-    flexibility: 90,
-    adminBurden: 10,
-    color: "#3b82f6",
-    description: "Simplest charitable giving vehicle. Sponsor manages administration. Donor retains advisory role on grants.",
-  },
-  {
-    name: "Private Foundation",
-    abbrev: "PF",
-    minAsset: "$1M+",
-    taxDeduction: "Up to 30% AGI (cash); 20% (appreciated assets)",
-    control: 100,
-    flexibility: 60,
-    adminBurden: 90,
-    color: "#8b5cf6",
-    description: "Maximum control and legacy branding. Requires annual 5% payout, 990-PF filing, excise taxes on investment income.",
-  },
-  {
-    name: "Charitable Remainder Trust",
-    abbrev: "CRT",
-    minAsset: "$100K",
-    taxDeduction: "Partial (present value of remainder interest)",
-    control: 50,
-    flexibility: 30,
-    adminBurden: 60,
-    color: "#f59e0b",
-    description: "Income stream for donor, remainder to charity. Ideal for appreciated low-basis assets held by older donors.",
-  },
-  {
-    name: "Charitable Lead Trust",
-    abbrev: "CLT",
-    minAsset: "$500K",
-    taxDeduction: "Gift/estate tax deduction for charity's lead interest",
-    control: 40,
-    flexibility: 25,
-    adminBurden: 65,
-    color: "#10b981",
-    description: "Reverses CRT: charity receives annuity first, heirs receive remainder. Excellent in low-rate environments.",
-  },
-  {
-    name: "Supporting Organization",
-    abbrev: "SO",
-    minAsset: "$500K",
-    taxDeduction: "Up to 50% AGI (like public charities)",
-    control: 60,
-    flexibility: 50,
-    adminBurden: 70,
-    color: "#06b6d4",
-    description: "Hybrid between DAF and private foundation. Higher deduction limits, but must support specific public charities.",
-  },
-];
+function EstateTab() {
+  const [expandedTool, setExpandedTool] = useState<string | null>(null);
+  const [estateValue, setEstateValue] = useState(50);
 
-const GOVERNANCE_ELEMENTS: GovernanceElement[] = [
-  {
-    title: "Family Constitution",
-    description: "A foundational governing document codifying the family's mission, values, decision-making framework, and rules for wealth transition across generations.",
-    components: [
-      "Mission & values statement",
-      "Wealth philosophy principles",
-      "Decision-making protocols",
-      "Conflict resolution mechanism",
-      "Amendment procedures",
-      "Succession planning rules",
-    ],
-    importance: "Critical",
-    icon: <BookOpen className="h-5 w-5" />,
-  },
-  {
-    title: "Investment Committee",
-    description: "Formal committee governing investment strategy, manager selection, risk parameters, and performance review. Includes family members and independent advisors.",
-    components: [
-      "Independent directors (≥2 non-family)",
-      "Quarterly meeting cadence",
-      "Formal IPS (Investment Policy Statement)",
-      "Manager due diligence framework",
-      "Risk budget oversight",
-      "Compensation benchmarking",
-    ],
-    importance: "Critical",
-    icon: <BarChart3 className="h-5 w-5" />,
-  },
-  {
-    title: "Next-Gen Education Program",
-    description: "Structured curriculum preparing rising generation for responsible stewardship, entrepreneurship, and civic engagement — not just inheritance.",
-    components: [
-      "Financial literacy curriculum",
-      "Internship / career mentorship",
-      "Philanthropic project management",
-      "Board observer roles (age 18+)",
-      "Full board membership (age 25+)",
-      "Annual family retreat & workshops",
-    ],
-    importance: "High",
-    icon: <Award className="h-5 w-5" />,
-  },
-  {
-    title: "Trustee Selection & Oversight",
-    description: "Rigorous selection of corporate and individual trustees, with clear succession plans and performance evaluation to prevent conflicts of interest.",
-    components: [
-      "Corporate trustee due diligence",
-      "Trust protector appointment",
-      "Decanting powers reserved",
-      "Annual trustee performance review",
-      "Removal & replacement protocol",
-      "Dynasty trust jurisdiction selection",
-    ],
-    importance: "Critical",
-    icon: <Scale className="h-5 w-5" />,
-  },
-  {
-    title: "Family Meeting Framework",
-    description: "Regular cadence of structured meetings at multiple levels — from branch family gatherings to full-family assemblies — ensuring engagement and transparency.",
-    components: [
-      "Annual family assembly (2–3 days)",
-      "Semi-annual council meetings",
-      "Quarterly branch family calls",
-      "Formal agenda & minutes",
-      "Guest speaker series",
-      "Retreat & team-building components",
-    ],
-    importance: "High",
-    icon: <Users className="h-5 w-5" />,
-  },
-];
-
-// ── Helper: Donut chart path ──────────────────────────────────────────────────
-
-function polarToCartesian(cx: number, cy: number, r: number, angle: number) {
-  const rad = ((angle - 90) * Math.PI) / 180;
-  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-}
-
-function arcPath(cx: number, cy: number, r: number, startAngle: number, endAngle: number): string {
-  const s = polarToCartesian(cx, cy, r, startAngle);
-  const e = polarToCartesian(cx, cy, r, endAngle);
-  const large = endAngle - startAngle > 180 ? 1 : 0;
-  return `M ${s.x} ${s.y} A ${r} ${r} 0 ${large} 1 ${e.x} ${e.y}`;
-}
-
-// ── SVG Donut Chart ───────────────────────────────────────────────────────────
-
-function DonutChart({ data, activeUHNW }: { data: AllocationSlice[]; activeUHNW: boolean }) {
-  const cx = 130;
-  const cy = 130;
-  const outerR = 110;
-  const innerR = 62;
-  const values = activeUHNW ? data.map(d => d.uhnwPct) : data.map(d => d.retailPct);
-  const total = values.reduce((a, b) => a + b, 0);
-
-  let cumAngle = 0;
-  const slices = data.map((d, i) => {
-    const pct = values[i] / total;
-    const startAngle = cumAngle;
-    const sweep = pct * 360;
-    cumAngle += sweep;
-    return { ...d, startAngle, endAngle: cumAngle, pct };
-  });
+  const federalExemption = 13.61;
+  const taxableEstate = Math.max(0, estateValue - federalExemption);
+  const estateTaxOwed = taxableEstate * 0.4;
+  const afterTaxEstate = estateValue - estateTaxOwed;
 
   return (
-    <svg viewBox="0 0 260 260" className="w-full max-w-xs mx-auto">
-      {slices.map((sl, i) => {
-        const midAngle = (sl.startAngle + sl.endAngle) / 2;
-        const labelR = outerR + 18;
-        const lp = polarToCartesian(cx, cy, labelR, midAngle);
-        const showLabel = sl.pct > 0.06;
-        return (
-          <g key={i}>
-            <path
-              d={`${arcPath(cx, cy, outerR, sl.startAngle, sl.endAngle)} L ${polarToCartesian(cx, cy, innerR, sl.endAngle).x} ${polarToCartesian(cx, cy, innerR, sl.endAngle).y} A ${innerR} ${innerR} 0 ${sl.endAngle - sl.startAngle > 180 ? 1 : 0} 0 ${polarToCartesian(cx, cy, innerR, sl.startAngle).x} ${polarToCartesian(cx, cy, innerR, sl.startAngle).y} Z`}
-              fill={sl.color}
-              opacity={0.9}
-            />
-            {showLabel && (
-              <text
-                x={lp.x}
-                y={lp.y}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fontSize="8"
-                fill="white"
-                fontWeight="600"
-              >
-                {Math.round(sl.pct * 100)}%
-              </text>
-            )}
-          </g>
-        );
-      })}
-      <text x={cx} y={cy - 8} textAnchor="middle" fontSize="11" fill="#94a3b8" fontWeight="500">
-        {activeUHNW ? "UHNW" : "Retail"}
-      </text>
-      <text x={cx} y={cy + 8} textAnchor="middle" fontSize="10" fill="#64748b">
-        Allocation
-      </text>
-    </svg>
-  );
-}
+    <div className="space-y-6">
+      <Card className="border-white/10 bg-white/5">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-slate-300">Estate Tax Calculator (2024)</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="text-xs text-slate-400 block mb-2">
+                Taxable Estate Value: ${estateValue}M
+              </label>
+              <input
+                type="range"
+                min={5}
+                max={500}
+                step={5}
+                value={estateValue}
+                onChange={(e) => setEstateValue(Number(e.target.value))}
+                className="w-full accent-indigo-500"
+              />
+              <div className="mt-4 space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-400">Gross Estate</span>
+                  <span className="text-slate-100 font-semibold">{fmtM(estateValue)}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-400">Federal Exemption (2024)</span>
+                  <span className="text-emerald-400 font-semibold">
+                    -${Math.min(federalExemption, estateValue).toFixed(2)}M
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm border-t border-white/10 pt-2">
+                  <span className="text-slate-400">Taxable Amount</span>
+                  <span className="text-slate-100 font-semibold">{fmtM(taxableEstate)}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-400">Estate Tax (40%)</span>
+                  <span className="text-red-400 font-bold">{fmtM(estateTaxOwed)}</span>
+                </div>
+                <div className="flex justify-between text-sm border-t border-white/10 pt-2">
+                  <span className="text-slate-300 font-semibold">Heirs Receive</span>
+                  <span className="text-emerald-400 font-bold">{fmtM(afterTaxEstate)}</span>
+                </div>
+              </div>
+            </div>
 
-// ── SVG Pyramid ────────────────────────────────────────────────────────────────
-
-function WealthPyramid({ tiers, selected, onSelect }: {
-  tiers: WealthTier[];
-  selected: number;
-  onSelect: (i: number) => void;
-}) {
-  const totalHeight = 300;
-  const baseWidth = 340;
-  const cx = 170;
-  let yOffset = 20;
-
-  return (
-    <svg viewBox="0 0 340 340" className="w-full max-w-sm mx-auto cursor-pointer">
-      {[...tiers].reverse().map((tier, ri) => {
-        const i = tiers.length - 1 - ri;
-        const sliceH = tier.pyramidHeight * 0.7;
-        const halfW = tier.width / 2;
-        const prevTier = ri > 0 ? [...tiers].reverse()[ri - 1] : null;
-        const prevHalfW = prevTier ? prevTier.width / 2 : baseWidth / 2;
-
-        const x1 = cx - prevHalfW;
-        const x2 = cx + prevHalfW;
-        const x3 = cx + halfW;
-        const x4 = cx - halfW;
-        const y1 = yOffset + sliceH;
-        const y2 = yOffset;
-
-        const isSel = selected === i;
-        const fillColor = isSel
-          ? tier.label.includes("Family")
-            ? "#854d0e"
-            : tier.label.includes("Ultra")
-            ? "#78350f"
-            : tier.label.includes("Very")
-            ? "#4c1d95"
-            : tier.label.includes("High Net")
-            ? "#1e3a5f"
-            : "#374151"
-          : tier.label.includes("Family")
-          ? "#713f12"
-          : tier.label.includes("Ultra")
-          ? "#92400e"
-          : tier.label.includes("Very")
-          ? "#5b21b6"
-          : tier.label.includes("High Net")
-          ? "#1e40af"
-          : "#374151";
-
-        const points = `${x1},${y1} ${x2},${y1} ${x3},${y2} ${x4},${y2}`;
-        yOffset += sliceH + 2;
-
-        return (
-          <g key={i} onClick={() => onSelect(i)} style={{ cursor: "pointer" }}>
-            <polygon points={points} fill={fillColor} stroke={isSel ? "white" : "#1e293b"} strokeWidth={isSel ? 2 : 1} opacity={0.92} />
-            <text
-              x={cx}
-              y={(y1 + y2) / 2}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize={sliceH > 40 ? "9" : "7.5"}
-              fill="white"
-              fontWeight="600"
-            >
-              {tier.label}
-            </text>
-          </g>
-        );
-      })}
-      {/* base label */}
-      <text x={cx} y={totalHeight + 15} textAnchor="middle" fontSize="8" fill="#64748b">
-        ▲ Click a tier to explore
-      </text>
-    </svg>
-  );
-}
-
-// ── Bar comparison chart ──────────────────────────────────────────────────────
-
-function ComparisonBars({ data }: { data: AllocationSlice[] }) {
-  const maxVal = 60;
-  return (
-    <div className="space-y-3">
-      {data.map((sl, i) => (
-        <div key={i} className="space-y-1">
-          <div className="flex justify-between text-xs text-slate-400">
-            <span className="flex items-center gap-1.5">
-              <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: sl.color }} />
-              {sl.label}
-            </span>
-            <span className="text-slate-300 font-mono">
-              UHNW {sl.uhnwPct}% | Retail {sl.retailPct}%
-            </span>
+            <div>
+              <div className="text-xs text-slate-400 mb-2">Visual Breakdown</div>
+              <svg viewBox="0 0 200 120" className="w-full">
+                <rect x={10} y={10} width={180} height={30} rx={4} fill="#1e293b" />
+                <rect
+                  x={10}
+                  y={10}
+                  width={Math.min(180, (afterTaxEstate / estateValue) * 180)}
+                  height={30}
+                  rx={4}
+                  fill="#22c55e"
+                />
+                <text
+                  x={100}
+                  y={30}
+                  textAnchor="middle"
+                  fill="#f1f5f9"
+                  fontSize={10}
+                  fontWeight={600}
+                >
+                  Heirs: {fmtM(afterTaxEstate)} (
+                  {((afterTaxEstate / estateValue) * 100).toFixed(0)}%)
+                </text>
+                <rect x={10} y={55} width={180} height={30} rx={4} fill="#1e293b" />
+                <rect
+                  x={10}
+                  y={55}
+                  width={Math.min(180, (estateTaxOwed / estateValue) * 180)}
+                  height={30}
+                  rx={4}
+                  fill="#ef4444"
+                />
+                <text
+                  x={100}
+                  y={75}
+                  textAnchor="middle"
+                  fill="#f1f5f9"
+                  fontSize={10}
+                  fontWeight={600}
+                >
+                  Tax: {fmtM(estateTaxOwed)} (
+                  {((estateTaxOwed / estateValue) * 100).toFixed(0)}%)
+                </text>
+                <text x={10} y={110} fill="#94a3b8" fontSize={9}>
+                  * State taxes excluded. 2026 sunset halves exemption to ~$7M.
+                </text>
+              </svg>
+            </div>
           </div>
-          <div className="relative h-4 bg-slate-800 rounded overflow-hidden">
-            <motion.div
-              className="absolute left-0 top-0 h-full rounded opacity-40"
-              style={{ background: sl.color }}
-              initial={{ width: 0 }}
-              animate={{ width: `${(sl.retailPct / maxVal) * 100}%` }}
-              transition={{ duration: 0.6, delay: i * 0.07 }}
-            />
-            <motion.div
-              className="absolute left-0 top-1 h-2 rounded"
-              style={{ background: sl.color }}
-              initial={{ width: 0 }}
-              animate={{ width: `${(sl.uhnwPct / maxVal) * 100}%` }}
-              transition={{ duration: 0.6, delay: i * 0.07 + 0.1 }}
-            />
-          </div>
+        </CardContent>
+      </Card>
+
+      <div className="space-y-2">
+        <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+          Estate Planning Vehicles
         </div>
-      ))}
-      <div className="flex gap-4 text-xs text-slate-500 mt-2">
-        <span className="flex items-center gap-1"><span className="inline-block w-8 h-2 bg-blue-400 opacity-40 rounded" /> Retail</span>
-        <span className="flex items-center gap-1"><span className="inline-block w-8 h-2 bg-blue-400 rounded" /> UHNW</span>
+        {ESTATE_TOOLS.map((tool) => {
+          const isOpen = expandedTool === tool.name;
+          const complexityColor =
+            tool.complexity === "Low"
+              ? "text-emerald-400 border-emerald-400/30 bg-emerald-400/10"
+              : tool.complexity === "Medium"
+              ? "text-amber-400 border-amber-400/30 bg-amber-400/10"
+              : "text-red-400 border-red-400/30 bg-red-400/10";
+
+          return (
+            <div
+              key={tool.name}
+              className="rounded-xl border border-white/10 bg-white/5 overflow-hidden"
+            >
+              <button
+                className="flex w-full items-center justify-between px-4 py-3 text-left"
+                onClick={() => setExpandedTool(isOpen ? null : tool.name)}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-semibold text-slate-100">{tool.name}</span>
+                  <Badge className={`text-xs border ${complexityColor}`}>
+                    {tool.complexity}
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-slate-400 hidden sm:block">
+                    Min: {tool.minAum}
+                  </span>
+                  {isOpen ? (
+                    <ChevronUp className="h-4 w-4 text-slate-400" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 text-slate-400" />
+                  )}
+                </div>
+              </button>
+              {isOpen && (
+                <div className="border-t border-white/10 px-4 py-3 space-y-2">
+                  <p className="text-sm text-slate-300">{tool.desc}</p>
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
+                    <span className="text-xs text-emerald-400 font-medium">
+                      {tool.taxBenefit}
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
-// ── Radar-style bar for giving vehicles ─────────────────────────────────────
+// ── Philanthropy Tab ─────────────────────────────────────────────────────────
+const PHILANTHROPY_LEVELS = [
+  { label: "Family Wealth ($500M)", value: 500, color: "#6366f1", width: 100 },
+  { label: "Philanthropic Allocation (10%)", value: 50, color: "#8b5cf6", width: 80 },
+  { label: "DAF Contributions ($20M)", value: 20, color: "#a78bfa", width: 60 },
+  { label: "Private Foundation ($15M)", value: 15, color: "#22c55e", width: 45 },
+  { label: "Direct Giving ($8M)", value: 8, color: "#16a34a", width: 30 },
+  { label: "Impact Investing ($7M)", value: 7, color: "#4ade80", width: 20 },
+];
 
-function VehicleBar({ label, value, color }: { label: string; value: number; color: string }) {
+const GRANTS = [
+  { org: "Climate Action Fund", area: "Environment", amount: 2.5, yr: 2024 },
+  { org: "Global Health Initiative", area: "Healthcare", amount: 3.0, yr: 2024 },
+  { org: "Education Equity Alliance", area: "Education", amount: 1.8, yr: 2024 },
+  { org: "Arts & Culture Endowment", area: "Arts", amount: 0.9, yr: 2024 },
+  { org: "Economic Mobility Lab", area: "Social", amount: 1.5, yr: 2023 },
+  { org: "Clean Water Coalition", area: "Environment", amount: 1.2, yr: 2023 },
+];
+
+function PhilanthropyTab() {
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-xs text-slate-400 w-28 shrink-0">{label}</span>
-      <div className="flex-1 bg-slate-800 h-2.5 rounded overflow-hidden">
-        <motion.div
-          className="h-full rounded"
-          style={{ background: color }}
-          initial={{ width: 0 }}
-          animate={{ width: `${value}%` }}
-          transition={{ duration: 0.5 }}
-        />
-      </div>
-      <span className="text-xs font-mono text-slate-300 w-8 text-right">{value}</span>
-    </div>
-  );
-}
-
-// ── SVG Giving Comparison ─────────────────────────────────────────────────────
-
-function GivingComparisonChart({ vehicles }: { vehicles: GivingVehicle[] }) {
-  // Simple grouped bar SVG
-  const w = 300;
-  const h = 160;
-  const padding = { left: 40, right: 10, top: 10, bottom: 30 };
-  const chartW = w - padding.left - padding.right;
-  const chartH = h - padding.top - padding.bottom;
-  const groups = vehicles.length;
-  const groupW = chartW / groups;
-  const barW = groupW * 0.22;
-  const metrics: Array<{ key: keyof GivingVehicle; color: string; label: string }> = [
-    { key: "control", color: "#8b5cf6", label: "Control" },
-    { key: "flexibility", color: "#3b82f6", label: "Flexibility" },
-    { key: "adminBurden", color: "#ef4444", label: "Admin" },
-  ];
-
-  return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="w-full">
-      {/* Y axis */}
-      {[0, 25, 50, 75, 100].map(v => {
-        const y = padding.top + chartH - (v / 100) * chartH;
-        return (
-          <g key={v}>
-            <line x1={padding.left} y1={y} x2={padding.left + chartW} y2={y} stroke="#1e293b" strokeWidth={1} />
-            <text x={padding.left - 4} y={y} textAnchor="end" dominantBaseline="middle" fontSize="7" fill="#64748b">{v}</text>
-          </g>
-        );
-      })}
-      {/* Bars */}
-      {vehicles.map((veh, gi) => {
-        const gx = padding.left + gi * groupW;
-        return (
-          <g key={gi}>
-            {metrics.map((m, mi) => {
-              const val = veh[m.key] as number;
-              const barH = (val / 100) * chartH;
-              const x = gx + mi * (barW + 2) + 4;
-              const y = padding.top + chartH - barH;
+    <div className="space-y-6">
+      <Card className="border-white/10 bg-white/5">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-slate-300">Philanthropic Capital Funnel</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <svg viewBox="0 0 500 295" className="w-full max-w-lg mx-auto">
+            {PHILANTHROPY_LEVELS.map((level, i) => {
+              const yStep = 45;
+              const y = 10 + i * yStep;
+              const xOffset = ((100 - level.width) / 2) * 2.5;
+              const barWidth = level.width * 2.5;
+              const nextLevel = PHILANTHROPY_LEVELS[i + 1];
+              const nextXOffset = nextLevel
+                ? ((100 - nextLevel.width) / 2) * 2.5
+                : 0;
+              const nextBarWidth = nextLevel ? nextLevel.width * 2.5 : 0;
               return (
-                <rect key={mi} x={x} y={y} width={barW} height={barH} fill={m.color} opacity={0.85} rx={2} />
+                <g key={level.label}>
+                  <rect
+                    x={10 + xOffset}
+                    y={y}
+                    width={barWidth}
+                    height={30}
+                    rx={6}
+                    fill={level.color}
+                    opacity={0.85}
+                  />
+                  <text
+                    x={10 + xOffset + barWidth / 2}
+                    y={y + 19}
+                    textAnchor="middle"
+                    fill="#f1f5f9"
+                    fontSize={10}
+                    fontWeight={600}
+                  >
+                    {level.label}
+                  </text>
+                  {nextLevel && (
+                    <line
+                      x1={10 + xOffset + barWidth / 2}
+                      y1={y + 30}
+                      x2={10 + nextXOffset + nextBarWidth / 2}
+                      y2={y + yStep}
+                      stroke="#475569"
+                      strokeWidth={1.5}
+                      strokeDasharray="4,2"
+                    />
+                  )}
+                </g>
               );
             })}
-            <text x={gx + groupW / 2} y={h - padding.bottom + 10} textAnchor="middle" fontSize="7.5" fill="#94a3b8" fontWeight="600">
-              {veh.abbrev}
-            </text>
-          </g>
-        );
-      })}
-      {/* Legend */}
-      {metrics.map((m, i) => (
-        <g key={i}>
-          <rect x={padding.left + i * 62} y={h - 8} width={8} height={8} fill={m.color} rx={1} />
-          <text x={padding.left + i * 62 + 10} y={h - 2} fontSize="7" fill="#94a3b8">{m.label}</text>
-        </g>
-      ))}
-    </svg>
+          </svg>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Card className="border-white/10 bg-white/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-slate-300">Vehicle Comparison</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {[
+              {
+                name: "DAF",
+                deduction: "Immediate (60% AGI)",
+                control: "Donor recommends",
+                payout: "None required",
+                setup: "Simple",
+              },
+              {
+                name: "Private Foundation",
+                deduction: "Year given (30% AGI)",
+                control: "Family controls",
+                payout: "5% AUM/yr required",
+                setup: "Complex",
+              },
+              {
+                name: "CLT",
+                deduction: "PV of lead interest",
+                control: "Trustee controls",
+                payout: "Fixed to charity",
+                setup: "High",
+              },
+              {
+                name: "CRT",
+                deduction: "PV of remainder",
+                control: "Trustee controls",
+                payout: "Income to donor",
+                setup: "Medium",
+              },
+            ].map((v) => (
+              <div key={v.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <Heart className="h-3.5 w-3.5 text-pink-400" />
+                  <span className="text-sm font-semibold text-slate-100">{v.name}</span>
+                  <Badge className="ml-auto text-xs border border-slate-600 bg-slate-700/50 text-slate-300">
+                    Setup: {v.setup}
+                  </Badge>
+                </div>
+                <div className="grid grid-cols-2 gap-1 text-xs">
+                  <span className="text-slate-400">Deduction:</span>
+                  <span className="text-slate-300">{v.deduction}</span>
+                  <span className="text-slate-400">Control:</span>
+                  <span className="text-slate-300">{v.control}</span>
+                  <span className="text-slate-400">Payout:</span>
+                  <span className="text-slate-300">{v.payout}</span>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card className="border-white/10 bg-white/5">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-slate-300">
+              Foundation Grant-Making 2023–2024
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {GRANTS.map((g) => (
+              <div
+                key={g.org}
+                className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 p-2.5"
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs font-semibold text-slate-200 truncate">{g.org}</div>
+                  <div className="text-xs text-slate-400">
+                    {g.area} · {g.yr}
+                  </div>
+                </div>
+                <div className="text-sm font-bold text-emerald-400">${g.amount}M</div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 }
 
-// ── Page Component ────────────────────────────────────────────────────────────
+// ── Direct Investing Tab ─────────────────────────────────────────────────────
+interface CoInvestment {
+  deal: string;
+  type: string;
+  sponsor: string;
+  check: number;
+  irr: number;
+  status: "Active" | "Exited" | "Pipeline";
+  vintage: number;
+}
 
-export default function FamilyOfficePage() {
-  const [selectedTier, setSelectedTier] = useState(2);
-  const [activeUHNW, setActiveUHNW] = useState(true);
-  const [selectedVehicle, setSelectedVehicle] = useState(0);
-  const [expandedTax, setExpandedTax] = useState<number | null>(null);
-  const [selectedGov, setSelectedGov] = useState(0);
+const CO_INVESTMENTS: CoInvestment[] = [
+  {
+    deal: "MedTech Platform Co.",
+    type: "Private Equity",
+    sponsor: "KKR",
+    check: 15,
+    irr: 28.4,
+    status: "Active",
+    vintage: 2022,
+  },
+  {
+    deal: "Industrial Logistics REIT",
+    type: "Real Estate",
+    sponsor: "Blackstone",
+    check: 20,
+    irr: 14.1,
+    status: "Active",
+    vintage: 2021,
+  },
+  {
+    deal: "SaaS Roll-Up (Series C)",
+    type: "Venture",
+    sponsor: "Sequoia",
+    check: 8,
+    irr: 62.3,
+    status: "Exited",
+    vintage: 2019,
+  },
+  {
+    deal: "Renewable Energy Dev.",
+    type: "Infrastructure",
+    sponsor: "EQT",
+    check: 25,
+    irr: 11.8,
+    status: "Active",
+    vintage: 2023,
+  },
+  {
+    deal: "Consumer Retail Brand",
+    type: "Growth Equity",
+    sponsor: "General Atlantic",
+    check: 10,
+    irr: 0,
+    status: "Pipeline",
+    vintage: 2025,
+  },
+  {
+    deal: "Data Center Portfolio",
+    type: "Real Estate",
+    sponsor: "Carlyle",
+    check: 30,
+    irr: 16.7,
+    status: "Active",
+    vintage: 2020,
+  },
+];
 
-  // Memoize random stats for tier cards to avoid re-render flicker
-  const tierStats = useMemo(
-    () =>
-      WEALTH_TIERS.map(() => ({
-        clientCount: Math.floor(rand() * 9000 + 1000),
-        avgAUM: Math.round(rand() * 8 * 10) / 10,
-      })),
-    []
+function DirectInvestingTab() {
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { label: "Co-Investment Deployed", value: "$108M", sub: "6 active deals" },
+          { label: "Blended Net IRR", value: "22.1%", sub: "All active + exited" },
+          { label: "Deal Flow (YTD)", value: "47 deals", sub: "4 converted" },
+          { label: "Avg Check Size", value: "$18M", sub: "Range: $8–30M" },
+        ].map(({ label, value, sub }) => (
+          <Card key={label} className="border-white/10 bg-white/5">
+            <CardContent className="pt-4">
+              <div className="text-xs text-slate-400">{label}</div>
+              <div className="mt-1 text-lg font-bold text-indigo-400">{value}</div>
+              <div className="text-xs text-slate-500">{sub}</div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <Card className="border-white/10 bg-white/5">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-slate-300">Co-Investment Portfolio</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400">
+                  <th className="pb-2 text-left font-medium">Deal</th>
+                  <th className="pb-2 text-left font-medium">Type</th>
+                  <th className="pb-2 text-left font-medium">Sponsor</th>
+                  <th className="pb-2 text-right font-medium">Check</th>
+                  <th className="pb-2 text-right font-medium">Net IRR</th>
+                  <th className="pb-2 text-center font-medium">Status</th>
+                  <th className="pb-2 text-right font-medium">Vintage</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {CO_INVESTMENTS.map((ci) => {
+                  const statusColor =
+                    ci.status === "Active"
+                      ? "text-emerald-400 border-emerald-400/30 bg-emerald-400/10"
+                      : ci.status === "Exited"
+                      ? "text-blue-400 border-blue-400/30 bg-blue-400/10"
+                      : "text-amber-400 border-amber-400/30 bg-amber-400/10";
+                  return (
+                    <tr key={ci.deal} className="hover:bg-white/5 transition-colors">
+                      <td className="py-2 pr-3 font-medium text-slate-200">{ci.deal}</td>
+                      <td className="py-2 pr-3 text-slate-400">{ci.type}</td>
+                      <td className="py-2 pr-3 text-slate-400">{ci.sponsor}</td>
+                      <td className="py-2 text-right text-slate-200">${ci.check}M</td>
+                      <td
+                        className={`py-2 text-right font-semibold ${
+                          ci.status === "Pipeline" ? "text-slate-500" : posColor(ci.irr)
+                        }`}
+                      >
+                        {ci.status === "Pipeline" ? "—" : `+${ci.irr.toFixed(1)}%`}
+                      </td>
+                      <td className="py-2 text-center">
+                        <Badge className={`text-xs border ${statusColor}`}>
+                          {ci.status}
+                        </Badge>
+                      </td>
+                      <td className="py-2 text-right text-slate-400">{ci.vintage}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="border-white/10 bg-white/5">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-slate-300">Deal Flow Sourcing Channels</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {[
+              { channel: "GP Relationships", pct: 40, deals: 19, color: "#6366f1" },
+              { channel: "Investment Banks", pct: 22, deals: 10, color: "#8b5cf6" },
+              { channel: "Direct Proprietary", pct: 18, deals: 8, color: "#22c55e" },
+              { channel: "Family Office Network", pct: 12, deals: 6, color: "#f59e0b" },
+              { channel: "Advisors / Lawyers", pct: 5, deals: 3, color: "#3b82f6" },
+              { channel: "Other", pct: 3, deals: 1, color: "#6b7280" },
+            ].map(({ channel, pct, deals, color }) => (
+              <div
+                key={channel}
+                className="rounded-lg border border-white/10 bg-white/5 p-3"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
+                  <span className="text-xs font-medium text-slate-200">{channel}</span>
+                </div>
+                <div className="text-lg font-bold" style={{ color }}>
+                  {pct}%
+                </div>
+                <div className="text-xs text-slate-400">{deals} deals YTD</div>
+                <div className="mt-1.5 h-1 w-full rounded-full bg-white/10">
+                  <div
+                    className="h-1 rounded-full"
+                    style={{ width: `${pct}%`, backgroundColor: color }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
+}
 
-  const tier = WEALTH_TIERS[selectedTier];
+// ── Liquidity Management Tab ─────────────────────────────────────────────────
+interface LiquidityBucket {
+  tier: string;
+  label: string;
+  horizon: string;
+  amount: number;
+  instruments: string[];
+  targetYield: string;
+  color: string;
+}
+
+const LIQUIDITY_LADDER: LiquidityBucket[] = [
+  {
+    tier: "T1",
+    label: "Immediate",
+    horizon: "0–30 days",
+    amount: 10,
+    instruments: ["Money Market", "T-Bills", "Bank Deposits"],
+    targetYield: "5.2%",
+    color: "#22c55e",
+  },
+  {
+    tier: "T2",
+    label: "Short-Term",
+    horizon: "1–12 months",
+    amount: 30,
+    instruments: ["Short Gov't Bonds", "IG Credit", "Liquid Alt Funds"],
+    targetYield: "5.8%",
+    color: "#3b82f6",
+  },
+  {
+    tier: "T3",
+    label: "Medium-Term",
+    horizon: "1–5 years",
+    amount: 100,
+    instruments: ["HY Bonds", "Hedge Funds", "REITs", "Infrastructure"],
+    targetYield: "8.4%",
+    color: "#f59e0b",
+  },
+  {
+    tier: "T4",
+    label: "Illiquid",
+    horizon: "5–15+ years",
+    amount: 360,
+    instruments: ["Private Equity", "Direct Real Estate", "VC", "Art"],
+    targetYield: "15–25%",
+    color: "#8b5cf6",
+  },
+];
+
+function LiquidityTab() {
+  const total = LIQUIDITY_LADDER.reduce((a, b) => a + b.amount, 0);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-6 space-y-6">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex items-start gap-4"
-      >
-        <div className="p-3 rounded-xl bg-amber-900/30 border border-amber-700/40">
-          <Building2 className="h-7 w-7 text-amber-400" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold text-white">Family Office &amp; Wealth Management</h1>
-          <p className="text-slate-400 text-sm mt-0.5">
-            Ultra-high-net-worth investment strategies, tax optimization, philanthropy, and multi-generational governance
-          </p>
-        </div>
-      </motion.div>
+    <div className="space-y-6">
+      <Card className="border-white/10 bg-white/5">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-slate-300">
+            Liquidity Ladder — $500M Portfolio
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <svg viewBox="0 0 500 180" className="w-full">
+            {LIQUIDITY_LADDER.map((bucket, i) => {
+              const barW = (bucket.amount / total) * 440;
+              const x = 30;
+              const y = 15 + i * 40;
+              return (
+                <g key={bucket.tier}>
+                  <text
+                    x={25}
+                    y={y + 19}
+                    textAnchor="end"
+                    fill="#94a3b8"
+                    fontSize={9}
+                    fontWeight={600}
+                  >
+                    {bucket.tier}
+                  </text>
+                  <rect x={x} y={y} width={440} height={28} rx={4} fill="#1e293b" />
+                  <rect
+                    x={x}
+                    y={y}
+                    width={barW}
+                    height={28}
+                    rx={4}
+                    fill={bucket.color}
+                    opacity={0.85}
+                  />
+                  <text x={x + 8} y={y + 18} fill="#f1f5f9" fontSize={10} fontWeight={700}>
+                    {bucket.label} ({bucket.horizon})
+                  </text>
+                  <text
+                    x={x + barW - 4}
+                    y={y + 18}
+                    textAnchor="end"
+                    fill="#f1f5f9"
+                    fontSize={10}
+                    fontWeight={600}
+                  >
+                    {fmtM(bucket.amount)}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </CardContent>
+      </Card>
 
-      {/* KPI chips */}
-      <motion.div
-        className="grid grid-cols-2 sm:grid-cols-4 gap-3"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.15 }}
-      >
-        {[
-          { label: "Global Family Offices", value: "~10,000", icon: <Building2 className="h-4 w-4 text-amber-400" /> },
-          { label: "UHNW Individuals (global)", value: "≈ 218K", icon: <Star className="h-4 w-4 text-yellow-400" /> },
-          { label: "Family Office AUM", value: "$5.9T+", icon: <DollarSign className="h-4 w-4 text-green-400" /> },
-          { label: "Avg Annual Return (SFO)", value: "15.5%", icon: <TrendingUp className="h-4 w-4 text-blue-400" /> },
-        ].map((k, i) => (
-          <Card key={i} className="bg-slate-900 border-slate-800">
-            <CardContent className="p-4 flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-slate-800">{k.icon}</div>
-              <div>
-                <div className="text-lg font-bold text-white">{k.value}</div>
-                <div className="text-xs text-slate-400">{k.label}</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {LIQUIDITY_LADDER.map((bucket) => (
+          <Card key={bucket.tier} className="border-white/10 bg-white/5">
+            <CardContent className="pt-4">
+              <div className="flex items-center gap-2 mb-3">
+                <div
+                  className="h-3 w-3 rounded-full"
+                  style={{ backgroundColor: bucket.color }}
+                />
+                <span className="font-semibold text-slate-100 text-sm">
+                  {bucket.label} — {bucket.tier}
+                </span>
+                <Badge className="ml-auto text-xs border border-white/20 bg-white/10 text-slate-300">
+                  {bucket.horizon}
+                </Badge>
+              </div>
+              <div className="flex justify-between text-sm mb-3">
+                <span className="text-slate-400">Allocation</span>
+                <span className="font-bold text-slate-100">
+                  {fmtM(bucket.amount)} (
+                  {((bucket.amount / total) * 100).toFixed(0)}%)
+                </span>
+              </div>
+              <div className="flex justify-between text-sm mb-3">
+                <span className="text-slate-400">Target Yield</span>
+                <span className="font-bold text-emerald-400">{bucket.targetYield}</span>
+              </div>
+              <div className="space-y-1">
+                {bucket.instruments.map((inst) => (
+                  <div
+                    key={inst}
+                    className="flex items-center gap-1.5 text-xs text-slate-400"
+                  >
+                    <div
+                      className="h-1 w-1 rounded-full"
+                      style={{ backgroundColor: bucket.color }}
+                    />
+                    {inst}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
         ))}
-      </motion.div>
+      </div>
 
-      {/* Main Tabs */}
-      <Tabs defaultValue="tiers">
-        <TabsList className="bg-slate-900 border border-slate-800 flex-wrap h-auto gap-1 p-1">
+      <Card className="border-white/10 bg-white/5">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-slate-300">
+            Credit Facilities & Cash Flow Planning
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              {
+                label: "Capital Call Line",
+                amount: "$50M",
+                rate: "SOFR + 1.25%",
+                use: "Fund capital calls without forced liquidations",
+                icon: Briefcase,
+              },
+              {
+                label: "Securities-Based LOC",
+                amount: "$75M",
+                rate: "SOFR + 0.75%",
+                use: "Liquidity against marketable portfolio, non-recourse",
+                icon: DollarSign,
+              },
+              {
+                label: "Real Estate LOC",
+                amount: "$30M",
+                rate: "SOFR + 1.50%",
+                use: "Bridge financing against real estate portfolio equity",
+                icon: Building2,
+              },
+            ].map(({ label, amount, rate, use, icon: Icon }) => (
+              <div key={label} className="rounded-lg border border-white/10 bg-white/5 p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Icon className="h-4 w-4 text-indigo-400" />
+                  <span className="text-sm font-semibold text-slate-100">{label}</span>
+                </div>
+                <div className="text-lg font-bold text-emerald-400 mb-1">{amount}</div>
+                <div className="text-xs text-slate-400 mb-1">
+                  Rate: <span className="text-amber-400">{rate}</span>
+                </div>
+                <div className="text-xs text-slate-400">{use}</div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ── Main Page ────────────────────────────────────────────────────────────────
+export default function FamilyOfficePage() {
+  const tabs = [
+    { id: "structure", label: "FO Structure", icon: Building2 },
+    { id: "allocation", label: "Allocation", icon: Layers },
+    { id: "estate", label: "Estate Planning", icon: Shield },
+    { id: "philanthropy", label: "Philanthropy", icon: Heart },
+    { id: "direct", label: "Direct Investing", icon: Briefcase },
+    { id: "liquidity", label: "Liquidity", icon: DollarSign },
+  ];
+
+  return (
+    <motion.div
+      className="min-h-screen bg-slate-950 p-4 md:p-6"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+    >
+      {/* Header */}
+      <div className="mb-6">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/20">
+            <Building2 className="h-5 w-5 text-indigo-400" />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-slate-100">
+              Family Office & UHNW Wealth Management
+            </h1>
+            <p className="text-sm text-slate-400">
+              Structuring, allocating, and preserving generational wealth at scale
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
           {[
-            { value: "tiers", label: "Wealth Tiers", icon: <Layers className="h-3.5 w-3.5" /> },
-            { value: "allocation", label: "Asset Allocation", icon: <PieChart className="h-3.5 w-3.5" /> },
-            { value: "tax", label: "Tax Optimization", icon: <Shield className="h-3.5 w-3.5" /> },
-            { value: "philanthropy", label: "Philanthropy", icon: <Heart className="h-3.5 w-3.5" /> },
-            { value: "governance", label: "Family Governance", icon: <Users className="h-3.5 w-3.5" /> },
-          ].map(t => (
-            <TabsTrigger key={t.value} value={t.value} className="flex items-center gap-1.5 text-xs data-[state=active]:bg-slate-700">
-              {t.icon}{t.label}
+            { label: "Portfolio AUM", value: "$500M", icon: DollarSign, color: "text-indigo-400" },
+            { label: "Family Generation", value: "3rd Gen", icon: Users, color: "text-emerald-400" },
+            { label: "YTD Return", value: "+12.4%", icon: TrendingUp, color: "text-emerald-400" },
+            { label: "Office Type", value: "SFO", icon: Globe, color: "text-amber-400" },
+          ].map(({ label, value, icon: Icon, color }) => (
+            <Card key={label} className="border-white/10 bg-white/5">
+              <CardContent className="flex items-center gap-3 pt-3 pb-3">
+                <Icon className={`h-4 w-4 ${color}`} />
+                <div>
+                  <div className="text-xs text-slate-400">{label}</div>
+                  <div className={`text-sm font-bold ${color}`}>{value}</div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <Tabs defaultValue="structure">
+        <TabsList className="mb-4 flex flex-wrap gap-1 h-auto bg-white/5 p-1 rounded-xl">
+          {tabs.map(({ id, label, icon: Icon }) => (
+            <TabsTrigger
+              key={id}
+              value={id}
+              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium data-[state=active]:bg-white/15 data-[state=active]:text-white text-slate-400"
+            >
+              <Icon className="h-3.5 w-3.5" />
+              {label}
             </TabsTrigger>
           ))}
         </TabsList>
 
-        {/* ── TAB 1: Wealth Tiers ─────────────────────────────────────────────── */}
-        <TabsContent value="tiers" className="mt-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Pyramid */}
-            <Card className="bg-slate-900 border-slate-800">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-slate-300 flex items-center gap-2">
-                  <Landmark className="h-4 w-4 text-amber-400" /> Wealth Tier Pyramid
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <WealthPyramid tiers={WEALTH_TIERS} selected={selectedTier} onSelect={setSelectedTier} />
-                <p className="text-center text-xs text-slate-500 mt-2">Click a tier to see detail →</p>
-              </CardContent>
-            </Card>
-
-            {/* Selected tier detail */}
-            <motion.div
-              key={selectedTier}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.35 }}
-            >
-              <Card className="bg-slate-900 border-slate-800 h-full">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-base font-bold text-white">{tier.label}</CardTitle>
-                    <Badge className="bg-amber-900/50 text-amber-300 border-amber-700/50 text-xs">
-                      {tier.aumMin} – {tier.aumMax}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-lg bg-slate-800 p-3">
-                      <div className="text-xs text-slate-400 mb-1">Service Model</div>
-                      <div className="text-sm text-slate-200 font-medium">{tier.serviceModel}</div>
-                    </div>
-                    <div className="rounded-lg bg-slate-800 p-3">
-                      <div className="text-xs text-slate-400 mb-1">Fee Structure</div>
-                      <div className="text-sm text-slate-200 font-medium">{tier.feeStructure}</div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-2">Key Services</div>
-                    <div className="space-y-1.5">
-                      {tier.keyServices.map((svc, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm text-slate-300">
-                          <CheckCircle className="h-3.5 w-3.5 text-green-400 shrink-0" />
-                          {svc}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="text-xs text-slate-500 border-t border-slate-800 pt-3">
-                    Illustrative client count at this tier: ~{tierStats[selectedTier].clientCount.toLocaleString()} | Avg AUM: ${tierStats[selectedTier].avgAUM}M
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-
-          {/* Tier comparison table */}
-          <Card className="mt-4 bg-slate-900 border-slate-800">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-slate-300">Tier Comparison Overview</CardTitle>
-            </CardHeader>
-            <CardContent className="overflow-x-auto">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="border-b border-slate-800">
-                    <th className="text-left text-slate-400 py-2 pr-4">Tier</th>
-                    <th className="text-left text-slate-400 py-2 pr-4">AUM Range</th>
-                    <th className="text-left text-slate-400 py-2 pr-4">Service Model</th>
-                    <th className="text-left text-slate-400 py-2">Fee</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {WEALTH_TIERS.map((t, i) => (
-                    <tr
-                      key={i}
-                      className={`border-b border-slate-800/50 cursor-pointer hover:bg-slate-800/40 transition-colors ${selectedTier === i ? "bg-slate-800/60" : ""}`}
-                      onClick={() => setSelectedTier(i)}
-                    >
-                      <td className={`py-2 pr-4 font-semibold ${t.color}`}>{t.label}</td>
-                      <td className="py-2 pr-4 text-slate-300">{t.aumMin} – {t.aumMax}</td>
-                      <td className="py-2 pr-4 text-slate-400">{t.serviceModel}</td>
-                      <td className="py-2 text-slate-400">{t.feeStructure}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </CardContent>
-          </Card>
+        <TabsContent value="structure" className="data-[state=inactive]:hidden">
+          <FoStructureTab />
         </TabsContent>
-
-        {/* ── TAB 2: Asset Allocation ──────────────────────────────────────────── */}
-        <TabsContent value="allocation" className="mt-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Donut */}
-            <Card className="bg-slate-900 border-slate-800">
-              <CardHeader className="pb-2">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-semibold text-slate-300 flex items-center gap-2">
-                    <PieChart className="h-4 w-4 text-blue-400" /> Portfolio Allocation
-                  </CardTitle>
-                  <div className="flex gap-1">
-                    {(["UHNW", "Retail"] as const).map((label) => (
-                      <button
-                        key={label}
-                        onClick={() => setActiveUHNW(label === "UHNW")}
-                        className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
-                          (label === "UHNW") === activeUHNW
-                            ? "bg-blue-700 text-white"
-                            : "bg-slate-800 text-slate-400 hover:bg-slate-700"
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <DonutChart data={ALLOCATION_DATA} activeUHNW={activeUHNW} />
-                {/* Legend */}
-                <div className="grid grid-cols-2 gap-1.5 mt-3">
-                  {ALLOCATION_DATA.map((d, i) => (
-                    <div key={i} className="flex items-center gap-1.5 text-xs text-slate-400">
-                      <span className="inline-block w-2.5 h-2.5 rounded-full shrink-0" style={{ background: d.color }} />
-                      <span className="truncate">{d.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Comparison bars */}
-            <Card className="bg-slate-900 border-slate-800">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-slate-300 flex items-center gap-2">
-                  <BarChart3 className="h-4 w-4 text-violet-400" /> UHNW vs Retail — Side by Side
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ComparisonBars data={ALLOCATION_DATA} />
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Allocation insights */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-            {[
-              {
-                title: "Illiquidity Premium",
-                value: "+3–5%",
-                desc: "UHNW investors can tolerate 7–10 year lock-ups in PE/VC and capture an illiquidity premium unavailable to retail investors.",
-                color: "text-violet-300",
-                icon: <Layers className="h-4 w-4 text-violet-400" />,
-              },
-              {
-                title: "Inflation Hedge",
-                value: "15% Real Assets",
-                desc: "Infrastructure, farmland, timber, and direct real estate provide inflation-linked cash flows and low correlation to public markets.",
-                color: "text-amber-300",
-                icon: <Shield className="h-4 w-4 text-amber-400" />,
-              },
-              {
-                title: "Alpha Generation",
-                value: "Hedge Funds 12%",
-                desc: "Access to top-quartile hedge funds (minimum $5–25M) captures market-neutral, merger-arb, and global macro alpha streams.",
-                color: "text-green-300",
-                icon: <TrendingUp className="h-4 w-4 text-green-400" />,
-              },
-            ].map((card, i) => (
-              <Card key={i} className="bg-slate-900 border-slate-800">
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    {card.icon}
-                    <span className={`font-bold text-lg ${card.color}`}>{card.value}</span>
-                  </div>
-                  <div className="text-sm font-semibold text-white mb-1">{card.title}</div>
-                  <p className="text-xs text-slate-400 leading-relaxed">{card.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <TabsContent value="allocation" className="data-[state=inactive]:hidden">
+          <AllocationTab />
         </TabsContent>
-
-        {/* ── TAB 3: Tax Optimization ─────────────────────────────────────────── */}
-        <TabsContent value="tax" className="mt-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-            {[
-              { label: "Top Federal Estate Tax", value: "40%", sub: "on estates > $13.6M (2024)", color: "text-red-400" },
-              { label: "Top Capital Gains Rate", value: "23.8%", sub: "incl. NIIT for UHNW", color: "text-orange-400" },
-              { label: "Annual Gift Tax Exclusion", value: "$18K", sub: "per recipient (2024)", color: "text-blue-400" },
-            ].map((stat, i) => (
-              <Card key={i} className="bg-slate-900 border-slate-800">
-                <CardContent className="p-4">
-                  <div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>
-                  <div className="text-sm text-white font-medium">{stat.label}</div>
-                  <div className="text-xs text-slate-400 mt-0.5">{stat.sub}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="space-y-3">
-            {TAX_STRATEGIES.map((strat, i) => {
-              const isExpanded = expandedTax === i;
-              const complexityColor =
-                strat.complexity === "High"
-                  ? "text-red-400 bg-red-900/30 border-red-800"
-                  : strat.complexity === "Medium"
-                  ? "text-amber-400 bg-amber-900/30 border-amber-800"
-                  : "text-green-400 bg-green-900/30 border-green-800";
-
-              return (
-                <Card
-                  key={i}
-                  className="bg-slate-900 border-slate-800 cursor-pointer hover:border-slate-700 transition-colors"
-                  onClick={() => setExpandedTax(isExpanded ? null : i)}
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl">{strat.icon}</span>
-                        <div>
-                          <div className="text-sm font-semibold text-white">{strat.name}</div>
-                          <div className="text-xs text-slate-400">{strat.category}</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 shrink-0">
-                        <Badge className={`text-xs border ${complexityColor}`}>{strat.complexity}</Badge>
-                        <ArrowUpRight className={`h-4 w-4 text-slate-500 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
-                      </div>
-                    </div>
-
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="mt-3 space-y-2 border-t border-slate-800 pt-3"
-                      >
-                        <p className="text-sm text-slate-300 leading-relaxed">{strat.description}</p>
-                        <div className="flex items-center gap-2 text-xs">
-                          <Target className="h-3.5 w-3.5 text-green-400" />
-                          <span className="text-green-300 font-medium">{strat.savingsPotential}</span>
-                        </div>
-                      </motion.div>
-                    )}
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+        <TabsContent value="estate" className="data-[state=inactive]:hidden">
+          <EstateTab />
         </TabsContent>
-
-        {/* ── TAB 4: Philanthropy ─────────────────────────────────────────────── */}
-        <TabsContent value="philanthropy" className="mt-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Vehicle selector */}
-            <div className="space-y-3">
-              <Card className="bg-slate-900 border-slate-800">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300 flex items-center gap-2">
-                    <Gift className="h-4 w-4 text-pink-400" /> Giving Vehicle Comparison
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <GivingComparisonChart vehicles={GIVING_VEHICLES} />
-                </CardContent>
-              </Card>
-
-              <div className="space-y-2">
-                {GIVING_VEHICLES.map((veh, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setSelectedVehicle(i)}
-                    className={`w-full text-left rounded-lg border px-3 py-2.5 transition-colors ${
-                      selectedVehicle === i
-                        ? "bg-slate-800 border-slate-600"
-                        : "bg-slate-900 border-slate-800 hover:border-slate-700"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="inline-block w-2 h-2 rounded-full" style={{ background: veh.color }} />
-                        <span className="text-sm font-medium text-white">{veh.name}</span>
-                        <Badge className="text-xs bg-slate-700 text-slate-300">{veh.abbrev}</Badge>
-                      </div>
-                      <span className="text-xs text-slate-400">Min {veh.minAsset}</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Selected vehicle detail */}
-            <motion.div
-              key={selectedVehicle}
-              initial={{ opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Card className="bg-slate-900 border-slate-800 h-full">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full" style={{ background: GIVING_VEHICLES[selectedVehicle].color }} />
-                    <CardTitle className="text-base font-bold text-white">
-                      {GIVING_VEHICLES[selectedVehicle].name}
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {GIVING_VEHICLES[selectedVehicle].description}
-                  </p>
-
-                  <div className="rounded-lg bg-slate-800 p-3 space-y-2">
-                    <div className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Tax Deduction</div>
-                    <div className="text-sm text-green-300">{GIVING_VEHICLES[selectedVehicle].taxDeduction}</div>
-                  </div>
-
-                  <div className="space-y-2.5">
-                    <VehicleBar label="Control" value={GIVING_VEHICLES[selectedVehicle].control} color={GIVING_VEHICLES[selectedVehicle].color} />
-                    <VehicleBar label="Flexibility" value={GIVING_VEHICLES[selectedVehicle].flexibility} color={GIVING_VEHICLES[selectedVehicle].color} />
-                    <VehicleBar label="Admin Burden" value={GIVING_VEHICLES[selectedVehicle].adminBurden} color="#ef4444" />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      { label: "Minimum Asset", value: GIVING_VEHICLES[selectedVehicle].minAsset },
-                      { label: "Control Score", value: `${GIVING_VEHICLES[selectedVehicle].control}/100` },
-                      { label: "Flexibility", value: `${GIVING_VEHICLES[selectedVehicle].flexibility}/100` },
-                      { label: "Admin Burden", value: `${GIVING_VEHICLES[selectedVehicle].adminBurden}/100` },
-                    ].map((kv, i) => (
-                      <div key={i} className="rounded bg-slate-800 px-2.5 py-2">
-                        <div className="text-xs text-slate-400">{kv.label}</div>
-                        <div className="text-sm font-semibold text-slate-200">{kv.value}</div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-
-          {/* Impact investing section */}
-          <Card className="mt-4 bg-slate-900 border-slate-800">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-slate-300 flex items-center gap-2">
-                <Heart className="h-4 w-4 text-pink-400" /> Impact Investing &amp; Blended Finance
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {[
-                  {
-                    title: "Mission-Related Investment (MRI)",
-                    desc: "Foundations invest endowment assets aligned with mission (e.g., ESG funds, green bonds). Returns market-rate; counts toward 5% payout only if classified as program-related.",
-                    stat: "$1.5T+ in sustainable AUM globally",
-                  },
-                  {
-                    title: "Program-Related Investment (PRI)",
-                    desc: "Concessionary investments (loans, guarantees) made from foundation assets to further charitable purpose. Counts toward 5% distribution requirement.",
-                    stat: "~$3.9B in PRIs made (2023)",
-                  },
-                  {
-                    title: "Blended Finance Structures",
-                    desc: "Catalytic public/philanthropic capital de-risks commercial investment in emerging markets infrastructure, climate tech, and healthcare through first-loss tranches.",
-                    stat: "$200B+ mobilized to date",
-                  },
-                ].map((item, i) => (
-                  <div key={i} className="rounded-lg bg-slate-800 p-4 space-y-2">
-                    <div className="text-sm font-semibold text-white">{item.title}</div>
-                    <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
-                    <div className="text-xs font-medium text-pink-300 flex items-center gap-1">
-                      <Info className="h-3 w-3" />{item.stat}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+        <TabsContent value="philanthropy" className="data-[state=inactive]:hidden">
+          <PhilanthropyTab />
         </TabsContent>
-
-        {/* ── TAB 5: Family Governance ─────────────────────────────────────────── */}
-        <TabsContent value="governance" className="mt-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Navigation list */}
-            <div className="space-y-2">
-              {GOVERNANCE_ELEMENTS.map((el, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelectedGov(i)}
-                  className={`w-full text-left rounded-lg border px-4 py-3 transition-colors ${
-                    selectedGov === i
-                      ? "bg-slate-800 border-slate-600"
-                      : "bg-slate-900 border-slate-800 hover:border-slate-700"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <span className={`text-slate-400 ${selectedGov === i ? "text-amber-400" : ""}`}>
-                        {el.icon}
-                      </span>
-                      <span className="text-sm font-medium text-white">{el.title}</span>
-                    </div>
-                    <Badge
-                      className={`text-xs border ${
-                        el.importance === "Critical"
-                          ? "text-red-400 bg-red-900/30 border-red-800"
-                          : "text-amber-400 bg-amber-900/30 border-amber-800"
-                      }`}
-                    >
-                      {el.importance}
-                    </Badge>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* Detail panel */}
-            <motion.div
-              key={selectedGov}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:col-span-2"
-            >
-              <Card className="bg-slate-900 border-slate-800">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-slate-800 text-amber-400">
-                        {GOVERNANCE_ELEMENTS[selectedGov].icon}
-                      </div>
-                      <CardTitle className="text-base font-bold text-white">
-                        {GOVERNANCE_ELEMENTS[selectedGov].title}
-                      </CardTitle>
-                    </div>
-                    <Badge
-                      className={`border ${
-                        GOVERNANCE_ELEMENTS[selectedGov].importance === "Critical"
-                          ? "text-red-400 bg-red-900/30 border-red-800"
-                          : "text-amber-400 bg-amber-900/30 border-amber-800"
-                      }`}
-                    >
-                      {GOVERNANCE_ELEMENTS[selectedGov].importance}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {GOVERNANCE_ELEMENTS[selectedGov].description}
-                  </p>
-
-                  <div>
-                    <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">
-                      Key Components
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {GOVERNANCE_ELEMENTS[selectedGov].components.map((comp, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: i * 0.06 }}
-                          className="flex items-start gap-2 rounded-lg bg-slate-800 px-3 py-2.5"
-                        >
-                          <CheckCircle className="h-3.5 w-3.5 text-green-400 mt-0.5 shrink-0" />
-                          <span className="text-xs text-slate-300">{comp}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Illustrative governance SVG timeline */}
-                  {selectedGov === 0 && (
-                    <div className="rounded-lg bg-slate-800 p-4">
-                      <div className="text-xs text-slate-400 mb-3 font-semibold uppercase tracking-wide">
-                        Family Constitution Development Timeline
-                      </div>
-                      <svg viewBox="0 0 400 60" className="w-full">
-                        {["Kickoff Retreat", "Values Workshop", "Draft Review", "Legal Review", "Ratification", "Annual Update"].map((phase, i) => {
-                          const x = 30 + i * 68;
-                          const isLast = i === 5;
-                          return (
-                            <g key={i}>
-                              {!isLast && (
-                                <line x1={x + 12} y1={20} x2={x + 68} y2={20} stroke="#334155" strokeWidth={2} />
-                              )}
-                              <circle cx={x} cy={20} r={8} fill={i < 3 ? "#f59e0b" : "#334155"} />
-                              <text x={x} y={20} textAnchor="middle" dominantBaseline="middle" fontSize="7" fill="white" fontWeight="700">{i + 1}</text>
-                              <text x={x} y={40} textAnchor="middle" fontSize="6.5" fill="#94a3b8">{phase.split(" ")[0]}</text>
-                              <text x={x} y={52} textAnchor="middle" fontSize="6.5" fill="#64748b">{phase.split(" ")[1] ?? ""}</text>
-                            </g>
-                          );
-                        })}
-                      </svg>
-                    </div>
-                  )}
-
-                  {selectedGov === 1 && (
-                    <div className="rounded-lg bg-slate-800 p-4">
-                      <div className="text-xs text-slate-400 mb-3 font-semibold uppercase tracking-wide">
-                        Investment Committee Meeting Cadence
-                      </div>
-                      <div className="grid grid-cols-4 gap-2 text-xs text-center">
-                        {[
-                          { freq: "Quarterly", label: "Full IC Review", color: "bg-amber-900/50 text-amber-300" },
-                          { freq: "Monthly", label: "Portfolio Monitor", color: "bg-blue-900/50 text-blue-300" },
-                          { freq: "Weekly", label: "Risk Report", color: "bg-slate-700 text-slate-300" },
-                          { freq: "Annual", label: "IPS Review", color: "bg-violet-900/50 text-violet-300" },
-                        ].map((row, i) => (
-                          <div key={i} className={`rounded-lg px-2 py-2.5 ${row.color}`}>
-                            <div className="font-bold">{row.freq}</div>
-                            <div className="text-xs opacity-80 mt-0.5">{row.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-
-          {/* Governance best practices */}
-          <Card className="mt-4 bg-slate-900 border-slate-800">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-slate-300 flex items-center gap-2">
-                <BookOpen className="h-4 w-4 text-blue-400" /> Best Practice Principles
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                {[
-                  {
-                    principle: "Separate Ownership from Management",
-                    detail: "Family members may own the wealth, but professional managers (CIO, advisors) govern day-to-day operations without interference.",
-                    icon: <Scale className="h-4 w-4 text-blue-400" />,
-                  },
-                  {
-                    principle: "Meritocratic Engagement",
-                    detail: "Next-gen family members earn governance roles through demonstrated competency and service, not solely by birthright.",
-                    icon: <Award className="h-4 w-4 text-yellow-400" />,
-                  },
-                  {
-                    principle: "Transparency &amp; Communication",
-                    detail: "Regular reporting to all stakeholders, clear financial statements, and open family meetings prevent rumors and resentment.",
-                    icon: <Info className="h-4 w-4 text-teal-400" />,
-                  },
-                  {
-                    principle: "Independent Oversight",
-                    detail: "External board members and independent trustees provide accountability, fresh perspective, and protection against self-dealing.",
-                    icon: <Shield className="h-4 w-4 text-red-400" />,
-                  },
-                ].map((bp, i) => (
-                  <div key={i} className="rounded-lg bg-slate-800 p-3 space-y-2">
-                    <div className="flex items-center gap-2">
-                      {bp.icon}
-                      <span className="text-xs font-semibold text-white">{bp.principle}</span>
-                    </div>
-                    <p className="text-xs text-slate-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: bp.detail }} />
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+        <TabsContent value="direct" className="data-[state=inactive]:hidden">
+          <DirectInvestingTab />
+        </TabsContent>
+        <TabsContent value="liquidity" className="data-[state=inactive]:hidden">
+          <LiquidityTab />
         </TabsContent>
       </Tabs>
-
-      {/* Footer disclaimer */}
-      <p className="text-xs text-slate-600 text-center pb-4">
-        For educational purposes only. Family office structures and tax strategies involve complex legal and regulatory considerations — consult qualified advisors.
-      </p>
-    </div>
+    </motion.div>
   );
 }

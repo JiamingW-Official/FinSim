@@ -34,7 +34,7 @@ import { UNIT_INFLATION_ECONOMICS } from "./unit-inflation-economics";
 import { UNIT_INSURANCE_PLANNING } from "./unit-insurance-planning";
 import { UNIT_COMMODITIES_TRADING } from "./unit-commodities-trading";
 import { UNIT_VENTURE_CAPITAL } from "./unit-venture-capital";
-import { UNIT_CORPORATE_FINANCE } from "./unit-corporate-finance";
+import { unitCorporateFinance as UNIT_CORPORATE_FINANCE } from "./unit-corporate-finance";
 import { UNIT_DEFI_WEB3 } from "./unit-defi-web3";
 import { UNIT_MACROECONOMICS } from "./unit-macroeconomics";
 import { UNIT_REAL_ESTATE_INVESTING } from "./unit-real-estate-investing";
