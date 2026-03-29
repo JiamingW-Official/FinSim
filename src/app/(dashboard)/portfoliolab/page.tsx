@@ -289,9 +289,9 @@ function EfficientFrontierTab() {
       </div>
 
       {/* SVG chart */}
-      <Card className="bg-muted/30 border-border">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium flex items-center gap-2">
+      <Card className="mt-8 bg-muted/30 border-border border-l-4 border-l-primary">
+        <CardHeader className="pb-2 p-6">
+          <CardTitle className="text-lg font-medium flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-indigo-400" />
             Efficient Frontier — Risk vs Return
           </CardTitle>

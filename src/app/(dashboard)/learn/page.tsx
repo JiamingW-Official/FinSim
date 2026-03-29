@@ -233,10 +233,10 @@ export default function LearnPage() {
                   </div>
                   <Link
                     href={`/learn/${recommendedLesson.lesson.id}`}
-                    className="flex items-center justify-center gap-2 w-full rounded-md bg-primary/90 h-9 text-sm font-medium text-primary-foreground transition-all duration-150 hover:bg-primary/80 active:scale-[0.98]"
+                    className="group inline-flex items-center gap-2 mt-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                   >
                     {completedCount > 0 ? "Continue" : "Start Lesson"}
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 </div>
               ) : (

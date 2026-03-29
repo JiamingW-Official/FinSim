@@ -1806,14 +1806,14 @@ function SwapSpreadsTab() {
 export default function FIRelValuePage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* Header — Hero */}
+      <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-muted/60 border border-border">
             <Layers className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-medium text-foreground">Fixed Income Relative Value</h1>
+            <h1 className="text-lg font-medium text-foreground">Fixed Income Relative Value</h1>
             <p className="text-sm text-muted-foreground">
               Bond spread analysis, duration-neutral trades, swap spreads & butterfly strategies
             </p>
@@ -1842,7 +1842,7 @@ export default function FIRelValuePage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="yieldcurve" className="w-full">
+      <Tabs defaultValue="yieldcurve" className="w-full mt-8">
         <TabsList className="bg-card border border-border h-auto p-1 flex flex-wrap gap-1 mb-4">
           <TabsTrigger
             value="yieldcurve"

@@ -1105,7 +1105,7 @@ export default function FactorInvestingPage() {
       </div>
 
       {/* Main tabs */}
-      <Tabs defaultValue="performance">
+      <Tabs defaultValue="performance" className="mt-8">
         <TabsList className="bg-foreground/5 border border-border w-full flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="performance" className="text-xs">
             <BarChart3 className="h-3 w-3 mr-1" />

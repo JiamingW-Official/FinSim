@@ -45,7 +45,7 @@ function CardTitle({
 }) {
   return (
     <div className="flex items-center justify-between border-b border-border/50 px-3 py-1.5">
-      <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
         {title}
       </span>
       {subtitle && (

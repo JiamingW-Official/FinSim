@@ -1276,7 +1276,7 @@ export default function FamilyOfficePage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="structure">
+      <Tabs defaultValue="structure" className="mt-8">
         <TabsList className="mb-4 flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-xl">
           {tabs.map(({ id, label, icon: Icon }) => (
             <TabsTrigger

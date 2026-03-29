@@ -928,7 +928,7 @@ export default function FinancialModelPage() {
   return (
     <div className="flex flex-col h-full min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="shrink-0 border-b border-border/50 bg-card/60 backdrop-blur-sm px-6 py-4">
+      <div className="shrink-0 border-b border-border/50 border-l-4 border-l-primary bg-card/60 backdrop-blur-sm px-6 py-4">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-lg font-medium tracking-tight flex items-center gap-2">

@@ -1250,7 +1250,7 @@ export default function FamilyWealthPage() {
         </div>
 
         {/* Alert */}
-        <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 flex items-start gap-3">
+        <div className="mt-8 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 flex items-start gap-3">
           <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
           <div className="text-sm text-muted-foreground">
             <span className="font-medium text-foreground">2026 Exemption Sunset:</span> The federal estate and gift tax

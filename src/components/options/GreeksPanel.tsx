@@ -23,8 +23,8 @@ export function GreeksPanel({ greeks }: GreeksPanelProps) {
           key={g.key}
           className={`rounded-lg ${g.bg} p-1.5 text-center`}
         >
-          <div className={`text-[11px] font-bold ${g.color}`}>{g.label}</div>
-          <div className="text-xs font-bold tabular-nums">
+          <div className={`text-[11px] font-medium ${g.color}`}>{g.label}</div>
+          <div className="text-xs font-medium tabular-nums">
             {greeks[g.key].toFixed(g.key === "gamma" || g.key === "vanna" ? 4 : 2)}
           </div>
         </div>

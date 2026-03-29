@@ -169,7 +169,7 @@ export function TimeTravelControls() {
       {/* Day counter + time + date */}
       <div className="flex shrink-0 items-center gap-2 text-xs text-muted-foreground">
         <span className="tabular-nums">
-          <span className="font-bold text-foreground">Day {dayNum}</span>
+          <span className="font-medium text-foreground">Day {dayNum}</span>
         </span>
         {currentBar && (
           <>
@@ -183,7 +183,7 @@ export function TimeTravelControls() {
           </>
         )}
         {atEnd && (
-          <span className="rounded bg-destructive/10 px-1.5 py-0.5 text-[11px] font-bold text-destructive">
+          <span className="rounded bg-destructive/10 px-1.5 py-0.5 text-[11px] font-medium text-destructive">
             END
           </span>
         )}

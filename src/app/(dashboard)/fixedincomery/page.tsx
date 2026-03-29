@@ -641,13 +641,13 @@ export default function FixedIncomeRVPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center">
             <Activity className="w-4 h-4 text-indigo-400" />
           </div>
-          <h1 className="text-xl font-semibold tracking-tight">Fixed Income Relative Value</h1>
+          <h1 className="text-lg font-semibold tracking-tight">Fixed Income Relative Value</h1>
           <span className="ml-auto text-xs text-muted-foreground bg-muted/60 border border-border/40 rounded px-2 py-0.5">
             As of Mar 28, 2026
           </span>

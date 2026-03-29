@@ -464,9 +464,9 @@ export default function PortfolioOptimizerPage() {
           {/* ─── TAB 1: Efficient Frontier ──────────────────────────────────── */}
           <TabsContent value="frontier" className="mt-4 space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              <Card className="lg:col-span-2 border-border/50">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
+              <Card className="lg:col-span-2 border-border/50 border-l-4 border-l-primary">
+                <CardHeader className="pb-2 p-6">
+                  <CardTitle className="text-lg flex items-center gap-2">
                     <TrendingUp size={16} className="text-primary" />
                     Efficient Frontier — 200 Random Portfolios
                   </CardTitle>

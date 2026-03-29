@@ -1263,14 +1263,14 @@ export default function FixedIncomeTechPage() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8"
+          className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2.5 rounded-xl bg-primary/10">
               <Activity className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Fixed Income Technology &amp; Electronic Trading</h1>
+              <h1 className="text-xl font-bold text-foreground">Fixed Income Technology &amp; Electronic Trading</h1>
               <p className="text-sm text-muted-foreground mt-0.5">
                 How technology transformed bond markets — from voice to algo, from opaque to transparent
               </p>
@@ -1285,7 +1285,7 @@ export default function FixedIncomeTechPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="electronic">
+        <Tabs defaultValue="electronic" className="mt-8">
           <TabsList className="mb-6 flex flex-wrap h-auto gap-1">
             <TabsTrigger value="electronic" className="text-xs">
               <Wifi className="w-3.5 h-3.5 mr-1.5" />
