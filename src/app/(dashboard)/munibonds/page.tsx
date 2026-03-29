@@ -1,1240 +1,1040 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Landmark,
-  Calculator,
-  ShieldCheck,
-  BarChart3,
-  AlertTriangle,
+  Building2,
+  Shield,
   TrendingUp,
-  Info,
-  DollarSign,
+  PieChart,
   MapPin,
+  AlertTriangle,
+  Info,
+  Calculator,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
-// ── Seeded PRNG ──────────────────────────────────────────────────────────────
-let s = 662001;
+// ── Seeded PRNG ────────────────────────────────────────────────────────────────
+let s = 980;
 const rand = () => {
   s = (s * 1103515245 + 12345) & 0x7fffffff;
   return s / 0x7fffffff;
 };
+// Pre-generate stable values
+const _vals = Array.from({ length: 3000 }, () => rand());
+let _vi = 0;
+const _sv = () => _vals[_vi++ % _vals.length];
+void _sv;
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-interface StateIssuance {
+// ── Data: 8 Muni Bonds ─────────────────────────────────────────────────────────
+interface MuniBond {
+  id: string;
+  issuer: string;
+  state: string;
+  type: "GO" | "Revenue";
+  rating: string;
+  maturity: string;
+  coupon: number;
+  yield: number;
+  teyAt37: number;
+  duration: number;
+  spreadToAAA: number;
+  isAMT: boolean;
+}
+
+const BONDS: MuniBond[] = [
+  {
+    id: "b1",
+    issuer: "NYC General Obligation",
+    state: "NY",
+    type: "GO",
+    rating: "AA",
+    maturity: "2035",
+    coupon: 4.25,
+    yield: 3.82,
+    teyAt37: 6.06,
+    duration: 7.4,
+    spreadToAAA: 48,
+    isAMT: false,
+  },
+  {
+    id: "b2",
+    issuer: "California Water Authority",
+    state: "CA",
+    type: "Revenue",
+    rating: "AAA",
+    maturity: "2040",
+    coupon: 3.75,
+    yield: 3.41,
+    teyAt37: 5.41,
+    duration: 10.2,
+    spreadToAAA: 12,
+    isAMT: false,
+  },
+  {
+    id: "b3",
+    issuer: "Texas Transportation Commission",
+    state: "TX",
+    type: "Revenue",
+    rating: "AA+",
+    maturity: "2038",
+    coupon: 4.0,
+    yield: 3.58,
+    teyAt37: 5.68,
+    duration: 9.1,
+    spreadToAAA: 28,
+    isAMT: false,
+  },
+  {
+    id: "b4",
+    issuer: "Chicago Board of Education",
+    state: "IL",
+    type: "GO",
+    rating: "BBB",
+    maturity: "2032",
+    coupon: 5.5,
+    yield: 5.12,
+    teyAt37: 8.13,
+    duration: 5.3,
+    spreadToAAA: 172,
+    isAMT: false,
+  },
+  {
+    id: "b5",
+    issuer: "Massachusetts Bay Transit",
+    state: "MA",
+    type: "Revenue",
+    rating: "A",
+    maturity: "2036",
+    coupon: 4.5,
+    yield: 4.08,
+    teyAt37: 6.48,
+    duration: 8.6,
+    spreadToAAA: 78,
+    isAMT: false,
+  },
+  {
+    id: "b6",
+    issuer: "Denver Airport System",
+    state: "CO",
+    type: "Revenue",
+    rating: "A",
+    maturity: "2034",
+    coupon: 4.75,
+    yield: 4.22,
+    teyAt37: 6.70,
+    duration: 7.0,
+    spreadToAAA: 92,
+    isAMT: true,
+  },
+  {
+    id: "b7",
+    issuer: "Florida State University",
+    state: "FL",
+    type: "Revenue",
+    rating: "AA",
+    maturity: "2037",
+    coupon: 4.0,
+    yield: 3.72,
+    teyAt37: 5.90,
+    duration: 8.8,
+    spreadToAAA: 42,
+    isAMT: false,
+  },
+  {
+    id: "b8",
+    issuer: "New Jersey Turnpike Authority",
+    state: "NJ",
+    type: "Revenue",
+    rating: "A+",
+    maturity: "2045",
+    coupon: 5.0,
+    yield: 4.55,
+    teyAt37: 7.22,
+    duration: 12.8,
+    spreadToAAA: 105,
+    isAMT: true,
+  },
+];
+
+// ── Data: Sector Breakdown ────────────────────────────────────────────────────
+const SECTORS = [
+  { name: "Education", pct: 28, color: "#6366f1" },
+  { name: "Healthcare", pct: 22, color: "#22d3ee" },
+  { name: "Water/Sewer", pct: 18, color: "#34d399" },
+  { name: "Transportation", pct: 15, color: "#f59e0b" },
+  { name: "Housing", pct: 10, color: "#f472b6" },
+  { name: "Other", pct: 7, color: "#94a3b8" },
+];
+
+// ── Data: State Fiscal Health ─────────────────────────────────────────────────
+interface StateFiscal {
   state: string;
   abbr: string;
-  volume: number; // $B
-  creditQuality: "AAA" | "AA" | "A" | "BBB" | "Below";
-}
-
-interface MuniETF {
-  ticker: string;
-  name: string;
-  aum: string;
-  expRatio: number;
-  duration: number;
-  ytm: number;
-  creditFocus: string;
-  amtExposure: string;
-}
-
-interface StateFiscalHealth {
-  state: string;
-  score: number; // 0-100
   pensionFunded: number;
   debtPerCapita: number;
-  budgetBalance: number; // % of budget
-  rating: string;
+  budgetBalance: number;
+  outlook: "Stable" | "Positive" | "Negative";
 }
 
-// ── Static Data ───────────────────────────────────────────────────────────────
-const STATE_ISSUANCES: StateIssuance[] = [
-  { state: "California", abbr: "CA", volume: 68.4, creditQuality: "AA" },
-  { state: "New York", abbr: "NY", volume: 52.1, creditQuality: "AA" },
-  { state: "Texas", abbr: "TX", volume: 41.8, creditQuality: "AAA" },
-  { state: "Florida", abbr: "FL", volume: 29.3, creditQuality: "AA" },
-  { state: "Illinois", abbr: "IL", volume: 22.7, creditQuality: "BBB" },
-  { state: "Pennsylvania", abbr: "PA", volume: 18.9, creditQuality: "AA" },
-  { state: "Washington", abbr: "WA", volume: 16.4, creditQuality: "AAA" },
-  { state: "Ohio", abbr: "OH", volume: 14.2, creditQuality: "AA" },
-  { state: "New Jersey", abbr: "NJ", volume: 12.8, creditQuality: "A" },
-  { state: "Massachusetts", abbr: "MA", volume: 11.3, creditQuality: "AA" },
+const STATE_FISCAL: StateFiscal[] = [
+  { state: "California", abbr: "CA", pensionFunded: 73, debtPerCapita: 4821, budgetBalance: 1.2, outlook: "Stable" },
+  { state: "New York", abbr: "NY", pensionFunded: 89, debtPerCapita: 6103, budgetBalance: -0.4, outlook: "Stable" },
+  { state: "Texas", abbr: "TX", pensionFunded: 77, debtPerCapita: 2154, budgetBalance: 3.8, outlook: "Positive" },
+  { state: "Illinois", abbr: "IL", pensionFunded: 44, debtPerCapita: 7689, budgetBalance: -2.1, outlook: "Negative" },
+  { state: "Florida", abbr: "FL", pensionFunded: 82, debtPerCapita: 1876, budgetBalance: 2.9, outlook: "Positive" },
+  { state: "New Jersey", abbr: "NJ", pensionFunded: 38, debtPerCapita: 8240, budgetBalance: -1.7, outlook: "Negative" },
 ];
 
-const CREDIT_DISTRIBUTION = [
-  { label: "AAA", pct: 14, color: "#22c55e" },
-  { label: "AA", pct: 58, color: "#86efac" },
-  { label: "A", pct: 18, color: "#fbbf24" },
-  { label: "BBB", pct: 7, color: "#f97316" },
-  { label: "Below BBB", pct: 3, color: "#ef4444" },
+// ── Credit Spread Data by Rating & Duration ───────────────────────────────────
+const SPREAD_DATA: { duration: number; AAA: number; AA: number; A: number; BBB: number }[] = [
+  { duration: 1, AAA: 5, AA: 20, A: 45, BBB: 110 },
+  { duration: 3, AAA: 8, AA: 28, A: 62, BBB: 135 },
+  { duration: 5, AAA: 12, AA: 38, A: 78, BBB: 155 },
+  { duration: 7, AAA: 16, AA: 48, A: 92, BBB: 172 },
+  { duration: 10, AAA: 20, AA: 58, A: 108, BBB: 190 },
+  { duration: 15, AAA: 25, AA: 70, A: 125, BBB: 215 },
+  { duration: 20, AAA: 30, AA: 82, A: 142, BBB: 240 },
 ];
 
-const MUNI_ETFS: MuniETF[] = [
-  {
-    ticker: "MUB",
-    name: "iShares National Muni Bond ETF",
-    aum: "$39.2B",
-    expRatio: 0.07,
-    duration: 6.8,
-    ytm: 3.42,
-    creditFocus: "Investment Grade",
-    amtExposure: "~6%",
-  },
-  {
-    ticker: "VTEB",
-    name: "Vanguard Tax-Exempt Bond ETF",
-    aum: "$32.1B",
-    expRatio: 0.05,
-    duration: 6.2,
-    ytm: 3.38,
-    creditFocus: "Investment Grade",
-    amtExposure: "~4%",
-  },
-  {
-    ticker: "HYD",
-    name: "VanEck High Yield Muni ETF",
-    aum: "$3.8B",
-    expRatio: 0.35,
-    duration: 8.9,
-    ytm: 4.87,
-    creditFocus: "High Yield",
-    amtExposure: "~18%",
-  },
-  {
-    ticker: "BAB",
-    name: "Invesco Build America Bond ETF",
-    aum: "$1.2B",
-    expRatio: 0.28,
-    duration: 12.4,
-    ytm: 5.14,
-    creditFocus: "Taxable Munis",
-    amtExposure: "N/A",
-  },
-  {
-    ticker: "PZA",
-    name: "Invesco National AMT-Free Muni",
-    aum: "$2.9B",
-    expRatio: 0.28,
-    duration: 7.1,
-    ytm: 3.61,
-    creditFocus: "AMT-Free",
-    amtExposure: "0%",
-  },
-];
-
-const STATE_FISCAL_HEALTH: StateFiscalHealth[] = [
-  { state: "Colorado", score: 88, pensionFunded: 74, debtPerCapita: 2400, budgetBalance: 3.2, rating: "AAA" },
-  { state: "Florida", score: 85, pensionFunded: 82, debtPerCapita: 1800, budgetBalance: 2.8, rating: "AAA" },
-  { state: "Utah", score: 84, pensionFunded: 86, debtPerCapita: 1600, budgetBalance: 4.1, rating: "AAA" },
-  { state: "Texas", score: 81, pensionFunded: 72, debtPerCapita: 1900, budgetBalance: 1.9, rating: "AAA" },
-  { state: "Washington", score: 78, pensionFunded: 68, debtPerCapita: 3100, budgetBalance: 1.4, rating: "AA+" },
-  { state: "California", score: 62, pensionFunded: 71, debtPerCapita: 5800, budgetBalance: -0.8, rating: "AA-" },
-  { state: "Massachusetts", score: 60, pensionFunded: 64, debtPerCapita: 7200, budgetBalance: 0.6, rating: "AA" },
-  { state: "New Jersey", score: 42, pensionFunded: 39, debtPerCapita: 8900, budgetBalance: -1.2, rating: "A-" },
-  { state: "Connecticut", score: 38, pensionFunded: 36, debtPerCapita: 9400, budgetBalance: -0.4, rating: "A-" },
-  { state: "Illinois", score: 28, pensionFunded: 43, debtPerCapita: 7600, budgetBalance: -2.1, rating: "BBB+" },
-];
-
-const DEFAULT_RATE_COMPARISON = [
-  { category: "AAA Muni", rate5yr: 0.0, rate10yr: 0.01, color: "#22c55e" },
-  { category: "AA Muni", rate5yr: 0.02, rate10yr: 0.04, color: "#86efac" },
-  { category: "A Muni", rate5yr: 0.08, rate10yr: 0.14, color: "#fbbf24" },
-  { category: "BBB Corp", rate5yr: 0.42, rate10yr: 0.81, color: "#f97316" },
-  { category: "BB Corp", rate5yr: 1.8, rate10yr: 3.2, color: "#ef4444" },
-];
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-function taxEquivalentYield(muniYield: number, fedRate: number, stateRate: number): number {
-  const effectiveTaxRate = fedRate / 100 + (stateRate / 100) * (1 - fedRate / 100);
-  return muniYield / (1 - effectiveTaxRate);
+// ── Utility ───────────────────────────────────────────────────────────────────
+function calcTEY(muniYield: number, bracketPct: number): number {
+  return muniYield / (1 - bracketPct / 100);
 }
 
-function creditQualityColor(quality: string): string {
-  const map: Record<string, string> = {
-    AAA: "text-green-400",
-    AA: "text-emerald-400",
-    A: "text-yellow-400",
-    BBB: "text-orange-400",
-    Below: "text-red-400",
-  };
-  return map[quality] ?? "text-muted-foreground";
+function ratingColor(rating: string): string {
+  if (rating.startsWith("AAA")) return "text-emerald-400";
+  if (rating.startsWith("AA")) return "text-green-400";
+  if (rating === "A+" || rating === "A") return "text-yellow-400";
+  if (rating.startsWith("BBB")) return "text-orange-400";
+  return "text-red-400";
 }
 
-function fiscalScoreColor(score: number): string {
-  if (score >= 75) return "#22c55e";
-  if (score >= 55) return "#fbbf24";
-  if (score >= 40) return "#f97316";
-  return "#ef4444";
+function OutlookBadge({ outlook }: { outlook: StateFiscal["outlook"] }) {
+  if (outlook === "Positive")
+    return <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Positive</Badge>;
+  if (outlook === "Negative")
+    return <Badge className="bg-red-500/20 text-red-400 border-red-500/30">Negative</Badge>;
+  return <Badge className="bg-zinc-700 text-zinc-300 border-zinc-600">Stable</Badge>;
 }
 
-// ── Sub-components ────────────────────────────────────────────────────────────
+// ── SVG: Donut Chart ──────────────────────────────────────────────────────────
+function DonutChart() {
+  const cx = 120;
+  const cy = 120;
+  const R = 80;
+  const r = 52;
+  let angle = -Math.PI / 2;
 
-function SectionCard({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={cn("rounded-xl border border-border bg-card p-5", className)}>
-      {children}
-    </div>
-  );
-}
-
-function StatChip({ label, value, sub }: { label: string; value: string; sub?: string }) {
-  return (
-    <div className="flex flex-col gap-0.5 rounded-lg border border-border bg-muted/30 px-4 py-3">
-      <span className="text-xs text-muted-foreground">{label}</span>
-      <span className="text-lg font-semibold text-foreground">{value}</span>
-      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
-    </div>
-  );
-}
-
-// ── Tab 1: Muni Market Overview ───────────────────────────────────────────────
-function MarketOverviewTab() {
-  const maxVol = Math.max(...STATE_ISSUANCES.map((s) => s.volume));
+  const slices = SECTORS.map((sec) => {
+    const sweep = (sec.pct / 100) * 2 * Math.PI;
+    const x1 = cx + R * Math.cos(angle);
+    const y1 = cy + R * Math.sin(angle);
+    const x2 = cx + R * Math.cos(angle + sweep);
+    const y2 = cy + R * Math.sin(angle + sweep);
+    const ix1 = cx + r * Math.cos(angle);
+    const iy1 = cy + r * Math.sin(angle);
+    const ix2 = cx + r * Math.cos(angle + sweep);
+    const iy2 = cy + r * Math.sin(angle + sweep);
+    const large = sweep > Math.PI ? 1 : 0;
+    const path = [
+      `M ${ix1} ${iy1}`,
+      `L ${x1} ${y1}`,
+      `A ${R} ${R} 0 ${large} 1 ${x2} ${y2}`,
+      `L ${ix2} ${iy2}`,
+      `A ${r} ${r} 0 ${large} 0 ${ix1} ${iy1}`,
+      "Z",
+    ].join(" ");
+    angle += sweep;
+    return { path, color: sec.color };
+  });
 
   return (
-    <div className="space-y-5">
-      {/* Key stats */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatChip label="Total Market Size" value="$4.0T" sub="Outstanding principal" />
-        <StatChip label="Annual Issuance" value="~$400B" sub="New bonds issued/yr" />
-        <StatChip label="Active Issuers" value="50,000+" sub="States, cities, districts" />
-        <StatChip label="Avg Maturity" value="12.4 yrs" sub="Weighted average" />
-      </div>
-
-      {/* Bond type explainers */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <SectionCard>
-          <div className="mb-3 flex items-center gap-2">
-            <Landmark className="h-4 w-4 text-blue-400" />
-            <h3 className="font-semibold">General Obligation (GO) Bonds</h3>
-          </div>
-          <p className="mb-3 text-sm text-muted-foreground">
-            Backed by the full faith, credit, and taxing power of the issuing municipality. Considered
-            the safest muni bond type as the issuer can raise taxes to meet debt obligations.
-          </p>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Backing</span>
-              <span className="text-foreground">Property tax pledge</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Typical credit</span>
-              <span className="text-green-400">AA to AAA</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Market share</span>
-              <span className="text-foreground">~35%</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Voter approval</span>
-              <span className="text-foreground">Often required</span>
-            </div>
-          </div>
-        </SectionCard>
-
-        <SectionCard>
-          <div className="mb-3 flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-purple-400" />
-            <h3 className="font-semibold">Revenue Bonds</h3>
-          </div>
-          <p className="mb-3 text-sm text-muted-foreground">
-            Backed by specific revenue streams from the funded project — toll roads, airports, water
-            utilities, hospitals. Higher yield but more credit analysis required.
-          </p>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Backing</span>
-              <span className="text-foreground">Project revenue only</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Typical credit</span>
-              <span className="text-yellow-400">A to AA</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Market share</span>
-              <span className="text-foreground">~65%</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Key metric</span>
-              <span className="text-foreground">Debt Service Coverage</span>
-            </div>
-          </div>
-        </SectionCard>
-      </div>
-
-      {/* Credit quality distribution */}
-      <SectionCard>
-        <h3 className="mb-4 font-semibold">Credit Quality Distribution</h3>
-        <div className="space-y-3">
-          {CREDIT_DISTRIBUTION.map((item) => (
-            <div key={item.label} className="flex items-center gap-3">
-              <span className="w-16 text-sm text-muted-foreground">{item.label}</span>
-              <div className="flex-1 overflow-hidden rounded-full bg-muted/40" style={{ height: 20 }}>
-                <div
-                  className="flex h-full items-center rounded-full px-2"
-                  style={{ width: `${item.pct}%`, backgroundColor: item.color + "33", border: `1px solid ${item.color}` }}
-                >
-                  <span className="text-xs font-semibold" style={{ color: item.color }}>
-                    {item.pct}%
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="mt-3 text-xs text-muted-foreground">
-          ~72% of the muni market carries AA or higher rating — far higher than corporate bonds.
-        </p>
-      </SectionCard>
-
-      {/* State issuance SVG bar chart */}
-      <SectionCard>
-        <h3 className="mb-4 font-semibold">Annual Issuance by State (Top 10, $B)</h3>
-        <svg viewBox="0 0 700 320" className="w-full" style={{ maxHeight: 320 }}>
-          {/* Grid lines */}
-          {[0, 25, 50, 75, 100].map((pct) => {
-            const x = 80 + (pct / 100) * 580;
-            return (
-              <g key={pct}>
-                <line x1={x} y1={20} x2={x} y2={290} stroke="hsl(var(--border))" strokeWidth={0.5} />
-                <text x={x} y={310} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={10}>
-                  ${Math.round((pct / 100) * maxVol)}B
-                </text>
-              </g>
-            );
-          })}
-          {STATE_ISSUANCES.map((item, i) => {
-            const barWidth = (item.volume / maxVol) * 580;
-            const y = 20 + i * 27;
-            const colorMap: Record<string, string> = {
-              AAA: "#22c55e",
-              AA: "#86efac",
-              A: "#fbbf24",
-              BBB: "#f97316",
-              Below: "#ef4444",
-            };
-            const color = colorMap[item.creditQuality] ?? "#6b7280";
-            return (
-              <g key={item.abbr}>
-                <text x={75} y={y + 15} textAnchor="end" fill="hsl(var(--muted-foreground))" fontSize={11}>
-                  {item.abbr}
-                </text>
-                <rect x={80} y={y} width={barWidth} height={20} rx={3} fill={color + "44"} stroke={color} strokeWidth={1} />
-                <text x={82 + barWidth} y={y + 14} fill={color} fontSize={10} fontWeight="600">
-                  ${item.volume}B
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-        <div className="mt-2 flex flex-wrap gap-3">
-          {Object.entries({ AAA: "#22c55e", AA: "#86efac", A: "#fbbf24", BBB: "#f97316" }).map(([k, v]) => (
-            <div key={k} className="flex items-center gap-1.5">
-              <div className="h-3 w-3 rounded-sm" style={{ backgroundColor: v }} />
-              <span className="text-xs text-muted-foreground">{k}</span>
-            </div>
-          ))}
-        </div>
-      </SectionCard>
-    </div>
+    <svg viewBox="0 0 240 240" className="w-full max-w-[240px] mx-auto">
+      {slices.map((sl, i) => (
+        <path key={`sl-${i}`} d={sl.path} fill={sl.color} opacity="0.85" stroke="#18181b" strokeWidth="1.5" />
+      ))}
+      <text x={cx} y={cy - 8} textAnchor="middle" fill="#a1a1aa" fontSize="11">Muni</text>
+      <text x={cx} y={cy + 8} textAnchor="middle" fill="#a1a1aa" fontSize="11">Sectors</text>
+    </svg>
   );
 }
 
-// ── Tab 2: Tax-Equivalent Yield ────────────────────────────────────────────────
-function TaxEquivalentYieldTab() {
-  const [fedRate, setFedRate] = useState(35);
-  const [stateRate, setStateRate] = useState(9);
-  const [muniYield, setMuniYield] = useState(3.5);
+// ── SVG: Credit Spread Chart ──────────────────────────────────────────────────
+function CreditSpreadChart() {
+  const W = 480;
+  const H = 200;
+  const PAD = { l: 48, r: 32, t: 16, b: 36 };
+  const cW = W - PAD.l - PAD.r;
+  const cH = H - PAD.t - PAD.b;
+  const maxSpread = 260;
+  const maxDur = 20;
 
-  const tey = useMemo(
-    () => taxEquivalentYield(muniYield, fedRate, stateRate),
-    [muniYield, fedRate, stateRate],
-  );
+  const toX = (d: number) => PAD.l + (d / maxDur) * cW;
+  const toY = (sp: number) => PAD.t + cH - (sp / maxSpread) * cH;
 
-  const effectiveTaxRate = useMemo(
-    () => fedRate / 100 + (stateRate / 100) * (1 - fedRate / 100),
-    [fedRate, stateRate],
-  );
+  const lines: { dataKey: "AAA" | "AA" | "A" | "BBB"; color: string; label: string }[] = [
+    { dataKey: "AAA", color: "#34d399", label: "AAA" },
+    { dataKey: "AA", color: "#6366f1", label: "AA" },
+    { dataKey: "A", color: "#f59e0b", label: "A" },
+    { dataKey: "BBB", color: "#f87171", label: "BBB" },
+  ];
 
-  // TEY at different tax brackets for chart
-  const bracketData = useMemo(() => {
-    const brackets = [10, 12, 22, 24, 32, 35, 37];
-    return brackets.map((br) => ({
-      bracket: br,
-      tey: taxEquivalentYield(muniYield, br, stateRate),
-      afterTax: muniYield,
-    }));
-  }, [muniYield, stateRate]);
-
-  const maxTey = Math.max(...bracketData.map((d) => d.tey));
-  const chartH = 200;
-  const chartW = 580;
+  const gridYVals = [0, 50, 100, 150, 200, 250];
 
   return (
-    <div className="space-y-5">
-      {/* Calculator */}
-      <SectionCard>
-        <div className="mb-4 flex items-center gap-2">
-          <Calculator className="h-4 w-4 text-blue-400" />
-          <h3 className="font-semibold">Tax-Equivalent Yield Calculator</h3>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="space-y-5">
-            {/* Federal rate slider */}
-            <div>
-              <div className="mb-1 flex justify-between text-sm">
-                <span className="text-muted-foreground">Federal Tax Rate</span>
-                <span className="font-semibold text-blue-400">{fedRate}%</span>
-              </div>
-              <input
-                type="range"
-                min={10}
-                max={37}
-                step={1}
-                value={fedRate}
-                onChange={(e) => setFedRate(Number(e.target.value))}
-                className="w-full accent-blue-500"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>10%</span>
-                <span>37%</span>
-              </div>
-            </div>
-
-            {/* State rate slider */}
-            <div>
-              <div className="mb-1 flex justify-between text-sm">
-                <span className="text-muted-foreground">State Tax Rate</span>
-                <span className="font-semibold text-purple-400">{stateRate}%</span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={13}
-                step={0.5}
-                value={stateRate}
-                onChange={(e) => setStateRate(Number(e.target.value))}
-                className="w-full accent-purple-500"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>0% (TX, FL)</span>
-                <span>13.3% (CA)</span>
-              </div>
-            </div>
-
-            {/* Muni yield slider */}
-            <div>
-              <div className="mb-1 flex justify-between text-sm">
-                <span className="text-muted-foreground">Muni Bond Yield</span>
-                <span className="font-semibold text-green-400">{muniYield.toFixed(1)}%</span>
-              </div>
-              <input
-                type="range"
-                min={1}
-                max={6}
-                step={0.1}
-                value={muniYield}
-                onChange={(e) => setMuniYield(Number(e.target.value))}
-                className="w-full accent-green-500"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>1.0%</span>
-                <span>6.0%</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Result panel */}
-          <div className="flex flex-col justify-center gap-4 rounded-xl border border-border bg-muted/20 p-5">
-            <div>
-              <div className="text-xs text-muted-foreground">Combined Effective Tax Rate</div>
-              <div className="text-2xl font-bold text-foreground">{(effectiveTaxRate * 100).toFixed(1)}%</div>
-            </div>
-            <div className="h-px bg-border" />
-            <div>
-              <div className="text-xs text-muted-foreground">Muni Bond Yield</div>
-              <div className="text-2xl font-bold text-green-400">{muniYield.toFixed(2)}%</div>
-              <div className="text-xs text-muted-foreground">Tax-exempt from federal (and often state) tax</div>
-            </div>
-            <div className="h-px bg-border" />
-            <div>
-              <div className="text-xs text-muted-foreground">Tax-Equivalent Yield</div>
-              <div className="text-3xl font-bold text-blue-400">{tey.toFixed(2)}%</div>
-              <div className="text-xs text-muted-foreground">
-                A taxable bond must yield this much to match the muni
-              </div>
-            </div>
-            {tey > 5 && (
-              <div className="rounded-lg border border-green-500/30 bg-green-500/10 px-3 py-2 text-xs text-green-400">
-                Strong value at high tax brackets — munis often beat taxable bonds above 32% federal rate.
-              </div>
-            )}
-          </div>
-        </div>
-      </SectionCard>
-
-      {/* SVG comparison chart */}
-      <SectionCard>
-        <h3 className="mb-1 font-semibold">TEY vs. Tax Bracket — Muni Yield {muniYield.toFixed(1)}%</h3>
-        <p className="mb-4 text-xs text-muted-foreground">
-          A {muniYield.toFixed(1)}% muni is equivalent to the following taxable yield at each federal tax bracket (state rate {stateRate}%)
-        </p>
-        <svg viewBox={`0 0 700 ${chartH + 80}`} className="w-full" style={{ maxHeight: chartH + 80 }}>
-          {/* Y-axis grid */}
-          {[0, 2, 4, 6, 8, 10].map((yv) => {
-            if (yv > maxTey * 1.1) return null;
-            const y = chartH - (yv / (maxTey * 1.1)) * chartH + 20;
-            return (
-              <g key={yv}>
-                <line x1={60} y1={y} x2={660} y2={y} stroke="hsl(var(--border))" strokeWidth={0.5} />
-                <text x={55} y={y + 4} textAnchor="end" fill="hsl(var(--muted-foreground))" fontSize={10}>
-                  {yv}%
-                </text>
-              </g>
-            );
-          })}
-          {bracketData.map((d, i) => {
-            const barW = 60;
-            const gap = (600 - bracketData.length * barW) / (bracketData.length + 1);
-            const x = 60 + gap + i * (barW + gap);
-            const teyH = (d.tey / (maxTey * 1.1)) * chartH;
-            const muniH = (d.afterTax / (maxTey * 1.1)) * chartH;
-            const isCurrentBracket = d.bracket === fedRate ||
-              (fedRate > d.bracket && (bracketData[i + 1]?.bracket ?? 999) > fedRate);
-            return (
-              <g key={d.bracket}>
-                {/* Taxable equivalent bar */}
-                <rect
-                  x={x}
-                  y={chartH - teyH + 20}
-                  width={barW}
-                  height={teyH}
-                  rx={3}
-                  fill={isCurrentBracket ? "#3b82f644" : "#3b82f622"}
-                  stroke={isCurrentBracket ? "#3b82f6" : "#3b82f666"}
-                  strokeWidth={isCurrentBracket ? 2 : 1}
-                />
-                {/* Muni yield line */}
-                <rect
-                  x={x}
-                  y={chartH - muniH + 20}
-                  width={barW}
-                  height={3}
-                  fill="#22c55e"
-                />
-                <text x={x + barW / 2} y={chartH + 35} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={10}>
-                  {d.bracket}%
-                </text>
-                <text
-                  x={x + barW / 2}
-                  y={chartH - teyH + 15}
-                  textAnchor="middle"
-                  fill={isCurrentBracket ? "#93c5fd" : "hsl(var(--muted-foreground))"}
-                  fontSize={9}
-                  fontWeight={isCurrentBracket ? "700" : "400"}
-                >
-                  {d.tey.toFixed(1)}%
-                </text>
-              </g>
-            );
-          })}
-          <text x={360} y={chartH + 60} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={11}>
-            Federal Tax Bracket
-          </text>
-        </svg>
-        <div className="mt-2 flex gap-4">
-          <div className="flex items-center gap-1.5">
-            <div className="h-3 w-6 rounded-sm bg-blue-500/40 border border-blue-500" />
-            <span className="text-xs text-muted-foreground">Tax-Equivalent Yield (taxable needed)</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="h-0.5 w-6 bg-green-500" />
-            <span className="text-xs text-muted-foreground">Muni Yield ({muniYield.toFixed(1)}%)</span>
-          </div>
-        </div>
-      </SectionCard>
-
-      {/* Info box */}
-      <SectionCard>
-        <div className="flex items-start gap-3">
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
-          <div className="text-sm text-muted-foreground">
-            <strong className="text-foreground">Formula:</strong> TEY = Muni Yield ÷ (1 − Combined Tax Rate)
-            <br />
-            <strong className="text-foreground">In-state munis</strong> are often exempt from state income tax too, making them even more attractive for residents of high-tax states like California (13.3%), New York (10.9%), or Hawaii (11%).
-            <br />
-            <strong className="text-foreground">AMT caution:</strong> Some private activity bonds may trigger the Alternative Minimum Tax, reducing after-tax yield.
-          </div>
-        </div>
-      </SectionCard>
-    </div>
-  );
-}
-
-// ── Tab 3: Credit Analysis ────────────────────────────────────────────────────
-function CreditAnalysisTab() {
-  const maxRate = 3.5;
-
-  return (
-    <div className="space-y-5">
-      {/* GO bond metrics */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <SectionCard>
-          <div className="mb-3 flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-green-400" />
-            <h3 className="font-semibold">GO Bond Credit Metrics</h3>
-          </div>
-          <div className="space-y-3 text-sm">
-            {[
-              { metric: "Property Tax Levy Authority", value: "Unlimited (limited GO)", note: "Can raise taxes to repay" },
-              { metric: "Debt per Capita", value: "<$4,000 ideal", note: "Budget stress indicator" },
-              { metric: "Fund Balance (% of revenue)", value: "≥10% healthy", note: "Rainy day fund" },
-              { metric: "Pension Funded Ratio", value: "≥80% healthy", note: "Long-term obligation" },
-              { metric: "Net Direct Debt / AV", value: "<3% conservative", note: "Assessed valuation" },
-            ].map((row) => (
-              <div key={row.metric} className="rounded-lg bg-muted/20 p-3">
-                <div className="flex justify-between">
-                  <span className="font-medium text-foreground">{row.metric}</span>
-                  <span className="text-green-400 font-semibold">{row.value}</span>
-                </div>
-                <div className="text-xs text-muted-foreground mt-0.5">{row.note}</div>
-              </div>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-48">
+      {gridYVals.map((v) => (
+        <g key={`gy-${v}`}>
+          <line x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+          <text x={PAD.l - 6} y={toY(v) + 4} textAnchor="end" fill="#71717a" fontSize="9">{v}</text>
+        </g>
+      ))}
+      {[0, 5, 10, 15, 20].map((d) => (
+        <g key={`gx-${d}`}>
+          <line x1={toX(d)} x2={toX(d)} y1={PAD.t} y2={PAD.t + cH} stroke="#27272a" strokeWidth="1" />
+          <text x={toX(d)} y={PAD.t + cH + 14} textAnchor="middle" fill="#71717a" fontSize="9">{d}yr</text>
+        </g>
+      ))}
+      {lines.map(({ dataKey, color, label }) => {
+        const pts = SPREAD_DATA.map((d) => `${toX(d.duration)},${toY(d[dataKey])}`).join(" ");
+        const lastD = SPREAD_DATA[SPREAD_DATA.length - 1];
+        return (
+          <g key={`line-${dataKey}`}>
+            <polyline points={pts} fill="none" stroke={color} strokeWidth="2" strokeLinejoin="round" />
+            {SPREAD_DATA.map((d, i) => (
+              <circle key={`dot-${dataKey}-${i}`} cx={toX(d.duration)} cy={toY(d[dataKey])} r="3" fill={color} />
             ))}
-          </div>
-        </SectionCard>
+            <text x={toX(lastD.duration) + 5} y={toY(lastD[dataKey]) + 4} fill={color} fontSize="9" fontWeight="600">
+              {label}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
 
-        <SectionCard>
-          <div className="mb-3 flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-purple-400" />
-            <h3 className="font-semibold">Revenue Bond Credit Metrics</h3>
-          </div>
-          <div className="space-y-3 text-sm">
-            {[
-              { metric: "Debt Service Coverage Ratio", value: "≥1.25x minimum", note: "Net revenue / debt service" },
-              { metric: "Days Cash on Hand", value: "≥150 days healthy", note: "Liquidity buffer" },
-              { metric: "Revenue Concentration", value: "Diversified preferred", note: "Single payer risk" },
-              { metric: "Rate Covenant", value: "Required by indenture", note: "Must raise rates if needed" },
-              { metric: "Capital Structure Seniority", value: "Senior lien preferred", note: "First claim on revenue" },
-            ].map((row) => (
-              <div key={row.metric} className="rounded-lg bg-muted/20 p-3">
-                <div className="flex justify-between">
-                  <span className="font-medium text-foreground">{row.metric}</span>
-                  <span className="text-purple-400 font-semibold">{row.value}</span>
-                </div>
-                <div className="text-xs text-muted-foreground mt-0.5">{row.note}</div>
-              </div>
-            ))}
-          </div>
-        </SectionCard>
-      </div>
+// ── SVG: TEY Comparison Bar Chart ─────────────────────────────────────────────
+function TEYBarChart({ muniYield, bracket }: { muniYield: number; bracket: number }) {
+  const tey = calcTEY(muniYield, bracket);
+  const maxV = Math.max(muniYield, tey) * 1.2;
+  const W = 360;
+  const H = 140;
+  const barH = 32;
+  const gap = 18;
+  const PAD = { l: 120, r: 48, t: 20, b: 20 };
+  const cW = W - PAD.l - PAD.r;
+  const toW = (v: number) => (v / maxV) * cW;
 
-      {/* Default rate comparison */}
-      <SectionCard>
-        <h3 className="mb-4 font-semibold">10-Year Cumulative Default Rates: Munis vs. Corporates</h3>
-        <svg viewBox="0 0 700 260" className="w-full" style={{ maxHeight: 260 }}>
-          {/* Y grid */}
-          {[0, 1, 2, 3, 3.5].map((yv) => {
-            const y = 220 - (yv / maxRate) * 200;
-            return (
-              <g key={yv}>
-                <line x1={80} y1={y} x2={660} y2={y} stroke="hsl(var(--border))" strokeWidth={0.5} />
-                <text x={75} y={y + 4} textAnchor="end" fill="hsl(var(--muted-foreground))" fontSize={10}>
-                  {yv}%
-                </text>
-              </g>
-            );
-          })}
-          {DEFAULT_RATE_COMPARISON.map((item, i) => {
-            const barW = 70;
-            const gap = (580 - DEFAULT_RATE_COMPARISON.length * barW) / (DEFAULT_RATE_COMPARISON.length + 1);
-            const x10 = 80 + gap + i * (barW + gap);
-            const x5 = x10 + barW * 0.25;
-            const bar10H = (item.rate10yr / maxRate) * 200;
-            const bar5H = (item.rate5yr / maxRate) * 200;
-            return (
-              <g key={item.category}>
-                {/* 10yr bar */}
-                <rect
-                  x={x10}
-                  y={220 - bar10H}
-                  width={barW * 0.45}
-                  height={Math.max(bar10H, 1)}
-                  rx={2}
-                  fill={item.color + "44"}
-                  stroke={item.color}
-                  strokeWidth={1}
-                />
-                {/* 5yr bar (lighter, nested) */}
-                <rect
-                  x={x10 + barW * 0.5}
-                  y={220 - bar5H}
-                  width={barW * 0.45}
-                  height={Math.max(bar5H, 1)}
-                  rx={2}
-                  fill={item.color + "22"}
-                  stroke={item.color + "88"}
-                  strokeWidth={1}
-                  strokeDasharray="3,2"
-                />
-                <text x={x10 + barW * 0.5} y={240} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={9}>
-                  {item.category}
-                </text>
-                {item.rate10yr > 0.1 && (
-                  <text x={x10 + barW * 0.22} y={215 - bar10H} textAnchor="middle" fill={item.color} fontSize={9} fontWeight="600">
-                    {item.rate10yr}%
-                  </text>
-                )}
-              </g>
-            );
-          })}
-          <text x={370} y={260} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={11}>
-            Bond Category
-          </text>
-        </svg>
-        <div className="mt-2 flex gap-4">
-          <div className="flex items-center gap-1.5">
-            <div className="h-3 w-6 rounded-sm bg-gray-500/40 border border-gray-500" />
-            <span className="text-xs text-muted-foreground">10-year cumulative</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="h-3 w-6 rounded-sm bg-gray-500/20 border border-gray-500/50 border-dashed" />
-            <span className="text-xs text-muted-foreground">5-year cumulative</span>
-          </div>
-        </div>
-        <p className="mt-3 text-xs text-muted-foreground">
-          Investment-grade munis have historically had 10x lower default rates than similarly-rated corporates.
-          S&P data: AAA/AA munis have near-zero 10-year default rates (0.01–0.04%).
-        </p>
-      </SectionCard>
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-36">
+      <rect x={PAD.l} y={PAD.t} width={toW(muniYield)} height={barH} rx="4" fill="#6366f1" opacity="0.8" />
+      <text x={PAD.l - 8} y={PAD.t + barH / 2 + 4} textAnchor="end" fill="#a1a1aa" fontSize="11">Muni Yield</text>
+      <text x={PAD.l + toW(muniYield) + 6} y={PAD.t + barH / 2 + 4} fill="#e4e4e7" fontSize="11" fontWeight="600">
+        {muniYield.toFixed(2)}%
+      </text>
+      <rect x={PAD.l} y={PAD.t + barH + gap} width={toW(tey)} height={barH} rx="4" fill="#34d399" opacity="0.8" />
+      <text x={PAD.l - 8} y={PAD.t + barH + gap + barH / 2 + 4} textAnchor="end" fill="#a1a1aa" fontSize="11">
+        TEY ({bracket}%)
+      </text>
+      <text x={PAD.l + toW(tey) + 6} y={PAD.t + barH + gap + barH / 2 + 4} fill="#34d399" fontSize="11" fontWeight="700">
+        {tey.toFixed(2)}%
+      </text>
+    </svg>
+  );
+}
 
-      {/* Notable defaults context */}
-      <SectionCard>
-        <div className="mb-3 flex items-center gap-2">
-          <AlertTriangle className="h-4 w-4 text-amber-400" />
-          <h3 className="font-semibold">Notable Muni Market Stress Events</h3>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border text-left text-muted-foreground">
-                <th className="pb-2 pr-4">Issuer</th>
-                <th className="pb-2 pr-4">Year</th>
-                <th className="pb-2 pr-4">Amount</th>
-                <th className="pb-2">Key Cause</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border/50">
-              {[
-                { issuer: "Puerto Rico PREPA", year: 2016, amount: "$72B", cause: "Unsustainable pension + debt load" },
-                { issuer: "Detroit, MI", year: 2013, amount: "$18B", cause: "Population decline, pension obligations" },
-                { issuer: "Stockton, CA", year: 2012, amount: "$700M", cause: "CalPERS pension spike, housing crisis" },
-                { issuer: "Jefferson County, AL", year: 2011, amount: "$4B", cause: "Sewer bond derivative losses" },
-                { issuer: "Orange County, CA", year: 1994, amount: "$1.7B", cause: "Interest rate derivatives losses" },
-              ].map((row) => (
-                <tr key={row.issuer} className="text-foreground">
-                  <td className="py-2 pr-4 font-medium">{row.issuer}</td>
-                  <td className="py-2 pr-4 text-muted-foreground">{row.year}</td>
-                  <td className="py-2 pr-4 text-red-400">{row.amount}</td>
-                  <td className="py-2 text-muted-foreground text-xs">{row.cause}</td>
-                </tr>
+// ── Component: Bond Screener Tab ──────────────────────────────────────────────
+type SortableKey = keyof MuniBond;
+
+function ScreenerTab() {
+  const [sortKey, setSortKey] = useState<SortableKey>("yield");
+  const [sortAsc, setSortAsc] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const sorted = [...BONDS].sort((a, b) => {
+    const av = a[sortKey];
+    const bv = b[sortKey];
+    if (typeof av === "number" && typeof bv === "number") return sortAsc ? av - bv : bv - av;
+    if (typeof av === "boolean" && typeof bv === "boolean") return sortAsc ? (av ? 1 : -1) : av ? -1 : 1;
+    return sortAsc ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+  });
+
+  function toggleSort(key: SortableKey) {
+    if (sortKey === key) setSortAsc(!sortAsc);
+    else { setSortKey(key); setSortAsc(false); }
+  }
+
+  function SortIcon({ col }: { col: SortableKey }) {
+    if (sortKey !== col) return <span className="text-zinc-600 ml-1 text-xs">↕</span>;
+    return sortAsc
+      ? <ChevronUp className="inline w-3 h-3 ml-1 text-indigo-400" />
+      : <ChevronDown className="inline w-3 h-3 ml-1 text-indigo-400" />;
+  }
+
+  const selected = BONDS.find((b) => b.id === selectedId) ?? null;
+
+  const cols: { key: SortableKey; label: string }[] = [
+    { key: "issuer", label: "Issuer" },
+    { key: "state", label: "State" },
+    { key: "type", label: "Type" },
+    { key: "rating", label: "Rating" },
+    { key: "maturity", label: "Maturity" },
+    { key: "coupon", label: "Coupon" },
+    { key: "yield", label: "Yield" },
+    { key: "teyAt37", label: "TEY (37%)" },
+    { key: "duration", label: "Duration" },
+    { key: "spreadToAAA", label: "Spread (bps)" },
+  ];
+
+  return (
+    <div className="space-y-4">
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-zinc-800 text-zinc-400">
+              {cols.map(({ key, label }) => (
+                <th
+                  key={key}
+                  className="py-2 px-3 text-left cursor-pointer hover:text-zinc-200 whitespace-nowrap"
+                  onClick={() => toggleSort(key)}
+                >
+                  {label}<SortIcon col={key} />
+                </th>
               ))}
-            </tbody>
-          </table>
-        </div>
-      </SectionCard>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((bond) => (
+              <tr
+                key={bond.id}
+                className={cn(
+                  "border-b border-zinc-800/60 cursor-pointer hover:bg-zinc-800/50 transition-colors",
+                  selectedId === bond.id && "bg-zinc-800/80"
+                )}
+                onClick={() => setSelectedId(selectedId === bond.id ? null : bond.id)}
+              >
+                <td className="py-2 px-3 font-medium text-zinc-200">
+                  {bond.issuer}
+                  {bond.isAMT && (
+                    <Badge className="ml-2 text-xs bg-amber-500/20 text-amber-400 border-amber-500/30">AMT</Badge>
+                  )}
+                </td>
+                <td className="py-2 px-3 text-zinc-400">{bond.state}</td>
+                <td className="py-2 px-3">
+                  <Badge className={cn("text-xs",
+                    bond.type === "GO"
+                      ? "bg-indigo-500/20 text-indigo-400 border-indigo-500/30"
+                      : "bg-cyan-500/20 text-cyan-400 border-cyan-500/30"
+                  )}>
+                    {bond.type}
+                  </Badge>
+                </td>
+                <td className={cn("py-2 px-3 font-semibold", ratingColor(bond.rating))}>{bond.rating}</td>
+                <td className="py-2 px-3 text-zinc-400">{bond.maturity}</td>
+                <td className="py-2 px-3 text-zinc-300">{bond.coupon.toFixed(2)}%</td>
+                <td className="py-2 px-3 text-emerald-400 font-semibold">{bond.yield.toFixed(2)}%</td>
+                <td className="py-2 px-3 text-indigo-400 font-semibold">{bond.teyAt37.toFixed(2)}%</td>
+                <td className="py-2 px-3 text-zinc-300">{bond.duration.toFixed(1)}</td>
+                <td className="py-2 px-3 text-zinc-300">{bond.spreadToAAA}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {selected && (
+        <motion.div
+          key={selected.id}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 rounded-lg bg-zinc-800/50 border border-zinc-700"
+        >
+          <div>
+            <p className="text-xs text-zinc-500 mb-1">Tax-Equiv Yield (37%)</p>
+            <p className="text-xl font-bold text-indigo-400">{selected.teyAt37.toFixed(2)}%</p>
+          </div>
+          <div>
+            <p className="text-xs text-zinc-500 mb-1">Duration</p>
+            <p className="text-xl font-bold text-zinc-200">{selected.duration.toFixed(1)} yrs</p>
+          </div>
+          <div>
+            <p className="text-xs text-zinc-500 mb-1">Spread to AAA</p>
+            <p className="text-xl font-bold text-amber-400">{selected.spreadToAAA} bps</p>
+          </div>
+          <div>
+            <p className="text-xs text-zinc-500 mb-1">AMT Status</p>
+            <p className="text-sm font-semibold mt-1">
+              {selected.isAMT
+                ? <span className="text-amber-400">Subject to AMT</span>
+                : <span className="text-emerald-400">AMT-Free</span>
+              }
+            </p>
+          </div>
+        </motion.div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-zinc-400 flex items-center gap-2">
+              <Info className="w-4 h-4" /> GO vs Revenue Bonds
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2 text-sm text-zinc-400">
+            <p>
+              <span className="text-indigo-400 font-semibold">General Obligation (GO)</span> bonds are
+              backed by the full taxing power of the issuer. Generally lower risk and lower yield.
+            </p>
+            <p>
+              <span className="text-cyan-400 font-semibold">Revenue bonds</span> are backed solely by
+              cash flows from a specific project — tolls, utility fees, tuition. Higher yield, but
+              dependent on project performance.
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-zinc-400 flex items-center gap-2">
+              <Calculator className="w-4 h-4" /> TEY Formula
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-zinc-400 space-y-2">
+            <p>Tax-Equivalent Yield tells high-bracket investors what taxable yield they need to match a tax-free muni:</p>
+            <div className="bg-zinc-800 rounded p-2 font-mono text-xs text-emerald-400">
+              TEY = Muni Yield / (1 - Tax Bracket)
+            </div>
+            <p className="text-xs">
+              Example: 3.82% muni at 37% bracket: TEY = 3.82 / 0.63 = <span className="text-indigo-400 font-semibold">6.06%</span>
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
 
-// ── Tab 4: ETFs vs Individual Bonds ──────────────────────────────────────────
-function ETFsTab() {
-  const [view, setView] = useState<"etfs" | "ladder" | "bab">("etfs");
+// ── Component: TEY Calculator Tab ─────────────────────────────────────────────
+const BRACKETS = [10, 12, 22, 24, 32, 35, 37];
 
-  // Generate ladder rungs using PRNG (reset seed for determinism)
-  const ladderRungs = useMemo(() => {
-    let ls = 662001;
-    const lr = () => { ls = (ls * 1103515245 + 12345) & 0x7fffffff; return ls / 0x7fffffff; };
-    return Array.from({ length: 7 }, (_, i) => ({
-      maturity: 2026 + i,
-      yield: 3.2 + i * 0.18 + (lr() - 0.5) * 0.1,
-      allocation: 14 + (lr() - 0.5) * 2,
-    }));
-  }, []);
+function CalculatorTab() {
+  const [muniYield, setMuniYield] = useState(3.5);
+  const [targetBracket, setTargetBracket] = useState(37);
+  const tey = calcTEY(muniYield, targetBracket);
 
   return (
-    <div className="space-y-5">
-      <div className="flex gap-2">
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base text-zinc-200 flex items-center gap-2">
+              <Calculator className="w-4 h-4 text-indigo-400" /> TEY Calculator
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-5">
+            <div>
+              <label className="text-sm text-zinc-400 block mb-2">
+                Muni Bond Yield: <span className="text-emerald-400 font-semibold">{muniYield.toFixed(2)}%</span>
+              </label>
+              <input
+                type="range"
+                min="1"
+                max="8"
+                step="0.1"
+                value={muniYield}
+                onChange={(e) => setMuniYield(parseFloat(e.target.value))}
+                className="w-full accent-emerald-500"
+              />
+              <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                <span>1%</span><span>8%</span>
+              </div>
+            </div>
+
+            <div>
+              <label className="text-sm text-zinc-400 block mb-2">Federal Tax Bracket</label>
+              <div className="flex flex-wrap gap-2">
+                {BRACKETS.map((b) => (
+                  <button
+                    key={b}
+                    onClick={() => setTargetBracket(b)}
+                    className={cn(
+                      "px-3 py-1 rounded text-sm font-medium border transition-colors",
+                      targetBracket === b
+                        ? "bg-indigo-600 border-indigo-500 text-white"
+                        : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500"
+                    )}
+                  >
+                    {b}%
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-zinc-800/60 rounded-lg p-4 space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-zinc-400">Muni yield</span>
+                <span className="text-emerald-400 font-semibold">{muniYield.toFixed(2)}%</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-zinc-400">Tax bracket</span>
+                <span className="text-zinc-300">{targetBracket}%</span>
+              </div>
+              <div className="border-t border-zinc-700 pt-2 flex justify-between">
+                <span className="text-zinc-300 font-medium">Tax-Equiv Yield</span>
+                <span className="text-indigo-400 font-bold text-lg">{tey.toFixed(2)}%</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base text-zinc-200">Visual Comparison</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <TEYBarChart muniYield={muniYield} bracket={targetBracket} />
+            <p className="text-xs text-zinc-500 mt-3">
+              At the <span className="text-indigo-400">{targetBracket}%</span> bracket, a muni yielding{" "}
+              <span className="text-emerald-400">{muniYield.toFixed(2)}%</span> is equivalent to a{" "}
+              <span className="text-indigo-400 font-semibold">{tey.toFixed(2)}%</span> taxable bond.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base text-zinc-200">
+            TEY Across All Brackets — {muniYield.toFixed(2)}% muni
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-zinc-800 text-zinc-400">
+                  <th className="py-2 px-3 text-left">Tax Bracket</th>
+                  <th className="py-2 px-3 text-left">Keep Rate</th>
+                  <th className="py-2 px-3 text-left">Tax-Equiv Yield</th>
+                  <th className="py-2 px-3 text-left">vs 22% Bracket</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BRACKETS.map((b) => {
+                  const t = calcTEY(muniYield, b);
+                  const base = calcTEY(muniYield, 22);
+                  const diff = t - base;
+                  return (
+                    <tr key={b} className={cn("border-b border-zinc-800/60", b === targetBracket && "bg-indigo-500/10")}>
+                      <td className="py-2 px-3 text-zinc-300 font-medium">{b}%</td>
+                      <td className="py-2 px-3 text-zinc-400">{(100 - b)}%</td>
+                      <td className="py-2 px-3 text-indigo-400 font-semibold">{t.toFixed(2)}%</td>
+                      <td className={cn("py-2 px-3 font-medium",
+                        diff > 0.001 ? "text-emerald-400" : diff < -0.001 ? "text-red-400" : "text-zinc-400"
+                      )}>
+                        {Math.abs(diff) < 0.001 ? "—" : (diff > 0 ? "+" : "") + diff.toFixed(2) + "%"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ── Component: Credit Analysis Tab ───────────────────────────────────────────
+function AnalysisTab() {
+  return (
+    <div className="space-y-6">
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base text-zinc-200 flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-indigo-400" /> Credit Spread by Rating and Duration
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CreditSpreadChart />
+          <p className="text-xs text-zinc-500 mt-2">
+            Spread in basis points over AAA benchmark. Lower-rated issuers pay significantly more at
+            longer durations due to increased credit and liquidity risk.
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base text-zinc-200 flex items-center gap-2">
+              <PieChart className="w-4 h-4 text-cyan-400" /> Sector Breakdown
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-4">
+              <div className="shrink-0">
+                <DonutChart />
+              </div>
+              <div className="space-y-2 flex-1">
+                {SECTORS.map((sec, i) => (
+                  <div key={`sec-${i}`} className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: sec.color }} />
+                      <span className="text-zinc-300">{sec.name}</span>
+                    </div>
+                    <span className="text-zinc-400 font-medium">{sec.pct}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base text-zinc-200">Rating Tier Overview</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {[
+                { rating: "AAA", spread: "5–30 bps", color: "text-emerald-400", note: "Benchmark tier — state GOs, major water utilities, top revenue bonds" },
+                { rating: "AA", spread: "20–82 bps", color: "text-green-400", note: "Large city GOs, well-funded state agencies, top-tier transit systems" },
+                { rating: "A", spread: "45–142 bps", color: "text-yellow-400", note: "Smaller cities, regional hospitals, airports with stable traffic" },
+                { rating: "BBB", spread: "110–240 bps", color: "text-orange-400", note: "Weakest investment grade — distressed municipalities, project risk" },
+              ].map((r, i) => (
+                <div key={`rs-${i}`} className="p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/50">
+                  <div className="flex justify-between mb-1">
+                    <span className={cn("font-bold", r.color)}>{r.rating}</span>
+                    <span className="text-zinc-400 text-sm">{r.spread}</span>
+                  </div>
+                  <p className="text-xs text-zinc-500">{r.note}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+// ── Component: State Fiscal Health Tab ────────────────────────────────────────
+function StateFiscalTab() {
+  return (
+    <div className="space-y-6">
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base text-zinc-200 flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-indigo-400" /> State Fiscal Health Scorecard
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-zinc-800 text-zinc-400">
+                  <th className="py-2 px-3 text-left">State</th>
+                  <th className="py-2 px-3 text-left">Pension Funded</th>
+                  <th className="py-2 px-3 text-left">Debt / Capita</th>
+                  <th className="py-2 px-3 text-left">Budget Balance</th>
+                  <th className="py-2 px-3 text-left">Outlook</th>
+                </tr>
+              </thead>
+              <tbody>
+                {STATE_FISCAL.map((st, i) => (
+                  <tr key={`sf-${i}`} className="border-b border-zinc-800/60">
+                    <td className="py-3 px-3">
+                      <div className="font-medium text-zinc-200">{st.state}</div>
+                      <div className="text-xs text-zinc-500">{st.abbr}</div>
+                    </td>
+                    <td className="py-3 px-3">
+                      <div className="flex items-center gap-2">
+                        <div className="flex-1 h-2 bg-zinc-700 rounded-full overflow-hidden min-w-[60px]">
+                          <div
+                            className="h-2 rounded-full"
+                            style={{
+                              width: `${st.pensionFunded}%`,
+                              backgroundColor: st.pensionFunded >= 80 ? "#34d399" : st.pensionFunded >= 60 ? "#f59e0b" : "#f87171",
+                            }}
+                          />
+                        </div>
+                        <span className={cn("text-sm font-semibold w-10 text-right",
+                          st.pensionFunded >= 80 ? "text-emerald-400" : st.pensionFunded >= 60 ? "text-amber-400" : "text-red-400"
+                        )}>
+                          {st.pensionFunded}%
+                        </span>
+                      </div>
+                    </td>
+                    <td className="py-3 px-3 text-zinc-300">${st.debtPerCapita.toLocaleString()}</td>
+                    <td className="py-3 px-3">
+                      <span className={cn("font-semibold", st.budgetBalance >= 0 ? "text-emerald-400" : "text-red-400")}>
+                        {st.budgetBalance >= 0 ? "+" : ""}{st.budgetBalance.toFixed(1)}%
+                      </span>
+                    </td>
+                    <td className="py-3 px-3"><OutlookBadge outlook={st.outlook} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { key: "etfs", label: "ETF Comparison" },
-          { key: "ladder", label: "Bond Laddering" },
-          { key: "bab", label: "Build America Bonds" },
-        ].map((opt) => (
-          <button
-            key={opt.key}
-            onClick={() => setView(opt.key as typeof view)}
-            className={cn(
-              "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
-              view === opt.key
-                ? "bg-primary text-primary-foreground"
-                : "border border-border text-muted-foreground hover:border-primary/50 hover:text-foreground",
-            )}
-          >
-            {opt.label}
-          </button>
+          { state: "Texas", color: "text-emerald-400", note: "Strongest fiscal position: no state income tax, robust surplus, fast-growing tax base." },
+          { state: "California", color: "text-amber-400", note: "Large economy provides cushion but pension liabilities and recent deficits require monitoring." },
+          { state: "New Jersey", color: "text-red-400", note: "Worst pension funded ratio (38%) and highest per-capita debt — watch credit spreads carefully." },
+        ].map((item, i) => (
+          <Card key={`outlook-${i}`} className="bg-zinc-900 border-zinc-800">
+            <CardContent className="pt-4">
+              <div className={cn("text-xl font-bold mb-1", item.color)}>{item.state}</div>
+              <p className="text-xs text-zinc-400">{item.note}</p>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
-      {view === "etfs" && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-          <SectionCard>
-            <h3 className="mb-4 font-semibold">Muni ETF Comparison</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-border text-left text-muted-foreground">
-                    <th className="pb-2 pr-3">Ticker</th>
-                    <th className="pb-2 pr-3">AUM</th>
-                    <th className="pb-2 pr-3">Exp. Ratio</th>
-                    <th className="pb-2 pr-3">Duration</th>
-                    <th className="pb-2 pr-3">YTM</th>
-                    <th className="pb-2 pr-3">Focus</th>
-                    <th className="pb-2">AMT</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border/50">
-                  {MUNI_ETFS.map((etf) => (
-                    <tr key={etf.ticker} className="text-foreground">
-                      <td className="py-2.5 pr-3">
-                        <span className="font-bold text-blue-400">{etf.ticker}</span>
-                      </td>
-                      <td className="py-2.5 pr-3 text-muted-foreground">{etf.aum}</td>
-                      <td className="py-2.5 pr-3">
-                        <span className={cn(etf.expRatio <= 0.1 ? "text-green-400" : "text-yellow-400")}>
-                          {etf.expRatio.toFixed(2)}%
-                        </span>
-                      </td>
-                      <td className="py-2.5 pr-3">{etf.duration.toFixed(1)} yrs</td>
-                      <td className="py-2.5 pr-3 text-green-400">{etf.ytm.toFixed(2)}%</td>
-                      <td className="py-2.5 pr-3 text-xs text-muted-foreground">{etf.creditFocus}</td>
-                      <td className="py-2.5">
-                        <span className={cn(
-                          "rounded px-1.5 py-0.5 text-xs",
-                          etf.amtExposure === "0%"
-                            ? "bg-green-500/20 text-green-400"
-                            : etf.amtExposure === "N/A"
-                            ? "bg-muted text-muted-foreground"
-                            : "bg-amber-500/20 text-amber-400",
-                        )}>
-                          {etf.amtExposure}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </SectionCard>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <SectionCard>
-              <h3 className="mb-3 font-semibold text-blue-400">ETFs: Pros</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                {[
-                  "Intraday liquidity — buy/sell any time market is open",
-                  "Instant diversification across hundreds of bonds",
-                  "Low minimums — start with 1 share (~$50–110)",
-                  "Automatic reinvestment options",
-                  "Transparent daily holdings disclosure",
-                ].map((p) => (
-                  <li key={p} className="flex items-start gap-2">
-                    <span className="mt-0.5 text-green-400">✓</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </SectionCard>
-            <SectionCard>
-              <h3 className="mb-3 font-semibold text-amber-400">Individual Bonds: Pros</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                {[
-                  "Guaranteed par value at maturity if held to term",
-                  "No ongoing management fees",
-                  "Control over specific state/issuer for in-state tax benefit",
-                  "No NAV discount/premium fluctuation risk",
-                  "AMT-free selection fully in your control",
-                ].map((p) => (
-                  <li key={p} className="flex items-start gap-2">
-                    <span className="mt-0.5 text-yellow-400">✓</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </SectionCard>
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-zinc-400 flex items-center gap-2">
+            <Info className="w-4 h-4" /> Key Fiscal Metrics Explained
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-zinc-400">
+          <div>
+            <p className="font-semibold text-zinc-300 mb-1">Pension Funded Ratio</p>
+            <p>Assets vs. obligations. Below 60% signals structural stress — the state must divert general revenues to cover shortfalls.</p>
           </div>
-        </motion.div>
-      )}
-
-      {view === "ladder" && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-          <SectionCard>
-            <div className="mb-4">
-              <h3 className="font-semibold">Bond Ladder Strategy</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                A bond ladder staggers maturities across years, providing regular cash flows
-                and reducing reinvestment risk. As each rung matures, proceeds are reinvested at
-                the long end of the ladder.
-              </p>
-            </div>
-            <svg viewBox="0 0 700 260" className="w-full" style={{ maxHeight: 260 }}>
-              {/* Y grid */}
-              {[3.0, 3.5, 4.0, 4.5].map((yv) => {
-                const y = 220 - ((yv - 2.8) / 2.0) * 180;
-                return (
-                  <g key={yv}>
-                    <line x1={60} y1={y} x2={660} y2={y} stroke="hsl(var(--border))" strokeWidth={0.5} />
-                    <text x={55} y={y + 4} textAnchor="end" fill="hsl(var(--muted-foreground))" fontSize={10}>
-                      {yv}%
-                    </text>
-                  </g>
-                );
-              })}
-              {ladderRungs.map((rung, i) => {
-                const barW = 62;
-                const gap = (580 - ladderRungs.length * barW) / (ladderRungs.length + 1);
-                const x = 60 + gap + i * (barW + gap);
-                const barH = ((rung.yield - 2.8) / 2.0) * 180;
-                const shade = Math.floor(55 + (i / ladderRungs.length) * 200);
-                const color = `rgb(59, ${shade}, 246)`;
-                return (
-                  <g key={rung.maturity}>
-                    <rect
-                      x={x}
-                      y={220 - barH}
-                      width={barW}
-                      height={barH}
-                      rx={3}
-                      fill={`rgba(59,130,246,${0.25 + i * 0.08})`}
-                      stroke={color}
-                      strokeWidth={1.5}
-                    />
-                    <text x={x + barW / 2} y={215 - barH} textAnchor="middle" fill="#93c5fd" fontSize={9} fontWeight="600">
-                      {rung.yield.toFixed(2)}%
-                    </text>
-                    <text x={x + barW / 2} y={238} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={10}>
-                      {rung.maturity}
-                    </text>
-                    <text x={x + barW / 2} y={250} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={9}>
-                      {rung.allocation.toFixed(0)}%
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
-            <p className="mt-2 text-xs text-muted-foreground">
-              Each bar = one maturity year. Heights show yield. Percentages = portfolio allocation per rung.
-              Rebalance by rolling matured proceeds into the longest rung.
-            </p>
-          </SectionCard>
-        </motion.div>
-      )}
-
-      {view === "bab" && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-          <SectionCard>
-            <div className="mb-3 flex items-center gap-2">
-              <DollarSign className="h-4 w-4 text-green-400" />
-              <h3 className="font-semibold">Build America Bonds (BABs)</h3>
-            </div>
-            <p className="mb-4 text-sm text-muted-foreground">
-              Created under the 2009 American Recovery and Reinvestment Act, BABs are taxable municipal
-              bonds where the federal government subsidizes 35% of the interest cost. They attract
-              institutional investors who don&apos;t benefit from tax-exempt status (pension funds, foreign investors).
-            </p>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <StatChip label="Total Issued (2009–10)" value="$181B" sub="2-year program" />
-              <StatChip label="Federal Subsidy" value="35%" sub="Of coupon cost" />
-              <StatChip label="Typical Yield" value="+50–150bps" sub="Above tax-exempt" />
-              <StatChip label="Key Buyers" value="Pensions" sub="Insurers, foreign" />
-            </div>
-            <div className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-sm text-amber-300">
-              <strong>Sequestration Risk:</strong> BAB subsidy payments have been subject to automatic budget cuts (sequestration) since 2013, reducing the effective subsidy below 35%. Issuers bear this risk.
-            </div>
-          </SectionCard>
-        </motion.div>
-      )}
+          <div>
+            <p className="font-semibold text-zinc-300 mb-1">Debt Per Capita</p>
+            <p>Total outstanding GO and moral-obligation debt divided by population. Higher values mean each resident bears more burden.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-zinc-300 mb-1">Budget Balance</p>
+            <p>Surplus or deficit as % of revenues. Persistent deficits pressure ratings; surpluses indicate fiscal flexibility.</p>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
 
-// ── Tab 5: Risk Factors ────────────────────────────────────────────────────────
-function RiskFactorsTab() {
-  const maxScore = 100;
+// ── Component: AMT Risk Tab ───────────────────────────────────────────────────
+function AMTTab() {
+  const amtBonds = BONDS.filter((b) => b.isAMT);
+  const nonAmtBonds = BONDS.filter((b) => !b.isAMT);
 
   return (
-    <div className="space-y-5">
-      {/* IR sensitivity */}
-      <SectionCard>
-        <div className="mb-3 flex items-center gap-2">
-          <TrendingUp className="h-4 w-4 text-blue-400" />
-          <h3 className="font-semibold">Interest Rate Sensitivity by Duration</h3>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border text-left text-muted-foreground">
-                <th className="pb-2 pr-4">Category</th>
-                <th className="pb-2 pr-4">Duration</th>
-                <th className="pb-2 pr-4">+1% Rate Move</th>
-                <th className="pb-2">-1% Rate Move</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border/50">
-              {[
-                { cat: "Short-Term (1–3yr)", dur: 2.1, loss: -2.1, gain: 2.1 },
-                { cat: "Intermediate (3–7yr)", dur: 4.8, loss: -4.8, gain: 4.8 },
-                { cat: "Core Muni (MUB)", dur: 6.8, loss: -6.8, gain: 6.8 },
-                { cat: "Long-Term (10–20yr)", dur: 10.2, loss: -10.2, gain: 10.2 },
-                { cat: "Ultra Long (20–30yr)", dur: 15.6, loss: -15.6, gain: 15.6 },
-              ].map((row) => (
-                <tr key={row.cat}>
-                  <td className="py-2.5 pr-4 font-medium text-foreground">{row.cat}</td>
-                  <td className="py-2.5 pr-4 text-muted-foreground">{row.dur} yrs</td>
-                  <td className="py-2.5 pr-4 text-red-400">{row.loss.toFixed(1)}%</td>
-                  <td className="py-2.5 text-green-400">+{row.gain.toFixed(1)}%</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-2 text-xs text-muted-foreground">
-          Price change ≈ −Duration × Δyield. A 7yr duration bond loses ~7% if rates rise 1%.
-          Convexity slightly cushions downside and amplifies upside.
-        </p>
-      </SectionCard>
-
-      {/* State Fiscal Health Scorecard */}
-      <SectionCard>
-        <div className="mb-4 flex items-center gap-2">
-          <MapPin className="h-4 w-4 text-purple-400" />
-          <h3 className="font-semibold">State Fiscal Health Scorecard</h3>
-        </div>
-
-        {/* SVG Heatmap-style visualization */}
-        <svg viewBox="0 0 700 300" className="w-full mb-3" style={{ maxHeight: 300 }}>
-          {/* Color scale legend */}
-          <defs>
-            <linearGradient id="healthGradient" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0%" stopColor="#ef4444" />
-              <stop offset="50%" stopColor="#fbbf24" />
-              <stop offset="100%" stopColor="#22c55e" />
-            </linearGradient>
-          </defs>
-          <rect x={60} y={10} width={580} height={14} rx={7} fill="url(#healthGradient)" opacity={0.6} />
-          <text x={60} y={38} fill="hsl(var(--muted-foreground))" fontSize={9}>Weak</text>
-          <text x={340} y={38} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={9}>Moderate</text>
-          <text x={640} y={38} textAnchor="end" fill="hsl(var(--muted-foreground))" fontSize={9}>Strong</text>
-
-          {STATE_FISCAL_HEALTH.map((st, i) => {
-            const col = i % 5;
-            const row = Math.floor(i / 5);
-            const x = 60 + col * 120;
-            const y = 50 + row * 120;
-            const color = fiscalScoreColor(st.score);
-            return (
-              <g key={st.state}>
-                <rect x={x} y={y} width={110} height={100} rx={6}
-                  fill={color + "22"} stroke={color} strokeWidth={1.5} />
-                <text x={x + 55} y={y + 18} textAnchor="middle" fill={color} fontSize={11} fontWeight="700">
-                  {st.state.split(" ").length > 1 ? st.state.split(" ").map(w => w[0]).join("") : st.state.substring(0, 8)}
-                </text>
-                <text x={x + 55} y={y + 36} textAnchor="middle" fill={color} fontSize={18} fontWeight="800">
-                  {st.score}
-                </text>
-                <text x={x + 55} y={y + 50} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={9}>
-                  {st.rating}
-                </text>
-                <text x={x + 55} y={y + 65} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={8}>
-                  Pension: {st.pensionFunded}%
-                </text>
-                <text x={x + 55} y={y + 78} textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize={8}>
-                  Debt/cap: ${(st.debtPerCapita / 1000).toFixed(1)}K
-                </text>
-                <text x={x + 55} y={y + 91} textAnchor="middle"
-                  fill={st.budgetBalance >= 0 ? "#22c55e" : "#ef4444"} fontSize={8} fontWeight="600">
-                  Budget: {st.budgetBalance > 0 ? "+" : ""}{st.budgetBalance}%
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-
-        <p className="text-xs text-muted-foreground">
-          Score 0–100. Factors: pension funded ratio (30%), debt/capita (20%), budget balance (25%), credit rating (25%).
-        </p>
-      </SectionCard>
-
-      {/* Risk factors grid */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <SectionCard>
-          <div className="mb-3 flex items-center gap-2">
-            <AlertTriangle className="h-4 w-4 text-amber-400" />
-            <h3 className="font-semibold">AMT Exposure Risk</h3>
-          </div>
-          <p className="mb-3 text-sm text-muted-foreground">
-            Private Activity Bonds (PABs) — financing airports, housing, student loans — may
-            trigger the Alternative Minimum Tax for some investors. High-income earners should verify
-            AMT status before buying.
+    <div className="space-y-6">
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base text-zinc-200 flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-amber-400" /> Alternative Minimum Tax (AMT) Risk
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-sm text-zinc-400">
+            Most municipal bonds are exempt from federal income tax. However,{" "}
+            <span className="text-amber-400 font-semibold">Private Activity Bonds (PABs)</span> — issued
+            for airports, private university projects, and housing programs — may trigger AMT liability
+            for certain investors.
           </p>
-          <div className="space-y-2 text-sm">
-            {[
-              { type: "Airport Revenue Bonds", amtRisk: "High" },
-              { type: "Housing Authority Bonds", amtRisk: "High" },
-              { type: "Student Loan Bonds", amtRisk: "High" },
-              { type: "State GO Bonds", amtRisk: "None" },
-              { type: "Essential Service Revenue", amtRisk: "None" },
-            ].map((row) => (
-              <div key={row.type} className="flex items-center justify-between rounded bg-muted/20 px-3 py-2">
-                <span className="text-foreground">{row.type}</span>
-                <span className={cn(
-                  "rounded px-2 py-0.5 text-xs font-semibold",
-                  row.amtRisk === "None" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
-                )}>
-                  AMT: {row.amtRisk}
-                </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-zinc-800/50 border border-zinc-700 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Shield className="w-4 h-4 text-emerald-400" />
+                <span className="text-sm font-semibold text-emerald-400">Regular Munis — AMT-Free</span>
+              </div>
+              <ul className="text-xs text-zinc-400 space-y-1">
+                <li>General obligation bonds (cities, counties, states)</li>
+                <li>Essential service revenue bonds (water, sewer)</li>
+                <li>Public university and school district bonds</li>
+                <li>Interest excluded from AMT calculation</li>
+                <li>Safe for all investors including AMT-liable</li>
+              </ul>
+            </div>
+            <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertTriangle className="w-4 h-4 text-amber-400" />
+                <span className="text-sm font-semibold text-amber-400">Private Activity Bonds — AMT Risk</span>
+              </div>
+              <ul className="text-xs text-zinc-400 space-y-1">
+                <li>Airport revenue bonds (Denver, LAX, ORD)</li>
+                <li>Private toll road and turnpike revenue bonds</li>
+                <li>Stadium and convention center bonds</li>
+                <li>Certain student loan and housing bonds</li>
+                <li>Interest is an AMT preference item</li>
+              </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-zinc-400">AMT Bonds in This Screener</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {amtBonds.map((b) => (
+              <div key={b.id} className="flex items-center justify-between p-3 rounded-lg bg-amber-500/5 border border-amber-500/20">
+                <div>
+                  <p className="text-sm font-medium text-zinc-200">{b.issuer}</p>
+                  <p className="text-xs text-zinc-500">{b.state} · {b.type} · {b.rating}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm font-semibold text-amber-400">{b.yield.toFixed(2)}% yield</p>
+                  <p className="text-xs text-zinc-500">TEY {b.teyAt37.toFixed(2)}% (37%)</p>
+                </div>
               </div>
             ))}
-          </div>
-        </SectionCard>
+            <p className="text-xs text-zinc-500">
+              AMT bonds typically offer a yield premium of 15–40 bps over comparable AMT-free munis as compensation for the tax risk.
+            </p>
+          </CardContent>
+        </Card>
 
-        <SectionCard>
-          <div className="mb-3 flex items-center gap-2">
-            <BarChart3 className="h-4 w-4 text-red-400" />
-            <h3 className="font-semibold">Liquidity Risk</h3>
-          </div>
-          <p className="mb-3 text-sm text-muted-foreground">
-            The muni market is largely OTC with wide bid-ask spreads for individual bonds.
-            Large trades from institutional holders can move prices significantly for smaller issues.
-          </p>
-          <div className="space-y-3">
+        <Card className="bg-zinc-900 border-zinc-800">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-zinc-400">Who Should Avoid AMT Bonds?</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm">
             {[
-              { metric: "Avg Bid-Ask Spread (ETF)", value: "0.01–0.03%", color: "text-green-400" },
-              { metric: "Avg Bid-Ask Spread (Ind. Bond)", value: "0.25–1.0%", color: "text-yellow-400" },
-              { metric: "Daily Trading Volume (MUB)", value: "~$500M", color: "text-blue-400" },
-              { metric: "Market Maker Presence", value: "Limited OTC", color: "text-amber-400" },
-              { metric: "Crisis Liquidity (Mar 2020)", value: "Spreads spiked 3–5%", color: "text-red-400" },
-            ].map((row) => (
-              <div key={row.metric} className="flex justify-between text-sm">
-                <span className="text-muted-foreground">{row.metric}</span>
-                <span className={row.color}>{row.value}</span>
+              { who: "High-income individuals", why: "Most likely AMT-liable. The yield premium is wiped out if AMT applies at 26–28%.", avoid: true },
+              { who: "C-Corporations", why: "Corporate AMT applies at 15%. Interest on PABs is a preference item raising AMTI.", avoid: true },
+              { who: "IRA / 401(k) accounts", why: "Tax exemption is irrelevant inside tax-deferred accounts — AMT is a non-issue, but so is the muni benefit.", avoid: false },
+              { who: "Lower-bracket investors", why: "Not subject to AMT. The yield premium on PABs is pure upside — potentially very attractive.", avoid: false },
+            ].map((item, i) => (
+              <div
+                key={`amt-who-${i}`}
+                className={cn("p-3 rounded-lg border",
+                  item.avoid ? "bg-red-500/5 border-red-500/20" : "bg-emerald-500/5 border-emerald-500/20"
+                )}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className={cn("text-xs font-bold px-1.5 py-0.5 rounded",
+                    item.avoid ? "bg-red-500/20 text-red-400" : "bg-emerald-500/20 text-emerald-400"
+                  )}>
+                    {item.avoid ? "AVOID" : "OK"}
+                  </span>
+                  <span className="text-sm font-medium text-zinc-200">{item.who}</span>
+                </div>
+                <p className="text-xs text-zinc-500">{item.why}</p>
               </div>
             ))}
-          </div>
-        </SectionCard>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Callout card */}
-      <SectionCard>
-        <div className="flex items-start gap-3">
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
-          <div className="text-sm text-muted-foreground">
-            <strong className="text-foreground">Tax Reform Risk:</strong> Munis trade on after-tax value. Lower tax rates reduce the tax advantage and compress muni prices.
-            The 2017 Tax Cuts and Jobs Act eliminated advance refunding of muni bonds, reducing supply.
-            Any future reduction in corporate/personal tax rates may negatively impact muni valuations.
-            <br /><br />
-            <strong className="text-foreground">Callable Bonds:</strong> Many munis are callable at par after 10 years. In a falling rate environment, the best-yielding bonds get called away.
-            Always check the yield-to-worst (YTW) not just nominal yield.
+      <Card className="bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-zinc-400">AMT-Free Bonds for Comparison</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {nonAmtBonds.map((b) => (
+              <div key={b.id} className="flex items-center justify-between p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
+                <div>
+                  <p className="text-sm font-medium text-zinc-200">{b.issuer}</p>
+                  <p className="text-xs text-zinc-500">{b.state} · {b.rating}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm font-semibold text-emerald-400">{b.yield.toFixed(2)}%</p>
+                  <p className="text-xs text-zinc-500">TEY {b.teyAt37.toFixed(2)}%</p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      </SectionCard>
+        </CardContent>
+      </Card>
     </div>
   );
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
+// ── Page Root ─────────────────────────────────────────────────────────────────
 export default function MuniBondsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-6xl px-4 py-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mb-6"
-        >
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card">
-              <Landmark className="h-5 w-5 text-blue-400" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">Municipal Bonds</h1>
-              <p className="text-sm text-muted-foreground">
-                Tax-exempt fixed income — analyzing a $4T market of state &amp; local government debt
-              </p>
-            </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="p-6 space-y-6 max-w-7xl mx-auto"
+    >
+      {/* Header */}
+      <div className="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <div className="flex items-center gap-3 mb-1">
+            <Building2 className="w-6 h-6 text-indigo-400" />
+            <h1 className="text-2xl font-bold text-zinc-100">Municipal Bonds</h1>
           </div>
-        </motion.div>
-
-        {/* Top-level summary chips */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.4 }}
-          className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4"
-        >
-          <StatChip label="Market Size" value="$4.0T" sub="Largest tax-exempt market" />
-          <StatChip label="Avg TEY (37% bracket)" value="~5.4%" sub="3.4% muni ÷ (1−37%)" />
-          <StatChip label="IG Default Rate (10yr)" value="0.10%" sub="vs 2.24% IG corporate" />
-          <StatChip label="Tax Brackets Benefiting" value="24%+" sub="Federal rate threshold" />
-        </motion.div>
-
-        {/* Tabs */}
-        <Tabs defaultValue="overview">
-          <TabsList className="mb-4 flex flex-wrap gap-1 h-auto">
-            <TabsTrigger value="overview" className="flex items-center gap-1.5 text-xs sm:text-sm">
-              <BarChart3 className="h-3.5 w-3.5" />
-              Market Overview
-            </TabsTrigger>
-            <TabsTrigger value="tey" className="flex items-center gap-1.5 text-xs sm:text-sm">
-              <Calculator className="h-3.5 w-3.5" />
-              Tax-Equiv. Yield
-            </TabsTrigger>
-            <TabsTrigger value="credit" className="flex items-center gap-1.5 text-xs sm:text-sm">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              Credit Analysis
-            </TabsTrigger>
-            <TabsTrigger value="etfs" className="flex items-center gap-1.5 text-xs sm:text-sm">
-              <DollarSign className="h-3.5 w-3.5" />
-              ETFs vs Bonds
-            </TabsTrigger>
-            <TabsTrigger value="risks" className="flex items-center gap-1.5 text-xs sm:text-sm">
-              <AlertTriangle className="h-3.5 w-3.5" />
-              Risk Factors
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="overview" className="data-[state=inactive]:hidden">
-            <MarketOverviewTab />
-          </TabsContent>
-          <TabsContent value="tey" className="data-[state=inactive]:hidden">
-            <TaxEquivalentYieldTab />
-          </TabsContent>
-          <TabsContent value="credit" className="data-[state=inactive]:hidden">
-            <CreditAnalysisTab />
-          </TabsContent>
-          <TabsContent value="etfs" className="data-[state=inactive]:hidden">
-            <ETFsTab />
-          </TabsContent>
-          <TabsContent value="risks" className="data-[state=inactive]:hidden">
-            <RiskFactorsTab />
-          </TabsContent>
-        </Tabs>
+          <p className="text-sm text-zinc-400 max-w-2xl">
+            Tax-advantaged debt issued by states, cities, and public agencies. Interest is typically
+            exempt from federal — and often state — income tax, making munis particularly attractive
+            for high-bracket investors.
+          </p>
+        </div>
+        <div className="flex gap-2 shrink-0">
+          <Badge className="bg-indigo-500/20 text-indigo-400 border-indigo-500/30">Tax-Free</Badge>
+          <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Investment Grade</Badge>
+        </div>
       </div>
-    </div>
+
+      {/* Stats Row */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {[
+          { label: "Avg Muni Yield", value: "3.94%", sub: "across 8 bonds", icon: TrendingUp, color: "text-emerald-400" },
+          { label: "Avg TEY (37%)", value: "6.45%", sub: "vs equivalent taxable", icon: Calculator, color: "text-indigo-400" },
+          { label: "Avg Duration", value: "8.8 yrs", sub: "interest rate sensitivity", icon: Shield, color: "text-cyan-400" },
+          { label: "AMT Bonds", value: "2 / 8", sub: "private activity bonds", icon: AlertTriangle, color: "text-amber-400" },
+        ].map((stat, i) => (
+          <Card key={`stat-${i}`} className="bg-zinc-900 border-zinc-800">
+            <CardContent className="pt-4">
+              <div className="flex items-center gap-2 mb-1">
+                <stat.icon className={cn("w-4 h-4", stat.color)} />
+                <span className="text-xs text-zinc-500">{stat.label}</span>
+              </div>
+              <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
+              <div className="text-xs text-zinc-600 mt-0.5">{stat.sub}</div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Tabs */}
+      <Tabs defaultValue="screener">
+        <TabsList className="bg-zinc-800/60 border border-zinc-700 flex-wrap h-auto">
+          <TabsTrigger value="screener">Bond Screener</TabsTrigger>
+          <TabsTrigger value="calculator">TEY Calculator</TabsTrigger>
+          <TabsTrigger value="analysis">Credit Analysis</TabsTrigger>
+          <TabsTrigger value="fiscal">State Fiscal Health</TabsTrigger>
+          <TabsTrigger value="amt">AMT Risk</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="screener" className="data-[state=inactive]:hidden mt-4">
+          <ScreenerTab />
+        </TabsContent>
+        <TabsContent value="calculator" className="data-[state=inactive]:hidden mt-4">
+          <CalculatorTab />
+        </TabsContent>
+        <TabsContent value="analysis" className="data-[state=inactive]:hidden mt-4">
+          <AnalysisTab />
+        </TabsContent>
+        <TabsContent value="fiscal" className="data-[state=inactive]:hidden mt-4">
+          <StateFiscalTab />
+        </TabsContent>
+        <TabsContent value="amt" className="data-[state=inactive]:hidden mt-4">
+          <AMTTab />
+        </TabsContent>
+      </Tabs>
+    </motion.div>
   );
 }
