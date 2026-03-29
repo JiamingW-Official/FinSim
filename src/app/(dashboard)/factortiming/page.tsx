@@ -683,7 +683,7 @@ function FactorDashboard() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Factor Z-Score &amp; Crowding
           </CardTitle>
         </CardHeader>
@@ -699,7 +699,7 @@ function FactorDashboard() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Target className="w-4 h-4 text-primary" />
+            <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
             Factor Signal Table
           </CardTitle>
         </CardHeader>
@@ -824,7 +824,7 @@ function CrossAssetMomentum() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             12-Month Momentum Ranking (All Assets)
           </CardTitle>
         </CardHeader>
@@ -895,7 +895,7 @@ function FactorCycle() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             Factor Performance by Economic Regime (annualised %)
           </CardTitle>
         </CardHeader>
@@ -938,7 +938,7 @@ function FactorCycle() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Scale className="w-4 h-4 text-primary" />
+            <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
             Factor Correlation Matrix (trailing 3Y)
           </CardTitle>
         </CardHeader>
@@ -1052,7 +1052,7 @@ function TacticalAllocation() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             200-Day Moving Average Rules — Current Signals
           </CardTitle>
         </CardHeader>
@@ -1112,7 +1112,7 @@ function TacticalAllocation() {
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-primary" />
+              <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
               200d MA Strategy vs Buy &amp; Hold (36-Month Sim)
             </CardTitle>
             <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -1142,7 +1142,7 @@ function TacticalAllocation() {
       {/* Strategy description */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[
-          { icon: <Shield className="w-4 h-4 text-primary" />, title: "Signal Logic", body: "Enter long when closing price crosses above its 200-day simple moving average. Exit to cash when price crosses below. Apply per asset class independently." },
+          { icon: <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />, title: "Signal Logic", body: "Enter long when closing price crosses above its 200-day simple moving average. Exit to cash when price crosses below. Apply per asset class independently." },
           { icon: <Clock className="w-4 h-4 text-amber-400" />, title: "Rebalance Frequency", body: "Daily monitoring, monthly execution to reduce friction. Signal lags by 1 trading day to avoid look-ahead bias. Transaction costs assumed at 5bps round-trip." },
           { icon: <DollarSign className="w-4 h-4 text-emerald-400" />, title: "Risk Controls", body: "Max allocation 40% per asset class. Position sizing via equal-weight among passing signals. Cash held in short-term T-bills yielding estimated 4.8%." },
         ].map((item) => (
@@ -1299,7 +1299,7 @@ function Implementation() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Info className="w-4 h-4 text-primary" />
+            <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
             Factor ETF vs Mutual Fund: Key Trade-offs
           </CardTitle>
         </CardHeader>

@@ -863,7 +863,7 @@ export default function StrategiesPage() {
 
       {/* Save toast */}
       {saveToast && (
-        <div className="absolute top-16 right-6 z-50 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs text-emerald-300">
+        <div className="absolute top-16 right-6 z-50 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-4 py-2.5 text-xs text-emerald-300">
           <Save className="h-3.5 w-3.5" />
           Strategy saved to library
         </div>

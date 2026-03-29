@@ -160,7 +160,7 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
           <button
             type="button"
             onClick={handleClose}
-            className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent shrink-0"
+            className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/30 shrink-0"
             title="Back to lessons"
           >
             <X className="h-5 w-5" />

@@ -226,7 +226,7 @@ const TYPE_ICON: Record<AssetType, React.ReactNode> = {
 
 const TYPE_COLOR: Record<AssetType, string> = {
   "Real Estate": "bg-primary/10 text-primary border-border",
-  "Treasury Bonds": "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+  "Treasury Bonds": "bg-emerald-500/5 text-emerald-400 border-emerald-500/20",
   "Private Credit": "bg-primary/10 text-primary border-border",
   "Commodities": "bg-amber-500/10 text-amber-400 border-amber-500/20",
   "Infrastructure": "bg-teal-500/10 text-emerald-400 border-teal-500/20",
@@ -507,7 +507,7 @@ function MarketsTab({
                 "rounded-md px-2.5 py-1 text-[11px] font-medium transition-colors",
                 filter === f
                   ? "bg-accent text-foreground"
-                  : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",
+                  : "text-muted-foreground hover:bg-muted/20 hover:text-foreground",
               )}
             >
               {f}
@@ -530,7 +530,7 @@ function MarketsTab({
                 "flex items-center gap-0.5 rounded px-2 py-0.5 transition-colors",
                 sort === key
                   ? "bg-accent text-foreground"
-                  : "hover:bg-accent/50 hover:text-foreground",
+                  : "hover:bg-muted/20 hover:text-foreground",
               )}
             >
               {label}
@@ -689,7 +689,7 @@ function PurchaseModal({
         <div className="flex gap-2">
           <button
             onClick={onClose}
-            className="flex-1 rounded-md border py-1.5 text-xs text-muted-foreground font-medium hover:bg-accent transition-colors"
+            className="flex-1 rounded-md border py-1.5 text-xs text-muted-foreground font-medium hover:bg-muted/30 transition-colors"
           >
             Cancel
           </button>
@@ -1002,7 +1002,7 @@ function YieldCalculatorTab() {
                   "flex-1 rounded-md py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                   holdingPeriod === p
                     ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground",
+                    : "bg-muted text-muted-foreground hover:bg-muted/30 hover:text-foreground",
                 )}
               >
                 {p}yr
@@ -1255,7 +1255,7 @@ function EducationTab() {
         <div className="space-y-3">
           {BENEFITS.map((b) => (
             <div key={b.title} className="flex gap-3">
-              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/10">
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/5">
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </div>
               <div>
@@ -1391,7 +1391,7 @@ export default function TokenizedPage() {
             </p>
           </div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="rounded border bg-emerald-500/10 border-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-400">
+            <span className="rounded border bg-emerald-500/5 border-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-400">
               {holdings.length} positions
             </span>
           </div>

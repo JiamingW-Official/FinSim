@@ -777,7 +777,7 @@ export default function InsuranceDerivativesPage() {
               <CardContent>
                 <ILSComparisonChart />
                 <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
-                  <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
+                  <div className="bg-emerald-500/5 border border-emerald-500/20 rounded p-2">
                     <p className="text-emerald-300 font-medium">ILS Advantage</p>
                     <p className="text-muted-foreground mt-1">Near-zero correlation to equities makes ILS a powerful diversifier in multi-asset portfolios.</p>
                   </div>

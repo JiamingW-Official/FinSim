@@ -1158,12 +1158,12 @@ export default function SentimentPage() {
                 </div>
                 {/* Contrarian signal */}
                 {aaiiData.bulls < 60 ? (
-                  <div className="flex items-center gap-2 text-[11px] text-emerald-400 bg-emerald-500/10 rounded p-2">
+                  <div className="flex items-center gap-2 text-[11px] text-emerald-400 bg-emerald-500/5 rounded p-2">
                     <Info className="h-3 w-3 flex-shrink-0" />
                     Bulls at {aaiiData.bulls}% — below 60% contrarian threshold, no warning
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2 text-[11px] text-red-400 bg-red-500/10 rounded p-2">
+                  <div className="flex items-center gap-2 text-[11px] text-red-400 bg-red-500/5 rounded p-2">
                     <AlertTriangle className="h-3 w-3 flex-shrink-0" />
                     Bulls above 60% — contrarian bearish signal
                   </div>

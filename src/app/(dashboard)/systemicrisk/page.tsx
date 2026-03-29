@@ -1146,8 +1146,7 @@ function MacroPruTab() {
             {MACRO_PRU_TOOLS.map((tool, i) => (
               <motion.div
                 key={i}
-                whileHover={{ x: 2 }}
-                className="rounded-lg border border-border bg-muted/30 p-3 cursor-pointer hover:border-border transition-colors"
+                className="rounded-lg border border-border bg-muted/30 p-3 cursor-pointer hover:border-border transition-colors duration-150"
                 style={{ borderColor: selectedTool?.acronym === tool.acronym ? typeColor(tool.type) : undefined }}
                 onClick={() => setSelectedTool(t => t?.acronym === tool.acronym ? null : tool)}
               >

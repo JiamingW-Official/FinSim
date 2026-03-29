@@ -191,7 +191,7 @@ function ProtocolTable() {
     <Card className="border-border bg-card">
       <CardHeader className="pb-3">
         <CardTitle className="text-base flex items-center gap-2">
-          <Layers className="w-4 h-4 text-primary" /> Protocol Comparison
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" /> Protocol Comparison
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
@@ -325,7 +325,7 @@ function StrategiesTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" /> Yield Strategy Simulator (24 months)
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" /> Yield Strategy Simulator (24 months)
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -415,7 +415,7 @@ function StrategiesTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" /> Yield Farming Flow
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" /> Yield Farming Flow
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -519,7 +519,7 @@ function RiskAnalysisTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Calculator className="w-4 h-4 text-primary" /> Impermanent Loss Calculator
+            <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" /> Impermanent Loss Calculator
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -606,7 +606,7 @@ function RiskAnalysisTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" /> Risk Radar by Strategy
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" /> Risk Radar by Strategy
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -764,7 +764,7 @@ function YieldCalculatorTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Calculator className="w-4 h-4 text-primary" /> DeFi Yield Calculator
+            <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" /> DeFi Yield Calculator
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -895,7 +895,7 @@ function YieldCalculatorTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Zap className="w-4 h-4 text-primary" /> Protocol Yield Snapshot
+            <Zap className="w-3.5 h-3.5 text-muted-foreground/50" /> Protocol Yield Snapshot
           </CardTitle>
         </CardHeader>
         <CardContent>

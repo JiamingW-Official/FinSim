@@ -168,10 +168,10 @@ function fmtPct(n: number, decimals = 1): string {
 
 
 const severityColors: Record<string, string> = {
-  Critical: "text-red-400 border-red-500/40 bg-red-500/10",
+  Critical: "text-red-400 border-red-500/40 bg-red-500/5",
   High: "text-orange-400 border-orange-500/40 bg-orange-500/10",
   Medium: "text-amber-400 border-amber-500/40 bg-amber-500/10",
-  Low: "text-emerald-400 border-emerald-500/40 bg-emerald-500/10",
+  Low: "text-emerald-400 border-emerald-500/40 bg-emerald-500/5",
 };
 
 // ── AMM Tab ───────────────────────────────────────────────────────────────────
@@ -328,7 +328,7 @@ function AMMTab() {
           <Card className="bg-card border-border h-full">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                <Calculator className="w-4 h-4 text-primary" />
+                <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Price Impact Calculator
               </CardTitle>
             </CardHeader>
@@ -378,7 +378,7 @@ function AMMTab() {
                 ))}
               </div>
 
-              <div className={`rounded-md p-3 text-xs ${Math.abs(priceImpact) > 5 ? "bg-red-500/10 border border-red-500/30 text-red-300" : "bg-emerald-500/10 border border-emerald-500/30 text-emerald-300"}`}>
+              <div className={`rounded-md p-3 text-xs ${Math.abs(priceImpact) > 5 ? "bg-red-500/5 border border-red-500/30 text-red-300" : "bg-emerald-500/5 border border-emerald-500/30 text-emerald-300"}`}>
                 {Math.abs(priceImpact) > 10
                   ? "High price impact. Consider splitting the trade across multiple blocks or using a DEX aggregator."
                   : Math.abs(priceImpact) > 3
@@ -395,7 +395,7 @@ function AMMTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-primary" />
+              <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />
               AMM Formula Reference
             </CardTitle>
           </CardHeader>
@@ -507,7 +507,7 @@ function LendingTab() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Utilization Rate vs Interest Rate
               </CardTitle>
             </CardHeader>
@@ -590,7 +590,7 @@ function LendingTab() {
           <Card className="bg-card border-border h-full">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Lock className="w-4 h-4 text-primary" />
+                <Lock className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Collateral Ratio & Health Factor
               </CardTitle>
             </CardHeader>
@@ -653,7 +653,7 @@ function LendingTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-primary" />
+              <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
               Lending Protocol Comparison
             </CardTitle>
           </CardHeader>
@@ -775,7 +775,7 @@ function YieldTab() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-primary" />
+                <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
                 APR vs APY — 5-Year Growth
               </CardTitle>
             </CardHeader>
@@ -865,7 +865,7 @@ function YieldTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <RefreshCw className="w-4 h-4 text-primary" />
+              <RefreshCw className="w-3.5 h-3.5 text-muted-foreground/50" />
               Auto-Compounding Formula
             </CardTitle>
           </CardHeader>
@@ -989,7 +989,7 @@ function LiquidityMiningTab() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Calculator className="w-4 h-4 text-primary" />
+                <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Impermanent Loss Curve
               </CardTitle>
             </CardHeader>
@@ -1048,7 +1048,7 @@ function LiquidityMiningTab() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Zap className="w-4 h-4 text-primary" />
+                <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Token Emissions Schedule (52 Weeks)
               </CardTitle>
             </CardHeader>
@@ -1107,7 +1107,7 @@ function LiquidityMiningTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Layers className="w-4 h-4 text-primary" />
+              <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
               Liquidity Bootstrapping Mechanisms
             </CardTitle>
           </CardHeader>
@@ -1185,7 +1185,7 @@ function RiskTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-primary" />
+              <AlertTriangle className="w-3.5 h-3.5 text-muted-foreground/50" />
               DeFi Risk Factor Analysis
             </CardTitle>
           </CardHeader>
@@ -1196,7 +1196,7 @@ function RiskTab() {
                 className="border border-border rounded-lg overflow-hidden"
               >
                 <button
-                  className="w-full flex items-center justify-between p-3 text-left hover:bg-accent/30 transition-colors"
+                  className="w-full flex items-center justify-between p-3 text-left hover:bg-muted/20 transition-colors"
                   onClick={() => setExpandedRisk(expandedRisk === rf.name ? null : rf.name)}
                 >
                   <div className="flex items-center gap-3">
@@ -1236,7 +1236,7 @@ function RiskTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Eye className="w-4 h-4 text-primary" />
+              <Eye className="w-3.5 h-3.5 text-muted-foreground/50" />
               Protocol Risk Dashboard
             </CardTitle>
           </CardHeader>
@@ -1294,7 +1294,7 @@ function RiskTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <GitBranch className="w-4 h-4 text-primary" />
+              <GitBranch className="w-3.5 h-3.5 text-muted-foreground/50" />
               Protocol Safety Checklist
             </CardTitle>
           </CardHeader>
@@ -1378,7 +1378,7 @@ export default function DeFiProtocolsPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Cpu className="w-4 h-4 text-primary" />
+              <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-lg font-medium text-foreground">DeFi Protocols</h1>

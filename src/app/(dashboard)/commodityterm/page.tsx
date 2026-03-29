@@ -45,7 +45,7 @@ function fmtPct(n: number, sign = true): string {
 }
 
 const pos = (v: number) => (v >= 0 ? "text-emerald-400" : "text-red-400");
-const posBg = (v: number) => (v >= 0 ? "bg-emerald-500/10" : "bg-red-500/10");
+const posBg = (v: number) => (v >= 0 ? "bg-emerald-500/5" : "bg-red-500/5");
 
 // ── DATA ───────────────────────────────────────────────────────────────────────
 

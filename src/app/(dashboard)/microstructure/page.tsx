@@ -715,7 +715,7 @@ export default function MicrostructurePage() {
       >
         {[
           {
-            icon: <Scale className="w-4 h-4 text-primary" />,
+            icon: <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />,
             label: "NBBO Spread",
             value: `$${nbboSpread}`,
             sub: `${nbboSpreadBps} bps`,
@@ -723,7 +723,7 @@ export default function MicrostructurePage() {
             trendLabel: "vs. 30d avg",
           },
           {
-            icon: <Layers className="w-4 h-4 text-primary" />,
+            icon: <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />,
             label: "Market Depth",
             value: `$${marketDepth}M`,
             sub: "Top 12 levels",
@@ -801,7 +801,7 @@ export default function MicrostructurePage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Level 2 Depth — AAPL
                   </CardTitle>
                 </CardHeader>
@@ -814,7 +814,7 @@ export default function MicrostructurePage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Order Book Ladder
                   </CardTitle>
                 </CardHeader>
@@ -1177,7 +1177,7 @@ export default function MicrostructurePage() {
                       abbr: "DMMs",
                       role: "NYSE-assigned, must quote within price bands, capital commitment required",
                       share: "18%",
-                      icon: <Scale className="w-4 h-4 text-primary" />,
+                      icon: <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />,
                       badge: "Obligated",
                     },
                     {
@@ -1185,7 +1185,7 @@ export default function MicrostructurePage() {
                       abbr: "RMMs",
                       role: "NASDAQ structure, competitive quoting, earn maker rebates for adding liquidity",
                       share: "34%",
-                      icon: <Activity className="w-4 h-4 text-primary" />,
+                      icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />,
                       badge: "Competitive",
                     },
                     {
@@ -1221,7 +1221,7 @@ export default function MicrostructurePage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Network className="w-4 h-4 text-primary" />
+                    <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
                     US Equity Market Share
                   </CardTitle>
                 </CardHeader>

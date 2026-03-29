@@ -458,8 +458,8 @@ function SectionTitle({ icon: Icon, title, subtitle }: { icon: React.ElementType
 function StatChip({ label, value, sub, color = "default" }: { label: string; value: string; sub?: string; color?: "default" | "green" | "red" | "amber" }) {
   const colorMap = {
     default: "bg-secondary text-foreground",
-    green: "bg-emerald-500/10 text-emerald-400",
-    red: "bg-red-500/10 text-red-400",
+    green: "bg-emerald-500/5 text-emerald-400",
+    red: "bg-red-500/5 text-red-400",
     amber: "bg-amber-500/10 text-amber-400",
   };
   return (
@@ -907,10 +907,10 @@ function CarryTradeAnalyzer() {
     crash: "text-red-400",
   };
   const riskBg = {
-    low: "bg-emerald-500/10",
+    low: "bg-emerald-500/5",
     medium: "bg-yellow-500/10",
     high: "bg-orange-500/10",
-    crash: "bg-red-500/10",
+    crash: "bg-red-500/5",
   };
 
   const selected = carryPairs.find((p) => p.pair === selectedPair);
@@ -1016,7 +1016,7 @@ function CarryTradeAnalyzer() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {selected.rollingSharpe < 0.5 && (
-                  <div className="flex items-start gap-2 p-2 rounded bg-red-500/10 text-red-400 text-xs">
+                  <div className="flex items-start gap-2 p-2 rounded bg-red-500/5 text-red-400 text-xs">
                     <AlertTriangle className="h-3.5 w-3.5 mt-0.5 shrink-0" />
                     <span>3M rolling Sharpe {selected.rollingSharpe.toFixed(2)} — carry crash risk elevated. Reduce position by 50-75%.</span>
                   </div>
@@ -1070,10 +1070,10 @@ function FXValuationModels() {
     strong_buy: "text-green-400",
   };
   const signalBg = {
-    strong_sell: "bg-red-500/10",
+    strong_sell: "bg-red-500/5",
     sell: "bg-orange-500/10",
     neutral: "bg-secondary/50",
-    buy: "bg-emerald-500/10",
+    buy: "bg-emerald-500/5",
     strong_buy: "bg-green-500/10",
   };
   const signalLabel = {
@@ -1531,7 +1531,7 @@ function CrossCurrencySwapAnalytics() {
                     </td>
                     <td className="py-2 px-3 text-center">
                       {row.stress ? (
-                        <span className="px-1.5 py-0.5 rounded bg-red-500/10 text-red-400 text-xs">High</span>
+                        <span className="px-1.5 py-0.5 rounded bg-red-500/5 text-red-400 text-xs">High</span>
                       ) : (
                         <span className="px-1.5 py-0.5 rounded bg-secondary text-muted-foreground text-xs">Normal</span>
                       )}
@@ -1582,9 +1582,9 @@ function CrossCurrencySwapAnalytics() {
               <div className="flex items-center gap-3 mb-3">
                 <div className={cn(
                   "px-3 py-1.5 rounded-lg text-sm font-semibold",
-                  stressLevel === "high" ? "bg-red-500/10 text-red-400" :
+                  stressLevel === "high" ? "bg-red-500/5 text-red-400" :
                   stressLevel === "medium" ? "bg-amber-500/10 text-amber-400" :
-                  "bg-emerald-500/10 text-emerald-400"
+                  "bg-emerald-500/5 text-emerald-400"
                 )}>
                   {stressLevel === "high" ? "High Stress" : stressLevel === "medium" ? "Moderate" : "Low Stress"}
                 </div>

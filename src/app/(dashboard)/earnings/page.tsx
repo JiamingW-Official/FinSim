@@ -1142,7 +1142,7 @@ function EarningsStrategiesTab() {
             <div className="space-y-3">
               <div className={cn(
                 "text-center py-4 rounded-lg",
-                rouletteResult.guess === rouletteResult.actual ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-red-500/10 border border-red-500/30"
+                rouletteResult.guess === rouletteResult.actual ? "bg-emerald-500/5 border border-emerald-500/30" : "bg-red-500/5 border border-red-500/30"
               )}>
                 <div className="text-2xl font-bold mb-1">
                   {rouletteResult.guess === rouletteResult.actual

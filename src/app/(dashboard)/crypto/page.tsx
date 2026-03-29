@@ -543,7 +543,7 @@ function FearGreedGauge({ value }: { value: number }) {
         <circle cx={CX} cy={CY} r={5} fill={needleColor} />
       </svg>
       <div className="text-center -mt-1">
-        <div className="text-2xl font-bold tabular-nums" style={{ color: needleColor }}>{value}</div>
+        <div className="text-2xl font-bold font-mono tabular-nums" style={{ color: needleColor }}>{value}</div>
         <div className="text-xs text-muted-foreground">{label}</div>
       </div>
     </div>
@@ -628,21 +628,21 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className="rounded-lg border border-border/50 bg-card p-3">
           <div className="text-xs text-muted-foreground mb-1">Total Market Cap</div>
-          <div className="text-lg font-bold tabular-nums">{fmtBil(totalMcap)}</div>
+          <div className="text-sm font-medium font-mono tabular-nums">{fmtBil(totalMcap)}</div>
         </div>
         <div className="rounded-lg border border-border/50 bg-card p-3">
           <div className="text-xs text-muted-foreground mb-1">24h Volume</div>
-          <div className="text-lg font-medium tabular-nums">{fmtBil(totalVol)}</div>
+          <div className="text-sm font-medium font-mono tabular-nums">{fmtBil(totalVol)}</div>
         </div>
         <div className="rounded-lg border border-border/50 bg-card p-3">
           <div className="text-xs text-muted-foreground mb-1">BTC Dominance</div>
-          <div className="text-lg font-medium tabular-nums">
+          <div className="text-sm font-medium font-mono tabular-nums">
             {((rows.find((r) => r.symbol === "BTC")?.marketCap ?? 0) / totalMcap * 100).toFixed(1)}%
           </div>
         </div>
         <div className="rounded-lg border border-border/50 bg-card p-3">
           <div className="text-xs text-muted-foreground mb-1">Active Assets</div>
-          <div className="text-lg font-medium tabular-nums">{rows.length}</div>
+          <div className="text-sm font-medium font-mono tabular-nums">{rows.length}</div>
         </div>
       </div>
 
@@ -1362,7 +1362,7 @@ function OnChainTab({ seed }: { seed: number }) {
           ].map((tier) => (
             <div key={tier.label} className="rounded-md border border-border/40 p-3 text-center">
               <div className="text-xs text-muted-foreground mb-1">{tier.label}</div>
-              <div className={cn("text-lg font-medium tabular-nums", tier.color)}>{tier.value.toFixed(1)}</div>
+              <div className={cn("text-sm font-medium font-mono tabular-nums", tier.color)}>{tier.value.toFixed(1)}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{tier.time}</div>
             </div>
           ))}
@@ -1803,7 +1803,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
         ].map((c) => (
           <div key={c.label} className="rounded-lg border border-border/50 bg-card p-3">
             <div className="text-xs text-muted-foreground mb-1">{c.label}</div>
-            <div className={cn("text-lg font-medium tabular-nums", c.color)}>{c.val}</div>
+            <div className={cn("text-sm font-medium font-mono tabular-nums", c.color)}>{c.val}</div>
           </div>
         ))}
       </div>

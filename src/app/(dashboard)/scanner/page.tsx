@@ -393,7 +393,7 @@ function StarScore({ score }: { score: number }) {
 function DirectionBadge({ direction }: { direction: "bullish" | "bearish" | "neutral" }) {
   if (direction === "bullish") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-sm bg-emerald-500/10 px-1.5 py-0.5 text-xs font-semibold text-emerald-500">
+      <span className="inline-flex items-center gap-1 rounded-sm bg-emerald-500/5 px-1.5 py-0.5 text-xs font-semibold text-emerald-500">
         <TrendingUp className="h-2.5 w-2.5" />
         Bullish
       </span>
@@ -711,7 +711,7 @@ function TechnicalScannerTab() {
               "rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground font-medium transition-colors",
               selectedConditions.has(c.id)
                 ? c.direction === "bullish"
-                  ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-500"
+                  ? "border-emerald-500/50 bg-emerald-500/5 text-emerald-500"
                   : c.direction === "bearish"
                   ? "border-rose-500/50 bg-rose-500/10 text-rose-500"
                   : "border-amber-500/50 bg-amber-500/10 text-amber-500"

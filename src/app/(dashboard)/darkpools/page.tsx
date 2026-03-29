@@ -468,7 +468,7 @@ function DarkPoolLandscapeTab() {
         {/* Donut chart */}
         <div className="bg-muted/50 rounded-md p-4 border border-border/50">
           <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Dark Pool Market Share
           </h3>
           <svg viewBox="0 0 320 320" className="w-full max-h-64">
@@ -521,7 +521,7 @@ function DarkPoolLandscapeTab() {
         {/* Rankings table */}
         <div className="bg-muted/50 rounded-md p-4 border border-border/50">
           <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             Top 10 Dark Pools by Volume
           </h3>
           <div className="space-y-1.5 overflow-y-auto max-h-64 pr-1">
@@ -844,7 +844,7 @@ function WhyDarkPoolsTab() {
       {/* Info leakage visual */}
       <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Info className="w-4 h-4 text-primary" />
+          <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
           Information Leakage: Lit vs Dark Order Flow
         </h3>
         <svg viewBox="0 0 600 120" className="w-full h-24">
@@ -1031,7 +1031,7 @@ function OrderTypesTab() {
       {/* Order routing decision tree SVG */}
       <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Network className="w-4 h-4 text-primary" />
+          <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
           Order Routing Decision Tree
         </h3>
         <svg viewBox="0 0 640 300" className="w-full">
@@ -1199,7 +1199,7 @@ function HFTInteractionTab() {
       {/* Timeline */}
       <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Clock className="w-4 h-4 text-primary" />
+          <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
           HFT & Dark Pool Regulatory Timeline — click an event to expand
         </h3>
 
@@ -1344,7 +1344,7 @@ function LitVsDarkTab() {
       {/* Toxicity metrics comparison */}
       <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <BarChart3 className="w-4 h-4 text-primary" />
+          <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
           Lit vs Dark: Key Microstructure Metrics
         </h3>
         <div className="flex gap-4 mb-4 text-xs text-muted-foreground">

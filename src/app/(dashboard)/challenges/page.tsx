@@ -242,7 +242,7 @@ function WeeklyTab() {
           <Clock className="h-3.5 w-3.5 text-muted-foreground" />
           <span className="text-[11px] text-muted-foreground">Resets Sunday</span>
         </div>
-        <span className="text-[11px] font-medium tabular-nums text-primary">{weeklyCountdown} left</span>
+        <span className="text-[11px] font-medium font-mono tabular-nums text-primary">{weeklyCountdown} left</span>
       </div>
 
       {/* Hero — most progressed weekly challenge */}
@@ -267,7 +267,7 @@ function WeeklyTab() {
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">
             <span className="text-xs text-muted-foreground">Target: {heroChallenge.target}</span>
-            <span className="text-xs font-medium tabular-nums">{heroChallenge.progress}%</span>
+            <span className="text-xs font-medium font-mono tabular-nums">{heroChallenge.progress}%</span>
           </div>
           <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
             <motion.div
@@ -304,7 +304,7 @@ function WeeklyTab() {
                 />
               </div>
             </div>
-            <span className="text-[11px] font-medium tabular-nums text-muted-foreground">{challenge.progress}%</span>
+            <span className="text-[11px] font-medium font-mono tabular-nums text-muted-foreground">{challenge.progress}%</span>
             <span className="text-[11px] font-medium text-primary">+{challenge.xpReward}</span>
           </div>
         </motion.div>
@@ -458,16 +458,16 @@ function HistoryTab() {
               </span>
             </div>
 
-            <span className="text-[11px] text-muted-foreground/70 tabular-nums">{entry.date.slice(5)}</span>
+            <span className="text-[11px] text-muted-foreground/70 font-mono tabular-nums">{entry.date.slice(5)}</span>
 
             <span className={cn(
-              "text-[11px] tabular-nums text-right",
+              "text-[11px] font-mono tabular-nums text-right",
               entry.xpEarned > 0 ? "text-primary/70" : "text-muted-foreground/40",
             )}>
               {entry.xpEarned > 0 ? `+${entry.xpEarned}` : "—"}
             </span>
 
-            <span className="text-[11px] tabular-nums text-center text-muted-foreground">{entry.score}</span>
+            <span className="text-[11px] font-mono tabular-nums text-center text-muted-foreground">{entry.score}</span>
 
             <div className="flex justify-center">
               {entry.result === "success" && <CheckCircle2 className="h-3 w-3 text-emerald-400/60" />}
@@ -674,7 +674,7 @@ export default function ChallengesPage() {
             transition={{ delay: 0.1 }}
           >
             <Calendar className="h-3.5 w-3.5 text-primary" />
-            <span className="text-[11px] font-medium tabular-nums text-primary">{totalDailyCompleted}</span>
+            <span className="text-[11px] font-medium font-mono tabular-nums text-primary">{totalDailyCompleted}</span>
             <span className="text-[11px] text-muted-foreground">daily</span>
           </motion.div>
 
@@ -685,7 +685,7 @@ export default function ChallengesPage() {
             transition={{ delay: 0.15 }}
           >
             <Scroll className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-medium tabular-nums text-amber-400">{scenariosCompleted}/8</span>
+            <span className="text-[11px] font-medium font-mono tabular-nums text-amber-400">{scenariosCompleted}/8</span>
             <span className="text-[11px] text-muted-foreground">scenarios</span>
           </motion.div>
 

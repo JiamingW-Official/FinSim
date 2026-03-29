@@ -465,7 +465,7 @@ export default function RiskParityPage() {
               <Card className="border-border border-l-4 border-l-primary">
                 <CardHeader className="p-4 pb-2">
                   <CardTitle className="text-lg flex items-center gap-2">
-                    <Target className="w-4 h-4 text-primary" />
+                    <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Equal Risk Contribution
                   </CardTitle>
                 </CardHeader>
@@ -487,7 +487,7 @@ export default function RiskParityPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Capital Weight vs Risk Contribution
                   </CardTitle>
                 </CardHeader>
@@ -505,7 +505,7 @@ export default function RiskParityPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-primary" />
+                  <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Volatility-Targeting Mechanism
                 </CardTitle>
               </CardHeader>
@@ -520,7 +520,7 @@ export default function RiskParityPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-primary" />
+                  <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Asset Class Risk Budget Detail
                 </CardTitle>
               </CardHeader>
@@ -607,7 +607,7 @@ export default function RiskParityPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Equal Risk Contribution Formula
                 </CardTitle>
               </CardHeader>
@@ -635,7 +635,7 @@ export default function RiskParityPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-primary" />
+                  <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Backtest Equity Curve 2000–2024 (Base 100)
                 </CardTitle>
               </CardHeader>
@@ -724,7 +724,7 @@ export default function RiskParityPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <DollarSign className="w-4 h-4 text-primary" />
+                    <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Risk Parity vs Alternatives
                   </CardTitle>
                 </CardHeader>
@@ -765,7 +765,7 @@ export default function RiskParityPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Regime Performance
                   </CardTitle>
                 </CardHeader>
@@ -833,7 +833,7 @@ export default function RiskParityPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Key Risks &amp; Critiques
                 </CardTitle>
               </CardHeader>

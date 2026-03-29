@@ -72,7 +72,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
                     "flex h-8 w-8 items-center justify-center rounded-lg text-lg transition-all",
                     emoji === e
                       ? "bg-primary/15 ring-2 ring-primary/40 scale-110"
-                      : "hover:bg-accent",
+                      : "hover:bg-muted/30",
                   )}
                 >
                   {e}
@@ -122,7 +122,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg px-3 py-1.5 text-xs font-bold text-muted-foreground hover:bg-accent"
+              className="rounded-lg px-3 py-1.5 text-xs font-bold text-muted-foreground hover:bg-muted/30"
             >
               Cancel
             </button>

@@ -502,7 +502,7 @@ function Tab1EtfContent() {
             );
           })}
         </div>
-        <div className="mt-3 p-3 bg-red-500/10 border border-red-500/20 rounded text-xs text-red-300">
+        <div className="mt-3 p-3 bg-red-500/5 border border-red-500/20 rounded text-xs text-red-300">
           <span className="font-medium">Staking Exclusion Impact: </span>
           ETH staking earns ~3-4% annual yield. SEC required all spot ETH ETFs to exclude staking,
           meaning ETH ETF holders forgo this yield — a significant drag vs direct ETH ownership.
@@ -928,7 +928,7 @@ function Tab2StablecoinContent() {
               <li>• MiCA fully in force June 2024</li>
             </ul>
           </div>
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded space-y-2">
+          <div className="p-3 bg-emerald-500/5 border border-emerald-500/20 rounded space-y-2">
             <div className="font-medium text-emerald-300">US GENIUS Act (2025 proposed)</div>
             <ul className="space-y-1 text-muted-foreground">
               <li>• Requires 1:1 backing with USD, T-bills, or insured deposits</li>
@@ -1208,7 +1208,7 @@ function Tab3PrimeBrokerageContent() {
       >
         <FtxImpactSVG />
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
-          <div className="p-3 bg-red-500/10 border border-red-500/20 rounded space-y-1">
+          <div className="p-3 bg-red-500/5 border border-red-500/20 rounded space-y-1">
             <div className="font-medium text-red-300">Immediate Impact</div>
             <ul className="text-muted-foreground space-y-0.5">
               <li>• BlockFi files Chapter 11 (had FTX credit exposure)</li>
@@ -1217,7 +1217,7 @@ function Tab3PrimeBrokerageContent() {
               <li>• ~$8B estimated institutional losses across ecosystem</li>
             </ul>
           </div>
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded space-y-1">
+          <div className="p-3 bg-emerald-500/5 border border-emerald-500/20 rounded space-y-1">
             <div className="font-medium text-emerald-300">Structural Changes Post-FTX</div>
             <ul className="text-muted-foreground space-y-0.5">
               <li>• Segregated custody became non-negotiable requirement</li>
@@ -1561,14 +1561,14 @@ function Tab4OnchainContent() {
       >
         <MvrvChart />
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
-          <div className="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded">
+          <div className="p-2 bg-emerald-500/5 border border-emerald-500/20 rounded">
             <div className="font-medium text-emerald-300">MVRV &lt; 1 — Accumulation Zone</div>
             <div className="text-muted-foreground mt-1">
               Realized cap exceeds market cap, meaning the average holder is underwater. Historically excellent
               buying zone. Occurred in Dec 2018, Mar 2020, and late 2022.
             </div>
           </div>
-          <div className="p-2 bg-red-500/10 border border-red-500/20 rounded">
+          <div className="p-2 bg-red-500/5 border border-red-500/20 rounded">
             <div className="font-medium text-red-300">MVRV &gt; 3.5 — Distribution Risk</div>
             <div className="text-muted-foreground mt-1">
               Market cap is 3.5x realized cap — average holder has large unrealized gains and incentive to sell.

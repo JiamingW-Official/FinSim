@@ -713,7 +713,7 @@ function LearningProgress({
             {progress.completedUnits.slice(0, 6).map((unit) => (
               <span
                 key={unit.id}
-                className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400"
+                className="rounded-full bg-emerald-500/5 px-2 py-0.5 text-[10px] font-medium text-emerald-400"
               >
                 {unit.title}
               </span>

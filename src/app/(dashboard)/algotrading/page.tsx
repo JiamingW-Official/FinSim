@@ -157,7 +157,7 @@ const ORDER_TYPES: OrderType[] = [
     name: "Limit Order",
     abbr: "LMT",
     color: "text-emerald-400",
-    bg: "bg-emerald-500/10 border-emerald-500/20",
+    bg: "bg-emerald-500/5 border-emerald-500/20",
     description: "Execute only at a specified price or better.",
     whenToUse: "Price precision is critical; willing to risk non-execution.",
     risk: "Low",
@@ -476,7 +476,7 @@ export default function AlgoTradingPage() {
     },
     {
       name: "Statistical Arbitrage",
-      icon: <BarChart2 className="w-5 h-5 text-primary" />,
+      icon: <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />,
       mechanics:
         "Exploit mean-reversion in correlated instruments (pairs, sector ETFs vs constituents). Enter when spread exceeds 2σ; exit at mean.",
       profitability:

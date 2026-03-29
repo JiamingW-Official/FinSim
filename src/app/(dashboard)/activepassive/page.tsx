@@ -1254,7 +1254,7 @@ export default function ActivePassivePage() {
         >
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 rounded-md bg-primary/15 border border-primary/30 flex items-center justify-center">
-              <Scale className="w-5 h-5 text-primary" />
+              <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-foreground">Active vs Passive Investing</h1>

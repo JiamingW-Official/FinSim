@@ -118,7 +118,7 @@ export function ExportMenu() {
           "flex h-8 w-8 items-center justify-center rounded-lg transition-colors",
           open
             ? "bg-primary/10 text-primary"
-            : "text-muted-foreground hover:bg-accent hover:text-foreground",
+            : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
         )}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -144,7 +144,7 @@ export function ExportMenu() {
                   key={item.label}
                   type="button"
                   onClick={item.onClick}
-                  className="flex w-full items-center gap-2.5 px-3 py-2 text-left transition-colors hover:bg-accent"
+                  className="flex w-full items-center gap-2.5 px-3 py-2 text-left transition-colors hover:bg-muted/30"
                 >
                   <item.icon className={cn("h-3.5 w-3.5", item.color)} />
                   <div>

@@ -567,7 +567,7 @@ function ExpandableRow({ protocol }: { protocol: (typeof TOP_PROTOCOLS)[0] }) {
       >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
-            <Network className="w-4 h-4 text-primary" />
+            <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div className="text-left">
             <p className="text-sm font-semibold text-foreground">{protocol.name}</p>
@@ -821,7 +821,7 @@ export default function TokenizationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Market Share by Asset Class
                   </CardTitle>
                 </CardHeader>
@@ -855,7 +855,7 @@ export default function TokenizationPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <Network className="w-4 h-4 text-primary" />
+                  <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Top Protocols by TVL
                 </CardTitle>
               </CardHeader>
@@ -913,7 +913,7 @@ export default function TokenizationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Yield: Tokenized vs Traditional T-Bills (2025)
                   </CardTitle>
                 </CardHeader>
@@ -955,7 +955,7 @@ export default function TokenizationPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-primary" />
+                  <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Product Comparison
                 </CardTitle>
               </CardHeader>
@@ -1049,7 +1049,7 @@ export default function TokenizationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Tokenized RE vs Traditional REIT (Score 0–100)
                   </CardTitle>
                 </CardHeader>
@@ -1061,7 +1061,7 @@ export default function TokenizationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-primary" />
+                    <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Fractional Ownership Mechanics
                   </CardTitle>
                 </CardHeader>
@@ -1198,7 +1198,7 @@ export default function TokenizationPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Protocol Comparison
                 </CardTitle>
               </CardHeader>
@@ -1290,7 +1290,7 @@ export default function TokenizationPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-primary" />
+                  <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Jurisdictional Comparison
                 </CardTitle>
               </CardHeader>
@@ -1327,7 +1327,7 @@ export default function TokenizationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Landmark className="w-4 h-4 text-primary" />
+                    <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />
                     SEC No-Action Letters
                   </CardTitle>
                 </CardHeader>

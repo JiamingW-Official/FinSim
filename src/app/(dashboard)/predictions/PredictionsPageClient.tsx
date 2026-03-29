@@ -825,7 +825,7 @@ export function PredictionsPageClient() {
             <TrendingUp className="h-4 w-4 text-foreground" />
           </div>
           <div className="min-w-0">
-            <h1 className="text-base font-medium tracking-tight">Practice Prediction Markets</h1>
+            <h1 className="text-sm font-medium">Practice Prediction Markets</h1>
             <p className="text-xs text-muted-foreground">
               Test your probability thinking with {PREDICTION_MARKETS.length} simulated markets — no real money involved
             </p>
@@ -1001,10 +1001,10 @@ export function PredictionsPageClient() {
 
                         {/* Massive YES / NO buttons */}
                         <div className="mb-5 grid grid-cols-2 gap-3">
-                          <div className="flex h-12 items-center justify-center rounded-lg bg-emerald-500/12 text-base font-bold text-emerald-500 ring-1 ring-emerald-500/20">
+                          <div className="flex h-12 items-center justify-center rounded-lg bg-emerald-500/12 text-sm font-medium font-mono tabular-nums text-emerald-500 ring-1 ring-emerald-500/20">
                             YES {featuredMarket.initialProbability}%
                           </div>
-                          <div className="flex h-12 items-center justify-center rounded-lg bg-red-500/12 text-base font-bold text-red-500 ring-1 ring-red-500/20">
+                          <div className="flex h-12 items-center justify-center rounded-lg bg-red-500/12 text-sm font-medium font-mono tabular-nums text-red-500 ring-1 ring-red-500/20">
                             NO {100 - featuredMarket.initialProbability}%
                           </div>
                         </div>

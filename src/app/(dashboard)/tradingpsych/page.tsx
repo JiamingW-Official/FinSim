@@ -1830,7 +1830,7 @@ export default function TradingPsychPage() {
                         key={item.factor}
                         className={cn(
                           "text-xs text-muted-foreground p-2 rounded-md",
-                          item.positive ? "bg-green-500/10" : "bg-red-500/10"
+                          item.positive ? "bg-green-500/10" : "bg-red-500/5"
                         )}
                       >
                         <p

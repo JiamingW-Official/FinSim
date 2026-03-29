@@ -1022,7 +1022,7 @@ export default function CreditRiskModelPage() {
                     <text x={270} y={106} fill="#22c55e" fontSize={8}>E</text>
                   </svg>
                   <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
-                    <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
+                    <div className="bg-emerald-500/5 border border-emerald-500/20 rounded p-2">
                       <div className="text-emerald-400 font-medium">Equity Value</div>
                       <div className="text-foreground font-medium">{fmtM(merton.eqValue)}</div>
                       <div className="text-muted-foreground text-xs">= V·N(d₁) - D·e^(-rT)·N(d₂)</div>
@@ -1450,7 +1450,6 @@ export default function CreditRiskModelPage() {
                               ? "bg-primary/10"
                               : "hover:bg-muted/40"
                           }`}
-                          whileHover={{ x: 2 }}
                         >
                           <td className="py-1.5 text-foreground font-medium">{loan.name}</td>
                           <td className="py-1.5 text-muted-foreground">{loan.sector}</td>

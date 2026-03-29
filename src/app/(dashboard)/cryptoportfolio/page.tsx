@@ -694,7 +694,7 @@ export default function CryptoPortfolioPage() {
           {/* Cost basis methods + Heat score */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
-              <h3 className="font-semibold text-sm flex items-center gap-2"><FileText className="w-4 h-4 text-primary" />Cost Basis Method — Tax Impact</h3>
+              <h3 className="font-semibold text-sm flex items-center gap-2"><FileText className="w-3.5 h-3.5 text-muted-foreground/50" />Cost Basis Method — Tax Impact</h3>
               <div className="flex gap-2">
                 {(["FIFO","HIFO","SPECIFIC"] as const).map(m => (
                   <button
@@ -808,7 +808,7 @@ export default function CryptoPortfolioPage() {
 
           {/* BTC/ETH Ratio */}
           <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
-            <h3 className="font-medium text-sm flex items-center gap-2"><TrendingUp className="w-4 h-4 text-primary" />BTC/ETH Ratio — 24 Months</h3>
+            <h3 className="font-medium text-sm flex items-center gap-2"><TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />BTC/ETH Ratio — 24 Months</h3>
             <p className="text-xs text-muted-foreground">Higher ratio = BTC outperforming ETH. Watch for reversal signals when ETH leads innovation cycles.</p>
             <LineChartSVG data={marketData.btcEthRatio} color="#3b82f6" fill height={100} />
             <div className="flex gap-3 text-xs text-muted-foreground">
@@ -945,7 +945,7 @@ export default function CryptoPortfolioPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {/* DeFi vs TradFi comparison */}
             <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
-              <h3 className="font-medium text-sm flex items-center gap-2"><BarChart2 className="w-4 h-4 text-primary" />DeFi vs Traditional Finance Yields</h3>
+              <h3 className="font-medium text-sm flex items-center gap-2"><BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />DeFi vs Traditional Finance Yields</h3>
               <div className="space-y-2.5">
                 {[
                   { label: "Bank Savings",        apy: 0.5,  color: "#6b7280",  type: "TradFi" },
@@ -1047,7 +1047,7 @@ export default function CryptoPortfolioPage() {
 
           {/* Cross-asset correlation */}
           <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
-            <h3 className="font-medium text-sm flex items-center gap-2"><Layers className="w-4 h-4 text-primary" />Crypto vs Traditional Assets — Different Regimes</h3>
+            <h3 className="font-medium text-sm flex items-center gap-2"><Layers className="w-3.5 h-3.5 text-muted-foreground/50" />Crypto vs Traditional Assets — Different Regimes</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm border-collapse">
                 <thead>
@@ -1108,7 +1108,7 @@ export default function CryptoPortfolioPage() {
             </div>
 
             <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
-              <h3 className="font-medium text-sm flex items-center gap-2"><Shield className="w-4 h-4 text-primary" />Stop Loss Strategy — High Volatility Assets</h3>
+              <h3 className="font-medium text-sm flex items-center gap-2"><Shield className="w-3.5 h-3.5 text-muted-foreground/50" />Stop Loss Strategy — High Volatility Assets</h3>
               <div className="space-y-2.5 text-xs text-muted-foreground">
                 {[
                   { type: "Fixed Stop",      pros: "Simple, removes emotion", cons: "Stopped out by normal volatility spikes", rec: "Use 15-20% for BTC/ETH" },
@@ -1171,7 +1171,7 @@ export default function CryptoPortfolioPage() {
 
           {/* Cost basis tracker */}
           <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
-            <h3 className="font-medium text-sm flex items-center gap-2"><FileText className="w-4 h-4 text-primary" />Cost Basis Methods — Tax Comparison</h3>
+            <h3 className="font-medium text-sm flex items-center gap-2"><FileText className="w-3.5 h-3.5 text-muted-foreground/50" />Cost Basis Methods — Tax Comparison</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
                 { method: "FIFO", icon: "1️⃣", gains: portfolioData.fifoTotal, tax: portfolioData.fifoTotal * 0.28, desc: "First In, First Out. IRS default. Uses oldest lots first. Often highest taxable gain in rising markets.", badge: "Default" },
@@ -1299,7 +1299,7 @@ export default function CryptoPortfolioPage() {
 
           {/* Form 8949 Preview */}
           <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
-            <h3 className="font-medium text-sm flex items-center gap-2"><FileText className="w-4 h-4 text-primary" />Form 8949 Preview — Simplified Gain/Loss Report</h3>
+            <h3 className="font-medium text-sm flex items-center gap-2"><FileText className="w-3.5 h-3.5 text-muted-foreground/50" />Form 8949 Preview — Simplified Gain/Loss Report</h3>
             <p className="text-xs text-muted-foreground mb-2">Simplified illustration. Consult a tax professional or crypto tax software (Koinly, TaxBit, CoinTracker) for actual filing.</p>
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-muted-foreground border-collapse font-mono">

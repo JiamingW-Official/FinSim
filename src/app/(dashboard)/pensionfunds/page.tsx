@@ -437,7 +437,7 @@ function DBvsDCTab() {
       <Card className="bg-muted/60 border-border border-l-4 border-l-primary">
         <CardHeader className="pb-3 p-4">
           <CardTitle className="text-lg text-foreground flex items-center gap-2">
-            <Users className="w-4 h-4 text-primary" />
+            <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
             DB vs DC Plan Comparison (10 Dimensions)
           </CardTitle>
         </CardHeader>
@@ -534,7 +534,7 @@ function DBvsDCTab() {
       <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             Global Pension System Assets ($56T Total)
           </CardTitle>
         </CardHeader>
@@ -572,7 +572,7 @@ function DBvsDCTab() {
         <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <Layers className="w-4 h-4 text-primary" />
+              <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
               Hybrid Plan Designs
             </CardTitle>
           </CardHeader>
@@ -739,7 +739,7 @@ function DBvsDCTab() {
         <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-primary" />
+              <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />
               ERISA Protections & DC Growth Drivers
             </CardTitle>
           </CardHeader>
@@ -829,7 +829,7 @@ function LDITab() {
       <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-foreground flex items-center gap-2">
-            <DollarSign className="w-4 h-4 text-primary" />
+            <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
             Pension Liability Valuation — Funded Status
           </CardTitle>
         </CardHeader>
@@ -1093,7 +1093,7 @@ function ActuarialTab() {
       <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             Mortality Table Evolution — Longevity Risk
           </CardTitle>
         </CardHeader>
@@ -1188,7 +1188,7 @@ function ActuarialTab() {
         <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-primary" />
+              <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
               Asset Smoothing Methods
             </CardTitle>
           </CardHeader>
@@ -1385,7 +1385,7 @@ function InvestmentStrategyTab() {
         <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <PieChart className="w-4 h-4 text-primary" />
+              <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
               Typical US Pension Asset Allocation
             </CardTitle>
           </CardHeader>
@@ -1420,7 +1420,7 @@ function InvestmentStrategyTab() {
         <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-primary" />
+              <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
               Alternatives Growth in Pensions 1990–2024
             </CardTitle>
           </CardHeader>
@@ -1487,7 +1487,7 @@ function InvestmentStrategyTab() {
         <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <Shield className="w-4 h-4 text-primary" />
+              <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
               Norway GPFG: The Benchmark
             </CardTitle>
           </CardHeader>

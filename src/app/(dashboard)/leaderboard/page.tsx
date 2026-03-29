@@ -355,7 +355,7 @@ export default function LeaderboardPage() {
                             <span className={cn("text-[11px] font-medium flex-1", info.color)}>
                               {info.label}
                             </span>
-                            <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                            <span className="text-xs font-medium font-mono tabular-nums text-muted-foreground">
                               {count}
                             </span>
                             <div className="w-12 h-1.5 rounded-full bg-muted/30 overflow-hidden">
@@ -499,16 +499,16 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
                 </div>
               </div>
 
-              <span className="text-[11px] font-medium tabular-nums text-right">
+              <span className="text-[11px] font-medium font-mono tabular-nums text-right">
                 ${(friend.portfolioValue / 1000).toFixed(1)}K
               </span>
 
-              <span className={cn("text-[11px] font-medium tabular-nums text-right",
+              <span className={cn("text-[11px] font-medium font-mono tabular-nums text-right",
                 friend.returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {friend.returnPct >= 0 ? "+" : ""}{friend.returnPct.toFixed(1)}%
               </span>
 
-              <span className="text-[11px] font-medium tabular-nums text-right">
+              <span className="text-[11px] font-medium font-mono tabular-nums text-right">
                 {friend.winRate.toFixed(0)}%
               </span>
 
@@ -625,7 +625,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             <Trophy className="h-3.5 w-3.5 text-muted-foreground/50" />
             <span className="text-[11px] font-medium text-muted-foreground">Global Rank</span>
           </div>
-          <div className="text-2xl font-bold tabular-nums text-primary">#{rank}</div>
+          <div className="text-2xl font-bold font-mono tabular-nums text-primary">#{rank}</div>
           <p className="text-xs text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
         </div>
 
@@ -740,11 +740,11 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             className={cn("grid grid-cols-4 px-4 py-2.5 items-center", i % 2 === 0 ? "bg-muted/5" : "")}
           >
             <span className="text-[11px] font-medium text-muted-foreground">{row.label}</span>
-            <span className={cn("text-[11px] font-medium tabular-nums text-center", row.userBetter ? "text-emerald-400" : "text-foreground")}>
+            <span className={cn("text-[11px] font-medium font-mono tabular-nums text-center", row.userBetter ? "text-emerald-400" : "text-foreground")}>
               {row.user}
             </span>
-            <span className="text-[11px] tabular-nums text-muted-foreground text-center">{row.top10}</span>
-            <span className="text-[11px] tabular-nums text-muted-foreground text-center">{row.all}</span>
+            <span className="text-[11px] font-mono tabular-nums text-muted-foreground text-center">{row.top10}</span>
+            <span className="text-[11px] font-mono tabular-nums text-muted-foreground text-center">{row.all}</span>
           </div>
         ))}
       </div>
@@ -867,7 +867,7 @@ function PodiumSlot({
     >
       {/* Place label (no emoji) */}
       <span className={cn(
-        "text-xs text-muted-foreground font-medium tabular-nums",
+        "text-xs text-muted-foreground font-medium font-mono tabular-nums",
         place === 1 ? "text-amber-400" : place === 2 ? "text-muted-foreground" : "text-orange-400",
       )}>{placeLabels[place - 1]}</span>
 
@@ -886,7 +886,7 @@ function PodiumSlot({
       </span>
 
       {/* Value */}
-      <span className="text-xs font-medium tabular-nums text-muted-foreground">
+      <span className="text-xs font-medium font-mono tabular-nums text-muted-foreground">
         {dimConfig.format(dimConfig.getValue(entry))}
       </span>
 
@@ -943,7 +943,7 @@ function NextGoalContent({
       </div>
       <div className="flex items-center justify-between rounded-lg bg-muted/15 px-3 py-2">
         <span className="text-xs text-muted-foreground">Gap</span>
-        <span className="text-sm font-medium tabular-nums text-primary">
+        <span className="text-sm font-medium font-mono tabular-nums text-primary">
           {dimConfig.format(Math.abs(diff))}
         </span>
       </div>

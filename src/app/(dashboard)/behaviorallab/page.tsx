@@ -957,7 +957,7 @@ export default function BehavioralLabPage() {
           <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="text-base font-medium flex items-center gap-2">
-                <div className="p-1.5 rounded bg-red-500/10">
+                <div className="p-1.5 rounded bg-red-500/5">
                   <Scale className="w-4 h-4 text-red-400" />
                 </div>
                 Experiment 1 — The Coin Flip

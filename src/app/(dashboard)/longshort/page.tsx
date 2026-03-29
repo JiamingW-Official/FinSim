@@ -662,7 +662,7 @@ export default function LongShortPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-primary" />
+                    <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Exposure Overview
                   </CardTitle>
                 </CardHeader>
@@ -695,7 +695,7 @@ export default function LongShortPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-primary" />
+                    <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Factor Betas vs Benchmark
                   </CardTitle>
                 </CardHeader>
@@ -755,7 +755,7 @@ export default function LongShortPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-primary" />
+                    <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     P&L Attribution Waterfall
                   </CardTitle>
                 </CardHeader>
@@ -945,7 +945,7 @@ export default function LongShortPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Sector Concentration
                 </CardTitle>
               </CardHeader>
@@ -1028,7 +1028,7 @@ export default function LongShortPage() {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Stress Test Results
               </CardTitle>
             </CardHeader>

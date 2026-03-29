@@ -668,7 +668,7 @@ export default function CryptoStakingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Staking Reward Breakdown (6 months)
                   </CardTitle>
                 </CardHeader>
@@ -695,7 +695,7 @@ export default function CryptoStakingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-primary" />
+                    <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
                     ETH Staking APY Trend
                   </CardTitle>
                 </CardHeader>
@@ -712,7 +712,7 @@ export default function CryptoStakingPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                   How Proof-of-Stake Works
                 </CardTitle>
               </CardHeader>
@@ -751,7 +751,7 @@ export default function CryptoStakingPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <Cpu className="w-4 h-4 text-primary" />
+                  <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Validator Client Comparison
                 </CardTitle>
               </CardHeader>
@@ -801,7 +801,7 @@ export default function CryptoStakingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Market Share by Protocol
                   </CardTitle>
                 </CardHeader>
@@ -925,7 +925,7 @@ export default function CryptoStakingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Network className="w-4 h-4 text-primary" />
+                    <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
                     MEV-Boost & PBS Architecture
                   </CardTitle>
                 </CardHeader>
@@ -986,7 +986,7 @@ export default function CryptoStakingPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <DollarSign className="w-4 h-4 text-primary" />
+                  <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
                   MEV Economy at a Glance
                 </CardTitle>
               </CardHeader>
@@ -1016,7 +1016,7 @@ export default function CryptoStakingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <DollarSign className="w-4 h-4 text-primary" />
+                    <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Solo Validator P&amp;L Model
                   </CardTitle>
                 </CardHeader>
@@ -1057,7 +1057,7 @@ export default function CryptoStakingPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
+                  <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Historical Slashing Incidents
                 </CardTitle>
               </CardHeader>

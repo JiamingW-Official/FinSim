@@ -85,7 +85,7 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-lg px-2.5 py-1 text-xs font-bold text-muted-foreground hover:bg-accent"
+            className="rounded-lg px-2.5 py-1 text-xs font-bold text-muted-foreground hover:bg-muted/30"
           >
             Cancel
           </button>

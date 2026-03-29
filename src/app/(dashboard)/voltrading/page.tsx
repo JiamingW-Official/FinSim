@@ -677,7 +677,7 @@ export default function VolTradingPage() {
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Implied Volatility Surface (Isometric)
                 </CardTitle>
               </CardHeader>
@@ -717,7 +717,7 @@ export default function VolTradingPage() {
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                <Target className="w-4 h-4 text-primary" />
+                <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Volatility Skew Dynamics
               </CardTitle>
             </CardHeader>
@@ -856,7 +856,7 @@ export default function VolTradingPage() {
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Gamma Scalping P&L Simulation
                 </CardTitle>
               </CardHeader>
@@ -878,7 +878,7 @@ export default function VolTradingPage() {
           <Card className="bg-background border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                <Layers className="w-4 h-4 text-primary" />
+                <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Long Vol Strategy Reference
               </CardTitle>
             </CardHeader>
@@ -1060,7 +1060,7 @@ export default function VolTradingPage() {
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-primary" />
+                  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Dispersion Trade Structure
                 </CardTitle>
               </CardHeader>
@@ -1075,7 +1075,7 @@ export default function VolTradingPage() {
             <Card className="bg-background border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Implied vs Realized Correlation
                 </CardTitle>
               </CardHeader>

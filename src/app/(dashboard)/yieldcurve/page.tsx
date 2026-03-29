@@ -1219,7 +1219,7 @@ export default function YieldCurvePage() {
                               sig.impact === "bullish"
                                 ? "text-green-400 border-green-500/30 bg-green-500/10"
                                 : sig.impact === "bearish"
-                                ? "text-red-400 border-red-500/30 bg-red-500/10"
+                                ? "text-red-400 border-red-500/30 bg-red-500/5"
                                 : "text-yellow-400 border-yellow-500/30 bg-yellow-500/10"
                             )}
                           >

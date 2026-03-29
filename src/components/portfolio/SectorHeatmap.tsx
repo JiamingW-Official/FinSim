@@ -80,7 +80,7 @@ export function SectorHeatmap({ performance }: SectorHeatmapProps) {
                 "px-2 py-0.5 text-xs font-medium rounded transition-colors",
                 period === p.value
                   ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:bg-accent",
+                  : "text-muted-foreground hover:bg-muted/30",
               )}
             >
               {p.label}

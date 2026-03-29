@@ -127,7 +127,7 @@ function IndexCard({ ticker, name, seed }: { ticker: string; name: string; seed:
         <span
           className={cn(
             "text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded",
-            isPos ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500",
+            isPos ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500",
           )}
         >
           {isPos ? "+" : ""}
@@ -251,7 +251,7 @@ function VixIndicator() {
         <span
           className={cn(
             "text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded",
-            isRising ? "bg-red-500/10 text-red-500" : "bg-emerald-500/10 text-emerald-500",
+            isRising ? "bg-red-500/5 text-red-500" : "bg-emerald-500/5 text-emerald-500",
           )}
         >
           {trend}
@@ -481,7 +481,7 @@ function generateCalendarEvents(): CalendarEvent[] {
 }
 
 const IMPACT_STYLES: Record<ImpactLevel, string> = {
-  High: "bg-red-500/10 text-red-500",
+  High: "bg-red-500/5 text-red-500",
   Medium: "bg-amber-500/10 text-amber-500",
   Low: "bg-muted text-muted-foreground",
 };
@@ -490,7 +490,7 @@ const TYPE_STYLES: Record<EventType, string> = {
   Earnings: "bg-primary/10 text-primary",
   FOMC: "bg-primary/10 text-primary",
   CPI: "bg-orange-500/10 text-orange-500",
-  NFP: "bg-emerald-500/10 text-emerald-500",
+  NFP: "bg-emerald-500/5 text-emerald-500",
   GDP: "bg-teal-500/10 text-emerald-500",
   PMI: "bg-sky-500/10 text-sky-500",
 };
@@ -717,8 +717,8 @@ function InsiderTab({ ticker }: { ticker: string }) {
                       className={cn(
                         "text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded",
                         trade.type === "buy"
-                          ? "bg-emerald-500/10 text-emerald-500"
-                          : "bg-red-500/10 text-red-500",
+                          ? "bg-emerald-500/5 text-emerald-500"
+                          : "bg-red-500/5 text-red-500",
                       )}
                     >
                       {trade.type.toUpperCase()}
@@ -760,10 +760,10 @@ function InstitutionalTab({ ticker }: { ticker: string }) {
 
   // Classify quarterly change into action
   function getAction(chg: number): { label: string; cls: string } {
-    if (chg > 5) return { label: "New/Increased", cls: "bg-emerald-500/10 text-emerald-500" };
-    if (chg > 0) return { label: "Increased", cls: "bg-emerald-500/10 text-emerald-500" };
-    if (chg < -5) return { label: "Sold Out/Decreased", cls: "bg-red-500/10 text-red-500" };
-    if (chg < 0) return { label: "Decreased", cls: "bg-red-500/10 text-red-500" };
+    if (chg > 5) return { label: "New/Increased", cls: "bg-emerald-500/5 text-emerald-500" };
+    if (chg > 0) return { label: "Increased", cls: "bg-emerald-500/5 text-emerald-500" };
+    if (chg < -5) return { label: "Sold Out/Decreased", cls: "bg-red-500/5 text-red-500" };
+    if (chg < 0) return { label: "Decreased", cls: "bg-red-500/5 text-red-500" };
     return { label: "Unchanged", cls: "bg-muted text-muted-foreground" };
   }
 
@@ -977,8 +977,8 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
                       className={cn(
                         "text-xs text-muted-foreground font-medium px-1.5 py-0.5 rounded",
                         flow.type === "call"
-                          ? "text-emerald-500 bg-emerald-500/10"
-                          : "text-red-500 bg-red-500/10",
+                          ? "text-emerald-500 bg-emerald-500/5"
+                          : "text-red-500 bg-red-500/5",
                       )}
                     >
                       {flow.type.toUpperCase()}
@@ -1001,9 +1001,9 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
                       className={cn(
                         "text-xs text-muted-foreground px-1.5 py-0.5 rounded font-medium capitalize",
                         flow.sentiment === "bullish"
-                          ? "bg-emerald-500/10 text-emerald-500"
+                          ? "bg-emerald-500/5 text-emerald-500"
                           : flow.sentiment === "bearish"
-                            ? "bg-red-500/10 text-red-500"
+                            ? "bg-red-500/5 text-red-500"
                             : "bg-muted text-muted-foreground",
                       )}
                     >

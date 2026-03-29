@@ -1021,7 +1021,7 @@ export default function PaymentSystemsPage() {
             <Card className="bg-card border-border border-l-4 border-l-primary">
               <CardHeader className="pb-2 p-4">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-primary" />
+                  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Global Payment Rails Comparison
                 </CardTitle>
               </CardHeader>
@@ -1094,7 +1094,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-primary" />
+                <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Volume vs. Value by Rail — High Value, Low Volume vs. High Volume, Low Value
               </CardTitle>
             </CardHeader>
@@ -1154,7 +1154,7 @@ export default function PaymentSystemsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-primary" />
+                  <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Net Settlement (DNS)
                 </CardTitle>
               </CardHeader>
@@ -1207,7 +1207,7 @@ export default function PaymentSystemsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <CreditCard className="w-4 h-4 text-primary" />
+                  <CreditCard className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Global Card Market Share
                 </CardTitle>
               </CardHeader>
@@ -1220,7 +1220,7 @@ export default function PaymentSystemsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Network className="w-4 h-4 text-primary" />
+                  <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
                   4-Party vs 3-Party Model
                 </CardTitle>
               </CardHeader>
@@ -1295,7 +1295,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <RefreshCw className="w-4 h-4 text-primary" />
+                <RefreshCw className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Authorization → Clearing → Settlement 3-Step Flow
               </CardTitle>
             </CardHeader>
@@ -1402,7 +1402,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <ArrowLeftRight className="w-4 h-4 text-primary" />
+                <ArrowLeftRight className="w-3.5 h-3.5 text-muted-foreground/50" />
                 RTP vs FedNow Feature Comparison
               </CardTitle>
             </CardHeader>
@@ -1548,7 +1548,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Smartphone className="w-4 h-4 text-primary" />
+                <Smartphone className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Open Banking API Integration &amp; Overlay Services
               </CardTitle>
             </CardHeader>
@@ -1617,7 +1617,7 @@ export default function PaymentSystemsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <ArrowRight className="w-4 h-4 text-primary" />
+                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Top Cross-Border Remittance Corridors
               </CardTitle>
             </CardHeader>
@@ -1687,7 +1687,7 @@ export default function PaymentSystemsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Network className="w-4 h-4 text-primary" />
+                  <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Blockchain Alternatives — Ripple / Stellar
                 </CardTitle>
               </CardHeader>

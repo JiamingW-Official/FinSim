@@ -460,7 +460,7 @@ function FXOptionsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Vanilla vs Exotic Cost Comparison — $1M Notional, 90-day Tenor
           </CardTitle>
         </CardHeader>
@@ -891,7 +891,7 @@ function AccumulatorsTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Target className="w-4 h-4 text-primary" />
+              <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
               TARF: Cash Flow Waterfall
             </CardTitle>
           </CardHeader>
@@ -919,7 +919,7 @@ function AccumulatorsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             P&L Scenarios Under Different Spot Paths
           </CardTitle>
         </CardHeader>
@@ -1187,7 +1187,7 @@ function DualCurrencyTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Calculator className="w-4 h-4 text-primary" />
+              <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
               Yield Enhancement vs Strike Selection
             </CardTitle>
           </CardHeader>
@@ -1206,7 +1206,7 @@ function DualCurrencyTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Worst-Case Scenario Analysis — USD/JPY DCD, Strike: 150.0, Yield: 5.8% p.a. (28-day)
           </CardTitle>
         </CardHeader>
@@ -1438,7 +1438,7 @@ function CorporateHedgingTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             FX Risk Exposure Mapping
           </CardTitle>
         </CardHeader>
@@ -1500,7 +1500,7 @@ function CorporateHedgingTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Cost of Carry Comparison — Forward vs Option vs Zero-Cost Collar
           </CardTitle>
         </CardHeader>

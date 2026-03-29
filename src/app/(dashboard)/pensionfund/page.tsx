@@ -659,7 +659,7 @@ export default function PensionFundPage() {
               <Card className="border-border border-l-4 border-l-primary">
                 <CardHeader className="pb-2 p-4">
                   <CardTitle className="text-lg flex items-center gap-2">
-                    <Scale className="w-4 h-4 text-primary" />
+                    <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Funded Ratio Gauge
                   </CardTitle>
                 </CardHeader>
@@ -689,7 +689,7 @@ export default function PensionFundPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     10-Year Funded Ratio Projection
                   </CardTitle>
                 </CardHeader>
@@ -742,7 +742,7 @@ export default function PensionFundPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-primary" />
+                  <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Asset Class Breakdown — Allocation, Return &amp; Hedge Characteristics
                 </CardTitle>
               </CardHeader>
@@ -850,7 +850,7 @@ export default function PensionFundPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-primary" />
+                  <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Duration Gap Analysis
                 </CardTitle>
               </CardHeader>
@@ -862,7 +862,7 @@ export default function PensionFundPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-primary" />
+                  <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                   LDI Strategy Selection
                 </CardTitle>
               </CardHeader>
@@ -1151,7 +1151,7 @@ export default function PensionFundPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Key Actuarial Concepts
                 </CardTitle>
               </CardHeader>

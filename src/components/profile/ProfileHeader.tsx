@@ -38,7 +38,7 @@ export function ProfileHeader() {
               <motion.button
                 type="button"
                 onClick={() => setEditOpen(true)}
-                className="rounded-lg p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+                className="rounded-lg p-1 text-muted-foreground hover:bg-muted/30 hover:text-foreground"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >

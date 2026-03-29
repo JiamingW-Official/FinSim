@@ -518,7 +518,7 @@ function PipelineTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Briefcase className="w-4 h-4 text-primary" />
+            <Briefcase className="w-3.5 h-3.5 text-muted-foreground/50" />
             Active Syndication Pipeline
           </CardTitle>
         </CardHeader>
@@ -605,7 +605,7 @@ function PipelineTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Deal Size by Role
           </CardTitle>
         </CardHeader>
@@ -693,7 +693,7 @@ function BookBuildingTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-primary" />
+            <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />
             Demand Book — {selectedDeal.borrower}
           </CardTitle>
         </CardHeader>
@@ -815,7 +815,7 @@ function PricingGridTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Full Pricing Grid
           </CardTitle>
         </CardHeader>
@@ -938,7 +938,7 @@ function SecondaryMarketTab() {
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Activity className="w-4 h-4 text-primary" />
+              <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
               Secondary Loan Prices
             </CardTitle>
             <div className="flex gap-1">
@@ -1071,7 +1071,7 @@ function CovenantTab() {
         <Card key={category} className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <FileText className="w-4 h-4 text-primary" />
+              <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
               {category} Covenants
             </CardTitle>
           </CardHeader>

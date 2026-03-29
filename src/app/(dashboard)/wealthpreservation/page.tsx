@@ -658,14 +658,14 @@ function TaxStrategyPanel() {
     },
     {
       title: "Asset Location Optimization",
-      icon: <Layers className="w-4 h-4 text-primary" />,
+      icon: <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />,
       saving: "0.4–0.7% after-tax return",
       description: "Place tax-inefficient assets (bonds, REITs) in tax-deferred accounts; equities in taxable. Coordinate across all account types.",
       complexity: "Low",
     },
     {
       title: "Roth Conversion Ladder",
-      icon: <BarChart3 className="w-4 h-4 text-primary" />,
+      icon: <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />,
       saving: "Significant in low-tax years",
       description: "Convert traditional IRA to Roth during low-income years (gap years, early retirement) to reduce future RMDs.",
       complexity: "Medium",
@@ -840,7 +840,7 @@ function InflationHedgesPanel() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Info className="w-4 h-4 text-primary" />
+            <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
             Purchasing Power Erosion: $1M over 30 Years
           </CardTitle>
         </CardHeader>
@@ -922,14 +922,14 @@ export default function WealthPreservationPage() {
             color="bg-amber-500/10"
           />
           <MetricCard
-            icon={<Scale className="w-4 h-4 text-primary" />}
+            icon={<Scale className="w-3.5 h-3.5 text-muted-foreground/50" />}
             label="Tax Efficiency Score"
             value={`${taxScore}/100`}
             sub="vs. 58 avg unoptimized"
             color="bg-primary/10"
           />
           <MetricCard
-            icon={<PieChart className="w-4 h-4 text-primary" />}
+            icon={<PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />}
             label="Diversification Score"
             value={`${divScore}/100`}
             sub="Across 5 asset classes"
@@ -988,7 +988,7 @@ export default function WealthPreservationPage() {
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <BarChart3 className="w-4 h-4 text-primary" />
+                      <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                       After-Tax Returns: Optimized vs. Unoptimized
                     </CardTitle>
                   </CardHeader>
@@ -1011,7 +1011,7 @@ export default function WealthPreservationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Landmark className="w-4 h-4 text-primary" />
+                    <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Preservation Strategy Comparison
                   </CardTitle>
                 </CardHeader>
@@ -1101,7 +1101,7 @@ export default function WealthPreservationPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-primary" />
+                    <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Succession Planning Timeline
                   </CardTitle>
                 </CardHeader>

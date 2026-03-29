@@ -899,7 +899,7 @@ export default function AdvancedTAPage() {
       <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-primary/10">
-            <Activity className="w-5 h-5 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-semibold text-foreground">Advanced Technical Analysis</h1>

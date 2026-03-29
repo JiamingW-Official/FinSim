@@ -686,7 +686,7 @@ export default function CleantechPage() {
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2 bg-emerald-500/10 rounded-lg">
+          <div className="p-2 bg-emerald-500/5 rounded-lg">
             <Leaf className="w-5 h-5 text-emerald-400" />
           </div>
           <h1 className="text-xl font-semibold text-foreground">Clean Technology & Energy Transition</h1>

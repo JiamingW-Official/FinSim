@@ -655,7 +655,7 @@ export default function EsgPage() {
                           {COMPANIES.map((c, i) => (
                             <tr
                               key={c.ticker}
-                              className={`border-b border-border/50 cursor-pointer transition-colors hover:bg-accent/20 ${selectedCompany.ticker === c.ticker ? "bg-emerald-500/10" : ""}`}
+                              className={`border-b border-border/50 cursor-pointer transition-colors hover:bg-muted/10 ${selectedCompany.ticker === c.ticker ? "bg-emerald-500/5" : ""}`}
                               onClick={() => setSelectedCompany(c)}
                             >
                               <td className="px-3 py-2">

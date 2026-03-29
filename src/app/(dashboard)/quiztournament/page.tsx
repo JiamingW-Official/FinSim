@@ -1036,7 +1036,7 @@ function ExplanationPanel({
         "border p-4",
         wasCorrect
           ? "bg-green-500/10 border-green-500/40"
-          : "bg-red-500/10 border-red-500/40"
+          : "bg-red-500/5 border-red-500/40"
       )}>
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">

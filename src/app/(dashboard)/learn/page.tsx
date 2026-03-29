@@ -68,7 +68,7 @@ type DifficultyFilter = "all" | "beginner" | "intermediate" | "advanced";
 const DIFFICULTY_COLORS: Record<string, string> = {
   beginner: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
   intermediate: "text-amber-400 bg-amber-400/10 border-amber-400/20",
-  advanced: "text-red-500 bg-red-500/10 border-red-500/20",
+  advanced: "text-red-500 bg-red-500/5 border-red-500/20",
 };
 
 // Learning path groupings

@@ -956,7 +956,7 @@ export default function MarketDashPage() {
                         className={cn(
                           "text-xs text-muted-foreground px-1.5 h-5",
                           ev.impact === "high"
-                            ? "border-red-500/40 text-red-400 bg-red-500/10"
+                            ? "border-red-500/40 text-red-400 bg-red-500/5"
                             : "border-amber-500/40 text-amber-400 bg-amber-500/10"
                         )}
                       >
@@ -980,8 +980,8 @@ export default function MarketDashPage() {
                     return (
                       <div key={s} className={cn(
                         "rounded-lg p-2 text-xs text-muted-foreground",
-                        s === "beat" ? "bg-emerald-500/10 text-emerald-400" :
-                        s === "miss" ? "bg-red-500/10 text-red-400" : "bg-muted text-muted-foreground"
+                        s === "beat" ? "bg-emerald-500/5 text-emerald-400" :
+                        s === "miss" ? "bg-red-500/5 text-red-400" : "bg-muted text-muted-foreground"
                       )}>
                         <div className="text-lg font-bold">{count}</div>
                         <div className="text-xs text-muted-foreground capitalize">{s === "inline" ? "In-line" : s}</div>

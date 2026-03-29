@@ -896,7 +896,7 @@ export default function RiskModelsPage() {
           {/* FRTB & Sensitivity-Based Approach */}
           <ConceptCard
             title="FRTB: ES vs VaR — Fundamental Review of the Trading Book"
-            icon={<TrendingDown className="w-4 h-4 text-primary" />}
+            icon={<TrendingDown className="w-3.5 h-3.5 text-muted-foreground/50" />}
             defaultOpen
           >
             <div className="space-y-3">
@@ -929,7 +929,7 @@ export default function RiskModelsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <Layers className="w-4 h-4 text-primary" />
+                <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Correlation Matrix Construction Methods
               </CardTitle>
             </CardHeader>
@@ -1059,7 +1059,7 @@ export default function RiskModelsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <GitBranch className="w-4 h-4 text-primary" />
+                <GitBranch className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Credit Migration Matrix — 1-Year Rating Transition Probabilities (%)
               </CardTitle>
             </CardHeader>
@@ -1244,7 +1244,7 @@ export default function RiskModelsPage() {
             </ConceptCard>
             <ConceptCard
               title="CCAR / DFAST Regulatory Framework"
-              icon={<ShieldAlert className="w-4 h-4 text-primary" />}
+              icon={<ShieldAlert className="w-3.5 h-3.5 text-muted-foreground/50" />}
               defaultOpen
             >
               <div className="space-y-2 text-xs text-muted-foreground">
@@ -1258,7 +1258,7 @@ export default function RiskModelsPage() {
           {/* Sensitivity vs Scenario */}
           <ConceptCard
             title="Sensitivity Analysis vs Scenario Analysis — Key Distinction"
-            icon={<BarChart2 className="w-4 h-4 text-primary" />}
+            icon={<BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="bg-muted/30 rounded-lg p-3">
@@ -1352,7 +1352,7 @@ export default function RiskModelsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <Database className="w-4 h-4 text-primary" />
+                <Database className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Model Inventory — Risk Tiering &amp; Monitoring Metrics
               </CardTitle>
             </CardHeader>
@@ -1377,7 +1377,7 @@ export default function RiskModelsPage() {
           {/* Backtesting vs Benchmarking */}
           <ConceptCard
             title="Backtesting vs Benchmarking — Validation Techniques"
-            icon={<Activity className="w-4 h-4 text-primary" />}
+            icon={<Activity className="w-3.5 h-3.5 text-muted-foreground/50" />}
             defaultOpen
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-muted-foreground">

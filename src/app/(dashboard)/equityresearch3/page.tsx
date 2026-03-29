@@ -662,7 +662,7 @@ function SOTPTab() {
       <div className="grid md:grid-cols-2 gap-3">
         <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-            <PieChart className="w-4 h-4 text-primary" />
+            <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
             Asset Value Composition
           </h3>
           <div className="flex items-center gap-4">
@@ -692,7 +692,7 @@ function SOTPTab() {
         {/* Waterfall */}
         <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Waterfall Bridge to Equity
           </h3>
           <SOTPWaterfallSVG />
@@ -910,7 +910,7 @@ function PrimaryResearchTab() {
         {/* Channel framework */}
         <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <Network className="w-4 h-4 text-primary" />
+            <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
             Channel Check Framework
           </h3>
           <div className="space-y-2">
@@ -959,7 +959,7 @@ function PrimaryResearchTab() {
       {/* Expert networks */}
       <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-          <Users className="w-4 h-4 text-primary" />
+          <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
           Expert Network Landscape
         </h3>
         <div className="grid md:grid-cols-2 gap-3">
@@ -1185,7 +1185,7 @@ function ForensicTab() {
 
         <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             Short Seller Report Anatomy
           </h3>
           <p className="text-xs text-muted-foreground mb-2">Well-constructed short reports follow a predictable structure. Understanding the template helps separate signal from noise.</p>
@@ -1236,7 +1236,7 @@ function ThesisTab() {
       {/* Thesis steps */}
       <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-          <Target className="w-4 h-4 text-primary" />
+          <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
           Differentiated Thesis Construction Framework
         </h3>
 
@@ -1299,7 +1299,7 @@ function ThesisTab() {
             {
               label: "Know what the market knows",
               desc: "Before disagreeing, understand the full bull and bear case that professionals have already debated. Consensus is not stupid — it is the weighted average of informed views.",
-              icon: <BookOpen className="w-4 h-4 text-primary" />,
+              icon: <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />,
             },
           ].map((item, i) => (
             <div key={i} className="bg-card rounded-lg p-3 border border-border">
@@ -1350,7 +1350,7 @@ function ThesisTab() {
       <div className="grid md:grid-cols-2 gap-3">
         <div className="bg-muted border border-border rounded-md p-4 flex flex-col items-center">
           <h3 className="text-sm font-medium text-foreground mb-3 w-full flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             Economic Moat Durability
           </h3>
           <MoatRadarSVG moats={MOAT_TYPES} />
@@ -1358,7 +1358,7 @@ function ThesisTab() {
 
         <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             Moat Classification
           </h3>
           <div className="space-y-2">

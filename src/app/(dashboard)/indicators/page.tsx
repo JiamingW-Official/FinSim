@@ -651,7 +651,7 @@ function TrendArrow({ value, prev }: { value: number; prev: number }) {
 
 function PmiBadge({ val }: { val: number }) {
   const color = val >= 52 ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
-    : val >= 50 ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+    : val >= 50 ? "bg-emerald-500/5 text-emerald-400 border-emerald-500/20"
     : val >= 48 ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
     : "bg-red-500/15 text-red-400 border-red-500/25";
   return (
@@ -957,7 +957,7 @@ function InflationTab() {
                 <p className="text-lg font-medium text-indigo-300">{BREAKEVEN_10Y}%</p>
               </div>
               <span className="text-muted-foreground text-xl">=</span>
-              <div className="text-center bg-emerald-500/10 rounded-lg p-2">
+              <div className="text-center bg-emerald-500/5 rounded-lg p-2">
                 <p className="text-muted-foreground text-xs">Real Rate</p>
                 <p className="text-lg font-medium text-emerald-300">{(FED_RATE - BREAKEVEN_10Y).toFixed(2)}%</p>
               </div>
@@ -1033,8 +1033,8 @@ function LaborTab() {
 
         <SectionCard title="Sahm Rule — Recession Early Warning">
           <div className={cn("rounded-md p-4 mb-3 border", sahmTriggered
-            ? "bg-red-500/10 border-red-500/30"
-            : "bg-emerald-500/10 border-emerald-500/30")}>
+            ? "bg-red-500/5 border-red-500/30"
+            : "bg-emerald-500/5 border-emerald-500/30")}>
             <div className="flex items-center gap-2 mb-1">
               <AlertTriangle className={cn("w-4 h-4", sahmTriggered ? "text-red-400" : "text-emerald-400")} />
               <span className={cn("text-sm font-medium", sahmTriggered ? "text-red-300" : "text-emerald-300")}>
@@ -1151,7 +1151,7 @@ function HousingTab() {
             { label: "Affordability Index",   val: "64.2",     warn: true    },
           ].map(({ label, val, warn, neutral }) => (
             <div key={label} className={cn("rounded-md p-3.5 border",
-              warn ? "bg-red-500/10 border-red-500/20" : "bg-muted/50 border-border/50")}>
+              warn ? "bg-red-500/5 border-red-500/20" : "bg-muted/50 border-border/50")}>
               <p className="text-xs text-muted-foreground">{label}</p>
               <p className={cn("text-xl font-medium mt-1", warn ? "text-red-300" : "text-foreground")}>{val}</p>
             </div>
@@ -1247,7 +1247,7 @@ function GlobalTab() {
         <div className="flex flex-wrap gap-3 mt-3">
           {[
             { label: "52+  Strong expansion", cls: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" },
-            { label: "50–52  Expansion",       cls: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
+            { label: "50–52  Expansion",       cls: "bg-emerald-500/5 text-emerald-400 border-emerald-500/20" },
             { label: "48–50  Mild contraction",cls: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
             { label: "<48  Contraction",        cls: "bg-red-500/15 text-red-400 border-red-500/25" },
           ].map(({ label, cls }) => (

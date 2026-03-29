@@ -526,7 +526,6 @@ function TaxLossHarvestingTab() {
             return (
               <motion.div
                 key={p.ticker}
-                whileHover={{ x: 2 }}
                 onClick={() => setSelectedPos(isSelected ? null : p)}
                 className={cn(
                   "rounded-lg p-3 cursor-pointer transition-colors border",

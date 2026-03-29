@@ -541,7 +541,7 @@ function ReturnChip({ value }: { value: number }) {
     <span
       className={cn(
         "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs text-muted-foreground font-semibold tabular-nums",
-        pos ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400",
+        pos ? "bg-emerald-500/5 text-emerald-400" : "bg-red-500/5 text-red-400",
       )}
     >
       {pos ? <TrendingUp className="h-2.5 w-2.5" /> : <TrendingDown className="h-2.5 w-2.5" />}

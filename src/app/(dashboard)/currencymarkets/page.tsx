@@ -1098,7 +1098,6 @@ export default function CurrencyMarketsPage() {
                           : "border-border/50 bg-foreground/[0.01] hover:bg-muted/30"
                       )}
                       style={selectedCrisis === i ? { borderColor: crisis.color + "80", backgroundColor: crisis.color + "0a" } : {}}
-                      whileHover={{ x: 2 }}
                     >
                       {/* Year badge */}
                       <div className="w-12 flex-shrink-0 text-right">

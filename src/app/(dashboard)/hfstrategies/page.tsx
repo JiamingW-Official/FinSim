@@ -499,7 +499,7 @@ function LongShortTab() {
       <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Scale className="w-4 h-4 text-primary" />
+            <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
             Sector Neutrality Check
           </CardTitle>
         </CardHeader>
@@ -525,7 +525,7 @@ function LongShortTab() {
       <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Repeat className="w-4 h-4 text-primary" />
+            <Repeat className="w-3.5 h-3.5 text-muted-foreground/50" />
             Active Pair Trades
           </CardTitle>
         </CardHeader>
@@ -568,7 +568,7 @@ function LongShortTab() {
       <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Gross Exposure by Pair
           </CardTitle>
         </CardHeader>
@@ -605,7 +605,7 @@ function GlobalMacroTab() {
       <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             Macro Theme Book
           </CardTitle>
         </CardHeader>
@@ -655,7 +655,7 @@ function GlobalMacroTab() {
       <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             Theme Correlation Matrix
           </CardTitle>
         </CardHeader>
@@ -825,7 +825,7 @@ function EventDrivenTab() {
             <Card className="bg-card/60 border-border/40">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Target className="w-4 h-4 text-primary" />
+                  <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Special Situations Screener
                 </CardTitle>
               </CardHeader>
@@ -904,7 +904,7 @@ function RelativeValueTab() {
             <Card className="bg-card/60 border-border/40">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-primary" />
+                  <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Convertible Arbitrage — Delta-Hedged Book
                 </CardTitle>
               </CardHeader>
@@ -1069,7 +1069,7 @@ function PerformanceTab() {
         <Card className="bg-card/60 border-border/40">
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-              <PieChart className="w-4 h-4 text-primary" />
+              <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
               Alpha vs Beta Decomposition
             </CardTitle>
           </CardHeader>
@@ -1109,7 +1109,7 @@ function PerformanceTab() {
         <Card className="bg-card/60 border-border/40">
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-primary" />
+              <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
               Factor Attribution
             </CardTitle>
           </CardHeader>

@@ -81,8 +81,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                 <motion.button
                   key={template.id}
                   onClick={() => setSelected(template)}
-                  whileHover={{ x: 2 }}
-                  className={`flex w-full items-start gap-3 rounded-md border p-3 text-left transition-all ${
+                  className={`flex w-full items-start gap-3 rounded-md border p-3 text-left transition-colors duration-150 ${
                     isSelected
                       ? "border-primary/40 bg-primary/10"
                       : "border-border/50 bg-muted/20 hover:border-border hover:bg-muted/40"

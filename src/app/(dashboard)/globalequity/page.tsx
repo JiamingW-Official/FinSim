@@ -362,7 +362,7 @@ function MarketOverviewTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Major Global Indices
           </CardTitle>
         </CardHeader>
@@ -427,7 +427,7 @@ function MarketOverviewTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             YTD Return Comparison
           </CardTitle>
         </CardHeader>
@@ -607,7 +607,7 @@ function ValuationTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             Valuation Metrics by Market
           </CardTitle>
         </CardHeader>
@@ -655,7 +655,7 @@ function ValuationTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             P/E vs. EPS Growth (PEG Analysis)
           </CardTitle>
         </CardHeader>
@@ -879,7 +879,7 @@ function CurrencyImpactTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <DollarSign className="w-4 h-4 text-primary" />
+            <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
             Local vs. USD Returns (US Investor Perspective)
           </CardTitle>
         </CardHeader>
@@ -927,7 +927,7 @@ function CurrencyImpactTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             FX Volatility vs. Hedge Cost Analysis
           </CardTitle>
         </CardHeader>
@@ -994,7 +994,7 @@ function CurrencyImpactTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Info className="w-4 h-4 text-primary" />
+            <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
             Hedging Decision Framework
           </CardTitle>
         </CardHeader>
@@ -1100,7 +1100,7 @@ function EMvsDMTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             Risk / Return Scatter — EM vs DM (10-Year Annualized)
           </CardTitle>
         </CardHeader>
@@ -1159,7 +1159,7 @@ function EMvsDMTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <ShieldAlert className="w-4 h-4 text-primary" />
+            <ShieldAlert className="w-3.5 h-3.5 text-muted-foreground/50" />
             EM vs. DM: Key Factor Comparison
           </CardTitle>
         </CardHeader>
@@ -1195,7 +1195,7 @@ function EMvsDMTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             Detailed Metrics
           </CardTitle>
         </CardHeader>

@@ -1288,7 +1288,7 @@ export default function AIFinancePage() {
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-9 h-9 rounded-md bg-primary/15 border border-border flex items-center justify-center">
-            <Brain className="w-5 h-5 text-primary" />
+            <Brain className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-foreground tracking-tight">AI & ML in Finance</h1>

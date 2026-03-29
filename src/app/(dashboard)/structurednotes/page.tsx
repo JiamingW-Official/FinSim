@@ -1215,7 +1215,7 @@ export default function StructuredNotesPage() {
                 {
                   id: "autocall-mechanism",
                   title: "Auto-Call Mechanism",
-                  icon: <RefreshCw className="w-4 h-4 text-primary" />,
+                  icon: <RefreshCw className="w-3.5 h-3.5 text-muted-foreground/50" />,
                   content:
                     "On each observation date (typically quarterly or annually), if the underlying closes above the call trigger (often 100% of initial), the note redeems at face value plus accrued coupon. Memory coupons pay all previously missed coupons on redemption.",
                 },
@@ -1267,7 +1267,7 @@ export default function StructuredNotesPage() {
             <div className="space-y-5">
               <div className="bg-card border border-border rounded-md p-4 space-y-5">
                 <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-primary" />
+                  <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Payoff Parameters
                 </h3>
 
@@ -1400,7 +1400,7 @@ export default function StructuredNotesPage() {
             <div className="lg:col-span-2 space-y-4">
               <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Payoff Diagram — Underlying vs Note Return
                 </h3>
                 <div className="overflow-x-auto">
@@ -1421,7 +1421,7 @@ export default function StructuredNotesPage() {
               {/* Scenarios */}
               <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Scenario Analysis
                 </h3>
                 <ScenarioTable
@@ -1635,7 +1635,7 @@ export default function StructuredNotesPage() {
 
                 <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-primary" />
+                    <Lock className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Issuer Credit Impact
                   </h3>
                   <div className="space-y-2">
@@ -1809,7 +1809,7 @@ export default function StructuredNotesPage() {
             {/* Scenario table */}
             <div className="lg:col-span-2 bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-primary" />
+                <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Full Scenario Table — Current Payoff Parameters
               </h3>
               <ScenarioTable
@@ -1832,7 +1832,7 @@ export default function StructuredNotesPage() {
                     color: "border-amber-500/20",
                   },
                   {
-                    icon: <Info className="w-4 h-4 text-primary" />,
+                    icon: <Info className="w-3.5 h-3.5 text-muted-foreground/50" />,
                     title: "Tax Consideration",
                     text: "Returns may be taxed as ordinary income rather than capital gains. Consult a tax advisor for jurisdiction-specific treatment of contingent payment instruments.",
                     color: "border-border",

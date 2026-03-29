@@ -110,7 +110,7 @@ const TYPE_META: Record<
   roth_ira: {
     label: "Roth IRA",
     color: "text-emerald-400",
-    bg: "bg-emerald-500/10 text-emerald-400",
+    bg: "bg-emerald-500/5 text-emerald-400",
     description: "Tax-free growth, qualified withdrawals tax-free",
   },
   traditional_ira: {
@@ -294,7 +294,7 @@ function pnlColor(n: number): string {
 }
 
 function pnlBg(n: number): string {
-  return n >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400";
+  return n >= 0 ? "bg-emerald-500/5 text-emerald-400" : "bg-red-500/5 text-red-400";
 }
 
 // ── Pure SVG Charts ───────────────────────────────────────────────────────────
@@ -1398,7 +1398,7 @@ export default function AccountsPage() {
               {/* Tax savings callout */}
               <Card className="p-5 bg-card/60 border-border/50">
                 <div className="flex items-start gap-3">
-                  <div className="h-8 w-8 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
+                  <div className="h-8 w-8 rounded-full bg-emerald-500/5 flex items-center justify-center shrink-0">
                     <TrendingUp className="h-4 w-4 text-emerald-400" />
                   </div>
                   <div>
@@ -1424,7 +1424,7 @@ export default function AccountsPage() {
                     target: "Roth IRA",
                     reason: "Tax-free compounding on high-growth assets maximizes wealth",
                     color: "text-emerald-400",
-                    bg: "bg-emerald-500/10",
+                    bg: "bg-emerald-500/5",
                   },
                   {
                     asset: "Dividend Stocks",
@@ -1489,7 +1489,7 @@ export default function AccountsPage() {
                         </div>
                       )}
                       {s.isOptimal && (
-                        <Badge className="text-xs py-0 bg-emerald-500/10 text-emerald-400">Optimal</Badge>
+                        <Badge className="text-xs py-0 bg-emerald-500/5 text-emerald-400">Optimal</Badge>
                       )}
                     </div>
                   ))}

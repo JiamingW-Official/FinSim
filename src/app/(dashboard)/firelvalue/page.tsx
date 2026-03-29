@@ -420,7 +420,7 @@ function YieldCurveTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             US Treasury Yield Curve
           </CardTitle>
         </CardHeader>
@@ -551,7 +551,7 @@ function YieldCurveTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <ArrowLeftRight className="w-4 h-4 text-primary" />
+            <ArrowLeftRight className="w-3.5 h-3.5 text-muted-foreground/50" />
             Curve Trade Builder
           </CardTitle>
         </CardHeader>
@@ -922,7 +922,7 @@ function SpreadTradesTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Historical OFR Spread (60 days)
           </CardTitle>
         </CardHeader>
@@ -1173,7 +1173,7 @@ function ButterflyTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Target className="w-4 h-4 text-primary" />
+            <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
             Butterfly Setup
           </CardTitle>
         </CardHeader>
@@ -1325,7 +1325,7 @@ function ButterflyTab() {
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-primary" />
+              <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
               P&L Surface vs Fly Spread Change
             </CardTitle>
           </div>
@@ -1505,7 +1505,7 @@ function SwapSpreadsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <ArrowLeftRight className="w-4 h-4 text-primary" />
+            <ArrowLeftRight className="w-3.5 h-3.5 text-muted-foreground/50" />
             Swap Curve vs Treasury Curve
           </CardTitle>
         </CardHeader>
@@ -1688,7 +1688,7 @@ function SwapSpreadsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             {spreadViewLabel} Term Structure
           </CardTitle>
         </CardHeader>

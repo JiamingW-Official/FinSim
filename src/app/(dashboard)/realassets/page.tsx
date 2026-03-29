@@ -538,7 +538,7 @@ function InfrastructureTab() {
       <Card className="border-l-4 border-l-primary">
         <CardHeader className="p-4">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Yield vs Total Return by Infrastructure Sector
           </CardTitle>
         </CardHeader>
@@ -761,7 +761,7 @@ function RealEstateTab() {
       <Card>
         <CardHeader>
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-primary" />
+            <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             REIT vs Direct Real Estate — Cap Rate & Return Comparison
           </CardTitle>
         </CardHeader>
@@ -928,7 +928,7 @@ function CommoditiesTab() {
       <Card>
         <CardHeader>
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             Inflation Correlation vs Volatility Scatter
           </CardTitle>
         </CardHeader>
@@ -1510,7 +1510,7 @@ function PortfolioRoleTab() {
       <Card>
         <CardHeader>
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             Cross-Asset Correlation Matrix
             <Button
               size="sm"
@@ -1603,7 +1603,7 @@ function PortfolioRoleTab() {
       <Card>
         <CardHeader>
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             Portfolio Allocation Scenarios — Sharpe Ratio Impact
           </CardTitle>
         </CardHeader>
@@ -1841,7 +1841,7 @@ export default function RealAssetsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="space-y-2">
               <h4 className="font-medium text-foreground flex items-center gap-1.5">
-                <BarChart3 className="w-4 h-4 text-primary" /> Cap Rate
+                <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" /> Cap Rate
               </h4>
               <p className="text-muted-foreground text-xs leading-relaxed">
                 Net Operating Income / Property Value. Lower cap rates imply higher valuations and lower

@@ -74,7 +74,7 @@ export function FeaturedAchievement() {
                     "flex items-center gap-2 rounded-lg border p-2 text-left transition-colors",
                     a.id === featuredId
                       ? "border-amber-500/30 bg-amber-500/10"
-                      : "border-border/50 hover:bg-accent",
+                      : "border-border/50 hover:bg-muted/20",
                   )}
                 >
                   <Trophy className="h-3.5 w-3.5 shrink-0 text-amber-400" />

@@ -426,7 +426,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     SPY 60-Day IV vs Realized Vol (20-day HV) Spread
                   </CardTitle>
                 </CardHeader>
@@ -626,7 +626,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-primary" />
+                    <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Simulated Stock Path (30 days) — Seed 742008
                   </CardTitle>
                 </CardHeader>
@@ -674,7 +674,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     P&L Decomposition: Gamma Scalp vs Theta Drag vs Net
                   </CardTitle>
                 </CardHeader>
@@ -810,7 +810,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Info className="w-4 h-4 text-primary" />
+                    <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Dispersion Trade Construction
                   </CardTitle>
                 </CardHeader>
@@ -929,7 +929,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <ArrowUpDown className="w-4 h-4 text-primary" />
+                    <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Calendar Spread Opportunities — Buy Cheap / Sell Rich Expiry
                   </CardTitle>
                 </CardHeader>
@@ -985,7 +985,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     25-Delta Risk Reversal — Skew Analysis
                   </CardTitle>
                 </CardHeader>
@@ -1142,7 +1142,7 @@ export default function VolatilityArbPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     20-Year VRP Evidence — IV vs RV Annual Average
                   </CardTitle>
                 </CardHeader>
@@ -1313,7 +1313,7 @@ export default function VolatilityArbPage() {
               <Card className="bg-primary/5 border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Info className="w-4 h-4 text-primary" />
+                    <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Short-Vol Sharpe Decomposition
                   </CardTitle>
                 </CardHeader>

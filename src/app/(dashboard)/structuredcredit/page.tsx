@@ -825,7 +825,7 @@ export default function StructuredCreditPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Capital Structure Waterfall
                   </CardTitle>
                 </CardHeader>
@@ -837,7 +837,7 @@ export default function StructuredCreditPage() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Info className="w-4 h-4 text-primary" />
+                    <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                     How a CLO Works
                   </CardTitle>
                 </CardHeader>
@@ -891,7 +891,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <PieChart className="w-4 h-4 text-primary" />
+                  <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Loan Pool Composition
                 </CardTitle>
               </CardHeader>
@@ -925,7 +925,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Tranche Comparison
                 </CardTitle>
               </CardHeader>
@@ -971,7 +971,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Historical Performance by Vintage
                 </CardTitle>
               </CardHeader>
@@ -1012,7 +1012,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <ArrowDownRight className="w-4 h-4 text-primary" />
+                  <ArrowDownRight className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Interest Waterfall — {scenario === "base" ? "Base" : "Stress"} Case
                 </CardTitle>
               </CardHeader>
@@ -1090,7 +1090,7 @@ export default function StructuredCreditPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   CLO Tranche Spreads
                 </CardTitle>
               </CardHeader>

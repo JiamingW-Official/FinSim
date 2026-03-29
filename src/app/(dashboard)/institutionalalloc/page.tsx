@@ -857,7 +857,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <PieChart className="w-4 h-4 text-primary" />
+                  <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Asset Allocation Comparison — 5 Institutional Models
                 </CardTitle>
               </CardHeader>
@@ -883,7 +883,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                   {selectedModel.name} — Key Principles
                 </CardTitle>
               </CardHeader>
@@ -911,7 +911,7 @@ export default function InstitutionalAllocPage() {
             {/* Swensen Principles */}
             <div>
               <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-primary" />
+                <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Swensen&apos;s Unconventional Portfolio Principles
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -940,7 +940,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-primary" />
+                  <Lock className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Illiquidity Premium Theory
                 </CardTitle>
               </CardHeader>
@@ -971,7 +971,7 @@ export default function InstitutionalAllocPage() {
             {/* Asset class breakdown */}
             <div>
               <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-primary" />
+                <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Typical Endowment Asset Class Breakdown
               </h3>
               <div className="space-y-2">
@@ -1041,7 +1041,7 @@ export default function InstitutionalAllocPage() {
             {/* Liquidity ladder */}
             <div>
               <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Liquidity Ladder — Endowment Structure
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1083,7 +1083,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-primary" />
+                  <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Liability-Driven Investing (LDI) Basics
                 </CardTitle>
               </CardHeader>
@@ -1098,7 +1098,7 @@ export default function InstitutionalAllocPage() {
                   {[
                     {
                       title: "Duration Matching",
-                      icon: <Target className="w-4 h-4 text-primary" />,
+                      icon: <Target className="w-3.5 h-3.5 text-muted-foreground/50" />,
                       body: "Matching asset duration to liability duration (often 14–20 years) neutralizes interest rate risk. A 1% rate rise increases PV of liabilities — but also asset values if duration-matched.",
                     },
                     {
@@ -1130,7 +1130,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   PV of Assets vs PV of Liabilities (Simulated Pension Plan, $B)
                 </CardTitle>
               </CardHeader>
@@ -1144,7 +1144,7 @@ export default function InstitutionalAllocPage() {
               <Card className="bg-card/60 border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Funding Ratio Gauge
                   </CardTitle>
                 </CardHeader>
@@ -1212,7 +1212,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Interest Rate Hedge via Swaps — Mechanics
                 </CardTitle>
               </CardHeader>
@@ -1353,7 +1353,7 @@ export default function InstitutionalAllocPage() {
               <Card className="bg-card/60 border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Return Contribution by Asset Class
                   </CardTitle>
                 </CardHeader>
@@ -1422,7 +1422,7 @@ export default function InstitutionalAllocPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Target className="w-4 h-4 text-primary" />
+                  <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Benchmark Hugging vs High-Conviction — SWF Spectrum
                 </CardTitle>
               </CardHeader>

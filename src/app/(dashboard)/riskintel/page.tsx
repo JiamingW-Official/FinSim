@@ -1004,7 +1004,7 @@ export default function RiskIntelPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                    <GitBranch className="w-4 h-4 text-primary" />
+                    <GitBranch className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Correlation Risk
                   </CardTitle>
                 </CardHeader>
@@ -1043,7 +1043,7 @@ export default function RiskIntelPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Beta Risk
                   </CardTitle>
                 </CardHeader>
@@ -1283,7 +1283,7 @@ export default function RiskIntelPage() {
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2 pt-4 px-4">
                     <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                      <Info className="w-4 h-4 text-primary" />
+                      <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Cell Explanation
                     </CardTitle>
                   </CardHeader>
@@ -1386,7 +1386,7 @@ export default function RiskIntelPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <GitBranch className="w-4 h-4 text-primary" />
+                  <GitBranch className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Risk Cluster Dendrogram
                   <span className="text-muted-foreground text-xs font-normal ml-1">— hierarchical clustering by correlation distance</span>
                 </CardTitle>
@@ -1695,7 +1695,7 @@ export default function RiskIntelPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-3 pt-4 px-4">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4 text-primary" />
+                  <RefreshCw className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Custom Scenario Builder
                 </CardTitle>
               </CardHeader>
@@ -1915,7 +1915,7 @@ export default function RiskIntelPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-3 pt-4 px-4">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                    <DollarSign className="w-4 h-4 text-primary" />
+                    <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Volatility-Adjusted Position Sizing
                   </CardTitle>
                 </CardHeader>
@@ -1972,7 +1972,7 @@ export default function RiskIntelPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-3 pt-4 px-4">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Risk Budget Allocation (% of Total VaR)
                 </CardTitle>
               </CardHeader>

@@ -306,7 +306,7 @@ function SpinoffMechanicsTab() {
 
   const spinoffReasons = [
     {
-      icon: <Target className="w-4 h-4 text-primary" />,
+      icon: <Target className="w-3.5 h-3.5 text-muted-foreground/50" />,
       title: "Conglomerate Discount",
       desc: "Diversified conglomerates often trade at 10–20% below sum-of-parts value. Separating units unlocks this trapped value.",
     },
@@ -321,7 +321,7 @@ function SpinoffMechanicsTab() {
       desc: "Antitrust regulators may require divestiture. Spinoffs are often cleaner than asset sales from a tax and continuity perspective.",
     },
     {
-      icon: <TrendingUp className="w-4 h-4 text-primary" />,
+      icon: <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />,
       title: "Valuation Arbitrage",
       desc: "High-growth unit trapped in low-multiple conglomerate. Independent listing attracts sector-specific investors and analysts.",
     },
@@ -562,7 +562,7 @@ function ShareholderDistributionSVG() {
   return (
     <div className="rounded-md border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-        <Info className="w-4 h-4 text-primary" />
+        <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
         Shareholder Distribution Timeline
       </h3>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 100 }}>
@@ -1048,7 +1048,7 @@ function InvestingStrategyTab() {
       desc: "Index funds and ETFs that held the parent must sell spinoff shares if it does not qualify for their mandate. This creates artificial selling pressure — a buying opportunity for active investors.",
     },
     {
-      icon: <BarChart2 className="w-4 h-4 text-primary" />,
+      icon: <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />,
       title: "Complexity Discount",
       desc: "Analysts covering the parent rarely follow the spinoff initially. Low coverage means mispricing. As dedicated analysts initiate, the information gap closes and valuation re-rates.",
     },
@@ -1058,7 +1058,7 @@ function InvestingStrategyTab() {
       desc: "Leadership teams freed from corporate politics can allocate capital optimally. Management typically receives spinoff equity compensation, aligning incentives sharply.",
     },
     {
-      icon: <Scissors className="w-4 h-4 text-primary" />,
+      icon: <Scissors className="w-3.5 h-3.5 text-muted-foreground/50" />,
       title: "Hidden Jewels",
       desc: "Small units buried in large conglomerates may have best-in-class economics invisible to investors. Separation unlocks sector-specific multiple expansion.",
     },

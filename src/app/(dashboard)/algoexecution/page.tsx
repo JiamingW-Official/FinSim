@@ -584,7 +584,7 @@ export default function AlgoExecutionPage() {
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-muted/50 border border-border">
-            <Zap className="w-5 h-5 text-primary" />
+            <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Algorithmic Execution Strategies</h1>

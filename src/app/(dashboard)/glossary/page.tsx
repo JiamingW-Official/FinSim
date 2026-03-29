@@ -352,7 +352,7 @@ function DictionaryTab() {
               className={cn(
                 "h-7 w-7 rounded text-xs text-muted-foreground font-medium transition-colors",
                 presentLetters.has(letter)
-                  ? "bg-muted hover:bg-accent text-foreground/80 cursor-pointer"
+                  ? "bg-muted hover:bg-muted/30 text-foreground/80 cursor-pointer"
                   : "text-muted-foreground/25 cursor-default"
               )}
             >

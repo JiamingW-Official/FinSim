@@ -626,7 +626,7 @@ export default function MicrostructureDepthPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-primary" />
+                  <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Bid-Ask Spread Decomposition
                 </CardTitle>
               </CardHeader>
@@ -646,7 +646,7 @@ export default function MicrostructureDepthPage() {
                     color="border-amber-500/20 bg-amber-500/5"
                   />
                   <InfoCard
-                    icon={<Zap className="w-4 h-4 text-primary" />}
+                    icon={<Zap className="w-3.5 h-3.5 text-muted-foreground/50" />}
                     title={`Order Processing (${orderProcessingPct}%)`}
                     body="Fixed operational costs: infrastructure, clearing, regulatory fees. Relatively constant—dominant for liquid, low-volatility assets like on-the-run Treasuries."
                     color="border-border bg-primary/5"
@@ -737,7 +737,7 @@ export default function MicrostructureDepthPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
+                  <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Quote Lifetime Distribution
                 </CardTitle>
               </CardHeader>
@@ -759,7 +759,7 @@ export default function MicrostructureDepthPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Order Flow Imbalance (OFI) by Interval
               </CardTitle>
             </CardHeader>
@@ -971,7 +971,7 @@ export default function MicrostructureDepthPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                <Waves className="w-4 h-4 text-primary" />
+                <Waves className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Kyle Lambda (λ) — Price Impact per Unit Order Flow
               </CardTitle>
             </CardHeader>
@@ -1024,7 +1024,7 @@ export default function MicrostructureDepthPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   TWAP vs VWAP vs Implementation Shortfall
                 </CardTitle>
               </CardHeader>
@@ -1130,7 +1130,7 @@ export default function MicrostructureDepthPage() {
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
                 {[
                   {
-                    icon: <Shield className="w-4 h-4 text-primary" />,
+                    icon: <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />,
                     title: "Glosten-Milgrom Model",
                     body: "Sequential trade model where each trade updates dealer beliefs about asset value. Spreads widen with probability of informed trading (α) and gain from informational trade (δ). Spread = 2αδ / (2αδ + (1−α)).",
                     color: "border-border bg-primary/5",

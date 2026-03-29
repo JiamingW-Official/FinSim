@@ -628,7 +628,7 @@ function AnalystRatingsTab() {
               <span className="text-[11px] text-muted-foreground/60">{r.analysts} analysts</span>
               <div className={cn(
                 "ml-auto flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[11px] font-medium",
-                isUp ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400" : "border-red-500/40 bg-red-500/10 text-red-400",
+                isUp ? "border-emerald-500/40 bg-emerald-500/5 text-emerald-400" : "border-red-500/40 bg-red-500/5 text-red-400",
               )}>
                 {isUp ? <ArrowUpRight className="h-2.5 w-2.5" /> : <ArrowDownRight className="h-2.5 w-2.5" />}
                 {isUp ? "+" : ""}{upside.toFixed(1)}%
