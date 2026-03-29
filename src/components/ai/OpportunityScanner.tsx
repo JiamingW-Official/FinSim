@@ -78,14 +78,14 @@ function ScorePill({ score }: { score: number }) {
 function BiasBadge({ bias }: { bias: ScanRow["bias"] }) {
   if (bias === "bullish")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/30 bg-emerald-500/10 px-1 py-0.5 text-[11px] font-bold text-emerald-400">
+      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/30 bg-emerald-500/5 px-1 py-0.5 text-[11px] font-bold text-emerald-400">
         <TrendingUp className="h-2.5 w-2.5" />
         Bull
       </span>
     );
   if (bias === "bearish")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/30 bg-red-500/10 px-1 py-0.5 text-[11px] font-bold text-red-400">
+      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/30 bg-red-500/5 px-1 py-0.5 text-[11px] font-bold text-red-400">
         <TrendingDown className="h-2.5 w-2.5" />
         Bear
       </span>
@@ -244,7 +244,7 @@ export function OpportunityScanner({
                 "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none transition-all",
                 filter === f.value
                   ? "bg-primary/15 border-primary/30 text-primary"
-                  : "border-border/40 bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
+                  : "border-border/40 bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/30",
               )}
             >
               {f.label}

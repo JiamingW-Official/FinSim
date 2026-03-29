@@ -930,7 +930,7 @@ function BeneishTab() {
             { label: "SGI", value: "1.60", danger: true },
             { label: "TATA", value: "0.17", danger: true },
           ].map(item => (
-            <div key={item.label} className="rounded border border-red-500/20 bg-red-500/10 px-3 py-1.5">
+            <div key={item.label} className="rounded border border-red-500/20 bg-red-500/5 px-3 py-1.5">
               <div className="text-xs text-muted-foreground">{item.label}</div>
               <div className="text-sm font-medium text-red-400">{item.value}</div>
             </div>
@@ -1133,7 +1133,7 @@ export default function EarningsQualityPage() {
             { label: "Accrual Anomaly", value: "~10%", subLabel: "Annual alpha, low vs high", icon: <Activity size={14} className="text-indigo-400" />, color: "text-indigo-400" },
             { label: "F-Score Spread", value: "~23%", subLabel: "Strong vs weak portfolios", icon: <TrendingUp size={14} className="text-emerald-400" />, color: "text-emerald-400" },
             { label: "M-Score Accuracy", value: "76%", subLabel: "Manipulation detection rate", icon: <ShieldAlert size={14} className="text-amber-400" />, color: "text-amber-400" },
-            { label: "FCF Premium", value: "~7%", subLabel: "High vs low FCF quality", icon: <DollarSign size={14} className="text-primary" />, color: "text-primary" },
+            { label: "FCF Premium", value: "~7%", subLabel: "High vs low FCF quality", icon: <DollarSign size={14} className="text-muted-foreground/50" />, color: "text-primary" },
           ].map(stat => (
             <div key={stat.label} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3 flex items-start gap-3">
               <div className="mt-0.5">{stat.icon}</div>

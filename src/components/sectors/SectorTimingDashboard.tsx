@@ -1450,8 +1450,8 @@ export default function SectorTimingDashboard() {
                       key={stance}
                       className={cn(
                         "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border",
-                        stance === "Overweight" ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/10" :
-                        stance === "Underweight" ? "border-red-500/40 text-red-400 bg-red-500/10" :
+                        stance === "Overweight" ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/5" :
+                        stance === "Underweight" ? "border-red-500/40 text-red-400 bg-red-500/5" :
                         "border-foreground/15 text-muted-foreground bg-foreground/5",
                       )}
                     >

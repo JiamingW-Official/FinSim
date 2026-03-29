@@ -898,7 +898,7 @@ function CategoryPills({
             "rounded-full px-3 py-1 text-xs text-muted-foreground font-medium transition-colors",
             active === c
               ? "bg-primary text-primary-foreground"
-              : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground",
+              : "bg-muted text-muted-foreground hover:bg-muted/40 hover:text-foreground",
           )}
         >
           {c}

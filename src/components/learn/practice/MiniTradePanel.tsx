@@ -329,7 +329,7 @@ export function MiniTradePanel({
             <motion.div layout className={cn(
               "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase",
               isPlaying ? "bg-amber-500/10 text-amber-400"
-                : atEnd ? "bg-emerald-500/10 text-emerald-400" : "bg-muted/40 text-muted-foreground")}>
+                : atEnd ? "bg-emerald-500/5 text-emerald-400" : "bg-muted/40 text-muted-foreground")}>
               {isPlaying && (
                 <motion.span animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 0.8, repeat: Infinity, type: "tween" }}
                   className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400" />

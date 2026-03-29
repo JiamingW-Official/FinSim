@@ -90,7 +90,7 @@ export function UnitNode({
         className={cn(
           "group relative flex items-center gap-3 rounded-md border-2 p-4 transition-all overflow-hidden",
           isUnitUnlocked
-            ? "cursor-pointer hover:bg-accent/50"
+            ? "cursor-pointer hover:bg-muted/20"
             : "cursor-not-allowed opacity-40",
           mastery !== "none"
             ? "border-[var(--mastery-color)]"

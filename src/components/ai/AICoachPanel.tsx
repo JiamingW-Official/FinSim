@@ -1181,7 +1181,7 @@ export function AICoachPanel() {
                       "flex-1 rounded px-1 py-1 text-[10px] font-semibold transition-all leading-tight min-w-0",
                       mode === m.value
                         ? "bg-primary/15 text-primary border border-primary/30"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent border border-transparent",
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/30 border border-transparent",
                     )}
                   >
                     {m.label}

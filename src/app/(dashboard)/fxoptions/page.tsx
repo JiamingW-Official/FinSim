@@ -721,7 +721,7 @@ function GKCalculator() {
       {/* Results */}
       <div className="space-y-3">
         <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-          <Activity size={14} className="text-primary" /> Results
+          <Activity size={14} className="text-muted-foreground/50" /> Results
         </h3>
         <div className="bg-card border border-border rounded-lg p-4 space-y-2">
           <div className="flex justify-between items-center border-b border-border pb-2 mb-3">
@@ -1003,7 +1003,7 @@ export default function FXOptionsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-foreground flex items-center gap-2">
-                <Activity size={16} className="text-primary" />
+                <Activity size={16} className="text-muted-foreground/50" />
                 Risk Reversal &amp; Butterfly Structures
                 <span className="ml-1 text-xs font-normal text-muted-foreground">EUR/USD</span>
               </CardTitle>

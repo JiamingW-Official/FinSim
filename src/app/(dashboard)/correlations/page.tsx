@@ -546,7 +546,7 @@ function CorrelationMatrixTab() {
       <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-            <BarChart3 size={15} className="text-primary" />
+            <BarChart3 size={15} className="text-muted-foreground/50" />
             10×10 Asset Class Correlation Matrix (Current — 252-day)
           </CardTitle>
         </CardHeader>
@@ -1170,7 +1170,7 @@ function DiversificationScoreTab() {
       <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-            <BarChart3 size={14} className="text-primary" />
+            <BarChart3 size={14} className="text-muted-foreground/50" />
             Risk Concentration vs Weight Allocation
           </CardTitle>
         </CardHeader>
@@ -1462,7 +1462,7 @@ function OptimalPairsTab() {
       <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-            <RefreshCw size={13} className="text-primary" />
+            <RefreshCw size={13} className="text-muted-foreground/50" />
             Diversification Summary
           </CardTitle>
         </CardHeader>
@@ -1477,7 +1477,7 @@ function OptimalPairsTab() {
               {
                 title: "Uncorrelated Return Streams",
                 body: "Gold and High Yield (ρ = 0.06) are nearly orthogonal in return space. Combining them adds true incremental diversification even when equities dominate the portfolio.",
-                icon: <Activity size={14} className="text-primary" />,
+                icon: <Activity size={14} className="text-muted-foreground/50" />,
               },
               {
                 title: "Crisis Regime Warning",
@@ -1514,7 +1514,7 @@ export default function CorrelationsPage() {
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
-            <GitBranch size={16} className="text-primary" />
+            <GitBranch size={16} className="text-muted-foreground/50" />
           </div>
           <h1 className="text-xl font-semibold text-foreground">Correlation Analysis</h1>
           <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">

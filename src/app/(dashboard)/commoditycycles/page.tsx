@@ -1231,7 +1231,7 @@ export default function CommodityCyclesPage() {
               {[
                 {
                   title: "LNG Market",
-                  icon: <Droplets size={14} className="text-primary" />,
+                  icon: <Droplets size={14} className="text-muted-foreground/50" />,
                   body: "Asian LNG spot prices trade at a large premium to US Henry Hub. Europe became a major LNG importer post-2022, tightening global balances. New US LNG export capacity is adding ~4 bcf/d through 2026.",
                   color: "blue",
                 },
@@ -1591,7 +1591,7 @@ export default function CommodityCyclesPage() {
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <Globe size={14} className="text-primary" />
+                  <Globe size={14} className="text-muted-foreground/50" />
                   Northern Hemisphere Crop Calendar
                 </CardTitle>
               </CardHeader>

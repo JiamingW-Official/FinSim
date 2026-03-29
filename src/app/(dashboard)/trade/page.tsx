@@ -171,7 +171,7 @@ export default function TradePage() {
               "flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium transition-colors",
               mainView === "trade"
                 ? "bg-primary/15 text-primary"
-                : "text-muted-foreground hover:text-foreground hover:bg-accent/50",
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/20",
             )}
           >
             Trade
@@ -182,7 +182,7 @@ export default function TradePage() {
               "flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium transition-colors",
               mainView === "replay"
                 ? "bg-primary/15 text-primary"
-                : "text-muted-foreground hover:text-foreground hover:bg-accent/50",
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/20",
             )}
           >
             <RefreshCw className="h-3 w-3" />

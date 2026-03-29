@@ -906,7 +906,7 @@ function SpreadTrading() {
         <div className={cn(
           "rounded-lg p-4 border text-center",
           crackSpread >= 10 ? "bg-green-500/10 border-green-500/20" :
-          crackSpread >= 0 ? "bg-amber-500/10 border-amber-500/20" : "bg-red-500/10 border-red-500/20"
+          crackSpread >= 0 ? "bg-amber-500/10 border-amber-500/20" : "bg-red-500/5 border-red-500/20"
         )}>
           <div className="text-xs text-muted-foreground mb-1">3-2-1 Crack Spread</div>
           <div className={cn(
@@ -957,7 +957,7 @@ function SpreadTrading() {
         <div className={cn(
           "rounded-lg p-4 border text-center",
           crushSpread >= 1.5 ? "bg-green-500/10 border-green-500/20" :
-          crushSpread >= 0.5 ? "bg-amber-500/10 border-amber-500/20" : "bg-red-500/10 border-red-500/20"
+          crushSpread >= 0.5 ? "bg-amber-500/10 border-amber-500/20" : "bg-red-500/5 border-red-500/20"
         )}>
           <div className="text-xs text-muted-foreground mb-1">Gross Processing Margin</div>
           <div className={cn(

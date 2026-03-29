@@ -827,7 +827,7 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
                 "rounded-md px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                 selectedPair === pair
                   ? "bg-primary text-primary-foreground"
-                  : "border border-border/50 text-muted-foreground hover:bg-accent/50",
+                  : "border border-border/50 text-muted-foreground hover:bg-muted/20",
               )}
             >
               {pair}
@@ -853,14 +853,14 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
             <button
               type="button"
               onClick={() => setSide("buy")}
-              className={cn("flex-1 py-2 text-sm font-medium transition-colors", side === "buy" ? "bg-green-600 text-foreground" : "text-muted-foreground hover:bg-accent/50")}
+              className={cn("flex-1 py-2 text-sm font-medium transition-colors", side === "buy" ? "bg-green-600 text-foreground" : "text-muted-foreground hover:bg-muted/20")}
             >
               Buy
             </button>
             <button
               type="button"
               onClick={() => setSide("sell")}
-              className={cn("flex-1 py-2 text-sm font-medium transition-colors", side === "sell" ? "bg-red-600 text-foreground" : "text-muted-foreground hover:bg-accent/50")}
+              className={cn("flex-1 py-2 text-sm font-medium transition-colors", side === "sell" ? "bg-red-600 text-foreground" : "text-muted-foreground hover:bg-muted/20")}
             >
               Sell
             </button>
@@ -990,7 +990,7 @@ function YieldFarmingSimulator() {
               "rounded-md px-2.5 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
               selectedFarm.id === f.id
                 ? "bg-primary text-primary-foreground"
-                : "border border-border/50 text-muted-foreground hover:bg-accent/50",
+                : "border border-border/50 text-muted-foreground hover:bg-muted/20",
             )}
           >
             {f.protocol} · {f.apy}%
@@ -1192,7 +1192,7 @@ function DeFiTab({ seed }: { seed: number }) {
                     <button
                       type="button"
                       onClick={() => setSelectedPool(selectedPool?.id === pool.id ? null : pool)}
-                      className="text-xs rounded-md border border-border/50 px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+                      className="text-xs rounded-md border border-border/50 px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-muted/20 transition-colors"
                     >
                       Add
                     </button>
@@ -1483,7 +1483,7 @@ function EducationTab() {
               "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
               activeSection === sec.id
                 ? "bg-primary text-primary-foreground"
-                : "border border-border/50 text-muted-foreground hover:bg-accent/50",
+                : "border border-border/50 text-muted-foreground hover:bg-muted/20",
             )}
           >
             {sec.icon}

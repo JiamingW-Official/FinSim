@@ -173,7 +173,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
               <span className="text-xs font-bold tabular-nums text-amber-400">{streak}</span>
             </motion.div>
           )}
-          <button type="button" onClick={onClose} className="rounded-lg p-1 hover:bg-accent/30">
+          <button type="button" onClick={onClose} className="rounded-lg p-1 hover:bg-muted/30 transition-colors">
             <X className="h-4 w-4 text-muted-foreground" />
           </button>
         </div>
@@ -270,7 +270,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             <button
               type="button"
               onClick={() => handleAnswer(true)}
-              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 py-3 text-sm font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/5 py-3 text-sm font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 active:scale-95"
             >
               <Check className="h-4 w-4" />
               Got It

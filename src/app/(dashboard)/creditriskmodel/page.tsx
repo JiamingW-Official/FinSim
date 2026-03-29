@@ -834,7 +834,7 @@ export default function CreditRiskModelPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
-                  <Building2 className="w-4 h-4 text-primary" />
+                  <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Firm Parameters
                 </CardTitle>
               </CardHeader>
@@ -1046,7 +1046,7 @@ export default function CreditRiskModelPage() {
             <Card className="bg-card border-border lg:col-span-3">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-medium text-foreground flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   1-Year Rating Transition Matrix
                   <Badge variant="outline" className="ml-auto text-xs text-muted-foreground border-border">S&P Based</Badge>
                 </CardTitle>
@@ -1342,7 +1342,7 @@ export default function CreditRiskModelPage() {
             <Card className="bg-card border-border lg:col-span-2">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-medium text-foreground flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Loss Distribution
                   <Badge variant="outline" className="ml-auto text-xs border-border text-muted-foreground">Monte Carlo</Badge>
                 </CardTitle>
@@ -1416,7 +1416,7 @@ export default function CreditRiskModelPage() {
             <Card className="bg-card border-border lg:col-span-2">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-medium text-foreground flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-primary" />
+                  <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                   10-Loan Credit Portfolio
                   <Badge variant="outline" className="ml-auto border-border text-muted-foreground text-xs">
                     EAD: {fmtM(totalEAD)}
@@ -1515,7 +1515,7 @@ export default function CreditRiskModelPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <PieChart className="w-4 h-4 text-primary" />
+                    <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Portfolio Risk Metrics
                   </CardTitle>
                 </CardHeader>

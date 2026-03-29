@@ -366,7 +366,7 @@ function MajorPairsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             Major FX Pairs — Live Quotes
           </CardTitle>
         </CardHeader>
@@ -461,7 +461,7 @@ function MajorPairsTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Activity className="w-4 h-4 text-primary" />
+              <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
               {selected.flag1}{selected.flag2} {selected.symbol} — Detailed View
             </CardTitle>
           </CardHeader>
@@ -507,7 +507,7 @@ function MajorPairsTab() {
         {[
           {
             title: "Market Sessions",
-            icon: <Globe className="w-4 h-4 text-primary" />,
+            icon: <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />,
             items: [
               { label: "Tokyo", status: "Open", color: "text-emerald-400" },
               { label: "London", status: "Open", color: "text-emerald-400" },
@@ -581,7 +581,7 @@ function CarryTradeTab() {
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <DollarSign className="w-4 h-4 text-primary" />
+              <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
               Interest Rate Differential Table
             </CardTitle>
             <div className="flex gap-2">
@@ -667,7 +667,7 @@ function CarryTradeTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-2">
-              <BarChart2 className="w-4 h-4 text-primary" />
+              <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
               Carry Return Decomposition
             </CardTitle>
           </CardHeader>
@@ -815,7 +815,7 @@ function TechnicalAnalysisTab() {
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-primary" />
+                <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 {tech.symbol} — 20-Bar Candlestick
               </CardTitle>
               <Badge
@@ -970,7 +970,7 @@ function TechnicalAnalysisTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-2">
-            <ArrowUpDown className="w-4 h-4 text-primary" />
+            <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground/50" />
             Technical Summary — All Major Pairs
           </CardTitle>
         </CardHeader>
@@ -1037,7 +1037,7 @@ function MacroDriversTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Globe className="w-4 h-4 text-primary" />
+              <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
               PPP Valuation &amp; Interest Rate Parity
             </CardTitle>
           </CardHeader>
@@ -1093,7 +1093,7 @@ function MacroDriversTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-2">
-              <BarChart2 className="w-4 h-4 text-primary" />
+              <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
               Interest Differential vs PPP Deviation
             </CardTitle>
           </CardHeader>
@@ -1194,7 +1194,7 @@ function MacroDriversTab() {
         {[
           {
             title: "Purchasing Power Parity",
-            icon: <Globe className="w-4 h-4 text-primary" />,
+            icon: <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />,
             body: "PPP states that exchange rates should equalize the price of identical goods across countries. In the long run (5–10 years) currencies revert toward PPP fair value, making it useful for valuation but not timing.",
             stat: "Avg reversion: ~6–8 years",
           },
@@ -1256,7 +1256,7 @@ function RiskManagementTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Calculator className="w-4 h-4 text-primary" />
+              <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
               Pip Value &amp; Position Size Calculator
             </CardTitle>
           </CardHeader>
@@ -1358,7 +1358,7 @@ function RiskManagementTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <BarChart2 className="w-4 h-4 text-primary" />
+              <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
               Pair Correlation Matrix
             </CardTitle>
           </CardHeader>

@@ -802,7 +802,7 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
                     <div className="text-xs text-muted-foreground uppercase">Max Profit</div>
                     <div className="text-green-400 font-medium mt-0.5">{strategy.maxProfit}</div>
                   </div>
-                  <div className="bg-red-500/10 rounded p-2">
+                  <div className="bg-red-500/5 rounded p-2">
                     <div className="text-xs text-muted-foreground uppercase">Max Loss</div>
                     <div className="text-red-400 font-medium mt-0.5">{strategy.maxLoss}</div>
                   </div>
@@ -968,7 +968,7 @@ function RollCard({ scenario }: { scenario: RollScenario }) {
 
       {/* Before / After */}
       <div className="grid grid-cols-2 gap-3">
-        <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+        <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-3">
           <div className="text-xs text-red-400 uppercase mb-1">Original Position</div>
           <div className="text-xs text-foreground font-medium">{scenario.original.label}</div>
           <div className="text-xs text-muted-foreground mt-1">Premium: ${(scenario.original.premium * 100).toFixed(0)}</div>
@@ -1207,7 +1207,7 @@ function EarningsPlaysTab() {
           {[
             { range: "IV Rank < 30", label: "Low IV", color: "text-green-400 bg-green-500/10", strategies: ["Long Straddle", "Long Strangle"], reason: "Options are cheap — pay for vol before IV spikes pre-earnings" },
             { range: "IV Rank 30-70", label: "Medium IV", color: "text-amber-400 bg-amber-500/10", strategies: ["Calendar Spread", "Jade Lizard"], reason: "Balanced approach — sell some IV while hedging with spreads" },
-            { range: "IV Rank > 70", label: "High IV", color: "text-red-400 bg-red-500/10", strategies: ["Iron Condor", "Short Strangle"], reason: "IV crush will hurt longs — be a net seller, profit from vol collapse" },
+            { range: "IV Rank > 70", label: "High IV", color: "text-red-400 bg-red-500/5", strategies: ["Iron Condor", "Short Strangle"], reason: "IV crush will hurt longs — be a net seller, profit from vol collapse" },
           ].map((item) => (
             <div key={item.range} className={`rounded-md p-4 ${item.color}`}>
               <div className="text-xs text-muted-foreground font-medium uppercase mb-1">{item.range}</div>
@@ -1424,7 +1424,7 @@ function PortfolioHedgingTab() {
             <div>Credit: ${(atmCall.price * 100).toFixed(0)}/contract</div>
             <div>Delta: {atmCall.delta.toFixed(3)}</div>
           </div>
-          <div className={`rounded-lg p-3 space-y-2 text-xs text-muted-foreground ${isZeroCost ? "bg-green-500/10" : collarCost > 0 ? "bg-red-500/10" : "bg-green-500/10"}`}>
+          <div className={`rounded-lg p-3 space-y-2 text-xs text-muted-foreground ${isZeroCost ? "bg-green-500/10" : collarCost > 0 ? "bg-red-500/5" : "bg-green-500/10"}`}>
             <div className="text-xs text-muted-foreground uppercase">Net Cost</div>
             <div className={`text-lg font-medium ${isZeroCost ? "text-green-400" : collarCost > 0 ? "text-red-400" : "text-green-400"}`}>
               {isZeroCost ? "Zero Cost!" : collarCost > 0 ? `Debit $${(collarCost * 100).toFixed(0)}` : `Credit $${(Math.abs(collarCost) * 100).toFixed(0)}`}

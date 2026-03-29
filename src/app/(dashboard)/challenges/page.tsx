@@ -260,7 +260,7 @@ function WeeklyTab() {
             <p className="text-xs text-muted-foreground leading-relaxed">{heroChallenge.description}</p>
           </div>
           <div className="shrink-0 text-right">
-            <div className="text-lg font-medium text-primary">+{heroChallenge.xpReward}</div>
+            <div className="text-sm font-medium font-mono tabular-nums text-primary">+{heroChallenge.xpReward}</div>
             <div className="text-[11px] text-muted-foreground">XP</div>
           </div>
         </div>
@@ -341,7 +341,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
       <div className="p-4 space-y-3">
         <div>
-          <h3 className="text-base font-medium">{event.title}</h3>
+          <h3 className="text-sm font-medium">{event.title}</h3>
           <p className="text-xs text-muted-foreground">{event.subtitle}</p>
         </div>
 
@@ -413,15 +413,15 @@ function HistoryTab() {
       {/* Summary — flow cards (borderless, content-like) */}
       <div className="grid grid-cols-3 gap-1.5">
         <div className="bg-transparent p-2 text-center">
-          <div className="text-lg font-medium tabular-nums text-primary">{history.length}</div>
+          <div className="text-sm font-medium font-mono tabular-nums text-primary">{history.length}</div>
           <div className="text-[11px] text-muted-foreground mt-0.5">Completed</div>
         </div>
         <div className="bg-transparent p-2 text-center">
-          <div className="text-lg font-medium tabular-nums text-emerald-400">{successCount}</div>
+          <div className="text-sm font-medium font-mono tabular-nums text-emerald-400">{successCount}</div>
           <div className="text-[11px] text-muted-foreground mt-0.5">Full clear</div>
         </div>
         <div className="bg-transparent p-2 text-center">
-          <div className="text-lg font-medium tabular-nums text-amber-400">+{totalXP}</div>
+          <div className="text-sm font-medium font-mono tabular-nums text-amber-400">+{totalXP}</div>
           <div className="text-[11px] text-muted-foreground mt-0.5">XP earned</div>
         </div>
       </div>
@@ -448,7 +448,7 @@ function HistoryTab() {
             <div className="min-w-0">
               <span className="text-[11px] font-medium truncate block text-muted-foreground">{entry.name}</span>
               <span className={cn(
-                "text-[11px] uppercase",
+                "text-[11px]",
                 entry.type === "daily" && "text-primary/50",
                 entry.type === "weekly" && "text-amber-400/50",
                 entry.type === "event" && "text-orange-400/50",
@@ -531,14 +531,14 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
               <span className="text-[11px] font-medium text-primary">Today&apos;s challenge</span>
               <DifficultyBadge difficulty={challenge.difficulty} />
             </div>
-            <h2 className="text-base font-medium mb-1">{challenge.title}</h2>
+            <h2 className="text-sm font-medium mb-1">{challenge.title}</h2>
             <p className="text-sm text-muted-foreground">{challenge.description}</p>
           </div>
         </div>
 
         <div className="shrink-0 text-right space-y-2">
           <div>
-            <div className="text-lg font-medium text-primary">+{challenge.xpReward}</div>
+            <div className="text-sm font-medium font-mono tabular-nums text-primary">+{challenge.xpReward}</div>
             <div className="text-[11px] text-muted-foreground">XP reward</div>
           </div>
           <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
@@ -646,7 +646,7 @@ export default function ChallengesPage() {
             <Swords className="h-5 w-5 text-rose-400" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-medium">Challenges</h1>
+            <h1 className="text-sm font-medium">Challenges</h1>
             <p className="text-[11px] text-muted-foreground">
               Test your skills &amp; earn rewards
             </p>
@@ -797,7 +797,7 @@ export default function ChallengesPage() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
             >
-              <h3 className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-3">Scenario Challenges</h3>
+              <h3 className="text-xs font-medium text-muted-foreground mb-3">Scenario Challenges</h3>
               <ScenariosTab onSelectScenario={handleSelectScenario} />
             </motion.div>
           )}

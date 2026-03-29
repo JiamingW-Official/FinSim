@@ -811,7 +811,7 @@ export function OrderEntry() {
               "flex-1 rounded py-1 text-xs font-medium transition-all duration-150",
               parseInt(quantity) === q
                 ? "bg-primary/20 text-primary"
-                : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground",
+                : "bg-muted text-muted-foreground hover:bg-muted/40 hover:text-foreground",
             )}
           >
             {q}

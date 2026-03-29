@@ -101,7 +101,7 @@ function SimpleQuestCard({
         <div className="flex items-center gap-2">
           <span className="text-[11px] text-emerald-400/70 truncate flex-1">{quest.title}</span>
           <span className="text-[11px] text-muted-foreground/50">{timeLabel}</span>
-          <span className="text-[11px] text-emerald-400/50 tabular-nums">{quest.xpReward} XP</span>
+          <span className="text-[11px] text-emerald-400/50 font-mono tabular-nums">{quest.xpReward} XP</span>
         </div>
       ) : (
         <div className="flex items-start justify-between gap-3">
@@ -138,7 +138,7 @@ function SimpleQuestCard({
                     ? `${progress}% / ${quest.target}%`
                     : `${progress} / ${quest.target}`}
                 </span>
-                <span className="font-medium tabular-nums text-muted-foreground">
+                <span className="font-medium font-mono tabular-nums text-muted-foreground">
                   {Math.round(pct)}%
                 </span>
               </div>
@@ -156,7 +156,7 @@ function SimpleQuestCard({
           {/* XP chip */}
           <div className="shrink-0 flex items-center gap-1 rounded-full border border-border bg-muted/30 px-2 py-1">
             <Zap className="h-3 w-3 text-amber-400" />
-            <span className="text-[11px] font-medium tabular-nums text-amber-400">
+            <span className="text-[11px] font-medium font-mono tabular-nums text-amber-400">
               {quest.xpReward} XP
             </span>
           </div>
@@ -554,7 +554,7 @@ export default function QuestsPage() {
             transition={{ delay: 0.1 }}
           >
             <Zap className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-medium tabular-nums text-amber-400">
+            <span className="text-[11px] font-medium font-mono tabular-nums text-amber-400">
               {completedDailyCount}/{DAILY_QUESTS.length}
             </span>
             <span className="text-[11px] text-muted-foreground">daily</span>
@@ -567,7 +567,7 @@ export default function QuestsPage() {
             transition={{ delay: 0.13 }}
           >
             <CalendarDays className="h-3.5 w-3.5 text-primary" />
-            <span className="text-[11px] font-medium tabular-nums text-primary">
+            <span className="text-[11px] font-medium font-mono tabular-nums text-primary">
               {completedWeeklyCount}/{WEEKLY_QUESTS.length}
             </span>
             <span className="text-[11px] text-muted-foreground">weekly</span>
@@ -581,7 +581,7 @@ export default function QuestsPage() {
               transition={{ delay: 0.16 }}
             >
               <Flame className="h-3.5 w-3.5 text-orange-400" />
-              <span className="text-[11px] font-medium tabular-nums text-orange-400">
+              <span className="text-[11px] font-medium font-mono tabular-nums text-orange-400">
                 {dailyStreak}
               </span>
               <span className="text-[11px] text-muted-foreground">day streak</span>

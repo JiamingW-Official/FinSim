@@ -1117,7 +1117,7 @@ function BuildingEdgeTab() {
       <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Cpu className="w-4 h-4 text-primary" />
+            <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
             IC, Crowding, and Ensemble Signals
           </CardTitle>
         </CardHeader>

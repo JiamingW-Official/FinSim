@@ -505,7 +505,7 @@ function PipelineTracker() {
       {/* Binary Event Calendar */}
       <div>
         <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-primary" />
+          <Calendar className="w-3.5 h-3.5 text-muted-foreground/50" />
           Binary Event Calendar
         </h3>
         <div className="rounded-lg border border-border overflow-hidden">
@@ -1394,7 +1394,7 @@ function BinaryEventTrading() {
       {/* Straddle Calculator */}
       <div className="bg-card border border-border rounded-lg p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
-          <Activity className="w-4 h-4 text-primary" />
+          <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
           ATM Straddle Calculator for Binary Events
         </h3>
         <p className="text-xs text-muted-foreground mb-4">
@@ -1480,7 +1480,7 @@ function BinaryEventTrading() {
       {/* Position Sizing */}
       <div className="bg-card border border-border rounded-lg p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
-          <Target className="w-4 h-4 text-primary" />
+          <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
           Position Sizing for Binary Events
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

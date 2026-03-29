@@ -852,7 +852,7 @@ export default function GreenBondsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Globe size={14} className="text-primary" />
+                  <Globe size={14} className="text-muted-foreground/50" />
                   Regional Breakdown — 2024
                 </CardTitle>
               </CardHeader>
@@ -996,7 +996,7 @@ export default function GreenBondsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Shield size={14} className="text-primary" />
+                  <Shield size={14} className="text-muted-foreground/50" />
                   SFDR Classification
                 </CardTitle>
               </CardHeader>
@@ -1133,7 +1133,7 @@ export default function GreenBondsPage() {
 
                 <div className="mt-2 p-2.5 rounded border border-border bg-muted/40">
                   <div className="flex items-center gap-2 mb-1">
-                    <Award size={12} className="text-primary" />
+                    <Award size={12} className="text-muted-foreground/50" />
                     <span className="text-xs font-semibold text-primary">CBI Certification</span>
                   </div>
                   <p className="text-xs text-muted-foreground">
@@ -1296,7 +1296,7 @@ export default function GreenBondsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <BarChart2 size={14} className="text-primary" />
+                  <BarChart2 size={14} className="text-muted-foreground/50" />
                   Spread Analysis by Bond Type
                 </CardTitle>
               </CardHeader>
@@ -1335,7 +1335,7 @@ export default function GreenBondsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Shield size={14} className="text-primary" />
+                  <Shield size={14} className="text-muted-foreground/50" />
                   Second-Party Opinion Providers
                 </CardTitle>
               </CardHeader>
@@ -1429,7 +1429,7 @@ export default function GreenBondsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-xs text-muted-foreground flex items-center gap-2">
-                  <Building2 size={12} className="text-primary" />
+                  <Building2 size={12} className="text-muted-foreground/50" />
                   Green Buildings Certified (million m²)
                 </CardTitle>
               </CardHeader>
@@ -1555,7 +1555,7 @@ export default function GreenBondsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Globe size={14} className="text-primary" />
+                  <Globe size={14} className="text-muted-foreground/50" />
                   UN SDG Alignment Coverage
                 </CardTitle>
               </CardHeader>

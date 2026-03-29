@@ -237,8 +237,8 @@ function REITUniverseTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Avg Div Yield", value: `${fmt(REITS.reduce((a, r) => a + r.divYield, 0) / REITS.length, 1)}%`, icon: <Percent className="w-4 h-4 text-emerald-400" /> },
-          { label: "Avg P/FFO",     value: fmt(REITS.reduce((a, r) => a + r.pFfo, 0) / REITS.length, 1) + "x",     icon: <Calculator className="w-4 h-4 text-primary" /> },
-          { label: "Avg Occupancy", value: `${fmt(REITS.reduce((a, r) => a + r.occupancy, 0) / REITS.length, 1)}%`, icon: <Building2 className="w-4 h-4 text-primary" /> },
+          { label: "Avg P/FFO",     value: fmt(REITS.reduce((a, r) => a + r.pFfo, 0) / REITS.length, 1) + "x",     icon: <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" /> },
+          { label: "Avg Occupancy", value: `${fmt(REITS.reduce((a, r) => a + r.occupancy, 0) / REITS.length, 1)}%`, icon: <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" /> },
           { label: "Total Mkt Cap", value: fmtB(REITS.reduce((a, r) => a + r.marketCap, 0)),                        icon: <DollarSign className="w-4 h-4 text-amber-400" /> },
         ].map((s) => (
           <Card key={s.label} className="bg-card/60 border-border/50">
@@ -257,7 +257,7 @@ function REITUniverseTab() {
       <Card className="bg-card/60 border-border/50 border-l-4 border-l-primary">
         <CardHeader className="p-4 pb-2">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-primary" />
+            <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             REIT Universe — 8 REITs across 8 Sectors
           </CardTitle>
         </CardHeader>
@@ -403,7 +403,7 @@ function ValuationTab() {
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Calculator className="w-4 h-4 text-primary" />
+            <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
             NAV Calculator — Cap Rate Method
           </CardTitle>
         </CardHeader>
@@ -463,7 +463,7 @@ function ValuationTab() {
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             FFO vs AFFO Waterfall (per share)
           </CardTitle>
         </CardHeader>
@@ -513,7 +513,7 @@ function ValuationTab() {
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             P/FFO vs Historical Average by Sector
           </CardTitle>
         </CardHeader>
@@ -634,9 +634,9 @@ function DividendsTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Latest Quarterly Div", value: `$${fmt(latestAmt, 3)}`,           icon: <DollarSign className="w-4 h-4 text-emerald-400" /> },
-          { label: "3Y Div CAGR",          value: `${cagr.toFixed(1)}%`,             icon: <TrendingUp className="w-4 h-4 text-primary" /> },
+          { label: "3Y Div CAGR",          value: `${cagr.toFixed(1)}%`,             icon: <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" /> },
           { label: "AFFO Payout Ratio",    value: `${fmt(affoPayout, 1)}%`,          icon: <Percent className="w-4 h-4 text-amber-400" /> },
-          { label: "Sustainability Score", value: `${sustainScore.toFixed(0)} / 100`, icon: <Activity className="w-4 h-4 text-primary" /> },
+          { label: "Sustainability Score", value: `${sustainScore.toFixed(0)} / 100`, icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" /> },
         ].map((s) => (
           <Card key={s.label} className="bg-card/60 border-border/50">
             <CardContent className="p-3 flex items-center gap-2">
@@ -722,7 +722,7 @@ function DividendsTab() {
         <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Activity className="w-4 h-4 text-primary" />
+              <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
               Dividend Sustainability Gauge
             </CardTitle>
           </CardHeader>
@@ -792,7 +792,7 @@ function DividendsTab() {
         <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Info className="w-4 h-4 text-primary" />
+              <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
               Dividend Analysis — Key Concepts
             </CardTitle>
           </CardHeader>
@@ -878,10 +878,10 @@ function PortfolioTab() {
       {/* Portfolio summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: "Holdings",        value: `${portfolio.length} REITs`,     icon: <Building2 className="w-4 h-4 text-primary" /> },
+          { label: "Holdings",        value: `${portfolio.length} REITs`,     icon: <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" /> },
           { label: "Blended Yield",   value: `${blendedYield.toFixed(2)}%`,  icon: <Percent className="w-4 h-4 text-emerald-400" /> },
           { label: "Portfolio Beta",  value: blendedBeta.toFixed(2),          icon: <Activity className="w-4 h-4 text-amber-400" /> },
-          { label: "Sector Spread",   value: `${portfolio.length} Sectors`,  icon: <PieChart className="w-4 h-4 text-primary" /> },
+          { label: "Sector Spread",   value: `${portfolio.length} Sectors`,  icon: <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" /> },
         ].map((s) => (
           <Card key={s.label} className="bg-card/60 border-border/50">
             <CardContent className="p-3 flex items-center gap-2">
@@ -900,7 +900,7 @@ function PortfolioTab() {
         <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <PieChart className="w-4 h-4 text-primary" />
+              <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
               Sector Allocation
             </CardTitle>
           </CardHeader>
@@ -951,7 +951,7 @@ function PortfolioTab() {
         <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-primary" />
+              <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
               Portfolio Correlations
             </CardTitle>
           </CardHeader>

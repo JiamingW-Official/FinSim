@@ -746,7 +746,7 @@ function QuestDetailPanel({
             className={cn(
               "h-9 w-9 rounded-lg flex items-center justify-center text-lg font-bold",
               node.status === "complete"
-                ? "bg-emerald-500/10"
+                ? "bg-emerald-500/5"
                 : node.status === "in_progress"
                   ? "bg-amber-500/10"
                   : node.status === "locked"
@@ -813,7 +813,7 @@ function QuestDetailPanel({
             className={cn(
               "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide border",
               node.status === "complete"
-                ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
+                ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/5"
                 : node.status === "in_progress"
                   ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
                   : node.status === "locked"
@@ -896,7 +896,7 @@ function QuestDetailPanel({
           className={cn(
             "w-full rounded-lg py-2 text-sm font-bold transition-colors",
             node.status === "complete"
-              ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 cursor-default"
+              ? "bg-emerald-500/5 text-emerald-400 border border-emerald-500/20 cursor-default"
               : node.status === "locked"
                 ? "bg-muted text-muted-foreground border border-border cursor-not-allowed"
                 : "bg-primary text-primary-foreground hover:bg-primary/90",

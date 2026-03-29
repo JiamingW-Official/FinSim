@@ -147,13 +147,13 @@ function ratingColor(rating: string): string {
   if (["AAA", "AA+", "AA", "AA-"].includes(rating)) return "text-green-400 bg-green-500/10";
   if (["A+", "A", "A-", "BBB+", "BBB", "BBB-"].includes(rating)) return "text-primary bg-primary/10";
   if (["BB+", "BB", "BB-", "B+"].includes(rating)) return "text-amber-400 bg-amber-500/10";
-  return "text-red-400 bg-red-500/10";
+  return "text-red-400 bg-red-500/5";
 }
 
 function typeLabel(type: BondDef["type"]) {
   if (type === "treasury") return { label: "GOVT", cls: "bg-primary/10 text-primary" };
   if (type === "corporate-ig") return { label: "IG", cls: "bg-primary/10 text-primary" };
-  return { label: "HY", cls: "bg-red-500/10 text-red-400" };
+  return { label: "HY", cls: "bg-red-500/5 text-red-400" };
 }
 
 // ── Credit analysis data ──────────────────────────────────────────────────────
@@ -1063,7 +1063,7 @@ export default function BondsPage() {
                     return (
                       <div key={b.id} className={cn(
                         "flex items-center justify-between rounded-md border px-3 py-2 transition-colors",
-                        inPortfolio ? "border-primary/40 bg-primary/5" : "border-border/40 bg-card hover:bg-accent/30",
+                        inPortfolio ? "border-primary/40 bg-primary/5" : "border-border/40 bg-card hover:bg-muted/20",
                       )}>
                         <div className="flex items-center gap-2">
                           <span className={cn("rounded px-1 py-0.5 text-[11px] font-medium", tl.cls)}>{tl.label}</span>
@@ -1077,7 +1077,7 @@ export default function BondsPage() {
                           className={cn(
                             "rounded p-1 transition-colors",
                             inPortfolio
-                              ? "text-red-400 hover:bg-red-500/10"
+                              ? "text-red-400 hover:bg-red-500/5"
                               : "text-primary hover:bg-primary/10",
                           )}
                         >
@@ -1137,7 +1137,7 @@ export default function BondsPage() {
                             const durContrib = bond.modDur * w;
                             const yldContrib = bond.ytm * w;
                             return (
-                              <tr key={h.bondId} className="border-b border-border/20 hover:bg-accent/20">
+                              <tr key={h.bondId} className="border-b border-border/20 hover:bg-muted/10">
                                 <td className="px-3 py-2.5">
                                   <div className="font-medium text-foreground">{bond.ticker}</div>
                                   <div className="text-[11px] text-muted-foreground">{bond.name}</div>
@@ -1153,7 +1153,7 @@ export default function BondsPage() {
                                 <td className="px-3 py-2.5 tabular-nums text-green-400">{(yldContrib * 100).toFixed(3)}%</td>
                                 <td className="px-3 py-2.5">
                                   <button onClick={() => removeBondFromPortfolio(h.bondId)}
-                                    className="rounded p-1 text-muted-foreground hover:bg-red-500/10 hover:text-red-400 transition-colors">
+                                    className="rounded p-1 text-muted-foreground hover:bg-red-500/5 hover:text-red-400 transition-colors">
                                     <Trash2 className="h-3 w-3" />
                                   </button>
                                 </td>

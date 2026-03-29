@@ -803,7 +803,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-primary" />
+                  <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
                   CDS Term Structure
                 </CardTitle>
               </CardHeader>
@@ -825,7 +825,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-primary" />
+                  <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Sovereign CDS — ISDA 2014 Definitions
                 </CardTitle>
               </CardHeader>
@@ -945,7 +945,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-primary" />
+                  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Major Credit Indices
                 </CardTitle>
               </CardHeader>
@@ -1039,7 +1039,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Target className="w-4 h-4 text-primary" />
+                  <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                   CDX Options — Payer &amp; Receiver Swaptions
                 </CardTitle>
               </CardHeader>
@@ -1161,7 +1161,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-primary" />
+                  <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Credit-Linked Note (CLN) Structure
                 </CardTitle>
               </CardHeader>
@@ -1378,7 +1378,7 @@ export default function CreditDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-primary" />
+                  <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Post-Dodd Frank CDS Market Reform
                 </CardTitle>
               </CardHeader>

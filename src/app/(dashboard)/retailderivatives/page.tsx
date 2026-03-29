@@ -326,7 +326,7 @@ function ExchangeTradedOptionsTab() {
       {/* CBOE Overview */}
       <div className="rounded-md border border-border bg-muted/40 p-6 border-l-4 border-l-primary">
         <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-          <BookOpen size={15} className="text-primary" /> CBOE Product Overview
+          <BookOpen size={15} className="text-muted-foreground/50" /> CBOE Product Overview
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           {[
@@ -494,7 +494,7 @@ function ExchangeTradedOptionsTab() {
           onClick={() => setExpandCompare(!expandCompare)}
         >
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <BarChart2 size={15} className="text-primary" /> Options vs Stock: Feature Comparison
+            <BarChart2 size={15} className="text-muted-foreground/50" /> Options vs Stock: Feature Comparison
           </h3>
           {expandCompare ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
         </button>
@@ -588,7 +588,7 @@ function LeveragedETFsTab() {
   return (
     <div className="space-y-4">
       {/* Warning Banner */}
-      <div className="rounded-md border border-red-500/40 bg-red-500/10 p-4 flex items-start gap-3">
+      <div className="rounded-md border border-red-500/40 bg-red-500/5 p-4 flex items-start gap-3">
         <AlertTriangle size={16} className="text-red-400 mt-0.5 flex-shrink-0" />
         <div className="text-sm">
           <p className="font-medium text-red-400 mb-1">Not Suitable for Long-Term Holding</p>
@@ -783,7 +783,7 @@ function StructuredNotesTab() {
             desc: "Amplified exposure to upside (e.g., 1.5× or 2× on index gains) with potential downside buffer. No guaranteed principal.",
             risk: "Market + credit risk",
             color: "border-primary/40 bg-primary/5",
-            icon: <TrendingUp size={14} className="text-primary" />,
+            icon: <TrendingUp size={14} className="text-muted-foreground/50" />,
           },
           {
             t: "Reverse Convertibles",
@@ -1044,7 +1044,7 @@ function WarrantsRightsTab() {
           onClick={() => setExpandDiff(!expandDiff)}
         >
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Info size={15} className="text-primary" /> Subscription Rights: Short-Lived Opportunities
+            <Info size={15} className="text-muted-foreground/50" /> Subscription Rights: Short-Lived Opportunities
           </h3>
           {expandDiff ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
         </button>
@@ -1215,7 +1215,7 @@ function RetailAlternativesTab() {
           onClick={() => setExpandDebate(!expandDebate)}
         >
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Users size={15} className="text-primary" /> The Accredited Investor Threshold Debate
+            <Users size={15} className="text-muted-foreground/50" /> The Accredited Investor Threshold Debate
           </h3>
           {expandDebate ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
         </button>
@@ -1329,7 +1329,7 @@ export default function RetailDerivativesPage() {
         >
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-primary/20 p-2">
-              <Layers size={20} className="text-primary" />
+              <Layers size={20} className="text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-medium text-foreground">Retail Derivatives & Structured Products</h1>

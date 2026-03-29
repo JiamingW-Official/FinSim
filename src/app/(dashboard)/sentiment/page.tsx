@@ -909,7 +909,7 @@ export default function SentimentPage() {
         className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         <div className="p-2 rounded-lg bg-primary/15">
-          <Brain className="h-5 w-5 text-primary" />
+          <Brain className="h-3.5 w-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h1 className="text-lg font-medium text-foreground">
@@ -952,7 +952,7 @@ export default function SentimentPage() {
             <Card className="lg:col-span-1 bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Activity className="h-4 w-4 text-primary" />
+                  <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
                   Fear & Greed Index
                 </CardTitle>
               </CardHeader>
@@ -1077,7 +1077,7 @@ export default function SentimentPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Users className="h-4 w-4 text-primary" />
+                  <Users className="h-3.5 w-3.5 text-muted-foreground/50" />
                   AAII Sentiment Survey
                 </CardTitle>
               </CardHeader>
@@ -1281,7 +1281,7 @@ export default function SentimentPage() {
           <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-primary" />
+                <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
                 Advance/Decline Line vs S&P 500 (90 days)
               </CardTitle>
             </CardHeader>
@@ -1689,7 +1689,7 @@ export default function SentimentPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Brain className="h-4 w-4 text-primary" />
+                  <Brain className="h-3.5 w-3.5 text-muted-foreground/50" />
                   Psychological Market Cycle
                 </CardTitle>
               </CardHeader>
@@ -1707,7 +1707,7 @@ export default function SentimentPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Users className="h-4 w-4 text-primary" />
+                  <Users className="h-3.5 w-3.5 text-muted-foreground/50" />
                   Social Sentiment Tracker
                 </CardTitle>
               </CardHeader>

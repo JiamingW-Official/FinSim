@@ -806,7 +806,7 @@ export default function CleantechPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-primary" />
+                    <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
                     IEA Net Zero Emissions 2050 Pathway
                   </CardTitle>
                 </CardHeader>
@@ -1121,7 +1121,7 @@ export default function CleantechPage() {
               <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-primary" />
+                    <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Clean Energy ETFs Comparison
                   </CardTitle>
                 </CardHeader>
@@ -1334,7 +1334,7 @@ export default function CleantechPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-primary" />
+                    <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Carbon Pricing Impact — Global ETS Systems
                   </CardTitle>
                 </CardHeader>

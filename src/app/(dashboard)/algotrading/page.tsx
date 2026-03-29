@@ -863,7 +863,7 @@ export default function AlgoTradingPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
                 { label: "Total Return", value: `${totalReturn >= 0 ? "+" : ""}${(totalReturn * 100).toFixed(1)}%`, icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, col: totalReturn >= 0 ? "text-emerald-400" : "text-red-400" },
-                { label: "Sharpe Ratio", value: sharpe.toFixed(2), icon: <Activity className="w-4 h-4 text-primary" />, col: "text-primary" },
+                { label: "Sharpe Ratio", value: sharpe.toFixed(2), icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />, col: "text-primary" },
                 { label: "Max Drawdown", value: `${(maxDrawdown * 100).toFixed(1)}%`, icon: <ArrowDownRight className="w-4 h-4 text-red-400" />, col: "text-red-400" },
                 { label: "Win Rate", value: `${(winRate * 100).toFixed(1)}%`, icon: <Target className="w-4 h-4 text-orange-400" />, col: "text-orange-400" },
                 { label: "Avg Win", value: `+${(avgWin * 100).toFixed(2)}%`, icon: <ArrowUpRight className="w-4 h-4 text-emerald-400" />, col: "text-emerald-400" },

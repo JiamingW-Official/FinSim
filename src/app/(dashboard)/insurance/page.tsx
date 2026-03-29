@@ -55,7 +55,7 @@ function StatChip({
 }) {
   const cls = {
     green: "bg-green-500/10 text-green-400 border-green-500/20",
-    red: "bg-red-500/10 text-red-400 border-red-500/20",
+    red: "bg-red-500/5 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
     blue: "bg-primary/10 text-primary border-border",
     purple: "bg-primary/10 text-primary border-border",
@@ -1127,7 +1127,7 @@ function PCTab() {
               onClick={() => setExpanded(expanded === cov.key ? null : cov.key)}
             >
               <div className="flex items-center gap-2">
-                <Shield size={14} className="text-primary" />
+                <Shield size={14} className="text-muted-foreground/50" />
                 <span className="text-sm font-medium">{cov.title}</span>
                 {cov.required && (
                   <Badge className="text-xs bg-amber-500/20 text-amber-400 border-amber-500/30">
@@ -1954,7 +1954,7 @@ export default function InsurancePage() {
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Shield size={18} className="text-primary" />
+              <Shield size={18} className="text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-2xl font-bold">Insurance & Risk Transfer</h1>

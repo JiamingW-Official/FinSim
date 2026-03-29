@@ -191,7 +191,7 @@ function WithdrawalStrategiesTab() {
       {/* 4% Rule Explainer */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Info className="w-4 h-4 text-primary" />
+          <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-semibold text-sm text-foreground">
             The 4% Rule — Bengen 1994
           </span>
@@ -246,7 +246,7 @@ function WithdrawalStrategiesTab() {
       {/* Interactive Calculator */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart3 className="w-4 h-4 text-primary" />
+          <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Safe Withdrawal Rate Calculator
           </span>
@@ -325,7 +325,7 @@ function WithdrawalStrategiesTab() {
       {/* Dynamic Strategies */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Activity className="w-4 h-4 text-primary" />
+          <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Dynamic Withdrawal Strategies
           </span>
@@ -374,7 +374,7 @@ function WithdrawalStrategiesTab() {
       {/* Monte Carlo Fan Chart */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 className="w-4 h-4 text-primary" />
+          <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Monte Carlo Fan Chart — 100 Paths, 30 Years
           </span>
@@ -488,7 +488,7 @@ function WithdrawalStrategiesTab() {
       {/* Success Rate Chart */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Target className="w-4 h-4 text-primary" />
+          <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Success Rate vs Withdrawal Rate
           </span>
@@ -613,7 +613,7 @@ function SequenceRiskTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-red-500/10">
+        <div className="p-2 rounded-lg bg-red-500/5">
           <AlertTriangle className="w-5 h-5 text-red-400" />
         </div>
         <div>
@@ -629,7 +629,7 @@ function SequenceRiskTab() {
 
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Info className="w-4 h-4 text-primary" />
+          <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Why Sequence Matters
           </span>
@@ -653,7 +653,7 @@ function SequenceRiskTab() {
               before withdrawals take a heavy toll.
             </p>
           </div>
-          <div className="rounded-lg bg-red-500/10 p-3">
+          <div className="rounded-lg bg-red-500/5 p-3">
             <p className="font-medium text-red-400 mb-1">
               Early Bear, Late Bull
             </p>
@@ -668,7 +668,7 @@ function SequenceRiskTab() {
       {/* SVG Sequence Chart */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 className="w-4 h-4 text-primary" />
+          <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Same Average Return — Different Sequence
           </span>
@@ -794,7 +794,7 @@ function SequenceRiskTab() {
       {/* Mitigation Strategies */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Shield className="w-4 h-4 text-primary" />
+          <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Mitigation Strategies
           </span>
@@ -836,7 +836,7 @@ function SequenceRiskTab() {
       {/* Bucket Strategy */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-4">
-          <Layers className="w-4 h-4 text-primary" />
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             The Bucket Strategy
           </span>
@@ -1037,7 +1037,7 @@ function SocialSecurityTab() {
       {/* Breakeven Crossover Chart */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 className="w-4 h-4 text-primary" />
+          <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Cumulative Lifetime Benefits — Breakeven Analysis
           </span>
@@ -1236,7 +1236,7 @@ function SocialSecurityTab() {
                 MFJ: 50% above $32K; 85% above $44K
               </p>
             </div>
-            <div className="rounded-lg bg-red-500/10 p-2">
+            <div className="rounded-lg bg-red-500/5 p-2">
               <p className="font-medium text-red-400 mb-1">
                 Government Pension Offset (GPO)
               </p>
@@ -1261,7 +1261,7 @@ function SocialSecurityTab() {
       {/* Income Replacement Rate */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Activity className="w-4 h-4 text-primary" />
+          <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Income Replacement Rate by Claiming Strategy
           </span>
@@ -1417,7 +1417,7 @@ function IncomeFlooringTab() {
       {/* Floor-Upside Framework */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Layers className="w-4 h-4 text-primary" />
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Floor-and-Upside Framework
           </span>
@@ -1479,7 +1479,7 @@ function IncomeFlooringTab() {
       {/* Annuity Comparison Table */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 className="w-4 h-4 text-primary" />
+          <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Annuity Types Comparison
           </span>
@@ -1604,7 +1604,7 @@ function IncomeFlooringTab() {
       {/* Payout Rate vs Interest Rate Chart */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Activity className="w-4 h-4 text-primary" />
+          <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Annuity Payout Rates vs 10-Year Treasury
           </span>
@@ -1713,7 +1713,7 @@ function IncomeFlooringTab() {
       {/* Certainty vs Flexibility Scatter */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Target className="w-4 h-4 text-primary" />
+          <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Income Certainty vs Flexibility Tradeoff
           </span>
@@ -1810,7 +1810,7 @@ function IncomeFlooringTab() {
       {/* Longevity Risk / QLAC */}
       <Card className="p-4 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <Clock className="w-4 h-4 text-primary" />
+          <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="font-medium text-sm text-foreground">
             Longevity Risk Insurance — Deferred Income Annuity (DIA)
           </span>

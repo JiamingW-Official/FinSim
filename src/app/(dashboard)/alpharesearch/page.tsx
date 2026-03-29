@@ -457,7 +457,7 @@ export default function AlphaResearchPage() {
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                  <FlaskConical className="w-4 h-4 text-primary" />
+                  <FlaskConical className="w-3.5 h-3.5 text-muted-foreground/50" />
                 </div>
                 <h1 className="text-lg font-medium">Quantitative Alpha Research</h1>
               </div>
@@ -686,7 +686,7 @@ export default function AlphaResearchPage() {
                 <Card className="border-border bg-card">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-primary" />
+                      <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Decay by Category
                     </CardTitle>
                   </CardHeader>
@@ -782,7 +782,7 @@ export default function AlphaResearchPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <GitBranch className="w-4 h-4 text-primary" />
+                    <GitBranch className="w-3.5 h-3.5 text-muted-foreground/50" />
                     The Multiple-Testing Problem
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">

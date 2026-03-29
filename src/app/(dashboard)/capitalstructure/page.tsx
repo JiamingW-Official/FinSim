@@ -986,7 +986,7 @@ export default function CapitalStructurePage() {
           <Card className="bg-muted/60 border-border/40">
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Merton Structural Credit Model
               </CardTitle>
             </CardHeader>

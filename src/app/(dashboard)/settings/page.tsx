@@ -153,7 +153,7 @@ function RadioCards<T extends string>({
             "flex flex-col items-start rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-all",
             value === opt.value
               ? "border-primary bg-primary/10 text-primary"
-              : "border-border bg-card text-muted-foreground hover:border-border/80 hover:bg-accent",
+              : "border-border bg-card text-muted-foreground hover:border-border/80 hover:bg-muted/20",
           )}
         >
           <span className="font-medium">{opt.label}</span>
@@ -220,7 +220,7 @@ function CheckboxItem({
         "flex items-start gap-2.5 rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-all w-full",
         checked
           ? "border-primary/40 bg-primary/5"
-          : "border-border bg-card hover:bg-accent",
+          : "border-border bg-card hover:bg-muted/20",
       )}
     >
       <div

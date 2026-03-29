@@ -180,7 +180,7 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.1, type: "spring", stiffness: 300, damping: 20 }}
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-red-500/30 bg-red-500/10 text-2xl">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-red-500/30 bg-red-500/5 text-2xl">
                   🤖
                 </div>
                 <span className="text-sm font-bold text-foreground">{opponent.name}</span>

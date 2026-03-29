@@ -393,7 +393,7 @@ function ArticleCard({ article }: { article: Article }) {
 
   const sentimentConfig = {
     bullish: { color: "text-green-400", bg: "bg-green-500/10 border-green-500/30", icon: TrendingUp },
-    bearish: { color: "text-red-400", bg: "bg-red-500/10 border-red-500/30", icon: TrendingDown },
+    bearish: { color: "text-red-400", bg: "bg-red-500/5 border-red-500/30", icon: TrendingDown },
     neutral: { color: "text-muted-foreground", bg: "bg-muted/40 border-border", icon: Minus },
   }[article.sentiment];
 

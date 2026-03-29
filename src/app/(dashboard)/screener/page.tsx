@@ -1003,7 +1003,7 @@ export default function ScreenerPage() {
                       key={s.ticker}
                       onClick={() => setSelectedStock(selectedStock?.ticker === s.ticker ? null : s)}
                       className={cn(
-                        "cursor-pointer border-b border-border/30 transition-colors hover:bg-accent/40",
+                        "cursor-pointer border-b border-border/30 transition-colors hover:bg-muted/10",
                         selectedStock?.ticker === s.ticker && "bg-primary/5",
                       )}
                     >
@@ -1070,7 +1070,7 @@ export default function ScreenerPage() {
                     <p className="font-mono font-bold text-primary text-lg">{selectedStock.ticker}</p>
                     <p className="text-xs text-muted-foreground">{selectedStock.company}</p>
                   </div>
-                  <button type="button" onClick={() => setSelectedStock(null)} className="rounded-md p-1 hover:bg-accent">
+                  <button type="button" onClick={() => setSelectedStock(null)} className="rounded-md p-1 hover:bg-muted/30">
                     <X className="h-4 w-4 text-muted-foreground" />
                   </button>
                 </div>
@@ -1158,7 +1158,7 @@ export default function ScreenerPage() {
                           <span className={cn(
                             "rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium",
                             pick.category === "Value" ? "bg-primary/10 text-primary" :
-                            pick.category === "Growth" ? "bg-emerald-500/10 text-emerald-400" :
+                            pick.category === "Growth" ? "bg-emerald-500/5 text-emerald-400" :
                             pick.category === "Income" ? "bg-amber-500/10 text-amber-400" :
                             pick.category === "Momentum" ? "bg-primary/10 text-primary" :
                             "bg-cyan-500/10 text-muted-foreground",
@@ -1233,7 +1233,7 @@ export default function ScreenerPage() {
                   </thead>
                   <tbody>
                     {sectorLeaders.map((s) => (
-                      <tr key={s.ticker} className="border-b border-border/30 hover:bg-accent/30 transition-colors">
+                      <tr key={s.ticker} className="border-b border-border/30 hover:bg-muted/10 transition-colors">
                         <td className="px-4 py-2.5 text-muted-foreground">{s.sector}</td>
                         <td className="px-4 py-2.5">
                           <div>
@@ -1546,7 +1546,7 @@ export default function ScreenerPage() {
           <div className="rounded-md border border-border bg-card p-4 w-80 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-medium">Save Screen</h3>
-              <button type="button" onClick={() => setSaveDialogOpen(false)} className="rounded-md p-1 hover:bg-accent">
+              <button type="button" onClick={() => setSaveDialogOpen(false)} className="rounded-md p-1 hover:bg-muted/30">
                 <X className="h-4 w-4 text-muted-foreground" />
               </button>
             </div>

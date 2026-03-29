@@ -326,7 +326,7 @@ function calcGrade(portfolioLossPct: number): { grade: "S" | "A" | "B" | "C" | "
 
 function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onSelect: () => void }) {
   const severityColor: Record<string, string> = {
-    Catastrophic: "text-red-400 bg-red-500/10 border-red-500/20",
+    Catastrophic: "text-red-400 bg-red-500/5 border-red-500/20",
     Extreme: "text-orange-400 bg-orange-500/10 border-orange-500/20",
     Sudden: "text-amber-400 bg-amber-500/10 border-amber-500/20",
     Prolonged: "text-primary bg-primary/10 border-border/40",
@@ -590,7 +590,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           type="button"
           onClick={handleSell25}
           disabled={soldPct >= 100}
-          className="flex items-center justify-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 py-2.5 text-xs font-bold text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="flex items-center justify-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/5 py-2.5 text-xs font-bold text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <TrendingDown className="h-3.5 w-3.5" />
           Sell 25% ({soldPct}% sold)

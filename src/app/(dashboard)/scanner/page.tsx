@@ -549,7 +549,7 @@ function PatternScannerTab() {
                 <tr
                   key={`${r.ticker}-${r.name}-${i}`}
                   onClick={() => handleRowClick(r.ticker)}
-                  className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-accent/30"
+                  className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-muted/10"
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-medium text-foreground">{r.ticker}</span>
@@ -772,7 +772,7 @@ function TechnicalScannerTab() {
                 <tr
                   key={`${r.ticker}-${r.condition}-${i}`}
                   onClick={() => handleRowClick(r.ticker)}
-                  className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-accent/30"
+                  className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-muted/10"
                 >
                   <td className="px-3 py-2.5">
                     <div className="flex flex-col gap-0.5">
@@ -938,7 +938,7 @@ function SetupFinderTab() {
                 <tr
                   key={`${s.ticker}-${s.setupName}-${i}`}
                   onClick={() => handleRowClick(s.ticker)}
-                  className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-accent/30"
+                  className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-muted/10"
                 >
                   <td className="px-3 py-2.5">
                     <div className="flex flex-col gap-0.5">
@@ -1008,7 +1008,7 @@ export default function ScannerPage() {
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
       <div className="flex shrink-0 items-center gap-3 border-b border-border/50 px-6 py-6 border-l-4 border-l-primary">
-        <ScanLine className="h-5 w-5 text-primary" />
+        <ScanLine className="h-3.5 w-3.5 text-muted-foreground/50" />
         <div>
           <h1 className="text-base font-medium leading-none">Scanner</h1>
           <p className="mt-1 text-[11px] text-muted-foreground">

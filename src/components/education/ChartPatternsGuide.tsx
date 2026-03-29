@@ -33,7 +33,7 @@ function DirectionBadge({ direction }: { direction: ChartPattern["direction"] })
       className={cn(
         "text-xs font-medium px-2 py-0.5 rounded-full",
         direction === "bullish" && "bg-green-500/10 text-green-500",
-        direction === "bearish" && "bg-red-500/10 text-red-500",
+        direction === "bearish" && "bg-red-500/5 text-red-500",
         direction === "both" && "bg-primary/10 text-primary"
       )}
     >

@@ -702,11 +702,11 @@ export function LivePnLDashboard() {
                 ({fmtPct(spyReturn * 100, true)})
               </span>
               {unrealizedPnL > spyPnL ? (
-                <span className="ml-auto text-[11px] rounded px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400">
+                <span className="ml-auto text-[11px] rounded px-1.5 py-0.5 bg-emerald-500/5 text-emerald-400">
                   Outperforming
                 </span>
               ) : (
-                <span className="ml-auto text-[11px] rounded px-1.5 py-0.5 bg-red-500/10 text-red-400">
+                <span className="ml-auto text-[11px] rounded px-1.5 py-0.5 bg-red-500/5 text-red-400">
                   Underperforming
                 </span>
               )}

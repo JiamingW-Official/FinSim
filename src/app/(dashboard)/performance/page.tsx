@@ -1005,7 +1005,7 @@ export default function PerformancePage() {
       {/* Page header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <TrendingUp className="h-5 w-5 text-primary" />
+          <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
           <h1 className="text-lg font-semibold">Performance</h1>
           <Badge variant="outline" className="text-xs text-muted-foreground">YTD 2026</Badge>
         </div>
@@ -1321,7 +1321,7 @@ export default function PerformancePage() {
           {/* Best conditions */}
           <Card className="p-4">
             <div className="flex items-center gap-2 mb-3">
-              <Award className="h-4 w-4 text-primary" />
+              <Award className="h-3.5 w-3.5 text-muted-foreground/50" />
               <h3 className="text-sm font-medium">Best Trading Conditions</h3>
             </div>
             <div className="grid grid-cols-3 gap-3 text-sm">
@@ -1330,7 +1330,7 @@ export default function PerformancePage() {
                   label: "Best Day of Week",
                   value: "Tuesday",
                   sub: "+3.2% avg P&L",
-                  icon: <Calendar className="h-4 w-4 text-primary" />,
+                  icon: <Calendar className="h-3.5 w-3.5 text-muted-foreground/50" />,
                 },
                 {
                   label: "Best Hour",
@@ -1342,7 +1342,7 @@ export default function PerformancePage() {
                   label: "Best Vol Regime",
                   value: "Low Vol",
                   sub: "VIX 12–18",
-                  icon: <Activity className="h-4 w-4 text-primary" />,
+                  icon: <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />,
                 },
               ].map((c) => (
                 <div key={c.label} className="rounded-lg bg-muted/30 p-3 space-y-1">
@@ -1363,7 +1363,7 @@ export default function PerformancePage() {
           {/* Annual target slider */}
           <Card className="p-4">
             <div className="flex items-center gap-2 mb-4">
-              <Target className="h-4 w-4 text-primary" />
+              <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
               <h3 className="text-sm font-medium">Annual Return Target</h3>
             </div>
             <div className="flex items-center gap-4">
@@ -1431,7 +1431,7 @@ export default function PerformancePage() {
           {/* Milestone timeline */}
           <Card className="p-4">
             <div className="flex items-center gap-2 mb-3">
-              <Award className="h-4 w-4 text-primary" />
+              <Award className="h-3.5 w-3.5 text-muted-foreground/50" />
               <h3 className="text-sm font-medium">Achievement Timeline</h3>
               <Badge variant="outline" className="ml-auto text-xs text-muted-foreground">
                 {milestones.filter((m) => m.achieved).length} / {milestones.length} achieved

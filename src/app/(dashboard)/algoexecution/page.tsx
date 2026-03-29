@@ -637,7 +637,7 @@ export default function AlgoExecutionPage() {
               <Card className="lg:col-span-2 border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Intraday VWAP Execution
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -699,7 +699,7 @@ export default function AlgoExecutionPage() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
+                  <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Intraday Volume Distribution
                 </CardTitle>
               </CardHeader>
@@ -838,7 +838,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-primary" />
+                    <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Cost Components Detail
                   </CardTitle>
                 </CardHeader>
@@ -934,7 +934,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Side-by-Side Comparison
                   </CardTitle>
                 </CardHeader>
@@ -1045,7 +1045,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Venue Fill Rates
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -1073,7 +1073,7 @@ export default function AlgoExecutionPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Venue Quality Metrics
                   </CardTitle>
                 </CardHeader>

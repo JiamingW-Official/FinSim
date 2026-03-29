@@ -452,7 +452,7 @@ export default function BankingRegPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-primary" />
+                    <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     G-SIB Surcharge by Bucket
                   </CardTitle>
                 </CardHeader>

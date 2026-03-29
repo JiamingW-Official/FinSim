@@ -2152,7 +2152,7 @@ function QuestionBuilderTab() {
       <Card className="bg-card/70 border-border/50 p-4 space-y-3">
         <div className="flex items-center justify-between">
           <div className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Plus className="h-4 w-4 text-primary" />
+            <Plus className="h-3.5 w-3.5 text-muted-foreground/50" />
             Create a Question
           </div>
           <button

@@ -678,7 +678,7 @@ function EMHCard({ form, idx }: { form: EMHForm; idx: number }) {
             <p className="text-xs text-green-400 font-medium mb-1">Supporting</p>
             <p className="text-xs text-muted-foreground">{form.evidence}</p>
           </div>
-          <div className="rounded-lg bg-red-500/10 border border-red-500/20 p-2">
+          <div className="rounded-lg bg-red-500/5 border border-red-500/20 p-2">
             <p className="text-xs text-red-400 font-medium mb-1">Anomalies</p>
             <p className="text-xs text-muted-foreground">{form.counterEvidence}</p>
           </div>
@@ -729,7 +729,7 @@ export default function ShortSellingPage() {
       {/* Header */}
       <div className="border-b border-border bg-card/60 px-6 py-6 backdrop-blur-sm border-l-4 border-l-primary">
         <div className="max-w-6xl mx-auto flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/20">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-500/5 border border-red-500/20">
             <TrendingDown className="w-5 h-5 text-red-400" />
           </div>
           <div>
@@ -912,7 +912,7 @@ export default function ShortSellingPage() {
                       <p className="text-xs text-green-400 font-medium mb-1">Maximum Profit</p>
                       <p className="text-sm text-muted-foreground">100% — only if stock goes to zero (rare). Entry price × shares = max gain.</p>
                     </div>
-                    <div className="rounded-lg bg-red-500/10 border border-red-500/20 p-3">
+                    <div className="rounded-lg bg-red-500/5 border border-red-500/20 p-3">
                       <p className="text-xs text-red-400 font-medium mb-1">Unlimited Loss</p>
                       <p className="text-sm text-muted-foreground">No theoretical ceiling. A stock at $10 can go to $1,000. This is the fundamental asymmetry of shorting.</p>
                     </div>
@@ -1422,7 +1422,7 @@ export default function ShortSellingPage() {
                       <div key={item.title} className="rounded-md border border-border bg-foreground/5 p-4">
                         <p className="text-sm font-medium text-foreground mb-2">{item.title}</p>
                         <p className="text-xs text-muted-foreground mb-3">{item.desc}</p>
-                        <div className={`rounded-lg p-2.5 ${item.positive ? "bg-green-500/10 border border-green-500/20" : "bg-red-500/10 border border-red-500/20"}`}>
+                        <div className={`rounded-lg p-2.5 ${item.positive ? "bg-green-500/10 border border-green-500/20" : "bg-red-500/5 border border-red-500/20"}`}>
                           <div className={`text-xl font-medium ${item.positive ? "text-green-400" : "text-red-400"}`}>{item.stat}</div>
                           <div className="text-xs text-muted-foreground">{item.statLabel}</div>
                         </div>

@@ -483,7 +483,7 @@ function BlackLittermanTab() {
       <Card className="bg-muted/30 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Sliders className="h-4 w-4 text-primary" />
+            <Sliders className="h-3.5 w-3.5 text-muted-foreground/50" />
             Investor Views
           </CardTitle>
         </CardHeader>
@@ -720,7 +720,7 @@ function RiskBudgetingTab() {
         <Card className="bg-muted/30 border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Activity className="h-4 w-4 text-primary" />
+              <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
               Marginal Risk Contribution
             </CardTitle>
           </CardHeader>
@@ -747,7 +747,7 @@ function RiskBudgetingTab() {
       <Card className="bg-muted/30 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Scale className="h-4 w-4 text-primary" />
+            <Scale className="h-3.5 w-3.5 text-muted-foreground/50" />
             Equal Risk Contribution vs Equal Weight
           </CardTitle>
         </CardHeader>

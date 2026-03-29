@@ -1670,7 +1670,7 @@ export default function AllocationPage() {
           {(() => {
             const m = computePortfolioMetrics(sharedWeights);
             return [
-              { label: "Expected Return", value: fmtPct(m.expectedReturn), color: "text-emerald-400", icon: TrendingUp, bg: "bg-emerald-500/10" },
+              { label: "Expected Return", value: fmtPct(m.expectedReturn), color: "text-emerald-400", icon: TrendingUp, bg: "bg-emerald-500/5" },
               { label: "Portfolio Volatility", value: fmtPct(m.volatility), color: "text-amber-400", icon: Activity, bg: "bg-amber-500/10" },
               { label: "Sharpe Ratio", value: m.sharpe.toFixed(2), color: m.sharpe >= 0.5 ? "text-emerald-400" : "text-amber-400", icon: Zap, bg: "bg-indigo-500/10" },
               { label: "Market Beta", value: m.beta.toFixed(2), color: "text-primary", icon: BarChart3, bg: "bg-primary/10" },

@@ -1293,7 +1293,7 @@ export default function SectorRotationStrategy() {
                 <div className="text-muted-foreground leading-relaxed">Domestic energy production themes benefit XLE, XOP. LNG export infrastructure investment rising.</div>
                 <div className="flex gap-1 flex-wrap">
                   {["XLE","XOP"].map((t) => (
-                    <span key={t} className="rounded bg-red-500/10 px-1.5 py-0.5 font-mono font-semibold text-red-400">{t}</span>
+                    <span key={t} className="rounded bg-red-500/5 px-1.5 py-0.5 font-mono font-semibold text-red-400">{t}</span>
                   ))}
                 </div>
               </div>

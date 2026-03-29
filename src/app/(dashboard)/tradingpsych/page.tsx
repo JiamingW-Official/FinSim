@@ -1186,7 +1186,7 @@ export default function TradingPsychPage() {
                         <button
                           key={i}
                           onClick={() => handleAnswer(choice.bias, choice.weight)}
-                          className="w-full text-left px-4 py-3 rounded-lg border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors text-sm"
+                          className="w-full text-left px-4 py-3 rounded-lg border border-border bg-background hover:bg-muted/20 hover:text-foreground transition-colors text-sm"
                         >
                           <span className="text-muted-foreground mr-2 font-mono text-xs">
                             {String.fromCharCode(65 + i)}.
@@ -1422,7 +1422,7 @@ export default function TradingPsychPage() {
                           "w-full flex items-center justify-between px-3 py-1.5 rounded-md text-xs text-muted-foreground transition-colors",
                           selectedState === phase.state
                             ? "bg-accent"
-                            : "hover:bg-accent/50"
+                            : "hover:bg-muted/20"
                         )}
                       >
                         <span
@@ -1503,7 +1503,7 @@ export default function TradingPsychPage() {
                           "w-full flex items-start gap-3 px-4 py-3 rounded-lg border text-left transition-colors",
                           checked
                             ? "border-primary/30 bg-primary/5"
-                            : "border-border bg-background hover:bg-accent/50"
+                            : "border-border bg-background hover:bg-muted/20"
                         )}
                         whileTap={{ scale: 0.99 }}
                       >

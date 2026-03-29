@@ -36,8 +36,8 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 const SENTIMENT_COLORS = {
-  bullish: { text: "text-emerald-400", bg: "bg-emerald-500/10" },
-  bearish: { text: "text-red-400", bg: "bg-red-500/10" },
+  bullish: { text: "text-emerald-400", bg: "bg-emerald-500/5" },
+  bearish: { text: "text-red-400", bg: "bg-red-500/5" },
   neutral: { text: "text-muted-foreground", bg: "bg-muted-foreground/10" },
   volatile: { text: "text-orange-400", bg: "bg-orange-500/10" },
 };

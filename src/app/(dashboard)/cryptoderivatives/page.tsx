@@ -761,7 +761,7 @@ export default function CryptoDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4 text-primary" />
+                  <RefreshCw className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Funding Rate History — {activePerp}-PERP
                 </CardTitle>
               </CardHeader>
@@ -791,7 +791,7 @@ export default function CryptoDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <ArrowUpDown className="w-4 h-4 text-primary" />
+                  <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Mark vs Index Price
                 </CardTitle>
               </CardHeader>
@@ -826,7 +826,7 @@ export default function CryptoDerivativesPage() {
             <Card className="bg-card border-border lg:col-span-2">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-primary" />
+                  <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                   All Perpetuals Overview
                 </CardTitle>
               </CardHeader>
@@ -875,7 +875,7 @@ export default function CryptoDerivativesPage() {
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2 justify-between">
                   <span className="flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-primary" />
+                    <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     BTC Options Chain — 14 Day Expiry
                   </span>
                   <span className="text-xs text-muted-foreground font-normal">Spot: {fmtUSD(BTC_MARK)}</span>
@@ -1028,7 +1028,7 @@ export default function CryptoDerivativesPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-primary" />
+                    <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
                     How to Use This
                   </CardTitle>
                 </CardHeader>
@@ -1060,7 +1060,7 @@ export default function CryptoDerivativesPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Globe className="w-4 h-4 text-primary" />
+                <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
                 CEX vs DEX Perpetuals Comparison
               </CardTitle>
             </CardHeader>
@@ -1138,7 +1138,7 @@ export default function CryptoDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-primary" />
+                  <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
                   DeFi Perps: How They Work
                 </CardTitle>
               </CardHeader>

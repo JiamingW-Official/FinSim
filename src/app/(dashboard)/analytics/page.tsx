@@ -1274,7 +1274,7 @@ export default function AnalyticsPage() {
                         ? "bg-green-500/10 border-green-800/50"
                         : item.score >= 50
                         ? "bg-amber-500/10 border-amber-800/50"
-                        : "bg-red-500/10 border-red-800/50";
+                        : "bg-red-500/5 border-red-800/50";
                     return (
                       <div key={item.label} className={cn("rounded-md border p-3 text-center", bgColor)}>
                         <Icon className={cn("w-4 h-4 mx-auto mb-1.5", color)} />
@@ -1388,7 +1388,7 @@ export default function AnalyticsPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 rounded-lg bg-red-500/10 border border-red-800/40 p-3 flex items-center gap-3">
+                <div className="mt-3 rounded-lg bg-red-500/5 border border-red-800/40 p-3 flex items-center gap-3">
                   <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
                   <div>
                     <p className="text-xs font-medium text-red-300">

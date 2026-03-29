@@ -329,8 +329,8 @@ function qualityColor(score: number): string {
 }
 
 function guidanceColor(action: string): string {
-  if (action === "raised") return "text-emerald-400 bg-emerald-500/10";
-  if (action === "lowered") return "text-red-400 bg-red-500/10";
+  if (action === "raised") return "text-emerald-400 bg-emerald-500/5";
+  if (action === "lowered") return "text-red-400 bg-red-500/5";
   if (action === "withdrawn") return "text-orange-400 bg-orange-500/10";
   return "text-muted-foreground bg-muted-foreground/10";
 }
@@ -1169,7 +1169,7 @@ export default function EarningsSeasonDashboard() {
           <p className="text-xs text-muted-foreground mt-0.5">Q1 2025 · Simulated estimates and reporting analytics</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-1 rounded-full">
+          <span className="flex items-center gap-1 text-xs text-emerald-400 bg-emerald-500/5 border border-emerald-500/20 px-2 py-1 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Season Active
           </span>

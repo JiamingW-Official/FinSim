@@ -687,7 +687,7 @@ export default function IBDealsPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <Briefcase className="text-primary" size={28} />
+          <Briefcase className="text-muted-foreground/50" size={28} />
           <h1 className="text-2xl font-bold tracking-tight">Investment Banking Deal Simulator</h1>
         </div>
         <p className="text-sm text-muted-foreground">
@@ -792,7 +792,7 @@ export default function IBDealsPage() {
           <div className="bg-card border border-border rounded-md overflow-hidden">
             <div className="p-4 border-b border-border">
               <h2 className="font-semibold text-sm flex items-center gap-2">
-                <Activity size={14} className="text-primary" />
+                <Activity size={14} className="text-muted-foreground/50" />
                 Announced M&A Deals
               </h2>
             </div>
@@ -855,7 +855,7 @@ export default function IBDealsPage() {
           {/* Deal timelines */}
           <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
-              <BarChart3 size={14} className="text-primary" />
+              <BarChart3 size={14} className="text-muted-foreground/50" />
               Deal Timeline: Announce → Regulatory → Close
             </h2>
             <svg width="100%" height={filteredDeals.slice(0, 8).length * 36 + 40} className="overflow-visible">
@@ -932,7 +932,7 @@ export default function IBDealsPage() {
 
             <div className="bg-card border border-border rounded-md p-4">
               <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
-                <Globe size={14} className="text-primary" />
+                <Globe size={14} className="text-muted-foreground/50" />
                 Cross-Border Deal Origins
               </h2>
               {(() => {
@@ -976,7 +976,7 @@ export default function IBDealsPage() {
             {/* Controls */}
             <div className="bg-card border border-border rounded-md p-4 space-y-4">
               <h2 className="font-medium text-sm flex items-center gap-2">
-                <Target size={14} className="text-primary" />
+                <Target size={14} className="text-muted-foreground/50" />
                 Deal Builder
               </h2>
 
@@ -1139,7 +1139,7 @@ export default function IBDealsPage() {
                 {/* Financing structure */}
                 <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
-                    <DollarSign size={14} className="text-primary" />
+                    <DollarSign size={14} className="text-muted-foreground/50" />
                     Financing Structure
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
@@ -1188,7 +1188,7 @@ export default function IBDealsPage() {
           {/* Comps */}
           <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
-              <Scale size={14} className="text-primary" />
+              <Scale size={14} className="text-muted-foreground/50" />
               Comparable Company Analysis
             </h2>
             <div className="overflow-x-auto">
@@ -1240,7 +1240,7 @@ export default function IBDealsPage() {
           {/* Precedents */}
           <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
-              <FileText size={14} className="text-primary" />
+              <FileText size={14} className="text-muted-foreground/50" />
               Precedent Transaction Analysis
             </h2>
             <div className="overflow-x-auto">
@@ -1498,7 +1498,7 @@ export default function IBDealsPage() {
             {/* Remedies */}
             <div className="bg-card border border-border rounded-md p-4">
               <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
-                <Scale size={14} className="text-primary" />
+                <Scale size={14} className="text-muted-foreground/50" />
                 Potential Remedies
               </h2>
               <div className="space-y-2">
@@ -1530,7 +1530,7 @@ export default function IBDealsPage() {
           {/* Historical outcomes */}
           <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
-              <FileText size={14} className="text-primary" />
+              <FileText size={14} className="text-muted-foreground/50" />
               Historical Regulatory Outcomes
             </h2>
             <div className="overflow-x-auto">
@@ -1705,7 +1705,7 @@ export default function IBDealsPage() {
                 {/* Debt schedule SVG */}
                 <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
-                    <BarChart3 size={14} className="text-primary" />
+                    <BarChart3 size={14} className="text-muted-foreground/50" />
                     Debt Paydown Schedule ($B)
                   </h3>
                   <svg width="100%" height={150} viewBox="0 0 360 150">
@@ -1907,7 +1907,7 @@ export default function IBDealsPage() {
           {/* IB compensation */}
           <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
-              <Users size={14} className="text-primary" />
+              <Users size={14} className="text-muted-foreground/50" />
               IB Analyst / Associate Compensation (Top Banks, 2025)
             </h2>
             <div className="overflow-x-auto">

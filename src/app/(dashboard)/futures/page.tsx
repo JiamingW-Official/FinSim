@@ -70,7 +70,7 @@ function fmtPrice(n: number): string {
 
 const up = (v: number) => v >= 0;
 const chgCls = (v: number) => (up(v) ? "text-emerald-400" : "text-red-400");
-const chgBg = (v: number) => (up(v) ? "bg-emerald-500/10" : "bg-red-500/10");
+const chgBg = (v: number) => (up(v) ? "bg-emerald-500/5" : "bg-red-500/5");
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -1388,11 +1388,11 @@ function MarginOrderTab() {
               <label className="text-xs text-muted-foreground block mb-1">Side</label>
               <div className="flex rounded-lg border border-border overflow-hidden h-7">
                 <button
-                  className={cn("flex-1 text-xs font-medium transition-colors", side === "long" ? "bg-emerald-500/20 text-emerald-400" : "text-muted-foreground hover:bg-accent/50")}
+                  className={cn("flex-1 text-xs font-medium transition-colors", side === "long" ? "bg-emerald-500/20 text-emerald-400" : "text-muted-foreground hover:bg-muted/20")}
                   onClick={() => setSide("long")}
                 >Long</button>
                 <button
-                  className={cn("flex-1 text-xs font-medium transition-colors", side === "short" ? "bg-red-500/20 text-red-400" : "text-muted-foreground hover:bg-accent/50")}
+                  className={cn("flex-1 text-xs font-medium transition-colors", side === "short" ? "bg-red-500/20 text-red-400" : "text-muted-foreground hover:bg-muted/20")}
                   onClick={() => setSide("short")}
                 >Short</button>
               </div>

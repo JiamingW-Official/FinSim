@@ -777,7 +777,7 @@ export default function MacroDashboardPage() {
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                      <Activity size={14} className="text-primary" />
+                      <Activity size={14} className="text-muted-foreground/50" />
                       Inflation Expectations (TIPS Breakeven)
                     </CardTitle>
                   </CardHeader>
@@ -981,10 +981,10 @@ export default function MacroDashboardPage() {
                         <Badge
                           className={`text-xs text-muted-foreground py-0 px-1.5 border ${
                             sec.pressure === "High"
-                              ? "bg-red-500/10 text-red-400 border-red-500/30"
+                              ? "bg-red-500/5 text-red-400 border-red-500/30"
                               : sec.pressure === "Medium"
                               ? "bg-amber-500/10 text-amber-400 border-amber-500/30"
-                              : "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
+                              : "bg-emerald-500/5 text-emerald-400 border-emerald-500/30"
                           }`}
                         >
                           {sec.pressure}
@@ -1078,7 +1078,7 @@ export default function MacroDashboardPage() {
                 <Card className="bg-card border-border lg:col-span-1">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                      <DollarSign size={14} className="text-primary" />
+                      <DollarSign size={14} className="text-muted-foreground/50" />
                       Current Account (% GDP)
                     </CardTitle>
                   </CardHeader>
@@ -1169,7 +1169,7 @@ export default function MacroDashboardPage() {
                   <CardContent>
                     <RegimeQuadrant inflation={currentInflation} growth={currentGrowth} />
                     <div className="grid grid-cols-2 gap-2 mt-3">
-                      <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
+                      <div className="bg-emerald-500/5 border border-emerald-500/20 rounded p-2">
                         <div className="text-xs text-emerald-400 font-medium mb-1">Expansion Regime</div>
                         <div className="text-xs text-muted-foreground">Growth above trend, inflation above target. Current US regime. Favor equities, commodities, real assets.</div>
                       </div>
@@ -1235,7 +1235,7 @@ export default function MacroDashboardPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <Layers size={14} className="text-primary" />
+                    <Layers size={14} className="text-muted-foreground/50" />
                     NBER Business Cycle Tracker
                   </CardTitle>
                 </CardHeader>

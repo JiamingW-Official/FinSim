@@ -35,7 +35,7 @@ const SENTIMENTS: {
   {
     value: "bullish",
     label: "Bullish",
-    activeClass: "bg-emerald-500/10 border-emerald-500/20 text-emerald-500",
+    activeClass: "bg-emerald-500/5 border-emerald-500/20 text-emerald-500",
     icon: "↑",
   },
   {
@@ -53,7 +53,7 @@ const SENTIMENTS: {
   {
     value: "bearish",
     label: "Bearish",
-    activeClass: "bg-red-500/10 border-red-500/20 text-red-500",
+    activeClass: "bg-red-500/5 border-red-500/20 text-red-500",
     icon: "↓",
   },
   {

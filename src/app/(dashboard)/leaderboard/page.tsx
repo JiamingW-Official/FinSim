@@ -381,7 +381,7 @@ export default function LeaderboardPage() {
                     className="rounded-md border border-border bg-card/50 p-4"
                   >
                     <div className="flex items-center gap-2 mb-3">
-                      <Medal className="h-4 w-4 text-primary" />
+                      <Medal className="h-3.5 w-3.5 text-muted-foreground/50" />
                       <span className="text-sm font-medium">Your Next Goal</span>
                     </div>
                     <NextGoalContent userRank={userRank} dimConfig={dimConfig} ranked={filteredRanked} />
@@ -482,7 +482,7 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
           return (
             <div
               key={friend.id}
-              className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 items-center px-3 py-2.5 hover:bg-accent/20 transition-colors border-b border-border/30 last:border-0"
+              className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 items-center px-3 py-2.5 hover:bg-muted/10 transition-colors duration-150 border-b border-border/30 last:border-0"
             >
               <span className="text-[11px] font-medium text-muted-foreground text-center">{i + 1}</span>
 
@@ -622,7 +622,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-card/50 p-4">
           <div className="flex items-center gap-2 mb-1">
-            <Trophy className="h-4 w-4 text-primary" />
+            <Trophy className="h-3.5 w-3.5 text-muted-foreground/50" />
             <span className="text-[11px] font-medium text-muted-foreground">Global Rank</span>
           </div>
           <div className="text-2xl font-bold tabular-nums text-primary">#{rank}</div>
@@ -634,7 +634,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             <Star className="h-4 w-4 text-amber-400" />
             <span className="text-[11px] font-medium text-muted-foreground">Percentile</span>
           </div>
-          <div className="text-lg font-medium tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
+          <div className="text-sm font-medium font-mono tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
           <div className="mt-2 h-2 rounded-full bg-muted/30 overflow-hidden">
             <div
               className="h-full rounded-full bg-amber-400 transition-all duration-200"
@@ -648,7 +648,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       {/* Historical rank chart */}
       <div className="rounded-md border border-border bg-card/50 p-4">
         <div className="flex items-center gap-2 mb-3">
-          <TrendingUp className="h-4 w-4 text-primary" />
+          <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
           <span className="text-sm font-medium">Rank History</span>
           <span className="text-xs text-muted-foreground ml-auto">Last 30 days</span>
         </div>
@@ -782,7 +782,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
             <p className="text-xs text-muted-foreground mt-0.5">{unlockedCount} of {allDefs.length} unlocked</p>
           </div>
           <div className="text-right">
-            <span className="text-lg font-medium tabular-nums text-amber-400">{unlockedCount}</span>
+            <span className="text-sm font-medium font-mono tabular-nums text-amber-400">{unlockedCount}</span>
             <span className="text-xs text-muted-foreground">/{allDefs.length}</span>
           </div>
         </div>

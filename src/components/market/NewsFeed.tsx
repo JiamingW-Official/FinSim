@@ -137,7 +137,7 @@ function NewsDetailDrawer({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-md hover:bg-accent/30 text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            className="p-1.5 rounded-md hover:bg-muted/20 text-muted-foreground hover:text-foreground transition-colors shrink-0"
           >
             <X className="h-4 w-4" />
           </button>
@@ -260,7 +260,7 @@ export default function NewsFeed({ ticker }: NewsFeedProps) {
                   "flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-full border transition-colors",
                   t === ticker
                     ? "bg-primary/10 border-primary/30 text-primary"
-                    : "bg-accent/20 border-border/40 text-foreground hover:border-border hover:bg-accent/40"
+                    : "bg-muted/20 border-border/40 text-foreground hover:border-border hover:bg-muted/30"
                 )}
               >
                 {t}
@@ -292,7 +292,7 @@ export default function NewsFeed({ ticker }: NewsFeedProps) {
           <button
             key={item.id}
             onClick={() => setSelectedItem(item)}
-            className="w-full text-left border border-border/40 rounded-lg bg-card p-3 flex items-start gap-3 hover:border-border/60 hover:bg-accent/10 transition-colors"
+            className="w-full text-left border border-border/40 rounded-lg bg-card p-3 flex items-start gap-3 hover:border-border/60 hover:bg-muted/10 transition-colors"
           >
             <SentimentDot sentiment={item.sentiment} />
             <div className="flex-1 min-w-0">

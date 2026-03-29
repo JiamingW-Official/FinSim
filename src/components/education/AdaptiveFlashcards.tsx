@@ -273,7 +273,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
           <button
             type="button"
             onClick={() => setShowKeyHint((v) => !v)}
-            className="rounded p-0.5 hover:bg-accent/30"
+            className="rounded p-0.5 hover:bg-muted/30 transition-colors"
             title="Keyboard shortcuts"
           >
             <Keyboard className="h-3.5 w-3.5 text-muted-foreground" />

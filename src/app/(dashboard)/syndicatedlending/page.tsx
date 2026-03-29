@@ -1259,7 +1259,7 @@ function MarketDynamicsTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border border-border bg-muted/30 p-4">
             <div className="flex items-center gap-2 mb-2">
-              <Users size={14} className="text-primary" />
+              <Users size={14} className="text-muted-foreground/50" />
               <span className="text-sm font-medium text-primary">Relationship Banking</span>
             </div>
             <ul className="space-y-1 text-xs text-muted-foreground">

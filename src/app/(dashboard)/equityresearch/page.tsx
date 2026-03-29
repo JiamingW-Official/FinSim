@@ -1010,7 +1010,7 @@ function FinancialModelingTab() {
       {/* Tornado Chart */}
       <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 size={15} className="text-primary" />
+          <BarChart3 size={15} className="text-muted-foreground/50" />
           <p className="text-sm font-medium text-foreground">Sensitivity Analysis — Tornado Chart</p>
         </div>
         <p className="text-xs text-muted-foreground mb-4">
@@ -1049,7 +1049,7 @@ function ValuationTab() {
       {/* DCF Sensitivity Matrix */}
       <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
-          <Calculator size={15} className="text-primary" />
+          <Calculator size={15} className="text-muted-foreground/50" />
           <p className="text-sm font-medium text-foreground">DCF Sensitivity — WACC vs Terminal Growth ($/share)</p>
         </div>
         <p className="text-xs text-muted-foreground mb-4">
@@ -1325,7 +1325,7 @@ function ReportStructureTab() {
 
       {/* Bull/Bear Summary for NVDA */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-md bg-emerald-500/10 border border-emerald-500/20 p-4">
+        <div className="rounded-md bg-emerald-500/5 border border-emerald-500/20 p-4">
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp size={15} className="text-emerald-400" />
             <p className="text-sm font-medium text-emerald-300">NVDA Bull Case — $1,250 PT</p>
@@ -1345,7 +1345,7 @@ function ReportStructureTab() {
             ))}
           </ul>
         </div>
-        <div className="rounded-md bg-red-500/10 border border-red-500/20 p-4">
+        <div className="rounded-md bg-red-500/5 border border-red-500/20 p-4">
           <div className="flex items-center gap-2 mb-3">
             <TrendingDown size={15} className="text-red-400" />
             <p className="text-sm font-medium text-red-300">NVDA Bear Case — $600 PT</p>

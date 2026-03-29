@@ -114,7 +114,7 @@ function InfoBox({
   const colors = {
     blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
-    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+    emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
     purple: "bg-primary/10 border-border text-primary",
   };
@@ -348,7 +348,7 @@ function LiquidityTab() {
 
       {/* Concentrated Liquidity */}
       <div>
-        <SectionTitle><Layers size={14} className="text-primary" />Uniswap V3 Concentrated Liquidity</SectionTitle>
+        <SectionTitle><Layers size={14} className="text-muted-foreground/50" />Uniswap V3 Concentrated Liquidity</SectionTitle>
         <div className="rounded-md border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-4">
             V3 allows LPs to provide liquidity within custom price ranges (ticks). Capital concentrates at the current price, achieving up to <span className="text-primary font-medium">4000x capital efficiency</span> vs V2. Positions become NFTs representing unique tick ranges.
@@ -387,7 +387,7 @@ function LiquidityTab() {
 
       {/* CLMM vs AMM Comparison */}
       <div>
-        <SectionTitle><BarChart3 size={14} className="text-primary" />CLMM vs Classic AMM Comparison</SectionTitle>
+        <SectionTitle><BarChart3 size={14} className="text-muted-foreground/50" />CLMM vs Classic AMM Comparison</SectionTitle>
         <div className="rounded-md border border-border bg-foreground/5 overflow-hidden">
           <table className="w-full">
             <thead>
@@ -454,7 +454,7 @@ function LiquidityTab() {
 
       {/* veTokenomics */}
       <div>
-        <SectionTitle><Lock size={14} className="text-primary" />veTokenomics (Vote-Escrowed Model)</SectionTitle>
+        <SectionTitle><Lock size={14} className="text-muted-foreground/50" />veTokenomics (Vote-Escrowed Model)</SectionTitle>
         <div className="rounded-md border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-4">
             Pioneered by Curve (veCRV), veTokenomics aligns long-term holders with protocol governance. Tokens locked longer receive more voting power and higher yield boosts — creating supply sink mechanics and reducing mercenary farming.
@@ -967,7 +967,7 @@ function IntentTab() {
 
       {/* CoW Protocol */}
       <div>
-        <SectionTitle><RefreshCw size={14} className="text-primary" />CoW Protocol: Batch Auction Architecture</SectionTitle>
+        <SectionTitle><RefreshCw size={14} className="text-muted-foreground/50" />CoW Protocol: Batch Auction Architecture</SectionTitle>
         <div className="rounded-md border border-border bg-foreground/5 p-4">
           <CowBatchSVG />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
@@ -1046,7 +1046,7 @@ function IntentTab() {
           </div>
         </div>
         <div>
-          <SectionTitle><Network size={14} className="text-primary" />Cross-Chain Bridge Security Taxonomy</SectionTitle>
+          <SectionTitle><Network size={14} className="text-muted-foreground/50" />Cross-Chain Bridge Security Taxonomy</SectionTitle>
           <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground mb-2">Over $2.8B lost to bridge hacks 2021–2024. Security models differ fundamentally:</p>
             {[
@@ -1292,7 +1292,7 @@ function RestakingTab() {
 
       {/* EigenLayer mechanics */}
       <div>
-        <SectionTitle><Layers size={14} className="text-primary" />EigenLayer Restaking Architecture</SectionTitle>
+        <SectionTitle><Layers size={14} className="text-muted-foreground/50" />EigenLayer Restaking Architecture</SectionTitle>
         <div className="rounded-md border border-border bg-foreground/5 p-4">
           <RestakingSVG />
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1333,7 +1333,7 @@ function RestakingTab() {
 
       {/* LRT table */}
       <div>
-        <SectionTitle><Coins size={14} className="text-primary" />Liquid Restaking Tokens (LRTs)</SectionTitle>
+        <SectionTitle><Coins size={14} className="text-muted-foreground/50" />Liquid Restaking Tokens (LRTs)</SectionTitle>
         <div className="rounded-md border border-border bg-foreground/5 overflow-x-auto">
           <table className="w-full min-w-[540px]">
             <thead>
@@ -1418,7 +1418,7 @@ function RestakingTab() {
       {/* Permissioned pools + Insurance */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <SectionTitle><Lock size={14} className="text-primary" />Permissioned DeFi Pools</SectionTitle>
+          <SectionTitle><Lock size={14} className="text-muted-foreground/50" />Permissioned DeFi Pools</SectionTitle>
           <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Permissioned pools offer DeFi yield mechanics within a KYC/AML framework — bridging institutional compliance with on-chain efficiency.

@@ -664,10 +664,10 @@ export default function CrisisHistoryPage() {
         {/* quick stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
           {[
-            { label: "Crises Covered", value: "8", icon: <BookOpen className="w-4 h-4 text-primary" /> },
+            { label: "Crises Covered", value: "8", icon: <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" /> },
             { label: "Worst Peak Loss", value: "-89%", icon: <TrendingDown className="w-4 h-4 text-red-400" /> },
             { label: "Asset Classes", value: "6", icon: <Activity className="w-4 h-4 text-emerald-400" /> },
-            { label: "Policy Tools", value: "12+", icon: <Landmark className="w-4 h-4 text-primary" /> },
+            { label: "Policy Tools", value: "12+", icon: <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" /> },
           ].map((s) => (
             <Card key={s.label} className="bg-card border-border">
               <CardContent className="p-3 flex items-center gap-3">
@@ -707,7 +707,7 @@ export default function CrisisHistoryPage() {
           <Card className="bg-card border-border mb-4">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Interactive Crisis Timeline — Click a crisis to explore
               </CardTitle>
             </CardHeader>
@@ -821,7 +821,7 @@ export default function CrisisHistoryPage() {
               {
                 title: "The MBS/CDO Machine",
                 color: "text-primary",
-                icon: <DollarSign className="w-4 h-4 text-primary" />,
+                icon: <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />,
                 points: [
                   "Banks originated subprime loans they didn't intend to hold",
                   "Loans were pooled into Mortgage-Backed Securities (MBS)",
@@ -833,7 +833,7 @@ export default function CrisisHistoryPage() {
               {
                 title: "Leverage & Shadow Banking",
                 color: "text-primary",
-                icon: <TrendingUp className="w-4 h-4 text-primary" />,
+                icon: <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />,
                 points: [
                   "Investment banks ran 30–40x leverage by 2007",
                   "SIVs (off-balance-sheet) held $400B in toxic assets",
@@ -919,7 +919,7 @@ export default function CrisisHistoryPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Kindleberger–Minsky Anatomy of a Financial Crisis
               </CardTitle>
             </CardHeader>
@@ -1024,7 +1024,7 @@ export default function CrisisHistoryPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <TrendingDown className="w-4 h-4 text-primary" />
+                <TrendingDown className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Asset Class Performance During Crises — Heatmap
               </CardTitle>
             </CardHeader>
@@ -1056,7 +1056,7 @@ export default function CrisisHistoryPage() {
                 summary: "Perform worst in almost every crisis. High beta to economic growth and risk sentiment.",
                 exception: "2022: fell ~25% but not catastrophic due to strong earnings backdrop.",
                 rule: "Buy equities when fear peaks (VIX > 40), not when complacency is high (VIX < 12)." },
-              { asset: "Government Bonds", icon: <Activity className="w-4 h-4 text-primary" />, tc: "text-primary",
+              { asset: "Government Bonds", icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />, tc: "text-primary",
                 summary: "Usually a flight-to-safety asset. Perform well in deflationary crises as yields fall.",
                 exception: "2022: bonds fell 18% — worst year since 1788 — as inflation forced rate hikes.",
                 rule: "Bonds provide crisis diversification ONLY in deflationary, not inflationary, crises." },
@@ -1072,7 +1072,7 @@ export default function CrisisHistoryPage() {
                 summary: "Highly cyclical, tend to fall sharply in demand downturns (recession fears).",
                 exception: "2022: commodities surged +35% due to Russia–Ukraine supply shock — unique macro regime.",
                 rule: "In supply-shock-driven crises, commodities can be inflationary even as financial assets crash." },
-              { asset: "Real Estate", icon: <Landmark className="w-4 h-4 text-primary" />, tc: "text-primary",
+              { asset: "Real Estate", icon: <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />, tc: "text-primary",
                 summary: "Highly leveraged, illiquid, and slow to reprice — often the cause or victim of crises.",
                 exception: "2020: residential real estate rose due to stimulus and work-from-home demand shift.",
                 rule: "Watch price-to-rent ratios and mortgage credit conditions as leading indicators." },
@@ -1133,7 +1133,7 @@ export default function CrisisHistoryPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Landmark className="w-4 h-4 text-primary" />
+                <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Fed Policy Tools — Historical Timeline
               </CardTitle>
             </CardHeader>

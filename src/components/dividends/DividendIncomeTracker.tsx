@@ -69,8 +69,8 @@ const SECTOR_COLORS_CSS: Record<string, { text: string; bg: string; border: stri
   Energy:        { text: "text-orange-400", bg: "bg-orange-500/10", border: "border-orange-500/30" },
   Retail:        { text: "text-muted-foreground",   bg: "bg-cyan-500/10",   border: "border-cyan-500/30" },
   "Real Estate": { text: "text-primary", bg: "bg-primary/10", border: "border-border" },
-  Utilities:     { text: "text-red-400",    bg: "bg-red-500/10",    border: "border-red-500/30" },
-  Financials:    { text: "text-emerald-400",bg: "bg-emerald-500/10",border: "border-emerald-500/30" },
+  Utilities:     { text: "text-red-400",    bg: "bg-red-500/5",    border: "border-red-500/30" },
+  Financials:    { text: "text-emerald-400",bg: "bg-emerald-500/5",border: "border-emerald-500/30" },
 };
 
 // ── Dividend Safety Stock Data ─────────────────────────────────────────────────
@@ -486,7 +486,7 @@ function DividendSafetyScoring() {
     g === "B" ? "text-muted-foreground bg-cyan-500/10 border-cyan-500/30" :
     g === "C" ? "text-amber-400 bg-amber-500/10 border-amber-500/30" :
     g === "D" ? "text-orange-400 bg-orange-500/10 border-orange-500/30" :
-    "text-red-400 bg-red-500/10 border-red-500/30";
+    "text-red-400 bg-red-500/5 border-red-500/30";
 
   const scoreBarColor = (score: number) =>
     score >= 85 ? "bg-green-500" :
@@ -508,7 +508,7 @@ function DividendSafetyScoring() {
           <p className="text-xs text-muted-foreground">Grade A Stocks</p>
           <p className="text-lg font-semibold text-green-400 mt-0.5">{results.filter((r) => r.grade === "A").length}</p>
         </div>
-        <div className={cn("rounded-lg p-3 border", atRiskCount > 0 ? "bg-red-500/10 border-red-500/30" : "bg-muted/30 border-border/40")}>
+        <div className={cn("rounded-lg p-3 border", atRiskCount > 0 ? "bg-red-500/5 border-red-500/30" : "bg-muted/30 border-border/40")}>
           <p className="text-xs text-muted-foreground">At-Risk Dividends</p>
           <p className={cn("text-lg font-semibold mt-0.5", atRiskCount > 0 ? "text-red-400" : "text-muted-foreground")}>{atRiskCount}</p>
         </div>
@@ -568,7 +568,7 @@ function DividendSafetyScoring() {
                   </td>
                   <td className="px-3 py-2.5 text-center">
                     {r.atRisk ? (
-                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-medium">
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-red-500/5 border border-red-500/30 text-red-400 text-xs font-medium">
                         <AlertTriangle className="w-3 h-3" /> At Risk
                       </span>
                     ) : (

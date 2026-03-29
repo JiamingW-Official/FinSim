@@ -303,9 +303,9 @@ function ColHeader({ label, field, sortField, sortDir, onSort, align = "right" }
         {label}
         {active ? (
           sortDir === "asc" ? (
-            <ChevronUp size={12} className="text-primary" />
+            <ChevronUp size={12} className="text-muted-foreground/50" />
           ) : (
-            <ChevronDown size={12} className="text-primary" />
+            <ChevronDown size={12} className="text-muted-foreground/50" />
           )
         ) : (
           <ArrowUpDown size={10} className="opacity-30" />
@@ -1041,7 +1041,7 @@ function CustomScreenTab() {
           <CardHeader className="py-3 px-4 border-b border-border/50">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                <Sliders size={14} className="text-primary" />
+                <Sliders size={14} className="text-muted-foreground/50" />
                 Filter Controls
               </CardTitle>
               <Button size="sm" variant="ghost" className="h-7 text-xs text-foreground/50 hover:text-foreground" onClick={resetFilters}>
@@ -1215,7 +1215,7 @@ function CustomScreenTab() {
           <Card className="bg-foreground/[0.02] border-border/50">
             <CardHeader className="py-3 px-4 border-b border-border/50">
               <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                <Filter size={14} className="text-primary" />
+                <Filter size={14} className="text-muted-foreground/50" />
                 Custom Screen Results
                 {results.length === 0 && (
                   <Badge className="bg-rose-500/20 text-rose-300 text-xs ml-auto">
@@ -1301,7 +1301,7 @@ export default function StockScreenerPage() {
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="w-8 h-8 rounded-lg bg-primary/30 border border-border flex items-center justify-center">
-            <BarChart3 size={16} className="text-primary" />
+            <BarChart3 size={16} className="text-muted-foreground/50" />
           </div>
           <h1 className="text-xl font-bold text-foreground">Stock Screener</h1>
         </div>
@@ -1321,7 +1321,7 @@ export default function StockScreenerPage() {
           { icon: <BarChart3 size={12} />, label: "25 Stocks", color: "text-primary bg-primary/10 border-border" },
           { icon: <Layers size={12} />, label: "8 Sectors", color: "text-primary bg-primary/10 border-border" },
           { icon: <Star size={12} />, label: "Value Screens", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
-          { icon: <TrendingUp size={12} />, label: "Growth Screens", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
+          { icon: <TrendingUp size={12} />, label: "Growth Screens", color: "text-emerald-400 bg-emerald-500/5 border-emerald-500/20" },
           { icon: <Shield size={12} />, label: "Quality Screens", color: "text-muted-foreground bg-cyan-500/10 border-cyan-500/20" },
           { icon: <Sliders size={12} />, label: "Custom Filters", color: "text-rose-400 bg-rose-500/10 border-rose-500/20" },
         ].map((chip) => (

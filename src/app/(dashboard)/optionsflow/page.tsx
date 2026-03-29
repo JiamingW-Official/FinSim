@@ -497,7 +497,7 @@ export default function OptionsFlowPage() {
               value: cpRatio,
               icon: <Activity className="w-4 h-4" />,
               color: parseFloat(cpRatio) > 1 ? "text-emerald-400" : "text-red-400",
-              bg: parseFloat(cpRatio) > 1 ? "bg-emerald-500/10" : "bg-red-500/10",
+              bg: parseFloat(cpRatio) > 1 ? "bg-emerald-500/5" : "bg-red-500/5",
               border: parseFloat(cpRatio) > 1 ? "border-emerald-500/20" : "border-red-500/20",
               sub: parseFloat(cpRatio) > 1 ? "bullish skew" : "bearish skew",
             },

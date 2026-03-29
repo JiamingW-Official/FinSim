@@ -343,7 +343,7 @@ function EuEtsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <BarChart2 size={15} className="text-primary" />
+            <BarChart2 size={15} className="text-muted-foreground/50" />
             EU ETS Allowance Price (EUA) 2015–2024 — €/tonne CO₂
           </CardTitle>
         </CardHeader>
@@ -467,7 +467,7 @@ function EuEtsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <Shield size={14} className="text-primary" />
+            <Shield size={14} className="text-muted-foreground/50" />
             Carbon Border Adjustment Mechanism (CBAM)
           </CardTitle>
         </CardHeader>
@@ -683,7 +683,7 @@ function VoluntaryTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <Shield size={14} className="text-primary" />
+            <Shield size={14} className="text-muted-foreground/50" />
             Verra VCS vs Gold Standard Comparison
           </CardTitle>
         </CardHeader>
@@ -1043,7 +1043,7 @@ function CorporateTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <BarChart2 size={14} className="text-primary" />
+            <BarChart2 size={14} className="text-muted-foreground/50" />
             Marginal Abatement Cost (MAC) Curve
           </CardTitle>
         </CardHeader>
@@ -1209,7 +1209,7 @@ function CorporateTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <TrendingUp size={14} className="text-primary" />
+            <TrendingUp size={14} className="text-muted-foreground/50" />
             Credible Transition Plan Checklist
           </CardTitle>
         </CardHeader>

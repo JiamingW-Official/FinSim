@@ -585,7 +585,7 @@ function ETFDetailPanel({ etf, onClose }: { etf: ETFRow; onClose: () => void }) 
         <button
           type="button"
           onClick={onClose}
-          className="rounded-md p-1 text-muted-foreground hover:bg-accent"
+          className="rounded-md p-1 text-muted-foreground hover:bg-muted/30"
         >
           <X className="h-4 w-4" />
         </button>
@@ -726,7 +726,7 @@ function ETFExplorer() {
                 <tr
                   key={etf.symbol}
                   className={cn(
-                    "cursor-pointer transition-colors hover:bg-accent/40",
+                    "cursor-pointer transition-colors hover:bg-muted/30/40",
                     selectedETF?.symbol === etf.symbol && "bg-accent/60",
                   )}
                   onClick={() => setSelectedETF((prev) => prev?.symbol === etf.symbol ? null : etf)}
@@ -939,7 +939,7 @@ function FundComparison() {
                     bestIdx = nums.findIndex((n) => n === target);
                   }
                   return (
-                    <tr key={row.label} className="hover:bg-accent/20">
+                    <tr key={row.label} className="hover:bg-muted/30/20">
                       <td className="px-4 py-2 text-muted-foreground">{row.label}</td>
                       {selectedRows.map((e, i) => (
                         <td

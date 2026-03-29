@@ -297,7 +297,7 @@ function EvidenceTab() {
       {/* SPIVA Scorecard */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart2 className="w-4 h-4 text-primary" />
+          <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="font-semibold text-foreground">SPIVA Scorecard — The Long Game</h3>
         </div>
         <SPIVAChart />
@@ -306,7 +306,7 @@ function EvidenceTab() {
       {/* EMH */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Info className="w-4 h-4 text-primary" />
+          <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="font-semibold text-foreground">Efficient Market Hypothesis</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -474,7 +474,7 @@ function IndexMechanicsTab() {
       {/* Market Cap Weighting */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Scale className="w-4 h-4 text-primary" />
+          <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="font-medium text-foreground">Market Cap Weighting Mechanics</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -551,7 +551,7 @@ function IndexMechanicsTab() {
       {/* Tracking Error Sources */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart2 className="w-4 h-4 text-primary" />
+          <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="font-medium text-foreground">Tracking Error Sources (basis points per year)</h3>
         </div>
         <div className="space-y-2">
@@ -735,7 +735,7 @@ function FactorTab() {
       {/* Factor Overview */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
-          <Zap className="w-4 h-4 text-primary" />
+          <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="font-medium text-foreground">Factor Investing — The Middle Ground</h3>
         </div>
         <p className="text-sm text-muted-foreground mb-4">
@@ -847,7 +847,7 @@ function FactorTab() {
       {/* Equal Weight vs Cap Weight */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Scale className="w-4 h-4 text-primary" />
+          <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="font-medium text-foreground">Equal Weight vs Cap Weight</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1202,7 +1202,7 @@ function FeeImpactTab() {
       {/* Core-Satellite Construction */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Layers className="w-4 h-4 text-primary" />
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="font-medium text-foreground">Core-Satellite Portfolio Construction</h3>
         </div>
         <CoreSatelliteSVG />

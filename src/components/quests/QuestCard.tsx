@@ -166,7 +166,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
           {/* XP badge */}
           <div className={cn(
             "flex items-center gap-1 rounded-full px-2 py-0.5",
-            isClaimed ? "bg-emerald-500/10" : "bg-amber-500/10",
+            isClaimed ? "bg-emerald-500/5" : "bg-amber-500/10",
           )}>
             <Star className={cn("h-3 w-3", isClaimed ? "text-emerald-400" : "text-amber-400")} />
             <span className={cn("text-xs font-bold", isClaimed ? "text-emerald-400" : "text-amber-400")}>

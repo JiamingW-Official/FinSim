@@ -191,12 +191,12 @@ export default function PortfolioPage() {
           <div className="border-l-4 border-primary rounded-lg bg-card p-8 mb-3">
             {/* Value + P&L headline — MASSIVE */}
             <div className="flex items-baseline gap-3 mb-6">
-              <span className="text-3xl font-bold tabular-nums">
+              <span className="text-3xl font-bold font-mono tabular-nums">
                 {formatCurrency(portfolioValue)}
               </span>
               <span
                 className={cn(
-                  "text-base font-normal tabular-nums",
+                  "text-sm font-normal font-mono tabular-nums",
                   totalPnL >= 0 ? "text-emerald-400" : "text-red-400",
                 )}
               >
@@ -205,7 +205,7 @@ export default function PortfolioPage() {
               </span>
               <span
                 className={cn(
-                  "text-sm font-medium tabular-nums",
+                  "text-sm font-medium font-mono tabular-nums",
                   totalPnLPct >= 0 ? "text-emerald-400/70" : "text-red-400/70",
                 )}
               >
@@ -246,7 +246,7 @@ export default function PortfolioPage() {
 
         {/* ── INLINE STATS LINE ── */}
         {hasTrades && (
-          <div className="flex items-center gap-1.5 text-[11px] font-normal text-muted-foreground/50 tabular-nums mb-8 px-1 flex-wrap">
+          <div className="flex items-center gap-1.5 text-[11px] font-normal text-muted-foreground/50 font-mono tabular-nums mb-8 px-1 flex-wrap">
             <span>
               Win Rate:{" "}
               <span className="text-muted-foreground">
@@ -690,7 +690,7 @@ function LearningProgress({
           <GraduationCap className="h-3.5 w-3.5" />
           Learning Progress
         </div>
-        <span className="text-[11px] tabular-nums text-muted-foreground">
+        <span className="text-[11px] font-mono tabular-nums text-muted-foreground">
           {progress.completedCount}/{progress.totalLessons} lessons
         </span>
       </div>

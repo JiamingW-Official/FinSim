@@ -660,7 +660,7 @@ function PivotPointsSection({
               "rounded px-2 py-0.5 text-[11px] font-medium transition-colors",
               selectedType === t
                 ? "bg-primary/20 text-primary"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
             )}
           >
             {t}

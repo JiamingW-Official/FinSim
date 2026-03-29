@@ -446,7 +446,7 @@ function FuturesCurveTab() {
         <Card className="lg:col-span-2 bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Activity className="w-4 h-4 text-primary" />
+              <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
               {curve.name} Forward Curve
               <Badge
                 variant="outline"
@@ -734,7 +734,7 @@ function SeasonalityTab() {
         <Card className="lg:col-span-2 bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <BarChart2 className="w-4 h-4 text-primary" />
+              <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
               {comm.name} — Monthly Seasonal Index (avg = 100)
             </CardTitle>
           </CardHeader>
@@ -1022,7 +1022,7 @@ function HedgingTab() {
         <Card className="lg:col-span-2 bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Shield className="w-4 h-4 text-primary" />
+              <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
               {scenario.name}
               <span className="text-xs text-muted-foreground font-normal">
                 — {scenario.company}
@@ -1306,7 +1306,7 @@ function SectorsTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-primary" />
+              <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
               {activeSector} — YTD Performance
             </CardTitle>
           </CardHeader>
@@ -1369,7 +1369,7 @@ function SectorsTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <DollarSign className="w-4 h-4 text-primary" />
+              <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
               Price Performance
             </CardTitle>
           </CardHeader>
@@ -1421,7 +1421,7 @@ function SectorsTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Activity className="w-4 h-4 text-primary" />
+              <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
               Supply / Demand Balance
             </CardTitle>
           </CardHeader>
@@ -1474,7 +1474,7 @@ function SectorsTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Zap className="w-4 h-4 text-primary" />
+              <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
               Key Price Drivers — {activeSector}
             </CardTitle>
           </CardHeader>

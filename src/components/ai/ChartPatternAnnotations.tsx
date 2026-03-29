@@ -48,7 +48,7 @@ function CurrentAnnotations({ patterns, barIndex }: CurrentAnnotationsProps) {
               isBull
                 ? "border-green-500/40 bg-green-500/10"
                 : isBear
-                ? "border-red-500/40 bg-red-500/10"
+                ? "border-red-500/40 bg-red-500/5"
                 : "border-amber-500/40 bg-amber-500/10",
             )}
           >

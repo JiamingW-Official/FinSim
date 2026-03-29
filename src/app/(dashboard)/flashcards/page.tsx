@@ -149,7 +149,7 @@ function BrowseTab() {
                         e.stopPropagation();
                         toggleFav(card.id);
                       }}
-                      className="ml-auto rounded p-0.5 hover:bg-accent/40"
+                      className="ml-auto rounded p-0.5 hover:bg-muted/30"
                     >
                       <Star
                         className={cn(

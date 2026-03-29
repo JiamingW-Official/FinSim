@@ -465,7 +465,7 @@ function TradeIdeasTab() {
               "rounded border px-2 py-1 text-xs text-muted-foreground font-medium leading-none transition-all",
               filter === f.value
                 ? "bg-primary/15 border-primary/30 text-primary"
-                : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
+                : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/30",
             )}
           >
             {f.label}
@@ -555,7 +555,7 @@ function TradeIdeasTab() {
                       "flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-medium leading-none transition-all",
                       isCopied
                         ? "border-emerald-500/40 bg-emerald-500/15 text-emerald-400"
-                        : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
+                        : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/30",
                     )}
                   >
                     <Copy className="h-2.5 w-2.5" />
@@ -576,7 +576,7 @@ function TradeIdeasTab() {
                       "ml-auto flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-medium leading-none transition-all",
                       followedTraders.has(trade.trader)
                         ? "border-primary/40 bg-primary/15 text-primary"
-                        : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
+                        : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/30",
                     )}
                   >
                     <Users className="h-2.5 w-2.5" />
@@ -855,7 +855,7 @@ function TopTradersTab() {
             <button
               type="button"
               onClick={() => setProfileTrader(trader)}
-              className="flex items-center gap-1 rounded border border-border bg-muted px-2 py-1 text-[11px] font-medium text-muted-foreground leading-none hover:text-foreground hover:bg-accent transition-all"
+              className="flex items-center gap-1 rounded border border-border bg-muted px-2 py-1 text-[11px] font-medium text-muted-foreground leading-none hover:text-foreground hover:bg-muted/30 transition-all"
             >
               <Star className="h-2.5 w-2.5" />
               View Profile
@@ -867,7 +867,7 @@ function TopTradersTab() {
                 "flex items-center gap-1 rounded border px-2 py-1 text-[11px] font-medium leading-none transition-all ml-auto",
                 followedTraders.has(trader.id)
                   ? "border-primary/40 bg-primary/15 text-primary"
-                  : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-accent",
+                  : "border-border bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/30",
               )}
             >
               <Users className="h-2.5 w-2.5" />
@@ -905,7 +905,7 @@ function TopTradersTab() {
                 <button
                   type="button"
                   onClick={() => setProfileTrader(null)}
-                  className="rounded p-1 text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+                  className="rounded p-1 text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors"
                 >
                   <X className="h-4 w-4" />
                 </button>

@@ -182,7 +182,7 @@ function StructureTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-muted/60 border border-border rounded-md p-5 space-y-3">
           <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="font-semibold text-primary text-sm">Conduit CMBS</span>
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">
@@ -199,7 +199,7 @@ function StructureTab() {
         </div>
         <div className="bg-muted/60 border border-border rounded-md p-5 space-y-3">
           <div className="flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-primary" />
+            <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="font-semibold text-primary text-sm">Single-Asset / Single-Borrower (SASB)</span>
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">
@@ -219,7 +219,7 @@ function StructureTab() {
       {/* Trust Flow Diagram */}
       <div className="bg-muted/60 border border-border/50 rounded-md p-5">
         <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-          <ArrowRight className="w-4 h-4 text-primary" />
+          <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/50" />
           CMBS Trust Structure
         </h3>
         <svg viewBox="0 0 680 120" className="w-full h-auto" aria-label="CMBS trust structure flow">
@@ -371,7 +371,7 @@ function LoanAnalysisTab() {
       {/* Loans table */}
       <div className="bg-muted/60 border border-border/50 rounded-md overflow-hidden">
         <div className="px-5 py-3 border-b border-border/50 flex items-center gap-2">
-          <Building2 className="w-4 h-4 text-primary" />
+          <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="text-sm font-medium text-foreground">Sample Loan Pool (8 Loans)</span>
         </div>
         <div className="overflow-x-auto">
@@ -425,7 +425,7 @@ function LoanAnalysisTab() {
         {/* DSCR vs LTV Scatter */}
         <div className="bg-muted/60 border border-border/50 rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             DSCR vs LTV Scatter
           </h3>
           <svg viewBox={`0 0 ${scatterW} ${scatterH}`} className="w-full h-auto" aria-label="DSCR vs LTV scatter">
@@ -657,7 +657,7 @@ function PerformanceTab() {
 
         <div className="bg-muted/60 border border-border/50 rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-primary" />
+            <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
             Prepayment Speeds by Property Type (CPR%)
           </h3>
           <div className="space-y-2.5">
@@ -741,7 +741,7 @@ function TradingTab() {
       {/* CMBX Spread Chart */}
       <div className="bg-muted/60 border border-border/50 rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Activity className="w-4 h-4 text-primary" />
+          <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
           CMBX Index Spreads — 12 Month (IG vs HY)
         </h3>
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full h-auto" aria-label="CMBX spread chart">
@@ -844,7 +844,7 @@ function TradingTab() {
           className="w-full flex items-center justify-between px-5 py-4 text-sm font-medium text-foreground hover:bg-muted/30 transition-colors"
         >
           <span className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             CMBS Trading Desk Workflow
           </span>
           {showWorkflow ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}

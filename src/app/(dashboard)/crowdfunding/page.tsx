@@ -413,7 +413,7 @@ function RegulatoryTab() {
       {/* JOBS Act History */}
       <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <BookOpen className="w-4 h-4 text-primary" />
+          <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="text-sm font-semibold text-foreground">JOBS Act 2012 — Legislative History</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
@@ -563,7 +563,7 @@ function RegulatoryTab() {
       {/* Blue Sky Laws */}
       <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Globe className="w-4 h-4 text-primary" />
+          <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="text-sm font-medium text-foreground">State Blue Sky Laws</h3>
         </div>
         <div className="space-y-2 text-xs text-muted-foreground">
@@ -725,7 +725,7 @@ function PlatformTab() {
       {/* Deal Flow SVG Bar Chart */}
       <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart2 className="w-4 h-4 text-primary" />
+          <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="text-sm font-medium text-foreground">US Reg CF Market Growth</h3>
         </div>
         <div className="overflow-x-auto">
@@ -969,7 +969,7 @@ function DealAnalysisTab() {
       {/* SAFE vs Convertible Note vs Equity */}
       <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
-          <Layers className="w-4 h-4 text-primary" />
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           <h3 className="text-sm font-medium text-foreground">SAFE vs Convertible Note vs Equity Round</h3>
         </div>
         <div className="overflow-x-auto">
@@ -1257,7 +1257,7 @@ function PortfolioTab() {
         {/* Sector bar */}
         <div className="rounded-md border border-border bg-card/60 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <PieChart className="w-4 h-4 text-primary" />
+            <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
             <h3 className="text-sm font-medium text-foreground">Portfolio by Sector</h3>
           </div>
           <div className="space-y-2">
@@ -1284,7 +1284,7 @@ function PortfolioTab() {
         {/* Success Rate */}
         <div className="rounded-md border border-border bg-card/60 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             <h3 className="text-sm font-medium text-foreground">Success Rate by Stage / Sector</h3>
           </div>
           <div className="space-y-3 text-xs text-muted-foreground">
@@ -1520,7 +1520,7 @@ export default function CrowdfundingPage() {
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
-            <Users className="w-4 h-4 text-primary" />
+            <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <h1 className="text-xl font-semibold text-foreground">Equity Crowdfunding & Alternative Financing</h1>
         </div>

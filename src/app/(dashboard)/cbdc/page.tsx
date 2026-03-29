@@ -383,7 +383,7 @@ function FundamentalsTab() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="rounded-md border border-border bg-primary/5 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Shield className="w-4 h-4 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-sm font-semibold text-primary">Account-Based CBDC</span>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
@@ -396,7 +396,7 @@ function FundamentalsTab() {
         </div>
         <div className="rounded-md border border-border bg-primary/5 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Lock className="w-4 h-4 text-primary" />
+            <Lock className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-sm font-semibold text-primary">Token-Based CBDC</span>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
@@ -1009,7 +1009,7 @@ function MonetaryPolicyTab() {
           {[
             {
               title: "Expiry Dates",
-              icon: <Clock className="w-4 h-4 text-primary" />,
+              icon: <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />,
               color: "blue",
               desc: "Government can issue CBDC that expires after 90 days, forcing spending and preventing hoarding. Useful for targeted stimulus but raises concerns about government control over savings.",
               example: "China used expiring e-CNY vouchers during COVID stimulus to ensure money was spent locally.",
@@ -1030,7 +1030,7 @@ function MonetaryPolicyTab() {
             },
             {
               title: "Helicopter Money Distribution",
-              icon: <Banknote className="w-4 h-4 text-primary" />,
+              icon: <Banknote className="w-3.5 h-3.5 text-muted-foreground/50" />,
               color: "purple" as const,
               desc: "Direct universal transfers to every citizen wallet. No intermediary banks required. Bypasses credit channel entirely for immediate stimulus effect.",
               example: "BIS research shows CBDC helicopter money reaches 100% of population in hours vs weeks via bank transfers.",

@@ -459,7 +459,7 @@ function Tab1EtfContent() {
 
       <CollapsibleCard
         title="Ether ETF Timeline & Staking Exclusion Controversy"
-        icon={<Activity className="w-4 h-4 text-primary" />}
+        icon={<Activity className="w-3.5 h-3.5 text-muted-foreground/50" />}
         defaultOpen={false}
       >
         <div className="space-y-2">
@@ -526,7 +526,7 @@ function Tab1EtfContent() {
 
       <CollapsibleCard
         title="Institutional Crypto Allocation Sizing"
-        icon={<Shield className="w-4 h-4 text-primary" />}
+        icon={<Shield className="w-3.5 h-3.5 text-muted-foreground/50" />}
         defaultOpen={false}
       >
         <div className="space-y-3">
@@ -815,7 +815,7 @@ function Tab2StablecoinContent() {
 
       <CollapsibleCard
         title="Reserve Composition: USDT vs USDC"
-        icon={<Shield className="w-4 h-4 text-primary" />}
+        icon={<Shield className="w-3.5 h-3.5 text-muted-foreground/50" />}
       >
         <ReserveChart />
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
@@ -1231,7 +1231,7 @@ function Tab3PrimeBrokerageContent() {
 
       <CollapsibleCard
         title="Crypto-Specific Risk Framework"
-        icon={<Shield className="w-4 h-4 text-primary" />}
+        icon={<Shield className="w-3.5 h-3.5 text-muted-foreground/50" />}
         defaultOpen={false}
       >
         <div className="space-y-3">
@@ -1585,7 +1585,7 @@ function Tab4OnchainContent() {
 
       <CollapsibleCard
         title="HODL Waves — Bitcoin Supply by Coin Age"
-        icon={<Database className="w-4 h-4 text-primary" />}
+        icon={<Database className="w-3.5 h-3.5 text-muted-foreground/50" />}
       >
         <HodlWavesSVG />
         <p className="text-xs text-muted-foreground mt-2">
@@ -1598,7 +1598,7 @@ function Tab4OnchainContent() {
 
       <CollapsibleCard
         title="Key On-Chain Metrics Reference"
-        icon={<Eye className="w-4 h-4 text-primary" />}
+        icon={<Eye className="w-3.5 h-3.5 text-muted-foreground/50" />}
         defaultOpen={false}
       >
         <div className="space-y-3">

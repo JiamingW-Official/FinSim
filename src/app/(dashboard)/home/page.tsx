@@ -360,7 +360,7 @@ export default function HomePage() {
                 {morningBullets.map((bullet, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                    <span className="text-base font-normal leading-relaxed text-foreground/90">{bullet}</span>
+                    <span className="text-sm font-normal leading-relaxed text-foreground/90">{bullet}</span>
                   </li>
                 ))}
               </ul>

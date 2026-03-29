@@ -1144,7 +1144,7 @@ export default function AdvancedTAPage() {
 
           <Card className="p-4 border-border/50">
             <div className="flex items-center gap-2 mb-3">
-              <GitBranch className="w-4 h-4 text-primary" />
+              <GitBranch className="w-3.5 h-3.5 text-muted-foreground/50" />
               <h3 className="font-medium text-sm">Adaptive Parameters by Regime</h3>
             </div>
             <div className="max-w-sm mb-3">

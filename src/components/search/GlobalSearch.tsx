@@ -208,7 +208,7 @@ export function SearchTrigger({ className }: { className?: string }) {
       onClick={openSearch}
       className={cn(
         "flex items-center gap-1.5 rounded-md px-2 py-1 text-muted-foreground",
-        "transition-colors hover:bg-accent/30 hover:text-foreground",
+        "transition-colors hover:bg-muted/20 hover:text-foreground",
         className,
       )}
       title="Search (⌘K)"
@@ -432,7 +432,7 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
                       key={term}
                       type="button"
                       onClick={() => handleRecentSelect(term)}
-                      className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-accent/30 hover:text-foreground transition-colors"
+                      className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted/20 hover:text-foreground transition-colors"
                     >
                       <Clock className="h-3.5 w-3.5 shrink-0" />
                       <span>{term}</span>
@@ -544,7 +544,7 @@ function ResultsGroups({ grouped, flatList, activeIndex, onSelect, onHover }: Re
                 onMouseEnter={() => onHover(flatIdx)}
                 className={cn(
                   "flex w-full items-center gap-3 rounded-md px-3 py-2 text-left transition-colors",
-                  isActive ? "bg-accent/40 text-foreground" : "text-muted-foreground hover:bg-accent/20 hover:text-foreground",
+                  isActive ? "bg-muted/20 text-foreground" : "text-muted-foreground hover:bg-muted/10 hover:text-foreground",
                 )}
               >
                 {/* Icon badge */}

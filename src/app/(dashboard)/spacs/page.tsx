@@ -341,7 +341,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
         </div>
         <button
           onClick={onClose}
-          className="rounded p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+          className="rounded p-1 text-muted-foreground hover:bg-muted/30 hover:text-foreground"
         >
           <X className="h-4 w-4" />
         </button>
@@ -448,7 +448,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
         </div>
         <button
           onClick={onClose}
-          className="rounded p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+          className="rounded p-1 text-muted-foreground hover:bg-muted/30 hover:text-foreground"
         >
           <X className="h-4 w-4" />
         </button>
@@ -670,7 +670,7 @@ function SpacTrackerTab({ spacs }: { spacs: SPAC[] }) {
                 "rounded-full px-3 py-1 text-xs text-muted-foreground font-medium transition-colors",
                 filter === f
                   ? "bg-primary text-primary-foreground"
-                  : "bg-accent/50 text-muted-foreground hover:bg-accent hover:text-foreground",
+                  : "bg-accent/50 text-muted-foreground hover:bg-muted/30 hover:text-foreground",
               )}
             >
               {f}
@@ -700,7 +700,7 @@ function SpacTrackerTab({ spacs }: { spacs: SPAC[] }) {
                   key={spac.id}
                   onClick={() => setSelectedSpac(prev => prev?.id === spac.id ? null : spac)}
                   className={cn(
-                    "cursor-pointer border-b border-border/30 transition-colors hover:bg-accent/30",
+                    "cursor-pointer border-b border-border/30 transition-colors hover:bg-muted/10",
                     selectedSpac?.id === spac.id ? "bg-accent/50" : "",
                   )}
                 >
@@ -924,7 +924,7 @@ function ConvertibleBondsTab({ bonds }: { bonds: ConvertibleBond[] }) {
                     key={bond.id}
                     onClick={() => setSelectedBond(prev => prev?.id === bond.id ? null : bond)}
                     className={cn(
-                      "cursor-pointer border-b border-border/30 transition-colors hover:bg-accent/30",
+                      "cursor-pointer border-b border-border/30 transition-colors hover:bg-muted/10",
                       selectedBond?.id === bond.id ? "bg-accent/50" : "",
                     )}
                   >

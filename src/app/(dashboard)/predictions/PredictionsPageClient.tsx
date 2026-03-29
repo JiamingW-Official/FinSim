@@ -190,7 +190,7 @@ function MarketRow({
 
       {/* Bet indicator */}
       {bet && (
-        <span className={cn("shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-medium leading-none", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+        <span className={cn("shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-medium leading-none", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500")}>
           {bet.position}
         </span>
       )}
@@ -462,7 +462,7 @@ function MarketDetailDrawer({
         <div className="mb-4 rounded-lg border border-border bg-muted/20 px-3 py-3">
           <div className="mb-1 text-xs font-medium text-muted-foreground">Your Bet</div>
           <div className="flex items-center gap-2 text-[11px]">
-            <span className={cn("rounded-sm px-1.5 py-0.5 font-medium text-[10px]", existingBet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+            <span className={cn("rounded-sm px-1.5 py-0.5 font-medium text-[10px]", existingBet.position === "yes" ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500")}>
               {existingBet.position.toUpperCase()}
             </span>
             <span className="text-muted-foreground">{existingBet.amount} pts at {Math.round(existingBet.probability * 100)}%</span>
@@ -477,7 +477,7 @@ function MarketDetailDrawer({
           {recentTrades.map((trade, i) => (
             <div key={i} className="flex items-center justify-between py-1.5 text-[11px]">
               <div className="flex items-center gap-2">
-                <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", trade.side === "YES" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+                <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", trade.side === "YES" ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500")}>
                   {trade.side}
                 </span>
                 <span className="font-mono tabular-nums text-muted-foreground">{trade.price}%</span>
@@ -583,7 +583,7 @@ function MyBetsTab() {
                         {(market?.question.length ?? 0) > 40 ? "…" : ""}
                       </td>
                       <td className="px-3 py-2 text-center">
-                        <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+                        <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500")}>
                           {bet.position.toUpperCase()}
                         </span>
                       </td>

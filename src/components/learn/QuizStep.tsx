@@ -141,11 +141,11 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
           let textCls = "";
           if (showResult && isThis && isCorrect) {
             borderCls = "border-emerald-500/70";
-            bgCls = "bg-emerald-500/10";
+            bgCls = "bg-emerald-500/5";
             textCls = "text-emerald-300";
           } else if (showResult && isThis && !isCorrect) {
             borderCls = "border-red-500/70";
-            bgCls = "bg-red-500/10";
+            bgCls = "bg-red-500/5";
             textCls = "text-red-300";
           } else if (showResult && isRight) {
             borderCls = "border-emerald-500/40";
@@ -179,7 +179,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
               className={cn(
                 "relative rounded-md border-2 p-3.5 text-left text-sm font-medium transition-colors",
                 borderCls, bgCls, textCls,
-                !showResult && "hover:border-primary/40 hover:bg-accent/60 cursor-pointer",
+                !showResult && "hover:border-primary/40 hover:bg-muted/20 cursor-pointer",
                 showResult && "cursor-default",
               )}
             >

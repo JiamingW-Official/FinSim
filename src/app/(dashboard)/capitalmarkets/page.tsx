@@ -1323,7 +1323,7 @@ export default function CapitalMarketsPage() {
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
-            <Building2 className="w-4 h-4 text-primary" />
+            <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <h1 className="text-xl font-semibold text-foreground">Capital Markets</h1>
           <span className="ml-2 text-xs bg-muted/60 border border-border text-primary rounded-full px-2 py-0.5">

@@ -380,8 +380,8 @@ export function TopBar() {
                 className={cn(
                   "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-medium",
                   dayChange >= 0
-                    ? "bg-emerald-500/10 text-emerald-500"
-                    : "bg-red-500/10 text-red-500",
+                    ? "bg-emerald-500/5 text-emerald-500"
+                    : "bg-red-500/5 text-red-500",
                 )}
               >
                 {dayChange >= 0 ? (
@@ -452,8 +452,8 @@ export function TopBar() {
             className={cn(
               "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-medium tabular-nums",
               totalPnL >= 0
-                ? "bg-emerald-500/10 text-emerald-500"
-                : "bg-red-500/10 text-red-500",
+                ? "bg-emerald-500/5 text-emerald-500"
+                : "bg-red-500/5 text-red-500",
             )}
           >
             {totalPnL >= 0 ? "+" : ""}

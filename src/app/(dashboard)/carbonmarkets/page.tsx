@@ -534,7 +534,7 @@ function ComplianceTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             Global ETS Comparison
           </CardTitle>
         </CardHeader>
@@ -636,7 +636,7 @@ function VoluntaryTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             Carbon Credit Lifecycle
           </CardTitle>
         </CardHeader>
@@ -1059,7 +1059,7 @@ function InvestmentTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Target className="w-4 h-4 text-primary" />
+            <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
             Transition Risk Hedging with Carbon
           </CardTitle>
         </CardHeader>

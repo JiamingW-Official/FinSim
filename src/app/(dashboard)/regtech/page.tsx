@@ -744,7 +744,7 @@ function AMLKYCTab() {
       {/* Flow Diagram */}
       <div className="bg-card rounded-md border border-border p-6 border-l-4 border-l-primary">
         <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-          <Network className="w-4 h-4 text-primary" />
+          <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
           AML Transaction Monitoring Flow
         </h3>
         <AMLFlowDiagram />
@@ -753,7 +753,7 @@ function AMLKYCTab() {
       {/* False Positive Chart */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-          <Filter className="w-4 h-4 text-primary" />
+          <Filter className="w-3.5 h-3.5 text-muted-foreground/50" />
           False Positive Rate: Rule-Based vs ML (Year 1–10)
         </h3>
         <FalsePositiveChart />
@@ -765,7 +765,7 @@ function AMLKYCTab() {
       {/* KYC Comparison */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Users className="w-4 h-4 text-primary" />
+          <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
           KYC Onboarding Time Comparison
         </h3>
         <div className="space-y-3">
@@ -795,7 +795,7 @@ function AMLKYCTab() {
       {/* Customer Risk Score Factors */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-primary" />
+          <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           Customer Risk Scoring Model — 10 Factors
         </h3>
         <div className="space-y-2">
@@ -854,7 +854,7 @@ function RegulatoryReportingTab() {
       {/* KPI Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { label: "Regulatory Rules (2024)", value: "941/yr", icon: <FileText className="w-4 h-4 text-primary" />, color: "text-primary" },
+          { label: "Regulatory Rules (2024)", value: "941/yr", icon: <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />, color: "text-primary" },
           { label: "Avg Compliance Cost", value: "5.6% Rev", icon: <DollarSign className="w-4 h-4 text-rose-400" />, color: "text-rose-400" },
           { label: "COREP Deadline", value: "T+15d", icon: <Clock className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
           { label: "MiFID II Reporting", value: "T+1d", icon: <Zap className="w-4 h-4 text-green-400" />, color: "text-green-400" },
@@ -869,7 +869,7 @@ function RegulatoryReportingTab() {
       {/* Reporting Timeline */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Clock className="w-4 h-4 text-primary" />
+          <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
           Regulatory Reporting Timeline — COREP / FINREP / MiFID II / EMIR
         </h3>
         <ReportingTimeline />
@@ -878,7 +878,7 @@ function RegulatoryReportingTab() {
       {/* Data Lineage Diagram */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Database className="w-4 h-4 text-primary" />
+          <Database className="w-3.5 h-3.5 text-muted-foreground/50" />
           Data Lineage for Regulatory Reporting
         </h3>
         <svg viewBox="0 0 560 130" className="w-full h-auto">
@@ -925,7 +925,7 @@ function RegulatoryReportingTab() {
       {/* Rule Changes Chart */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <TrendingUp className="w-4 h-4 text-primary" />
+          <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
           Global Regulatory Rule Changes per Year (2010–2024)
         </h3>
         <RuleChangesChart />
@@ -960,7 +960,7 @@ function SanctionsTab() {
         {[
           { label: "OFAC SDN Entries", value: "14,200", icon: <Lock className="w-4 h-4 text-red-400" />, color: "text-red-400" },
           { label: "Global PEP Profiles", value: "1.3M+", icon: <Users className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
-          { label: "Adverse Media Sources", value: "100k+", icon: <Globe className="w-4 h-4 text-primary" />, color: "text-primary" },
+          { label: "Adverse Media Sources", value: "100k+", icon: <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />, color: "text-primary" },
           { label: "ML Screening FPR", value: "3%", icon: <CheckCircle className="w-4 h-4 text-green-400" />, color: "text-green-400" },
         ].map((kpi) => (
           <div key={kpi.label} className="bg-card rounded-md border border-border p-4">
@@ -973,7 +973,7 @@ function SanctionsTab() {
       {/* Sanction List Sizes */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Globe className="w-4 h-4 text-primary" />
+          <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
           Global Sanctions List Sizes
         </h3>
         <div className="space-y-3">
@@ -1002,7 +1002,7 @@ function SanctionsTab() {
       <div className="bg-card rounded-md border border-border overflow-hidden">
         <div className="p-5 border-b border-border">
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Search className="w-4 h-4 text-primary" />
+            <Search className="w-3.5 h-3.5 text-muted-foreground/50" />
             Name Matching Algorithms Comparison
           </h3>
         </div>
@@ -1047,7 +1047,7 @@ function SanctionsTab() {
       {/* Real-time vs Batch */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Zap className="w-4 h-4 text-primary" />
+          <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
           Real-Time vs Batch Screening Comparison
         </h3>
         <div className="grid grid-cols-2 gap-4">
@@ -1097,7 +1097,7 @@ function SanctionsTab() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="bg-card rounded-md border border-border p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <Users className="w-4 h-4 text-primary" />
+            <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
             PEP Screening
           </h3>
           <div className="space-y-3 text-xs text-muted-foreground">
@@ -1129,7 +1129,7 @@ function SanctionsTab() {
         </div>
         <div className="bg-card rounded-md border border-border p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <Eye className="w-4 h-4 text-primary" />
+            <Eye className="w-3.5 h-3.5 text-muted-foreground/50" />
             Adverse Media Monitoring
           </h3>
           <div className="space-y-3">
@@ -1170,8 +1170,8 @@ function MarketFutureTab() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Global RegTech Market 2024", value: "$22B", icon: <TrendingUp className="w-4 h-4 text-green-400" />, color: "text-green-400" },
-          { label: "Projected CAGR", value: "23%", icon: <BarChart2 className="w-4 h-4 text-primary" />, color: "text-primary" },
-          { label: "AI/NLP Adoption in Regs", value: "41%", icon: <Cpu className="w-4 h-4 text-primary" />, color: "text-primary" },
+          { label: "Projected CAGR", value: "23%", icon: <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />, color: "text-primary" },
+          { label: "AI/NLP Adoption in Regs", value: "41%", icon: <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />, color: "text-primary" },
           { label: "FCA Sandbox Firms Funded", value: "280+", icon: <Building2 className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
         ].map((kpi) => (
           <div key={kpi.label} className="bg-card rounded-md border border-border p-4">
@@ -1184,7 +1184,7 @@ function MarketFutureTab() {
       {/* Funding by Sector Donut */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <DollarSign className="w-4 h-4 text-primary" />
+          <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
           RegTech Funding by Sector
         </h3>
         <DonutChart />
@@ -1194,7 +1194,7 @@ function MarketFutureTab() {
       <div className="bg-card rounded-md border border-border overflow-hidden">
         <div className="p-5 border-b border-border">
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-primary" />
+            <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Top RegTech Vendors
           </h3>
         </div>
@@ -1233,7 +1233,7 @@ function MarketFutureTab() {
       {/* AI/NLP in Regulatory Interpretation */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <Cpu className="w-4 h-4 text-primary" />
+          <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
           AI/NLP in Regulatory Interpretation
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -1291,7 +1291,7 @@ function MarketFutureTab() {
       {/* Regulatory Sandbox Participation */}
       <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-primary" />
+          <ShieldCheck className="w-3.5 h-3.5 text-muted-foreground/50" />
           Regulatory Sandbox Participation
         </h3>
         <div className="space-y-2">
@@ -1317,7 +1317,7 @@ function MarketFutureTab() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="bg-card rounded-md border border-border p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <Eye className="w-4 h-4 text-primary" />
+            <Eye className="w-3.5 h-3.5 text-muted-foreground/50" />
             SupTech (Supervisory Tech) Adoption
           </h3>
           <div className="space-y-3">

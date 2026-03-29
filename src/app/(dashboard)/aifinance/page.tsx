@@ -1095,7 +1095,7 @@ function RiskRegulationTab() {
                 {item.status === "Required" ? (
                   <CheckCircle className="w-4 h-4 text-emerald-400" />
                 ) : (
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                 )}
               </div>
               <div>

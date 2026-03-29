@@ -129,15 +129,15 @@ export function ContractDetail({
           className={cn(
             "text-xs font-semibold px-1.5 py-0.5 rounded",
             changePositive
-              ? "bg-emerald-500/10 text-emerald-400"
-              : "bg-red-500/10 text-red-400",
+              ? "bg-emerald-500/5 text-emerald-400"
+              : "bg-red-500/5 text-red-400",
           )}
         >
           {changePositive ? "+" : ""}${synthChg.toFixed(2)} ({changePositive ? "+" : ""}
           {synthChgPct.toFixed(1)}%)
         </span>
         {contract.inTheMoney ? (
-          <span className="text-[11px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span className="text-[11px] px-1.5 py-0.5 rounded bg-emerald-500/5 text-emerald-400 border border-emerald-500/20">
             ITM
           </span>
         ) : (

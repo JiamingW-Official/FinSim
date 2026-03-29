@@ -402,7 +402,7 @@ function ExchangeLandscapeTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-            <BarChart3 size={15} className="text-primary" />
+            <BarChart3 size={15} className="text-muted-foreground/50" />
             US Equity Market Share (2024)
           </h3>
           <HorizontalBarChart data={US_EXCHANGES} height={280} />
@@ -410,7 +410,7 @@ function ExchangeLandscapeTab() {
 
         <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-            <DollarSign size={15} className="text-primary" />
+            <DollarSign size={15} className="text-muted-foreground/50" />
             Exchange Revenue Model
           </h3>
           <DonutChart data={EXCHANGE_REVENUE} />
@@ -1313,7 +1313,7 @@ export default function MarketStructurePage() {
         <div>
           <div className="flex items-center gap-3 mb-1">
             <div className="p-2 rounded-lg bg-primary/15 border border-border">
-              <Network size={20} className="text-primary" />
+              <Network size={20} className="text-muted-foreground/50" />
             </div>
             <h1 className="text-2xl font-bold text-foreground">Market Structure</h1>
           </div>

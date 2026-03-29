@@ -124,7 +124,7 @@ export function MarketRegimeCard() {
             bias === "bullish"
               ? "bg-green-500/10 border-green-500/25"
               : bias === "bearish"
-              ? "bg-red-500/10 border-red-500/25"
+              ? "bg-red-500/5 border-red-500/25"
               : "bg-amber-500/10 border-amber-500/25",
             biasCls,
           )}

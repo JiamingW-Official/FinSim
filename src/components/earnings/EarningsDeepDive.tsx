@@ -334,10 +334,10 @@ function generateOptionsEarnings(): EarningsOptionsRow[] {
 function ScoreBadge({ score }: { score: number }) {
   const color =
     score >= 75
-      ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
+      ? "text-emerald-400 bg-emerald-500/5 border-emerald-500/30"
       : score >= 55
       ? "text-amber-400 bg-amber-500/10 border-amber-500/30"
-      : "text-red-400 bg-red-500/10 border-red-500/30";
+      : "text-red-400 bg-red-500/5 border-red-500/30";
   return (
     <span className={cn("px-2 py-0.5 rounded text-xs font-bold border", color)}>
       {score}
@@ -348,9 +348,9 @@ function ScoreBadge({ score }: { score: number }) {
 function MomentumBadge({ score }: { score: number }) {
   const color =
     score >= 30
-      ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
+      ? "text-emerald-400 bg-emerald-500/5 border-emerald-500/30"
       : score <= -30
-      ? "text-red-400 bg-red-500/10 border-red-500/30"
+      ? "text-red-400 bg-red-500/5 border-red-500/30"
       : "text-amber-400 bg-amber-500/10 border-amber-500/30";
   const label = score >= 30 ? "Strong Up" : score <= -30 ? "Strong Down" : "Neutral";
   return (

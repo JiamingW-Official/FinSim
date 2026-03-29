@@ -142,7 +142,7 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
                     <td className="px-3 py-2 text-right">
                       <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
                         goodEfficiency
-                          ? "bg-emerald-500/10 text-emerald-400"
+                          ? "bg-emerald-500/5 text-emerald-400"
                           : "bg-rose-500/10 text-rose-400"
                       }`}>
                         {(fold.efficiencyRatio * 100).toFixed(0)}%

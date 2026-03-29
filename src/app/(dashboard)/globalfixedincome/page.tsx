@@ -481,7 +481,7 @@ function EMBondsTab() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FadeCard className="border-border bg-primary/5">
           <div className="flex items-center gap-2 mb-2">
-            <DollarSign size={14} className="text-primary" />
+            <DollarSign size={14} className="text-muted-foreground/50" />
             <span className="text-sm font-medium text-primary">Hard Currency (HC) Bonds</span>
           </div>
           <ul className="space-y-1 text-xs text-foreground/60">
@@ -604,7 +604,7 @@ function EMBondsTab() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
-            <ShieldCheck size={14} className="text-primary" />
+            <ShieldCheck size={14} className="text-muted-foreground/50" />
             <h3 className="text-sm font-medium text-foreground/80">IMF Program Mechanics</h3>
           </div>
           <div className="space-y-2 text-xs text-foreground/60">
@@ -628,7 +628,7 @@ function EMBondsTab() {
 
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
-            <Layers size={14} className="text-primary" />
+            <Layers size={14} className="text-muted-foreground/50" />
             <h3 className="text-sm font-medium text-foreground/80">JPMorgan Index Inclusion Criteria</h3>
           </div>
           <div className="space-y-3 text-xs text-foreground/60">
@@ -838,7 +838,7 @@ function CurrencyHedgingTab() {
         >
           <FadeCard className="border-border bg-primary/5">
             <div className="flex items-center gap-2 mb-3">
-              <ArrowUpDown size={14} className="text-primary" />
+              <ArrowUpDown size={14} className="text-muted-foreground/50" />
               <h3 className="text-sm font-medium text-primary">{selected.pair} Hedge Analysis</h3>
             </div>
             <div className="grid grid-cols-2 gap-4 text-xs text-muted-foreground sm:grid-cols-4">
@@ -1202,7 +1202,7 @@ export default function GlobalFixedIncomePage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="rounded-lg bg-primary/15 p-2">
-              <Globe size={20} className="text-primary" />
+              <Globe size={20} className="text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">Global Fixed Income</h1>

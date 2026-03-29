@@ -1184,7 +1184,7 @@ function RiskInsuranceTab() {
       {/* Human Capital */}
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center gap-2 mb-3">
-          <TrendingUp size={14} className="text-primary" />
+          <TrendingUp size={14} className="text-muted-foreground/50" />
           <h3 className="text-sm font-medium text-foreground">Human Capital — Your Most Valuable Asset</h3>
           <Badge className="bg-muted/70 text-primary border-border">{fmtK(humanCapital)}</Badge>
         </div>

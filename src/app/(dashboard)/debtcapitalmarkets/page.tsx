@@ -401,7 +401,7 @@ function ratingColor(rating: string): string {
   if (rating.startsWith("Aaa") || rating.startsWith("Aa")) return "bg-primary/10 text-primary border-border";
   if (rating.startsWith("A")) return "bg-green-500/10 text-green-400 border-green-500/20";
   if (rating.startsWith("Baa")) return "bg-amber-500/10 text-amber-400 border-amber-500/20";
-  return "bg-red-500/10 text-red-400 border-red-500/20";
+  return "bg-red-500/5 text-red-400 border-red-500/20";
 }
 
 function statusColor(status: BondDeal["status"]): string {
@@ -438,7 +438,7 @@ export default function DebtCapitalMarketsPage() {
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
             <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
-              <Building2 size={24} className="text-primary" />
+              <Building2 size={24} className="text-muted-foreground/50" />
               Debt Capital Markets
             </h1>
             <p className="text-muted-foreground text-sm mt-1">
@@ -515,7 +515,7 @@ export default function DebtCapitalMarketsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 size={15} className="text-primary" />
+                    <BarChart3 size={15} className="text-muted-foreground/50" />
                     Monthly Issuance Volume ($B)
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Past 12 months — IG vs. HY</p>
@@ -592,7 +592,7 @@ export default function DebtCapitalMarketsPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <Clock size={15} className="text-primary" />
+                  <Clock size={15} className="text-muted-foreground/50" />
                   Bond Issuance Process
                 </CardTitle>
                 <p className="text-xs text-muted-foreground">From mandate to settlement — click any step for details</p>
@@ -654,7 +654,7 @@ export default function DebtCapitalMarketsPage() {
                     {
                       title: "New Issue Concession",
                       desc: "Premium paid vs. secondary market to attract investors. Typically 5–15bps for IG issuers.",
-                      icon: <Percent size={14} className="text-primary" />,
+                      icon: <Percent size={14} className="text-muted-foreground/50" />,
                     },
                     {
                       title: "Oversubscription",
@@ -681,7 +681,7 @@ export default function DebtCapitalMarketsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BookOpen size={15} className="text-primary" />
+                    <BookOpen size={15} className="text-muted-foreground/50" />
                     Demand Curve — $3B IG Deal
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Investor demand at various spread levels (T+X bps)</p>
@@ -706,7 +706,7 @@ export default function DebtCapitalMarketsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Users size={15} className="text-primary" />
+                    <Users size={15} className="text-muted-foreground/50" />
                     Syndicate Desk Roles
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Click a role to expand</p>
@@ -880,7 +880,7 @@ export default function DebtCapitalMarketsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Globe size={15} className="text-primary" />
+                    <Globe size={15} className="text-muted-foreground/50" />
                     Key DCM Concepts
                   </CardTitle>
                 </CardHeader>

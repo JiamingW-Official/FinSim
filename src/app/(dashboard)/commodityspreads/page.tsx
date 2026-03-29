@@ -992,7 +992,7 @@ export default function CommoditySpreadsPage() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   {
-                    icon: <CloudRain className="w-4 h-4 text-primary" />,
+                    icon: <CloudRain className="w-3.5 h-3.5 text-muted-foreground/50" />,
                     title: "South American Weather",
                     desc: "Brazil & Argentina produce ~55% of world soybeans. La Niña = drought = bullish crush",
                     color: "text-primary",
@@ -1004,7 +1004,7 @@ export default function CommoditySpreadsPage() {
                     color: "text-emerald-400",
                   },
                   {
-                    icon: <Activity className="w-4 h-4 text-primary" />,
+                    icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />,
                     title: "Chinese Demand",
                     desc: "China buys 60%+ of global soybean exports for hog feed. Swine herd size is key metric",
                     color: "text-primary",

@@ -1,15 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import {
-  BookOpen,
-  Activity,
-  Target,
-  ArrowRight,
-  TrendingUp,
-  BarChart3,
-} from "lucide-react";
+import { BookOpen, Activity, Target, ArrowRight } from "lucide-react";
+
+const LandingDemoChart = dynamic(
+  () => import("@/components/landing/LandingDemoChart").then((m) => m.LandingDemoChart),
+  { ssr: false, loading: () => <div className="h-[340px] rounded-md bg-card border border-border/30 animate-pulse" /> },
+);
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -122,236 +121,14 @@ export default function LandingPage() {
           </Link>
         </motion.div>
 
-        {/* Product Preview */}
+        {/* Product Preview — interactive chart */}
         <motion.div
           className="mt-16 mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <div className="rounded-md border border-border/30 bg-card overflow-hidden">
-            {/* Browser chrome */}
-            <div className="flex items-center gap-1.5 px-4 py-2 bg-muted/20 border-b border-border/20">
-              <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
-              <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
-              <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
-              <div className="ml-3 flex-1 h-5 rounded-md bg-muted/60 flex items-center justify-center">
-                <span className="text-[10px] text-muted-foreground/50 font-mono">
-                  finsim.app/trade
-                </span>
-              </div>
-            </div>
-
-            {/* App content */}
-            <div className="flex">
-              {/* Chart area */}
-              <div className="flex-1 p-3 sm:p-5">
-                {/* Ticker bar */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold tracking-tight">AAPL</span>
-                    <span className="text-xs text-emerald-400 font-semibold tabular-nums">
-                      $192.15
-                    </span>
-                    <span className="text-[10px] text-emerald-400/70 font-medium">
-                      +0.23%
-                    </span>
-                  </div>
-                  <div className="hidden sm:flex items-center gap-1 ml-auto">
-                    {["1D", "1W", "1M", "3M"].map((t) => (
-                      <span
-                        key={t}
-                        className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${
-                          t === "1D"
-                            ? "bg-primary/15 text-primary"
-                            : "text-muted-foreground/50"
-                        }`}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* SVG Candlestick Chart — realistic AAPL intraday */}
-                <svg
-                  viewBox="0 0 400 130"
-                  className="w-full h-auto"
-                  preserveAspectRatio="none"
-                >
-                  <defs>
-                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop
-                        offset="0%"
-                        stopColor="hsl(var(--primary))"
-                        stopOpacity="0.08"
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor="hsl(var(--primary))"
-                        stopOpacity="0"
-                      />
-                    </linearGradient>
-                  </defs>
-                  {/* Grid lines */}
-                  {[30, 55, 80, 105].map((y) => (
-                    <line
-                      key={y}
-                      x1="0"
-                      y1={y}
-                      x2="400"
-                      y2={y}
-                      stroke="hsl(var(--border))"
-                      strokeWidth="0.5"
-                      strokeDasharray="2,4"
-                    />
-                  ))}
-                  {/* Candlesticks — morning sell-off, midday consolidation, afternoon recovery */}
-                  {[
-                    // Pre-market gap up, initial selling
-                    { x: 15, o: 62, c: 58, h: 64, l: 56 },   // bear
-                    { x: 28, o: 58, c: 63, h: 65, l: 57 },   // bull bounce
-                    { x: 41, o: 63, c: 60, h: 66, l: 58 },   // bear
-                    { x: 54, o: 60, c: 55, h: 62, l: 53 },   // bear sell-off
-                    { x: 67, o: 55, c: 52, h: 57, l: 49 },   // bear continues
-                    { x: 80, o: 52, c: 58, h: 59, l: 50 },   // bull reversal candle
-                    { x: 93, o: 58, c: 56, h: 60, l: 55 },   // small bear, doji-ish
-                    // Midday consolidation — small candles, tight range
-                    { x: 106, o: 56, c: 57, h: 59, l: 55 },  // tiny bull
-                    { x: 119, o: 57, c: 55, h: 58, l: 54 },  // tiny bear
-                    { x: 132, o: 55, c: 56, h: 58, l: 54 },  // doji
-                    { x: 145, o: 56, c: 54, h: 57, l: 53 },  // small bear
-                    { x: 158, o: 54, c: 57, h: 58, l: 53 },  // bull
-                    { x: 171, o: 57, c: 56, h: 59, l: 55 },  // indecision
-                    { x: 184, o: 56, c: 58, h: 60, l: 55 },  // small bull
-                    // Afternoon breakout with volume
-                    { x: 197, o: 58, c: 53, h: 59, l: 51 },  // bear shakeout
-                    { x: 210, o: 53, c: 50, h: 55, l: 48 },  // bear continuation
-                    { x: 223, o: 50, c: 55, h: 56, l: 48 },  // strong bull reversal
-                    { x: 236, o: 55, c: 52, h: 57, l: 51 },  // pullback
-                    { x: 249, o: 52, c: 48, h: 54, l: 46 },  // another pullback
-                    { x: 262, o: 48, c: 44, h: 50, l: 42 },  // bull breakout
-                    { x: 275, o: 44, c: 40, h: 45, l: 38 },  // momentum
-                    { x: 288, o: 40, c: 43, h: 44, l: 38 },  // small bear pause
-                    { x: 301, o: 43, c: 38, h: 44, l: 36 },  // bull
-                    { x: 314, o: 38, c: 42, h: 43, l: 37 },  // bear pullback
-                    { x: 327, o: 42, c: 36, h: 43, l: 34 },  // strong bull
-                    { x: 340, o: 36, c: 33, h: 37, l: 31 },  // continuation
-                    { x: 353, o: 33, c: 36, h: 38, l: 32 },  // small bear
-                    { x: 366, o: 36, c: 30, h: 37, l: 28 },  // bull close
-                    { x: 379, o: 30, c: 32, h: 34, l: 29 },  // end-of-day
-                    { x: 392, o: 32, c: 28, h: 33, l: 26 },  // final candle
-                  ].map((c, i) => {
-                    const bull = c.c < c.o; // lower close value = higher on chart = bullish (inverted Y)
-                    const top = Math.min(c.o, c.c);
-                    const bot = Math.max(c.o, c.c);
-                    const bodyH = Math.max(bot - top, 1.2);
-                    const color = bull
-                      ? "hsl(var(--primary))"
-                      : "hsl(0 84% 60%)";
-                    return (
-                      <g key={i}>
-                        <line
-                          x1={c.x}
-                          y1={c.h}
-                          x2={c.x}
-                          y2={c.l}
-                          stroke={color}
-                          strokeWidth="0.8"
-                        />
-                        <rect
-                          x={c.x - 4.5}
-                          y={top}
-                          width="9"
-                          height={bodyH}
-                          fill={color}
-                          rx="0.5"
-                        />
-                      </g>
-                    );
-                  })}
-                  {/* Subtle area fill */}
-                  <path
-                    d="M15,60 L41,62 L67,54 L93,57 L119,56 L145,55 L171,57 L197,56 L223,52 L249,50 L275,42 L301,40 L327,38 L353,34 L379,31 L392,30 L400,30 L400,130 L0,130 Z"
-                    fill="url(#chartGrad)"
-                  />
-                </svg>
-
-                {/* Time labels */}
-                <div className="flex justify-between mt-1.5 px-1">
-                  {["9:30", "11:00", "12:30", "14:00", "15:30"].map((t) => (
-                    <span
-                      key={t}
-                      className="text-[9px] text-muted-foreground/40 tabular-nums"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Order entry panel */}
-              <div className="hidden sm:flex w-44 border-l border-border p-4 flex-col gap-2.5">
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">
-                  Order Entry
-                </div>
-                <div className="flex gap-1">
-                  <div className="flex-1 rounded-md bg-primary/20 text-primary text-[10px] font-semibold text-center py-1.5">
-                    Buy
-                  </div>
-                  <div className="flex-1 rounded-md bg-muted text-muted-foreground text-[10px] font-medium text-center py-1.5">
-                    Sell
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div>
-                    <div className="text-[9px] text-muted-foreground mb-0.5">
-                      Shares
-                    </div>
-                    <div className="rounded-md border border-border bg-background px-2.5 py-1.5 text-[10px] tabular-nums">
-                      100
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-[9px] text-muted-foreground mb-0.5">
-                      Type
-                    </div>
-                    <div className="rounded-md border border-border bg-background px-2.5 py-1.5 text-[10px]">
-                      Market
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-[9px] text-muted-foreground mb-0.5">
-                      Est. Cost
-                    </div>
-                    <div className="text-xs font-semibold tabular-nums">
-                      $19,215.00
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-auto rounded-md bg-primary py-2 text-center text-[10px] font-semibold text-primary-foreground">
-                  Place Order
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom status bar */}
-            <div className="flex items-center justify-between px-4 py-2 bg-muted/20 border-t border-border text-[10px] text-muted-foreground">
-              <div className="flex items-center gap-4">
-                <span className="flex items-center gap-1">
-                  <TrendingUp className="h-2.5 w-2.5 text-primary" />
-                  <span className="tabular-nums">AAPL $192.15</span>
-                </span>
-                <span className="hidden sm:inline text-emerald-400 tabular-nums">
-                  +0.23%
-                </span>
-              </div>
-              <span className="flex items-center gap-1">
-                <BarChart3 className="h-2.5 w-2.5 text-muted-foreground/50" />
-                <span className="tabular-nums">$100,000.00</span>
-              </span>
-            </div>
-          </div>
+          <LandingDemoChart />
         </motion.div>
       </section>
 

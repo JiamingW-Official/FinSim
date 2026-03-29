@@ -325,7 +325,7 @@ export default function LearnPage() {
                           <span className="text-xs font-medium">{path.label}</span>
                           {isNextIncomplete && <span className="text-[10px] font-medium text-primary bg-primary/10 px-1.5 py-0.5 rounded">Current</span>}
                         </div>
-                        <span className="text-[11px] font-normal tabular-nums text-muted-foreground">
+                        <span className="text-[11px] font-normal font-mono tabular-nums text-muted-foreground">
                           {pathCompleted}/{pathLessons.length}
                         </span>
                       </div>
@@ -486,7 +486,7 @@ export default function LearnPage() {
                               style={{ width: `${unitPct}%`, background: isComplete ? "#34d399" : unit.color }}
                             />
                           </div>
-                          <span className="text-[10px] tabular-nums text-muted-foreground">{unitCompletedCount}/{unit.lessons.length}</span>
+                          <span className="text-[10px] font-mono tabular-nums text-muted-foreground">{unitCompletedCount}/{unit.lessons.length}</span>
                         </div>
                       </div>
                     );
@@ -515,14 +515,14 @@ export default function LearnPage() {
                     <Trophy className="h-4 w-4 text-amber-400" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">Lessons</span>
                   </div>
-                  <p className="text-xl font-medium tabular-nums">{completedCount}</p>
+                  <p className="text-xl font-medium font-mono tabular-nums">{completedCount}</p>
                   <p className="text-[11px] font-normal text-muted-foreground">of {totalLessons} completed</p>
                 </div>
                 <div className="rounded-md bg-muted/30 p-2.5">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="text-[11px] font-normal text-muted-foreground/70">XP Earned</span>
                   </div>
-                  <p className="text-xl font-normal tabular-nums">{xp.toLocaleString()}</p>
+                  <p className="text-xl font-normal font-mono tabular-nums">{xp.toLocaleString()}</p>
                   <p className="text-[11px] font-normal text-muted-foreground">total experience</p>
                 </div>
                 <div className="rounded-md bg-muted/30 p-2.5">
@@ -530,7 +530,7 @@ export default function LearnPage() {
                     <Flame className="h-4 w-4 text-amber-500" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">Streak</span>
                   </div>
-                  <p className="text-xl font-normal tabular-nums">{learningStreak}</p>
+                  <p className="text-xl font-normal font-mono tabular-nums">{learningStreak}</p>
                   <p className="text-[11px] font-normal text-muted-foreground">days in a row</p>
                 </div>
                 <div className="rounded-md bg-muted/30 p-2.5">
@@ -538,7 +538,7 @@ export default function LearnPage() {
                     <Brain className="h-4 w-4 text-orange-400" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">Mastery</span>
                   </div>
-                  <p className="text-xl font-normal tabular-nums">{overallMastery}%</p>
+                  <p className="text-xl font-normal font-mono tabular-nums">{overallMastery}%</p>
                   <p className="text-[11px] font-normal text-muted-foreground">flashcard mastery</p>
                 </div>
               </div>
@@ -572,7 +572,7 @@ export default function LearnPage() {
                           />
                         </div>
                       </div>
-                      <span className="text-xs font-normal tabular-nums text-muted-foreground shrink-0 w-8 text-right">
+                      <span className="text-xs font-normal font-mono tabular-nums text-muted-foreground shrink-0 w-8 text-right">
                         {pct}%
                       </span>
                     </div>

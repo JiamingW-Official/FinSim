@@ -137,7 +137,7 @@ const CAT_META: Record<SignalCategory, { label: string; color: string; bg: strin
   momentum:        { label: "Momentum",        color: "text-primary", bg: "bg-primary/10", icon: <Zap size={12} /> },
   volume:          { label: "Volume",          color: "text-emerald-400",   bg: "bg-teal-500/10",   icon: <BarChart2 size={12} /> },
   sentiment:       { label: "Sentiment",       color: "text-pink-400",   bg: "bg-pink-500/10",   icon: <Activity size={12} /> },
-  fundamental:     { label: "Fundamental",     color: "text-emerald-400",bg: "bg-emerald-500/10",icon: <Target size={12} /> },
+  fundamental:     { label: "Fundamental",     color: "text-emerald-400",bg: "bg-emerald-500/5",icon: <Target size={12} /> },
   alternative:     { label: "Alternative",     color: "text-orange-400", bg: "bg-orange-500/10", icon: <Eye size={12} /> },
 };
 
@@ -969,7 +969,7 @@ export default function AlgoBuilderPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
-              <Cpu size={18} className="text-primary" />
+              <Cpu size={18} className="text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-lg font-semibold tracking-tight">Algorithmic Trading System Builder</h1>
@@ -1226,7 +1226,7 @@ export default function AlgoBuilderPage() {
                 {selectedSignals.length > 0 && (
                   <Card className="p-5">
                     <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
-                      <Zap size={14} className="text-primary" /> Active Signals
+                      <Zap size={14} className="text-muted-foreground/50" /> Active Signals
                     </h3>
                     <div className="space-y-2">
                       {selectedSignals.map(id => {
@@ -1367,7 +1367,7 @@ export default function AlgoBuilderPage() {
                 {/* Universe & Rebalancing */}
                 <Card className="p-5">
                   <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
-                    <Filter size={14} className="text-primary" /> Universe & Rebalancing
+                    <Filter size={14} className="text-muted-foreground/50" /> Universe & Rebalancing
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -1424,7 +1424,7 @@ export default function AlgoBuilderPage() {
                 {/* Position Sizing */}
                 <Card className="p-5">
                   <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
-                    <Gauge size={14} className="text-primary" /> Position Sizing
+                    <Gauge size={14} className="text-muted-foreground/50" /> Position Sizing
                   </h3>
                   <div className="grid grid-cols-3 gap-3">
                     {([
@@ -1477,7 +1477,7 @@ export default function AlgoBuilderPage() {
               <div className="space-y-4">
                 <Card className="p-5 sticky top-24">
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
-                    <Bot size={14} className="text-primary" /> Strategy Description
+                    <Bot size={14} className="text-muted-foreground/50" /> Strategy Description
                   </h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">{strategyEnglish}</p>
 
@@ -1648,7 +1648,7 @@ export default function AlgoBuilderPage() {
               {/* Factor Exposures */}
               <Card className="p-5">
                 <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
-                  <GitCompare size={14} className="text-primary" /> Factor Exposures
+                  <GitCompare size={14} className="text-muted-foreground/50" /> Factor Exposures
                 </h3>
                 <p className="text-xs text-muted-foreground mb-4">Bars show β exposure; whiskers show 95% confidence interval</p>
                 <FactorExposureChart factors={factorData} />
@@ -1710,7 +1710,7 @@ export default function AlgoBuilderPage() {
               {/* Stress Tests */}
               <Card className="p-5">
                 <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
-                  <Shield size={14} className="text-primary" /> Historical Stress Tests
+                  <Shield size={14} className="text-muted-foreground/50" /> Historical Stress Tests
                 </h3>
                 <div className="space-y-4">
                   {stressData.map(st => (

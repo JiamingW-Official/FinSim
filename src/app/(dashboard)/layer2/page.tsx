@@ -532,7 +532,7 @@ function RollupTechnology() {
 
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Shield size={16} className="text-primary" />
+            <Shield size={16} className="text-muted-foreground/50" />
             <span className="text-sm font-medium text-primary">ZK Rollups</span>
             <Badge variant="outline" className="text-xs border-border text-primary ml-auto">Instant finality</Badge>
           </div>
@@ -1119,7 +1119,7 @@ function InvestmentThesis() {
 
       <div className="rounded-lg border border-border bg-card p-4">
         <div className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
-          <Lock size={14} className="text-primary" />
+          <Lock size={14} className="text-muted-foreground/50" />
           Ethereum Roadmap — L2 Catalysts
         </div>
         <div className="space-y-3">
@@ -1201,7 +1201,7 @@ function InvestmentThesis() {
 
       <div className="rounded-lg border border-border bg-card p-4">
         <div className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
-          <Layers size={14} className="text-primary" />
+          <Layers size={14} className="text-muted-foreground/50" />
           Modular Blockchain Thesis
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -1266,7 +1266,7 @@ export default function Layer2Page() {
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-muted border border-border">
-              <Layers size={18} className="text-primary" />
+              <Layers size={18} className="text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-foreground">Layer 2 Networks</h1>

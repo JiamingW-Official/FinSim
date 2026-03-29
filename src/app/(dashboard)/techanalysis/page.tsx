@@ -1267,7 +1267,7 @@ function OscillatorTab() {
         </div>
         <LineChartPanel values={rsi} color="#a78bfa" refLines={[{ y: 70, color: "#ef4444", label: "70" }, { y: 30, color: "#10b981", label: "30" }, { y: 50, color: "#374151" }]} />
         {divergenceType && (
-          <div className={cn("mt-2 flex items-center gap-2 text-xs px-2 py-1 rounded", divergenceType.includes("Bullish") ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400")}>
+          <div className={cn("mt-2 flex items-center gap-2 text-xs px-2 py-1 rounded", divergenceType.includes("Bullish") ? "bg-green-500/10 text-green-400" : "bg-red-500/5 text-red-400")}>
             <Zap className="h-3 w-3" />
             {divergenceType} detected — price and RSI moving in opposite directions
           </div>

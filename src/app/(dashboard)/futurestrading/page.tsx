@@ -150,7 +150,7 @@ const CONTRACT_SPECS: ContractSpec[] = [
     notional: 265000,
     unit: "index points",
     price: 5300.0,
-    icon: <BarChart2 className="w-4 h-4 text-primary" />,
+    icon: <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />,
   },
   {
     name: "10Y T-Note",
@@ -577,7 +577,7 @@ function RollYieldCalc() {
     <Card className="border-border bg-card">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm flex items-center gap-2">
-          <Calculator className="w-4 h-4 text-primary" />
+          <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
           Roll Yield Calculator
         </CardTitle>
       </CardHeader>
@@ -657,7 +657,7 @@ function HedgeRatioCalc() {
     <Card className="border-border bg-card">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm flex items-center gap-2">
-          <Shield className="w-4 h-4 text-primary" />
+          <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
           Hedge Ratio Calculator
         </CardTitle>
       </CardHeader>
@@ -753,7 +753,7 @@ function FuturesBasicsTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Contract Specifications
           </CardTitle>
         </CardHeader>
@@ -855,7 +855,7 @@ function FuturesBasicsTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-primary" />
+            <Calendar className="w-3.5 h-3.5 text-muted-foreground/50" />
             Expiration Calendar 2026
           </CardTitle>
         </CardHeader>
@@ -883,13 +883,13 @@ function FuturesBasicsTab() {
         {[
           {
             title: "Mark-to-Market",
-            icon: <Activity className="w-4 h-4 text-primary" />,
+            icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />,
             color: "border-border",
             text: "Futures positions are settled daily. Gains credited and losses debited from your margin account each night — unlike options which settle at expiration.",
           },
           {
             title: "Delivery vs Cash",
-            icon: <ArrowUpDown className="w-4 h-4 text-primary" />,
+            icon: <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground/50" />,
             color: "border-border",
             text: "Physical delivery (CL, ZC, ZN) requires actual commodity exchange. Cash-settled contracts (ES) pay the cash difference. 99% of traders close before delivery.",
           },
@@ -960,7 +960,7 @@ function ContangoTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             Forward Curves — % Change from Spot
           </CardTitle>
         </CardHeader>
@@ -1050,7 +1050,7 @@ function BasisTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             Crude Oil Cash vs Futures Basis
           </CardTitle>
         </CardHeader>
@@ -1073,7 +1073,7 @@ function BasisTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <ArrowUpDown className="w-4 h-4 text-primary" />
+            <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground/50" />
             Spread Strategies
           </CardTitle>
         </CardHeader>
@@ -1111,7 +1111,7 @@ function BasisTab() {
                 <p className="text-xs text-muted-foreground">Long Leg</p>
                 <p className="text-green-400 font-medium mt-0.5">{selectedSpread.longLeg}</p>
               </div>
-              <div className="rounded p-2 bg-red-500/10 border border-red-500/20">
+              <div className="rounded p-2 bg-red-500/5 border border-red-500/20">
                 <p className="text-xs text-muted-foreground">Short Leg</p>
                 <p className="text-red-400 font-medium mt-0.5">{selectedSpread.shortLeg}</p>
               </div>
@@ -1203,7 +1203,7 @@ function HedgingTab() {
         <Card className="border-border bg-card">
           <CardContent className="pt-4 pb-4">
             <div className="flex items-center gap-2 mb-2">
-              <Shield className="w-4 h-4 text-primary" />
+              <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
               <h3 className="font-medium text-foreground text-sm">Long Hedge</h3>
             </div>
             <p className="text-xs text-muted-foreground">
@@ -1235,7 +1235,7 @@ function HedgingTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             {scenario.title}
             <Badge className={scenario.type === "short" ? "bg-red-500/20 text-red-400 border-red-500/30" : "bg-green-500/20 text-green-400 border-green-500/30"}>
               {scenario.type === "short" ? "Short Hedge" : "Long Hedge"}
@@ -1269,14 +1269,14 @@ function HedgingTab() {
           <div className="rounded-lg border border-border p-4 bg-muted/20">
             <p className="text-sm font-medium text-foreground mb-3">Outcome: Price moves to ${scenario.outcomePrice.toFixed(2)}</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-              <div className={`rounded p-3 border ${cashPnL < 0 ? "border-red-500/30 bg-red-500/10" : "border-green-500/30 bg-green-500/10"}`}>
+              <div className={`rounded p-3 border ${cashPnL < 0 ? "border-red-500/30 bg-red-500/5" : "border-green-500/30 bg-green-500/10"}`}>
                 <p className="text-xs text-muted-foreground">Cash Market P&L</p>
                 <p className={`text-lg font-medium ${cashPnL < 0 ? "text-red-400" : "text-green-400"}`}>
                   {cashPnL >= 0 ? "+" : ""}${Math.abs(cashPnL / 1000).toFixed(0)}K
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">{cashPnL < 0 ? "Loss from adverse price move" : "Gain from favorable price move"}</p>
               </div>
-              <div className={`rounded p-3 border ${futuresPnL > 0 ? "border-green-500/30 bg-green-500/10" : "border-red-500/30 bg-red-500/10"}`}>
+              <div className={`rounded p-3 border ${futuresPnL > 0 ? "border-green-500/30 bg-green-500/10" : "border-red-500/30 bg-red-500/5"}`}>
                 <p className="text-xs text-muted-foreground">Futures Hedge P&L</p>
                 <p className={`text-lg font-medium ${futuresPnL > 0 ? "text-green-400" : "text-red-400"}`}>
                   {futuresPnL >= 0 ? "+" : ""}${Math.abs(futuresPnL / 1000).toFixed(0)}K
@@ -1362,7 +1362,7 @@ function SpeculativeTab() {
         {[
           {
             title: "Trend Following (CTA Style)",
-            icon: <TrendingUp className="w-4 h-4 text-primary" />,
+            icon: <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />,
             color: "border-border",
             points: [
               "Enter long when 50-day MA crosses above 200-day MA",
@@ -1374,7 +1374,7 @@ function SpeculativeTab() {
           },
           {
             title: "Momentum in Commodities",
-            icon: <Activity className="w-4 h-4 text-primary" />,
+            icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />,
             color: "border-border",
             points: [
               "12-1 momentum: past 12 months minus last month performance",
@@ -1408,7 +1408,7 @@ function SpeculativeTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             COT Report — Crude Oil Positioning
           </CardTitle>
         </CardHeader>
@@ -1452,7 +1452,7 @@ function SpeculativeTab() {
       <Card className="border-border bg-card">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-primary" />
+            <Calendar className="w-3.5 h-3.5 text-muted-foreground/50" />
             Seasonal Patterns
           </CardTitle>
         </CardHeader>
@@ -1484,7 +1484,7 @@ function SpeculativeTab() {
               </p>
               <p className="text-muted-foreground">({(avgReturn * 12).toFixed(1)}% ann.)</p>
             </div>
-            <div className="rounded p-2 bg-red-500/10 border border-red-500/20">
+            <div className="rounded p-2 bg-red-500/5 border border-red-500/20">
               <p className="text-muted-foreground">Worst Month</p>
               <p className="text-red-400 font-medium">{worstMonth.month}</p>
               <p className="text-red-400">{worstMonth[selectedCommodity]}%</p>
