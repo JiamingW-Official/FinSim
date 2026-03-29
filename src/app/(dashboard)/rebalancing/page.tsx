@@ -471,21 +471,16 @@ export default function RebalancingPage() {
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <Tabs defaultValue="portfolio">
-          <TabsList className="bg-muted/70 border border-border mb-4">
-            <TabsTrigger value="portfolio" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
-              <Layers className="w-3.5 h-3.5 mr-1" />Current Portfolio
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Current Portfolio
             </TabsTrigger>
-            <TabsTrigger value="engine" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
-              <RefreshCw className="w-3.5 h-3.5 mr-1" />Rebalancing Engine
+            <TabsTrigger value="engine" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Rebalancing Engine
             </TabsTrigger>
-            <TabsTrigger value="harvest" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
-              <TrendingDown className="w-3.5 h-3.5 mr-1" />Tax-Loss Harvesting
+            <TabsTrigger value="harvest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Tax-Loss Harvesting
             </TabsTrigger>
-            <TabsTrigger value="location" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
-              <Shield className="w-3.5 h-3.5 mr-1" />Asset Location
+            <TabsTrigger value="location" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Location
             </TabsTrigger>
-            <TabsTrigger value="drift" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
-              <BarChart3 className="w-3.5 h-3.5 mr-1" />Drift Analysis
+            <TabsTrigger value="drift" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Drift Analysis
             </TabsTrigger>
           </TabsList>
 

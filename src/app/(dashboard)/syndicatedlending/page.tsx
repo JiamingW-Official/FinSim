@@ -1329,7 +1329,7 @@ export default function SyndicatedLendingPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure" className="mt-8 space-y-4">
-        <TabsList className="grid grid-cols-2 md:grid-cols-4 bg-card border border-border h-auto p-1 gap-1">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {tabs.map((t) => {
             const Icon = t.icon;
             return (

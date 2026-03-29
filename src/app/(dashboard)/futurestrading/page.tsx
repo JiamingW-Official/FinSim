@@ -1585,12 +1585,12 @@ export default function FuturesTradingPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="basics" className="mt-8 space-y-4">
-          <TabsList className="flex flex-wrap gap-1 h-auto bg-muted/40 p-1 rounded-lg">
-            <TabsTrigger value="basics" className="text-xs text-muted-foreground">Futures Basics</TabsTrigger>
-            <TabsTrigger value="contango" className="text-xs text-muted-foreground">Contango &amp; Backwardation</TabsTrigger>
-            <TabsTrigger value="basis" className="text-xs text-muted-foreground">Basis &amp; Spreads</TabsTrigger>
-            <TabsTrigger value="hedging" className="text-xs text-muted-foreground">Hedging</TabsTrigger>
-            <TabsTrigger value="speculative" className="text-xs text-muted-foreground">Speculative Strategies</TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="basics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Futures Basics</TabsTrigger>
+            <TabsTrigger value="contango" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Contango &amp; Backwardation</TabsTrigger>
+            <TabsTrigger value="basis" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Basis &amp; Spreads</TabsTrigger>
+            <TabsTrigger value="hedging" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Hedging</TabsTrigger>
+            <TabsTrigger value="speculative" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Speculative Strategies</TabsTrigger>
           </TabsList>
 
           <TabsContent value="basics" className="mt-0">

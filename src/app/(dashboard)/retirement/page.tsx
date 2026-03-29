@@ -1274,7 +1274,7 @@ export default function RetirementPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="readiness" className="flex flex-col flex-1">
-          <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/50 p-1 rounded-lg w-full justify-start">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {TABS.map((t) => {
               const Icon = t.icon;
               return (
@@ -1282,10 +1282,7 @@ export default function RetirementPage() {
                   key={t.value}
                   value={t.value}
                   className="flex items-center gap-1.5 text-xs text-muted-foreground px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:"
-                >
-                  <Icon className="h-3 w-3" />
-                  {t.label}
-                </TabsTrigger>
+                >{t.label}</TabsTrigger>
               );
             })}
           </TabsList>

@@ -964,23 +964,11 @@ export default function ABSPricingPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="mb-6 grid w-full grid-cols-4 bg-foreground/5 border border-border">
-            <TabsTrigger value="structure" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
-              <Layers className="h-3.5 w-3.5 mr-1.5" />
-              ABS Structure
-            </TabsTrigger>
-            <TabsTrigger value="prepayment" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
-              <Activity className="h-3.5 w-3.5 mr-1.5" />
-              Prepayment
-            </TabsTrigger>
-            <TabsTrigger value="pricing" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
-              <Calculator className="h-3.5 w-3.5 mr-1.5" />
-              Pricing & Yield
-            </TabsTrigger>
-            <TabsTrigger value="credit" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
-              <ShieldCheck className="h-3.5 w-3.5 mr-1.5" />
-              Credit Enhancement
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="structure" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">ABS Structure</TabsTrigger>
+            <TabsTrigger value="prepayment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Prepayment</TabsTrigger>
+            <TabsTrigger value="pricing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pricing & Yield</TabsTrigger>
+            <TabsTrigger value="credit" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Credit Enhancement</TabsTrigger>
           </TabsList>
 
           <AnimatePresence mode="wait">

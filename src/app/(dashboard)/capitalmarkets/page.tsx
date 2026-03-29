@@ -1337,7 +1337,7 @@ export default function CapitalMarketsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="ipo-process" className="w-full">
-        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-0.5 p-1">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {[
             { value: "ipo-process", label: "IPO Process", icon: <Clock className="w-3.5 h-3.5" /> },
             { value: "ipo-valuation", label: "IPO Valuation", icon: <Percent className="w-3.5 h-3.5" /> },

@@ -2197,7 +2197,7 @@ export default function GlobalBondsPage() {
           onValueChange={setActiveTab}
           className="flex flex-col h-full"
         >
-          <TabsList className="bg-muted/60 border border-border/20 rounded-lg p-1 mb-5 flex-wrap h-auto gap-1 w-full sm:w-auto">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.id}

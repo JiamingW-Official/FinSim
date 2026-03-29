@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 import {
   Volume2,
   VolumeX,
-  BookOpen,
   Plus,
   ChevronDown,
   Search,
@@ -20,14 +19,8 @@ import {
   Keyboard,
 } from "lucide-react";
 import { useSettingsStore } from "@/stores/settings-store";
-import { useLearnStore } from "@/stores/learn-store";
-import { StreakBadge } from "@/components/game/StreakBadge";
-import { useGameStore } from "@/stores/game-store";
-import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
-import { HeartsDisplay } from "@/components/learn/HeartsDisplay";
-import { usePathname } from "next/navigation";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { useShortcutsModal } from "@/components/ui/KeyboardShortcutsModal";
 
@@ -117,7 +110,7 @@ function TickerDropdown({
   return (
     <>
       <div className="fixed inset-0 z-40" onClick={onClose} />
-      <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-lg border border-border/20 bg-popover shadow-sm">
+      <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-lg border border-border/20 bg-popover">
         <div className="flex items-center gap-2 border-b border-border/20 px-3 py-2">
           <Search className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
           <input
@@ -159,39 +152,6 @@ function TickerDropdown({
         </div>
       </div>
     </>
-  );
-}
-
-// ── XP progress bar ───────────────────────────────────────────────────────────
-
-function XPProgressBar() {
-  const xp = useGameStore((s) => s.xp);
-  const level = useGameStore((s) => s.level);
-  const currentLevelXP = level > 1 ? LEVEL_THRESHOLDS[level - 2] : 0;
-  const nextLevelXP = getXPForNextLevel(level);
-  const xpInLevel = xp - currentLevelXP;
-  const xpNeeded = nextLevelXP - currentLevelXP;
-  const xpPercent =
-    level >= 50 ? 100 : Math.min((xpInLevel / xpNeeded) * 100, 100);
-
-  return (
-    <div className="flex items-center gap-1.5" data-tutorial="xp-level">
-      <span className="text-xs font-medium tabular-nums text-primary">
-        Lv.{level}
-      </span>
-      <div
-        className="h-1.5 w-16 overflow-hidden rounded-full bg-muted"
-        title={`${xpInLevel} / ${xpNeeded} XP to next level`}
-      >
-        <div
-          className="h-full rounded-full bg-primary transition-[width] duration-300 ease-out"
-          style={{ width: `${xpPercent}%` }}
-        />
-      </div>
-      <span className="text-xs tabular-nums text-muted-foreground">
-        {xpInLevel}/{xpNeeded}
-      </span>
-    </div>
   );
 }
 
@@ -248,7 +208,7 @@ function QuickActionsMenu() {
         <Plus className="h-3.5 w-3.5" />
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border border-border/20 bg-popover shadow-sm py-1">
+        <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border border-border/20 bg-popover py-1">
           {actions.map((a) => (
             <button
               key={a.href}
@@ -290,22 +250,6 @@ function SoundToggle() {
   );
 }
 
-// ── Learn streak badge ────────────────────────────────────────────────────────
-
-function LearnStreakBadge() {
-  const learningStreak = useLearnStore((s) => s.learningStreak);
-  if (learningStreak <= 0) return null;
-
-  return (
-    <div className="flex items-center gap-0.5 rounded-full bg-primary/10 px-1.5 py-0.5">
-      <BookOpen className="h-3 w-3 text-primary" />
-      <span className="text-xs font-medium tabular-nums text-primary">
-        {learningStreak}
-      </span>
-    </div>
-  );
-}
-
 // ── Main TopBar ───────────────────────────────────────────────────────────────
 
 export function TopBar() {
@@ -320,7 +264,6 @@ export function TopBar() {
       ? allData[revealedCount - 1]
       : null;
 
-  const stockInfo = WATCHLIST_STOCKS.find((s) => s.ticker === currentTicker);
   const price = currentBar?.close ?? 0;
   const priceFlash = usePriceFlash(price || undefined);
   const animatedPrice = useAnimatedNumber(price, 250);
@@ -336,8 +279,6 @@ export function TopBar() {
   // Overall P&L vs initial capital
   const totalPnL = portfolioValue - INITIAL_CAPITAL;
   const totalPnLPct = (totalPnL / INITIAL_CAPITAL) * 100;
-
-  const pathname = usePathname();
 
   // Ticker search state
   const [tickerOpen, setTickerOpen] = useState(false);
@@ -395,14 +336,6 @@ export function TopBar() {
 
       {/* ── Right ── */}
       <div className="flex items-center gap-2.5">
-        {/* XP + streaks */}
-        <XPProgressBar />
-        <StreakBadge />
-        <LearnStreakBadge />
-        {pathname?.startsWith("/learn") && <HeartsDisplay compact />}
-
-        <div className="h-3 w-px bg-border/20" />
-
         {/* Simulated date */}
         {currentBar && (
           <span className="text-xs tabular-nums text-muted-foreground">
@@ -435,11 +368,11 @@ export function TopBar() {
         <SoundToggle />
         <QuickActionsMenu />
 
-        {/* LIVE indicator */}
+        {/* Sim status */}
         {isPlaying && (
           <div className="flex items-center gap-1">
-            <div className="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            <span className="text-[10px] text-emerald-500">LIVE</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40" />
+            <span className="text-[10px] text-muted-foreground">SIM</span>
           </div>
         )}
       </div>

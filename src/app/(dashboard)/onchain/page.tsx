@@ -565,27 +565,12 @@ export default function OnchainPage() {
         transition={{ duration: 0.4, delay: 0.1 }}
       >
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-card border border-border h-10 mb-6">
-            <TabsTrigger value="network" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
-              <Activity className="w-3.5 h-3.5 mr-1.5" />
-              Network Health
-            </TabsTrigger>
-            <TabsTrigger value="holders" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
-              <Users className="w-3.5 h-3.5 mr-1.5" />
-              Holder Analysis
-            </TabsTrigger>
-            <TabsTrigger value="defi" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
-              <Layers className="w-3.5 h-3.5 mr-1.5" />
-              DeFi Metrics
-            </TabsTrigger>
-            <TabsTrigger value="mining" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
-              <Server className="w-3.5 h-3.5 mr-1.5" />
-              Mining &amp; Validators
-            </TabsTrigger>
-            <TabsTrigger value="signals" className="data-[state=active]:bg-indigo-600 text-xs text-muted-foreground px-3">
-              <Zap className="w-3.5 h-3.5 mr-1.5" />
-              Market Signals
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="network" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Network Health</TabsTrigger>
+            <TabsTrigger value="holders" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Holder Analysis</TabsTrigger>
+            <TabsTrigger value="defi" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">DeFi Metrics</TabsTrigger>
+            <TabsTrigger value="mining" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Mining &amp; Validators</TabsTrigger>
+            <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Market Signals</TabsTrigger>
           </TabsList>
 
           {/* ── Tab 1: Network Health ─────────────────────────────────────────── */}

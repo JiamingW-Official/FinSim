@@ -1916,7 +1916,7 @@ export default function RetirementIncomePage() {
         className="flex-1 min-h-0 overflow-y-auto px-6 py-4"
       >
         <Tabs defaultValue="withdrawal" className="w-full">
-          <TabsList className="w-full mb-6 grid grid-cols-4 h-auto gap-1 bg-muted/30 p-1 rounded-md">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -1924,12 +1924,9 @@ export default function RetirementIncomePage() {
                   key={tab.id}
                   value={tab.id}
                   className="flex flex-col items-center gap-1 py-2 px-1 text-xs data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground rounded-lg transition-colors"
-                >
-                  <Icon className="w-4 h-4" />
-                  <span className="leading-tight text-center">
+                ><span className="leading-tight text-center">
                     {tab.label}
-                  </span>
-                </TabsTrigger>
+                  </span></TabsTrigger>
               );
             })}
           </TabsList>

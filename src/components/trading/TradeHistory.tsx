@@ -3,18 +3,13 @@
 import { useTradingStore } from "@/stores/trading-store";
 import { formatCurrency, formatShortDate, cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { BarChart3 } from "lucide-react";
 
 export function TradeHistory() {
   const tradeHistory = useTradingStore((s) => s.tradeHistory);
 
   if (tradeHistory.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-center">
-        <BarChart3 className="h-8 w-8 text-muted-foreground/40 mb-3" />
-        <p className="text-sm font-medium text-muted-foreground">No trades yet</p>
-        <p className="text-xs text-muted-foreground/70 mt-1">Place your first practice trade to see history here</p>
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-8">No trades yet</p>
     );
   }
 

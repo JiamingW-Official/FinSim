@@ -1583,7 +1583,7 @@ export default function EnergyPage() {
       {/* Body */}
       <div className="max-w-7xl mx-auto px-4 py-6 mt-8">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-foreground/5 border border-border mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {[
               { value: "overview", label: "Market Overview", icon: <Flame className="w-3.5 h-3.5" /> },
               { value: "ep", label: "Upstream E&P", icon: <Droplets className="w-3.5 h-3.5" /> },

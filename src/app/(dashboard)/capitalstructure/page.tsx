@@ -894,17 +894,17 @@ export default function CapitalStructurePage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-muted/60 border border-border/20 h-auto flex-wrap gap-1 p-1">
-          <TabsTrigger value="waterfall" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="waterfall" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Waterfall
           </TabsTrigger>
-          <TabsTrigger value="merton" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+          <TabsTrigger value="merton" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Merton Model
           </TabsTrigger>
-          <TabsTrigger value="covenants" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+          <TabsTrigger value="covenants" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Covenants
           </TabsTrigger>
-          <TabsTrigger value="screener" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+          <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Distressed Screener
           </TabsTrigger>
         </TabsList>

@@ -616,18 +616,14 @@ export default function CreditDerivativesPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-card border border-border">
-          <TabsTrigger value="cds-fundamentals" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-            <Shield className="w-3.5 h-3.5 mr-1.5" />CDS Fundamentals
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="cds-fundamentals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">CDS Fundamentals
           </TabsTrigger>
-          <TabsTrigger value="credit-indices" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-            <BarChart2 className="w-3.5 h-3.5 mr-1.5" />Credit Indices
+          <TabsTrigger value="credit-indices" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Credit Indices
           </TabsTrigger>
-          <TabsTrigger value="cln-trs" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-            <Layers className="w-3.5 h-3.5 mr-1.5" />CLN &amp; TRS
+          <TabsTrigger value="cln-trs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">CLN &amp; TRS
           </TabsTrigger>
-          <TabsTrigger value="market-regulation" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-            <Globe className="w-3.5 h-3.5 mr-1.5" />Market &amp; Regulation
+          <TabsTrigger value="market-regulation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Market &amp; Regulation
           </TabsTrigger>
         </TabsList>
 

@@ -1492,17 +1492,17 @@ export default function CBDCPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="fundamentals">
-          <TabsList className="bg-foreground/5 border border-border mb-6 h-auto flex-wrap gap-1 p-1">
-            <TabsTrigger value="fundamentals" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="fundamentals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               CBDC Fundamentals
             </TabsTrigger>
-            <TabsTrigger value="global" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
+            <TabsTrigger value="global" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Global Tracker
             </TabsTrigger>
-            <TabsTrigger value="monetary" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
+            <TabsTrigger value="monetary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Monetary Policy
             </TabsTrigger>
-            <TabsTrigger value="crossborder" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
+            <TabsTrigger value="crossborder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Cross-Border Payments
             </TabsTrigger>
           </TabsList>

@@ -1097,12 +1097,12 @@ export default function GlobalMacroPage() {
       </motion.div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="dashboard"   className="data-[state=active]:bg-muted text-xs text-muted-foreground">Macro Dashboard</TabsTrigger>
-          <TabsTrigger value="trade-ideas" className="data-[state=active]:bg-muted text-xs text-muted-foreground">Trade Ideas</TabsTrigger>
-          <TabsTrigger value="central-banks" className="data-[state=active]:bg-muted text-xs text-muted-foreground">Central Banks</TabsTrigger>
-          <TabsTrigger value="indicators"  className="data-[state=active]:bg-muted text-xs text-muted-foreground">Macro Indicators</TabsTrigger>
-          <TabsTrigger value="currency"    className="data-[state=active]:bg-muted text-xs text-muted-foreground">Currency Wars</TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="dashboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Macro Dashboard</TabsTrigger>
+          <TabsTrigger value="trade-ideas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Trade Ideas</TabsTrigger>
+          <TabsTrigger value="central-banks" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Central Banks</TabsTrigger>
+          <TabsTrigger value="indicators" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Macro Indicators</TabsTrigger>
+          <TabsTrigger value="currency" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Currency Wars</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Macro Dashboard ─────────────────────────────────────────── */}

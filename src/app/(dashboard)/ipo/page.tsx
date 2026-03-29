@@ -867,7 +867,7 @@ export default function IPOPage() {
       <div className="flex-1 min-h-0 overflow-hidden">
         <Tabs defaultValue="upcoming" className="h-full flex flex-col">
           <div className="shrink-0 border-b border-border px-6">
-            <TabsList className="h-10 bg-transparent gap-0 p-0">
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
               {[
                 { value: "upcoming", label: "Upcoming IPOs" },
                 { value: "recent", label: "Recent IPOs" },

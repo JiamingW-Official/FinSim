@@ -1497,7 +1497,7 @@ export default function EquityResearch3Page() {
 
         {/* Tabs */}
         <Tabs defaultValue="sotp" className="w-full mt-8">
-          <TabsList className="grid grid-cols-4 w-full bg-muted border border-border rounded-md p-1 h-auto">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {[
               { value: "sotp", label: "SOTP & Conglomerates", icon: <PieChart className="w-3.5 h-3.5" /> },
               { value: "primary", label: "Primary Research", icon: <Search className="w-3.5 h-3.5" /> },

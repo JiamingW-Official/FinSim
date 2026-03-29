@@ -69,7 +69,7 @@ export function OptionsChain({
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-[11px]" role="table">
+      <table className="w-full text-[10px]" role="table">
         <thead className="sticky top-0 z-10 bg-card">
           <tr className="border-b border-border/20">
             {showCalls && (
@@ -125,13 +125,13 @@ export function OptionsChain({
 
             const callCellCn = (extra?: string) =>
               cn(
-                "px-1.5 py-1 text-right font-mono tabular-nums text-[11px] cursor-pointer transition-colors",
+                "px-1.5 py-0.5 text-right font-mono tabular-nums text-[10px] cursor-pointer transition-colors",
                 isCallSelected && "bg-muted/50",
                 extra,
               );
             const putCellCn = (extra?: string) =>
               cn(
-                "px-1.5 py-1 text-right font-mono tabular-nums text-[11px] cursor-pointer transition-colors",
+                "px-1.5 py-0.5 text-right font-mono tabular-nums text-[10px] cursor-pointer transition-colors",
                 isPutSelected && "bg-muted/50",
                 extra,
               );
@@ -198,7 +198,7 @@ export function OptionsChain({
                 {/* Strike */}
                 <td
                   className={cn(
-                    "px-1.5 py-1 text-center font-mono tabular-nums text-[11px] font-medium",
+                    "px-1.5 py-0.5 text-center font-mono tabular-nums text-[10px] font-medium",
                     isAtm && "text-orange-400",
                   )}
                 >

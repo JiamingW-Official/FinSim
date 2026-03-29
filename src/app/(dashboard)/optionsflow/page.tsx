@@ -549,23 +549,11 @@ export default function OptionsFlowPage() {
           transition={{ duration: 0.4, delay: 0.15 }}
         >
           <Tabs defaultValue="flow">
-            <TabsList className="mb-4">
-              <TabsTrigger value="flow">
-                <Activity className="w-3.5 h-3.5 mr-1.5" />
-                Options Flow
-              </TabsTrigger>
-              <TabsTrigger value="darkpools">
-                <Shield className="w-3.5 h-3.5 mr-1.5" />
-                Dark Pools
-              </TabsTrigger>
-              <TabsTrigger value="sweeps">
-                <Zap className="w-3.5 h-3.5 mr-1.5" />
-                Sweep Orders
-              </TabsTrigger>
-              <TabsTrigger value="sentiment">
-                <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
-                Sentiment
-              </TabsTrigger>
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+              <TabsTrigger value="flow">Options Flow</TabsTrigger>
+              <TabsTrigger value="darkpools">Dark Pools</TabsTrigger>
+              <TabsTrigger value="sweeps">Sweep Orders</TabsTrigger>
+              <TabsTrigger value="sentiment">Sentiment</TabsTrigger>
             </TabsList>
 
             {/* ── Options Flow Tab ── */}

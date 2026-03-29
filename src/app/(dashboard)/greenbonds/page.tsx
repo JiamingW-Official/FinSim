@@ -802,17 +802,17 @@ export default function GreenBondsPage() {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8 space-y-4">
-        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="overview" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Market Overview
           </TabsTrigger>
-          <TabsTrigger value="frameworks" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+          <TabsTrigger value="frameworks" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Frameworks
           </TabsTrigger>
-          <TabsTrigger value="deals" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+          <TabsTrigger value="deals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Deal Analysis
           </TabsTrigger>
-          <TabsTrigger value="impact" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+          <TabsTrigger value="impact" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Impact Reporting
           </TabsTrigger>
         </TabsList>

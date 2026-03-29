@@ -1362,7 +1362,7 @@ export default function MarketStructurePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="exchanges" className="space-y-4">
-        <TabsList className="bg-muted/60 border border-border/20 h-auto flex flex-wrap gap-1 p-1">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {[
             { value: "exchanges", label: "Exchange Landscape", icon: Globe },
             { value: "orders", label: "Order Types", icon: BookOpen },

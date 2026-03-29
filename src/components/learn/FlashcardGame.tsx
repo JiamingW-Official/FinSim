@@ -4,7 +4,7 @@ import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
-  Brain, RotateCcw, Check, X, Flame, Trophy, ChevronRight, Sparkles,
+  Brain, RotateCcw, Check, X, Flame, Trophy, ChevronRight,
 } from "lucide-react";
 import { useFlashcardStore } from "@/stores/flashcard-store";
 import { CATEGORY_LABELS, type FlashcardItem } from "@/data/flashcards";
@@ -141,9 +141,8 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
   if (!currentCard) {
     return (
       <div className="flex flex-col items-center gap-3 p-6">
-        <Sparkles className="h-8 w-8 text-amber-400" />
-        <p className="text-sm font-semibold">No cards available</p>
-        <button type="button" onClick={onClose} className="text-xs text-primary hover:underline">
+        <p className="text-sm text-muted-foreground">No cards available</p>
+        <button type="button" onClick={onClose} className="text-xs text-muted-foreground hover:text-foreground transition-colors">
           Go back
         </button>
       </div>

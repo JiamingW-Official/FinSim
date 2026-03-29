@@ -1385,7 +1385,7 @@ export default function EconDataPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-          <TabsList className="bg-foreground/[0.04] border border-border rounded-md p-1 mb-6 flex flex-wrap gap-1 h-auto">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -1393,10 +1393,7 @@ export default function EconDataPage() {
                   key={tab.id}
                   value={tab.id}
                   className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground transition-colors"
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {tab.label}
-                </TabsTrigger>
+                >{tab.label}</TabsTrigger>
               );
             })}
           </TabsList>

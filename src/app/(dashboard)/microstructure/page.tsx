@@ -775,23 +775,11 @@ export default function MicrostructurePage() {
         transition={{ duration: 0.4, delay: 0.16 }}
       >
         <Tabs defaultValue="orderbook">
-          <TabsList className="grid grid-cols-4 w-full mb-4">
-            <TabsTrigger value="orderbook" className="text-xs text-muted-foreground">
-              <BookOpen className="w-3.5 h-3.5 mr-1.5" />
-              Order Book
-            </TabsTrigger>
-            <TabsTrigger value="pricediscovery" className="text-xs text-muted-foreground">
-              <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
-              Price Discovery
-            </TabsTrigger>
-            <TabsTrigger value="liquidity" className="text-xs text-muted-foreground">
-              <DollarSign className="w-3.5 h-3.5 mr-1.5" />
-              Liquidity
-            </TabsTrigger>
-            <TabsTrigger value="fragmentation" className="text-xs text-muted-foreground">
-              <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
-              Fragmentation
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="orderbook" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Order Book</TabsTrigger>
+            <TabsTrigger value="pricediscovery" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Price Discovery</TabsTrigger>
+            <TabsTrigger value="liquidity" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Liquidity</TabsTrigger>
+            <TabsTrigger value="fragmentation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Fragmentation</TabsTrigger>
           </TabsList>
 
           {/* ── Order Book Tab ── */}

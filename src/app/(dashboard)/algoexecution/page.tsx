@@ -623,7 +623,7 @@ export default function AlgoExecutionPage() {
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <Tabs defaultValue="vwap">
-          <TabsList className="mb-4">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             <TabsTrigger value="vwap">VWAP / TWAP</TabsTrigger>
             <TabsTrigger value="impact">Market Impact</TabsTrigger>
             <TabsTrigger value="comparison">Algo Comparison</TabsTrigger>

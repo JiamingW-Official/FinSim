@@ -1082,23 +1082,11 @@ export default function PortfolioLabPage() {
           transition={{ duration: 0.4, delay: 0.1 }}
         >
           <Tabs defaultValue="frontier" className="space-y-4">
-            <TabsList className="grid grid-cols-4 w-full">
-              <TabsTrigger value="frontier" className="text-xs text-muted-foreground sm:text-sm">
-                <TrendingUp className="h-3.5 w-3.5 mr-1.5 hidden sm:inline" />
-                Efficient Frontier
-              </TabsTrigger>
-              <TabsTrigger value="bl" className="text-xs text-muted-foreground sm:text-sm">
-                <Activity className="h-3.5 w-3.5 mr-1.5 hidden sm:inline" />
-                Black-Litterman
-              </TabsTrigger>
-              <TabsTrigger value="risk" className="text-xs text-muted-foreground sm:text-sm">
-                <Scale className="h-3.5 w-3.5 mr-1.5 hidden sm:inline" />
-                Risk Budgeting
-              </TabsTrigger>
-              <TabsTrigger value="rebal" className="text-xs text-muted-foreground sm:text-sm">
-                <RefreshCw className="h-3.5 w-3.5 mr-1.5 hidden sm:inline" />
-                Rebalancing
-              </TabsTrigger>
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+              <TabsTrigger value="frontier" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Efficient Frontier</TabsTrigger>
+              <TabsTrigger value="bl" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Black-Litterman</TabsTrigger>
+              <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Budgeting</TabsTrigger>
+              <TabsTrigger value="rebal" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Rebalancing</TabsTrigger>
             </TabsList>
 
             <TabsContent value="frontier" className="data-[state=inactive]:hidden">

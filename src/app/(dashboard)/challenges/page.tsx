@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
@@ -109,7 +108,7 @@ const SPECIAL_EVENTS: SpecialEvent[] = [
       "Must trade within 24 hours of earnings release",
       "Position must be closed within 48 hours",
       "Minimum position size: 10 shares",
-      "Bonus XP for 10%+ gain on single trade",
+      "Bonus points for 10%+ gain on single trade",
     ],
   },
   {
@@ -241,7 +240,7 @@ function WeeklyTab() {
             key={challenge.id}
             className={cn(
               "rounded px-3 py-2.5 transition-colors hover:bg-muted/20",
-              isActive && "border-l-2 border-primary/30",
+              isActive && "border-l-2 border-border/20",
             )}
           >
             <div className="flex items-center gap-2.5">
@@ -253,11 +252,11 @@ function WeeklyTab() {
                 <p className="text-xs text-muted-foreground mt-0.5 truncate">{challenge.description}</p>
               </div>
               <span className="text-xs font-mono tabular-nums text-muted-foreground shrink-0">{challenge.progress}%</span>
-              <span className="text-xs text-muted-foreground shrink-0">+{challenge.xpReward} xp</span>
+              <span className="text-xs text-muted-foreground shrink-0">+{challenge.xpReward}</span>
             </div>
             <div className="h-1 mt-2 rounded-full bg-muted/30 overflow-hidden">
               <div
-                className="h-full rounded-full bg-primary/60"
+                className="h-full rounded-full bg-muted-foreground/40"
                 style={{ width: `${challenge.progress}%` }}
               />
             </div>
@@ -302,7 +301,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-1">
-          <span className="text-xs text-muted-foreground">+{event.xpReward} xp &middot; &quot;{event.badge}&quot; badge</span>
+          <span className="text-xs text-muted-foreground">+{event.xpReward} &middot; &quot;{event.badge}&quot; badge</span>
           <button
             type="button"
             className="rounded bg-primary px-2.5 py-1 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
@@ -319,7 +318,7 @@ function SpecialEventsTab() {
   return (
     <div className="space-y-3">
       <p className="text-xs text-muted-foreground px-1">
-        Limited-time competitions. Complete before expiry for badges and bonus xp.
+        Limited-time competitions. Complete before expiry for badges and bonus points.
       </p>
       {SPECIAL_EVENTS.map((event, i) => (
         <EventCard key={event.id} event={event} index={i} />
@@ -350,7 +349,7 @@ function HistoryTab() {
         <span className="text-border/30">&middot;</span>
         <span className="text-muted-foreground">Full clear <span className="font-mono tabular-nums font-medium text-foreground">{successCount}</span></span>
         <span className="text-border/30">&middot;</span>
-        <span className="text-muted-foreground">XP earned <span className="font-mono tabular-nums font-medium text-foreground">+{totalXP}</span></span>
+        <span className="text-muted-foreground">Earned <span className="font-mono tabular-nums font-medium text-foreground">+{totalXP}</span></span>
       </div>
 
       {/* History table */}
@@ -360,7 +359,7 @@ function HistoryTab() {
             <tr className="border-b border-border/20 bg-muted/5">
               <th className="px-3 py-1.5 text-left text-xs font-medium text-muted-foreground">Challenge</th>
               <th className="px-3 py-1.5 text-left text-xs font-medium text-muted-foreground">Date</th>
-              <th className="px-3 py-1.5 text-right text-xs font-medium text-muted-foreground">XP</th>
+              <th className="px-3 py-1.5 text-right text-xs font-medium text-muted-foreground">Points</th>
               <th className="px-3 py-1.5 text-center text-xs font-medium text-muted-foreground">Score</th>
               <th className="px-3 py-1.5 text-center text-xs font-medium text-muted-foreground">Result</th>
             </tr>
@@ -434,7 +433,7 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
   const challenge = useMemo(() => getTodayHeroChallenge(), []);
 
   return (
-    <div className="border-l-2 border-primary/30 rounded-lg bg-card px-4 py-3 mb-4">
+    <div className="rounded-md border border-border/20 px-4 py-3 mb-4">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 mb-0.5">
@@ -444,7 +443,7 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
           <p className="text-xs text-muted-foreground">{challenge.description}</p>
         </div>
         <div className="shrink-0 flex items-center gap-3">
-          <span className="text-xs text-muted-foreground">+{challenge.xpReward} xp</span>
+          <span className="text-xs text-muted-foreground">+{challenge.xpReward}</span>
           <span className="text-xs font-mono tabular-nums text-muted-foreground">{countdown}</span>
           <Link
             href="/trade"
@@ -553,7 +552,7 @@ export default function ChallengesPage() {
               className={cn(
                 "shrink-0 border-b-2 px-3 py-2 text-[11px] font-medium transition-colors whitespace-nowrap",
                 tab === id
-                  ? "border-primary text-primary"
+                  ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
@@ -568,68 +567,16 @@ export default function ChallengesPage() {
         {/* Daily Challenge Hero — only on daily tab */}
         {tab === "daily" && <DailyHeroCard countdown={dailyCountdown} />}
 
-        <AnimatePresence mode="wait">
-          {tab === "daily" && (
-            <motion.div
-              key="daily"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.12 }}
-            >
-              <DailyTab onSelectChallenge={handleSelectDaily} />
-            </motion.div>
-          )}
-
-          {tab === "weekly" && (
-            <motion.div
-              key="weekly"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.12 }}
-            >
-              <WeeklyTab />
-            </motion.div>
-          )}
-
-          {tab === "events" && (
-            <motion.div
-              key="events"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.12 }}
-            >
-              <SpecialEventsTab />
-            </motion.div>
-          )}
-
-          {tab === "scenarios" && (
-            <motion.div
-              key="scenarios"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.12 }}
-            >
-              <h3 className="text-xs text-muted-foreground mb-3">Historical scenarios</h3>
-              <ScenariosTab onSelectScenario={handleSelectScenario} />
-            </motion.div>
-          )}
-
-          {tab === "history" && (
-            <motion.div
-              key="history"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.12 }}
-            >
-              <HistoryTab />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {tab === "daily" && <DailyTab onSelectChallenge={handleSelectDaily} />}
+        {tab === "weekly" && <WeeklyTab />}
+        {tab === "events" && <SpecialEventsTab />}
+        {tab === "scenarios" && (
+          <>
+            <h3 className="text-xs text-muted-foreground mb-3">Historical scenarios</h3>
+            <ScenariosTab onSelectScenario={handleSelectScenario} />
+          </>
+        )}
+        {tab === "history" && <HistoryTab />}
       </div>
     </div>
   );

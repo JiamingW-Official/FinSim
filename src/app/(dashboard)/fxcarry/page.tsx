@@ -693,7 +693,7 @@ export default function FXCarryPage() {
         className="mt-8"
       >
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="mb-4 flex-wrap h-auto gap-1">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             <TabsTrigger value="portfolio">Carry Portfolio</TabsTrigger>
             <TabsTrigger value="rates">Interest Rate Differentials</TabsTrigger>
             <TabsTrigger value="risk">Risk Analysis</TabsTrigger>

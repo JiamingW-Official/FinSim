@@ -808,23 +808,11 @@ export default function InstitutionalAllocPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="models" className="mt-8">
-        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="models" className="data-[state=active]:bg-primary text-sm">
-            <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
-            Models Comparison
-          </TabsTrigger>
-          <TabsTrigger value="endowment" className="data-[state=active]:bg-primary text-sm">
-            <BookOpen className="w-3.5 h-3.5 mr-1.5" />
-            Endowment Model
-          </TabsTrigger>
-          <TabsTrigger value="pension" className="data-[state=active]:bg-primary text-sm">
-            <Scale className="w-3.5 h-3.5 mr-1.5" />
-            Pension LDI
-          </TabsTrigger>
-          <TabsTrigger value="swf" className="data-[state=active]:bg-primary text-sm">
-            <Globe className="w-3.5 h-3.5 mr-1.5" />
-            SWF Strategies
-          </TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="models" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Models Comparison</TabsTrigger>
+          <TabsTrigger value="endowment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Endowment Model</TabsTrigger>
+          <TabsTrigger value="pension" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pension LDI</TabsTrigger>
+          <TabsTrigger value="swf" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">SWF Strategies</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Models Comparison ── */}

@@ -756,18 +756,14 @@ export default function MLStocksPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-        <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="features" className="text-xs data-[state=active]:bg-muted/10 data-[state=active]:text-primary">
-            <Database className="w-3 h-3 mr-1" />Feature Engineering
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="features" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Feature Engineering
           </TabsTrigger>
-          <TabsTrigger value="models" className="text-xs data-[state=active]:bg-muted/10 data-[state=active]:text-primary">
-            <Cpu className="w-3 h-3 mr-1" />Model Zoo
+          <TabsTrigger value="models" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Model Zoo
           </TabsTrigger>
-          <TabsTrigger value="backtest" className="text-xs data-[state=active]:bg-muted/10 data-[state=active]:text-primary">
-            <FlaskConical className="w-3 h-3 mr-1" />Backtesting
+          <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtesting
           </TabsTrigger>
-          <TabsTrigger value="signals" className="text-xs data-[state=active]:bg-muted/10 data-[state=active]:text-primary">
-            <Zap className="w-3 h-3 mr-1" />Live Signals
+          <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Live Signals
           </TabsTrigger>
         </TabsList>
 

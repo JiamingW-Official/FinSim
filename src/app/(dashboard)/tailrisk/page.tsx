@@ -1307,7 +1307,7 @@ export default function TailRiskPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-          <TabsList className="w-full grid grid-cols-4 bg-card border border-border h-auto p-1">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {[
               { value: "blackswan", label: "Black Swan Events" },
               { value: "instruments", label: "Hedging Instruments" },

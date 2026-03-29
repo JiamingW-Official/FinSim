@@ -547,7 +547,7 @@ export default function AlgoTradingPage() {
       {/* Tabs */}
       <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }}>
         <Tabs defaultValue="orders">
-          <TabsList className="bg-card border border-border flex flex-wrap gap-0 h-auto">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {[
               { value: "orders", label: "Order Types" },
               { value: "execution", label: "TWAP/VWAP" },

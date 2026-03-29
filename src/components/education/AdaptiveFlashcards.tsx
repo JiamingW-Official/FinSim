@@ -4,7 +4,6 @@ import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
-  Brain,
   RotateCcw,
   Check,
   X,
@@ -412,12 +411,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
         </AnimatePresence>
       ) : (
         <div className="flex flex-1 items-center justify-center">
-          <div className="text-center">
-            <Brain className="mx-auto mb-2 h-8 w-8 text-muted-foreground/40" />
-            <p className="text-sm font-medium text-muted-foreground">
-              No cards in this category
-            </p>
-          </div>
+          <p className="text-sm text-muted-foreground">No cards in this category</p>
         </div>
       )}
 

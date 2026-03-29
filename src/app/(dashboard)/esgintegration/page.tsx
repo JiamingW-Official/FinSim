@@ -482,7 +482,7 @@ export default function ESGIntegrationPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="scores">
-          <TabsList className="grid grid-cols-4 w-full md:w-auto">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             <TabsTrigger value="scores">ESG Scores</TabsTrigger>
             <TabsTrigger value="screening">Screening</TabsTrigger>
             <TabsTrigger value="impact">Impact</TabsTrigger>

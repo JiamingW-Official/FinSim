@@ -1389,7 +1389,7 @@ export default function OptionsCalcPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-card border border-border p-1 flex flex-wrap gap-1 h-auto">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {tabs.map(tab => {
               const Icon = tab.icon;
               return (

@@ -797,20 +797,20 @@ export default function TokenizationPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-card border border-border flex-wrap h-auto">
-            <TabsTrigger value="overview" className="text-xs text-muted-foreground data-[state=active]:bg-primary">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               RWA Overview
             </TabsTrigger>
-            <TabsTrigger value="treasuries" className="text-xs text-muted-foreground data-[state=active]:bg-primary">
+            <TabsTrigger value="treasuries" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Tokenized Treasuries
             </TabsTrigger>
-            <TabsTrigger value="realestate" className="text-xs text-muted-foreground data-[state=active]:bg-primary">
+            <TabsTrigger value="realestate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Real Estate
             </TabsTrigger>
-            <TabsTrigger value="credit" className="text-xs text-muted-foreground data-[state=active]:bg-primary">
+            <TabsTrigger value="credit" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Private Credit
             </TabsTrigger>
-            <TabsTrigger value="regulatory" className="text-xs text-muted-foreground data-[state=active]:bg-primary">
+            <TabsTrigger value="regulatory" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Regulatory
             </TabsTrigger>
           </TabsList>

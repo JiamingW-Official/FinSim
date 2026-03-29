@@ -820,9 +820,6 @@ function StatChip({
 
 function EmptyState({ message }: { message: string }) {
   return (
-    <div className="flex h-32 flex-col items-center justify-center gap-2 text-muted-foreground">
-      <BookOpen className="h-6 w-6 opacity-25" />
-      <p className="text-sm text-center">{message}</p>
-    </div>
+    <p className="text-sm text-muted-foreground text-center py-8">{message}</p>
   );
 }

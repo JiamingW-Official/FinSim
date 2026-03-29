@@ -1445,20 +1445,20 @@ export default function WealthMgmtPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="segmentation" className="mt-8">
-          <TabsList className="mb-6 bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="segmentation" className="data-[state=active]:bg-foreground/15 text-xs text-muted-foreground">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="segmentation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               <Users size={13} className="mr-1.5" />
               Client Segmentation
             </TabsTrigger>
-            <TabsTrigger value="planning" className="data-[state=active]:bg-foreground/15 text-xs text-muted-foreground">
+            <TabsTrigger value="planning" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               <Target size={13} className="mr-1.5" />
               Financial Planning
             </TabsTrigger>
-            <TabsTrigger value="allocation" className="data-[state=active]:bg-foreground/15 text-xs text-muted-foreground">
+            <TabsTrigger value="allocation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               <PieChart size={13} className="mr-1.5" />
               Asset Allocation
             </TabsTrigger>
-            <TabsTrigger value="fees" className="data-[state=active]:bg-foreground/15 text-xs text-muted-foreground">
+            <TabsTrigger value="fees" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               <DollarSign size={13} className="mr-1.5" />
               Fee Models & Tech
             </TabsTrigger>

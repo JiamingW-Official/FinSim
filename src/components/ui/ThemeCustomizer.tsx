@@ -122,7 +122,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
             animate={{ x: 0 }}
             exit={{ x: 320 }}
             transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.8 }}
-            className="fixed right-0 top-0 z-50 flex h-full w-80 flex-col border-l border-border/20 bg-card shadow-sm"
+            className="fixed right-0 top-0 z-50 flex h-full w-80 flex-col border-l border-border/20 bg-card"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-border/20 px-4 py-3.5">
@@ -165,7 +165,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                       >
                         {/* Swatch circle */}
                         <div
-                          className="relative h-12 w-12 rounded-full border border-border/20 shadow-sm flex items-center justify-center"
+                          className="relative h-12 w-12 rounded-full border border-border/20 flex items-center justify-center"
                           style={{ background: preset.swatchBg }}
                         >
                           {/* Inner accent dot */}
@@ -317,19 +317,19 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                 {/* Live preview */}
                 <div className="mt-4 rounded-md border border-border/20 bg-background/60 p-3 space-y-1">
                   <p
-                    className="font-semibold text-foreground transition-all duration-200"
+                    className="font-semibold text-foreground transition-[font-size] duration-200"
                     style={{ fontSize: `calc(0.875rem * ${config.fontScale})` }}
                   >
                     Aa — Preview text
                   </p>
                   <p
-                    className="text-muted-foreground transition-all duration-200"
+                    className="text-muted-foreground transition-[font-size] duration-200"
                     style={{ fontSize: `calc(0.75rem * ${config.fontScale})` }}
                   >
                     The quick brown fox jumps over the lazy dog.
                   </p>
                   <p
-                    className="font-mono text-primary transition-all duration-200"
+                    className="font-mono text-primary transition-[font-size] duration-200"
                     style={{ fontSize: `calc(0.7rem * ${config.fontScale})` }}
                   >
                     +12.4% · $148.62

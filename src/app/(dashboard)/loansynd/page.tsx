@@ -515,7 +515,7 @@ export default function LoanSyndPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-foreground/5 border border-border mb-6 h-10">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {[
             { id: "structure", label: "Loan Structure" },
             { id: "syndication", label: "Syndication Process" },

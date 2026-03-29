@@ -658,27 +658,12 @@ export default function ProfilePage() {
         </motion.div>
 
         <Tabs defaultValue="dna">
-          <TabsList className="grid w-full grid-cols-5 mb-4 h-9">
-            <TabsTrigger value="dna" className="text-xs text-muted-foreground px-1">
-              <Brain className="h-3 w-3 mr-1" />
-              DNA
-            </TabsTrigger>
-            <TabsTrigger value="skills" className="text-xs text-muted-foreground px-1">
-              <Star className="h-3 w-3 mr-1" />
-              Skills
-            </TabsTrigger>
-            <TabsTrigger value="path" className="text-xs text-muted-foreground px-1">
-              <BookOpen className="h-3 w-3 mr-1" />
-              Path
-            </TabsTrigger>
-            <TabsTrigger value="analytics" className="text-xs text-muted-foreground px-1">
-              <BarChart3 className="h-3 w-3 mr-1" />
-              Analytics
-            </TabsTrigger>
-            <TabsTrigger value="goals" className="text-xs text-muted-foreground px-1">
-              <Trophy className="h-3 w-3 mr-1" />
-              Goals
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="dna" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">DNA</TabsTrigger>
+            <TabsTrigger value="skills" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Skills</TabsTrigger>
+            <TabsTrigger value="path" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Path</TabsTrigger>
+            <TabsTrigger value="analytics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Analytics</TabsTrigger>
+            <TabsTrigger value="goals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Goals</TabsTrigger>
           </TabsList>
 
           {/* ── Tab 1: Trading DNA ── */}

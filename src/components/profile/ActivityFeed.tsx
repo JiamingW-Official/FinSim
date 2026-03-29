@@ -118,13 +118,7 @@ export function ActivityFeed() {
 
   if (items.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-1.5 py-8 text-muted-foreground">
-        <BarChart3 className="h-5 w-5 opacity-30" />
-        <p className="text-[11px]">No activity yet</p>
-        <p className="text-xs opacity-60">
-          Start trading and completing lessons to build your feed
-        </p>
-      </div>
+      <p className="text-[11px] text-muted-foreground text-center py-8">No activity yet</p>
     );
   }
 

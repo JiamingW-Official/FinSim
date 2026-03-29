@@ -1697,7 +1697,7 @@ export default function AllocationPage() {
           transition={{ duration: 0.4, delay: 0.15 }}
         >
           <Tabs value={tab} onValueChange={setTab}>
-            <TabsList className="bg-card border border-border mb-6 flex flex-wrap h-auto gap-1 p-1">
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
               {[
                 { value: "overview",    label: "Asset Classes",      icon: Layers },
                 { value: "builder",     label: "Portfolio Builder",   icon: PieChart },

@@ -682,23 +682,11 @@ export default function MonteCarloPage() {
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <Tabs defaultValue="portfolio">
-          <TabsList className="mb-4">
-            <TabsTrigger value="portfolio">
-              <Activity className="h-4 w-4 mr-1" />
-              Portfolio MC
-            </TabsTrigger>
-            <TabsTrigger value="options">
-              <DollarSign className="h-4 w-4 mr-1" />
-              Option Pricing
-            </TabsTrigger>
-            <TabsTrigger value="retirement">
-              <Percent className="h-4 w-4 mr-1" />
-              Retirement
-            </TabsTrigger>
-            <TabsTrigger value="var">
-              <BarChart3 className="h-4 w-4 mr-1" />
-              VaR / CVaR
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="portfolio">Portfolio MC</TabsTrigger>
+            <TabsTrigger value="options">Option Pricing</TabsTrigger>
+            <TabsTrigger value="retirement">Retirement</TabsTrigger>
+            <TabsTrigger value="var">VaR / CVaR</TabsTrigger>
           </TabsList>
 
           {/* ----------------------------------------------------------------

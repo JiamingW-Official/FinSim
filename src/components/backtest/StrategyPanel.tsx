@@ -195,22 +195,22 @@ export default function StrategyPanel({
   };
 
   return (
-    <div className="flex h-full w-[300px] flex-col gap-3 overflow-y-auto border-r border-border/20 bg-card/50 p-4">
+    <div className="flex h-full w-[300px] flex-col gap-2.5 overflow-y-auto border-r border-border/20 bg-card/50 p-3">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-orange-400">
-          <FlaskConical className="h-5 w-5" />
-          <h2 className="text-sm font-semibold">Strategy Builder</h2>
+        <div className="flex items-center gap-2 text-foreground">
+          <FlaskConical className="h-4 w-4 text-muted-foreground" />
+          <h2 className="text-xs font-medium">Strategy Builder</h2>
         </div>
       </div>
 
       {/* Template Gallery Button */}
       <button
         onClick={onOpenTemplates}
-        className="flex items-center justify-center gap-2 rounded-md border border-primary/30 bg-primary/10 px-4 py-2.5 text-xs font-semibold text-orange-300 transition-colors hover:border-primary/50 hover:bg-primary/15"
+        className="flex items-center justify-center gap-2 border border-border/40 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
       >
-        <BookOpen className="h-4 w-4" />
-        Browse Strategy Templates
+        <BookOpen className="h-3.5 w-3.5" />
+        Browse Templates
       </button>
 
       {/* Saved Strategies */}
@@ -218,7 +218,7 @@ export default function StrategyPanel({
         <div>
           <button
             onClick={() => setShowSaved(!showSaved)}
-            className="flex w-full items-center justify-between rounded-lg border border-border/20 bg-muted/20 px-3 py-2 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
+            className="flex w-full items-center justify-between border border-border/20 bg-muted/20 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
           >
             <span className="flex items-center gap-1.5">
               <Save className="h-3 w-3" />
@@ -238,7 +238,7 @@ export default function StrategyPanel({
                   <button
                     key={s.id}
                     onClick={() => loadStrategy(s)}
-                    className="w-full rounded-lg border border-border/20 bg-muted/20 px-3 py-2 text-left text-xs transition-colors hover:bg-primary/10"
+                    className="w-full border border-border/20 bg-muted/20 px-3 py-1.5 text-left text-xs transition-colors hover:bg-muted/50"
                   >
                     <span className="font-medium text-foreground">{s.strategy.name}</span>
                     <span className="ml-2 text-muted-foreground">Grade {s.bestGrade}</span>
@@ -255,7 +255,7 @@ export default function StrategyPanel({
         <select
           value={ticker}
           onChange={(e) => setTicker(e.target.value)}
-          className="w-full rounded-lg border border-border/20 bg-muted/20 px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50"
+          className="w-full border border-border/20 bg-muted/20 px-3 py-1.5 text-xs text-foreground outline-none focus:border-foreground/30"
         >
           {WATCHLIST_STOCKS.map((s) => (
             <option key={s.ticker} value={s.ticker} className="bg-card">
@@ -272,9 +272,9 @@ export default function StrategyPanel({
             <button
               key={key}
               onClick={() => setPreset(key)}
-              className={`flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs transition-colors ${
+              className={`flex items-center gap-2 border px-3 py-1.5 text-xs transition-colors ${
                 preset === key
-                  ? "border-primary/50 bg-primary/15 text-orange-300"
+                  ? "border-foreground/30 bg-muted text-foreground"
                   : "border-border/20 bg-muted/20 text-muted-foreground hover:bg-muted/50"
               }`}
             >
@@ -292,9 +292,9 @@ export default function StrategyPanel({
             <button
               key={n}
               onClick={() => setBarCount(n)}
-              className={`flex-1 rounded-lg border px-2 py-1.5 text-xs font-medium transition-colors ${
+              className={`flex-1 border px-2 py-1.5 text-xs font-medium font-mono tabular-nums transition-colors ${
                 barCount === n
-                  ? "border-primary/50 bg-primary/15 text-orange-300"
+                  ? "border-foreground/30 bg-muted text-foreground"
                   : "border-border/20 bg-muted/20 text-muted-foreground hover:bg-muted/50"
               }`}
             >
@@ -331,9 +331,9 @@ export default function StrategyPanel({
           {entryRules.map((rule) => (
             <div
               key={rule.id}
-              className="flex items-center justify-between rounded-lg border border-primary/20 bg-primary/10 px-3 py-1.5"
+              className="flex items-center justify-between border border-border/40 bg-muted/30 px-3 py-1.5"
             >
-              <span className="text-xs font-medium text-orange-300">{rule.label}</span>
+              <span className="text-xs font-medium text-foreground">{rule.label}</span>
               <button onClick={() => removeEntryRule(rule.id)} className="text-muted-foreground hover:text-red-400">
                 <X className="h-3 w-3" />
               </button>
@@ -342,7 +342,7 @@ export default function StrategyPanel({
           {entryRules.length < 3 && (
             <button
               onClick={() => setShowRulePicker(true)}
-              className="flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-border/20 py-2 text-xs text-muted-foreground transition-colors hover:border-primary/30 hover:text-orange-400"
+              className="flex w-full items-center justify-center gap-1 border border-dashed border-border/30 py-2 text-xs text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
             >
               <Plus className="h-3 w-3" /> Add Rule
             </button>
@@ -356,7 +356,7 @@ export default function StrategyPanel({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mt-2 max-h-52 space-y-1 overflow-y-auto rounded-lg border border-border/20 bg-card/95 p-2"
+              className="mt-2 max-h-52 space-y-1 overflow-y-auto border border-border/20 bg-card/95 p-2"
             >
               {RULE_CATALOG.filter((r) => !entryRules.find((er) => er.id === r.id)).map((entry) => (
                 <button
@@ -471,9 +471,9 @@ export default function StrategyPanel({
                         : { kind, maxPercent: 50 },
                   )
                 }
-                className={`flex-1 rounded-lg border px-1.5 py-1.5 text-xs font-medium transition-colors ${
+                className={`flex-1 border px-1.5 py-1.5 text-xs font-medium transition-colors ${
                   positionSizing.kind === kind
-                    ? "border-primary/50 bg-primary/15 text-orange-300"
+                    ? "border-foreground/30 bg-muted text-foreground"
                     : "border-border/20 bg-muted/20 text-muted-foreground hover:bg-muted/50"
                 }`}
               >
@@ -490,9 +490,9 @@ export default function StrategyPanel({
                 step={5}
                 value={positionSizing.percent}
                 onChange={(e) => setPositionSizing({ kind: "percent_of_capital", percent: +e.target.value })}
-                className="flex-1 accent-orange-500"
+                className="flex-1 accent-muted-foreground"
               />
-              <span className="w-10 text-right text-xs font-medium text-orange-400">
+              <span className="w-10 text-right text-xs font-mono tabular-nums font-medium text-foreground">
                 {positionSizing.percent}%
               </span>
             </div>
@@ -504,7 +504,7 @@ export default function StrategyPanel({
               max={1000}
               value={positionSizing.shares}
               onChange={(e) => setPositionSizing({ kind: "fixed_shares", shares: Math.max(1, +e.target.value) })}
-              className="w-full rounded-lg border border-border/20 bg-muted/20 px-3 py-1.5 text-sm text-foreground outline-none focus:border-primary/50"
+              className="w-full border border-border/20 bg-muted/20 px-3 py-1.5 text-xs font-mono text-foreground outline-none focus:border-foreground/30"
             />
           )}
           {positionSizing.kind === "kelly_criterion" && (
@@ -588,7 +588,7 @@ export default function StrategyPanel({
       <button
         onClick={handleRun}
         disabled={isRunning || entryRules.length === 0}
-        className="mt-auto flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-orange-500 disabled:opacity-40"
+        className="mt-auto flex items-center justify-center gap-2 bg-foreground px-4 py-2.5 text-xs font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-40"
       >
         <FlaskConical className="h-4 w-4" />
         {isRunning ? "Running..." : monteCarloRuns > 0 ? `Run Backtest + ${monteCarloRuns} MC` : "Run Backtest"}
@@ -627,7 +627,7 @@ function ExitSlider({
     emerald: { accent: "accent-emerald-500", text: "text-emerald-400", toggle: "bg-emerald-500" },
     amber: { accent: "accent-amber-500", text: "text-amber-400", toggle: "bg-amber-500" },
     cyan: { accent: "accent-cyan-500", text: "text-muted-foreground", toggle: "bg-cyan-500" },
-    violet: { accent: "accent-orange-500", text: "text-orange-400", toggle: "bg-orange-500" },
+    violet: { accent: "accent-violet-500", text: "text-violet-400", toggle: "bg-violet-500" },
   };
   const c = colorMap[color] ?? colorMap.violet;
 

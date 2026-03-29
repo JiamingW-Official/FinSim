@@ -573,7 +573,7 @@ export default function MortgageFinancePage() {
         transition={{ duration: 0.4, delay: 0.16 }}
       >
         <Tabs defaultValue="mortgage-math">
-          <TabsList className="mb-4 flex-wrap h-auto">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             <TabsTrigger value="mortgage-math">Mortgage Math</TabsTrigger>
             <TabsTrigger value="mbs">MBS Markets</TabsTrigger>
             <TabsTrigger value="affordability">Affordability</TabsTrigger>

@@ -264,7 +264,7 @@ export function LandingDemoChart() {
             Order Entry
           </div>
           <div className="flex gap-1">
-            <div className="flex-1 rounded-md bg-emerald-500/15 text-emerald-400 text-[10px] font-medium text-center py-1.5 cursor-pointer hover:bg-emerald-500/25 transition-colors">
+            <div className="flex-1 rounded-md bg-foreground/10 text-foreground text-[10px] font-medium text-center py-1.5 cursor-pointer hover:bg-foreground/15 transition-colors">
               Buy
             </div>
             <div className="flex-1 rounded-md bg-muted/60 text-muted-foreground text-[10px] font-medium text-center py-1.5 cursor-pointer hover:bg-muted transition-colors">

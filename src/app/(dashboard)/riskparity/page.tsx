@@ -451,7 +451,7 @@ export default function RiskParityPage() {
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <Tabs defaultValue="construction">
-          <TabsList className="mb-4">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             <TabsTrigger value="construction">Construction</TabsTrigger>
             <TabsTrigger value="riskbudget">Risk Budget</TabsTrigger>
             <TabsTrigger value="performance">Performance</TabsTrigger>

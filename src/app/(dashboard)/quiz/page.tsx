@@ -790,9 +790,7 @@ function FlashcardsTab() {
           </motion.div>
         </div>
       ) : (
-        <div className="rounded-md border border-border/40 bg-muted/20 p-12 text-center">
-          <p className="text-muted-foreground text-sm">No cards in this category.</p>
-        </div>
+        <p className="text-sm text-muted-foreground text-center py-8">No cards in this category.</p>
       )}
 
       {/* Action buttons */}

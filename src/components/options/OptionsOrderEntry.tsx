@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useOptionsStore } from "@/stores/options-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { LegBuilder } from "./LegBuilder";
@@ -105,13 +105,13 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
     <div className="flex flex-col p-3 gap-3">
       {/* Header */}
       <div className="flex items-center gap-1.5">
-        <Activity className="h-3.5 w-3.5 text-orange-400" />
+        <Activity className="h-3.5 w-3.5 text-muted-foreground" />
         <span className="text-xs font-medium">Order Entry</span>
       </div>
 
       {/* Strategy name */}
       {activeStrategy && (
-        <div className="rounded-md bg-orange-500/10 px-2 py-1 text-center text-xs font-medium text-orange-400">
+        <div className="rounded-md bg-muted/50 px-2 py-1 text-center text-xs font-medium text-foreground">
           {activeStrategy}
         </div>
       )}
@@ -142,7 +142,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
         <>
           {/* Probability of Profit & Risk Stats */}
           {pop !== null && (
-            <div className="rounded-lg border border-border/20 bg-card/30 p-2 space-y-1.5">
+            <div className="border border-border/20 p-2 space-y-1.5">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Prob of Profit</span>
                 <span
@@ -187,7 +187,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           {totalGreeks && <GreeksPanel greeks={totalGreeks} />}
 
           {/* Cost summary */}
-          <div className="space-y-1 rounded-lg border border-border/20 bg-card/50 p-2.5">
+          <div className="space-y-1 border border-border/20 p-2.5">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">
                 {isDebit ? "Net Debit" : "Net Credit"}
@@ -229,29 +229,25 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
 
           {/* Action buttons */}
           <div className="flex gap-2">
-            <motion.button
+            <button
               onClick={clearLegs}
-              className="flex items-center gap-1 rounded-lg border border-border/20 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted/30"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-1 border border-border/20 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/30"
             >
               <Trash2 className="h-3 w-3" />
               Clear
-            </motion.button>
-            <motion.button
+            </button>
+            <button
               onClick={handleExecute}
               disabled={!canAfford}
               className={cn(
-                "flex-1 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
+                "flex-1 px-3 py-2 text-xs font-medium transition-colors",
                 canAfford
-                  ? "bg-orange-500 text-primary-foreground hover:bg-orange-600 active:bg-orange-700"
-                  : "cursor-not-allowed bg-orange-500/30 text-orange-400/50",
+                  ? "bg-foreground text-background hover:bg-foreground/90"
+                  : "cursor-not-allowed bg-muted text-muted-foreground/50",
               )}
-              whileHover={canAfford ? { scale: 1.02 } : {}}
-              whileTap={canAfford ? { scale: 0.98 } : {}}
             >
               Execute Trade
-            </motion.button>
+            </button>
           </div>
         </>
       )}

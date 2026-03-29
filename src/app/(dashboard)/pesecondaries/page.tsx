@@ -1692,7 +1692,7 @@ export default function PESecondariesPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="lpled">
-        <TabsList className="mb-6 flex flex-wrap gap-1 h-auto bg-card p-1 rounded-md">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {[
             { value: "lpled", label: "LP-Led Secondaries", icon: <DollarSign className="w-3.5 h-3.5" /> },
             { value: "gpled", label: "GP-Led Secondaries", icon: <Layers className="w-3.5 h-3.5" /> },

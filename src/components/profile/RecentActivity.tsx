@@ -28,11 +28,7 @@ export function RecentActivity() {
 
   if (recent.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-1.5 py-6 text-muted-foreground">
-        <Zap className="h-5 w-5 opacity-30" />
-        <p className="text-[11px]">No activity yet</p>
-        <p className="text-xs opacity-60">Start trading to see your activity here</p>
-      </div>
+      <p className="text-[11px] text-muted-foreground text-center py-6">No activity yet</p>
     );
   }
 

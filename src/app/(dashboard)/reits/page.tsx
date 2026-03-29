@@ -1080,23 +1080,11 @@ export default function REITsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="universe">
-        <TabsList className="grid grid-cols-4 w-full max-w-xl">
-          <TabsTrigger value="universe" className="text-xs text-muted-foreground gap-1.5">
-            <Building2 className="w-3.5 h-3.5" />
-            REIT Universe
-          </TabsTrigger>
-          <TabsTrigger value="valuation" className="text-xs text-muted-foreground gap-1.5">
-            <Calculator className="w-3.5 h-3.5" />
-            Valuation
-          </TabsTrigger>
-          <TabsTrigger value="dividends" className="text-xs text-muted-foreground gap-1.5">
-            <DollarSign className="w-3.5 h-3.5" />
-            Dividends
-          </TabsTrigger>
-          <TabsTrigger value="portfolio" className="text-xs text-muted-foreground gap-1.5">
-            <PieChart className="w-3.5 h-3.5" />
-            Portfolio
-          </TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="universe" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">REIT Universe</TabsTrigger>
+          <TabsTrigger value="valuation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Valuation</TabsTrigger>
+          <TabsTrigger value="dividends" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Dividends</TabsTrigger>
+          <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio</TabsTrigger>
         </TabsList>
 
         <TabsContent value="universe" className="mt-4 data-[state=inactive]:hidden">

@@ -1479,18 +1479,14 @@ export default function GeopoliticsPage() {
       </motion.div>
 
       <Tabs defaultValue="events" className="mt-8">
-        <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="events" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
-            <ShieldAlert className="w-3.5 h-3.5 mr-1.5" />Event Impact
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="events" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Event Impact
           </TabsTrigger>
-          <TabsTrigger value="sanctions" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
-            <Lock className="w-3.5 h-3.5 mr-1.5" />Sanctions & Trade
+          <TabsTrigger value="sanctions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Sanctions & Trade
           </TabsTrigger>
-          <TabsTrigger value="premium" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
-            <Activity className="w-3.5 h-3.5 mr-1.5" />Risk Premium
+          <TabsTrigger value="premium" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Premium
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
-            <Target className="w-3.5 h-3.5 mr-1.5" />Portfolio Positioning
+          <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio Positioning
           </TabsTrigger>
         </TabsList>
 

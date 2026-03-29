@@ -1415,27 +1415,12 @@ export default function NFTPage() {
 
       {/* Main tabs */}
       <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="grid grid-cols-5 w-full bg-muted/60 h-9">
-          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-            <BarChart3 className="w-3 h-3 mr-1" />
-            Market Overview
-          </TabsTrigger>
-          <TabsTrigger value="analysis" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-            <Activity className="w-3 h-3 mr-1" />
-            Collection Analysis
-          </TabsTrigger>
-          <TabsTrigger value="pricing" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-            <Star className="w-3 h-3 mr-1" />
-            Pricing Models
-          </TabsTrigger>
-          <TabsTrigger value="finance" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-            <Zap className="w-3 h-3 mr-1" />
-            Financialization
-          </TabsTrigger>
-          <TabsTrigger value="framework" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-            <Award className="w-3 h-3 mr-1" />
-            Investment Framework
-          </TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Market Overview</TabsTrigger>
+          <TabsTrigger value="analysis" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Collection Analysis</TabsTrigger>
+          <TabsTrigger value="pricing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pricing Models</TabsTrigger>
+          <TabsTrigger value="finance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Financialization</TabsTrigger>
+          <TabsTrigger value="framework" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Investment Framework</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="mt-6 data-[state=inactive]:hidden">

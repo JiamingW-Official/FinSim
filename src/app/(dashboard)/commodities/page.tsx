@@ -1848,7 +1848,7 @@ export default function CommoditiesPage() {
 
       {/* Main Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-card border border-border p-1 mb-6 flex flex-wrap h-auto gap-1">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             return (
@@ -1856,10 +1856,7 @@ export default function CommoditiesPage() {
                 key={tab.id}
                 value={tab.id}
                 className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
-              >
-                <Icon className="w-3.5 h-3.5" />
-                {tab.label}
-              </TabsTrigger>
+              >{tab.label}</TabsTrigger>
             );
           })}
         </TabsList>

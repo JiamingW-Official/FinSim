@@ -603,16 +603,13 @@ export default function CTASimulatorPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="flex flex-wrap gap-1 h-auto bg-card/60 border border-border/20 p-1 mb-6 rounded-md">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {TABS.map(({ id, label, icon: Icon }) => (
             <TabsTrigger
               key={id}
               value={id}
               className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-300"
-            >
-              <Icon className="w-3.5 h-3.5" />
-              {label}
-            </TabsTrigger>
+            >{label}</TabsTrigger>
           ))}
         </TabsList>
 

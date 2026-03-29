@@ -1218,7 +1218,7 @@ export default function GlobalFixedIncomePage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-          <TabsList className="mb-6 flex h-auto flex-wrap gap-1 bg-foreground/5 p-1">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.id}

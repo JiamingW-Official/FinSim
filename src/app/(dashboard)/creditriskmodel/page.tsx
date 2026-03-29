@@ -808,23 +808,11 @@ export default function CreditRiskModelPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="merton">
-        <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1">
-          <TabsTrigger value="merton" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
-            <Building2 className="w-3.5 h-3.5 mr-1" />
-            Merton Model
-          </TabsTrigger>
-          <TabsTrigger value="migration" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
-            <ArrowRight className="w-3.5 h-3.5 mr-1" />
-            Migration
-          </TabsTrigger>
-          <TabsTrigger value="loss" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
-            <BarChart3 className="w-3.5 h-3.5 mr-1" />
-            Loss Distribution
-          </TabsTrigger>
-          <TabsTrigger value="portfolio" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
-            <PieChart className="w-3.5 h-3.5 mr-1" />
-            Portfolio
-          </TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="merton" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Merton Model</TabsTrigger>
+          <TabsTrigger value="migration" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Migration</TabsTrigger>
+          <TabsTrigger value="loss" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Loss Distribution</TabsTrigger>
+          <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Merton Model ── */}

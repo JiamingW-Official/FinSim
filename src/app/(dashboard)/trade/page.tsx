@@ -36,7 +36,6 @@ import { TradeReplay } from "@/components/trading/TradeReplay";
 import { MarginDashboard } from "@/components/trading/MarginDashboard";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
-import { RefreshCw } from "lucide-react";
 
 // ── Shared tab trigger style ────────────────────────────────────────────────
 const tabTrigger =
@@ -262,13 +261,13 @@ export default function TradePage() {
           >
             <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
               <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
-                <TabsTrigger value="fundamentals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+                <TabsTrigger value="fundamentals" className={tabTrigger}>
                   Fundamentals
                 </TabsTrigger>
-                <TabsTrigger value="orderbook" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+                <TabsTrigger value="orderbook" className={tabTrigger}>
                   Book
                 </TabsTrigger>
-                <TabsTrigger value="compare" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+                <TabsTrigger value="compare" className={tabTrigger}>
                   Compare
                 </TabsTrigger>
               </TabsList>
@@ -294,22 +293,22 @@ export default function TradePage() {
           <Tabs defaultValue="order" className="flex flex-col h-full">
             {/* Tab bar */}
             <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
-              <TabsTrigger value="order" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+              <TabsTrigger value="order" className={tabTrigger}>
                 Order
               </TabsTrigger>
-              <TabsTrigger value="positions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+              <TabsTrigger value="positions" className={tabTrigger}>
                 Pos
               </TabsTrigger>
-              <TabsTrigger value="pending" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
-                Ord{pendingCount > 0 && <span className="ml-0.5 font-mono text-[9px] text-muted-foreground/40">{pendingCount}</span>}
+              <TabsTrigger value="pending" className={tabTrigger}>
+                Ord{pendingCount > 0 && <span className="ml-0.5 font-mono text-[9px] tabular-nums text-muted-foreground/40">{pendingCount}</span>}
               </TabsTrigger>
-              <TabsTrigger value="history" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+              <TabsTrigger value="history" className={tabTrigger}>
                 Hist
               </TabsTrigger>
-              <TabsTrigger value="execution" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+              <TabsTrigger value="execution" className={tabTrigger}>
                 Exec
               </TabsTrigger>
-              <TabsTrigger value="margin" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+              <TabsTrigger value="margin" className={tabTrigger}>
                 Mgn
               </TabsTrigger>
             </TabsList>
@@ -452,7 +451,7 @@ export default function TradePage() {
                 <TabsTrigger
                   key={val}
                   value={val}
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+                  className={tabTrigger}
                 >
                   {val === "order" ? "Order" :
                    val === "positions" ? "Positions" :

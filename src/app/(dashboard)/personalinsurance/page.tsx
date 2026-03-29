@@ -1503,21 +1503,16 @@ export default function PersonalInsurancePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="needs">
-          <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/40 p-1 rounded-md">
-            <TabsTrigger value="needs" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
-              <Calculator className="h-3.5 w-3.5" />Needs Calculator
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="needs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Needs Calculator
             </TabsTrigger>
-            <TabsTrigger value="life" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
-              <Heart className="h-3.5 w-3.5" />Life Insurance
+            <TabsTrigger value="life" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Life Insurance
             </TabsTrigger>
-            <TabsTrigger value="disability" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
-              <Activity className="h-3.5 w-3.5" />Disability
+            <TabsTrigger value="disability" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Disability
             </TabsTrigger>
-            <TabsTrigger value="property" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
-              <Home className="h-3.5 w-3.5" />Property &amp; Auto
+            <TabsTrigger value="property" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Property &amp; Auto
             </TabsTrigger>
-            <TabsTrigger value="health" className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background">
-              <Stethoscope className="h-3.5 w-3.5" />Health &amp; Medicare
+            <TabsTrigger value="health" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Health &amp; Medicare
             </TabsTrigger>
           </TabsList>
 

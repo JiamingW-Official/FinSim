@@ -1771,7 +1771,7 @@ export default function ValuationPage() {
         </motion.div>
 
         <Tabs defaultValue="relative" className="mt-8">
-          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-secondary/40 p-1 rounded-md">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {TABS.map((tab) => (
               <TabsTrigger
                 key={tab.id}

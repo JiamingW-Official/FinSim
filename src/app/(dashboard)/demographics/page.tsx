@@ -1408,12 +1408,12 @@ export default function DemographicsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="global" className="space-y-4">
-          <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="global"   className="text-xs text-muted-foreground data-[state=active]:bg-muted">Global Demographics</TabsTrigger>
-            <TabsTrigger value="aging"    className="text-xs text-muted-foreground data-[state=active]:bg-muted">Aging Trends</TabsTrigger>
-            <TabsTrigger value="invest"   className="text-xs text-muted-foreground data-[state=active]:bg-muted">Investment Implications</TabsTrigger>
-            <TabsTrigger value="japan"    className="text-xs text-muted-foreground data-[state=active]:bg-muted">Japan Case Study</TabsTrigger>
-            <TabsTrigger value="emerging" className="text-xs text-muted-foreground data-[state=active]:bg-muted">Emerging Market Dividend</TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="global" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Global Demographics</TabsTrigger>
+            <TabsTrigger value="aging" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Aging Trends</TabsTrigger>
+            <TabsTrigger value="invest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Investment Implications</TabsTrigger>
+            <TabsTrigger value="japan" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Japan Case Study</TabsTrigger>
+            <TabsTrigger value="emerging" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Emerging Market Dividend</TabsTrigger>
           </TabsList>
 
           <TabsContent value="global"   className="data-[state=inactive]:hidden"><GlobalDemographicsTab /></TabsContent>

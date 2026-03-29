@@ -1233,17 +1233,17 @@ export default function ExportCreditPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="overview" className="w-full mt-8">
-          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-muted/30 p-1 rounded-lg">
-            <TabsTrigger value="overview" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               <Globe size={13} /> ECA Overview
             </TabsTrigger>
-            <TabsTrigger value="consensus" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <TabsTrigger value="consensus" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               <FileText size={13} /> OECD Consensus
             </TabsTrigger>
-            <TabsTrigger value="products" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <TabsTrigger value="products" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               <Layers size={13} /> Products
             </TabsTrigger>
-            <TabsTrigger value="structuring" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <TabsTrigger value="structuring" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               <Briefcase size={13} /> Deal Structuring
             </TabsTrigger>
           </TabsList>

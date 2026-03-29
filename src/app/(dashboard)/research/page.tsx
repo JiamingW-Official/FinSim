@@ -1551,20 +1551,20 @@ export default function ResearchPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1 mb-2">
-            <TabsTrigger value="dashboard"  className="text-xs data-[state=active]:bg-indigo-950 data-[state=active]:text-indigo-300">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="dashboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Research Dashboard
             </TabsTrigger>
-            <TabsTrigger value="valuation"  className="text-xs data-[state=active]:bg-indigo-950 data-[state=active]:text-indigo-300">
+            <TabsTrigger value="valuation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Valuation Monitor
             </TabsTrigger>
-            <TabsTrigger value="calendar"   className="text-xs data-[state=active]:bg-indigo-950 data-[state=active]:text-indigo-300">
+            <TabsTrigger value="calendar" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Econ Calendar &amp; Forecasts
             </TabsTrigger>
-            <TabsTrigger value="thematic"   className="text-xs data-[state=active]:bg-indigo-950 data-[state=active]:text-indigo-300">
+            <TabsTrigger value="thematic" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Thematic Research
             </TabsTrigger>
-            <TabsTrigger value="data"       className="text-xs data-[state=active]:bg-indigo-950 data-[state=active]:text-indigo-300">
+            <TabsTrigger value="data" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Data Library
             </TabsTrigger>
           </TabsList>

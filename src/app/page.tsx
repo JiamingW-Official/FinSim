@@ -65,7 +65,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-28 sm:pt-36 pb-24 text-center">
+      <section className="max-w-5xl mx-auto px-6 pt-20 sm:pt-28 pb-20 text-center">
         <motion.p
           className="text-xs text-muted-foreground/50 mb-5"
           initial={{ opacity: 0 }}
@@ -119,7 +119,7 @@ export default function LandingPage() {
 
         {/* Product Preview */}
         <motion.div
-          className="mt-20 mx-auto max-w-3xl"
+          className="mt-16 mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
@@ -188,19 +188,19 @@ export default function LandingPage() {
 
       {/* How it works */}
       <section className="border-y border-border/15">
-        <div className="max-w-5xl mx-auto px-6 py-20">
+        <div className="max-w-5xl mx-auto px-6 py-14">
           <motion.h2
-            className="text-lg sm:text-xl font-medium text-center mb-14 tracking-tight"
+            className="text-lg sm:text-xl font-medium text-center mb-10 tracking-tight"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
             custom={0}
           >
-            Three steps to market fluency
+            How it works
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
             {[
               {
                 step: "1",
@@ -227,7 +227,7 @@ export default function LandingPage() {
                 variants={fadeUp}
                 custom={i + 1}
               >
-                <div className="text-xs text-muted-foreground/40 mb-2 tabular-nums">
+                <div className="text-xs text-muted-foreground/50 mb-2 tabular-nums">
                   {s.step}
                 </div>
                 <h3 className="text-sm font-medium mb-1.5">{s.title}</h3>
@@ -241,7 +241,7 @@ export default function LandingPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="max-w-5xl mx-auto px-6 py-20">
+      <section className="max-w-5xl mx-auto px-6 py-14">
         <motion.div
           className="text-center"
           initial={{ opacity: 0 }}
@@ -250,7 +250,7 @@ export default function LandingPage() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-sm text-muted-foreground mb-4">
-            $100,000 in simulated capital. Zero risk.
+            $100k in simulated capital. Zero risk.
           </p>
           <Link
             href="/home"

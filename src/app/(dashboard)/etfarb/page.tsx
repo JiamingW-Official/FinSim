@@ -693,7 +693,7 @@ export default function ETFArbPage() {
         className="mt-8"
       >
         <Tabs defaultValue="flow">
-          <TabsList className="mb-4 flex flex-wrap h-auto gap-1 bg-muted/30">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             <TabsTrigger value="flow">Creation/Redemption</TabsTrigger>
             <TabsTrigger value="premdisc">Premium/Discount</TabsTrigger>
             <TabsTrigger value="arb">Arbitrage P&amp;L</TabsTrigger>

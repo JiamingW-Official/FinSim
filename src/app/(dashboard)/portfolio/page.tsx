@@ -11,7 +11,6 @@ import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
 import { ExportMenu } from "@/components/portfolio/ExportMenu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { WinLossDistribution } from "@/components/analytics/WinLossDistribution";
@@ -149,17 +148,7 @@ export default function PortfolioPage() {
   // ── EMPTY STATE ──
   if (!hasTrades && !hasPositions) {
     return (
-      <div className="flex h-full flex-col items-center justify-center px-6">
-        <p className="text-sm text-muted-foreground mb-1">
-          No positions or trade history yet.
-        </p>
-        <Link
-          href="/trade"
-          className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
-        >
-          Make your first trade <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-8">No positions or trade history yet.</p>
     );
   }
 
@@ -242,7 +231,7 @@ export default function PortfolioPage() {
       {/* ── TABS ── */}
       <div className="px-4 pb-4 flex-1">
         <Tabs defaultValue="overview">
-          <div className="mb-3 border-b border-border/20">
+          <div className="mb-3">
             <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
               {["overview", "holdings", "performance", "analytics"].map(
                 (tab) => (
@@ -398,7 +387,7 @@ export default function PortfolioPage() {
                 </p>
                 <Link
                   href="/trade"
-                  className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
+                  className="text-sm font-medium text-foreground hover:underline inline-flex items-center gap-1"
                 >
                   Make your first trade{" "}
                 </Link>

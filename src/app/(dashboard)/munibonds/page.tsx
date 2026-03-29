@@ -1011,7 +1011,7 @@ export default function MuniBondsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="screener">
-        <TabsList className="bg-muted/60 border border-border flex-wrap h-auto">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           <TabsTrigger value="screener">Bond Screener</TabsTrigger>
           <TabsTrigger value="calculator">TEY Calculator</TabsTrigger>
           <TabsTrigger value="analysis">Credit Analysis</TabsTrigger>

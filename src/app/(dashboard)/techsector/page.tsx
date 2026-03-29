@@ -1579,20 +1579,20 @@ export default function TechSectorPage() {
           transition={{ duration: 0.4, delay: 0.2 }}
         >
           <Tabs defaultValue="saas" className="space-y-4">
-            <TabsList className="bg-foreground/5 border border-border h-auto flex-wrap gap-1 p-1">
-              <TabsTrigger value="saas" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+              <TabsTrigger value="saas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 SaaS Metrics
               </TabsTrigger>
-              <TabsTrigger value="ai" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
+              <TabsTrigger value="ai" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 AI &amp; Infrastructure
               </TabsTrigger>
-              <TabsTrigger value="semi" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
+              <TabsTrigger value="semi" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Semiconductor Cycle
               </TabsTrigger>
-              <TabsTrigger value="megacap" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
+              <TabsTrigger value="megacap" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Mega-Cap Tech
               </TabsTrigger>
-              <TabsTrigger value="fintech" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
+              <TabsTrigger value="fintech" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Fintech &amp; Internet
               </TabsTrigger>
             </TabsList>

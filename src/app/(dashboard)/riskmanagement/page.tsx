@@ -1613,7 +1613,7 @@ export default function RiskManagementPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-muted/80 border border-border/20 flex-wrap h-auto p-1 gap-0.5 mb-6">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {tabs.map(tab => {
               const Icon = tab.icon;
               return (
@@ -1621,10 +1621,7 @@ export default function RiskManagementPage() {
                   key={tab.id}
                   value={tab.id}
                   className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs flex items-center gap-1.5 px-3 py-1.5"
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {tab.label}
-                </TabsTrigger>
+                >{tab.label}</TabsTrigger>
               );
             })}
           </TabsList>

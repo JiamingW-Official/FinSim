@@ -581,18 +581,14 @@ export default function CurrencyMarketsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure" className="space-y-4">
-        <TabsList className="bg-foreground/[0.05] border border-border p-1 flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="structure" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
-            <Globe className="w-3 h-3 mr-1" /> FX Structure
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="structure" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">FX Structure
           </TabsTrigger>
-          <TabsTrigger value="carry" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
-            <TrendingUp className="w-3 h-3 mr-1" /> Carry Trades
+          <TabsTrigger value="carry" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Carry Trades
           </TabsTrigger>
-          <TabsTrigger value="theory" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
-            <BookOpen className="w-3 h-3 mr-1" /> Theory
+          <TabsTrigger value="theory" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Theory
           </TabsTrigger>
-          <TabsTrigger value="crises" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
-            <ShieldAlert className="w-3 h-3 mr-1" /> Crises
+          <TabsTrigger value="crises" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Crises
           </TabsTrigger>
         </TabsList>
 

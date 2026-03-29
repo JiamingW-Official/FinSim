@@ -424,7 +424,7 @@ export function Sidebar() {
           </div>
           <div
             className={cn(
-              "flex flex-col overflow-hidden transition-colors duration-200 ease-in-out",
+              "flex flex-col overflow-hidden transition-[max-height,opacity] duration-200 ease-in-out",
               collapsed ? "items-center w-full" : "w-full",
               exploreOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0",
             )}
@@ -454,7 +454,7 @@ export function Sidebar() {
           </div>
           <div
             className={cn(
-              "flex flex-col overflow-hidden transition-colors duration-200 ease-in-out",
+              "flex flex-col overflow-hidden transition-[max-height,opacity] duration-200 ease-in-out",
               collapsed ? "items-center w-full" : "w-full",
               advancedOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0",
             )}

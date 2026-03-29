@@ -82,7 +82,6 @@ const ECONOMIC_EVENTS = [
 
 /* ── Main ── */
 export default function HomePage() {
-  const level = useGameStore((s) => s.level);
   const stats = useGameStore((s) => s.stats);
   const portfolioValue = useTradingStore((s) => s.portfolioValue);
   const tradeHistory = useTradingStore((s) => s.tradeHistory);
@@ -169,17 +168,17 @@ export default function HomePage() {
               )}>
                 {marketPulse.regime}
               </span>
-              <span className="text-[11px] text-muted-foreground tabular-nums shrink-0">
+              <span className="text-[11px] font-mono text-muted-foreground tabular-nums shrink-0">
                 VIX {marketPulse.vix}
               </span>
               <div className="h-3 w-px bg-border/30 shrink-0" />
               {overviewPrices.map(({ ticker, price, changePct }) => (
                 <div key={ticker} className="flex shrink-0 items-center gap-1.5">
                   <span className="text-[11px] text-muted-foreground">{ticker}</span>
-                  <span className="text-[11px] tabular-nums">
+                  <span className="text-[11px] font-mono tabular-nums">
                     {ticker === "BTC" ? `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}` : ticker === "VIX" ? price.toFixed(2) : `$${price.toFixed(2)}`}
                   </span>
-                  <span className={cn("text-[11px] tabular-nums", changePct >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  <span className={cn("text-[11px] font-mono tabular-nums", changePct >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {changePct >= 0 ? "+" : ""}{changePct.toFixed(2)}%
                   </span>
                 </div>
@@ -196,15 +195,15 @@ export default function HomePage() {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <p className="text-[11px] text-muted-foreground mb-1">Portfolio Value</p>
-                <p className="text-2xl tabular-nums tracking-tight">{formatCurrency(portfolioValue)}</p>
-                <p className={cn("text-sm tabular-nums mt-0.5", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>
+                <p className="text-2xl font-mono tabular-nums tracking-tight">{formatCurrency(portfolioValue)}</p>
+                <p className={cn("text-sm font-mono tabular-nums mt-0.5", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}% ({totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)})
                 </p>
               </div>
               <div className="text-right">
                 <p className="text-[11px] text-muted-foreground mb-1">Stats</p>
-                <p className="text-xs tabular-nums">{stats.totalTrades} trades</p>
-                <p className="text-xs tabular-nums text-muted-foreground">{winRate.toFixed(1)}% win rate</p>
+                <p className="text-xs font-mono tabular-nums">{stats.totalTrades} trades</p>
+                <p className="text-xs font-mono tabular-nums text-muted-foreground">{winRate.toFixed(1)}% win rate</p>
               </div>
             </div>
             <PortfolioSparkline equityHistory={equityHistory} currentValue={portfolioValue} />
@@ -244,8 +243,7 @@ export default function HomePage() {
             </div>
             {recentTrades.length === 0 ? (
               <p className="text-xs text-muted-foreground/60">
-                No trades yet.{" "}
-                <Link href="/trade" className="text-foreground hover:underline">Start trading</Link>
+                No trades yet.
               </p>
             ) : (
               <div className="space-y-1">
@@ -253,10 +251,10 @@ export default function HomePage() {
                   <div key={`${trade.timestamp}-${i}`} className="flex items-center justify-between text-xs py-0.5">
                     <div className="flex items-center gap-2">
                       <span className={cn("h-1.5 w-1.5 rounded-full shrink-0", trade.side === "buy" ? "bg-emerald-400" : "bg-red-400")} />
-                      <span className="tabular-nums">{trade.ticker}</span>
-                      <span className="text-muted-foreground">{trade.side} x{trade.quantity}</span>
+                      <span className="font-mono tabular-nums">{trade.ticker}</span>
+                      <span className="font-mono text-muted-foreground">{trade.side} x{trade.quantity}</span>
                     </div>
-                    <span className={cn("tabular-nums", trade.realizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
+                    <span className={cn("font-mono tabular-nums", trade.realizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {trade.realizedPnL >= 0 ? "+" : ""}{formatCurrency(trade.realizedPnL)}
                     </span>
                   </div>
@@ -269,7 +267,7 @@ export default function HomePage() {
           <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col justify-between">
             <div>
               <p className="text-[11px] text-muted-foreground mb-3">Learning</p>
-              <p className="text-lg tabular-nums">{learnProgress.completed}<span className="text-muted-foreground text-sm">/{learnProgress.total}</span></p>
+              <p className="text-lg font-mono tabular-nums">{learnProgress.completed}<span className="text-muted-foreground text-sm">/{learnProgress.total}</span></p>
               <p className="text-[11px] text-muted-foreground mt-0.5">lessons completed</p>
               <div className="mt-3 h-1 overflow-hidden rounded-full bg-muted/30">
                 <div className="h-full rounded-full bg-foreground/20 transition-colors duration-300" style={{ width: `${learnProgress.pct}%` }} />

@@ -1294,23 +1294,11 @@ export default function RateDerivativesPage() {
       </div>
 
       <Tabs defaultValue="swaps" className="space-y-4">
-        <TabsList className="bg-card border border-border p-1 flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="swaps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5">
-            <ArrowLeftRight className="w-3.5 h-3.5" />
-            Swaps
-          </TabsTrigger>
-          <TabsTrigger value="swaptions" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5">
-            <Layers className="w-3.5 h-3.5" />
-            Swaptions
-          </TabsTrigger>
-          <TabsTrigger value="caps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5">
-            <BarChart3 className="w-3.5 h-3.5" />
-            Caps & Floors
-          </TabsTrigger>
-          <TabsTrigger value="ratevol" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5">
-            <Thermometer className="w-3.5 h-3.5" />
-            Rate Vol
-          </TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="swaps" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Swaps</TabsTrigger>
+          <TabsTrigger value="swaptions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Swaptions</TabsTrigger>
+          <TabsTrigger value="caps" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Caps & Floors</TabsTrigger>
+          <TabsTrigger value="ratevol" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Rate Vol</TabsTrigger>
         </TabsList>
 
         {/* ══════════════ TAB 1: SWAPS ══════════════ */}

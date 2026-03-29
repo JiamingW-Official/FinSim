@@ -1351,17 +1351,17 @@ export default function SpecialSituationsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="events" className="mt-8">
-          <TabsList className="bg-card border border-border w-full grid grid-cols-4">
-            <TabsTrigger value="events" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="events" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Event Catalog
             </TabsTrigger>
-            <TabsTrigger value="activist" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
+            <TabsTrigger value="activist" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Activist
             </TabsTrigger>
-            <TabsTrigger value="postreorg" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
+            <TabsTrigger value="postreorg" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Post-Reorg Equity
             </TabsTrigger>
-            <TabsTrigger value="stub" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
+            <TabsTrigger value="stub" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Stub Trades
             </TabsTrigger>
           </TabsList>

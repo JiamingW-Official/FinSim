@@ -135,11 +135,6 @@
   background: rgba(13, 17, 23, 0.6);
 }
 
-/* Surface depth system: 3 levels */
-.surface-0 { background: var(--background); }
-.surface-1 { background: var(--card); }
-.surface-2 { background: var(--muted); }
-
 /* ============================================
    INTERACTIVE HOVER EFFECTS
    ============================================ */
@@ -250,12 +245,6 @@
   0% { opacity: 0.7; }
   100% { opacity: 1; }
 }
-
-/* ============================================
-   ACHIEVEMENT POPUP
-   ============================================ */
-
-.achievement-confetti::before { display: none; }
 
 /* ============================================
    CONFETTI (lesson complete)
@@ -527,32 +516,12 @@
 }
 
 /* ============================================
-   STATIC STUBS (replaced animated versions)
+   STATIC STUBS (decorative animations removed)
    ============================================ */
 
 .badge-premium {
   background: rgba(16, 185, 129, 0.06);
   border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.pulse-dot {
-  opacity: 1;
-}
-
-.proximity-pulse {
-  opacity: 1;
-}
-
-.shimmer-gold {
-  /* no-op: removed shimmer animation */
-}
-
-.streak-fire {
-  /* no-op: removed glow animation */
-}
-
-.medal-shimmer {
-  /* no-op: removed shimmer animation */
 }
 
 .backtest-running {

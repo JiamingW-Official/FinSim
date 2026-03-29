@@ -1286,23 +1286,11 @@ export default function FixedIncomeTechPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="electronic" className="mt-8">
-          <TabsList className="mb-6 flex flex-wrap h-auto gap-1">
-            <TabsTrigger value="electronic" className="text-xs text-muted-foreground">
-              <Wifi className="w-3.5 h-3.5 mr-1.5" />
-              Electronic Markets
-            </TabsTrigger>
-            <TabsTrigger value="algo" className="text-xs text-muted-foreground">
-              <Zap className="w-3.5 h-3.5 mr-1.5" />
-              Algo Execution
-            </TabsTrigger>
-            <TabsTrigger value="pricing" className="text-xs text-muted-foreground">
-              <Calculator className="w-3.5 h-3.5 mr-1.5" />
-              Pricing Models
-            </TabsTrigger>
-            <TabsTrigger value="credit" className="text-xs text-muted-foreground">
-              <Network className="w-3.5 h-3.5 mr-1.5" />
-              Credit Structure
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="electronic" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Electronic Markets</TabsTrigger>
+            <TabsTrigger value="algo" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Algo Execution</TabsTrigger>
+            <TabsTrigger value="pricing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pricing Models</TabsTrigger>
+            <TabsTrigger value="credit" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Credit Structure</TabsTrigger>
           </TabsList>
 
           <TabsContent value="electronic" className="data-[state=inactive]:hidden">

@@ -1413,13 +1413,7 @@ export default function StrategyLab() {
       {section === "results" && (
         <div className="p-6 space-y-6">
           {!result ? (
-            <div className="flex flex-col items-center justify-center gap-4 py-20 text-muted-foreground">
-              <Activity className="h-12 w-12 opacity-20" />
-              <p className="text-sm">No results yet. Build a strategy and click Run Backtest.</p>
-              <Button variant="outline" className="text-xs" onClick={() => setSection("builder")}>
-                Go to Builder
-              </Button>
-            </div>
+            <p className="text-sm text-muted-foreground text-center py-16">No results yet. Build a strategy and run a backtest.</p>
           ) : (
             <>
               {/* Metrics grid */}

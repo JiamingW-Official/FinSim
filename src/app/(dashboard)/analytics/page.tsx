@@ -926,27 +926,12 @@ export default function AnalyticsPage() {
 
       <div className="p-4">
         <Tabs defaultValue="attribution">
-          <TabsList className="bg-card border border-border mb-6 h-9 flex-wrap">
-            <TabsTrigger value="attribution" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-              <BarChart3 className="w-3 h-3 mr-1.5" />
-              Performance Attribution
-            </TabsTrigger>
-            <TabsTrigger value="risk" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-              <Shield className="w-3 h-3 mr-1.5" />
-              Risk Decomposition
-            </TabsTrigger>
-            <TabsTrigger value="behavioral" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-              <Brain className="w-3 h-3 mr-1.5" />
-              Behavioral Analytics
-            </TabsTrigger>
-            <TabsTrigger value="drawdown" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-              <TrendingDown className="w-3 h-3 mr-1.5" />
-              Drawdown Intelligence
-            </TabsTrigger>
-            <TabsTrigger value="scenario" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
-              <Zap className="w-3 h-3 mr-1.5" />
-              Scenario Backtesting
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="attribution" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Performance Attribution</TabsTrigger>
+            <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Decomposition</TabsTrigger>
+            <TabsTrigger value="behavioral" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Behavioral Analytics</TabsTrigger>
+            <TabsTrigger value="drawdown" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Drawdown Intelligence</TabsTrigger>
+            <TabsTrigger value="scenario" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Scenario Backtesting</TabsTrigger>
           </TabsList>
 
           {/* ── TAB 1: Performance Attribution ──────────────────────────────────── */}

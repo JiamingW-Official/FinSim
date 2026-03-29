@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Crosshair } from "lucide-react";
 import { ArenaLobby } from "@/components/arena/ArenaLobby";
 import { ArenaMatchmaking } from "@/components/arena/ArenaMatchmaking";
 import { ArenaPlayer } from "@/components/arena/ArenaPlayer";
@@ -142,7 +141,6 @@ export default function ArenaPage() {
       {/* Header */}
       <div className="border-b border-border px-4 py-3">
         <div className="flex items-center gap-3">
-          <Crosshair className="h-4 w-4 text-muted-foreground" />
           <div>
             <h1 className="text-sm font-medium">Practice Arena</h1>
             <p className="text-[11px] text-muted-foreground">
@@ -178,7 +176,7 @@ export default function ArenaPage() {
             className={cn(
               "border-b-2 px-4 py-2 text-xs font-medium transition-colors",
               activeTab === tab.id
-                ? "border-primary text-foreground"
+                ? "border-foreground text-foreground"
                 : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >

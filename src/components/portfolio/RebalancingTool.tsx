@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import {
-  RefreshCw,
   Lock,
   Unlock,
   TrendingUp,
@@ -589,11 +588,7 @@ export function RebalancingTool() {
   // ── No positions fallback ──
   if (positions.length === 0) {
     return (
-      <div className="rounded-lg border border-border/20 bg-card/50 p-6 text-center">
-        <RefreshCw className="mx-auto mb-3 h-8 w-8 text-muted-foreground/40" />
-        <p className="text-sm font-medium text-muted-foreground">No positions to rebalance</p>
-        <p className="text-[11px] text-muted-foreground/60 mt-1">Open some trades first, then come back to set targets.</p>
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-8">No positions to rebalance</p>
     );
   }
 

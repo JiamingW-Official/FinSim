@@ -314,7 +314,7 @@ function MarketDetailDrawer({
       </button>
 
       {/* Header */}
-      <div className="mb-4 border-l-2 border-l-primary/30 rounded-lg bg-card p-4">
+      <div className="mb-4 rounded-md border border-border/20 p-4">
         <div className="mb-2 flex items-center gap-1.5 flex-wrap">
           <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-medium", CATEGORY_COLORS[market.category])}>
             {CATEGORY_LABELS[market.category]}
@@ -830,7 +830,7 @@ export function PredictionsPageClient() {
               className={cn(
                 "flex shrink-0 items-center gap-1.5 border-b-2 px-3 py-2 text-[11px] font-medium transition-colors",
                 pageTab === tab.value
-                  ? "border-primary text-primary"
+                  ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
@@ -903,7 +903,7 @@ export function PredictionsPageClient() {
                           className={cn(
                             "shrink-0 rounded-md border px-2 py-1 text-xs font-medium transition-colors",
                             activeFilter === tab.value
-                              ? "border-primary/30 bg-primary/10 text-primary"
+                              ? "border-foreground/30 bg-muted text-foreground"
                               : "border-border/20 text-muted-foreground hover:text-foreground",
                           )}
                         >
@@ -993,7 +993,7 @@ export function PredictionsPageClient() {
                   className={cn(
                     "shrink-0 border-b-2 px-3 py-2.5 text-[11px] font-medium transition-colors",
                     toolTab === t.value
-                      ? "border-primary text-primary"
+                      ? "border-foreground text-foreground"
                       : "border-transparent text-muted-foreground hover:text-foreground",
                   )}
                 >

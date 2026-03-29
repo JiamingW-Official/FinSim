@@ -1519,7 +1519,7 @@ export default function AlgoMMPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="mm101" className="space-y-4">
-        <TabsList className="flex h-auto flex-wrap gap-1 bg-muted/30 p-1">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             return (
@@ -1527,10 +1527,7 @@ export default function AlgoMMPage() {
                 key={tab.value}
                 value={tab.value}
                 className="flex items-center gap-1.5 text-xs text-muted-foreground data-[state=active]:bg-background"
-              >
-                <Icon className="h-3.5 w-3.5" />
-                {tab.label}
-              </TabsTrigger>
+              >{tab.label}</TabsTrigger>
             );
           })}
         </TabsList>

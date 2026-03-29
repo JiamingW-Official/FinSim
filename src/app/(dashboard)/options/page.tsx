@@ -119,21 +119,11 @@ export default function OptionsPage() {
         className="flex flex-1 flex-col overflow-hidden"
       >
         <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
-          <TabsTrigger value="chains" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
-            Chains
-          </TabsTrigger>
-          <TabsTrigger value="strategy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
-            Strategy
-          </TabsTrigger>
-          <TabsTrigger value="analysis" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
-            Analysis
-          </TabsTrigger>
-          <TabsTrigger value="greeks" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
-            Greeks
-          </TabsTrigger>
-          <TabsTrigger value="flow" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
-            Flow
-          </TabsTrigger>
+          <TabsTrigger value="chains" className={TAB_TRIGGER_CLASS}>Chains</TabsTrigger>
+          <TabsTrigger value="strategy" className={TAB_TRIGGER_CLASS}>Strategy</TabsTrigger>
+          <TabsTrigger value="analysis" className={TAB_TRIGGER_CLASS}>Analysis</TabsTrigger>
+          <TabsTrigger value="greeks" className={TAB_TRIGGER_CLASS}>Greeks</TabsTrigger>
+          <TabsTrigger value="flow" className={TAB_TRIGGER_CLASS}>Flow</TabsTrigger>
         </TabsList>
 
         <div className="flex flex-1 overflow-hidden">
@@ -169,16 +159,10 @@ export default function OptionsPage() {
                       className="flex h-full flex-col"
                     >
                       <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
-                        <TabsTrigger
-                          value="payoff"
-                          className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
-                        >
+                        <TabsTrigger value="payoff" className={SUB_TAB_TRIGGER_CLASS}>
                           Payoff Diagram
                         </TabsTrigger>
-                        <TabsTrigger
-                          value="positions"
-                          className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
-                        >
+                        <TabsTrigger value="positions" className={SUB_TAB_TRIGGER_CLASS}>
                           Positions
                           {positions.length > 0 && ` (${positions.length})`}
                         </TabsTrigger>
@@ -251,7 +235,7 @@ export default function OptionsPage() {
                 </TabsContent>
 
                 {/* Greeks — Lab + Monitor sub-tabs */}
-                <TabsContent value="greeks" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-0.5">
+                <TabsContent value="greeks" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-0">
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setGreeksSubTab("greeks-lab")}
@@ -288,7 +272,7 @@ export default function OptionsPage() {
                 </TabsContent>
 
                 {/* Flow — Unusual Activity + Flow Analysis sub-tabs */}
-                <TabsContent value="flow" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-1.5">
+                <TabsContent value="flow" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-0">
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setFlowSubTab("unusual")}

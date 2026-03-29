@@ -1131,7 +1131,7 @@ export default function ReinsurancePage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabValue)}>
-          <TabsList className="mb-6 flex flex-wrap gap-1 h-auto bg-muted/40 p-1 rounded-lg">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {TABS.map(({ value, label, icon: Icon }) => (
               <TabsTrigger
                 key={value}

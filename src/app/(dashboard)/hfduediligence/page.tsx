@@ -440,7 +440,7 @@ export default function HFDueDiligencePage() {
       {/* Tabs */}
       <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible">
         <Tabs defaultValue="quant">
-          <TabsList className="grid grid-cols-4 w-full max-w-lg mb-4">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             <TabsTrigger value="quant">Quantitative DD</TabsTrigger>
             <TabsTrigger value="operational">Operational DD</TabsTrigger>
             <TabsTrigger value="track">Track Record</TabsTrigger>

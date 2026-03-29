@@ -1720,35 +1720,23 @@ export default function FXStructuredPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="options" className="mt-8 space-y-4">
-        <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           <TabsTrigger
             value="options"
             className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
-          >
-            <ArrowLeftRight className="w-3.5 h-3.5" />
-            FX Options Strategies
-          </TabsTrigger>
+          >FX Options Strategies</TabsTrigger>
           <TabsTrigger
             value="accumulators"
             className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
-          >
-            <Layers className="w-3.5 h-3.5" />
-            Accumulators & TARFs
-          </TabsTrigger>
+          >Accumulators & TARFs</TabsTrigger>
           <TabsTrigger
             value="dcd"
             className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
-          >
-            <DollarSign className="w-3.5 h-3.5" />
-            Dual Currency Deposits
-          </TabsTrigger>
+          >Dual Currency Deposits</TabsTrigger>
           <TabsTrigger
             value="corporate"
             className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
-          >
-            <Shield className="w-3.5 h-3.5" />
-            Corporate Hedging
-          </TabsTrigger>
+          >Corporate Hedging</TabsTrigger>
         </TabsList>
 
         <TabsContent value="options" className="data-[state=inactive]:hidden">

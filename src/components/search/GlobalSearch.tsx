@@ -11,14 +11,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   BookOpen,
   BarChart2,
-  FileText,
   GraduationCap,
   LayoutDashboard,
   Search,
   TrendingUp,
   X,
   Clock,
-  ArrowRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { searchIndex, type SearchResult, type SearchResultType } from "@/data/search-index";
@@ -48,11 +46,11 @@ const TYPE_LABEL: Record<SearchResultType, string> = {
 };
 
 const TYPE_COLOR: Record<SearchResultType, string> = {
-  page: "text-primary bg-primary/10",
-  indicator: "text-primary bg-primary/10",
-  strategy: "text-primary bg-primary/10",
-  glossary: "text-emerald-400 bg-emerald-500/5",
-  lesson: "text-amber-400 bg-amber-500/10",
+  page: "text-muted-foreground bg-muted/30",
+  indicator: "text-muted-foreground bg-muted/30",
+  strategy: "text-muted-foreground bg-muted/30",
+  glossary: "text-muted-foreground bg-muted/30",
+  lesson: "text-muted-foreground bg-muted/30",
 };
 
 // ---------------------------------------------------------------------------
@@ -346,7 +344,7 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-background/80"
             onClick={onClose}
           />
 
@@ -403,20 +401,16 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
             >
               {/* Empty state */}
               {showEmpty && (
-                <div className="flex flex-col items-center gap-2 py-10 text-center">
-                  <FileText className="h-8 w-8 text-muted-foreground/30" />
-                  <p className="text-sm text-muted-foreground">
-                    No results for <span className="text-foreground font-medium">"{query}"</span>
-                  </p>
-                  <p className="text-xs text-muted-foreground/60">Try a different term or browse the Learn section</p>
-                </div>
+                <p className="text-sm text-muted-foreground text-center py-10">
+                  No results for &ldquo;{query}&rdquo;
+                </p>
               )}
 
               {/* Recent searches */}
               {showRecent && (
                 <div className="px-3 pb-1">
                   <div className="flex items-center justify-between mb-1 px-1">
-                    <span className="text-xs font-semibold text-muted-foreground/60">
+                    <span className="text-[10px] font-medium text-muted-foreground/50">
                       Recent
                     </span>
                     <button
@@ -523,9 +517,8 @@ function ResultsGroups({ grouped, flatList, activeIndex, onSelect, onHover }: Re
       {sections.map(({ type, items }) => (
         <div key={type} className="mb-1">
           {/* Section header */}
-          <div className="flex items-center gap-1.5 px-2 pb-0.5 pt-1.5">
-            {React.createElement(TYPE_ICON[type], { className: "h-3 w-3 text-muted-foreground/50" })}
-            <span className="text-xs font-semibold text-muted-foreground/50">
+          <div className="px-2 pb-0.5 pt-1.5">
+            <span className="text-[10px] font-medium text-muted-foreground/50">
               {TYPE_LABEL[type]}s
             </span>
           </div>
@@ -562,10 +555,6 @@ function ResultsGroups({ grouped, flatList, activeIndex, onSelect, onHover }: Re
                   </p>
                 </div>
 
-                {/* Arrow (only when active) */}
-                {isActive && (
-                  <ArrowRight className="h-3.5 w-3.5 shrink-0 text-primary" />
-                )}
               </button>
             );
           })}

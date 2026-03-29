@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { X, TrendingUp, TrendingDown, AlertCircle } from "lucide-react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, cn } from "@/lib/utils";
 import type { OptionContract, ChainAnalytics, StrategyLeg } from "@/types/options";
@@ -97,13 +96,8 @@ export function ContractDetail({
   ];
 
   return (
-    <motion.div
-      initial={{ x: "100%", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: "100%", opacity: 0 }}
-      transition={{ type: "spring", damping: 28, stiffness: 300 }}
-      className="flex flex-col h-full bg-card border-l border-border/20 text-sm"
-    >
+    <div className="flex flex-col h-full bg-card text-sm">
+
       {/* Section 1 - Header */}
       <div className="px-2.5 py-1.5 border-b border-border/20 flex items-center justify-between">
         <span className="font-medium text-[11px] text-foreground">
@@ -146,14 +140,11 @@ export function ContractDetail({
       {/* Section 3 - Greeks 2x3 grid */}
       <div className="px-2.5 py-1.5 border-b border-border/20">
         <p className="text-[10px] text-muted-foreground/70 mb-1">Greeks</p>
-        <div className="grid grid-cols-3 gap-1">
+        <div className="grid grid-cols-3 gap-x-3 gap-y-0.5">
           {greekRows.map((g) => (
-            <div
-              key={g.label}
-              className="rounded bg-background/50 border border-border/20 px-1.5 py-1 flex flex-col"
-            >
-              <span className={cn("text-[10px] font-medium", g.color)}>{g.symbol}</span>
-              <span className="text-[10px] font-medium tabular-nums text-foreground">{g.value}</span>
+            <div key={g.label} className="flex items-center justify-between">
+              <span className={cn("text-[10px]", g.color)}>{g.symbol}</span>
+              <span className="text-[10px] font-mono tabular-nums text-foreground">{g.value}</span>
             </div>
           ))}
         </div>
@@ -311,6 +302,6 @@ export function ContractDetail({
           Sell {contract.type.toUpperCase()} @ {contract.bid.toFixed(2)}
         </Button>
       </div>
-    </motion.div>
+    </div>
   );
 }

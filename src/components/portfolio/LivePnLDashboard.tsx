@@ -439,8 +439,8 @@ export function LivePnLDashboard() {
           <Activity className="h-3.5 w-3.5 text-primary" />
           Live P&L Dashboard
         </div>
-        <p className="text-xs text-muted-foreground py-6 text-center">
-          Open a position to start monitoring real-time P&L.
+        <p className="text-xs text-muted-foreground text-center py-6">
+          No position data yet.
         </p>
       </div>
     );

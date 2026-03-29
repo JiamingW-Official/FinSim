@@ -1529,20 +1529,20 @@ export default function PrivateEquityPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Industry Overview
             </TabsTrigger>
-            <TabsTrigger value="lbo" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
+            <TabsTrigger value="lbo" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               LBO Modeling
             </TabsTrigger>
-            <TabsTrigger value="value" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
+            <TabsTrigger value="value" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Value Creation
             </TabsTrigger>
-            <TabsTrigger value="fundeconomics" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
+            <TabsTrigger value="fundeconomics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Fund Economics
             </TabsTrigger>
-            <TabsTrigger value="sourcing" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
+            <TabsTrigger value="sourcing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Deal Sourcing &amp; Diligence
             </TabsTrigger>
           </TabsList>

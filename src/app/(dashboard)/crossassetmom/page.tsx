@@ -1026,20 +1026,20 @@ export default function CrossAssetMomPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="factor" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="factor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             <Activity size={13} className="mr-1.5" />
             Momentum Factor
           </TabsTrigger>
-          <TabsTrigger value="trend" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground">
+          <TabsTrigger value="trend" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             <GitBranch size={13} className="mr-1.5" />
             Trend Following
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground">
+          <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             <Globe size={13} className="mr-1.5" />
             Multi-Asset Portfolio
           </TabsTrigger>
-          <TabsTrigger value="implementation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground">
+          <TabsTrigger value="implementation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             <Zap size={13} className="mr-1.5" />
             Strategy Implementation
           </TabsTrigger>

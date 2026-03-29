@@ -257,11 +257,11 @@ export default function BacktestPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border px-5 py-3">
-        <FlaskConical className="h-4 w-4 text-muted-foreground" />
+      <div className="flex items-center gap-3 border-b border-border px-4 py-2">
+        <FlaskConical className="h-3.5 w-3.5 text-muted-foreground" />
         <div>
-          <h1 className="text-sm font-medium text-foreground">Strategy Backtester</h1>
-          <p className="text-[11px] text-muted-foreground">Build, test, and optimize on simulated market data</p>
+          <h1 className="text-xs font-medium text-foreground">Strategy Backtester</h1>
+          <p className="text-[10px] text-muted-foreground">Build, test, and optimize on simulated market data</p>
         </div>
         {store.totalBacktestsRun > 0 && (
           <div className="ml-auto flex items-center gap-4 text-[11px] text-muted-foreground">
@@ -279,7 +279,7 @@ export default function BacktestPage() {
             onClick={() => setActiveTab(tab.id)}
             className={`px-3 py-1.5 text-xs font-medium transition-colors ${
               activeTab === tab.id
-                ? "border-b-2 border-primary text-foreground"
+                ? "border-b-2 border-foreground text-foreground"
                 : "border-b-2 border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
@@ -525,7 +525,7 @@ function EarningsTickerSelect({
     <select
       value={selected}
       onChange={(e) => onSelect(e.target.value)}
-      className="appearance-none rounded-md border border-border bg-card px-3 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+      className="appearance-none border border-border bg-card px-3 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-border"
     >
       {tickers.map((t) => (
         <option key={t} value={t}>{t}</option>

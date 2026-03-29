@@ -1282,7 +1282,7 @@ export default function RiskDecompositionPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="decomposition">
-        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {tabs.map((t) => (
             <TabsTrigger
               key={t.id}

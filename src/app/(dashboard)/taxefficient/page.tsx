@@ -1279,23 +1279,11 @@ export default function TaxEfficientPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="location" className="mt-8 space-y-4">
-        <TabsList className="grid grid-cols-4 w-full">
-          <TabsTrigger value="location" className="flex items-center gap-1 text-xs text-muted-foreground">
-            <MapPin className="h-3 w-3" />
-            Asset Location
-          </TabsTrigger>
-          <TabsTrigger value="tlh" className="flex items-center gap-1 text-xs text-muted-foreground">
-            <Scissors className="h-3 w-3" />
-            TLH
-          </TabsTrigger>
-          <TabsTrigger value="roth" className="flex items-center gap-1 text-xs text-muted-foreground">
-            <RefreshCw className="h-3 w-3" />
-            Roth Conversion
-          </TabsTrigger>
-          <TabsTrigger value="gains" className="flex items-center gap-1 text-xs text-muted-foreground">
-            <TrendingUp className="h-3 w-3" />
-            Capital Gains
-          </TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="location" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Location</TabsTrigger>
+          <TabsTrigger value="tlh" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">TLH</TabsTrigger>
+          <TabsTrigger value="roth" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Roth Conversion</TabsTrigger>
+          <TabsTrigger value="gains" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Capital Gains</TabsTrigger>
         </TabsList>
 
         <TabsContent value="location" className="data-[state=inactive]:hidden">

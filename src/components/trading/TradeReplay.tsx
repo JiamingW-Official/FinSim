@@ -12,11 +12,9 @@ import {
   Skull,
   TrendingUp,
   TrendingDown,
-  BarChart3,
   AlertTriangle,
   CheckCircle2,
   XCircle,
-  Target,
 } from "lucide-react";
 
 // ── Mulberry32 seeded PRNG ───────────────────────────────────────────────────
@@ -759,14 +757,7 @@ export function TradeReplay() {
   // Empty state
   if (tradePairs.length === 0) {
     return (
-      <div className="flex h-full flex-col items-center justify-center gap-3 text-center p-8">
-        <BarChart3 className="h-10 w-10 text-muted-foreground/30" />
-        <p className="text-sm font-medium text-muted-foreground">No completed trades to replay</p>
-        <p className="text-xs text-muted-foreground/60 max-w-xs">
-          Make a trade (buy then sell) to unlock the replay analyzer. Review your entries,
-          exits, and learn from each trade.
-        </p>
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-8">No completed trades to replay</p>
     );
   }
 
@@ -864,14 +855,8 @@ export function TradeReplay() {
 
       {/* ── Main area ── */}
       {!selectedPair || !replayData ? (
-        <div className="flex flex-1 items-center justify-center text-center p-8">
-          <div>
-            <Target className="h-10 w-10 text-muted-foreground/20 mx-auto mb-3" />
-            <p className="text-sm text-muted-foreground">Select a trade to replay</p>
-            <p className="text-xs text-muted-foreground/50 mt-1">
-              Click any trade on the left to view the replay analysis
-            </p>
-          </div>
+        <div className="flex flex-1 items-center justify-center">
+          <p className="text-sm text-muted-foreground">Select a trade to replay</p>
         </div>
       ) : (
         <div className="flex-1 overflow-y-auto p-4 space-y-4">

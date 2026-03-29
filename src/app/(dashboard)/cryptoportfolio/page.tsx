@@ -613,7 +613,7 @@ export default function CryptoPortfolioPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="flex flex-wrap gap-1 bg-transparent h-auto p-0">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {tabs.map(t => (
             <TabsTrigger
               key={t.id}

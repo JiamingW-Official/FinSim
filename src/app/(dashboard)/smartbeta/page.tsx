@@ -868,11 +868,11 @@ export default function SmartBetaPage() {
         {/* Tabs */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid grid-cols-4 w-full max-w-xl">
-              <TabsTrigger value="returns" className="text-xs text-muted-foreground">Factor Returns</TabsTrigger>
-              <TabsTrigger value="etfs" className="text-xs text-muted-foreground">ETF Comparison</TabsTrigger>
-              <TabsTrigger value="exposure" className="text-xs text-muted-foreground">Factor Exposure</TabsTrigger>
-              <TabsTrigger value="backtester" className="text-xs text-muted-foreground">Backtester</TabsTrigger>
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+              <TabsTrigger value="returns" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Factor Returns</TabsTrigger>
+              <TabsTrigger value="etfs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">ETF Comparison</TabsTrigger>
+              <TabsTrigger value="exposure" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Factor Exposure</TabsTrigger>
+              <TabsTrigger value="backtester" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtester</TabsTrigger>
             </TabsList>
 
             {/* Tab 1: Factor Returns */}

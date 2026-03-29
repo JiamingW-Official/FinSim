@@ -482,7 +482,7 @@ export default function InsuranceDerivativesPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="market" className="mt-8">
-        <TabsList className="bg-card border border-border">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           <TabsTrigger value="market">CAT Bond Market</TabsTrigger>
           <TabsTrigger value="risk">Risk Modeling</TabsTrigger>
           <TabsTrigger value="ils">ILS vs Reinsurance</TabsTrigger>

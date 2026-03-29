@@ -612,27 +612,12 @@ export default function BondsPage() {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0">
-        <TabsList className="shrink-0 mx-6 mt-3 w-fit">
-          <TabsTrigger value="overview" className="text-xs text-muted-foreground gap-1.5">
-            <TrendingUp className="h-3.5 w-3.5" />
-            Bond Market
-          </TabsTrigger>
-          <TabsTrigger value="calculator" className="text-xs text-muted-foreground gap-1.5">
-            <Calculator className="h-3.5 w-3.5" />
-            Pricing Calculator
-          </TabsTrigger>
-          <TabsTrigger value="yieldcurve" className="text-xs text-muted-foreground gap-1.5">
-            <BarChart3 className="h-3.5 w-3.5" />
-            Yield Curve
-          </TabsTrigger>
-          <TabsTrigger value="portfolio" className="text-xs text-muted-foreground gap-1.5">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Portfolio Builder
-          </TabsTrigger>
-          <TabsTrigger value="credit" className="text-xs text-muted-foreground gap-1.5">
-            <AlertCircle className="h-3.5 w-3.5" />
-            Credit Analysis
-          </TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Bond Market</TabsTrigger>
+          <TabsTrigger value="calculator" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pricing Calculator</TabsTrigger>
+          <TabsTrigger value="yieldcurve" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Yield Curve</TabsTrigger>
+          <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio Builder</TabsTrigger>
+          <TabsTrigger value="credit" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Credit Analysis</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Bond Market Overview ──────────────────────────────────────── */}

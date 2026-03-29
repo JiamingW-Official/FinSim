@@ -928,7 +928,7 @@ export default function PrivateCreditPage() {
       {/* Content */}
       <div className="max-w-6xl mx-auto px-6 py-6">
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-card/60 border border-border h-auto gap-1 p-1">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -936,10 +936,7 @@ export default function PrivateCreditPage() {
                   key={tab.id}
                   value={tab.id}
                   className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-                >
-                  <Icon className="w-3.5 h-3.5 shrink-0" />
-                  <span>{tab.label}</span>
-                </TabsTrigger>
+                ><span>{tab.label}</span></TabsTrigger>
               );
             })}
           </TabsList>

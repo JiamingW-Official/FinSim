@@ -193,12 +193,7 @@ function BrowseTab() {
         })}
 
         {filtered.length === 0 && (
-          <div className="col-span-2 flex flex-col items-center justify-center py-12 text-center">
-            <p className="text-sm font-medium text-muted-foreground">No cards found</p>
-            <p className="text-xs text-muted-foreground/60">
-              Try a different search or deck filter
-            </p>
-          </div>
+          <p className="col-span-2 text-sm text-muted-foreground text-center py-12">No cards found</p>
         )}
       </div>
     </div>
@@ -386,7 +381,7 @@ function StatsTab() {
           ))}
           {deckStats.length === 0 && (
             <p className="text-xs text-muted-foreground">
-              No cards reviewed yet. Start studying to see stats.
+              No cards reviewed yet.
             </p>
           )}
         </div>

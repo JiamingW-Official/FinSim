@@ -1550,7 +1550,7 @@ export default function VentureDebtPage() {
           transition={{ duration: 0.4, delay: 0.2 }}
         >
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="mb-6 grid w-full grid-cols-4">
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
               <TabsTrigger value="venture-debt">Venture Debt</TabsTrigger>
               <TabsTrigger value="rbf">Revenue-Based Finance</TabsTrigger>
               <TabsTrigger value="growth-equity">Growth Equity</TabsTrigger>

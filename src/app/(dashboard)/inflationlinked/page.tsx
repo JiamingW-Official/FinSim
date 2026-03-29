@@ -1267,23 +1267,11 @@ export default function InflationLinkedPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="mechanics" className="mt-8">
-          <TabsList className="mb-4 bg-foreground/5 border border-border p-1 rounded-lg flex-wrap h-auto gap-1">
-            <TabsTrigger value="mechanics" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
-              <Calculator className="w-3 h-3 mr-1.5" />
-              TIPS Mechanics
-            </TabsTrigger>
-            <TabsTrigger value="yields" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
-              <Activity className="w-3 h-3 mr-1.5" />
-              Real Yields &amp; Breakeven
-            </TabsTrigger>
-            <TabsTrigger value="duration" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
-              <BarChart3 className="w-3 h-3 mr-1.5" />
-              Duration &amp; Risk
-            </TabsTrigger>
-            <TabsTrigger value="hedging" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
-              <ShieldCheck className="w-3 h-3 mr-1.5" />
-              Inflation Hedging
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="mechanics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">TIPS Mechanics</TabsTrigger>
+            <TabsTrigger value="yields" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Real Yields &amp; Breakeven</TabsTrigger>
+            <TabsTrigger value="duration" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Duration &amp; Risk</TabsTrigger>
+            <TabsTrigger value="hedging" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Inflation Hedging</TabsTrigger>
           </TabsList>
 
           <AnimatePresence mode="wait">

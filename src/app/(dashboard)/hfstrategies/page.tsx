@@ -1242,21 +1242,16 @@ export default function HFStrategiesPage() {
 
         {/* Main tabs */}
         <Tabs defaultValue="longshort" className="mt-8">
-          <TabsList className="bg-card/60 border border-border/60 flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="longshort" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <Scale className="w-3.5 h-3.5 mr-1" />Long/Short Equity
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="longshort" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Long/Short Equity
             </TabsTrigger>
-            <TabsTrigger value="globalmacro" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <Globe className="w-3.5 h-3.5 mr-1" />Global Macro
+            <TabsTrigger value="globalmacro" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Global Macro
             </TabsTrigger>
-            <TabsTrigger value="eventdriven" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <Zap className="w-3.5 h-3.5 mr-1" />Event Driven
+            <TabsTrigger value="eventdriven" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Event Driven
             </TabsTrigger>
-            <TabsTrigger value="relvalue" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <Repeat className="w-3.5 h-3.5 mr-1" />Relative Value
+            <TabsTrigger value="relvalue" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Relative Value
             </TabsTrigger>
-            <TabsTrigger value="performance" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <TrendingUp className="w-3.5 h-3.5 mr-1" />Performance Attribution
+            <TabsTrigger value="performance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Performance Attribution
             </TabsTrigger>
           </TabsList>
 

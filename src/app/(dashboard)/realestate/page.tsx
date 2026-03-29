@@ -1583,7 +1583,7 @@ export default function RealEstatePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="analyzer" className="space-y-4">
-          <TabsList className="flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-md border border-border">
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
             {TABS.map(({ id, label, icon }) => (
               <TabsTrigger
                 key={id}

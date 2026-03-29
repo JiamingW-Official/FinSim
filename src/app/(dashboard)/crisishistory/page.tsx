@@ -684,20 +684,20 @@ export default function CrisisHistoryPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="timeline" className="w-full">
-        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="timeline" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="timeline" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Crisis Timeline
           </TabsTrigger>
-          <TabsTrigger value="gfc" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
+          <TabsTrigger value="gfc" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             2008 GFC Deep Dive
           </TabsTrigger>
-          <TabsTrigger value="patterns" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
+          <TabsTrigger value="patterns" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Common Patterns
           </TabsTrigger>
-          <TabsTrigger value="assets" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
+          <TabsTrigger value="assets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Asset Behavior
           </TabsTrigger>
-          <TabsTrigger value="policy" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
+          <TabsTrigger value="policy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Policy Response
           </TabsTrigger>
         </TabsList>

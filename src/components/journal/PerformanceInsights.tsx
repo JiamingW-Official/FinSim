@@ -191,23 +191,13 @@ export function PerformanceInsights({ rows }: Props) {
 
   if (rows.length === 0) {
     return (
-      <div className="flex h-32 flex-col items-center justify-center gap-2 text-muted-foreground rounded-lg border border-dashed border-border/20">
-        <p className="text-sm">No trades to analyze yet.</p>
-        <p className="text-[11px] text-muted-foreground/60">
-          Complete trades and add tags for richer insights.
-        </p>
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-8">No trades to analyze yet.</p>
     );
   }
 
   if (insights.length === 0) {
     return (
-      <div className="flex h-32 flex-col items-center justify-center gap-2 text-muted-foreground rounded-lg border border-dashed border-border/20">
-        <p className="text-sm">Need more trade data for insights.</p>
-        <p className="text-[11px] text-muted-foreground/60">
-          Complete at least 5 trades. Tag trades as &quot;Planned&quot; or &quot;Impulsive&quot; for behavioral insights.
-        </p>
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-8">Need more trade data for insights.</p>
     );
   }
 

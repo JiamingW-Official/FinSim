@@ -934,7 +934,7 @@ export default function FinancialNewsFeed() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="h-8 gap-0.5">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {[
             { value: "commentary", label: "Commentary", icon: MessageSquare },
             { value: "earnings", label: "Earnings", icon: BarChart2 },
@@ -942,10 +942,7 @@ export default function FinancialNewsFeed() {
             { value: "analysts", label: "Analysts", icon: Activity },
             { value: "social", label: "Social", icon: Zap },
           ].map(({ value, label, icon: Icon }) => (
-            <TabsTrigger key={value} value={value} className="text-xs h-7 px-3 flex items-center gap-1.5">
-              <Icon className="w-3 h-3" />
-              {label}
-            </TabsTrigger>
+            <TabsTrigger key={value} value={value} className="text-xs h-7 px-3 flex items-center gap-1.5">{label}</TabsTrigger>
           ))}
         </TabsList>
 

@@ -1415,23 +1415,11 @@ export default function RegtechPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="aml">
-        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="aml" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
-            <AlertTriangle className="w-3 h-3 mr-1" />
-            AML / KYC
-          </TabsTrigger>
-          <TabsTrigger value="reporting" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
-            <FileText className="w-3 h-3 mr-1" />
-            Regulatory Reporting
-          </TabsTrigger>
-          <TabsTrigger value="sanctions" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
-            <Lock className="w-3 h-3 mr-1" />
-            Sanctions Screening
-          </TabsTrigger>
-          <TabsTrigger value="market" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
-            <TrendingUp className="w-3 h-3 mr-1" />
-            Market & Future
-          </TabsTrigger>
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="aml" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">AML / KYC</TabsTrigger>
+          <TabsTrigger value="reporting" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Regulatory Reporting</TabsTrigger>
+          <TabsTrigger value="sanctions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Sanctions Screening</TabsTrigger>
+          <TabsTrigger value="market" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Market & Future</TabsTrigger>
         </TabsList>
 
         <AnimatePresence mode="wait">

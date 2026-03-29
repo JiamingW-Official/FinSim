@@ -949,19 +949,7 @@ export default function StrategiesPage() {
 
                 {/* Strategy list */}
                 {savedStrategies.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center rounded-md border border-dashed border-border py-20 text-center">
-                    <Layers className="h-10 w-10 text-muted-foreground/50 mb-3" />
-                    <p className="text-sm font-medium text-muted-foreground">No strategies saved yet</p>
-                    <p className="text-xs text-muted-foreground mt-1 max-w-xs">
-                      Clone a pre-built strategy from the Library or build your own in the Builder tab
-                    </p>
-                    <button
-                      onClick={() => setActiveTab("library")}
-                      className="mt-4 rounded-lg bg-primary px-4 py-2 text-xs font-medium text-foreground hover:bg-primary transition-colors"
-                    >
-                      Browse Library
-                    </button>
-                  </div>
+                  <p className="text-sm text-muted-foreground text-center py-12">No strategies saved yet</p>
                 ) : (
                   <div className="space-y-2">
                     {savedStrategies.map((strategy) => (

@@ -2,11 +2,6 @@
 
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
-import {
-  ScrollText,
-  Zap,
-} from "lucide-react";
-
 // Existing quest system tabs
 import { QuestDailyTab } from "@/components/quests/QuestDailyTab";
 import { QuestWeeklyTab } from "@/components/quests/QuestWeeklyTab";
@@ -73,8 +68,8 @@ function SimpleQuestCard({
           : "hover:bg-muted/40",
       )}
     >
-      {/* Tiny icon */}
-      <Zap className={cn("h-3 w-3 shrink-0", isComplete ? "text-muted-foreground" : "text-muted-foreground")} />
+      {/* Completion dot */}
+      <div className={cn("h-1.5 w-1.5 rounded-full shrink-0", isComplete ? "bg-muted-foreground/30" : "border border-muted-foreground/20")} />
 
       {/* Title */}
       <span className={cn("text-xs truncate min-w-0 flex-shrink-0", isComplete ? "line-through text-muted-foreground" : "text-foreground")}>
@@ -85,7 +80,7 @@ function SimpleQuestCard({
       <div className="flex-1 min-w-[80px]">
         <div className="h-1 w-full overflow-hidden rounded-full bg-muted">
           <div
-            className={cn("h-full rounded-full transition-colors", isComplete ? "bg-muted-foreground" : "bg-primary")}
+            className={cn("h-full rounded-full transition-colors", isComplete ? "bg-muted-foreground/30" : "bg-muted-foreground/40")}
             style={{ width: `${pct}%` }}
           />
         </div>
@@ -98,7 +93,7 @@ function SimpleQuestCard({
 
       {/* Reward */}
       <span className={cn("text-[11px] font-mono tabular-nums shrink-0", isComplete ? "text-muted-foreground" : "text-muted-foreground")}>
-        {quest.xpReward} XP
+        +{quest.xpReward}
       </span>
     </div>
   );
@@ -184,7 +179,7 @@ function ActiveQuestsTab() {
             className={cn(
               "pb-1.5 text-xs font-medium transition-colors border-b-2",
               sub === t.id
-                ? "border-primary text-foreground"
+                ? "border-foreground text-foreground"
                 : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >
@@ -281,11 +276,10 @@ export default function QuestsPage() {
       {/* Header */}
       <div className="border-b border-border px-4 py-3">
         <div className="flex items-center gap-3">
-          <ScrollText className="h-4 w-4 text-muted-foreground" />
           <div>
-            <h1 className="text-sm font-medium">Quests</h1>
+            <h1 className="text-sm font-medium">Objectives</h1>
             <p className="text-[11px] text-muted-foreground">
-              Complete tasks to earn XP and track progress
+              Daily and weekly objectives
             </p>
           </div>
           <div className="flex-1" />
@@ -311,7 +305,7 @@ export default function QuestsPage() {
             className={cn(
               "border-b-2 px-4 py-2 text-xs font-medium transition-colors",
               tab === id
-                ? "border-primary text-foreground"
+                ? "border-foreground text-foreground"
                 : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >

@@ -1456,20 +1456,20 @@ export default function SectorRotationPage() {
 
       {/* Main tabs */}
       <Tabs defaultValue="clock" className="mt-8 space-y-4">
-        <TabsList className="bg-muted border border-border/20 h-auto flex-wrap">
-          <TabsTrigger value="clock" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+          <TabsTrigger value="clock" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Business Cycle Clock
           </TabsTrigger>
-          <TabsTrigger value="performance" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+          <TabsTrigger value="performance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Sector Performance
           </TabsTrigger>
-          <TabsTrigger value="signals" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+          <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Rotation Signals
           </TabsTrigger>
-          <TabsTrigger value="factors" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+          <TabsTrigger value="factors" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Factor Rotation
           </TabsTrigger>
-          <TabsTrigger value="etf" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+          <TabsTrigger value="etf" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             ETF Implementation
           </TabsTrigger>
         </TabsList>

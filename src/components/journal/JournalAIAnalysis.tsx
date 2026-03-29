@@ -615,10 +615,7 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
 
   if (rows.length === 0) {
     return (
-      <div className="flex h-32 flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border/20 text-muted-foreground">
-        <Brain className="h-5 w-5 opacity-30" />
-        <p className="text-sm">No trades to analyze yet.</p>
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-8">No trades to analyze yet.</p>
     );
   }
 

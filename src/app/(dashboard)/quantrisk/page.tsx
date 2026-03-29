@@ -584,7 +584,7 @@ export default function QuantRiskPage() {
 
       {/* Main tabs */}
       <Tabs defaultValue="var" className="space-y-4">
-        <TabsList className="grid grid-cols-4 w-full max-w-xl">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           <TabsTrigger value="var">VaR Models</TabsTrigger>
           <TabsTrigger value="es">Exp. Shortfall</TabsTrigger>
           <TabsTrigger value="stress">Stress Tests</TabsTrigger>

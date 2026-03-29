@@ -1426,27 +1426,12 @@ export default function SovereignPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="overview" className="mt-8">
-          <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <Globe className="w-3.5 h-3.5 mr-1.5" />
-              SWF Overview
-            </TabsTrigger>
-            <TabsTrigger value="allocation" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <Layers className="w-3.5 h-3.5 mr-1.5" />
-              Asset Allocation
-            </TabsTrigger>
-            <TabsTrigger value="norway" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <Shield className="w-3.5 h-3.5 mr-1.5" />
-              Norway Model
-            </TabsTrigger>
-            <TabsTrigger value="endowment" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <BookOpen className="w-3.5 h-3.5 mr-1.5" />
-              Endowment Model
-            </TabsTrigger>
-            <TabsTrigger value="factors" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
-              <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
-              Factor Investing
-            </TabsTrigger>
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">SWF Overview</TabsTrigger>
+            <TabsTrigger value="allocation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Allocation</TabsTrigger>
+            <TabsTrigger value="norway" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Norway Model</TabsTrigger>
+            <TabsTrigger value="endowment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Endowment Model</TabsTrigger>
+            <TabsTrigger value="factors" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Factor Investing</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="mt-4 data-[state=inactive]:hidden">

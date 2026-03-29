@@ -129,7 +129,7 @@ export function NotificationCenter() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="absolute right-0 top-full z-50 mt-2 w-72 rounded-md border border-border/20 bg-card shadow-sm"
+            className="absolute right-0 top-full z-50 mt-2 w-72 rounded-md border border-border/20 bg-card"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-border/20 px-3 py-2">
@@ -157,13 +157,7 @@ export function NotificationCenter() {
             {/* List */}
             <div className="max-h-80 overflow-y-auto">
               {notifications.length === 0 ? (
-                <div className="flex flex-col items-center gap-1.5 py-8 text-muted-foreground">
-                  <Bell className="h-5 w-5 opacity-30" />
-                  <p className="text-[11px]">No activity yet</p>
-                  <p className="text-xs opacity-60">
-                    Start trading to see updates here
-                  </p>
-                </div>
+                <p className="text-[11px] text-muted-foreground text-center py-8">No activity yet</p>
               ) : (
                 <div className="divide-y divide-border/50">
                   {notifications.map((n) => (
