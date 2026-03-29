@@ -427,7 +427,7 @@ function QuickQuizTab() {
 
         <div className="flex items-center gap-2 rounded-md bg-primary/10 px-5 py-3">
           <Zap className="h-3.5 w-3.5 text-muted-foreground/50" />
-          <span className="text-sm font-semibold text-primary">+{xp} XP earned</span>
+          <span className="text-sm font-semibold text-primary">+{xp} pts earned</span>
         </div>
 
         {/* Answer review */}
@@ -942,7 +942,7 @@ function DailyChallengeTab() {
               <XCircle className="h-4 w-4" />
             )}
             {todayRecord?.correct
-              ? `Completed! +${todayRecord.xpEarned} XP earned`
+              ? `Completed! +${todayRecord.xpEarned} pts earned`
               : "Completed — better luck tomorrow!"}
           </div>
         )}
@@ -960,7 +960,7 @@ function DailyChallengeTab() {
             </span>
             {!alreadyDone && (
               <span className="ml-auto text-xs font-medium text-primary">
-                +50 XP if correct
+                +50 pts if correct
               </span>
             )}
           </div>
@@ -1137,7 +1137,7 @@ function MyStatsTab() {
         </div>
         <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
           <div className="text-lg font-medium text-amber-400">{totalQuizXP}</div>
-          <div className="text-xs text-muted-foreground mt-0.5">Total Quiz XP</div>
+          <div className="text-xs text-muted-foreground mt-0.5">Total Quiz pts</div>
         </div>
         <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
           <div className="text-lg font-medium text-emerald-400">{dueCardIds.length}</div>
@@ -1287,7 +1287,7 @@ function MyStatsTab() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs font-medium text-primary">+{session.xpEarned} XP</p>
+                    <p className="text-xs font-medium text-primary">+{session.xpEarned} pts</p>
                     <p className="text-xs text-muted-foreground">{dateStr}</p>
                   </div>
                 </div>

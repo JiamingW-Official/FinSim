@@ -2,19 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import {
-  Trophy,
-  Star,
-  ThumbsUp,
-  Dumbbell,
   Save,
   RefreshCw,
-  TrendingUp,
-  TrendingDown,
   BarChart3,
-  Target,
-  ShieldAlert,
-  Clock,
-  DollarSign,
   LineChart,
   Dice5,
   List,
@@ -35,10 +25,10 @@ import StrategyComparison from "./StrategyComparison";
 import RiskReturnScatter from "./RiskReturnScatter";
 
 const GRADE_CONFIG = {
-  S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", icon: Trophy, label: "Outstanding!" },
-  A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", icon: Star, label: "Excellent!" },
-  B: { color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/30", icon: ThumbsUp, label: "Good job!" },
-  C: { color: "text-muted-foreground", bg: "bg-muted/50", border: "border-border/20", icon: Dumbbell, label: "Keep trying!" },
+  S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30" },
+  A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30" },
+  B: { color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/30" },
+  C: { color: "text-muted-foreground", bg: "bg-muted/50", border: "border-border/20" },
 } as const;
 
 type Tab = "overview" | "analytics" | "montecarlo" | "trades" | "compare";
@@ -55,7 +45,6 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
   const [tab, setTab] = useState<Tab>("overview");
   const { metrics, grade, trades, equityCurve } = result;
   const config = GRADE_CONFIG[grade];
-  const GradeIcon = config.icon;
 
   const TABS: { id: Tab; label: string; icon: React.ReactNode }[] = [
     { id: "overview", label: "Overview", icon: <BarChart3 className="h-3 w-3" /> },
@@ -88,57 +77,57 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
       {/* Tab Content */}
       <div className="flex-1 overflow-y-auto">
         {tab === "overview" && (
-          <div className="p-4">
+          <div className="p-5 space-y-5">
             {/* ── Hero zone: Grade + Total Return ─── */}
-            <div className="flex items-start gap-4 border border-border/20 p-3">
-              {/* Grade badge */}
-              <div className={`flex flex-col items-center gap-0.5 border p-3 ${config.bg} ${config.border}`}>
-                <GradeIcon className={`h-6 w-6 ${config.color}`} />
-                <div className={`text-base font-semibold ${config.color}`}>{grade}</div>
-                <div className="text-[10px] text-muted-foreground">{config.label}</div>
-                <div className="mt-1 bg-muted/50 px-2 py-0.5 text-[10px] font-medium text-foreground">
-                  +{xpEarned} XP
-                </div>
+            <div className="flex items-center gap-5">
+              {/* Grade badge — large serif letter */}
+              <div className={`flex flex-col items-center justify-center w-20 h-20 flex-shrink-0 border ${config.bg} ${config.border}`}>
+                <div className={`text-3xl font-serif font-bold tracking-tight ${config.color}`}>{grade}</div>
+                <div className="text-[10px] text-muted-foreground mt-0.5">Grade</div>
               </div>
 
               {/* Total return — the hero number */}
-              <div className="flex-1 pt-1">
-                <div className="text-[11px] font-medium text-muted-foreground">Total Return</div>
-                <div className={`text-2xl font-semibold tracking-tight ${metrics.totalReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
+              <div className="flex-1 min-w-0">
+                <div className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">Total Return</div>
+                <div className={`text-3xl font-semibold tracking-tight tabular-nums ${metrics.totalReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
                   {metrics.totalReturnPercent >= 0 ? "+" : ""}{metrics.totalReturnPercent.toFixed(1)}%
                 </div>
-                <div className={`text-xs font-medium ${metrics.totalReturn >= 0 ? "text-emerald-400/70" : "text-rose-400/70"}`}>
+                <div className={`text-sm font-medium tabular-nums ${metrics.totalReturn >= 0 ? "text-emerald-400/70" : "text-rose-400/70"}`}>
                   {metrics.totalReturn >= 0 ? "+" : ""}${metrics.totalReturn.toFixed(0)}
                 </div>
+              </div>
+            </div>
 
-                {/* Key metrics row — compact */}
-                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground font-mono tabular-nums">
-                  <span>
-                    Sharpe <span className={`font-semibold ${metrics.sharpeRatio > 0 ? "text-foreground" : "text-rose-400"}`}>{metrics.sharpeRatio.toFixed(2)}</span>
-                  </span>
-                  <span>
-                    Win Rate <span className="font-semibold text-foreground">{metrics.winRate.toFixed(0)}%</span>
-                  </span>
-                  <span>
-                    Max DD <span className="font-semibold text-rose-400">{metrics.maxDrawdownPercent.toFixed(1)}%</span>
-                  </span>
-                  <span>
-                    Trades <span className="font-semibold text-foreground">{metrics.totalTrades}</span>
-                  </span>
-                </div>
+            {/* Key metrics row */}
+            <div className="grid grid-cols-4 gap-4 text-center">
+              <div>
+                <div className="text-[10px] text-muted-foreground">Sharpe</div>
+                <div className={`text-sm font-semibold font-mono tabular-nums tracking-tight ${metrics.sharpeRatio > 0 ? "text-foreground" : "text-rose-400"}`}>{metrics.sharpeRatio.toFixed(2)}</div>
+              </div>
+              <div>
+                <div className="text-[10px] text-muted-foreground">Win Rate</div>
+                <div className="text-sm font-semibold font-mono tabular-nums tracking-tight text-foreground">{metrics.winRate.toFixed(0)}%</div>
+              </div>
+              <div>
+                <div className="text-[10px] text-muted-foreground">Max DD</div>
+                <div className="text-sm font-semibold font-mono tabular-nums tracking-tight text-rose-400">{metrics.maxDrawdownPercent.toFixed(1)}%</div>
+              </div>
+              <div>
+                <div className="text-[10px] text-muted-foreground">Trades</div>
+                <div className="text-sm font-semibold font-mono tabular-nums tracking-tight text-foreground">{metrics.totalTrades}</div>
               </div>
             </div>
 
             {/* ── Equity Curve ──────────────────────── */}
-            <div className="mt-4">
-              <h3 className="mb-1 text-[10px] font-medium text-muted-foreground">Equity Curve</h3>
-              <EquityCurveChart equityCurve={equityCurve} startingCapital={result.config.startingCapital} height={160} />
+            <div>
+              <h3 className="mb-1.5 text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Equity Curve</h3>
+              <EquityCurveChart equityCurve={equityCurve} startingCapital={result.config.startingCapital} height={280} />
             </div>
 
             {/* ── Detailed metrics grid ─────────── */}
-            <div className="mt-4 border border-border/20 p-2.5">
-              <h3 className="mb-1.5 text-[10px] font-medium text-muted-foreground">Performance Metrics</h3>
-              <div className="grid grid-cols-4 gap-2">
+            <div className="border border-border/20 p-4">
+              <h3 className="mb-3 text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Performance Metrics</h3>
+              <div className="grid grid-cols-4 gap-4">
                 <CompactMetric label="Profit Factor" value={metrics.profitFactor > 100 ? "\u221e" : metrics.profitFactor.toFixed(2)} positive={metrics.profitFactor > 1} />
                 <CompactMetric label="Sortino" value={metrics.sortinoRatio.toFixed(2)} positive={metrics.sortinoRatio > 0} />
                 <CompactMetric label="Avg Win" value={`$${metrics.avgWin.toFixed(0)}`} positive />
@@ -151,13 +140,13 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
             </div>
 
             {/* ── Annual Returns ────────────────────────────────── */}
-            <div className="mt-4">
-              <h3 className="mb-1 text-[10px] font-medium text-muted-foreground">Annual Returns vs SPY</h3>
+            <div>
+              <h3 className="mb-1.5 text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Annual Returns vs SPY</h3>
               <AnnualReturnsChart result={result} />
             </div>
 
             {/* Disclaimer */}
-            <p className="mt-4 text-center text-[10px] text-muted-foreground/70">
+            <p className="text-center text-[10px] text-muted-foreground/70">
               Backtested on simulated data &mdash; past performance is not indicative of future results
             </p>
           </div>
@@ -265,9 +254,9 @@ function computeOmegaRatio(trades: { pnl: number }[]): number {
 
 function CompactMetric({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
   return (
-    <div className="border border-border/20 px-2 py-1.5">
+    <div className="border border-border/20 px-3 py-2">
       <div className="text-[10px] text-muted-foreground">{label}</div>
-      <div className={`text-xs font-mono tabular-nums font-semibold ${positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-rose-400"}`}>
+      <div className={`text-sm font-mono tabular-nums font-semibold tracking-tight ${positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>
     </div>
@@ -312,5 +301,5 @@ function EquityCurveChart({ equityCurve, startingCapital, height = 100 }: { equi
     return () => { observer.disconnect(); chart.remove(); };
   }, [equityCurve, startingCapital, height]);
 
-  return <div ref={containerRef} className="w-full rounded-lg" style={{ height }} />;
+  return <div ref={containerRef} className="w-full rounded-lg [&_a[href*='tradingview']]:hidden [&_div[class*='attribution']]:hidden" style={{ height }} />;
 }

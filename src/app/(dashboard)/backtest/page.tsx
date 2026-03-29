@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useCallback, useRef, useMemo, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FlaskConical, Pencil, ChevronDown, ChevronUp } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import { FlaskConical, Pencil } from "lucide-react";
 import { useBacktestStore } from "@/stores/backtest-store";
 import StrategyPanel from "@/components/backtest/StrategyPanel";
 import BacktestChart from "@/components/backtest/BacktestChart";
@@ -294,92 +294,28 @@ export default function BacktestPage() {
         {activeTab === "strategy" && (
           <div className="flex flex-1 flex-col overflow-hidden">
             {/* When results exist: compact config summary bar at top */}
-            {hasResult && !editorExpanded && (
-              <div className="flex items-center gap-3 border-b border-border/20 bg-card/40 px-4 py-2">
+            {hasResult && (
+              <div className="flex items-center gap-3 border-b border-border/20 bg-card/40 px-4 py-1.5">
                 <span className="flex-1 truncate text-xs text-muted-foreground">
                   {configSummary}
                 </span>
                 <button
-                  onClick={() => setEditorExpanded(true)}
+                  onClick={() => setEditorExpanded(!editorExpanded)}
                   className="flex items-center gap-1 rounded-md border border-border/60 bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
                   <Pencil className="h-3 w-3" />
-                  Edit
-                </button>
-                <button
-                  onClick={() => setEditorExpanded(true)}
-                  className="text-muted-foreground/60 hover:text-muted-foreground"
-                >
-                  <ChevronDown className="h-3.5 w-3.5" />
+                  {editorExpanded ? "Close" : "Edit"}
                 </button>
               </div>
             )}
 
-            {/* Expandable editor overlay when results are showing */}
-            <AnimatePresence>
-              {hasResult && editorExpanded && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ type: "spring", damping: 24, stiffness: 260 }}
-                  className="overflow-hidden border-b border-border/20"
-                >
-                  <div className="flex">
-                    <div className="flex-1 overflow-y-auto" style={{ maxHeight: "50vh" }}>
-                      <StrategyPanel
-                        onRun={handleRun}
-                        isRunning={isRunning}
-                        savedStrategies={store.savedStrategies}
-                        onLoadStrategy={handleLoadStrategy}
-                        onOpenTemplates={() => setShowTemplates(true)}
-                        onPreviewChange={handlePreviewChange}
-                        templateConfig={templateConfig}
-                        onTemplateConsumed={handleTemplateConsumed}
-                      />
-                    </div>
-                    <button
-                      onClick={() => setEditorExpanded(false)}
-                      className="flex items-start px-3 pt-3 text-muted-foreground/60 hover:text-muted-foreground"
-                    >
-                      <ChevronUp className="h-4 w-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* (Editor sidebar is shown inline via the left sidebar when editorExpanded is true) */}
 
-            {/* Main content area — switches between builder-first and results-first */}
-            {hasResult ? (
-              /* ── Results layout: chart dominant, results panel as companion ── */
-              <div className="flex flex-1 overflow-hidden">
-                {/* Chart takes the hero position (left, wider) */}
-                <div className="flex-1 overflow-hidden">
-                  <BacktestChart
-                    bars={chartBars}
-                    trades={chartTrades}
-                    isRunning={isRunning}
-                    isPreview={false}
-                    onRegenerate={handleRegenerate}
-                  />
-                </div>
-
-                {/* Results panel as companion on the right */}
-                <div className="w-[400px] flex-shrink-0 border-l border-border overflow-hidden">
-                  <ResultsPanel
-                    result={store.currentResult!}
-                    monteCarloResult={store.monteCarloResult}
-                    xpEarned={xpEarned}
-                    onSave={handleSave}
-                    onRerun={handleRerun}
-                  />
-                </div>
-              </div>
-            ) : (
-              /* ── Builder-first layout (no results) ──────────────────── */
-              <div className="flex flex-1 overflow-hidden">
-                {/* Left: Strategy Panel — compact, left-aligned */}
-                <div className="w-[340px] flex-shrink-0 overflow-y-auto border-r border-border">
+            {/* Main content area — sidebar config + dominant results */}
+            <div className="flex flex-1 overflow-hidden">
+              {/* Left: Strategy config sidebar (fixed width) */}
+              {(!hasResult || editorExpanded) && (
+                <div className="w-[320px] flex-shrink-0 overflow-y-auto border-r border-border">
                   <StrategyPanel
                     onRun={handleRun}
                     isRunning={isRunning}
@@ -391,33 +327,65 @@ export default function BacktestPage() {
                     onTemplateConsumed={handleTemplateConsumed}
                   />
                 </div>
+              )}
 
-                {/* Right: Chart (dominant) + Visual Builder below */}
-                <div className="flex flex-1 flex-col overflow-hidden">
-                  {/* Chart takes the hero space */}
-                  <div className="flex-1 overflow-hidden">
-                    <BacktestChart
-                      bars={chartBars}
-                      trades={chartTrades}
-                      isRunning={isRunning}
-                      isPreview={isPreview}
-                      onRegenerate={handleRegenerate}
-                    />
-                  </div>
-
-                  {/* Visual Strategy Builder below chart */}
-                  <div className="border-t border-border overflow-y-auto" style={{ maxHeight: "40%" }}>
-                    <div className="p-3">
-                      <VisualStrategyBuilder
-                        savedStrategies={visualSavedStrategies}
-                        onSaveStrategy={handleSaveVisualStrategy}
-                        onRunCustomBacktest={handleRunCustomBacktest}
+              {/* Right: Results area (flex-1, takes remaining space) */}
+              <div className="flex flex-1 flex-col overflow-hidden">
+                {hasResult ? (
+                  <>
+                    {/* Chart row */}
+                    <div className="h-[260px] flex-shrink-0 border-b border-border overflow-hidden">
+                      <BacktestChart
+                        bars={chartBars}
+                        trades={chartTrades}
+                        isRunning={isRunning}
+                        isPreview={false}
+                        onRegenerate={handleRegenerate}
                       />
                     </div>
-                  </div>
-                </div>
+                    {/* Results panel — dominant */}
+                    <div className="flex-1 overflow-hidden">
+                      <ResultsPanel
+                        result={store.currentResult!}
+                        monteCarloResult={store.monteCarloResult}
+                        xpEarned={xpEarned}
+                        onSave={handleSave}
+                        onRerun={handleRerun}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Preview chart */}
+                    <div className="flex-1 overflow-hidden">
+                      <BacktestChart
+                        bars={chartBars}
+                        trades={chartTrades}
+                        isRunning={isRunning}
+                        isPreview={isPreview}
+                        onRegenerate={handleRegenerate}
+                      />
+                    </div>
+                    {/* Empty state message */}
+                    <div className="flex flex-col items-center justify-center border-t border-border py-12 text-center">
+                      <FlaskConical className="h-8 w-8 text-muted-foreground/30 mb-3" />
+                      <p className="text-sm font-medium text-muted-foreground">Configure a strategy and run a backtest</p>
+                      <p className="mt-1 text-xs text-muted-foreground/60">Results will appear here with grade, equity curve, and performance metrics</p>
+                    </div>
+                    {/* Visual Strategy Builder */}
+                    <div className="border-t border-border overflow-y-auto" style={{ maxHeight: "35%" }}>
+                      <div className="p-3">
+                        <VisualStrategyBuilder
+                          savedStrategies={visualSavedStrategies}
+                          onSaveStrategy={handleSaveVisualStrategy}
+                          onRunCustomBacktest={handleRunCustomBacktest}
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
-            )}
+            </div>
           </div>
         )}
 

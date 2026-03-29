@@ -73,7 +73,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
           </div>
 
           <div className="mt-1 flex items-center gap-2 text-xs">
-            <span className="text-primary/70 tabular-nums">{progress.seasonXP} XP</span>
+            <span className="text-primary/70 tabular-nums">{progress.seasonXP} pts</span>
             {nextTier && (
               <span className="text-muted-foreground">/ {nextTier.required} for Tier {nextTier.tierNumber}</span>
             )}

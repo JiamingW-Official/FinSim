@@ -138,7 +138,7 @@ export interface SectorData {
 
 /**
  * 11 GICS sectors with realistic mid-2024 performance data.
- * Tickers array only includes stocks from FinSim's 10-ticker universe.
+ * Tickers array only includes stocks from Alpha Deck's 10-ticker universe.
  * Performance figures approximate actual S&P 500 sector returns through mid-July 2024.
  */
 export const SECTOR_DATA: SectorData[] = [

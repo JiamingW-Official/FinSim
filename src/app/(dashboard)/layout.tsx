@@ -7,13 +7,11 @@ import { StatusBar } from "@/components/layout/StatusBar";
 import { Providers } from "@/app/providers";
 import { AchievementPopup } from "@/components/game/AchievementPopup";
 import { LevelUpOverlay } from "@/components/game/LevelUpOverlay";
-import { ComboIndicator } from "@/components/game/ComboIndicator";
 import { PageTransition } from "@/components/motion/PageTransition";
 import { TutorialOverlay } from "@/components/tutorial/TutorialOverlay";
 import { DailyRewardsPopup } from "@/components/daily-rewards/DailyRewardsPopup";
 import { SeasonXPToast } from "@/components/season/SeasonXPToast";
 import { KeyboardShortcutGuide } from "@/components/game/KeyboardShortcutGuide";
-import { ComboMeter } from "@/components/game/ComboMeter";
 import { StreakCelebration } from "@/components/game/StreakCelebration";
 import { TradeConfetti } from "@/components/game/TradeConfetti";
 import { FloatingEmojis } from "@/components/game/FloatingEmojis";
@@ -62,8 +60,6 @@ export default function DashboardLayout({
             <MobileNav />
             <AchievementPopup />
             <LevelUpOverlay />
-            <ComboIndicator />
-            <ComboMeter />
             <TutorialOverlay />
             <DailyRewardsPopup />
             <SeasonXPToast />

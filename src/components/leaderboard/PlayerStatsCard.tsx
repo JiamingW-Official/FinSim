@@ -98,7 +98,7 @@ export function PlayerStatsCard() {
               />
             </div>
             <span className="text-[11px] font-semibold tabular-nums text-muted-foreground">
-              {xp.toLocaleString()} XP
+              {xp.toLocaleString()} pts
             </span>
           </div>
         </div>

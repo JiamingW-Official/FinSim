@@ -56,7 +56,7 @@ const PRIMARY_ITEMS: NavItem[] = [
   { icon: Home,          label: "Home",        href: "/home" },
   { icon: BarChart3,     label: "Trade",       href: "/trade" },
   { icon: GraduationCap, label: "Learn",       href: "/learn" },
-  { icon: TrendingUp,    label: "Predictions", href: "/predictions", badgeText: "NEW" },
+  { icon: TrendingUp,    label: "Predictions", href: "/predictions" },
   { icon: Briefcase,     label: "Portfolio",   href: "/portfolio" },
 ];
 
@@ -64,7 +64,7 @@ const PRIMARY_ITEMS: NavItem[] = [
 
 const EXPLORE_ITEMS: NavItem[] = [
   { icon: Activity,     label: "Options",     href: "/options" },
-  { icon: FlaskConical, label: "Backtest",    href: "/backtest", badgeText: "NEW" },
+  { icon: FlaskConical, label: "Backtest",    href: "/backtest" },
   { icon: Globe,        label: "Market Intel", href: "/market" },
   { icon: Crosshair,    label: "Arena",       href: "/arena" },
   { icon: Swords,       label: "Challenges",  href: "/challenges" },
@@ -384,9 +384,9 @@ export function Sidebar() {
         )}
       >
         {collapsed ? (
-          <span className="text-[10px] font-medium text-muted-foreground/40 select-none">FS</span>
+          <span className="text-[10px] font-medium text-muted-foreground/40 select-none">AD</span>
         ) : (
-          <span className="text-xs font-medium tracking-tight text-muted-foreground/50 select-none">FinSim</span>
+          <span className="text-xs font-medium tracking-tight text-muted-foreground/50 select-none">Alpha Deck</span>
         )}
       </div>
 
@@ -463,7 +463,7 @@ export function Sidebar() {
               <div key={cat.label} className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
                 {!collapsed && (
                   <div className="mb-0.5 mt-2.5 px-1">
-                    <span className="text-[10px] font-normal text-muted-foreground/35 select-none">
+                    <span className="text-[9px] font-normal text-muted-foreground/40 tracking-widest uppercase select-none">
                       {cat.label}
                     </span>
                   </div>
@@ -485,7 +485,7 @@ export function Sidebar() {
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[10px] font-normal text-muted-foreground/35 select-none">
+              <span className="text-[9px] font-normal text-muted-foreground/40 tracking-widest uppercase select-none">
                 Learn
               </span>
             </div>
@@ -502,7 +502,7 @@ export function Sidebar() {
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[10px] font-normal text-muted-foreground/35 select-none">
+              <span className="text-[9px] font-normal text-muted-foreground/40 tracking-widest uppercase select-none">
                 Social
               </span>
             </div>

@@ -523,7 +523,7 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
 
       <div className="rounded-lg border border-border/20 bg-card/30 px-3 py-2.5">
         <p className="text-[11px] text-muted-foreground leading-relaxed">
-          Challenge friends to head-to-head competitions. Win to earn bonus XP and climb the ranks faster.
+          Challenge friends to head-to-head competitions. Win to earn bonus points and climb the ranks faster.
         </p>
       </div>
     </div>

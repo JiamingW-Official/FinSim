@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import { useGameStore } from "@/stores/game-store";
 import { getTitleForLevel } from "@/types/game";
-import { Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { soundEngine } from "@/services/audio/sound-engine";
 
 export function LevelUpOverlay() {
   const lastLevelUp = useGameStore((s) => s.lastLevelUp);
@@ -18,7 +16,6 @@ export function LevelUpOverlay() {
     if (lastLevelUp === null) return;
     setLevelNum(lastLevelUp);
     setShow(true);
-    soundEngine.playLevelUp();
 
     const timer = setTimeout(() => {
       setShow(false);
@@ -34,46 +31,23 @@ export function LevelUpOverlay() {
     <AnimatePresence>
       {show && levelNum !== null && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm"
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="fixed right-4 top-12 z-[100] flex items-center gap-3 rounded-md border border-border/30 bg-card/95 px-4 py-3 shadow-sm backdrop-blur-sm"
         >
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="relative flex flex-col items-center gap-3 rounded-md border border-primary/30 bg-card px-10 py-8 shadow-sm"
-          >
-            <span className="text-xs font-semibold text-primary">
-              Level Up!
-            </span>
-
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.15 }}
-              className="flex items-center gap-2"
-            >
-              <Shield className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-semibold tabular-nums text-foreground">
-                {levelNum}
-              </span>
-            </motion.div>
-
-            <span className={cn(
-              "text-sm font-semibold",
-              "text-primary",
-            )}>
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-muted/30 text-sm font-semibold tabular-nums text-foreground">
+            {levelNum}
+          </div>
+          <div className="flex flex-col">
+            <span className="text-xs font-medium text-foreground">
               {title}
             </span>
-
-            <p className="text-xs text-muted-foreground">
-              Keep trading to unlock new titles!
-            </p>
-          </motion.div>
+            <span className="text-[10px] text-muted-foreground">
+              Level {levelNum} reached
+            </span>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

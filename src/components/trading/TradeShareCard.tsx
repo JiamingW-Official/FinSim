@@ -105,7 +105,7 @@ function TradeResultCard({
     year: "numeric",
   });
 
-  const shareText = `I ${isProfit ? "made" : "lost"} ${pnlSign}${pnlPct.toFixed(1)}% on ${trade.ticker} in FinSim! Grade: ${grade}. Can you beat this? finsim.app`;
+  const shareText = `I ${isProfit ? "made" : "lost"} ${pnlSign}${pnlPct.toFixed(1)}% on ${trade.ticker} in Alpha Deck! Grade: ${grade}. Can you beat this? alphadeck.app`;
 
   const handleCopy = () => {
     navigator.clipboard
@@ -120,7 +120,7 @@ function TradeResultCard({
       <div className="flex items-center justify-between border-b border-border/20 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium tracking-widest text-primary">
-            FINSIM
+            ALPHA DECK
           </span>
           <span className="text-xs text-muted-foreground">Trade Result</span>
         </div>
@@ -186,7 +186,7 @@ function TradeResultCard({
           </div>
           <div className="h-8 w-px self-center bg-border/50" />
           <div>
-            <div className="text-xs text-muted-foreground">Total XP</div>
+            <div className="text-xs text-muted-foreground">Total pts</div>
             <div className="text-lg font-semibold">{xp.toLocaleString()}</div>
           </div>
         </div>
@@ -194,7 +194,7 @@ function TradeResultCard({
         {/* CTA */}
         <div className="text-center">
           <div className="text-sm font-medium">Can you beat this?</div>
-          <div className="text-[11px] text-muted-foreground">finsim.app</div>
+          <div className="text-[11px] text-muted-foreground">alphadeck.app</div>
         </div>
       </div>
 
@@ -231,7 +231,7 @@ function StreakShareCard({
   level: number;
   onClose: () => void;
 }) {
-  const shareText = `${streak} trade win streak in FinSim! Level ${level}. Can you beat this? finsim.app`;
+  const shareText = `${streak} trade win streak in Alpha Deck! Level ${level}. Can you beat this? alphadeck.app`;
 
   const handleCopy = () => {
     navigator.clipboard
@@ -244,7 +244,7 @@ function StreakShareCard({
     <>
       <div className="flex items-center justify-between border-b border-border/20 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-medium tracking-widest text-primary">ALPHA DECK</span>
           <span className="text-xs text-muted-foreground">Win Streak</span>
         </div>
         <button
@@ -263,7 +263,7 @@ function StreakShareCard({
         </div>
         <div className="text-center">
           <div className="text-sm font-medium">Trade Win Streak</div>
-          <div className="text-xs text-muted-foreground">Level {level} • finsim.app</div>
+          <div className="text-xs text-muted-foreground">Level {level} • alphadeck.app</div>
         </div>
         <div className="text-xs text-muted-foreground">Can you beat this?</div>
       </div>
@@ -302,7 +302,7 @@ function LevelUpShareCard({
   title: string;
   onClose: () => void;
 }) {
-  const shareText = `I just reached Level ${level} (${title}) in FinSim with ${xp.toLocaleString()} XP! finsim.app`;
+  const shareText = `I just reached Level ${level} (${title}) in Alpha Deck with ${xp.toLocaleString()} pts! alphadeck.app`;
 
   const handleCopy = () => {
     navigator.clipboard
@@ -315,7 +315,7 @@ function LevelUpShareCard({
     <>
       <div className="flex items-center justify-between border-b border-border/20 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-medium tracking-widest text-primary">ALPHA DECK</span>
           <span className="text-xs text-muted-foreground">Level Up</span>
         </div>
         <button
@@ -336,10 +336,10 @@ function LevelUpShareCard({
           <span className="mt-1 text-base font-semibold text-foreground">{title}</span>
         </div>
         <div className="rounded-lg bg-background/60 px-4 py-2 text-center">
-          <div className="text-xs text-muted-foreground">Total XP</div>
+          <div className="text-xs text-muted-foreground">Total pts</div>
           <div className="text-lg font-semibold tabular-nums">{xp.toLocaleString()}</div>
         </div>
-        <div className="text-xs text-muted-foreground">finsim.app</div>
+        <div className="text-xs text-muted-foreground">alphadeck.app</div>
       </div>
 
       <div className="flex gap-2 border-t border-border/20 px-4 py-3">
@@ -377,7 +377,7 @@ function PortfolioMilestoneCard({
   onClose: () => void;
 }) {
   const growthPct = baseline > 0 ? ((portfolioValue - baseline) / baseline) * 100 : 0;
-  const shareText = `My FinSim portfolio just hit ${formatCurrency(portfolioValue)}! That's +${growthPct.toFixed(1)}% from start. Level ${level}. finsim.app`;
+  const shareText = `My Alpha Deck portfolio just hit ${formatCurrency(portfolioValue)}! That's +${growthPct.toFixed(1)}% from start. Level ${level}. alphadeck.app`;
 
   const handleCopy = () => {
     navigator.clipboard
@@ -390,7 +390,7 @@ function PortfolioMilestoneCard({
     <>
       <div className="flex items-center justify-between border-b border-border/20 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-medium tracking-widest text-primary">ALPHA DECK</span>
           <span className="text-xs text-muted-foreground">Portfolio Milestone</span>
         </div>
         <button
@@ -413,7 +413,7 @@ function PortfolioMilestoneCard({
           </div>
         </div>
         <MiniGrowthChart value={portfolioValue} baseline={baseline} />
-        <div className="text-xs text-muted-foreground">Level {level} • finsim.app</div>
+        <div className="text-xs text-muted-foreground">Level {level} • alphadeck.app</div>
       </div>
 
       <div className="flex gap-2 border-t border-border/20 px-4 py-3">

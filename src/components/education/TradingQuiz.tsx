@@ -156,7 +156,7 @@ function ResultScreen({
       {/* XP earned */}
       {result.xpEarned > 0 && (
         <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-          +{result.xpEarned} XP earned
+          +{result.xpEarned} pts earned
         </div>
       )}
 
@@ -413,7 +413,7 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
                 {answerState === "correct" ? (
                   <>
                     <CheckCircle className="h-3.5 w-3.5 shrink-0" />
-                    Correct! +{XP_PER_CORRECT} XP
+                    Correct! +{XP_PER_CORRECT} pts
                   </>
                 ) : selected === null ? (
                   <>
@@ -441,7 +441,7 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
           {currentIndex + (answerState !== "idle" ? 1 : 0)}
         </span>
         <span>
-          {score * XP_PER_CORRECT} XP earned so far
+          {score * XP_PER_CORRECT} pts earned so far
         </span>
       </div>
     </div>

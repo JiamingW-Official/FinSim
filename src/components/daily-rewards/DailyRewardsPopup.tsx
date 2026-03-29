@@ -147,7 +147,7 @@ export function DailyRewardsPopup() {
                   </div>
                 ) : (
                   <p className="text-[12px] text-muted-foreground mt-0.5">
-                    Log in daily to earn bonus XP
+                    Log in daily to earn bonus points
                   </p>
                 )}
               </div>
@@ -264,7 +264,7 @@ export function DailyRewardsPopup() {
                       "text-xl font-semibold tabular-nums mt-0.5",
                       isDay7 ? "text-amber-400" : "text-primary",
                     )}>
-                      +{todayXP} <span className="text-sm font-medium">XP</span>
+                      +{todayXP} <span className="text-sm font-medium">pts</span>
                     </p>
                   </div>
                   {(() => { const RewardIcon = DAY_ICONS[dayIndex] ?? Gift; return <RewardIcon className={cn("h-8 w-8", isDay7 ? "text-amber-400" : "text-primary")} />; })()}
@@ -286,7 +286,7 @@ export function DailyRewardsPopup() {
                   >
                     <Check className="h-4 w-4 text-emerald-400" />
                     <span className="text-sm font-semibold text-emerald-400">
-                      +{earnedXP} XP Claimed
+                      +{earnedXP} pts claimed
                     </span>
                   </motion.div>
                 ) : canClaim ? (

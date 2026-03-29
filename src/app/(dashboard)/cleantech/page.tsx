@@ -1404,7 +1404,7 @@ export default function CleantechPage() {
       <div className="mt-6 flex items-start gap-2 text-xs text-muted-foreground">
         <Info className="w-3 h-3 mt-0.5 shrink-0" />
         <span>
-          FinSim educational simulation. Data and projections are illustrative, derived from IEA, BloombergNEF, and IRENA
+          Alpha Deck educational simulation. Data and projections are illustrative, derived from IEA, BloombergNEF, and IRENA
           public reports. Not financial advice. Actual investments involve market risk.
         </span>
       </div>

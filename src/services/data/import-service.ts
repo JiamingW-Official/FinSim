@@ -15,7 +15,7 @@ export function validateExport(data: unknown): data is FullExport {
   const obj = data as Record<string, unknown>;
 
   if (obj.version !== 1) return false;
-  if (obj.appName !== "FinSim") return false;
+  if (obj.appName !== "Alpha Deck") return false;
   if (typeof obj.exportedAt !== "string") return false;
 
   // Validate game section
@@ -109,7 +109,7 @@ export function importData(jsonString: string): ImportResult {
     return {
       success: false,
       error:
-        "File format is not recognized. Make sure you are importing a FinSim export file (version 1).",
+        "File format is not recognized. Make sure you are importing a Alpha Deck export file (version 1).",
     };
   }
 

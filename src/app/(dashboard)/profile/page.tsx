@@ -632,7 +632,7 @@ export default function ProfilePage() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="rounded-lg border border-border bg-background p-3">
-              <p className="text-[11px] text-muted-foreground">XP</p>
+              <p className="text-[11px] text-muted-foreground">Points</p>
               <p className="text-base font-medium font-mono tabular-nums">{xp.toLocaleString()}</p>
             </div>
             <div className="rounded-lg border border-border bg-background p-3">
@@ -1294,14 +1294,14 @@ export default function ProfilePage() {
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground font-medium">Current Level</p>
-                        <p className="text-xs text-muted-foreground">{xp.toLocaleString()} XP total</p>
+                        <p className="text-xs text-muted-foreground">{xp.toLocaleString()} pts total</p>
                       </div>
                     </div>
                     <ArrowRight className="h-4 w-4 text-muted-foreground" />
                     <div className="flex items-center gap-3">
                       <div>
                         <p className="text-xs text-muted-foreground font-medium text-right">Level {nextLevel}</p>
-                        <p className="text-xs text-muted-foreground">{levelProgress.needed - levelProgress.current} XP needed</p>
+                        <p className="text-xs text-muted-foreground">{levelProgress.needed - levelProgress.current} pts needed</p>
                       </div>
                       <div className="flex h-10 w-10 items-center justify-center rounded-md bg-muted/10 border border-border">
                         <span className="text-sm font-medium text-primary">{nextLevel}</span>
@@ -1310,8 +1310,8 @@ export default function ProfilePage() {
                   </div>
                   <div className="space-y-1">
                     <div className="flex justify-between text-xs text-muted-foreground">
-                      <span>{levelProgress.current} XP</span>
-                      <span>{levelProgress.needed} XP</span>
+                      <span>{levelProgress.current} pts</span>
+                      <span>{levelProgress.needed} pts</span>
                     </div>
                     <div className="h-2.5 rounded-full bg-foreground/[0.08] overflow-hidden">
                       <motion.div

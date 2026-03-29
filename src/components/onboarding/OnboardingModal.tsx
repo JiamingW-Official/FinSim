@@ -205,7 +205,7 @@ function StepWelcome() {
     <div className="flex flex-col gap-4">
       <div>
         <h2 className="text-lg font-semibold tracking-tight">
-          Welcome to FinSim
+          Welcome to Alpha Deck
         </h2>
         <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
           Practice trading with $100k in virtual capital. Real market data, no
@@ -227,7 +227,7 @@ function StepWelcome() {
         <FeatureRow
           icon={<TrendingUp className="h-4 w-4 text-emerald-400" />}
           title="Track your progress"
-          desc="XP, achievements, streaks, and leaderboards"
+          desc="Progress tracking, achievements, streaks, and leaderboards"
         />
       </div>
     </div>

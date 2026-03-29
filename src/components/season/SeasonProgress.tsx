@@ -47,10 +47,10 @@ export function SeasonProgress() {
 
       {/* XP text */}
       <div className="mb-2 flex items-center justify-between text-[11px] tabular-nums">
-        <span className="text-primary/70">{progress.seasonXP} XP</span>
+        <span className="text-primary/70">{progress.seasonXP} pts</span>
         {nextTier ? (
           <span className="text-muted-foreground">
-            {nextTier.required} XP for Tier {nextTier.tierNumber}
+            {nextTier.required} pts for Tier {nextTier.tierNumber}
           </span>
         ) : (
           <span className="flex items-center gap-0.5 text-primary">

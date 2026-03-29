@@ -928,7 +928,7 @@ function AchievementCard({ achievement }: { achievement: { id: string; name: str
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard
         .writeText(
-          `I earned "${achievement.name}" on FinSim! ${achievement.description}`,
+          `I earned "${achievement.name}" on Alpha Deck! ${achievement.description}`,
         )
         .catch(() => {});
     }

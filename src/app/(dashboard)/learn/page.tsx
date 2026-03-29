@@ -185,7 +185,7 @@ export default function LearnPage() {
           <div className="flex items-center gap-6 mb-8">
             <ProgressArc completed={completedCount} total={totalLessons} />
             <div className="flex-1 min-w-0">
-              <h1 className="text-lg font-serif font-medium tracking-tight mb-1">Learn</h1>
+              <h1 className="text-xl font-serif tracking-tight mb-1">Learn</h1>
               <p className="text-xs text-muted-foreground/70 leading-relaxed mb-3">
                 {completedCount === 0
                   ? "Start your journey through finance fundamentals."
@@ -263,7 +263,7 @@ export default function LearnPage() {
                     <div className="flex items-center gap-3 mb-2 pl-3 border-l-2 border-foreground/10">
                       <UnitIconComp className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <span className="text-xs font-medium text-foreground/80">
+                        <span className="text-sm font-medium text-foreground">
                           {unit.title}
                         </span>
                       </div>
@@ -308,7 +308,7 @@ export default function LearnPage() {
                             {/* Title + description */}
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-medium truncate">{lesson.title}</p>
-                              <p className="text-[11px] text-muted-foreground/60 truncate mt-0.5">{lesson.description}</p>
+                              <p className="text-[11px] leading-relaxed text-muted-foreground/70 truncate mt-0.5">{lesson.description}</p>
                             </div>
 
                             {/* Duration */}

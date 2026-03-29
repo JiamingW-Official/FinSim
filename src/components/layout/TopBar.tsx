@@ -298,7 +298,7 @@ export function TopBar() {
             <span className="text-xs font-medium">{currentTicker}</span>
             <span
               className={cn(
-                "text-xs tabular-nums transition-colors duration-300",
+                "text-xs font-mono tabular-nums transition-colors duration-300",
                 priceFlash === "up" && "price-flash-up",
                 priceFlash === "down" && "price-flash-down",
               )}
@@ -308,7 +308,7 @@ export function TopBar() {
             {currentBar && (
               <span
                 className={cn(
-                  "text-xs tabular-nums",
+                  "text-xs font-mono tabular-nums",
                   dayChange >= 0
                     ? "text-emerald-500"
                     : "text-red-500",

@@ -26,7 +26,7 @@ export function SeasonXPToast() {
         >
           <Star className="h-3.5 w-3.5 text-amber-400" />
           <span className="text-xs font-semibold text-amber-400">
-            +{lastGain.amount} Season XP
+            +{lastGain.amount} Season pts
           </span>
         </motion.div>
       )}

@@ -145,23 +145,116 @@ export default function PortfolioPage() {
     }));
   }, [positions]);
 
+  // ── Market tickers for empty state ──
+  const marketTickers = [
+    { symbol: "AAPL", name: "Apple", price: 178.72, change: +1.34 },
+    { symbol: "GOOGL", name: "Alphabet", price: 141.80, change: -0.56 },
+    { symbol: "MSFT", name: "Microsoft", price: 378.91, change: +2.18 },
+    { symbol: "AMZN", name: "Amazon", price: 178.25, change: +0.89 },
+    { symbol: "TSLA", name: "Tesla", price: 175.34, change: -2.41 },
+    { symbol: "SPY", name: "S&P 500 ETF", price: 511.42, change: +1.07 },
+  ];
+
   // ── EMPTY STATE ──
   if (!hasTrades && !hasPositions) {
     return (
-      <p className="text-sm text-muted-foreground text-center py-8">No positions or trade history yet.</p>
+      <div className="flex h-full flex-col overflow-y-auto">
+        {/* Hero — starting balance */}
+        <div className="px-6 pt-8 pb-6 text-center">
+          <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-widest mb-3">
+            Portfolio Value
+          </p>
+          <p className="text-4xl font-serif font-medium tabular-nums tracking-tight">
+            $100,000.00
+          </p>
+          <p className="text-sm text-muted-foreground/50 mt-2">
+            Starting balance &middot; Simulated
+          </p>
+        </div>
+
+        {/* Getting Started */}
+        <div className="px-6 pb-6">
+          <p className="text-sm font-serif font-medium mb-4">Getting Started</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link
+              href="/trade"
+              className="group rounded-lg border border-border/30 p-5 hover:border-border/60 transition-colors"
+            >
+              <p className="text-sm font-medium mb-1 group-hover:text-foreground transition-colors">
+                Make your first trade
+              </p>
+              <p className="text-xs text-muted-foreground/70 leading-relaxed">
+                Buy and sell stocks with simulated capital. Track your P&L in real time.
+              </p>
+            </Link>
+            <Link
+              href="/learn"
+              className="group rounded-lg border border-border/30 p-5 hover:border-border/60 transition-colors"
+            >
+              <p className="text-sm font-medium mb-1 group-hover:text-foreground transition-colors">
+                Learn the basics
+              </p>
+              <p className="text-xs text-muted-foreground/70 leading-relaxed">
+                Interactive lessons on markets, indicators, and portfolio management.
+              </p>
+            </Link>
+            <Link
+              href="/backtest"
+              className="group rounded-lg border border-border/30 p-5 hover:border-border/60 transition-colors"
+            >
+              <p className="text-sm font-medium mb-1 group-hover:text-foreground transition-colors">
+                Explore strategies
+              </p>
+              <p className="text-xs text-muted-foreground/70 leading-relaxed">
+                Backtest trading strategies against historical data before risking capital.
+              </p>
+            </Link>
+          </div>
+        </div>
+
+        {/* Market Overview */}
+        <div className="px-6 pb-8">
+          <p className="text-sm font-serif font-medium mb-4">Market Overview</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {marketTickers.map((t) => (
+              <div
+                key={t.symbol}
+                className="rounded-lg border border-border/20 p-3"
+              >
+                <p className="text-xs font-medium">{t.symbol}</p>
+                <p className="text-[10px] text-muted-foreground/50 mb-2 truncate">
+                  {t.name}
+                </p>
+                <p className="text-sm font-mono tabular-nums">
+                  ${t.price.toFixed(2)}
+                </p>
+                <p
+                  className={cn(
+                    "text-[11px] font-mono tabular-nums mt-0.5",
+                    t.change >= 0 ? "text-emerald-500" : "text-red-500",
+                  )}
+                >
+                  {t.change >= 0 ? "+" : ""}
+                  {t.change.toFixed(2)}%
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
       {/* ── HERO: Portfolio Value ── */}
-      <div className="px-4 pt-4 pb-3">
+      <div className="px-6 pt-6 pb-4">
         <div className="flex items-start justify-between mb-1">
           <div>
-            <p className="text-[11px] font-medium text-muted-foreground/70 mb-1">
+            <p className="text-[11px] font-medium text-muted-foreground/70 mb-1.5">
               Total Portfolio Value
             </p>
-            <p className="text-2xl font-serif font-medium tabular-nums tracking-tight">
+            <p className="text-3xl font-serif font-medium tabular-nums tracking-tight">
               {formatCurrency(portfolioValue)}
             </p>
           </div>
@@ -229,7 +322,7 @@ export default function PortfolioPage() {
       </div>
 
       {/* ── TABS ── */}
-      <div className="px-4 pb-4 flex-1">
+      <div className="px-6 pb-6 flex-1">
         <Tabs defaultValue="overview">
           <div className="mb-3">
             <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
@@ -248,14 +341,14 @@ export default function PortfolioPage() {
           </div>
 
           {/* ── Overview tab ── */}
-          <TabsContent value="overview" className="space-y-3 mt-0">
+          <TabsContent value="overview" className="space-y-6 mt-0 pt-4">
             {/* Equity curve — contained */}
             {hasTrades && (
               <div className="rounded-lg border border-border/20 p-3">
                 <p className="text-[11px] font-medium text-muted-foreground mb-2">
                   Equity Curve
                 </p>
-                <div className="h-[200px]">
+                <div className="h-[240px]">
                   <EquityCurve />
                 </div>
               </div>
@@ -300,7 +393,7 @@ export default function PortfolioPage() {
           </TabsContent>
 
           {/* ── Holdings tab ── */}
-          <TabsContent value="holdings" className="mt-0">
+          <TabsContent value="holdings" className="mt-0 pt-4">
             {hasPositions ? (
               <div className="rounded-lg border border-border/20 overflow-hidden">
                 <table className="w-full text-xs">
@@ -424,7 +517,7 @@ export default function PortfolioPage() {
           </TabsContent>
 
           {/* ── Performance tab ── */}
-          <TabsContent value="performance" className="space-y-3 mt-0">
+          <TabsContent value="performance" className="space-y-6 mt-0 pt-4">
             <div className="rounded-lg border border-border/20 p-3">
               <p className="text-[11px] font-medium text-muted-foreground mb-1">
                 Quantitative Dashboard
@@ -495,7 +588,7 @@ export default function PortfolioPage() {
           </TabsContent>
 
           {/* ── Analytics tab ── */}
-          <TabsContent value="analytics" className="space-y-3 mt-0">
+          <TabsContent value="analytics" className="space-y-6 mt-0 pt-4">
             <AdvancedAnalytics />
 
             <AttributionAnalysis />

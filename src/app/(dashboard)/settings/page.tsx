@@ -39,7 +39,7 @@ import {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-xs font-semibold text-muted-foreground pb-1">
+    <div className="text-sm font-serif font-medium tracking-tight text-foreground pb-1">
       {children}
     </div>
   );
@@ -79,7 +79,7 @@ function Card({
   return (
     <div
       className={cn(
-        "rounded-lg border border-border bg-card p-4 space-y-3",
+        "rounded-lg border border-border/20 bg-card p-5 space-y-3",
         className,
       )}
     >
@@ -956,7 +956,7 @@ function DataTab() {
 
       <Card>
         <div className="mb-3">
-          <SectionHeader>About FinSim</SectionHeader>
+          <SectionHeader>About Alpha Deck</SectionHeader>
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-1 text-xs text-muted-foreground mb-4">
           <span>
@@ -998,7 +998,7 @@ export default function SettingsPage() {
         {/* Header */}
         <div>
           <p className="text-xs text-muted-foreground mb-1">Preferences</p>
-          <h1 className="text-lg font-serif font-semibold tracking-tight">Settings</h1>
+          <h1 className="text-xl font-serif tracking-tight">Settings</h1>
           <p className="text-xs text-muted-foreground/70 leading-relaxed mt-0.5">
             Customize your trading experience
           </p>

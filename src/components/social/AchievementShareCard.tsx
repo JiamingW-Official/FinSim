@@ -21,7 +21,7 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
   const def = ACHIEVEMENT_DEFS.find((d) => d.id === achievement.id);
   const xpReward = def?.xpReward ?? 0;
 
-  const shareText = `I just unlocked "${achievement.name}" in FinSim! ${achievement.description}. +${xpReward} XP. Can you unlock it? finsim.app`;
+  const shareText = `I just unlocked "${achievement.name}" in Alpha Deck! ${achievement.description}. +${xpReward} XP. Can you unlock it? alphadeck.app`;
 
   const handleCopy = () => {
     navigator.clipboard
@@ -35,7 +35,7 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-semibold tracking-widest text-primary">ALPHA DECK</span>
           <span className="text-xs text-muted-foreground">Achievement</span>
         </div>
         <button
@@ -56,7 +56,7 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
         {/* Name + description */}
         <div className="text-center">
           <div className="text-xs font-semibold text-muted-foreground">
-            Unlocked in FinSim
+            Unlocked in Alpha Deck
           </div>
           <div className="mt-1 text-xl font-semibold">{achievement.name}</div>
           <div className="mt-1 text-xs text-muted-foreground">{achievement.description}</div>
@@ -70,7 +70,7 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
           </div>
         )}
 
-        <div className="text-[11px] text-muted-foreground">finsim.app</div>
+        <div className="text-[11px] text-muted-foreground">alphadeck.app</div>
       </div>
 
       {/* Actions */}

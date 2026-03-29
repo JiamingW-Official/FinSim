@@ -608,10 +608,10 @@ export function OrderEntry() {
 
       {/* Ticker & Price */}
       <div className="flex items-baseline justify-between">
-        <span className="text-sm font-semibold">{currentTicker}</span>
+        <span className="text-base font-serif font-medium tracking-tight">{currentTicker}</span>
         <span
           className={cn(
-            "text-lg font-semibold tabular-nums transition-colors duration-300",
+            "text-xl font-serif font-medium tabular-nums tracking-tight transition-colors duration-300",
             priceFlash === "up" && "price-flash-up",
             priceFlash === "down" && "price-flash-down",
           )}
@@ -884,7 +884,7 @@ export function OrderEntry() {
           onClick={() => setShowConfirm(true)}
           disabled={!canExecute}
           variant={tradeMode === "buy" && orderType === "market" ? "default" : "destructive"}
-          className="w-full font-semibold"
+          className="w-full font-medium tracking-tight"
         >
           {orderType === "market"
             ? tradeMode === "buy"

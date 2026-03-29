@@ -231,14 +231,14 @@ export default function HomePage() {
         </div>
 
         {/* ── Primary: Portfolio + Market Brief (2/3 + 1/3) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
 
           {/* Portfolio — dominant card */}
-          <div className="lg:col-span-2 rounded-lg border border-border/20 bg-card p-4">
+          <div className="lg:col-span-2 rounded-lg border border-border/20 bg-card p-5">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <p className="text-[11px] text-muted-foreground mb-1">Portfolio Value</p>
-                <p className="text-2xl font-serif font-medium tabular-nums tracking-tight">{formatCurrency(portfolioValue)}</p>
+                <p className="text-[11px] text-muted-foreground/60 mb-1.5">Portfolio Value</p>
+                <p className="text-3xl font-serif font-medium tabular-nums tracking-tight">{formatCurrency(portfolioValue)}</p>
                 <p className={cn("text-sm font-mono tabular-nums mt-0.5", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}% ({totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)})
                 </p>
@@ -253,10 +253,10 @@ export default function HomePage() {
           </div>
 
           {/* Market brief — secondary */}
-          <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col justify-between">
+          <div className="rounded-lg border border-border/10 bg-muted/[0.03] p-4 flex flex-col justify-between">
             <div>
-              <p className="text-[11px] text-muted-foreground mb-3">Market Brief</p>
-              <p className="text-xs leading-relaxed text-foreground/80">{marketBrief}</p>
+              <p className="text-[11px] text-muted-foreground/60 mb-3">Market Brief</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">{marketBrief}</p>
             </div>
             <div className="mt-4 pt-3 border-t border-border/20">
               <p className="text-[11px] text-muted-foreground mb-2">Upcoming</p>
@@ -277,9 +277,9 @@ export default function HomePage() {
 
         {/* ── Market Overview: 6 ticker cards ── */}
         {mounted && (
-          <div className="mb-4">
+          <div className="mb-5">
             <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] text-muted-foreground">Today&apos;s Markets</p>
+              <p className="text-sm font-medium text-foreground">Today&apos;s Markets</p>
               <Link href="/trade" className="text-[11px] text-muted-foreground hover:text-foreground transition-colors">
                 View all
               </Link>
@@ -293,12 +293,12 @@ export default function HomePage() {
         )}
 
         {/* ── Secondary row: Recent Trades + Learning (2/3 + 1/3) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
 
           {/* Recent trades */}
-          <div className="lg:col-span-2 rounded-lg border border-border/20 bg-card p-4">
+          <div className="lg:col-span-2 rounded-lg border border-border/20 bg-card p-5">
             <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] text-muted-foreground">Recent Trades</p>
+              <p className="text-sm font-medium text-foreground">Recent Trades</p>
               {tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-muted-foreground hover:text-foreground transition-colors">View all</Link>}
             </div>
             {recentTrades.length === 0 ? (
@@ -324,9 +324,9 @@ export default function HomePage() {
           </div>
 
           {/* Learning progress */}
-          <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col justify-between">
+          <div className="rounded-lg border border-border/10 bg-muted/[0.03] p-4 flex flex-col justify-between">
             <div>
-              <p className="text-[11px] text-muted-foreground mb-3">Learning</p>
+              <p className="text-sm font-medium text-foreground mb-3">Learning</p>
               <p className="text-lg font-mono tabular-nums">{learnProgress.completed}<span className="text-muted-foreground text-sm">/{learnProgress.total}</span></p>
               <p className="text-[11px] text-muted-foreground mt-0.5">lessons completed</p>
               <div className="mt-3 h-1 overflow-hidden rounded-full bg-muted/30">

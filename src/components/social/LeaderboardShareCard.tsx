@@ -26,7 +26,7 @@ export function LeaderboardShareCard({ data, onClose }: LeaderboardShareCardProp
   const isTop10 = topPct <= 10;
   const returnSign = portfolioReturn >= 0 ? "+" : "";
 
-  const shareText = `I'm rank #${rank} of ${totalPlayers.toLocaleString()} players in FinSim! Portfolio: ${formatCurrency(portfolioValue)} (${returnSign}${portfolioReturn.toFixed(1)}%), Win rate: ${winRate.toFixed(0)}%. finsim.app`;
+  const shareText = `I'm rank #${rank} of ${totalPlayers.toLocaleString()} players in Alpha Deck! Portfolio: ${formatCurrency(portfolioValue)} (${returnSign}${portfolioReturn.toFixed(1)}%), Win rate: ${winRate.toFixed(0)}%. alphadeck.app`;
 
   const handleCopy = () => {
     navigator.clipboard
@@ -40,7 +40,7 @@ export function LeaderboardShareCard({ data, onClose }: LeaderboardShareCardProp
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-semibold tracking-widest text-primary">ALPHA DECK</span>
           <span className="text-xs text-muted-foreground">Leaderboard</span>
         </div>
         <button
@@ -94,7 +94,7 @@ export function LeaderboardShareCard({ data, onClose }: LeaderboardShareCardProp
           </div>
         </div>
 
-        <div className="text-[11px] text-muted-foreground">finsim.app</div>
+        <div className="text-[11px] text-muted-foreground">alphadeck.app</div>
       </div>
 
       {/* Actions */}

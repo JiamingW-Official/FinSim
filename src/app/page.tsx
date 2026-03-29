@@ -52,7 +52,7 @@ export default function LandingPage() {
       <nav className="border-b border-border/20 sticky top-0 z-50 bg-background/90 backdrop-blur-md">
         <div className="max-w-5xl mx-auto px-6 flex items-center justify-between h-12">
           <div className="flex items-center gap-1.5">
-            <span className="text-sm font-serif font-semibold tracking-tight text-foreground/80">FinSim</span>
+            <span className="text-sm font-serif font-semibold tracking-tight text-foreground/80">Alpha Deck</span>
           </div>
           <Link
             href="/home"
@@ -267,7 +267,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-border/15 py-5">
         <p className="text-center text-[11px] text-muted-foreground/40">
-          FinSim &middot; Educational only &middot; Simulated data &middot; {new Date().getFullYear()}
+          Alpha Deck &middot; Educational only &middot; Simulated data &middot; {new Date().getFullYear()}
         </p>
       </footer>
     </div>

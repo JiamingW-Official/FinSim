@@ -53,11 +53,11 @@ export function XPBar() {
         />
       </div>
       <span className="text-xs tabular-nums text-muted-foreground">
-        {progressXP}/{neededXP} XP
+        {progressXP}/{neededXP} pts
       </span>
       {floatXP !== null && (
         <span className="xp-float-up absolute -top-4 left-1/2 -translate-x-1/2 text-xs font-semibold text-emerald-400">
-          +{floatXP} XP
+          +{floatXP} pts
         </span>
       )}
     </div>

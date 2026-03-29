@@ -229,7 +229,7 @@ export function DataManager() {
           Import Data
         </Button>
         <p className="text-xs text-muted-foreground">
-          Accepts .json files exported from FinSim. Current progress will be overwritten.
+          Accepts .json files exported from Alpha Deck. Current progress will be overwritten.
         </p>
       </div>
 

@@ -346,9 +346,9 @@ export default function OptionsPage() {
                 transition={{ duration: 0.15 }}
                 className="hidden md:block w-56 shrink-0 overflow-y-auto border-l border-border/20 bg-card"
               >
-                <div className="flex items-center justify-between border-b border-border/20 px-2.5 py-1.5">
-                  <span className="text-[11px] font-medium">{currentTicker} Options</span>
-                  <span className="text-[10px] tabular-nums text-muted-foreground">${spotPrice.toFixed(2)}</span>
+                <div className="flex items-center justify-between border-b border-border/20 px-2.5 py-2">
+                  <span className="text-sm font-serif font-medium tracking-tight">{currentTicker} Options</span>
+                  <span className="text-sm font-mono tabular-nums">${spotPrice.toFixed(2)}</span>
                 </div>
                 <OptionsOrderEntry spotPrice={spotPrice} analytics={analytics} />
               </motion.div>

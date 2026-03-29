@@ -142,7 +142,7 @@ export default function ArenaPage() {
       <div className="border-b border-border px-4 py-3">
         <div className="flex items-center gap-3">
           <div>
-            <h1 className="text-sm font-serif font-medium tracking-tight">Practice Arena</h1>
+            <h1 className="text-xl font-serif tracking-tight">Practice Arena</h1>
             <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
               Simulated competitive challenges to sharpen trading skills
             </p>
@@ -150,11 +150,16 @@ export default function ArenaPage() {
           <div className="flex-1" />
           {/* Rank + stats inline */}
           {totalMatches > 0 ? (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <ArenaRankBadge rank={rank} size="sm" />
               <div className="text-right">
-                <p className="text-xs font-medium font-mono tabular-nums">{elo} ELO</p>
-                <p className="text-[11px] text-muted-foreground">{totalMatches} matches</p>
+                <p className="text-[11px] text-muted-foreground/60 mb-0.5">ELO Rating</p>
+                <p className="text-lg font-serif font-medium tabular-nums tracking-tight">{elo}</p>
+              </div>
+              <div className="h-6 w-px bg-border/20" />
+              <div className="text-right">
+                <p className="text-[11px] text-muted-foreground/60 mb-0.5">Matches</p>
+                <p className="text-sm font-mono tabular-nums">{totalMatches}</p>
               </div>
             </div>
           ) : (

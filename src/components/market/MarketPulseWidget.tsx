@@ -990,7 +990,7 @@ export default function MarketPulseWidget() {
       {/* Footer */}
       <div className="px-4 py-1.5 border-t border-border bg-muted flex items-center justify-between">
         <span className="text-[11px] text-muted-foreground font-mono">Simulated data — educational use only</span>
-        <span className="text-[11px] text-muted-foreground font-mono">FinSim v2</span>
+        <span className="text-[11px] text-muted-foreground font-mono">Alpha Deck v2</span>
       </div>
     </div>
   );

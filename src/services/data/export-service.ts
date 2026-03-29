@@ -42,7 +42,7 @@ export interface TradingStateExport {
 export interface FullExport {
   version: 1;
   exportedAt: string;
-  appName: "FinSim";
+  appName: "Alpha Deck";
   game: GameStateExport;
   learn: LearnProgressExport;
   trading: TradingStateExport;
@@ -66,7 +66,7 @@ export function exportAllData(): string {
   const payload: FullExport = {
     version: 1,
     exportedAt: now,
-    appName: "FinSim",
+    appName: "Alpha Deck",
     game: {
       xp: (gameState.xp as number) ?? 0,
       level: (gameState.level as number) ?? 1,

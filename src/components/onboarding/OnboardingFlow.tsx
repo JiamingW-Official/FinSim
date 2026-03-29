@@ -48,7 +48,7 @@ const steps: StepConfig[] = [
   {
     icon: <Rocket className="h-6 w-6 text-primary" />,
     iconBg: "bg-primary/10",
-    title: "Welcome to FinSim",
+    title: "Welcome to Alpha Deck",
     description:
       "Learn to trade with $100,000 in virtual capital, AI coaching, and interactive education.",
     extra: null,
@@ -80,7 +80,7 @@ const steps: StepConfig[] = [
     iconBg: "bg-rose-500/10",
     title: "Track Your Progress",
     description:
-      "XP, achievements, streaks, arena battles, and leaderboards.",
+      "Progress tracking, achievements, streaks, and leaderboards.",
   },
 ];
 
