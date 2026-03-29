@@ -272,7 +272,7 @@ function generateConstrainedFrontier(maxWeights: number[], numPoints = 20): Port
     maxRetW[maxRetIdx] = Math.min(1, maxWeights[maxRetIdx]);
     // Fill remainder proportionally
     const remainder = 1 - maxRetW[maxRetIdx];
-    const others = ASSETS.map((_, i) => (i === maxRetIdx ? 0 : 1));
+    const others: number[] = ASSETS.map((_, i) => (i === maxRetIdx ? 0 : 1));
     const othersSum = others.reduce((a, b) => a + b, 0);
     const altW = others.map((v) => v / othersSum * remainder);
     altW[maxRetIdx] = maxRetW[maxRetIdx];

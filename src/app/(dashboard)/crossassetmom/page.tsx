@@ -650,7 +650,7 @@ function CorrelationMatrixSVG() {
       if (j < i) return 0; // filled from upper
       const base = rand() * 0.6 - 0.2;
       // Make equities/credit correlated, bonds/rates negatively correlated with risk assets
-      const overrides: Record<string, Record<string, number>> = {
+      const overrides: Record<string, number> = {
         "SPX-HYG": 0.72,
         "SPX-EURUSD": 0.18,
         "SPX-UST10": -0.28,
@@ -944,7 +944,7 @@ function StatCard({
   value: string;
   sub?: string;
   color?: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
 }) {
   return (
     <Card className="bg-slate-900 border-slate-800">

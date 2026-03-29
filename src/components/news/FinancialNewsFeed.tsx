@@ -251,7 +251,9 @@ function generateEconCalendar(): EconRelease[] {
   ];
   return releases.map((r, i) => ({
     id: i,
-    ...r,
+    name: r.name,
+    priority: r.priority,
+    affectedAssets: r.assets,
     date: `Apr ${1 + Math.floor(i / 4)}`,
     daysFromNow: Math.floor(i / 4),
     hoursFromNow: i === 0 ? 6 : ri(1, 72),

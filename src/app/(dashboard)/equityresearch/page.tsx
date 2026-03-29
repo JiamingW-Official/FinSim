@@ -23,6 +23,7 @@ import {
   Zap,
   Scale,
   Minus,
+  Calculator,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";

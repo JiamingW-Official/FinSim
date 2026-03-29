@@ -449,7 +449,7 @@ function SpreadPayoffChart({
             fill="currentColor"
             fillOpacity={0.4}
           >
-            {v > 0 ? `+${(v / 1000).toFixed0()}k` : `${(v / 1000).toFixed0()}k`}
+            {v > 0 ? `+${(v / 1000).toFixed(0)}k` : `${(v / 1000).toFixed(0)}k`}
           </text>
         ))}
 

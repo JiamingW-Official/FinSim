@@ -225,7 +225,7 @@ function ZScoreSVG() {
   const polyline = points.map((v, i) => `${scaleX(i)},${scaleY(v)}`).join(" ");
 
   const entryLong = points.map((v, i) => ({ i, v })).filter((p) => p.v < -2.0);
-  const exitLong = points.map((v, i) => ({ i, v })).filter((p) => p.v > -0.5 && p.v < 0.5 && i > 10);
+  const exitLong = points.map((v, i) => ({ i, v })).filter((p) => p.v > -0.5 && p.v < 0.5 && p.i > 10);
 
   const yLevels = [
     { label: "+2σ", v: 2.0, color: "#f87171", dash: "4 2" },

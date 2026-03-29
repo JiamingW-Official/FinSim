@@ -819,7 +819,7 @@ function BiasAssessment() {
         bias: b,
         count: counts[b],
         severity:
-          counts[b] >= 4 ? "strong" : counts[b] >= 2 ? "moderate" : "mild",
+          (counts[b] >= 4 ? "strong" : counts[b] >= 2 ? "moderate" : "mild") as "mild" | "moderate" | "strong",
         ...BIAS_INFO[b],
       }))
       .sort((a, b) => b.count - a.count);

@@ -1092,16 +1092,16 @@ export default function LeveragedLoansPage() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
             >
-              <TabsContent value="structure" data-[state=inactive]:hidden>
+              <TabsContent value="structure" className="data-[state=inactive]:hidden">
                 <LoanStructureTab />
               </TabsContent>
-              <TabsContent value="syndication" data-[state=inactive]:hidden>
+              <TabsContent value="syndication" className="data-[state=inactive]:hidden">
                 <SyndicationTab />
               </TabsContent>
-              <TabsContent value="clo" data-[state=inactive]:hidden>
+              <TabsContent value="clo" className="data-[state=inactive]:hidden">
                 <CLOStructureTab />
               </TabsContent>
-              <TabsContent value="dynamics" data-[state=inactive]:hidden>
+              <TabsContent value="dynamics" className="data-[state=inactive]:hidden">
                 <MarketDynamicsTab />
               </TabsContent>
             </motion.div>

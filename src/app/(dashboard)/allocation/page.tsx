@@ -603,7 +603,6 @@ function PortfolioBuilder() {
                       min={0}
                       max={60}
                       step={0.5}
-                      disabled={locked[i]}
                       className="w-full"
                     />
                   </div>

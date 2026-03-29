@@ -612,7 +612,7 @@ function MetricRow({ label, value, colored, info }: { label: string; value: stri
     <div className="flex items-center justify-between py-1.5 border-b border-white/5">
       <span className="text-xs text-gray-400 flex items-center gap-1">
         {label}
-        {info && <Info size={10} className="text-gray-600" title={info} />}
+        {info && <Info size={10} className="text-gray-600" aria-label={info} />}
       </span>
       <span className={`text-xs font-mono font-medium ${color}`}>{value}</span>
     </div>

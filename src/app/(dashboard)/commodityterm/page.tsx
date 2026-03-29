@@ -922,7 +922,7 @@ export default function CommodityTermPage() {
           </TabsList>
 
           {/* Futures Curve Tab */}
-          <TabsContent value="curve" data-[state=inactive]:hidden className="mt-4 space-y-4">
+          <TabsContent value="curve" className="data-[state=inactive]:hidden mt-4 space-y-4">
             <Card className="bg-muted/30 border-border">
               <CardHeader className="pb-2 pt-4">
                 <CardTitle className="text-sm">WTI Crude Oil Forward Curve — 12 Contract Months</CardTitle>
@@ -963,17 +963,17 @@ export default function CommodityTermPage() {
           </TabsContent>
 
           {/* Roll Yield Tab */}
-          <TabsContent value="roll" data-[state=inactive]:hidden className="mt-4">
+          <TabsContent value="roll" className="data-[state=inactive]:hidden mt-4">
             <RollYieldTab />
           </TabsContent>
 
           {/* Storage & Carry Tab */}
-          <TabsContent value="storage" data-[state=inactive]:hidden className="mt-4">
+          <TabsContent value="storage" className="data-[state=inactive]:hidden mt-4">
             <StorageCarryModel />
           </TabsContent>
 
           {/* Strategy Impact Tab */}
-          <TabsContent value="strategy" data-[state=inactive]:hidden className="mt-4">
+          <TabsContent value="strategy" className="data-[state=inactive]:hidden mt-4">
             <StrategyComparison />
           </TabsContent>
         </Tabs>

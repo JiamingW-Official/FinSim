@@ -414,7 +414,7 @@ export function TradeReviewEngine({ rows }: Props) {
     const rates: number[] = [];
     for (let i = 0; i < wins.length; i++) {
       const window = wins.slice(0, i + 1);
-      rates.push((window.reduce((a, b) => a + b, 0) / window.length) * 100);
+      rates.push((window.reduce((a, b) => a + b, 0 as number) / window.length) * 100);
     }
     return rates;
   }, [trades]);

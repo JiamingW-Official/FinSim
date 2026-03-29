@@ -67,9 +67,9 @@ interface SpreadTrade {
 }
 
 interface ButterflyTrade {
-  belly: Bond;
-  shortWing: Bond;
-  longWing: Bond;
+  belly: YieldPoint;
+  shortWing: YieldPoint;
+  longWing: YieldPoint;
   bodyWeight: number;
   netDV01: number;
   netConvexity: number;
@@ -92,6 +92,7 @@ interface YieldPoint {
   years: number;
   yield: number;
   dv01: number;
+  convexity?: number;
 }
 
 interface ShiftScenario {
@@ -1098,7 +1099,7 @@ function ButterflyTab() {
     const netDV01 =
       bodyWeight * w1.dv01 + bodyWeight * w2.dv01 - belly.dv01;
     const netConvexity =
-      bodyWeight * w1.convexity + bodyWeight * w2.convexity - belly.convexity;
+      bodyWeight * (w1.convexity ?? 0) + bodyWeight * (w2.convexity ?? 0) - (belly.convexity ?? 0);
 
     const spreadBps = belly.yield - 0.5 * (w1.yield + w2.yield);
     const spreadBpsTotal = spreadBps * 100;
@@ -1309,7 +1310,7 @@ function ButterflyTab() {
                     </div>
                     <div>
                       <p className="text-[10px] text-zinc-400">Convexity</p>
-                      <p className="text-xs text-white">{(bond.convexity * weight).toFixed(4)}</p>
+                      <p className="text-xs text-white">{((bond.convexity ?? 0) * weight).toFixed(4)}</p>
                     </div>
                   </div>
                 </div>

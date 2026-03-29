@@ -204,15 +204,17 @@ const CROSS_MARKET: CrossMarketRow[] = [
   },
 ];
 
-const SECTOR_SPREADS: SectorSpread[] = [
-  { sector: "Financials", currentSpread: 112, sixMonthAvg: 125, leverage: 2.1, spreadPerTurnLev: 0, signal: "rich" },
-  { sector: "Industrials", currentSpread: 138, sixMonthAvg: 132, leverage: 3.4, spreadPerTurnLev: 0, signal: "fair" },
-  { sector: "Utilities", currentSpread: 97, sixMonthAvg: 102, leverage: 4.2, spreadPerTurnLev: 0, signal: "fair" },
-  { sector: "TMT", currentSpread: 162, sixMonthAvg: 148, leverage: 2.8, spreadPerTurnLev: 0, signal: "cheap" },
-  { sector: "Energy", currentSpread: 188, sixMonthAvg: 195, leverage: 2.6, spreadPerTurnLev: 0, signal: "fair" },
-  { sector: "Healthcare", currentSpread: 144, sixMonthAvg: 138, leverage: 3.1, spreadPerTurnLev: 0, signal: "cheap" },
-  { sector: "Consumer", currentSpread: 175, sixMonthAvg: 162, leverage: 3.8, spreadPerTurnLev: 0, signal: "cheap" },
-].map((s) => ({
+const SECTOR_SPREADS: SectorSpread[] = (
+  [
+    { sector: "Financials", currentSpread: 112, sixMonthAvg: 125, leverage: 2.1, spreadPerTurnLev: 0, signal: "rich" as const },
+    { sector: "Industrials", currentSpread: 138, sixMonthAvg: 132, leverage: 3.4, spreadPerTurnLev: 0, signal: "fair" as const },
+    { sector: "Utilities", currentSpread: 97, sixMonthAvg: 102, leverage: 4.2, spreadPerTurnLev: 0, signal: "fair" as const },
+    { sector: "TMT", currentSpread: 162, sixMonthAvg: 148, leverage: 2.8, spreadPerTurnLev: 0, signal: "cheap" as const },
+    { sector: "Energy", currentSpread: 188, sixMonthAvg: 195, leverage: 2.6, spreadPerTurnLev: 0, signal: "fair" as const },
+    { sector: "Healthcare", currentSpread: 144, sixMonthAvg: 138, leverage: 3.1, spreadPerTurnLev: 0, signal: "cheap" as const },
+    { sector: "Consumer", currentSpread: 175, sixMonthAvg: 162, leverage: 3.8, spreadPerTurnLev: 0, signal: "cheap" as const },
+  ] as SectorSpread[]
+).map((s) => ({
   ...s,
   currentSpread: s.currentSpread + Math.round((rand() - 0.5) * 6),
   spreadPerTurnLev: Math.round((s.currentSpread / s.leverage) * 10) / 10,

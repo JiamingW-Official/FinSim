@@ -44,7 +44,7 @@ function getCorrectIndex(step: QuizStepData): number {
 
 function getQuestion(step: QuizStepData): string {
   if (step.type === "quiz-tf") return step.statement;
-  return step.question;
+  return step.question ?? (step.type === "quiz-scenario" ? step.scenario : "") ?? "";
 }
 
 function getDifficulty(step: QuizStepData): number {

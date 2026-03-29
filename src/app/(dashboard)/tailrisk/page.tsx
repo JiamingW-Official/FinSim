@@ -824,7 +824,7 @@ function CostBenefitTab() {
     }
 
     return { days: Array.from({ length: n }, (_, i) => i), unhedgedPath: unhedged, hedgedPath: hedged, crashDays: crashes };
-  }, [rand]);
+  }, []);
 
   const W = 560;
   const H = 200;

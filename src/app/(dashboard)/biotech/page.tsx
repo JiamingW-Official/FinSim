@@ -291,7 +291,7 @@ const BINARY_EVENTS: BinaryEvent[] = [
   { date: "2026-06-10", ticker: "MRNA", eventType: "PDUFA", drug: "mRNA-1283", impliedMove: 28 },
   { date: "2026-07-01", ticker: "PTCT", eventType: "Phase III Readout", drug: "Vatiquinone", impliedMove: 48 },
   { date: "2026-07-18", ticker: "ALNY", eventType: "Phase III Readout", drug: "Zilebesiran", impliedMove: 25 },
-  { date: "2026-08-05", ticker: "BEAM", eventType: "Phase I Readout", drug: "BEAM-101", impliedMove: 42 },
+  { date: "2026-08-05", ticker: "BEAM", eventType: "Phase II Readout", drug: "BEAM-101", impliedMove: 42 },
   { date: "2026-09-12", ticker: "ASH", eventType: "Conference", drug: "Hematology presentations", impliedMove: 10 },
   { date: "2026-10-01", ticker: "MRNA", eventType: "Phase III Readout", drug: "mRNA-4157", impliedMove: 32 },
   { date: "2026-10-20", ticker: "REGN", eventType: "Phase III Readout", drug: "Linvoseltamab", impliedMove: 22 },

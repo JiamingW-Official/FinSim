@@ -127,6 +127,7 @@ interface PrepayScenario {
   wal: number;
   price: number;
   yieldPct: number;
+  spread?: number;
 }
 
 const PREPAY_SCENARIOS: PrepayScenario[] = [
@@ -990,16 +991,16 @@ export default function ABSPricingPage() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18 }}
             >
-              <TabsContent value="structure" data-[state=inactive]:hidden>
+              <TabsContent value="structure" className="data-[state=inactive]:hidden">
                 <ABSStructureTab />
               </TabsContent>
-              <TabsContent value="prepayment" data-[state=inactive]:hidden>
+              <TabsContent value="prepayment" className="data-[state=inactive]:hidden">
                 <PrepaymentModelsTab />
               </TabsContent>
-              <TabsContent value="pricing" data-[state=inactive]:hidden>
+              <TabsContent value="pricing" className="data-[state=inactive]:hidden">
                 <PricingYieldTab />
               </TabsContent>
-              <TabsContent value="credit" data-[state=inactive]:hidden>
+              <TabsContent value="credit" className="data-[state=inactive]:hidden">
                 <CreditEnhancementTab />
               </TabsContent>
             </motion.div>

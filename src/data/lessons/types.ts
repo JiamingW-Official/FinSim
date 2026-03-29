@@ -11,6 +11,7 @@ export interface TeachStep {
   type: "teach";
   title: string;
   content: string;
+  bullets?: string[];
   visual?: VisualType;
   highlight?: string[];
 }
@@ -35,7 +36,7 @@ export interface QuizTFStep {
 export interface QuizScenarioStep {
   type: "quiz-scenario";
   scenario: string;
-  question: string;
+  question?: string;
   options: [string, string, string, string];
   correctIndex: number;
   explanation: string;

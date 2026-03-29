@@ -2146,7 +2146,7 @@ export default function PrivateMarketsPage() {
         {/* Summary stats */}
         <div className="flex flex-wrap gap-3 mt-4">
           <StatChip label="Global PE AUM" value="$5.8T" color="blue" />
-          <StatChip label="Global VC AUM" value="$1.1T" color="purple" />
+          <StatChip label="Global VC AUM" value="$1.1T" color="blue" />
           <StatChip label="Hedge Fund AUM" value="$4.2T" color="green" />
           <StatChip label="PE Median IRR" value="18.4%" color="green" />
           <StatChip label="Avg Lockup" value="7-10yr" color="amber" />
@@ -2253,7 +2253,7 @@ export default function PrivateMarketsPage() {
             <PowerLawSVG />
             <div className="grid grid-cols-3 gap-3 mt-4">
               <StatChip label="Survival Rate" value="~5%" color="amber" />
-              <StatChip label="Unicorn Rate" value="~1 in 100" color="purple" />
+              <StatChip label="Unicorn Rate" value="~1 in 100" color="blue" />
               <StatChip label="Top 10% deals" value="90% of returns" color="blue" />
             </div>
           </div>

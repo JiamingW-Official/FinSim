@@ -562,11 +562,11 @@ function CatBondsTab() {
               purple: { border: "border-purple-500/20", bg: "bg-purple-500/5", title: "text-purple-400", badge: "bg-purple-500/10 text-purple-400 border-purple-500/20" },
             }[t.color];
             return (
-              <div key={t.type} className={cn("rounded-lg border p-4", colorCls.border, colorCls.bg)}>
-                <div className={cn("text-sm font-semibold mb-1.5", colorCls.title)}>{t.type} Trigger</div>
+              <div key={t.type} className={cn("rounded-lg border p-4", colorCls?.border, colorCls?.bg)}>
+                <div className={cn("text-sm font-semibold mb-1.5", colorCls?.title)}>{t.type} Trigger</div>
                 <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{t.desc}</p>
                 <div className="flex gap-2 flex-wrap">
-                  <span className={cn("rounded px-2 py-0.5 text-xs border", colorCls.badge)}>+ {t.pro}</span>
+                  <span className={cn("rounded px-2 py-0.5 text-xs border", colorCls?.badge)}>+ {t.pro}</span>
                   <span className="rounded px-2 py-0.5 text-xs bg-red-500/10 text-red-400 border border-red-500/20">- {t.con}</span>
                 </div>
               </div>
@@ -763,7 +763,7 @@ function ILSTab() {
                 };
                 return (
                   <tr key={item.name} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-muted/10" : "")}>
-                    <td className={cn("px-4 py-2.5 font-medium", colorMap[item.color])}>{item.name}</td>
+                    <td className={cn("px-4 py-2.5 font-medium", colorMap[item.color as keyof typeof colorMap])}>{item.name}</td>
                     <td className="px-4 py-2.5 text-muted-foreground font-mono text-xs">{item.size}</td>
                     <td className="px-4 py-2.5 text-muted-foreground text-xs">{item.liquidity}</td>
                     <td className="px-4 py-2.5 text-muted-foreground text-xs">{item.collateral}</td>
@@ -806,9 +806,9 @@ function ILSTab() {
               amber: { border: "border-amber-500/20", bg: "bg-amber-500/5", icon: "text-amber-400" },
             }[item.color];
             return (
-              <div key={item.title} className={cn("rounded-lg border p-4", cls.border, cls.bg)}>
+              <div key={item.title} className={cn("rounded-lg border p-4", cls?.border, cls?.bg)}>
                 <div className="flex items-center gap-2 mb-2">
-                  <Icon size={14} className={cls.icon} />
+                  <Icon size={14} className={cls?.icon} />
                   <span className="text-sm font-semibold text-foreground">{item.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -1015,16 +1015,16 @@ function CyclesTab() {
               red: { border: "border-red-500/20", bg: "bg-red-500/5", icon: "text-red-400", title: "text-red-400", badge: "bg-red-500/10 text-red-400 border-red-500/20" },
             }[phase.color];
             return (
-              <div key={phase.phase} className={cn("rounded-lg border p-4", cls.border, cls.bg)}>
+              <div key={phase.phase} className={cn("rounded-lg border p-4", cls?.border, cls?.bg)}>
                 <div className="flex items-center gap-2 mb-3">
-                  <Icon size={16} className={cls.icon} />
-                  <span className={cn("text-sm font-semibold", cls.title)}>{phase.phase}</span>
+                  <Icon size={16} className={cls?.icon} />
+                  <span className={cn("text-sm font-semibold", cls?.title)}>{phase.phase}</span>
                 </div>
                 <p className="text-xs text-muted-foreground mb-2 italic">{phase.cause}</p>
                 <ul className="space-y-1">
                   {phase.signs.map((s) => (
                     <li key={s} className="text-xs text-muted-foreground flex items-start gap-1">
-                      <span className={cn("mt-0.5", cls.icon)}>•</span>{s}
+                      <span className={cn("mt-0.5", cls?.icon)}>•</span>{s}
                     </li>
                   ))}
                 </ul>
@@ -1052,13 +1052,13 @@ function CyclesTab() {
         <InfoBox title="Post-2017 Harvey/Irma/Maria Hardening" variant="amber">
           2017 was the costliest year in reinsurance history (~$135B insured losses). Rates spiked 20–50% in affected lines (Florida wind, Caribbean, US hurricane). ILS funds saw major losses; sidecars wound down. Market hardened through 2019 before softening on absence of major 2018–2020 events.
         </InfoBox>
-        <InfoBox title="Post-2022 Ian + Inflation Hardening" variant="red">
+        <InfoBox title="Post-2022 Ian + Inflation Hardening" variant="amber">
           Hurricane Ian ($60B insured loss) combined with social inflation, litigation funding, and construction cost inflation drove the sharpest global rate hardening in 20 years. January 2023 reinsurance renewals saw 40–60% rate increases on Florida property risk; some cedents struggled to place coverage.
         </InfoBox>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <InfoBox title="Florida Market Crisis" variant="red">
+        <InfoBox title="Florida Market Crisis" variant="amber">
           Florida's Citizens Property Insurance (state insurer of last resort) grew to 1.4M policies by 2023 as private insurers exited. Six Florida-domiciled insurers became insolvent 2021–2022. Root causes: assignment of benefits (AOB) abuse, litigation costs, and reinsurance unavailability. Depopulation of Citizens became a key policy priority.
         </InfoBox>
         <InfoBox title="Climate Change &amp; Model Divergence" variant="amber">

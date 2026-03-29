@@ -1206,7 +1206,7 @@ function SovereignDebtTab() {
             <div className="bg-zinc-800/50 rounded p-2">
               <div className="text-cyan-400 font-semibold mb-1">CDS as Distress Signal</div>
               <div className="text-zinc-400 leading-tight">
-                Sovereign CDS spreads >300bps = elevated risk. >500bps = distress. >1000bps = near-default. CDS basis trade: buy bonds, buy CDS for arb.
+                Sovereign CDS spreads &gt;300bps = elevated risk. &gt;500bps = distress. &gt;1000bps = near-default. CDS basis trade: buy bonds, buy CDS for arb.
               </div>
             </div>
             <div className="bg-zinc-800/50 rounded p-2">

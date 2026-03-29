@@ -1061,16 +1061,16 @@ export default function MultiStrategyPage() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
             >
-              <TabsContent value="pods" data-[state=inactive]:hidden>
+              <TabsContent value="pods" className="data-[state=inactive]:hidden">
                 <PodStructureTab />
               </TabsContent>
-              <TabsContent value="allocation" data-[state=inactive]:hidden>
+              <TabsContent value="allocation" className="data-[state=inactive]:hidden">
                 <StrategyAllocationTab />
               </TabsContent>
-              <TabsContent value="risk" data-[state=inactive]:hidden>
+              <TabsContent value="risk" className="data-[state=inactive]:hidden">
                 <RiskManagementTab />
               </TabsContent>
-              <TabsContent value="economics" data-[state=inactive]:hidden>
+              <TabsContent value="economics" className="data-[state=inactive]:hidden">
                 <EconomicsTab />
               </TabsContent>
             </motion.div>

@@ -952,16 +952,16 @@ export default function PrivateCreditPage() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18 }}
             >
-              <TabsContent value="direct" data-[state=inactive]:hidden>
+              <TabsContent value="direct" className="data-[state=inactive]:hidden">
                 {activeTab === "direct" && <DirectLendingTab />}
               </TabsContent>
-              <TabsContent value="mezz" data-[state=inactive]:hidden>
+              <TabsContent value="mezz" className="data-[state=inactive]:hidden">
                 {activeTab === "mezz" && <MezzanineTab />}
               </TabsContent>
-              <TabsContent value="distressed" data-[state=inactive]:hidden>
+              <TabsContent value="distressed" className="data-[state=inactive]:hidden">
                 {activeTab === "distressed" && <DistressedTab />}
               </TabsContent>
-              <TabsContent value="dynamics" data-[state=inactive]:hidden>
+              <TabsContent value="dynamics" className="data-[state=inactive]:hidden">
                 {activeTab === "dynamics" && <MarketDynamicsTab />}
               </TabsContent>
             </motion.div>

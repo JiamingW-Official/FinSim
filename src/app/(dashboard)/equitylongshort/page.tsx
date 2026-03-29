@@ -195,6 +195,7 @@ function PortfolioStructureTab() {
   const barH = 32;
   const barY = (svgH - barH) / 2;
 
+  const maxBar = 140;
   const bookTypes = [
     { label: "130/30", long: 130, short: 30, net: 100, color: "#6366f1" },
     { label: "Market Neutral", long: 100, short: 100, net: 0, color: "#22c55e" },
@@ -230,7 +231,6 @@ function PortfolioStructureTab() {
           <svg viewBox={`0 0 ${svgW} ${svgH + 40}`} className="w-full" style={{ maxHeight: 200 }}>
             {bookTypes.map((bt, i) => {
               const y = 10 + i * 38;
-              const maxBar = 140;
               const longW = (bt.long / 150) * maxBar;
               const shortW = (bt.short / 150) * maxBar;
               const netX = 330 + (bt.net / 150) * 60;
@@ -630,7 +630,7 @@ function ShortSellingTab() {
             <text x={toX(0)} y={toY(4) - 6} fontSize={8} fill="#9ca3af">$4</text>
             <text x={toX(13) - 6} y={toY(483) - 6} fontSize={8} fill="#a78bfa" fontWeight="bold">$483</text>
             <circle cx={toX(13)} cy={toY(483)} r={4} fill="#a78bfa" />
-            <line x1={20} x2={sqW - 20} y1={sqH - 15} x2={sqW - 20} y2={sqH - 15} stroke="#374151" strokeWidth={0.5} />
+            <line x1={20} y1={sqH - 15} x2={sqW - 20} y2={sqH - 15} stroke="#374151" strokeWidth={0.5} />
           </svg>
         </CardContent>
       </Card>
@@ -732,7 +732,8 @@ function PairsTradingTab() {
     }
   });
   if (cur) {
-    (cur.type === "long" ? longZones : shortZones).push({ x1: toX2(cur.start), x2: toX2(pairsBars.length - 1) });
+    const finalCur = cur as { type: string; start: number };
+    (finalCur.type === "long" ? longZones : shortZones).push({ x1: toX2(finalCur.start), x2: toX2(pairsBars.length - 1) });
   }
 
   const y0 = toY2(0);

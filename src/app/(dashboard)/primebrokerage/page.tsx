@@ -730,7 +730,7 @@ export default function PrimeBrokeragePage() {
         </TabsList>
 
         {/* ── Tab 1: Securities Lending ───────────────────────────────────────── */}
-        <TabsContent value="lending" data-[state=inactive]:hidden>
+        <TabsContent value="lending" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             {activeTab === "lending" && (
               <motion.div key="lending" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
@@ -867,7 +867,7 @@ export default function PrimeBrokeragePage() {
         </TabsContent>
 
         {/* ── Tab 2: Margin & Leverage ────────────────────────────────────────── */}
-        <TabsContent value="margin" data-[state=inactive]:hidden>
+        <TabsContent value="margin" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             {activeTab === "margin" && (
               <motion.div key="margin" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
@@ -1004,7 +1004,7 @@ export default function PrimeBrokeragePage() {
         </TabsContent>
 
         {/* ── Tab 3: Rehypothecation ──────────────────────────────────────────── */}
-        <TabsContent value="rehypo" data-[state=inactive]:hidden>
+        <TabsContent value="rehypo" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             {activeTab === "rehypo" && (
               <motion.div key="rehypo" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
@@ -1124,7 +1124,7 @@ export default function PrimeBrokeragePage() {
         </TabsContent>
 
         {/* ── Tab 4: PB Services ──────────────────────────────────────────────── */}
-        <TabsContent value="services" data-[state=inactive]:hidden>
+        <TabsContent value="services" className="data-[state=inactive]:hidden">
           <AnimatePresence mode="wait">
             {activeTab === "services" && (
               <motion.div key="services" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">

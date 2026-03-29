@@ -891,7 +891,7 @@ function buildRollScenarios(): RollScenario[] {
   const origPut = bsPut(95, 95, 7, 0.32);
   const rolledPut = bsPut(95, 92, 35, 0.30);
   const calFront = bsCall(100, 100, 7, 0.35);
-  const calBack = bsCall(100, 35, 0.28);
+  const calBack = bsCall(100, 100, 35, 0.28);
   const origCC = bsCall(100, 105, 5, 0.30);
   const rolledCC = bsCall(100, 108, 30, 0.28);
   return [
@@ -925,8 +925,8 @@ function buildRollScenarios(): RollScenario[] {
       title: "Calendar Roll (Front Month to Back Month)",
       description: "Near-expiry short front-month option rolls to the back month. Extend the trade duration and collect more premium.",
       original: { strike: 100, expiry: 7, premium: calFront.price, label: "100C / 7 DTE (front)" },
-      rolled: { strike: 100, expiry: 35, premium: calBack, label: "100C / 35 DTE (back)" },
-      creditDebit: calBack - calFront.price,
+      rolled: { strike: 100, expiry: 35, premium: calBack.price, label: "100C / 35 DTE (back)" },
+      creditDebit: calBack.price - calFront.price,
       rationale: "Let front month expire or buy it back cheaply, then sell the next month's option.",
       tips: [
         "Ideal when front month IV > back month IV (term structure in backwardation)",

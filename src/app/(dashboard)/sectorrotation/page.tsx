@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   TrendingUp,
@@ -1104,7 +1104,7 @@ function FactorRotation() {
                 "bg-slate-900 border-slate-700/50 transition-all",
                 isCurrent && "ring-1",
               )}
-              style={isCurrent ? { ringColor: factor.color, borderColor: factor.color } : {}}
+              style={(isCurrent ? { ringColor: factor.color, borderColor: factor.color } : {}) as React.CSSProperties}
             >
               <CardHeader className="pb-2 pt-4 px-4">
                 <div className="flex items-center justify-between">

@@ -26,6 +26,7 @@ import {
   Clock,
   ChevronRight,
   Landmark,
+  Calculator,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -306,8 +307,8 @@ function ReadinessTab() {
         <Card className="p-4 space-y-4">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Your Information</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {ageInput("currentAge", "Current Age", 20, 70, 1)}
-            {ageInput("retirementAge", "Target Retirement Age", 50, 80, 1)}
+            {ageInput("currentAge", "Current Age", 20, 70)}
+            {ageInput("retirementAge", "Target Retirement Age", 50, 80)}
             {numInput("currentSavings", "Current Retirement Savings", 0, 2_000_000, 5000)}
             {numInput("monthlyContribution", "Monthly Contribution", 0, 10_000, 100)}
             {numInput("expectedReturn", "Expected Annual Return", 1, 15, 0.5)}

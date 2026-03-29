@@ -1592,16 +1592,16 @@ export default function StructuredProductsPage() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
             >
-              <TabsContent value="abs" data-[state=inactive]:hidden>
+              <TabsContent value="abs" className="data-[state=inactive]:hidden">
                 <AbsMbsTab />
               </TabsContent>
-              <TabsContent value="cmos" data-[state=inactive]:hidden>
+              <TabsContent value="cmos" className="data-[state=inactive]:hidden">
                 <CmosTab />
               </TabsContent>
-              <TabsContent value="equity" data-[state=inactive]:hidden>
+              <TabsContent value="equity" className="data-[state=inactive]:hidden">
                 <EquityNotesTab />
               </TabsContent>
-              <TabsContent value="credit" data-[state=inactive]:hidden>
+              <TabsContent value="credit" className="data-[state=inactive]:hidden">
                 <StructuredCreditTab />
               </TabsContent>
             </motion.div>

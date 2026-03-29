@@ -1114,7 +1114,6 @@ export default function BehavioralLabPage() {
                       step={10}
                       value={exp2Estimate}
                       onValueChange={setExp2Estimate}
-                      disabled={exp2Submitted}
                     />
                     <div className="flex justify-between text-xs text-zinc-600 mt-1">
                       <span>$50B</span>
@@ -1226,7 +1225,6 @@ export default function BehavioralLabPage() {
                     onValueChange={(v) => {
                       if (v[0] < exp3High[0]) setExp3Low(v);
                     }}
-                    disabled={exp3Submitted}
                   />
                 </div>
                 <div>
@@ -1242,7 +1240,6 @@ export default function BehavioralLabPage() {
                     onValueChange={(v) => {
                       if (v[0] > exp3Low[0]) setExp3High(v);
                     }}
-                    disabled={exp3Submitted}
                   />
                 </div>
 

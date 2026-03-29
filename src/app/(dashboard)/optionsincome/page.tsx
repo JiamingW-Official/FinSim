@@ -115,10 +115,7 @@ function PayoffSVG({ points, breakevens }: { points: PayoffPoint[]; breakevens: 
   // Positive fill
   const posPath =
     points
-      .filter((_, i, arr) => {
-        const prev = arr[i - 1];
-        return p => p.pnl >= 0;
-      })
+      .filter((p: { price: number; pnl: number }) => p.pnl >= 0)
       .length > 0
       ? `${pathD} L${toSvg(priceMax, priceMin, priceMax, "x").toFixed(1)},${zeroY.toFixed(1)} L${PAD.left.toFixed(1)},${zeroY.toFixed(1)} Z`
       : "";

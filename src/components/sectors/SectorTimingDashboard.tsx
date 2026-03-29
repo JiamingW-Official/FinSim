@@ -674,7 +674,7 @@ function RiskBarometer({ score }: { score: number }) {
   const needleAngle = 180 + ((score + 1) / 2) * 180;
   const np = polarToXY(cx, cy, r * 0.78, needleAngle);
 
-  function arcSeg(startD: number, endD: number, color: string) {
+  function arcSeg(startD: number, endD: number, color: string = "") {
     const s = polarToXY(cx, cy, r, startD);
     const e = polarToXY(cx, cy, r, endD);
     const si = polarToXY(cx, cy, r - 14, startD);

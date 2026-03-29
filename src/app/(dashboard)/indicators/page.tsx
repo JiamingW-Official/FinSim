@@ -418,6 +418,7 @@ function DonutChart({
   size = 160,
 }: {
   segments: { label: string; pct: number; color: string }[];
+  size?: number;
 }) {
   const posSegs = segments.filter(s => s.pct > 0);
   const total = posSegs.reduce((s, seg) => s + seg.pct, 0);

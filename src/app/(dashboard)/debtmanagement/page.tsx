@@ -1130,7 +1130,7 @@ function MortgageOptimizationTab() {
               <div className="flex justify-between">
                 <span className="text-neutral-400">Breakeven for 1 pt:</span>
                 <span className="text-neutral-200">
-                  {fmt(monthlyPayment(loanAmount, rate30 - 0.25, 360)) > 0
+                  {monthlyPayment(loanAmount, rate30 - 0.25, 360) > 0
                     ? `${Math.ceil((loanAmount * 0.01) / (mp30 - monthlyPayment(loanAmount, rate30 - 0.25, 360)))} months`
                     : "N/A"}
                 </span>
@@ -1195,6 +1195,8 @@ function CreditBehavioralTab() {
     { name: "Other", monthly: 800, bestCard: "Citi Double Cash", cashback: 0.02, icon: "💳" },
   ];
   const totalRewards = spendCategories.reduce((s, c) => s + c.monthly * c.cashback * 12, 0);
+
+  const totalMinPayment = DEBT_DEFAULTS.reduce((s, d) => s + d.minPayment, 0);
 
   // Net worth impact SVG
   const netWorthYears = 10;
@@ -1616,16 +1618,16 @@ export default function DebtManagementPage() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
           >
-            <TabsContent value="overview" data-[state=inactive]:hidden>
+            <TabsContent value="overview" className="data-[state=inactive]:hidden">
               <DebtOverviewTab />
             </TabsContent>
-            <TabsContent value="strategies" data-[state=inactive]:hidden>
+            <TabsContent value="strategies" className="data-[state=inactive]:hidden">
               <PayoffStrategiesTab />
             </TabsContent>
-            <TabsContent value="mortgage" data-[state=inactive]:hidden>
+            <TabsContent value="mortgage" className="data-[state=inactive]:hidden">
               <MortgageOptimizationTab />
             </TabsContent>
-            <TabsContent value="credit" data-[state=inactive]:hidden>
+            <TabsContent value="credit" className="data-[state=inactive]:hidden">
               <CreditBehavioralTab />
             </TabsContent>
           </motion.div>

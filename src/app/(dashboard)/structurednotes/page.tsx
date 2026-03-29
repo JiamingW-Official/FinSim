@@ -59,6 +59,7 @@ interface ScenarioRow {
 
 interface RiskFactor {
   name: string;
+  label?: string;
   score: number;
   description: string;
   color: string;

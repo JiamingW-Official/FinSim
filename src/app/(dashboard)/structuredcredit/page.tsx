@@ -1053,7 +1053,7 @@ export default function StructuredCreditPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0 space-y-2 text-xs text-muted-foreground">
-                  {scenario === "base"
+                  {(scenario === "base"
                     ? [
                         "Default rate: 2% annually (historical average)",
                         "Recovery rate: 68% on defaulted loans",
@@ -1069,8 +1069,8 @@ export default function StructuredCreditPage() {
                         "Equity receives zero distribution",
                         "BB receives partial interest only",
                         "AAA/AA/A/BBB fully protected by subordination",
-                      ]}
-                    .map((line, i) => (
+                      ]
+                  ).map((line, i) => (
                     <div key={i} className="flex items-start gap-2">
                       {scenario === "base" ? (
                         <TrendingUp className="w-3 h-3 text-emerald-400 mt-0.5 flex-shrink-0" />
