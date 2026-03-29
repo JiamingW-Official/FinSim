@@ -74,7 +74,7 @@ function BrowseTab() {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       {/* Search */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
@@ -87,7 +87,7 @@ function BrowseTab() {
       </div>
 
       {/* Deck filter chips */}
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-1">
         {DECK_FILTERS.map((d) => (
           <button
             key={d.id}
@@ -131,7 +131,7 @@ function BrowseTab() {
                 style={{ minHeight: 100 }}
               >
                 {/* Front */}
-                <div className="card-flip-front rounded-lg border border-border bg-card p-3 flex flex-col gap-2">
+                <div className="card-flip-front rounded-lg border border-border bg-card p-8 flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     {cat && (
                       <span
@@ -168,7 +168,7 @@ function BrowseTab() {
                 </div>
 
                 {/* Back */}
-                <div className="card-flip-back rounded-lg border border-primary/20 bg-card p-3 flex flex-col gap-2">
+                <div className="card-flip-back rounded-lg border border-primary/20 bg-card p-8 flex flex-col gap-2">
                   {cat && (
                     <span
                       className={cn(
@@ -290,9 +290,9 @@ function StatsTab() {
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-4">
       {/* Summary cards */}
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
         <StatCard label="Today" value={String(todayCards)} sub="cards reviewed" />
         <StatCard
           label="Total Reviewed"
@@ -326,7 +326,7 @@ function StatsTab() {
       </div>
 
       {/* Cards due */}
-      <div className="rounded-lg border border-border/50 bg-card px-4 py-3">
+      <div className="rounded-lg border border-border/50 bg-card px-3 py-2">
         <p className="text-xs font-bold text-muted-foreground">
           Cards due for review
         </p>
@@ -365,9 +365,9 @@ function StatsTab() {
       </div>
 
       {/* Performance by deck */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
-        <h3 className="mb-3 text-xs font-semibold">Performance by Deck</h3>
-        <div className="flex flex-col gap-2.5">
+      <div className="rounded-lg border border-border/50 bg-card p-3">
+        <h3 className="mb-2 text-xs font-semibold">Performance by Deck</h3>
+        <div className="flex flex-col gap-2">
           {deckStats.map(({ cat, label, color, total, mastered, pct }) => (
             <div key={cat} className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
@@ -409,7 +409,7 @@ function StatCard({
   valueColor?: string;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-lg border border-border/50 bg-card px-3 py-2.5">
+    <div className="flex flex-col gap-0.5 rounded-lg border border-border/50 bg-card px-2 py-2">
       <span className="text-[11px] font-bold text-muted-foreground">
         {label}
       </span>
@@ -475,7 +475,7 @@ export default function FlashcardsPage() {
           value="study"
           className="flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden m-0 mt-0"
         >
-          <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-4 py-3">
+          <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-4 py-3">
             <SessionStatsPanel stats={sessionStats} />
             <div className="flex flex-1 flex-col">
               <AdaptiveFlashcards onSessionStats={setSessionStats} />

@@ -610,21 +610,50 @@ export default function ProfilePage() {
   return (
     <div className="flex h-full flex-col overflow-y-auto bg-background">
       <div className="mx-auto w-full max-w-3xl space-y-4 p-4 pb-16">
-        {/* Header */}
-        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-bold tracking-tight">Investor Profile</h1>
-            <p className="text-xs text-muted-foreground">Personalized analysis & learning path</p>
+        {/* HERO — Player Stats/Level */}
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+          className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 space-y-3"
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-lg font-bold tracking-tight">Investor Profile</h1>
+              <p className="text-xs text-muted-foreground">Personalized analysis & learning path</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary" className="gap-1 text-sm font-bold px-3 py-1">
+                <Zap className="h-3.5 w-3.5 text-amber-400" />
+                Level {level}
+              </Badge>
+              <Badge variant="outline" className="gap-1 text-xs">
+                <Flame className="h-3 w-3 text-orange-400" />
+                {loginStreak}d streak
+              </Badge>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="gap-1 text-xs">
-              <Zap className="h-3 w-3 text-amber-400" />
-              Level {level}
-            </Badge>
-            <Badge variant="outline" className="gap-1 text-xs">
-              <Flame className="h-3 w-3 text-orange-400" />
-              {loginStreak}d streak
-            </Badge>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="rounded-lg border border-border bg-background p-3">
+              <p className="text-[11px] text-muted-foreground">XP</p>
+              <p className="text-base font-bold font-mono tabular-nums">{xp.toLocaleString()}</p>
+            </div>
+            <div className="rounded-lg border border-border bg-background p-3">
+              <p className="text-[11px] text-muted-foreground">Win Rate</p>
+              <p className="text-base font-bold font-mono tabular-nums">{winRate.toFixed(1)}%</p>
+            </div>
+            <div className="rounded-lg border border-border bg-background p-3">
+              <p className="text-[11px] text-muted-foreground">Trades</p>
+              <p className="text-base font-bold font-mono tabular-nums">{trades.length}</p>
+            </div>
+            <div className="rounded-lg border border-border bg-background p-3">
+              <p className="text-[11px] text-muted-foreground">Lessons</p>
+              <p className="text-base font-bold font-mono tabular-nums">{completedLessons.length}</p>
+            </div>
+          </div>
+          <div>
+            <div className="flex justify-between text-xs mb-1">
+              <span className="text-muted-foreground">Level {level}</span>
+              <span className="text-muted-foreground">Level {nextLevel}</span>
+            </div>
+            <Progress value={levelProgress.pct} className="h-2" />
           </div>
         </motion.div>
 

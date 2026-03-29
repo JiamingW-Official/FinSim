@@ -28,7 +28,7 @@ export function DailyTab({ onSelectChallenge }: DailyTabProps) {
   const tipIdx = useMemo(() => Math.floor(Date.now() / (1000 * 60 * 60)) % DAILY_TIPS.length, []);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       {/* Progress + tip */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">

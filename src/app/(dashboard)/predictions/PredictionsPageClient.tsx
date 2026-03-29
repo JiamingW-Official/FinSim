@@ -1063,6 +1063,9 @@ export function PredictionsPageClient() {
                     </div>
                   )}
 
+                  {/* Buffer between featured market and list */}
+                  <div className="my-6 border-t border-border/10" />
+
                   {/* ── ALL MARKETS — compact list ── */}
                   <div className="mb-2">
                     <span className="text-xs text-muted-foreground/50">

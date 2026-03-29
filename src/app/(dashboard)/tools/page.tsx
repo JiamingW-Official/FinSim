@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 // ─── Formatting helpers ────────────────────────────────────────────────────
 
@@ -2190,12 +2191,11 @@ export default function ToolsPage() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-3 px-6 pt-5 pb-5 border-b border-border/50 shrink-0">
+      <div className="flex items-center gap-3 px-6 pt-4 pb-3 border-b border-border/50 shrink-0">
         <div>
           <h1 className="text-base font-semibold leading-tight">Financial Tools</h1>
-          <p className="text-sm text-muted-foreground mt-1 max-w-xl leading-relaxed">
+          <p className="text-xs text-muted-foreground mt-0.5">
             Interactive calculators for wealth planning, taxes, and macro analysis.
-            All projections are simulated for educational purposes.
           </p>
         </div>
         <Badge variant="secondary" className="ml-auto text-xs shrink-0">
@@ -2203,23 +2203,46 @@ export default function ToolsPage() {
         </Badge>
       </div>
 
-      {/* Tabs */}
+      {/* HERO — Featured Tool (Digital Twin) when active */}
+      {activeTab === "twin" && (
+        <div className="shrink-0 mx-6 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-bold text-foreground">Digital Twin</p>
+              <p className="text-xs text-muted-foreground">Project your wealth trajectory with Monte Carlo simulations, retirement planning, and FI tracking.</p>
+            </div>
+            <Badge className="bg-primary/10 text-primary border-primary/30 text-xs">Featured</Badge>
+          </div>
+        </div>
+      )}
+
+      {/* Tool selector — compact grid */}
+      <div className="shrink-0 px-6 pt-3 pb-1">
+        <div className="flex flex-wrap gap-1.5">
+          {TABS.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setActiveTab(t.id)}
+              className={cn(
+                "rounded-md px-2.5 py-1 text-xs font-semibold transition-colors",
+                activeTab === t.id
+                  ? "bg-primary/15 text-primary border border-primary/30"
+                  : "bg-muted/30 text-muted-foreground border border-border hover:text-foreground"
+              )}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Tabs content */}
       <Tabs
         value={activeTab}
         onValueChange={(v) => setActiveTab(v as Tab)}
         className="flex flex-col flex-1 min-h-0"
       >
-        <div className="px-6 pt-3 shrink-0">
-          <TabsList className="h-8">
-            {TABS.map((t) => (
-              <TabsTrigger key={t.id} value={t.id} className="text-xs h-7 px-3">
-                {t.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </div>
-
-        <div className="flex-1 min-h-0 overflow-y-auto px-6 pb-6 pt-4">
+        <div className="flex-1 min-h-0 overflow-y-auto px-6 pb-6 pt-3">
           <TabsContent value="twin" className="mt-0 data-[state=inactive]:hidden">
             <DigitalTwinTab />
           </TabsContent>

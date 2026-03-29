@@ -357,6 +357,9 @@ export default function BacktestPage() {
             {/* Main content area — switches between builder-first and results-first */}
             {hasResult ? (
               /* ── Results-dominant layout ─────────────────────────────── */
+              <>
+              {/* Buffer between summary bar and results */}
+              <div className="h-6" />
               <div className="flex flex-1 overflow-hidden">
                 {/* Results panel takes the hero position (left, wider) */}
                 <div className="flex-1 overflow-hidden">
@@ -380,6 +383,7 @@ export default function BacktestPage() {
                   />
                 </div>
               </div>
+              </>
             ) : (
               /* ── Builder-first layout (no results) ──────────────────── */
               <div className="flex flex-1 overflow-hidden">

@@ -112,6 +112,9 @@ export default function OptionsPage() {
       {/* Stats bar */}
       <ChainStatsBar analytics={analytics} spotPrice={spotPrice} isLoading={isLoading} />
 
+      {/* Buffer between stats bar and chain table */}
+      <div className="h-6 shrink-0" />
+
       {/* 4-tab layout */}
       <Tabs
         value={activeTab}
@@ -193,8 +196,8 @@ export default function OptionsPage() {
                   </div>
                 </TabsContent>
 
-                {/* Strategy */}
-                <TabsContent value="strategy" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden">
+                {/* Strategy — more spacious than chain table */}
+                <TabsContent value="strategy" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden p-3">
                   <StrategyBuilderV2
                     chain={chain}
                     spotPrice={spotPrice}
@@ -205,7 +208,7 @@ export default function OptionsPage() {
                 </TabsContent>
 
                 {/* Analysis — charts + vol surface + margin calc */}
-                <TabsContent value="analysis" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
+                <TabsContent value="analysis" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-1">
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setAnalysisSubTab("charts")}
@@ -251,7 +254,7 @@ export default function OptionsPage() {
                 </TabsContent>
 
                 {/* Greeks — Lab + Monitor sub-tabs */}
-                <TabsContent value="greeks" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
+                <TabsContent value="greeks" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-0.5">
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setGreeksSubTab("greeks-lab")}
@@ -288,7 +291,7 @@ export default function OptionsPage() {
                 </TabsContent>
 
                 {/* Flow — Unusual Activity + Flow Analysis sub-tabs */}
-                <TabsContent value="flow" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
+                <TabsContent value="flow" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden pt-1.5">
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setFlowSubTab("unusual")}
@@ -312,16 +315,16 @@ export default function OptionsPage() {
                             onSelectContract={handleSelectContract}
                           />
                         </div>
-                        <div className="border-t border-border/50 px-3 py-3">
-                          <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
+                        <div className="border-t border-border/50 px-3 pt-4 pb-3">
+                          <h3 className="mb-1.5 text-[11px] font-semibold text-foreground/80">
                             Options Flow Heatmap
                           </h3>
-                          <p className="mb-3 text-xs text-muted-foreground">
+                          <p className="mb-2 text-xs text-muted-foreground">
                             Net call/put dollar flow per ticker and expiry. Green = net call buying, Red = net put buying.
                           </p>
                           <FlowHeatmap items={unusualActivity} />
                         </div>
-                        <div className="border-t border-border/50 px-3 py-3">
+                        <div className="border-t border-border/50 px-3 pt-3 pb-4">
                           <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
                             Simulated Institutional Flow
                           </h3>

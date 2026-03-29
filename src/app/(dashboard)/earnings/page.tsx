@@ -423,70 +423,75 @@ function CalendarTab() {
 
   return (
     <div className="space-y-6">
-      {/* This Week section */}
-      <div>
-        <h2 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-          <Clock className="h-4 w-4 text-primary" />
-          Upcoming Earnings — Next 5 Trading Days
-        </h2>
-        <div className="space-y-2">
-          {upcoming.map((e, i) => (
-            <div
-              key={i}
-              className="bg-card border border-border rounded-lg p-3 flex flex-col sm:flex-row sm:items-center gap-3"
-            >
-              {/* Ticker + time */}
-              <div className="flex items-center gap-3 min-w-[160px]">
-                <div className={cn("px-2 py-0.5 rounded text-xs font-bold", catColor(e.category))}>
+      {/* HERO — Next Earnings Event */}
+      {upcoming.length > 0 && (
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 space-y-3">
+          <h2 className="text-sm font-bold text-foreground flex items-center gap-2">
+            <Clock className="h-4 w-4 text-primary" />
+            Next Earnings Event
+          </h2>
+          {(() => {
+            const e = upcoming[0];
+            return (
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className={cn("px-3 py-1 rounded-md text-sm font-bold", catColor(e.category))}>
+                    {e.ticker}
+                  </div>
+                  <div>
+                    <div className="text-base font-bold text-foreground">{e.company}</div>
+                    <div className="text-xs text-muted-foreground">{e.day} &middot; {e.time === "BMO" ? "Before Market Open" : "After Market Close"}</div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                  {[
+                    { label: "Est. EPS", value: `$${e.epsEstimate.toFixed(2)}`, color: "" },
+                    { label: "Whisper", value: `$${e.whisperEPS.toFixed(2)}`, color: "text-emerald-400" },
+                    { label: "Last EPS", value: `$${e.lastEPS.toFixed(2)}`, color: "" },
+                    { label: "Impl. Move", value: `\u00B1${e.impliedMove}%`, color: "text-amber-400" },
+                    { label: "Beat Rate", value: `${e.beatRate}%`, color: e.beatRate >= 70 ? "text-emerald-400" : e.beatRate >= 55 ? "text-amber-400" : "text-red-400" },
+                  ].map(({ label, value, color }) => (
+                    <div key={label} className="rounded-lg border border-border bg-background p-3">
+                      <p className="text-[11px] text-muted-foreground">{label}</p>
+                      <p className={cn("text-sm font-bold font-mono", color)}>{value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      )}
+
+      {/* Compact list — Remaining Upcoming Earnings */}
+      {upcoming.length > 1 && (
+        <div>
+          <h2 className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-2">
+            <Clock className="h-3.5 w-3.5" />
+            Other Upcoming Earnings
+          </h2>
+          <div className="space-y-1">
+            {upcoming.slice(1).map((e, i) => (
+              <div
+                key={i}
+                className="bg-card border border-border rounded-md px-3 py-2 flex items-center gap-3 text-xs"
+              >
+                <div className={cn("px-1.5 py-0.5 rounded text-[11px] font-bold", catColor(e.category))}>
                   {e.ticker}
                 </div>
-                <div>
-                  <div className="text-xs font-medium text-foreground">{e.company}</div>
-                  <div className="text-[11px] text-muted-foreground">{e.day}</div>
-                </div>
+                <span className="text-muted-foreground truncate flex-1">{e.company}</span>
+                <span className="text-[11px] text-muted-foreground">{e.day}</span>
+                <span className="text-[11px] text-muted-foreground">{e.time === "BMO" ? "BMO" : "AMC"}</span>
+                <span className="font-mono text-foreground">Est ${e.epsEstimate.toFixed(2)}</span>
+                <span className="font-mono text-amber-400">&plusmn;{e.impliedMove}%</span>
+                <span className={cn("font-mono", e.beatRate >= 70 ? "text-emerald-400" : e.beatRate >= 55 ? "text-amber-400" : "text-red-400")}>
+                  {e.beatRate}%
+                </span>
               </div>
-
-              {/* Time label */}
-              <div className={cn(
-                "flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold w-fit",
-                e.time === "BMO" ? "bg-primary/10 text-primary" : "bg-primary/10 text-primary"
-              )}>
-                {e.time === "BMO" ? "Before Market Open" : "After Market Close"}
-              </div>
-
-              {/* EPS data */}
-              <div className="flex items-center gap-4 text-xs flex-wrap">
-                <div>
-                  <span className="text-muted-foreground">Est EPS: </span>
-                  <span className="font-mono text-foreground">${e.epsEstimate.toFixed(2)}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Whisper: </span>
-                  <span className="font-mono text-emerald-400">${e.whisperEPS.toFixed(2)}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Last EPS: </span>
-                  <span className="font-mono text-foreground">${e.lastEPS.toFixed(2)}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Impl. Move: </span>
-                  <span className="font-mono text-amber-400">±{e.impliedMove}%</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-muted-foreground">Beat Rate: </span>
-                  <div className="w-16 h-1.5 bg-muted rounded-full overflow-hidden">
-                    <div
-                      className={cn("h-full rounded-full", e.beatRate >= 70 ? "bg-emerald-500" : e.beatRate >= 55 ? "bg-amber-500" : "bg-red-500")}
-                      style={{ width: `${e.beatRate}%` }}
-                    />
-                  </div>
-                  <span className="font-mono text-foreground text-[11px]">{e.beatRate}%</span>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Monthly Calendar */}
       <div>

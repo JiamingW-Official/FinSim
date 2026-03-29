@@ -88,12 +88,9 @@ function SimpleQuestCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.25 }}
       className={cn(
-        "rounded-lg border p-3.5 transition-colors",
-        isComplete
-          ? "border-emerald-500/20 bg-emerald-500/5 opacity-75"
-          : pct > 0
-            ? "border-primary/20 bg-primary/[0.03] hover:border-primary/30"
-            : "border-border bg-card hover:border-border/80",
+        "bg-card/50 rounded-lg p-3 cursor-pointer hover:bg-muted/50 transition-colors",
+        isComplete && "opacity-75 bg-emerald-500/5",
+        pct > 0 && !isComplete && "bg-primary/[0.03]",
       )}
     >
       <div className="flex items-start justify-between gap-3">
@@ -302,8 +299,8 @@ function ActiveQuestsTab() {
 function QuestMapTab() {
   return (
     <div className="space-y-6">
-      {/* Skill tree header */}
-      <div className="rounded-lg border border-border bg-card p-4">
+      {/* Skill tree header — hero card (dominant, accent) */}
+      <div className="border-l-4 border-primary bg-card p-6 rounded-lg">
         <p className="text-xs font-bold text-foreground mb-0.5">Skill Tree</p>
         <p className="text-[11px] text-muted-foreground">
           Complete quests to unlock new branches and milestones on your journey.
@@ -401,10 +398,8 @@ function BranchGrid() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: bi * 0.07 }}
             className={cn(
-              "rounded-lg border p-3.5 transition-colors",
-              isUnlocked
-                ? branch.borderColor
-                : "border-border opacity-50",
+              "bg-card/50 rounded-lg p-3 cursor-pointer hover:bg-muted/50 transition-colors",
+              !isUnlocked && "opacity-50",
             )}
           >
             <div className="flex items-center gap-2 mb-2">
@@ -562,10 +557,10 @@ export default function QuestsPage() {
           </motion.div>
         </div>
 
-        {/* Stats strip */}
+        {/* Stats strip — flow cards (borderless, content-like) */}
         <div className="mt-3 flex items-center gap-2 flex-wrap">
           <motion.div
-            className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5"
+            className="flex items-center gap-1.5 bg-transparent p-3"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -578,7 +573,7 @@ export default function QuestsPage() {
           </motion.div>
 
           <motion.div
-            className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5"
+            className="flex items-center gap-1.5 bg-transparent p-3"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.13 }}
@@ -592,7 +587,7 @@ export default function QuestsPage() {
 
           {dailyStreak > 0 && (
             <motion.div
-              className="flex items-center gap-1.5 rounded-lg border border-orange-500/20 bg-orange-500/5 px-3 py-1.5"
+              className="flex items-center gap-1.5 bg-transparent p-3"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.16 }}

@@ -471,11 +471,11 @@ export default function MarketDashPage() {
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════
-            SECTION 1 — Market Overview Strip
+            HERO — Market Overview
         ════════════════════════════════════════════════════════════════ */}
-        <section>
+        <section className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 space-y-5">
           {/* Ticker tape */}
-          <div className="relative overflow-hidden h-9 bg-card border border-border rounded-xl mb-4 flex items-center">
+          <div className="relative overflow-hidden h-9 bg-background border border-border rounded-xl flex items-center">
             <div className="flex gap-0 animate-[marquee_45s_linear_infinite] whitespace-nowrap">
               {[...stripData, ...stripData].map((item, i) => (
                 <span key={i} className="inline-flex items-center gap-1.5 px-4 text-xs">
@@ -488,33 +488,28 @@ export default function MarketDashPage() {
                 </span>
               ))}
             </div>
-            {/* Fade edges */}
-            <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-card to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-card to-transparent" />
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-background to-transparent" />
           </div>
 
-          {/* Index cards */}
-          <div
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
-          >
+          {/* Index cards — hero sizing */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {indices.map((idx) => (
-              <div key={idx.name}>
-                <Card className="bg-card border-border p-3 hover:border-border transition-colors">
-                  <div className="text-xs text-muted-foreground mb-1 truncate">{idx.name}</div>
-                  <div className="text-base font-semibold tabular-nums">
-                    {idx.value.toLocaleString(undefined, {
-                      minimumFractionDigits: idx.value < 100 ? 3 : 2,
-                      maximumFractionDigits: idx.value < 100 ? 3 : 2,
-                    })}
-                  </div>
-                  <div className={cn("text-xs font-medium flex items-center gap-0.5 mt-0.5", idx.pct >= 0 ? "text-emerald-400" : "text-red-400")}>
-                    {idx.pct >= 0 ? <ArrowUpRight className="h-3 w-3" /> : <ArrowDownRight className="h-3 w-3" />}
-                    {idx.pct >= 0 ? "+" : ""}{idx.pct}%
-                  </div>
-                  <div className="mt-2">
-                    <SparklineSVG data={idx.sparkData} positive={idx.pct >= 0} w={80} h={24} />
-                  </div>
-                </Card>
+              <div key={idx.name} className="rounded-lg border border-border bg-background p-4">
+                <div className="text-xs text-muted-foreground mb-1 truncate">{idx.name}</div>
+                <div className="text-lg font-bold tabular-nums">
+                  {idx.value.toLocaleString(undefined, {
+                    minimumFractionDigits: idx.value < 100 ? 3 : 2,
+                    maximumFractionDigits: idx.value < 100 ? 3 : 2,
+                  })}
+                </div>
+                <div className={cn("text-sm font-semibold flex items-center gap-0.5 mt-1", idx.pct >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  {idx.pct >= 0 ? <ArrowUpRight className="h-3.5 w-3.5" /> : <ArrowDownRight className="h-3.5 w-3.5" />}
+                  {idx.pct >= 0 ? "+" : ""}{idx.pct}%
+                </div>
+                <div className="mt-2">
+                  <SparklineSVG data={idx.sparkData} positive={idx.pct >= 0} w={80} h={24} />
+                </div>
               </div>
             ))}
           </div>
@@ -524,14 +519,14 @@ export default function MarketDashPage() {
             SECTION 2 — Sector Heatmap
         ════════════════════════════════════════════════════════════════ */}
         <section>
-          <div className="flex items-center gap-2 mb-3">
-            <Layers className="h-4 w-4 text-muted-foreground" />
-            <h2 className="text-sm font-semibold text-foreground">Sector Heatmap</h2>
-            <span className="text-xs text-muted-foreground">Click sector to see top movers</span>
+          <div className="flex items-center gap-2 mb-2">
+            <Layers className="h-3.5 w-3.5 text-muted-foreground" />
+            <h2 className="text-xs font-semibold text-muted-foreground">Sector Heatmap</h2>
+            <span className="text-[11px] text-muted-foreground">Click sector to see top movers</span>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* SVG treemap */}
-            <Card className="bg-card border-border p-3">
+            <Card className="bg-card border-border p-2">
               <svg
                 viewBox="0 0 600 220"
                 className="w-full rounded-lg overflow-hidden"
@@ -602,7 +597,7 @@ export default function MarketDashPage() {
             </Card>
 
             {/* Sector movers panel */}
-            <Card className="bg-card border-border p-3">
+            <Card className="bg-card border-border p-2">
               <AnimatePresence mode="wait">
                 {selectedSector ? (
                   <motion.div
@@ -662,15 +657,15 @@ export default function MarketDashPage() {
             SECTION 3 — Most Active / Gainers / Losers
         ════════════════════════════════════════════════════════════════ */}
         <section>
-          <div className="flex items-center gap-2 mb-3">
-            <Activity className="h-4 w-4 text-muted-foreground" />
-            <h2 className="text-sm font-semibold text-foreground">Most Active Stocks</h2>
+          <div className="flex items-center gap-2 mb-2">
+            <Activity className="h-3.5 w-3.5 text-muted-foreground" />
+            <h2 className="text-xs font-semibold text-muted-foreground">Most Active Stocks</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Most Active by Volume */}
-            <Card className="bg-card border-border p-3">
-              <div className="flex items-center gap-1.5 mb-3">
-                <BarChart3 className="h-3.5 w-3.5 text-sky-400" />
+            <Card className="bg-card border-border p-2">
+              <div className="flex items-center gap-1.5 mb-2">
+                <BarChart3 className="h-3 w-3 text-sky-400" />
                 <span className="text-xs font-semibold text-sky-400">Most Active by Volume</span>
               </div>
               <div className="space-y-1">
@@ -691,9 +686,9 @@ export default function MarketDashPage() {
             </Card>
 
             {/* Top Gainers */}
-            <Card className="bg-card border-border p-3">
-              <div className="flex items-center gap-1.5 mb-3">
-                <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
+            <Card className="bg-card border-border p-2">
+              <div className="flex items-center gap-1.5 mb-2">
+                <TrendingUp className="h-3 w-3 text-emerald-400" />
                 <span className="text-xs font-semibold text-emerald-400">Top Gainers</span>
               </div>
               <div className="space-y-1">
@@ -715,9 +710,9 @@ export default function MarketDashPage() {
             </Card>
 
             {/* Top Losers */}
-            <Card className="bg-card border-border p-3">
-              <div className="flex items-center gap-1.5 mb-3">
-                <TrendingDown className="h-3.5 w-3.5 text-red-400" />
+            <Card className="bg-card border-border p-2">
+              <div className="flex items-center gap-1.5 mb-2">
+                <TrendingDown className="h-3 w-3 text-red-400" />
                 <span className="text-xs font-semibold text-red-400">Top Losers</span>
               </div>
               <div className="space-y-1">

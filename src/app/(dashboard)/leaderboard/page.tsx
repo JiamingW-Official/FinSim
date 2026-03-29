@@ -300,11 +300,23 @@ export default function LeaderboardPage() {
                 </div>
               </div>
 
+              {/* HERO — Top 3 Podium */}
+              <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 mb-4">
+                <div className="flex items-center gap-2 mb-5">
+                  <Crown className="h-5 w-5 text-amber-400" />
+                  <span className="text-base font-bold">Top 3 — {dimConfig.label}</span>
+                </div>
+
+                <div className="flex items-end justify-center gap-6">
+                  {top3[1] && <PodiumSlot entry={top3[1]} dimConfig={dimConfig} place={2} />}
+                  {top3[0] && <PodiumSlot entry={top3[0]} dimConfig={dimConfig} place={1} />}
+                  {top3[2] && <PodiumSlot entry={top3[2]} dimConfig={dimConfig} place={3} />}
+                </div>
+              </div>
+
               <div className="flex gap-5">
                 {/* Left column — main leaderboard */}
-                <div
-                  className="flex-1 min-w-0 space-y-4"
-                >
+                <div className="flex-1 min-w-0 space-y-4">
                   <div>
                     <PlayerStatsCard />
                   </div>
@@ -318,33 +330,15 @@ export default function LeaderboardPage() {
                   </div>
                 </div>
 
-                {/* Right column — sidebar panels */}
-                <div
-                  className="hidden lg:flex w-72 shrink-0 flex-col gap-4"
-                >
-                  {/* Podium: Top 3 */}
-                  <div
-                    className="rounded-xl border border-border bg-card/50 p-4"
-                  >
-                    <div className="flex items-center gap-2 mb-4">
-                      <Crown className="h-4 w-4 text-amber-400" />
-                      <span className="text-sm font-bold">Top 3 — {dimConfig.label}</span>
-                    </div>
+                {/* Right column — sidebar panels (compact) */}
+                <div className="hidden lg:flex w-64 shrink-0 flex-col gap-3">
 
-                    <div className="flex items-end justify-center gap-3">
-                      {top3[1] && <PodiumSlot entry={top3[1]} dimConfig={dimConfig} place={2} />}
-                      {top3[0] && <PodiumSlot entry={top3[0]} dimConfig={dimConfig} place={1} />}
-                      {top3[2] && <PodiumSlot entry={top3[2]} dimConfig={dimConfig} place={3} />}
-                    </div>
-                  </div>
 
                   {/* League Distribution */}
-                  <div
-                    className="rounded-xl border border-border bg-card/50 p-4"
-                  >
-                    <div className="flex items-center gap-2 mb-3">
-                      <Gem className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm font-bold">Leagues</span>
+                  <div className="rounded-xl border border-border bg-card/50 p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Gem className="h-3.5 w-3.5 text-muted-foreground" />
+                      <span className="text-xs font-bold">Leagues</span>
                     </div>
 
                     <div className="space-y-2">

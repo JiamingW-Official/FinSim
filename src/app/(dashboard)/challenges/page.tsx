@@ -230,9 +230,9 @@ function WeeklyTab() {
   const weeklyCountdown = useSundayCountdown();
 
   return (
-    <div className="space-y-4">
-      {/* Header info */}
-      <div className="flex items-center justify-between rounded-lg border border-border/50 bg-card/30 px-3 py-2.5">
+    <div className="space-y-3">
+      {/* Header info — flow card (borderless, content-like) */}
+      <div className="flex items-center justify-between bg-transparent p-3">
         <div className="flex items-center gap-2">
           <Clock className="h-3.5 w-3.5 text-muted-foreground" />
           <span className="text-[11px] text-muted-foreground">Resets Sunday</span>
@@ -243,7 +243,7 @@ function WeeklyTab() {
       {WEEKLY_CHALLENGES.map((challenge, i) => (
         <motion.div
           key={challenge.id}
-          className="rounded-xl border border-border bg-card/50 p-4"
+          className="bg-card/50 rounded-lg p-3 cursor-pointer hover:bg-muted/50 transition-colors"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.08 }}
@@ -357,8 +357,9 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
 function SpecialEventsTab() {
   return (
-    <div className="space-y-4">
-      <div className="flex items-start gap-2 rounded-lg border border-border/50 bg-card/30 px-3 py-2.5">
+    <div className="space-y-6">
+      {/* Flow card (borderless, content-like) */}
+      <div className="flex items-start gap-2 bg-transparent p-3">
         <Sparkles className="h-3.5 w-3.5 text-primary/50 mt-0.5 shrink-0" />
         <p className="text-xs text-muted-foreground leading-relaxed">
           Special events are limited-time competitions with unique rules. Complete them before they expire to earn exclusive badges and bonus XP.
@@ -387,25 +388,25 @@ function HistoryTab() {
   const successCount = history.filter((e) => e.result === "success").length;
 
   return (
-    <div className="space-y-4">
-      {/* Summary */}
-      <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-xl border border-border bg-card/50 p-3 text-center">
+    <div className="space-y-5">
+      {/* Summary — flow cards (borderless, content-like) */}
+      <div className="grid grid-cols-3 gap-2">
+        <div className="bg-transparent p-3 text-center">
           <div className="text-xl font-bold tabular-nums text-primary">{history.length}</div>
           <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">Completed</div>
         </div>
-        <div className="rounded-xl border border-border bg-card/50 p-3 text-center">
+        <div className="bg-transparent p-3 text-center">
           <div className="text-xl font-bold tabular-nums text-emerald-400">{successCount}</div>
           <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">Full Clear</div>
         </div>
-        <div className="rounded-xl border border-border bg-card/50 p-3 text-center">
+        <div className="bg-transparent p-3 text-center">
           <div className="text-xl font-bold tabular-nums text-amber-400">+{totalXP}</div>
           <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">XP Earned</div>
         </div>
       </div>
 
-      {/* History table */}
-      <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
+      {/* History table — console card (heavy, dark) */}
+      <div className="bg-card border border-border rounded-lg p-4 overflow-hidden">
         <div className="grid grid-cols-[1fr_4rem_4rem_3rem_3rem] gap-2 px-3 py-2 border-b border-border/50">
           <span className="text-[11px] font-bold text-muted-foreground">Challenge</span>
           <span className="text-[11px] font-bold text-muted-foreground">Date</span>
@@ -500,7 +501,7 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
 
   return (
     <motion.div
-      className="border-l-4 border-primary rounded-xl bg-card/50 border-r border-t border-b border-r-border border-t-border border-b-border p-6 mb-4"
+      className="border-l-4 border-primary bg-card p-6 rounded-lg mb-10"
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25 }}
@@ -649,10 +650,10 @@ export default function ChallengesPage() {
           </motion.div>
         </div>
 
-        {/* Stats strip */}
+        {/* Stats strip — flow cards (borderless, content-like) */}
         <div className="flex items-center gap-2 mt-3 flex-wrap">
           <motion.div
-            className="flex items-center gap-1.5 rounded-lg border border-primary/20 bg-primary/5 px-3 py-1.5"
+            className="flex items-center gap-1.5 bg-transparent p-3"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -663,7 +664,7 @@ export default function ChallengesPage() {
           </motion.div>
 
           <motion.div
-            className="flex items-center gap-1.5 rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-1.5"
+            className="flex items-center gap-1.5 bg-transparent p-3"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
@@ -675,7 +676,7 @@ export default function ChallengesPage() {
 
           {sRankCount > 0 && (
             <motion.div
-              className="flex items-center gap-1 rounded-lg border border-amber-400/30 bg-amber-400/5 px-3 py-1.5"
+              className="flex items-center gap-1 bg-transparent p-3"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 400, damping: 15 }}

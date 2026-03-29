@@ -461,7 +461,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════
             VISUAL BUFFER — divider between action & reference
         ═══════════════════════════════════════════ */}
-        <div className="my-6 border-t border-border/20" />
+        <div className="my-8 border-t border-border/10" />
 
         {/* ═══════════════════════════════════════════
             TIER 3 — REFERENCE ZONE (footnote-sized)
@@ -519,8 +519,11 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Buffer between market intelligence and personal sections */}
+        <div className="my-6 border-t border-border/10" />
+
         {/* Recent trades + Positions — compressed row */}
-        <div className="mt-1 grid grid-cols-1 gap-1 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-1 lg:grid-cols-3">
           <div className="rounded bg-muted/20 px-3 py-2">
             <div className="flex items-center justify-between mb-1"><p className="text-xs text-muted-foreground">Recent Trades</p>{tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-primary hover:underline">All</Link>}</div>
             {recentTrades.length === 0 ? (

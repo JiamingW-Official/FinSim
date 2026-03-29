@@ -20,7 +20,7 @@ export function ScenariosTab({ onSelectScenario }: ScenariosTabProps) {
   const sRankCount = Object.values(scenarioResults).filter((r) => r.grade === "S").length;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       {/* Info banner */}
       <motion.div
         className="flex items-start gap-2.5 rounded-xl border border-amber-500/15 bg-amber-500/5 px-3.5 py-2.5"
@@ -65,7 +65,7 @@ export function ScenariosTab({ onSelectScenario }: ScenariosTabProps) {
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {SCENARIO_MISSIONS.map((scenario, i) => (
           <ScenarioCard
             key={scenario.id}

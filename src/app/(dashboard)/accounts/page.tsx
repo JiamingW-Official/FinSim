@@ -676,13 +676,13 @@ function AccountSettingsRow({
   return (
     <Card className="bg-card/60 border-border/50">
       <button
-        className="w-full flex items-center justify-between p-4 text-left"
+        className="w-full flex items-center justify-between px-3 py-2 text-left"
         onClick={() => setExpanded((v) => !v)}
       >
-        <div className="flex items-center gap-3">
-          <Wallet className={cn("h-4 w-4", TYPE_META[account.type].color)} />
+        <div className="flex items-center gap-2">
+          <Wallet className={cn("h-3.5 w-3.5", TYPE_META[account.type].color)} />
           <div>
-            <p className="text-sm font-medium text-foreground">{account.name}</p>
+            <p className="text-xs font-medium text-foreground">{account.name}</p>
             <p className="text-[11px] text-muted-foreground">
               {TYPE_META[account.type].label} &middot; {fmt(account.balance)}
             </p>
@@ -1087,26 +1087,26 @@ export default function AccountsPage() {
         </div>
       </div>
 
-      {/* Aggregate strip */}
-      <div className="shrink-0 px-6 py-3 border-b border-border/40 bg-card/30">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* HERO — Aggregate Portfolio */}
+      <div className="shrink-0 mx-6 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           <div>
-            <p className="text-xs text-muted-foreground mb-0.5">Total Portfolio</p>
-            <p className="text-xl font-bold tabular-nums text-foreground">
+            <p className="text-xs text-muted-foreground mb-1">Total Portfolio</p>
+            <p className="text-2xl font-bold tabular-nums text-foreground">
               {fmtCompact(aggregate.totalBalance)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-muted-foreground mb-0.5">Day P&L</p>
-            <p className={cn("text-xl font-bold tabular-nums", pnlColor(aggregate.totalDayPnl))}>
+            <p className="text-xs text-muted-foreground mb-1">Day P&L</p>
+            <p className={cn("text-2xl font-bold tabular-nums", pnlColor(aggregate.totalDayPnl))}>
               {aggregate.totalDayPnl >= 0 ? "+" : ""}{fmt(aggregate.totalDayPnl)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-muted-foreground mb-0.5">Best Account</p>
+            <p className="text-xs text-muted-foreground mb-1">Best Account</p>
             <div className="flex items-center gap-1.5">
-              <Trophy className="h-3.5 w-3.5 text-amber-400" />
-              <span className="text-sm font-semibold text-foreground">
+              <Trophy className="h-4 w-4 text-amber-400" />
+              <span className="text-sm font-bold text-foreground">
                 {aggregate.bestReturn.name}
               </span>
               <Badge className={cn("text-xs py-0 px-1", pnlBg(aggregate.bestReturn.totalPnlPct))}>
@@ -1115,10 +1115,10 @@ export default function AccountsPage() {
             </div>
           </div>
           <div>
-            <p className="text-xs text-muted-foreground mb-0.5">Worst Account</p>
+            <p className="text-xs text-muted-foreground mb-1">Worst Account</p>
             <div className="flex items-center gap-1.5">
-              <TrendingDown className="h-3.5 w-3.5 text-red-400" />
-              <span className="text-sm font-semibold text-foreground">
+              <TrendingDown className="h-4 w-4 text-red-400" />
+              <span className="text-sm font-bold text-foreground">
                 {aggregate.worstReturn.name}
               </span>
               <Badge className={cn("text-xs py-0 px-1", pnlBg(aggregate.worstReturn.totalPnlPct))}>

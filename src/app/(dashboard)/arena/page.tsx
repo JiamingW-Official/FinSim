@@ -166,8 +166,8 @@ export default function ArenaPage() {
           )}
         </div>
 
-        {/* Educational framing */}
-        <div className="mt-3 rounded-lg border border-border bg-card px-3 py-2">
+        {/* Educational framing — hero card (dominant, accent) */}
+        <div className="mt-3 border-l-4 border-primary bg-card p-6 rounded-lg">
           <p className="text-[11px] text-muted-foreground leading-relaxed">
             Practice trading under pressure with simulated opponents. Arena matches help
             sharpen your decision-making, risk management, and timing -- all with zero

@@ -305,6 +305,9 @@ export default function PortfolioPage() {
         )}
       </div>
 
+      {/* Buffer between equity curve hero and tabs */}
+      <div className="mb-8 border-t border-border/10" />
+
       {/* ── TABS: compact, subdued ── */}
       <div className="px-4 pb-4">
         <Tabs defaultValue="overview">
