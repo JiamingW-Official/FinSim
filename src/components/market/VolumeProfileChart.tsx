@@ -38,7 +38,7 @@ export function VolumeProfileChart({
   return (
     <div className="flex flex-col gap-2">
       {/* Header stats */}
-      <div className="flex items-center gap-4 text-[10px]">
+      <div className="flex items-center gap-4 text-xs">
         <div>
           <span className="text-muted-foreground">POC </span>
           <span className="font-mono tabular-nums font-semibold text-primary">
@@ -126,7 +126,7 @@ export function VolumeProfileChart({
                   textAnchor="end"
                   dominantBaseline="middle"
                   className={cn(
-                    "text-[9px] font-mono",
+                    "text-[11px] font-mono",
                     isPOC
                       ? "fill-primary font-semibold"
                       : isCurrentPrice
@@ -213,7 +213,7 @@ export function VolumeProfileChart({
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-4 text-[9px] text-muted-foreground">
+      <div className="flex items-center gap-4 text-[11px] text-muted-foreground">
         <div className="flex items-center gap-1">
           <div className="w-2.5 h-2.5 rounded-sm bg-emerald-400/40" />
           <span>Buy volume</span>

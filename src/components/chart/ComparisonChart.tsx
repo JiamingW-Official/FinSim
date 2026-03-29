@@ -203,7 +203,7 @@ function TickerChip({
 }) {
   return (
     <span
-      className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium"
+      className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium"
       style={{ borderColor: color, color }}
     >
       <span
@@ -455,7 +455,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
                     value={addInput}
                     onChange={(e) => setAddInput(e.target.value)}
                     onKeyDown={(e) => { if (e.key === "Enter") handleAddTicker(); if (e.key === "Escape") { setAddingTicker(false); setAddInput(""); } }}
-                    className="h-5 rounded border border-border bg-background px-1 text-[10px] text-foreground"
+                    className="h-5 rounded border border-border bg-background px-1 text-xs text-foreground"
                   >
                     <option value="">Pick ticker</option>
                     {availableToAdd.map((t) => (
@@ -465,13 +465,13 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
                   <button
                     onClick={handleAddTicker}
                     disabled={!addInput}
-                    className="h-5 rounded border border-border bg-primary/20 px-1.5 text-[10px] text-primary hover:bg-primary/30 disabled:opacity-40"
+                    className="h-5 rounded border border-border bg-primary/20 px-1.5 text-xs text-primary hover:bg-primary/30 disabled:opacity-40"
                   >
                     Add
                   </button>
                   <button
                     onClick={() => { setAddingTicker(false); setAddInput(""); }}
-                    className="h-5 rounded border border-border bg-muted/30 px-1.5 text-[10px] text-muted-foreground hover:bg-muted/50"
+                    className="h-5 rounded border border-border bg-muted/30 px-1.5 text-xs text-muted-foreground hover:bg-muted/50"
                   >
                     <X size={9} />
                   </button>
@@ -479,7 +479,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
               ) : (
                 <button
                   onClick={() => setAddingTicker(true)}
-                  className="inline-flex items-center gap-0.5 rounded-full border border-dashed border-border px-2 py-0.5 text-[10px] text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-0.5 rounded-full border border-dashed border-border px-2 py-0.5 text-xs text-muted-foreground hover:border-primary hover:text-primary transition-colors"
                 >
                   <Plus size={9} />
                   Add
@@ -499,7 +499,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
               key={r.label}
               onClick={() => setTimeRange(r.label)}
               className={cn(
-                "px-2 py-0.5 text-[10px] transition-colors",
+                "px-2 py-0.5 text-xs transition-colors",
                 timeRange === r.label
                   ? "bg-primary/20 text-primary"
                   : "text-muted-foreground hover:text-foreground",
@@ -514,7 +514,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
       {/* ── Performance chart ── */}
       <div className="relative">
         {isLoading && alignedSeries.length === 0 && (
-          <div className="absolute inset-0 flex items-center justify-center text-[10px] text-muted-foreground">
+          <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground">
             Loading...
           </div>
         )}
@@ -707,7 +707,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
             const lastVal = values[values.length - 1];
             const ret = lastVal !== undefined ? lastVal - 100 : null;
             return (
-              <span key={ticker} className="flex items-center gap-1 text-[10px]">
+              <span key={ticker} className="flex items-center gap-1 text-xs">
                 <span className="inline-block h-0.5 w-4 rounded" style={{ background: color }} />
                 <span style={{ color }}>{ticker}</span>
                 {ret !== null && (
@@ -723,7 +723,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
 
       {/* ── Return statistics table ── */}
       <div className="overflow-x-auto">
-        <table className="w-full text-[10px] border-collapse">
+        <table className="w-full text-xs border-collapse">
           <thead>
             <tr className="border-b border-border/40">
               <th className="py-1 text-left font-medium text-muted-foreground pr-2">Ticker</th>
@@ -776,7 +776,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
       {/* ── Correlation matrix ── */}
       {corrMatrix.tickers.length >= 2 && (
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-medium text-muted-foreground">Correlation Matrix</span>
+          <span className="text-xs font-medium text-muted-foreground">Correlation Matrix</span>
           <div className="inline-block">
             <svg
               width={corrMatrix.tickers.length * 36 + 28}
@@ -844,7 +844,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
 
             {/* Color scale legend */}
             <div className="flex items-center gap-1 mt-1">
-              <span className="text-[9px] text-muted-foreground">-1</span>
+              <span className="text-[11px] text-muted-foreground">-1</span>
               <svg width={60} height={8}>
                 <defs>
                   <linearGradient id="corrGrad" x1="0" x2="1" y1="0" y2="0">
@@ -855,7 +855,7 @@ export function ComparisonChart({ defaultTicker }: { defaultTicker: string }) {
                 </defs>
                 <rect width={60} height={8} fill="url(#corrGrad)" rx={2} />
               </svg>
-              <span className="text-[9px] text-muted-foreground">+1</span>
+              <span className="text-[11px] text-muted-foreground">+1</span>
             </div>
           </div>
         </div>

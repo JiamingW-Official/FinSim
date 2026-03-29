@@ -356,7 +356,7 @@ function StatCard({
 }) {
   return (
     <div className="rounded-xl border border-white/8 bg-white/4 p-4 space-y-1">
-      <div className="flex items-center gap-1.5 text-xs text-zinc-400 uppercase tracking-wider">
+      <div className="flex items-center gap-1.5 text-xs text-zinc-400">
         {Icon && <Icon className="w-3.5 h-3.5" />}
         {label}
       </div>

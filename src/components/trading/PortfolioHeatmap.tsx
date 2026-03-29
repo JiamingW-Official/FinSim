@@ -155,12 +155,12 @@ export function PortfolioHeatmap() {
   return (
     <div className="px-2 pb-2">
       <div className="mb-1 flex items-center justify-between">
-        <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
           Portfolio Heatmap
         </span>
         <span
           className={
-            totalPnL >= 0 ? "text-[10px] text-[#10b981]" : "text-[10px] text-[#ef4444]"
+            totalPnL >= 0 ? "text-xs text-[#10b981]" : "text-xs text-[#ef4444]"
           }
         >
           {totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)}
@@ -237,7 +237,7 @@ export function PortfolioHeatmap() {
 
         {/* Hover tooltip */}
         {hoveredPos && (
-          <div className="absolute top-1 right-0 z-10 rounded border border-border bg-card px-2 py-1 text-[10px] shadow-lg min-w-[110px]">
+          <div className="absolute top-1 right-0 z-10 rounded border border-border bg-card px-2 py-1 text-xs shadow-lg min-w-[110px]">
             <div className="font-bold">{hoveredPos.ticker}</div>
             <div className="text-muted-foreground">
               Value: {formatCurrency(hoveredPos.quantity * hoveredPos.currentPrice)}

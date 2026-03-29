@@ -756,7 +756,7 @@ function StatChip({
 }) {
   return (
     <div className="flex flex-col gap-0.5 rounded-lg bg-gray-900 border border-gray-800 px-3 py-2 min-w-[100px]">
-      <span className="text-[10px] text-gray-500 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-gray-500 uppercase tracking-wide">{label}</span>
       <span
         className={cn(
           "text-sm font-semibold tabular-nums",
@@ -914,10 +914,10 @@ export default function AnalyticsPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="text-[10px] border-indigo-800 text-indigo-400">
+            <Badge variant="outline" className="text-xs border-indigo-800 text-indigo-400">
               252-Day Window
             </Badge>
-            <Badge variant="outline" className="text-[10px] border-gray-700 text-gray-400">
+            <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
               Live Simulation
             </Badge>
           </div>
@@ -984,8 +984,8 @@ export default function AnalyticsPage() {
                   {data.waterfallItems.map((item) => (
                     <div key={item.label} className="flex items-center gap-1.5">
                       <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
-                      <span className="text-[10px] text-gray-400">{item.label}</span>
-                      <span className="text-[10px] font-medium" style={{ color: item.color }}>
+                      <span className="text-xs text-gray-400">{item.label}</span>
+                      <span className="text-xs font-medium" style={{ color: item.color }}>
                         {item.value >= 0 ? "+" : ""}{item.value.toFixed(1)}%
                       </span>
                     </div>
@@ -1061,10 +1061,10 @@ export default function AnalyticsPage() {
                   ].map((m) => (
                     <div key={m.label} className="rounded-lg bg-gray-950 border border-gray-800 p-3">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-[10px] text-gray-500 uppercase tracking-wide">{m.label}</span>
+                        <span className="text-xs text-gray-500 uppercase tracking-wide">{m.label}</span>
                         <Badge
                           className={cn(
-                            "text-[9px] border-0 px-1.5 py-0",
+                            "text-[11px] border-0 px-1.5 py-0",
                             m.good ? "bg-green-500/15 text-green-400" : "bg-red-500/15 text-red-400"
                           )}
                         >
@@ -1074,8 +1074,8 @@ export default function AnalyticsPage() {
                       <div className={cn("text-xl font-bold tabular-nums", m.good ? "text-green-400" : "text-red-400")}>
                         {m.value}
                       </div>
-                      <p className="text-[10px] text-gray-600 mt-1">{m.description}</p>
-                      <p className="text-[10px] text-gray-500 mt-0.5">{m.benchmark}</p>
+                      <p className="text-xs text-gray-600 mt-1">{m.description}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{m.benchmark}</p>
                     </div>
                   ))}
                 </div>
@@ -1167,11 +1167,11 @@ export default function AnalyticsPage() {
                             </td>
                             <td className="py-2 text-right">
                               {f.tStat === 0 ? (
-                                <span className="text-gray-600 text-[10px]">—</span>
+                                <span className="text-gray-600 text-xs">—</span>
                               ) : f.tStat >= 2.0 ? (
-                                <Badge className="bg-green-500/15 text-green-400 border-0 text-[9px] px-1.5 py-0">***</Badge>
+                                <Badge className="bg-green-500/15 text-green-400 border-0 text-[11px] px-1.5 py-0">***</Badge>
                               ) : (
-                                <Badge className="bg-amber-500/15 text-amber-400 border-0 text-[9px] px-1.5 py-0">*</Badge>
+                                <Badge className="bg-amber-500/15 text-amber-400 border-0 text-[11px] px-1.5 py-0">*</Badge>
                               )}
                             </td>
                             <td className="py-2 text-right text-gray-300 tabular-nums">{f.pct}%</td>
@@ -1206,12 +1206,12 @@ export default function AnalyticsPage() {
                       <div className="text-2xl font-bold tabular-nums" style={{ color: item.color }}>
                         {item.te.toFixed(1)}%
                       </div>
-                      <div className="text-[10px] text-gray-500 mt-0.5">TE contribution</div>
+                      <div className="text-xs text-gray-500 mt-0.5">TE contribution</div>
                       <div className="mt-2">
                         <Progress value={item.pct} className="h-1.5 bg-gray-800" />
                       </div>
-                      <div className="text-[10px] text-gray-400 mt-1">{item.pct}% of total TE</div>
-                      <p className="text-[10px] text-gray-600 mt-2 leading-tight">{item.description}</p>
+                      <div className="text-xs text-gray-400 mt-1">{item.pct}% of total TE</div>
+                      <p className="text-xs text-gray-600 mt-2 leading-tight">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -1233,7 +1233,7 @@ export default function AnalyticsPage() {
                     <p className="text-xs text-gray-500 mt-0.5">Derived from simulated trade history analysis</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-[10px] text-gray-500">Behavioral Alpha Lost</div>
+                    <div className="text-xs text-gray-500">Behavioral Alpha Lost</div>
                     <div className="text-lg font-bold text-red-400 tabular-nums">
                       {data.behavioralAlphaLost.toFixed(1)}%
                     </div>
@@ -1280,7 +1280,7 @@ export default function AnalyticsPage() {
                         <Icon className={cn("w-4 h-4 mx-auto mb-1.5", color)} />
                         <div className={cn("text-2xl font-bold tabular-nums", color)}>{item.score}</div>
                         <div className="text-xs font-medium text-gray-200 mt-0.5">{item.label}</div>
-                        <p className="text-[10px] text-gray-500 mt-1 leading-tight">{item.description}</p>
+                        <p className="text-xs text-gray-500 mt-1 leading-tight">{item.description}</p>
                       </div>
                     );
                   })}
@@ -1326,7 +1326,7 @@ export default function AnalyticsPage() {
                             <span className="text-xs font-semibold text-gray-100">{bias.label}</span>
                             <Badge
                               className={cn(
-                                "text-[9px] border-0 px-1.5 py-0 ml-auto",
+                                "text-[11px] border-0 px-1.5 py-0 ml-auto",
                                 isHighBias
                                   ? "bg-red-500/15 text-red-400"
                                   : isMedBias
@@ -1337,9 +1337,9 @@ export default function AnalyticsPage() {
                               {biasLabel}
                             </Badge>
                           </div>
-                          <p className="text-[10px] text-gray-500 leading-tight mb-2">{bias.description}</p>
+                          <p className="text-xs text-gray-500 leading-tight mb-2">{bias.description}</p>
                           <div className="rounded bg-indigo-500/10 border border-indigo-800/40 p-2">
-                            <p className="text-[10px] text-indigo-300 leading-tight">
+                            <p className="text-xs text-indigo-300 leading-tight">
                               <span className="font-semibold">Fix: </span>
                               {bias.recommendation}
                             </p>
@@ -1382,9 +1382,9 @@ export default function AnalyticsPage() {
                     },
                   ].map((item) => (
                     <div key={item.label} className="rounded-lg bg-gray-950 border border-red-900/30 p-3">
-                      <div className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">{item.label}</div>
+                      <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">{item.label}</div>
                       <div className={cn("text-xl font-bold tabular-nums", item.color)}>{item.value}</div>
-                      <p className="text-[10px] text-gray-600 mt-1 leading-tight">{item.description}</p>
+                      <p className="text-xs text-gray-600 mt-1 leading-tight">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -1394,7 +1394,7 @@ export default function AnalyticsPage() {
                     <p className="text-xs font-semibold text-red-300">
                       Total behavioral alpha drag: {data.behavioralAlphaLost.toFixed(1)}% annualized
                     </p>
-                    <p className="text-[10px] text-gray-500 mt-0.5">
+                    <p className="text-xs text-gray-500 mt-0.5">
                       Correcting cognitive biases could recover approximately this much return per year
                     </p>
                   </div>
@@ -1455,7 +1455,7 @@ export default function AnalyticsPage() {
                           <div className="flex items-center gap-2">
                             <span
                               className={cn(
-                                "text-[10px] font-bold w-5 h-5 rounded flex items-center justify-center",
+                                "text-xs font-bold w-5 h-5 rounded flex items-center justify-center",
                                 selectedDrawdown === i ? "bg-indigo-600 text-white" : "bg-gray-800 text-gray-400"
                               )}
                             >
@@ -1474,10 +1474,10 @@ export default function AnalyticsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-3 mt-1.5 pl-7">
-                          <span className="text-[10px] text-gray-500">{evt.duration}d duration</span>
-                          <span className="text-[10px] text-gray-600">•</span>
-                          <span className="text-[10px] text-gray-500">{evt.recovery}d recovery</span>
-                          <Badge className="bg-gray-800 text-gray-400 border-0 text-[9px] px-1.5 py-0 ml-auto">
+                          <span className="text-xs text-gray-500">{evt.duration}d duration</span>
+                          <span className="text-xs text-gray-600">•</span>
+                          <span className="text-xs text-gray-500">{evt.recovery}d recovery</span>
+                          <Badge className="bg-gray-800 text-gray-400 border-0 text-[11px] px-1.5 py-0 ml-auto">
                             {evt.regime}
                           </Badge>
                         </div>
@@ -1514,19 +1514,19 @@ export default function AnalyticsPage() {
                           { label: "Market Regime", value: selectedDD.regime, color: "text-indigo-400" },
                         ].map((m) => (
                           <div key={m.label} className="rounded bg-gray-950 border border-gray-800 p-2">
-                            <div className="text-[10px] text-gray-500">{m.label}</div>
+                            <div className="text-xs text-gray-500">{m.label}</div>
                             <div className={cn("text-sm font-semibold mt-0.5", m.color)}>{m.value}</div>
                           </div>
                         ))}
                       </div>
                       <div className="rounded-lg bg-gray-950 border border-gray-800 p-3 mb-3">
-                        <div className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Root Cause</div>
+                        <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">Root Cause</div>
                         <p className="text-xs text-gray-300 leading-relaxed">{selectedDD.cause}</p>
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
                           <Eye className="w-3.5 h-3.5 text-gray-500" />
-                          <span className="text-[10px] text-gray-500">Recovery Ratio vs Market</span>
+                          <span className="text-xs text-gray-500">Recovery Ratio vs Market</span>
                           <span className="text-xs font-medium text-gray-200 ml-auto">
                             {(selectedDD.duration / selectedDD.recovery).toFixed(2)}×
                           </span>
@@ -1537,7 +1537,7 @@ export default function AnalyticsPage() {
                             style={{ width: `${clamp((selectedDD.duration / selectedDD.recovery) * 60, 5, 100)}%` }}
                           />
                         </div>
-                        <p className="text-[10px] text-gray-600">
+                        <p className="text-xs text-gray-600">
                           Higher ratio = faster recovery relative to how long drawdown lasted
                         </p>
                       </div>
@@ -1568,11 +1568,11 @@ export default function AnalyticsPage() {
                     <div key={r.regime} className="rounded-lg bg-gray-950 border border-gray-800 p-3">
                       <div className="flex items-center gap-1.5 mb-1">
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: r.color }} />
-                        <span className="text-[10px] text-gray-400">{r.regime}</span>
+                        <span className="text-xs text-gray-400">{r.regime}</span>
                       </div>
                       <div className="text-lg font-bold text-red-400 tabular-nums">−{r.avgLoss.toFixed(1)}%</div>
-                      <div className="text-[10px] text-gray-500 mt-0.5">avg max loss</div>
-                      <div className="text-[10px] text-gray-600 mt-1">{r.count} event{r.count > 1 ? "s" : ""}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">avg max loss</div>
+                      <div className="text-xs text-gray-600 mt-1">{r.count} event{r.count > 1 ? "s" : ""}</div>
                     </div>
                   ))}
                 </div>
@@ -1601,7 +1601,7 @@ export default function AnalyticsPage() {
                           setScenarioVisible((prev) => ({ ...prev, [s.key]: !prev[s.key] }))
                         }
                         className={cn(
-                          "text-[10px] rounded-full px-2.5 py-0.5 border transition-all font-medium",
+                          "text-xs rounded-full px-2.5 py-0.5 border transition-all font-medium",
                           scenarioVisible[s.key]
                             ? "border-transparent text-white"
                             : "bg-gray-950 border-gray-700 text-gray-500"
@@ -1673,7 +1673,7 @@ export default function AnalyticsPage() {
                             <td className={cn("py-2.5 text-right tabular-nums font-semibold", pos ? "text-green-400" : "text-red-400")}>
                               {pos ? "+" : ""}{diff.toFixed(1)}%
                             </td>
-                            <td className="py-2.5 text-gray-500 text-[10px]">{s.label}</td>
+                            <td className="py-2.5 text-gray-500 text-xs">{s.label}</td>
                           </tr>
                         );
                       })}
@@ -1734,7 +1734,7 @@ export default function AnalyticsPage() {
                       <div className="flex items-center justify-between mb-1">
                         <Badge
                           className={cn(
-                            "text-[9px] border-0 px-1.5 py-0",
+                            "text-[11px] border-0 px-1.5 py-0",
                             item.type === "cost" ? "bg-red-500/15 text-red-400" : "bg-green-500/15 text-green-400"
                           )}
                         >
@@ -1750,7 +1750,7 @@ export default function AnalyticsPage() {
                         </span>
                       </div>
                       <div className="text-xs font-medium text-gray-200 mb-1">{item.decision}</div>
-                      <p className="text-[10px] text-gray-500 leading-tight">{item.detail}</p>
+                      <p className="text-xs text-gray-500 leading-tight">{item.detail}</p>
                     </div>
                   ))}
                 </div>
@@ -1762,7 +1762,7 @@ export default function AnalyticsPage() {
                       +{(((data.equityCurveOptimal[data.equityCurveOptimal.length - 1] / 100 - 1) * 100)).toFixed(1)}% return
                     </span>
                   </div>
-                  <p className="text-[10px] text-gray-500 leading-tight">
+                  <p className="text-xs text-gray-500 leading-tight">
                     With perfect hindsight over 252 days. The gap between this and your actual return ({((actualFinal / 100 - 1) * 100).toFixed(1)}%) represents the maximum possible improvement from better decisions.
                   </p>
                 </div>

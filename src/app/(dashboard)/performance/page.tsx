@@ -932,7 +932,7 @@ function StatCard({
 }) {
   return (
     <Card className="p-3 space-y-0.5">
-      <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{label}</p>
+      <p className="text-xs text-muted-foreground">{label}</p>
       <p
         className={cn(
           "text-xl font-bold tabular-nums",
@@ -942,7 +942,7 @@ function StatCard({
       >
         {value}
       </p>
-      {sub && <p className="text-[10px] text-muted-foreground">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground">{sub}</p>}
     </Card>
   );
 }
@@ -1007,7 +1007,7 @@ export default function PerformancePage() {
         <div className="flex items-center gap-2">
           <TrendingUp className="h-5 w-5 text-primary" />
           <h1 className="text-lg font-semibold">Performance</h1>
-          <Badge variant="outline" className="text-[10px]">YTD 2026</Badge>
+          <Badge variant="outline" className="text-xs">YTD 2026</Badge>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" className="text-xs h-7">
@@ -1035,7 +1035,7 @@ export default function PerformancePage() {
                 <div className="flex items-end gap-3">
                   <span
                     className={cn(
-                      "text-5xl font-black tabular-nums",
+                      "text-5xl font-bold tabular-nums",
                       stats.totalReturn >= 0 ? "text-green-500" : "text-red-400",
                     )}
                   >
@@ -1105,7 +1105,7 @@ export default function PerformancePage() {
             <div className="flex items-center gap-2 mb-3">
               <Calendar className="h-4 w-4 text-muted-foreground" />
               <h3 className="text-sm font-medium">Monthly Returns Heatmap</h3>
-              <div className="ml-auto flex items-center gap-2 text-[10px] text-muted-foreground">
+              <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
                 <span className="inline-block w-3 h-3 rounded bg-green-600 opacity-80" /> Positive
                 <span className="inline-block w-3 h-3 rounded bg-red-600 opacity-80 ml-2" /> Negative
               </div>
@@ -1291,7 +1291,7 @@ export default function PerformancePage() {
               <div className="overflow-x-auto">
                 <PnLHistogram trades={trades} />
               </div>
-              <p className="text-[10px] text-muted-foreground mt-1">Orange curve = normal distribution overlay</p>
+              <p className="text-xs text-muted-foreground mt-1">Orange curve = normal distribution overlay</p>
             </Card>
           </div>
 
@@ -1348,7 +1348,7 @@ export default function PerformancePage() {
                 <div key={c.label} className="rounded-lg bg-muted/30 p-3 space-y-1">
                   <div className="flex items-center gap-2">
                     {c.icon}
-                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{c.label}</span>
+                    <span className="text-xs text-muted-foreground">{c.label}</span>
                   </div>
                   <p className="font-semibold">{c.value}</p>
                   <p className="text-xs text-muted-foreground">{c.sub}</p>
@@ -1381,7 +1381,7 @@ export default function PerformancePage() {
                   step={1}
                   className="w-full"
                 />
-                <div className="flex justify-between text-[10px] text-muted-foreground mt-1">
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
                   <span>Conservative</span>
                   <span>Moderate (20%)</span>
                   <span>Aggressive</span>
@@ -1433,7 +1433,7 @@ export default function PerformancePage() {
             <div className="flex items-center gap-2 mb-3">
               <Award className="h-4 w-4 text-primary" />
               <h3 className="text-sm font-medium">Achievement Timeline</h3>
-              <Badge variant="outline" className="ml-auto text-[10px]">
+              <Badge variant="outline" className="ml-auto text-xs">
                 {milestones.filter((m) => m.achieved).length} / {milestones.length} achieved
               </Badge>
             </div>
@@ -1465,7 +1465,7 @@ export default function PerformancePage() {
             <div className="flex items-center gap-2 mb-3">
               <BarChart3 className="h-4 w-4 text-muted-foreground" />
               <h3 className="text-sm font-medium">12-Month Projection Scenarios</h3>
-              <div className="ml-auto flex items-center gap-3 text-[10px]">
+              <div className="ml-auto flex items-center gap-3 text-xs">
                 <span className="text-red-400">— Bear (-8%)</span>
                 <span className="text-blue-400">— Base (+18%)</span>
                 <span className="text-green-400">— Bull (+38%)</span>

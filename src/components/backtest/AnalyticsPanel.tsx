@@ -22,7 +22,7 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
     <div className="space-y-4 p-4">
       {/* Advanced Metrics Grid */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Risk-Adjusted Metrics</h3>
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">Risk-Adjusted Metrics</h3>
         <div className="grid grid-cols-3 gap-2">
           <MiniMetric label="Sortino" value={metrics.sortinoRatio} good={metrics.sortinoRatio > 1} />
           <MiniMetric label="Calmar" value={metrics.calmarRatio} good={metrics.calmarRatio > 0.5} />
@@ -38,7 +38,7 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
 
       {/* Drawdown Chart */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Drawdown</h3>
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">Drawdown</h3>
         <DrawdownChart
           data={drawdownCurve}
           baseTimestamp={result.bars[0]?.timestamp ?? Date.now()}
@@ -47,7 +47,7 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
 
       {/* Period Returns Heatmap */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Period Returns (20-bar periods)</h3>
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">Period Returns (20-bar periods)</h3>
         <div className="flex flex-wrap gap-1">
           {periodReturns.map((p) => {
             const intensity = Math.min(Math.abs(p.returnPercent) / 10, 1);
@@ -55,7 +55,7 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
             return (
               <div
                 key={p.period}
-                className="group relative flex h-10 w-10 flex-col items-center justify-center rounded-md border border-white/5 text-[9px]"
+                className="group relative flex h-10 w-10 flex-col items-center justify-center rounded-md border border-white/5 text-[11px]"
                 style={{
                   backgroundColor: isPositive
                     ? `rgba(16, 185, 129, ${0.1 + intensity * 0.4})`
@@ -67,7 +67,7 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
                 </span>
                 <span className="text-[7px] text-zinc-500">{p.label}</span>
                 {/* Tooltip */}
-                <div className="absolute -top-8 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-2 py-1 text-[10px] text-zinc-300 shadow-lg group-hover:block whitespace-nowrap">
+                <div className="absolute -top-8 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-2 py-1 text-xs text-zinc-300 shadow-lg group-hover:block whitespace-nowrap">
                   {p.trades} trades
                 </div>
               </div>
@@ -78,23 +78,23 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
 
       {/* Trade P&L Distribution */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Trade P&L Distribution</h3>
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">Trade P&L Distribution</h3>
         <TradeDistribution trades={trades} />
       </div>
 
       {/* MAE/MFE scatter summary */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Trade Quality (MAE / MFE)</h3>
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">Trade Quality (MAE / MFE)</h3>
         <div className="grid grid-cols-2 gap-2">
           <div className="rounded-lg border border-white/5 bg-white/5 p-3">
-            <div className="text-[10px] text-zinc-500">Avg Max Adverse</div>
+            <div className="text-xs text-zinc-500">Avg Max Adverse</div>
             <div className="text-sm font-bold text-rose-400">-{metrics.avgMAE.toFixed(2)}%</div>
-            <div className="text-[9px] text-zinc-600">Avg worst drawdown per trade</div>
+            <div className="text-[11px] text-zinc-600">Avg worst drawdown per trade</div>
           </div>
           <div className="rounded-lg border border-white/5 bg-white/5 p-3">
-            <div className="text-[10px] text-zinc-500">Avg Max Favorable</div>
+            <div className="text-xs text-zinc-500">Avg Max Favorable</div>
             <div className="text-sm font-bold text-emerald-400">+{metrics.avgMFE.toFixed(2)}%</div>
-            <div className="text-[9px] text-zinc-600">Avg best unrealized gain per trade</div>
+            <div className="text-[11px] text-zinc-600">Avg best unrealized gain per trade</div>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
 function MiniMetric({ label, value, good }: { label: string; value: string | number; good?: boolean }) {
   return (
     <div className="rounded-lg border border-white/5 bg-white/5 px-2 py-1.5">
-      <div className="text-[9px] uppercase tracking-wider text-zinc-600">{label}</div>
+      <div className="text-[11px] text-zinc-600">{label}</div>
       <div className={`text-sm font-bold ${good === undefined ? "text-zinc-200" : good ? "text-emerald-400" : "text-rose-400"}`}>
         {typeof value === "number" ? value.toFixed(2) : value}
       </div>
@@ -195,7 +195,7 @@ function TradeDistribution({ trades }: { trades: { pnl: number }[] }) {
             }}
           >
             {count > 0 && (
-              <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-1.5 py-0.5 text-[9px] text-zinc-300 shadow group-hover:block whitespace-nowrap">
+              <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-1.5 py-0.5 text-[11px] text-zinc-300 shadow group-hover:block whitespace-nowrap">
                 ${binStart.toFixed(0)} ({count})
               </div>
             )}

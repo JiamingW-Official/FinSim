@@ -790,25 +790,25 @@ function PatternCard({
       <div className="flex flex-1 flex-col gap-1 p-2.5">
         <p className="text-[11px] font-semibold leading-tight text-foreground">{pattern.name}</p>
         <div className="flex flex-wrap items-center gap-1">
-          <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-medium", categoryColor(pattern.category))}>
+          <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-medium", categoryColor(pattern.category))}>
             {pattern.category}
           </span>
-          <span className={cn("flex items-center gap-0.5 text-[9px] font-medium", signalColor(pattern.signal))}>
+          <span className={cn("flex items-center gap-0.5 text-[11px] font-medium", signalColor(pattern.signal))}>
             <SignalIcon signal={pattern.signal} />
             {pattern.signal.charAt(0).toUpperCase() + pattern.signal.slice(1)}
           </span>
         </div>
         <div className="mt-auto flex items-center justify-between pt-1">
           <div className="text-center">
-            <p className="text-[10px] font-bold tabular-nums text-emerald-400">{pattern.successRate}%</p>
+            <p className="text-xs font-bold tabular-nums text-emerald-400">{pattern.successRate}%</p>
             <p className="text-[8px] text-muted-foreground">Success</p>
           </div>
           <div className="text-center">
-            <p className="text-[10px] font-bold tabular-nums text-primary">+{pattern.avgGain}%</p>
+            <p className="text-xs font-bold tabular-nums text-primary">+{pattern.avgGain}%</p>
             <p className="text-[8px] text-muted-foreground">Avg Gain</p>
           </div>
           <div className="text-center">
-            <p className="text-[10px] font-bold tabular-nums text-foreground">{pattern.avgFormationBars}</p>
+            <p className="text-xs font-bold tabular-nums text-foreground">{pattern.avgFormationBars}</p>
             <p className="text-[8px] text-muted-foreground">Bars</p>
           </div>
         </div>
@@ -841,10 +841,10 @@ function PatternDetail({
         <div>
           <h2 className="text-sm font-semibold text-foreground">{pattern.name}</h2>
           <div className="mt-0.5 flex items-center gap-2">
-            <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-medium", categoryColor(pattern.category))}>
+            <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-medium", categoryColor(pattern.category))}>
               {pattern.category}
             </span>
-            <span className={cn("flex items-center gap-0.5 text-[9px] font-medium", signalColor(pattern.signal))}>
+            <span className={cn("flex items-center gap-0.5 text-[11px] font-medium", signalColor(pattern.signal))}>
               <SignalIcon signal={pattern.signal} />
               {pattern.signal.charAt(0).toUpperCase() + pattern.signal.slice(1)}
             </span>
@@ -853,15 +853,15 @@ function PatternDetail({
         <div className="ml-auto flex gap-4 text-center">
           <div>
             <p className="text-sm font-bold tabular-nums text-emerald-400">{pattern.successRate}%</p>
-            <p className="text-[10px] text-muted-foreground">Success Rate</p>
+            <p className="text-xs text-muted-foreground">Success Rate</p>
           </div>
           <div>
             <p className="text-sm font-bold tabular-nums text-primary">+{pattern.avgGain}%</p>
-            <p className="text-[10px] text-muted-foreground">Avg Gain</p>
+            <p className="text-xs text-muted-foreground">Avg Gain</p>
           </div>
           <div>
             <p className="text-sm font-bold tabular-nums text-foreground">{pattern.avgFormationBars}</p>
-            <p className="text-[10px] text-muted-foreground">Avg Bars</p>
+            <p className="text-xs text-muted-foreground">Avg Bars</p>
           </div>
         </div>
       </div>
@@ -883,7 +883,7 @@ function PatternDetail({
           { label: "Target", value: pattern.target, color: "text-amber-400", bg: "bg-amber-400/5 border-amber-400/20" },
         ].map((item) => (
           <div key={item.label} className={cn("rounded-lg border p-3", item.bg)}>
-            <p className={cn("mb-1 text-[10px] font-semibold uppercase tracking-wider", item.color)}>{item.label}</p>
+            <p className={cn("mb-1 text-xs font-semibold", item.color)}>{item.label}</p>
             <p className="text-[11px] text-foreground/80 leading-snug">{item.value}</p>
           </div>
         ))}
@@ -891,13 +891,13 @@ function PatternDetail({
 
       {/* Volume confirmation */}
       <div className="rounded-lg border border-blue-400/20 bg-blue-400/5 p-3">
-        <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-blue-400">Volume Confirmation</p>
+        <p className="mb-1 text-xs font-semibold text-blue-400">Volume Confirmation</p>
         <p className="text-[11px] text-foreground/80 leading-snug">{pattern.volumeConfirmation}</p>
       </div>
 
       {/* Failure modes */}
       <div className="rounded-lg border border-rose-400/20 bg-rose-400/5 p-3">
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-rose-400">Failure Modes</p>
+        <p className="mb-2 text-xs font-semibold text-rose-400">Failure Modes</p>
         <ul className="space-y-1">
           {pattern.failureModes.map((f, i) => (
             <li key={i} className="flex items-start gap-2 text-[11px] text-foreground/80">
@@ -1035,7 +1035,7 @@ function QuizSection() {
           </div>
           <div className="p-4 text-center">
             <p className="text-sm font-semibold text-foreground">{p.name}</p>
-            <span className={cn("mt-1 inline-block rounded px-1.5 py-0.5 text-[9px] font-medium", categoryColor(p.category))}>
+            <span className={cn("mt-1 inline-block rounded px-1.5 py-0.5 text-[11px] font-medium", categoryColor(p.category))}>
               {p.category}
             </span>
             <p className="mt-2 text-[11px] text-muted-foreground leading-snug">{p.description}</p>
@@ -1099,8 +1099,8 @@ function QuizSection() {
             style={{ width: `${((qIndex) / questions.length) * 100}%` }}
           />
         </div>
-        <span className="text-[10px] text-muted-foreground">{qIndex + 1} / {questions.length}</span>
-        <span className="text-[10px] font-medium text-emerald-400">{score} correct</span>
+        <span className="text-xs text-muted-foreground">{qIndex + 1} / {questions.length}</span>
+        <span className="text-xs font-medium text-emerald-400">{score} correct</span>
       </div>
 
       <p className="text-center text-xs text-muted-foreground">What chart pattern is this?</p>
@@ -1202,7 +1202,7 @@ function StatsDashboard() {
     <div className="space-y-6">
       {/* Best patterns right now */}
       <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
-        <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-primary">
+        <p className="mb-3 text-xs font-semibold text-primary">
           Best Patterns Right Now (Current Market Regime)
         </p>
         <div className="flex gap-3">
@@ -1211,7 +1211,7 @@ function StatsDashboard() {
               <span className="text-sm font-bold text-muted-foreground">#{rank + 1}</span>
               <div className="min-w-0">
                 <p className="truncate text-xs font-semibold text-foreground">{p.name}</p>
-                <p className="text-[10px] text-emerald-400">{p.successRate}% success</p>
+                <p className="text-xs text-emerald-400">{p.successRate}% success</p>
               </div>
             </div>
           ))}
@@ -1220,7 +1220,7 @@ function StatsDashboard() {
 
       {/* Success Rate Bar Chart */}
       <div className="space-y-2">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Success Rate by Pattern</p>
+        <p className="text-xs font-semibold text-muted-foreground">Success Rate by Pattern</p>
         <div className="overflow-hidden rounded-lg border border-border/40 bg-card p-4">
           <svg viewBox={`0 0 600 ${barData.length * 22 + 10}`} className="w-full">
             {barData.map((p, i) => {
@@ -1245,15 +1245,15 @@ function StatsDashboard() {
 
       {/* Market condition matrix */}
       <div className="space-y-2">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Market Condition Matrix</p>
+        <p className="text-xs font-semibold text-muted-foreground">Market Condition Matrix</p>
         <div className="overflow-hidden rounded-lg border border-border/40">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
-                <th className="px-3 py-2 text-left text-[10px] font-semibold text-muted-foreground">Pattern</th>
-                <th className="px-3 py-2 text-center text-[10px] font-semibold text-emerald-400">Bull Market</th>
-                <th className="px-3 py-2 text-center text-[10px] font-semibold text-rose-400">Bear Market</th>
-                <th className="px-3 py-2 text-center text-[10px] font-semibold text-amber-400">Sideways</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Pattern</th>
+                <th className="px-3 py-2 text-center text-xs font-semibold text-emerald-400">Bull Market</th>
+                <th className="px-3 py-2 text-center text-xs font-semibold text-rose-400">Bear Market</th>
+                <th className="px-3 py-2 text-center text-xs font-semibold text-amber-400">Sideways</th>
               </tr>
             </thead>
             <tbody>
@@ -1263,7 +1263,7 @@ function StatsDashboard() {
                   {[row.bull, row.bear, row.sideways].map((v, j) => (
                     <td key={j} className="px-3 py-2 text-center">
                       <span className={cn(
-                        "text-[10px] font-semibold tabular-nums",
+                        "text-xs font-semibold tabular-nums",
                         v >= 75 ? "text-emerald-400" : v >= 55 ? "text-amber-400" : "text-rose-400"
                       )}>{v}%</span>
                     </td>
@@ -1277,15 +1277,15 @@ function StatsDashboard() {
 
       {/* Sector performance */}
       <div className="space-y-2">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Best Pattern by Sector</p>
+        <p className="text-xs font-semibold text-muted-foreground">Best Pattern by Sector</p>
         <div className="grid grid-cols-2 gap-2">
           {SECTOR_PATTERNS.map((s) => (
             <div key={s.sector} className="flex items-center gap-3 rounded-lg border border-border/40 bg-card px-3 py-2.5">
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-medium text-muted-foreground">{s.sector}</p>
+                <p className="text-xs font-medium text-muted-foreground">{s.sector}</p>
                 <p className="truncate text-[11px] font-semibold text-foreground">{s.bestPattern}</p>
               </div>
-              <span className="text-[10px] font-bold text-emerald-400">{s.winRate}%</span>
+              <span className="text-xs font-bold text-emerald-400">{s.winRate}%</span>
             </div>
           ))}
         </div>
@@ -1374,7 +1374,7 @@ export function PatternLibrary() {
                 </div>
 
                 <div className="ml-auto flex items-center gap-2">
-                  <span className="text-[10px] text-muted-foreground">Sort:</span>
+                  <span className="text-xs text-muted-foreground">Sort:</span>
                   <div className="flex gap-1 rounded-md border border-border/50 p-0.5">
                     {(["successRate", "avgGain", "name"] as SortKey[]).map((k) => (
                       <button
@@ -1382,7 +1382,7 @@ export function PatternLibrary() {
                         type="button"
                         onClick={() => setSortKey(k)}
                         className={cn(
-                          "rounded px-2 py-1 text-[10px] font-medium transition-colors",
+                          "rounded px-2 py-1 text-xs font-medium transition-colors",
                           sortKey === k
                             ? "bg-primary/10 text-primary"
                             : "text-muted-foreground hover:text-foreground",

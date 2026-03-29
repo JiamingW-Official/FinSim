@@ -59,8 +59,8 @@ export function DailyTab({ onSelectChallenge }: DailyTabProps) {
         >
           <PartyPopper className="h-5 w-5 text-emerald-400 shrink-0" />
           <div>
-            <p className="text-xs font-black text-emerald-400">All done for today!</p>
-            <p className="text-[10px] text-emerald-400/70">Come back tomorrow for new challenges.</p>
+            <p className="text-xs font-bold text-emerald-400">All done for today!</p>
+            <p className="text-xs text-emerald-400/70">Come back tomorrow for new challenges.</p>
           </div>
         </motion.div>
       )}
@@ -74,7 +74,7 @@ export function DailyTab({ onSelectChallenge }: DailyTabProps) {
           transition={{ delay: 0.3 }}
         >
           <Sparkles className="h-3.5 w-3.5 text-primary/50 mt-0.5 shrink-0" />
-          <p className="text-[10px] text-muted-foreground leading-relaxed">{DAILY_TIPS[tipIdx]}</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">{DAILY_TIPS[tipIdx]}</p>
         </motion.div>
       )}
 

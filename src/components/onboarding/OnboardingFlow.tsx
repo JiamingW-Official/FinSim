@@ -73,7 +73,7 @@ const steps: StepConfig[] = [
     iconBg: "bg-amber-500/10",
     title: "AI Trading Coach",
     description:
-      "Real-time market analysis, trade plans, and pattern detection from AlphaBot.",
+      "Algorithmic market analysis, trade plans, and pattern detection from AlphaBot.",
   },
   {
     icon: <Trophy className="h-6 w-6 text-rose-400" />,

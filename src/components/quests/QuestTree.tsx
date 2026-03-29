@@ -768,7 +768,7 @@ function QuestDetailPanel({
             <p className="text-sm font-bold text-foreground leading-tight">
               {node.label}
             </p>
-            <p className={cn("text-[10px] font-semibold", branch.color)}>
+            <p className={cn("text-xs font-semibold", branch.color)}>
               {branch.name}
             </p>
           </div>
@@ -811,7 +811,7 @@ function QuestDetailPanel({
         <div>
           <span
             className={cn(
-              "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide border",
+              "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide border",
               node.status === "complete"
                 ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
                 : node.status === "in_progress"
@@ -945,7 +945,7 @@ function AchievementCard({ achievement }: { achievement: { id: string; name: str
       <div className="flex items-center justify-between">
         <span
           className={cn(
-            "text-[8px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded border",
+            "text-[8px] font-bold px-1.5 py-0.5 rounded border",
             RARITY_COLORS[rarity],
           )}
         >
@@ -984,13 +984,13 @@ function AchievementCard({ achievement }: { achievement: { id: string; name: str
       {/* Name + desc */}
       <div>
         <p className="text-[11px] font-bold leading-tight">{achievement.name}</p>
-        <p className="text-[10px] text-muted-foreground mt-0.5 line-clamp-2 leading-tight">
+        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2 leading-tight">
           {achievement.description}
         </p>
       </div>
 
       {/* Date */}
-      <p className="text-[9px] text-muted-foreground/60 mt-auto">Earned {date}</p>
+      <p className="text-[11px] text-muted-foreground/60 mt-auto">Earned {date}</p>
     </div>
   );
 }
@@ -1143,7 +1143,7 @@ export function QuestTree() {
                     strokeWidth={1.5}
                   />
                 </svg>
-                <span className="text-[10px] text-muted-foreground">{item.label}</span>
+                <span className="text-xs text-muted-foreground">{item.label}</span>
               </div>
             ))}
           </div>
@@ -1151,7 +1151,7 @@ export function QuestTree() {
           {/* Branch labels */}
           <div className="relative px-2">
             <div
-              className="flex text-[9px] font-bold uppercase tracking-widest"
+              className="flex text-[11px] font-bold"
               style={{ paddingTop: 6 }}
             >
               {[
@@ -1370,7 +1370,7 @@ export function QuestTree() {
             </p>
           </div>
           {nearAchievements.length > 0 && (
-            <span className="text-[10px] font-bold text-amber-400 border border-amber-500/20 rounded-full px-2 py-0.5 bg-amber-500/10">
+            <span className="text-xs font-bold text-amber-400 border border-amber-500/20 rounded-full px-2 py-0.5 bg-amber-500/10">
               {nearAchievements.length} almost done
             </span>
           )}
@@ -1398,7 +1398,7 @@ export function QuestTree() {
         {/* Near-completion rings */}
         {nearAchievements.length > 0 && (
           <div className="px-4 py-3 border-t border-border/50 flex items-center gap-4 flex-wrap">
-            <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide">
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
               Almost earned
             </p>
             {nearAchievements.map((nc) => (
@@ -1410,10 +1410,10 @@ export function QuestTree() {
                   size={36}
                 />
                 <div>
-                  <p className="text-[10px] font-bold text-foreground">
+                  <p className="text-xs font-bold text-foreground">
                     {nc.name}
                   </p>
-                  <p className="text-[9px] text-muted-foreground tabular-nums">
+                  <p className="text-[11px] text-muted-foreground tabular-nums">
                     {nc.current}/{nc.target}
                   </p>
                 </div>
@@ -1431,20 +1431,20 @@ export function QuestTree() {
           className="w-full px-4 py-3 flex items-center justify-between border-b border-border hover:bg-muted/20 transition-colors"
         >
           <div className="flex items-center gap-2.5">
-            <div className="h-6 w-6 rounded-md bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+            <div className="h-6 w-6 rounded-md bg-amber-500 flex items-center justify-center">
               <Clock className="h-3.5 w-3.5 text-white" />
             </div>
             <div className="text-left">
               <p className="text-xs font-bold text-foreground">
                 Seasonal Challenges
               </p>
-              <p className="text-[10px] text-muted-foreground">
+              <p className="text-xs text-muted-foreground">
                 Season ends in {SEASONAL[0].endsInDays} days
               </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold text-amber-400">
+            <span className="text-xs font-bold text-amber-400">
               {SEASONAL.filter((s) => s.current >= s.target).length}/{SEASONAL.length} done
             </span>
             {seasonExpanded ? (
@@ -1465,7 +1465,7 @@ export function QuestTree() {
               className="overflow-hidden"
             >
               {/* Season ends gradient banner */}
-              <div className="px-4 py-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border-b border-amber-500/10">
+              <div className="px-4 py-2 bg-amber-500/10 border-b border-amber-500/10">
                 <p className="text-[11px] font-bold text-amber-400">
                   Season ends in {SEASONAL[0].endsInDays} days — complete challenges for bonus XP!
                 </p>
@@ -1507,7 +1507,7 @@ export function QuestTree() {
                             {sc.description}
                           </p>
                           <div className="mt-2 space-y-1">
-                            <div className="flex items-center justify-between text-[10px]">
+                            <div className="flex items-center justify-between text-xs">
                               <span className="text-muted-foreground">
                                 {sc.current} / {sc.target}
                               </span>
@@ -1542,7 +1542,7 @@ export function QuestTree() {
                         <div className="flex flex-col items-end gap-1 shrink-0">
                           <div className="flex items-center gap-1 rounded-full border border-amber-500/20 bg-amber-500/10 px-2 py-0.5">
                             <Clock className="h-2.5 w-2.5 text-amber-400" />
-                            <span className="text-[9px] font-bold text-amber-400">
+                            <span className="text-[11px] font-bold text-amber-400">
                               {sc.endsInDays}d left
                             </span>
                           </div>

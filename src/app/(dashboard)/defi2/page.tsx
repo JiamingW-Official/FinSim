@@ -98,7 +98,7 @@ function StatCard({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
       {children}
     </h3>
   );

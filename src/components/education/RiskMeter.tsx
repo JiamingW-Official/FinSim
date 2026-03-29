@@ -124,11 +124,11 @@ export function RiskMeter({
       <TooltipTrigger asChild>
         <div className="space-y-1 rounded-md bg-muted/50 p-2 cursor-help">
           <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-1 text-[10px] text-muted-foreground">
+            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
               <AlertTriangle className="h-3 w-3" />
               Risk Level
             </span>
-            <span className={cn("text-[10px] font-semibold", RISK_TEXT_COLORS[level])}>
+            <span className={cn("text-xs font-semibold", RISK_TEXT_COLORS[level])}>
               {level}
             </span>
           </div>
@@ -153,17 +153,17 @@ export function RiskMeter({
         sideOffset={8}
         className="max-w-[240px] space-y-1 bg-card text-card-foreground border border-border p-2.5"
       >
-        <div className="text-[10px] font-semibold">Risk Assessment</div>
+        <div className="text-xs font-semibold">Risk Assessment</div>
         {factors.length > 0 ? (
           <ul className="space-y-0.5">
             {factors.map((f) => (
-              <li key={f} className="text-[10px] text-muted-foreground">
+              <li key={f} className="text-xs text-muted-foreground">
                 {f}
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             This trade has low risk relative to your portfolio.
           </p>
         )}

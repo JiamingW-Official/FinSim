@@ -90,7 +90,7 @@ export function TradeHeatmap() {
           const label = DAY_LABELS[d - 1];
           return (
             <div key={d} className="flex flex-1 flex-col items-center gap-1.5">
-              <div className="text-[10px] font-medium text-muted-foreground">{label}</div>
+              <div className="text-xs font-medium text-muted-foreground">{label}</div>
               <div
                 className="flex w-full flex-col items-center justify-center rounded-lg px-1 py-3 transition-colors"
                 style={{ backgroundColor: color }}
@@ -99,7 +99,7 @@ export function TradeHeatmap() {
                   {slot.count > 0 ? fmt(slot.avg) : "—"}
                 </span>
                 {slot.count > 0 && (
-                  <span className="mt-0.5 text-[9px] text-muted-foreground">
+                  <span className="mt-0.5 text-[11px] text-muted-foreground">
                     {slot.count} trade{slot.count !== 1 ? "s" : ""}
                   </span>
                 )}
@@ -110,7 +110,7 @@ export function TradeHeatmap() {
       </div>
 
       {/* Legend */}
-      <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
         <div className="flex items-center gap-1">
           <span
             className="inline-block h-2.5 w-4 rounded-sm"
@@ -133,7 +133,7 @@ export function TradeHeatmap() {
           const slot = dayStats[d];
           return (
             <div key={d} className="text-center">
-              <p className="text-[9px] font-medium uppercase text-muted-foreground">
+              <p className="text-[11px] font-medium uppercase text-muted-foreground">
                 {DAY_LABELS[d - 1]}
               </p>
               <p
@@ -143,10 +143,10 @@ export function TradeHeatmap() {
               >
                 {slot.count > 0 ? `${slot.avg >= 0 ? "+" : ""}${slot.avg.toFixed(2)}` : "—"}
               </p>
-              <p className="text-[9px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground">
                 {slot.count} trade{slot.count !== 1 ? "s" : ""}
               </p>
-              <p className="font-mono text-[9px] text-muted-foreground">
+              <p className="font-mono text-[11px] text-muted-foreground">
                 {slot.count > 0 ? `$${fmt(slot.total)}` : ""}
               </p>
             </div>

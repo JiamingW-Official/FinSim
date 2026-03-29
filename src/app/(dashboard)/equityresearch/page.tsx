@@ -767,7 +767,7 @@ function RatingDistributionChart({ ratings }: { ratings: AnalystRating[] }) {
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Consensus Distribution ({total} analysts)</p>
+      <p className="text-xs text-slate-400 font-medium">Consensus Distribution ({total} analysts)</p>
       <svg width={barW + 120} height={barH + 40}>
         {/* Stacked bar */}
         <rect x={0} y={0} width={(buyPct / 100) * barW} height={barH} fill="#22c55e" rx={4} />
@@ -876,7 +876,7 @@ function ResearchProcessTab() {
 
       {/* Flowchart */}
       <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
-        <p className="text-xs text-slate-400 mb-3 font-medium uppercase tracking-wider">Process Flowchart</p>
+        <p className="text-xs text-slate-400 mb-3 font-medium">Process Flowchart</p>
         <ProcessFlowchart />
       </div>
 
@@ -922,7 +922,7 @@ function ResearchProcessTab() {
 
       {/* Checklist */}
       <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
-        <p className="text-xs text-slate-400 mb-3 font-medium uppercase tracking-wider">Thesis Validation Checklist</p>
+        <p className="text-xs text-slate-400 mb-3 font-medium">Thesis Validation Checklist</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {[
             "Can you explain the thesis in 2 sentences?",

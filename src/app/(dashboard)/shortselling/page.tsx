@@ -622,11 +622,11 @@ function FamousShortCard({ short }: { short: FamousShort }) {
           >
             <div className="mt-4 space-y-3">
               <div>
-                <p className="text-xs text-zinc-400 font-semibold uppercase tracking-wider mb-1">Thesis</p>
+                <p className="text-xs text-zinc-400 font-semibold mb-1">Thesis</p>
                 <p className="text-sm text-zinc-300">{short.thesis}</p>
               </div>
               <div>
-                <p className="text-xs text-zinc-400 font-semibold uppercase tracking-wider mb-1">Outcome</p>
+                <p className="text-xs text-zinc-400 font-semibold mb-1">Outcome</p>
                 <p className="text-sm text-zinc-300">{short.outcome}</p>
               </div>
               <div className="rounded-lg bg-white/5 p-3 border border-white/10">
@@ -666,11 +666,11 @@ function EMHCard({ form, idx }: { form: EMHForm; idx: number }) {
       </CardHeader>
       <CardContent className="space-y-3 text-sm">
         <div>
-          <span className="text-xs text-zinc-400 uppercase tracking-wider font-semibold">Definition</span>
+          <span className="text-xs text-zinc-400 font-semibold">Definition</span>
           <p className="text-zinc-300 mt-1">{form.definition}</p>
         </div>
         <div>
-          <span className="text-xs text-zinc-400 uppercase tracking-wider font-semibold">Implication</span>
+          <span className="text-xs text-zinc-400 font-semibold">Implication</span>
           <p className="text-zinc-300 mt-1">{form.implication}</p>
         </div>
         <div className="grid grid-cols-2 gap-2">
@@ -1272,7 +1272,7 @@ export default function ShortSellingPage() {
                       <thead>
                         <tr className="border-b border-white/10">
                           {["Firm", "Founded", "Notable", "Style", "Avg Gain Per Short"].map((h) => (
-                            <th key={h} className="text-left px-3 py-2 text-xs text-zinc-500 font-semibold uppercase tracking-wider">
+                            <th key={h} className="text-left px-3 py-2 text-xs text-zinc-500 font-semibold">
                               {h}
                             </th>
                           ))}

@@ -62,15 +62,15 @@ export function CareerStats() {
           key={card.label}
           className="card-hover-glow rounded-xl border border-border bg-card/50 p-3"
         >
-          <div className="mb-1 flex items-center gap-1 text-[10px] font-medium text-muted-foreground">
+          <div className="mb-1 flex items-center gap-1 text-xs font-medium text-muted-foreground">
             {card.icon}
             {card.label}
           </div>
-          <p className={cn("text-sm font-black tabular-nums", card.valueClass)}>
+          <p className={cn("text-sm font-bold tabular-nums", card.valueClass)}>
             {card.value}
           </p>
           {card.sub && (
-            <p className="text-[9px] text-muted-foreground">{card.sub}</p>
+            <p className="text-[11px] text-muted-foreground">{card.sub}</p>
           )}
         </div>
       ))}

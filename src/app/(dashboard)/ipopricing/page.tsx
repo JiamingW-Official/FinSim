@@ -459,7 +459,7 @@ function ValuationMethodsTab() {
                 { step: "6", label: "Trading commences", time: "IPO day", note: "Stabilization period begins" },
               ].map((s) => (
                 <div key={s.step} className="flex gap-3 text-xs">
-                  <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
                     {s.step}
                   </div>
                   <div>
@@ -715,7 +715,7 @@ function BookbuildingTab() {
         <div className="space-y-2">
           {greenshoeSteps.map((s, i) => (
             <div key={i} className="flex gap-3 items-start">
-              <div className="w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 mt-0.5">
+              <div className="w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5">
                 {i + 1}
               </div>
               <p className="text-xs text-zinc-300">{s.step}</p>

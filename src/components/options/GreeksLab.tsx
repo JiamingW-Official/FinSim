@@ -30,7 +30,7 @@ function SectionTitle({ title, subtitle }: { title: string; subtitle?: string })
         {title}
       </span>
       {subtitle && (
-        <span className="text-[10px] text-muted-foreground">{subtitle}</span>
+        <span className="text-xs text-muted-foreground">{subtitle}</span>
       )}
     </div>
   );
@@ -123,11 +123,11 @@ function PortfolioGreeksSummary({ positions }: PortfolioGreeksSummaryProps) {
           return (
             <div key={row.label} className="space-y-0.5">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-semibold text-foreground">
+                <span className="text-xs font-semibold text-foreground">
                   {row.label}
                 </span>
                 <span
-                  className="font-mono text-[10px] font-semibold"
+                  className="font-mono text-xs font-semibold"
                   style={{ color: row.color }}
                 >
                   {fmtSign(row.value)}
@@ -163,7 +163,7 @@ function PortfolioGreeksSummary({ positions }: PortfolioGreeksSummaryProps) {
                   ) : null}
                 </div>
               </div>
-              <p className="text-[9px] text-muted-foreground">{row.desc}</p>
+              <p className="text-[11px] text-muted-foreground">{row.desc}</p>
             </div>
           );
         })}
@@ -236,7 +236,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
 
       <div className="grid grid-cols-2 gap-3 mb-3">
         <div>
-          <label className="block text-[9px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+          <label className="block text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
             Option Type
           </label>
           <div className="flex gap-1">
@@ -245,7 +245,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
                 key={t}
                 onClick={() => setInputs((p) => ({ ...p, optionType: t }))}
                 className={cn(
-                  "flex-1 rounded px-2 py-1 text-[10px] font-semibold transition-colors",
+                  "flex-1 rounded px-2 py-1 text-xs font-semibold transition-colors",
                   inputs.optionType === t
                     ? "bg-primary/20 text-primary"
                     : "bg-muted/30 text-muted-foreground hover:bg-muted/50"
@@ -257,7 +257,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
           </div>
         </div>
         <div>
-          <label className="block text-[9px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+          <label className="block text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
             Strike
           </label>
           <input
@@ -268,7 +268,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
           />
         </div>
         <div>
-          <label className="block text-[9px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+          <label className="block text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
             Contracts
           </label>
           <input
@@ -280,7 +280,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
           />
         </div>
         <div>
-          <label className="block text-[9px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+          <label className="block text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
             Delta
           </label>
           <input
@@ -304,7 +304,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
         ].map((chip) => (
           <div key={chip.label} className="rounded-lg border border-border/50 bg-muted/20 p-2 text-center">
             <div className="font-mono text-[11px] font-bold text-foreground">{chip.value}</div>
-            <div className="text-[9px] text-muted-foreground">{chip.label}</div>
+            <div className="text-[11px] text-muted-foreground">{chip.label}</div>
           </div>
         ))}
       </div>
@@ -318,7 +318,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
 
       {showSim && (
         <div className="overflow-x-auto">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/50">
                 <th className="py-1 text-left font-semibold text-muted-foreground">Move</th>
@@ -354,7 +354,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
               ))}
             </tbody>
           </table>
-          <p className="mt-1 text-[9px] text-muted-foreground">
+          <p className="mt-1 text-[11px] text-muted-foreground">
             Hedge assumes {sharesNeeded} shares short (for long call) using BS pricing at T=30d, IV={( analytics.atmIV * 100).toFixed(0)}%.
           </p>
         </div>
@@ -482,7 +482,7 @@ function PnLAttribution({
       </svg>
       <div className="mt-2 flex flex-wrap gap-2">
         {components.map((c) => (
-          <span key={c.label} className="flex items-center gap-1 text-[9px] text-muted-foreground">
+          <span key={c.label} className="flex items-center gap-1 text-[11px] text-muted-foreground">
             <span className="inline-block h-2 w-2 rounded-sm" style={{ backgroundColor: c.color }} />
             {c.desc}
           </span>
@@ -556,17 +556,17 @@ function GammaScalpingSimulator({
         ].map((c) => (
           <div key={c.label} className="rounded-lg border border-border/50 bg-muted/20 p-2">
             <div className="font-mono text-[11px] font-bold text-foreground">{c.value}</div>
-            <div className="text-[9px] font-semibold text-foreground/70">{c.label}</div>
-            <div className="text-[9px] text-muted-foreground">{c.sub}</div>
+            <div className="text-[11px] font-semibold text-foreground/70">{c.label}</div>
+            <div className="text-[11px] text-muted-foreground">{c.sub}</div>
           </div>
         ))}
       </div>
 
       <div className="rounded-lg border border-border/40 bg-muted/10 p-3">
-        <p className="text-[10px] font-semibold text-foreground mb-1">
+        <p className="text-xs font-semibold text-foreground mb-1">
           How Gamma Scalping Works
         </p>
-        <p className="text-[10px] text-muted-foreground leading-relaxed">
+        <p className="text-xs text-muted-foreground leading-relaxed">
           Buy a delta-neutral straddle, then re-hedge delta frequently as the
           underlying moves. Each hedge locks in a small profit proportional to
           the move squared (Gamma P&L). You break even when realized volatility
@@ -574,17 +574,17 @@ function GammaScalpingSimulator({
           when RV {"<"} IV.
         </p>
         <div className="mt-2 flex gap-4">
-          <div className="text-[10px]">
+          <div className="text-xs">
             <span className="text-muted-foreground">IV: </span>
             <span className="font-mono font-semibold text-orange-400">{ivPct.toFixed(1)}%</span>
           </div>
-          <div className="text-[10px]">
+          <div className="text-xs">
             <span className="text-muted-foreground">HV (RV): </span>
             <span className={cn("font-mono font-semibold", hv > iv ? "text-emerald-400" : "text-red-400")}>
               {rvMinus.toFixed(1)}%
             </span>
           </div>
-          <div className="text-[10px]">
+          <div className="text-xs">
             <span className="text-muted-foreground">Edge: </span>
             <span className={cn("font-mono font-semibold", hv > iv ? "text-emerald-400" : "text-red-400")}>
               {hv > iv ? "+" : ""}{(rvMinus - ivPct).toFixed(1)}pp
@@ -693,7 +693,7 @@ function VolSkewExplanation({
         <span className="text-[11px] font-semibold" style={{ color: skewColor }}>
           {skewLabel}
         </span>
-        <div className="mt-1 flex gap-4 text-[10px]">
+        <div className="mt-1 flex gap-4 text-xs">
           <span>
             <span className="text-muted-foreground">OTM Put IV: </span>
             <span className="font-mono font-semibold text-orange-400">
@@ -708,7 +708,7 @@ function VolSkewExplanation({
           </span>
           <span>
             <span className="text-muted-foreground">OTM Call IV: </span>
-            <span className="font-mono font-semibold text-blue-400">
+            <span className="font-mono font-semibold text-orange-400">
               {(otmCallIV * 100).toFixed(1)}%
             </span>
           </span>
@@ -756,8 +756,8 @@ function VolSkewExplanation({
       {/* Educational panels */}
       <div className="space-y-2">
         <div className="rounded-lg border border-border/40 bg-muted/10 p-3">
-          <p className="mb-1 text-[10px] font-semibold text-foreground">Why Skew Exists</p>
-          <p className="text-[10px] text-muted-foreground leading-relaxed">
+          <p className="mb-1 text-xs font-semibold text-foreground">Why Skew Exists</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">
             Equity markets have historically crashed down faster than they rally.
             Institutional investors buy OTM puts as portfolio insurance, driving
             up demand and thus implied volatility for downside strikes. This
@@ -766,8 +766,8 @@ function VolSkewExplanation({
           </p>
         </div>
         <div className="rounded-lg border border-border/40 bg-muted/10 p-3">
-          <p className="mb-1 text-[10px] font-semibold text-foreground">How to Trade Skew</p>
-          <ul className="space-y-1 text-[10px] text-muted-foreground">
+          <p className="mb-1 text-xs font-semibold text-foreground">How to Trade Skew</p>
+          <ul className="space-y-1 text-xs text-muted-foreground">
             <li>
               <span className="font-semibold text-foreground/80">Risk Reversals:</span>{" "}
               Sell expensive OTM put, buy cheaper OTM call — monetize the skew when you expect

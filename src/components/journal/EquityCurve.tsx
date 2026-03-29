@@ -236,7 +236,7 @@ export function JournalEquityCurve({ trades = [], height = 240 }: Props) {
             {gain >= 0 ? "+" : ""}{formatCurrency(gain)} ({gain >= 0 ? "+" : ""}{((gain / INITIAL_CAPITAL) * 100).toFixed(2)}%)
           </span>
           {maxDrawdownPct > 0 && (
-            <span className="text-red-400/70 tabular-nums text-[10px]">
+            <span className="text-red-400/70 tabular-nums text-xs">
               Max DD: -{maxDrawdownPct.toFixed(1)}%
             </span>
           )}

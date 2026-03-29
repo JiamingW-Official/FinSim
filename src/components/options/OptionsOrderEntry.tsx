@@ -106,12 +106,12 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
       {/* Header */}
       <div className="flex items-center gap-2">
         <Activity className="h-4 w-4 text-orange-400" />
-        <span className="text-sm font-black">Order Entry</span>
+        <span className="text-sm font-bold">Order Entry</span>
       </div>
 
       {/* Strategy name */}
       {activeStrategy && (
-        <div className="rounded-md bg-orange-500/10 px-2 py-1 text-center text-[10px] font-bold text-orange-400">
+        <div className="rounded-md bg-orange-500/10 px-2 py-1 text-center text-xs font-bold text-orange-400">
           {activeStrategy}
         </div>
       )}
@@ -133,8 +133,8 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
       {selectedLegs.length === 0 && (
         <div className="flex flex-col items-center gap-1 py-6 text-muted-foreground">
           <Activity className="h-5 w-5 opacity-30" />
-          <p className="text-[10px]">No legs selected</p>
-          <p className="text-[9px] opacity-60">Click any contract in the chain to add legs</p>
+          <p className="text-xs">No legs selected</p>
+          <p className="text-[11px] opacity-60">Click any contract in the chain to add legs</p>
         </div>
       )}
 
@@ -143,11 +143,11 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           {/* Probability of Profit & Risk Stats */}
           {pop !== null && (
             <div className="rounded-lg border border-border/50 bg-card/30 p-2 space-y-1.5">
-              <div className="flex items-center justify-between text-[10px]">
+              <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Prob of Profit</span>
                 <span
                   className={cn(
-                    "font-black",
+                    "font-bold",
                     pop > 50 ? "text-emerald-400" : pop < 40 ? "text-red-400" : "text-amber-400",
                   )}
                 >
@@ -163,17 +163,17 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
                   style={{ width: `${Math.min(100, Math.max(0, pop))}%` }}
                 />
               </div>
-              <div className="flex items-center justify-between text-[10px]">
+              <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Risk / Reward</span>
                 <span className="font-bold text-foreground">{rorDisplay}</span>
               </div>
               {breakevens.length > 0 && (
                 <div className="flex flex-wrap items-center gap-1">
-                  <span className="text-[9px] text-muted-foreground">BE:</span>
+                  <span className="text-[11px] text-muted-foreground">BE:</span>
                   {breakevens.map((be) => (
                     <span
                       key={be}
-                      className="text-[9px] font-semibold bg-muted/30 rounded px-1 py-0.5 text-foreground"
+                      className="text-[11px] font-semibold bg-muted/30 rounded px-1 py-0.5 text-foreground"
                     >
                       ${be.toFixed(2)}
                     </span>
@@ -188,7 +188,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
 
           {/* Cost summary */}
           <div className="space-y-1 rounded-lg border border-border bg-card/50 p-2.5">
-            <div className="flex items-center justify-between text-[10px]">
+            <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">
                 {isDebit ? "Net Debit" : "Net Credit"}
               </span>
@@ -198,7 +198,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
                 {formatCurrency(Math.abs(netDebit))}
               </span>
             </div>
-            <div className="flex items-center justify-between text-[10px]">
+            <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">Commission</span>
               <span className="text-muted-foreground font-medium">
                 {formatCurrency(commission)}
@@ -209,7 +209,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
               <span className="font-bold">Total</span>
               <span
                 className={cn(
-                  "font-black",
+                  "font-bold",
                   totalCost > 0 ? "text-red-400" : "text-emerald-400",
                 )}
               >
@@ -221,7 +221,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
 
           {/* Cash check */}
           {!canAfford && (
-            <div className="flex items-center gap-1.5 rounded-md bg-red-500/10 px-2 py-1.5 text-[10px] text-red-400">
+            <div className="flex items-center gap-1.5 rounded-md bg-red-500/10 px-2 py-1.5 text-xs text-red-400">
               <AlertTriangle className="h-3 w-3" />
               Insufficient funds ({formatCurrency(cash)} available)
             </div>
@@ -231,7 +231,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           <div className="flex gap-2">
             <motion.button
               onClick={clearLegs}
-              className="flex items-center gap-1 rounded-lg border border-border px-3 py-2 text-[10px] font-bold text-muted-foreground hover:bg-accent"
+              className="flex items-center gap-1 rounded-lg border border-border px-3 py-2 text-xs font-bold text-muted-foreground hover:bg-accent"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -242,7 +242,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
               onClick={handleExecute}
               disabled={!canAfford}
               className={cn(
-                "flex-1 rounded-lg px-3 py-2 text-[11px] font-black transition-colors",
+                "flex-1 rounded-lg px-3 py-2 text-[11px] font-bold transition-colors",
                 canAfford
                   ? "bg-orange-500 text-white hover:bg-orange-600 active:bg-orange-700"
                   : "cursor-not-allowed bg-orange-500/30 text-orange-400/50",

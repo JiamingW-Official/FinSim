@@ -110,20 +110,20 @@ function formatShares(n: number): string {
 function sideLabel(side: DarkPoolPrint["side"]): React.ReactNode {
   if (side === "above_ask") {
     return (
-      <span className="rounded bg-emerald-500/15 px-1 py-0.5 text-[9px] font-semibold text-emerald-400">
+      <span className="rounded bg-emerald-500/15 px-1 py-0.5 text-[11px] font-semibold text-emerald-400">
         Above Ask
       </span>
     );
   }
   if (side === "below_bid") {
     return (
-      <span className="rounded bg-red-500/15 px-1 py-0.5 text-[9px] font-semibold text-red-400">
+      <span className="rounded bg-red-500/15 px-1 py-0.5 text-[11px] font-semibold text-red-400">
         Below Bid
       </span>
     );
   }
   return (
-    <span className="rounded bg-muted/30 px-1 py-0.5 text-[9px] font-medium text-muted-foreground">
+    <span className="rounded bg-muted/30 px-1 py-0.5 text-[11px] font-medium text-muted-foreground">
       Mid
     </span>
   );
@@ -164,8 +164,8 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
     <div className="flex flex-col gap-3">
       {/* 24h Buy/Sell ratio bar */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-2 flex items-center justify-between text-[10px]">
-          <span className="font-medium text-foreground">24h Dark Pool Ratio</span>
+        <div className="mb-2 flex items-center justify-between text-xs">
+          <span className="font-medium text-foreground">24h Simulated Institutional Flow Ratio</span>
           <span className="text-muted-foreground">
             {prints.length} prints tracked
           </span>
@@ -180,7 +180,7 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
             style={{ width: `${sellPct.toFixed(1)}%` }}
           />
         </div>
-        <div className="mt-1.5 flex justify-between text-[9px]">
+        <div className="mt-1.5 flex justify-between text-[11px]">
           <span className="text-emerald-400">
             Buy {buyPct.toFixed(0)}% · {formatBillion(buyDollar)}
           </span>
@@ -198,7 +198,7 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
               {["Time", "Ticker", "Size", "Price", "vs Last", "Side"].map((col) => (
                 <th
                   key={col}
-                  className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70"
+                  className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70"
                 >
                   {col}
                 </th>
@@ -221,21 +221,21 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
                       : "border-l-transparent hover:bg-accent/10",
                   )}
                 >
-                  <td className="px-2 py-1.5 text-[10px] text-muted-foreground">
+                  <td className="px-2 py-1.5 text-xs text-muted-foreground">
                     {relTime(p.timestamp)}
                   </td>
-                  <td className="px-2 py-1.5 text-[10px] font-semibold">
+                  <td className="px-2 py-1.5 text-xs font-semibold">
                     {p.ticker}
                   </td>
-                  <td className="px-2 py-1.5 text-[10px] tabular-nums font-medium">
+                  <td className="px-2 py-1.5 text-xs tabular-nums font-medium">
                     {formatShares(p.size)}
                   </td>
-                  <td className="px-2 py-1.5 text-[10px] tabular-nums">
+                  <td className="px-2 py-1.5 text-xs tabular-nums">
                     ${p.price.toFixed(2)}
                   </td>
                   <td
                     className={cn(
-                      "px-2 py-1.5 text-[10px] tabular-nums font-medium",
+                      "px-2 py-1.5 text-xs tabular-nums font-medium",
                       isAbove
                         ? "text-emerald-400"
                         : isBelow
@@ -246,7 +246,7 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
                     {p.diffPct >= 0 ? "+" : ""}
                     {p.diffPct.toFixed(3)}%
                   </td>
-                  <td className="px-2 py-1.5 text-[10px]">{sideLabel(p.side)}</td>
+                  <td className="px-2 py-1.5 text-xs">{sideLabel(p.side)}</td>
                 </tr>
               );
             })}

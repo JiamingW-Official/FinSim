@@ -358,7 +358,7 @@ function BusinessCycleClock() {
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
-      <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Business Cycle Clock</div>
+      <div className="mb-3 text-xs font-semibold text-muted-foreground">Business Cycle Clock</div>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
         {/* SVG Clock */}
         <div className="shrink-0">
@@ -450,7 +450,7 @@ function BusinessCycleClock() {
           </svg>
 
           {/* Legend */}
-          <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[10px]">
+          <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs">
             {CYCLE_PHASES.map((p, i) => (
               <span key={p.label} className="flex items-center gap-1" style={{ color: p.color }}>
                 <span className="h-2 w-2 rounded-full" style={{ background: p.color, opacity: i === CURRENT_PHASE_IDX ? 1 : 0.5 }} />
@@ -467,9 +467,9 @@ function BusinessCycleClock() {
             <div className="mb-2 flex items-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full" style={{ background: currentPhase.color }} />
               <span className="text-xs font-bold" style={{ color: currentPhase.color }}>{currentPhase.label}</span>
-              <span className="ml-auto rounded bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">CURRENT</span>
+              <span className="ml-auto rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">CURRENT</span>
             </div>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-[10px]">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
               <div><span className="text-muted-foreground">GDP: </span><span className="text-foreground/80">{currentPhase.gdp}</span></div>
               <div><span className="text-muted-foreground">Inflation: </span><span className="text-foreground/80">{currentPhase.inflation}</span></div>
               <div><span className="text-muted-foreground">Rates: </span><span className="text-foreground/80">{currentPhase.rates}</span></div>
@@ -479,18 +479,18 @@ function BusinessCycleClock() {
 
           {/* All phases mini grid */}
           <div className="space-y-1.5">
-            <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">All Phase Characteristics</div>
+            <div className="text-xs font-semibold text-muted-foreground">All Phase Characteristics</div>
             {CYCLE_PHASES.map((p, i) => (
               <div key={p.label} className={cn("rounded border border-border/20 p-2", i === CURRENT_PHASE_IDX && "border-border/60")}>
                 <div className="mb-1 flex items-center gap-1.5">
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: p.color }} />
-                  <span className="text-[10px] font-semibold" style={{ color: p.color }}>{p.label}</span>
+                  <span className="text-xs font-semibold" style={{ color: p.color }}>{p.label}</span>
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {p.leaders.map((l) => {
                     const sec = SECTORS_11.find((s) => s.name === l)!;
                     return (
-                      <span key={l} className="rounded px-1.5 py-0.5 text-[9px] font-mono font-semibold"
+                      <span key={l} className="rounded px-1.5 py-0.5 text-[11px] font-mono font-semibold"
                         style={{ background: sec.color + "25", color: sec.color }}>
                         {sec.etf}
                       </span>
@@ -509,15 +509,15 @@ function BusinessCycleClock() {
 function CyclePerformanceMatrix() {
   return (
     <div className="overflow-x-auto rounded-lg border border-border/40 bg-card">
-      <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground">
         Sector Performance Matrix by Cycle Phase
       </div>
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border/40 bg-muted/10">
-            <th className="py-2 pl-4 pr-3 text-left text-[10px] font-semibold text-muted-foreground">Sector</th>
+            <th className="py-2 pl-4 pr-3 text-left text-xs font-semibold text-muted-foreground">Sector</th>
             {CYCLE_PHASES.map((p, i) => (
-              <th key={p.label} className="px-2 py-2 text-center text-[10px] font-semibold" style={{ color: p.color }}>
+              <th key={p.label} className="px-2 py-2 text-center text-xs font-semibold" style={{ color: p.color }}>
                 {p.shortLabel}{i === CURRENT_PHASE_IDX ? " *" : ""}
               </th>
             ))}
@@ -529,12 +529,12 @@ function CyclePerformanceMatrix() {
               <td className="py-1.5 pl-4 pr-3">
                 <div className="flex items-center gap-1.5">
                   <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: s.color }} />
-                  <span className="text-[10px] font-medium">{s.name}</span>
+                  <span className="text-xs font-medium">{s.name}</span>
                 </div>
               </td>
               {CYCLE_MATRIX[s.name].map((perf, pi) => (
                 <td key={pi} className="px-2 py-1.5 text-center">
-                  <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-semibold capitalize", phasePerfColor(perf))}>
+                  <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-semibold capitalize", phasePerfColor(perf))}>
                     {perf}
                   </span>
                 </td>
@@ -543,7 +543,7 @@ function CyclePerformanceMatrix() {
           ))}
         </tbody>
       </table>
-      <div className="flex gap-3 px-4 py-2 text-[10px] text-muted-foreground border-t border-border/20">
+      <div className="flex gap-3 px-4 py-2 text-xs text-muted-foreground border-t border-border/20">
         <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-emerald-500/25" /> Strong</span>
         <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-blue-500/20" /> Moderate</span>
         <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-muted/30" /> Weak</span>
@@ -576,44 +576,44 @@ function RSSparkline({ history, color }: { history: number[]; color: string }) {
 function RSRankingTable({ ranked }: { ranked: SectorRS[] }) {
   return (
     <div className="overflow-x-auto rounded-lg border border-border/40 bg-card">
-      <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground">
         RS Ranking vs S&P 500 (90-day)
       </div>
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border/40 bg-muted/10">
-            <th className="py-2 pl-4 pr-2 text-left text-[10px] font-semibold text-muted-foreground">Rank</th>
-            <th className="py-2 pr-3 text-left text-[10px] font-semibold text-muted-foreground">Sector</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">RS Now</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">4W Chg</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">12W Chg</th>
-            <th className="px-2 py-2 text-center text-[10px] font-semibold text-muted-foreground">Trend</th>
-            <th className="px-3 py-2 text-center text-[10px] font-semibold text-muted-foreground">90D RS</th>
+            <th className="py-2 pl-4 pr-2 text-left text-xs font-semibold text-muted-foreground">Rank</th>
+            <th className="py-2 pr-3 text-left text-xs font-semibold text-muted-foreground">Sector</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">RS Now</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">4W Chg</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">12W Chg</th>
+            <th className="px-2 py-2 text-center text-xs font-semibold text-muted-foreground">Trend</th>
+            <th className="px-3 py-2 text-center text-xs font-semibold text-muted-foreground">90D RS</th>
           </tr>
         </thead>
         <tbody>
           {ranked.map((s, i) => (
             <tr key={s.name} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
-              <td className="py-1.5 pl-4 pr-2 text-[10px] tabular-nums text-muted-foreground">{i + 1}</td>
+              <td className="py-1.5 pl-4 pr-2 text-xs tabular-nums text-muted-foreground">{i + 1}</td>
               <td className="py-1.5 pr-3">
                 <div className="flex items-center gap-1.5">
                   <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: s.color }} />
-                  <span className="text-[10px] font-mono font-semibold" style={{ color: s.color }}>{s.etf}</span>
-                  <span className="hidden text-[9px] text-muted-foreground sm:inline">{s.name}</span>
+                  <span className="text-xs font-mono font-semibold" style={{ color: s.color }}>{s.etf}</span>
+                  <span className="hidden text-[11px] text-muted-foreground sm:inline">{s.name}</span>
                 </div>
               </td>
               <td className="px-2 py-1.5 text-right">
-                <span className={cn("font-mono text-[10px] font-semibold tabular-nums", s.rsAbove1 ? "text-emerald-400" : "text-red-400")}>
+                <span className={cn("font-mono text-xs font-semibold tabular-nums", s.rsAbove1 ? "text-emerald-400" : "text-red-400")}>
                   {s.rsNow.toFixed(3)}
                 </span>
               </td>
               <td className="px-2 py-1.5 text-right">
-                <span className={cn("text-[10px] tabular-nums", s.rs4wChange >= 0 ? "text-emerald-500" : "text-red-500")}>
+                <span className={cn("text-xs tabular-nums", s.rs4wChange >= 0 ? "text-emerald-500" : "text-red-500")}>
                   {s.rs4wChange >= 0 ? "+" : ""}{s.rs4wChange.toFixed(3)}
                 </span>
               </td>
               <td className="px-2 py-1.5 text-right">
-                <span className={cn("text-[10px] tabular-nums", s.rs12wChange >= 0 ? "text-emerald-500" : "text-red-500")}>
+                <span className={cn("text-xs tabular-nums", s.rs12wChange >= 0 ? "text-emerald-500" : "text-red-500")}>
                   {s.rs12wChange >= 0 ? "+" : ""}{s.rs12wChange.toFixed(3)}
                 </span>
               </td>
@@ -629,7 +629,7 @@ function RSRankingTable({ ranked }: { ranked: SectorRS[] }) {
           ))}
         </tbody>
       </table>
-      <div className="flex gap-4 px-4 py-2 text-[10px] text-muted-foreground border-t border-border/20">
+      <div className="flex gap-4 px-4 py-2 text-xs text-muted-foreground border-t border-border/20">
         <span className="text-emerald-400 font-semibold">RS &gt; 1.0</span> = outperforming S&P 500
         <span className="text-red-400 font-semibold">RS &lt; 1.0</span> = underperforming
         <span className="ml-auto">RS = sector return / S&P 500 return (rolling)</span>
@@ -649,7 +649,7 @@ function RSMomentumMatrix({ ranked }: { ranked: SectorRS[] }) {
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
-      <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">JdK RS Momentum Matrix</div>
+      <div className="mb-3 text-xs font-semibold text-muted-foreground">JdK RS Momentum Matrix</div>
       <div className="grid grid-cols-2 gap-2">
         {quadrants.map((q) => {
           const sectors = ranked.filter((s) =>
@@ -657,14 +657,14 @@ function RSMomentumMatrix({ ranked }: { ranked: SectorRS[] }) {
           );
           return (
             <div key={q.label} className={cn("rounded border p-3", q.cls)}>
-              <div className="mb-1 text-[10px] font-bold text-foreground/80">{q.label}</div>
-              <div className="mb-1 text-[9px] text-muted-foreground">{q.desc}</div>
+              <div className="mb-1 text-xs font-bold text-foreground/80">{q.label}</div>
+              <div className="mb-1 text-[11px] text-muted-foreground">{q.desc}</div>
               <div className="flex flex-wrap gap-1">
                 {sectors.length === 0 ? (
-                  <span className="text-[9px] text-muted-foreground italic">none</span>
+                  <span className="text-[11px] text-muted-foreground italic">none</span>
                 ) : (
                   sectors.map((s) => (
-                    <span key={s.etf} className="rounded px-1.5 py-0.5 text-[9px] font-mono font-semibold"
+                    <span key={s.etf} className="rounded px-1.5 py-0.5 text-[11px] font-mono font-semibold"
                       style={{ background: s.color + "20", color: s.color }}>
                       {s.etf}
                     </span>
@@ -701,15 +701,15 @@ function EtfPerfHeatmap({ perfs }: { perfs: SectorPerfData[] }) {
 
   return (
     <div className="overflow-x-auto rounded-lg border border-border/40 bg-card">
-      <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground">
         Sector ETF Performance Heatmap
       </div>
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border/40 bg-muted/10">
-            <th className="py-2 pl-4 pr-3 text-left text-[10px] font-semibold text-muted-foreground">Sector</th>
+            <th className="py-2 pl-4 pr-3 text-left text-xs font-semibold text-muted-foreground">Sector</th>
             {cols.map((c) => (
-              <th key={c.key} className="px-2 py-2 text-center text-[10px] font-semibold text-muted-foreground">{c.label}</th>
+              <th key={c.key} className="px-2 py-2 text-center text-xs font-semibold text-muted-foreground">{c.label}</th>
             ))}
           </tr>
         </thead>
@@ -719,14 +719,14 @@ function EtfPerfHeatmap({ perfs }: { perfs: SectorPerfData[] }) {
               <td className="py-1.5 pl-4 pr-3">
                 <div className="flex items-center gap-1.5">
                   <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: p.color }} />
-                  <span className="text-[10px] font-mono font-semibold" style={{ color: p.color }}>{p.etf}</span>
+                  <span className="text-xs font-mono font-semibold" style={{ color: p.color }}>{p.etf}</span>
                 </div>
               </td>
               {cols.map((c) => {
                 const v = p[c.key] as number;
                 return (
                   <td key={c.key} className="px-1 py-1.5 text-center">
-                    <span className={cn("rounded px-1.5 py-0.5 text-[9px] tabular-nums font-mono", heatBg(v, colMins[c.key], colMaxs[c.key]))}>
+                    <span className={cn("rounded px-1.5 py-0.5 text-[11px] tabular-nums font-mono", heatBg(v, colMins[c.key], colMaxs[c.key]))}>
                       {fmt(v)}
                     </span>
                   </td>
@@ -750,11 +750,11 @@ function SeasonalityChart({ data }: { data: SeasonalityData[] }) {
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
       <div className="mb-3 flex items-center justify-between">
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Sector Seasonality Patterns</div>
+        <div className="text-xs font-semibold text-muted-foreground">Sector Seasonality Patterns</div>
         <select
           value={selectedSector}
           onChange={(e) => setSelectedSector(e.target.value)}
-          className="rounded border border-border/40 bg-background px-2 py-1 text-[10px] text-foreground"
+          className="rounded border border-border/40 bg-background px-2 py-1 text-xs text-foreground"
         >
           {data.map((d) => (
             <option key={d.name} value={d.name}>{d.etf} — {d.name}</option>
@@ -788,7 +788,7 @@ function SeasonalityChart({ data }: { data: SeasonalityData[] }) {
         })}
         <line x1={0} y1={H / 2} x2={W} y2={H / 2} stroke="#ffffff18" strokeWidth={1} />
       </svg>
-      <div className="mt-1 text-[9px] text-muted-foreground">
+      <div className="mt-1 text-[11px] text-muted-foreground">
         Historical avg monthly returns for {sector.name} — seeded synthetic data (seed 2580)
       </div>
     </div>
@@ -798,13 +798,13 @@ function SeasonalityChart({ data }: { data: SeasonalityData[] }) {
 function BreadthBars({ perfs }: { perfs: SectorPerfData[] }) {
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
-      <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="mb-3 text-xs font-semibold text-muted-foreground">
         Sector Breadth — % Stocks Above MAs
       </div>
       <div className="space-y-2">
         {perfs.map((p) => (
           <div key={p.name} className="space-y-0.5">
-            <div className="flex items-center justify-between text-[10px]">
+            <div className="flex items-center justify-between text-xs">
               <span className="font-mono font-semibold" style={{ color: p.color }}>{p.etf}</span>
               <div className="flex gap-3 text-muted-foreground">
                 <span>50MA: <span className={cn("font-semibold", p.above50ma > 60 ? "text-emerald-400" : p.above50ma < 40 ? "text-red-400" : "text-foreground/60")}>{p.above50ma.toFixed(0)}%</span></span>
@@ -822,7 +822,7 @@ function BreadthBars({ perfs }: { perfs: SectorPerfData[] }) {
           </div>
         ))}
       </div>
-      <div className="mt-2 flex gap-3 text-[9px] text-muted-foreground">
+      <div className="mt-2 flex gap-3 text-[11px] text-muted-foreground">
         <span className="flex items-center gap-1"><span className="h-2 w-3 rounded bg-emerald-500/60" /> % above 50MA</span>
         <span className="flex items-center gap-1"><span className="h-2 w-3 rounded bg-blue-500/60" /> % above 200MA</span>
       </div>
@@ -836,39 +836,39 @@ function RotationSignal({ ranked }: { ranked: SectorRS[] }) {
 
   return (
     <div className="rounded-lg border border-primary/30 bg-primary/5 p-4">
-      <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-muted-foreground">
         <Zap className="h-3.5 w-3.5 text-primary" />
         Rotation Signal
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="rounded border border-emerald-500/30 bg-emerald-500/5 p-3">
-          <div className="mb-1 flex items-center gap-1.5 text-[10px] font-semibold text-emerald-400">
+          <div className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
             <TrendingUp className="h-3 w-3" /> BUY / OVERWEIGHT
           </div>
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full" style={{ background: buy.color }} />
             <span className="font-mono text-sm font-bold" style={{ color: buy.color }}>{buy.etf}</span>
-            <span className="text-[10px] text-muted-foreground">{buy.name}</span>
+            <span className="text-xs text-muted-foreground">{buy.name}</span>
           </div>
-          <div className="mt-1 text-[9px] text-muted-foreground">
+          <div className="mt-1 text-[11px] text-muted-foreground">
             Strongest RS: {buy.rsNow.toFixed(3)} | Trend: {buy.rsTrend}
           </div>
         </div>
         <div className="rounded border border-red-500/30 bg-red-500/5 p-3">
-          <div className="mb-1 flex items-center gap-1.5 text-[10px] font-semibold text-red-400">
+          <div className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-red-400">
             <TrendingDown className="h-3 w-3" /> SELL / UNDERWEIGHT
           </div>
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full" style={{ background: sell.color }} />
             <span className="font-mono text-sm font-bold" style={{ color: sell.color }}>{sell.etf}</span>
-            <span className="text-[10px] text-muted-foreground">{sell.name}</span>
+            <span className="text-xs text-muted-foreground">{sell.name}</span>
           </div>
-          <div className="mt-1 text-[9px] text-muted-foreground">
+          <div className="mt-1 text-[11px] text-muted-foreground">
             Weakest RS: {sell.rsNow.toFixed(3)} | Trend: {sell.rsTrend}
           </div>
         </div>
       </div>
-      <div className="mt-2 text-[9px] text-muted-foreground">
+      <div className="mt-2 text-[11px] text-muted-foreground">
         Rule: Rotate out of weakest RS sector into strongest RS sector. Re-evaluate monthly.
       </div>
     </div>
@@ -893,7 +893,7 @@ function FactorRSChart({ factors }: { factors: FactorRS[] }) {
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
-      <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Factor RS vs S&P 500 (90 days)</div>
+      <div className="mb-3 text-xs font-semibold text-muted-foreground">Factor RS vs S&P 500 (90 days)</div>
       <svg viewBox={`0 0 ${W} ${H + 4}`} className="w-full" style={{ height: H + 4 }}>
         {/* RS = 1.0 baseline */}
         <line
@@ -923,7 +923,7 @@ function FactorRSChart({ factors }: { factors: FactorRS[] }) {
       </svg>
       <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
         {factors.map((f) => (
-          <span key={f.name} className="flex items-center gap-1 text-[9px]" style={{ color: f.color }}>
+          <span key={f.name} className="flex items-center gap-1 text-[11px]" style={{ color: f.color }}>
             <span className="h-1.5 w-3 rounded-full inline-block" style={{ background: f.color }} />
             {f.name}
           </span>
@@ -943,7 +943,7 @@ function FactorCycleGrid({ factors }: { factors: FactorRS[] }) {
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
-      <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Factor Cycle Analysis</div>
+      <div className="mb-3 text-xs font-semibold text-muted-foreground">Factor Cycle Analysis</div>
       <div className="grid gap-2 sm:grid-cols-2">
         {CYCLE_PHASES.map((p, i) => {
           const fit = phaseFitLabels[p.label as keyof typeof phaseFitLabels];
@@ -952,27 +952,27 @@ function FactorCycleGrid({ factors }: { factors: FactorRS[] }) {
             <div key={p.label} className={cn("rounded border p-3", isActive ? "border-border/60" : "border-border/20")}>
               <div className="mb-1.5 flex items-center gap-1.5">
                 <span className="h-2 w-2 rounded-full" style={{ background: p.color }} />
-                <span className="text-[10px] font-semibold" style={{ color: p.color }}>{p.label}</span>
-                {isActive && <span className="ml-auto rounded bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold text-primary">NOW</span>}
+                <span className="text-xs font-semibold" style={{ color: p.color }}>{p.label}</span>
+                {isActive && <span className="ml-auto rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold text-primary">NOW</span>}
               </div>
               <div className="space-y-1">
-                <div className="text-[9px]">
+                <div className="text-[11px]">
                   <span className="text-emerald-400 font-semibold">Leads: </span>
                   {fit.leaders.map((l, li) => {
                     const f = FACTORS_6.find((x) => x.name === l);
                     return (
-                      <span key={l} style={{ color: f?.color ?? "#fff" }} className="font-mono text-[9px] font-semibold">
+                      <span key={l} style={{ color: f?.color ?? "#fff" }} className="font-mono text-[11px] font-semibold">
                         {f?.etf}{li < fit.leaders.length - 1 ? ", " : ""}
                       </span>
                     );
                   })}
                 </div>
-                <div className="text-[9px]">
+                <div className="text-[11px]">
                   <span className="text-red-400 font-semibold">Lags: </span>
                   {fit.laggards.map((l, li) => {
                     const f = FACTORS_6.find((x) => x.name === l);
                     return (
-                      <span key={l} style={{ color: f?.color ?? "#888" }} className="font-mono text-[9px]">
+                      <span key={l} style={{ color: f?.color ?? "#888" }} className="font-mono text-[11px]">
                         {f?.etf}{li < fit.laggards.length - 1 ? ", " : ""}
                       </span>
                     );
@@ -994,10 +994,10 @@ function FactorLeadershipPanel({ factors }: { factors: FactorRS[] }) {
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
-      <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Current Factor Leadership</div>
+      <div className="mb-3 text-xs font-semibold text-muted-foreground">Current Factor Leadership</div>
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
-          <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold text-emerald-400">
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
             <TrendingUp className="h-3 w-3" /> Outperforming
           </div>
           <div className="space-y-1.5">
@@ -1006,15 +1006,15 @@ function FactorLeadershipPanel({ factors }: { factors: FactorRS[] }) {
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full" style={{ background: f.color }} />
                   <span className="font-mono text-xs font-bold" style={{ color: f.color }}>{f.etf}</span>
-                  <span className="text-[10px] text-muted-foreground">{f.name}</span>
+                  <span className="text-xs text-muted-foreground">{f.name}</span>
                 </div>
-                <span className="font-mono text-[10px] text-emerald-400">{f.rsNow.toFixed(3)}</span>
+                <span className="font-mono text-xs text-emerald-400">{f.rsNow.toFixed(3)}</span>
               </div>
             ))}
           </div>
         </div>
         <div>
-          <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold text-red-400">
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-red-400">
             <TrendingDown className="h-3 w-3" /> Underperforming
           </div>
           <div className="space-y-1.5">
@@ -1023,9 +1023,9 @@ function FactorLeadershipPanel({ factors }: { factors: FactorRS[] }) {
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full" style={{ background: f.color }} />
                   <span className="font-mono text-xs font-bold" style={{ color: f.color }}>{f.etf}</span>
-                  <span className="text-[10px] text-muted-foreground">{f.name}</span>
+                  <span className="text-xs text-muted-foreground">{f.name}</span>
                 </div>
-                <span className="font-mono text-[10px] text-red-400">{f.rsNow.toFixed(3)}</span>
+                <span className="font-mono text-xs text-red-400">{f.rsNow.toFixed(3)}</span>
               </div>
             ))}
           </div>
@@ -1044,7 +1044,7 @@ function RegionalSectorLeadership({ regionals }: { regionals: RegionalData[] }) 
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
-      <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-muted-foreground">
         <Globe className="h-3.5 w-3.5" /> Regional Sector Leadership
       </div>
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
@@ -1053,7 +1053,7 @@ function RegionalSectorLeadership({ regionals }: { regionals: RegionalData[] }) 
             <div className="mb-2 font-semibold text-xs" style={{ color: regionColors[r.region] }}>
               {r.region}
             </div>
-            <div className="space-y-1 text-[10px]">
+            <div className="space-y-1 text-xs">
               <div className="flex items-center gap-1.5">
                 <TrendingUp className="h-3 w-3 text-emerald-400 shrink-0" />
                 <span className="text-muted-foreground">Top: </span>
@@ -1064,7 +1064,7 @@ function RegionalSectorLeadership({ regionals }: { regionals: RegionalData[] }) 
                 <span className="text-muted-foreground">Weak: </span>
                 <span className="font-semibold text-foreground/80">{r.bottom}</span>
               </div>
-              <div className="flex items-center gap-1.5 mt-1 text-[9px]">
+              <div className="flex items-center gap-1.5 mt-1 text-[11px]">
                 <span className="text-muted-foreground">USD: </span>
                 <span className={cn("font-semibold",
                   r.usdImpact === "positive" ? "text-emerald-400" :
@@ -1116,8 +1116,8 @@ function CurrencyCommodityImpact() {
         return (
           <div key={imp.title} className={cn("rounded-lg border p-3", borderCls, bgCls)}>
             <div className="mb-1.5 text-xs font-bold text-foreground/80">{imp.title}</div>
-            <div className="mb-2 text-[9px] text-muted-foreground leading-relaxed">{imp.desc}</div>
-            <div className="space-y-1 text-[9px]">
+            <div className="mb-2 text-[11px] text-muted-foreground leading-relaxed">{imp.desc}</div>
+            <div className="space-y-1 text-[11px]">
               <div>
                 <span className="text-emerald-400 font-semibold">Benefits: </span>
                 {imp.help.map((h) => {
@@ -1158,7 +1158,7 @@ function CapitalFlowsChart({ flows }: { flows: CapitalFlow[] }) {
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-4">
-      <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+      <div className="mb-3 text-xs font-semibold text-muted-foreground">
         Sector ETF Capital Flows (4-week, $B)
       </div>
       <svg viewBox={`0 0 ${W} ${flows.length * BAR_H + 8}`} className="w-full" style={{ height: flows.length * BAR_H + 8 }}>
@@ -1277,8 +1277,8 @@ export default function SectorRotationStrategy() {
           <CurrencyCommodityImpact />
           <CapitalFlowsChart flows={capitalFlows} />
           <div className="rounded-lg border border-border/40 bg-card p-4">
-            <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Geopolitical Sector Impact</div>
-            <div className="grid gap-3 sm:grid-cols-3 text-[10px]">
+            <div className="mb-3 text-xs font-semibold text-muted-foreground">Geopolitical Sector Impact</div>
+            <div className="grid gap-3 sm:grid-cols-3 text-xs">
               <div className="rounded border border-border/30 bg-muted/10 p-3 space-y-1.5">
                 <div className="font-semibold text-foreground/80">Defense Spending</div>
                 <div className="text-muted-foreground leading-relaxed">NATO budget increases drive Industrials demand. Key names: LMT, NOC, RTX, BA, GD.</div>

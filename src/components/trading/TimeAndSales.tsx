@@ -132,16 +132,16 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
     <div className="rounded-lg border border-border bg-card overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-2 py-1.5 border-b border-border">
-        <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-semibold text-muted-foreground">
           Time &amp; Sales
         </span>
-        <span className="text-[9px] text-muted-foreground font-mono tabular-nums">
+        <span className="text-[11px] text-muted-foreground font-mono tabular-nums">
           {ticker}
         </span>
       </div>
 
       {/* Stats row */}
-      <div className="flex items-center gap-3 px-2 py-1 border-b border-border/50 text-[9px] font-mono tabular-nums">
+      <div className="flex items-center gap-3 px-2 py-1 border-b border-border/50 text-[11px] font-mono tabular-nums">
         <div className="flex items-center gap-1">
           <span className="text-muted-foreground/70">Vol:</span>
           <span className="text-foreground font-medium">{formatSize(totalVolume)}</span>
@@ -160,7 +160,7 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
       </div>
 
       {/* Column headers */}
-      <div className="flex items-center gap-1 px-2 py-0.5 border-b border-border/30 text-[9px] text-muted-foreground/60">
+      <div className="flex items-center gap-1 px-2 py-0.5 border-b border-border/30 text-[11px] text-muted-foreground/60">
         <span className="w-[56px]">Time</span>
         <span className="flex-1 text-right">Price</span>
         <span className="w-[52px] text-right">Size</span>
@@ -170,7 +170,7 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
       {/* Scrolling tape */}
       <div className="overflow-y-auto" style={{ maxHeight: 200 }}>
         {trades.length === 0 && (
-          <div className="px-2 py-3 text-[10px] text-muted-foreground text-center">
+          <div className="px-2 py-3 text-xs text-muted-foreground text-center">
             Waiting for trades...
           </div>
         )}
@@ -180,11 +180,11 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
             <div
               key={entry.id}
               className={cn(
-                "flex items-center gap-1 px-2 h-[18px] text-[10px] font-mono tabular-nums border-b border-border/10",
+                "flex items-center gap-1 px-2 h-[18px] text-xs font-mono tabular-nums border-b border-border/10",
                 isLarge && "bg-amber-500/8 border-amber-500/20",
               )}
             >
-              <span className="w-[56px] text-[9px] text-muted-foreground/60 shrink-0">
+              <span className="w-[56px] text-[11px] text-muted-foreground/60 shrink-0">
                 {entry.time}
               </span>
               <span

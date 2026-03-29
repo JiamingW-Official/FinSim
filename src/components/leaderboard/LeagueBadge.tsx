@@ -25,7 +25,7 @@ export function LeagueBadge({ tier, size = "sm", className }: LeagueBadgeProps) 
         )}
       >
         <span className="text-sm">{league.emoji}</span>
-        <span className={cn("text-xs font-black", league.color)}>
+        <span className={cn("text-xs font-bold", league.color)}>
           {league.label}
         </span>
       </div>
@@ -42,8 +42,8 @@ export function LeagueBadge({ tier, size = "sm", className }: LeagueBadgeProps) 
         className,
       )}
     >
-      <span className="text-[10px]">{league.emoji}</span>
-      <span className={cn("text-[9px] font-bold", league.color)}>
+      <span className="text-xs">{league.emoji}</span>
+      <span className={cn("text-[11px] font-bold", league.color)}>
         {league.label}
       </span>
     </div>

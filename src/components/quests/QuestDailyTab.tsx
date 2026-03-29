@@ -76,7 +76,7 @@ export function QuestDailyTab() {
           <CheckCircle2 className="h-5 w-5 text-emerald-400" />
           <div>
             <p className="text-xs font-bold text-emerald-300">All daily quests completed!</p>
-            <p className="text-[10px] text-emerald-400/60">Come back tomorrow for new quests.</p>
+            <p className="text-xs text-emerald-400/60">Come back tomorrow for new quests.</p>
           </div>
         </motion.div>
       )}

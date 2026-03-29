@@ -67,15 +67,15 @@ function CrisisCard({ scenario }: { scenario: RiskScenario }) {
           {/* Key metrics */}
           <div className="flex gap-4 mt-3">
             <div>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider">S&P Drawdown</p>
+              <p className="text-xs text-muted-foreground">S&P Drawdown</p>
               <p className="text-sm font-semibold text-red-500">{scenario.spDrawdown}%</p>
             </div>
             <div>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider">VIX Peak</p>
+              <p className="text-xs text-muted-foreground">VIX Peak</p>
               <p className="text-sm font-semibold text-foreground">{scenario.vixPeak}</p>
             </div>
             <div>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Recovery</p>
+              <p className="text-xs text-muted-foreground">Recovery</p>
               <p className="text-sm font-semibold text-foreground">{scenario.recoveryMonths}mo</p>
             </div>
           </div>

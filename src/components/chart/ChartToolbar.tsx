@@ -79,7 +79,7 @@ export function ChartToolbar() {
               type="button"
               onClick={() => setTimeframe(opt.value as Timeframe)}
               className={cn(
-                "rounded px-2 py-0.5 text-[10px] font-medium transition-colors",
+                "rounded px-2 py-0.5 text-xs font-medium transition-colors",
                 currentTimeframe === opt.value
                   ? "bg-primary/15 text-primary"
                   : "text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -101,7 +101,7 @@ export function ChartToolbar() {
               type="button"
               onClick={() => setTimeframe(opt.value as Timeframe)}
               className={cn(
-                "rounded px-2 py-0.5 text-[10px] font-medium transition-colors",
+                "rounded px-2 py-0.5 text-xs font-medium transition-colors",
                 currentTimeframe === opt.value
                   ? "bg-primary/15 text-primary"
                   : "text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -124,7 +124,7 @@ export function ChartToolbar() {
                   type="button"
                   onClick={() => setChartType(opt.value)}
                   className={cn(
-                    "rounded px-2 py-0.5 text-[10px] font-medium transition-colors",
+                    "rounded px-2 py-0.5 text-xs font-medium transition-colors",
                     chartType === opt.value
                       ? "bg-primary/15 text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -193,7 +193,7 @@ export function ChartToolbar() {
                 type="button"
                 onClick={() => setUseLog(!useLog)}
                 className={cn(
-                  "rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
+                  "rounded px-1.5 py-0.5 text-xs font-medium transition-colors",
                   useLog
                     ? "bg-primary/15 text-primary"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -220,7 +220,7 @@ export function ChartToolbar() {
                 type="button"
                 onClick={() => setShowEarnings(!showEarnings)}
                 className={cn(
-                  "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
+                  "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-medium transition-colors",
                   showEarnings
                     ? "bg-amber-500/15 text-amber-400"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -242,7 +242,7 @@ export function ChartToolbar() {
                 type="button"
                 onClick={() => setShowDividends(!showDividends)}
                 className={cn(
-                  "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
+                  "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-medium transition-colors",
                   showDividends
                     ? "bg-purple-500/15 text-purple-400"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -269,9 +269,9 @@ export function ChartToolbar() {
                   type="button"
                   onClick={() => toggleIndicator(opt.value)}
                   className={cn(
-                    "rounded-full px-2 py-0.5 text-[10px] font-medium transition-all duration-200",
+                    "rounded-full px-2 py-0.5 text-xs font-medium transition-all duration-200",
                     activeIndicators.includes(opt.value)
-                      ? "bg-primary/15 text-primary shadow-[0_0_8px_rgba(16,185,129,0.2)]"
+                      ? "bg-primary/15 text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent",
                   )}
                 >

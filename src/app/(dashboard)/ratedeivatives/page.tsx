@@ -345,7 +345,7 @@ function MetricCard({
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-3 mt-1">
+    <div className="text-xs font-semibold text-zinc-500 mb-3 mt-1">
       {children}
     </div>
   );
@@ -603,7 +603,7 @@ function SwaptionGrid({
                       style={{ backgroundColor: volColor(cell.vol) + (isSelected ? "" : "bb") }}
                     >
                       <span className="text-white font-bold text-xs leading-none">{cell.vol.toFixed(1)}%</span>
-                      <span className="text-white/70 text-[9px] leading-none mt-0.5">{fmtK(cell.price)}</span>
+                      <span className="text-white/70 text-[11px] leading-none mt-0.5">{fmtK(cell.price)}</span>
                     </button>
                   </td>
                 );
@@ -1339,7 +1339,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setNotional(v)}
                     className="[&_[role=slider]]:bg-indigo-500"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
                     <span>$1M</span><span>$100M</span>
                   </div>
                 </div>
@@ -1381,7 +1381,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setFixedRate(v / 100)}
                     className="[&_[role=slider]]:bg-indigo-500"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
                     <span>2.00%</span><span>8.00%</span>
                   </div>
                 </div>
@@ -1402,7 +1402,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setCurveShift(v)}
                     className="[&_[role=slider]]:bg-violet-500"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
                     <span>-300 bps</span><span>+300 bps</span>
                   </div>
                 </div>
@@ -1640,7 +1640,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setSwaptionStrike(v / 100)}
                     className="[&_[role=slider]]:bg-violet-500"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
                     <span>2.00%</span><span>8.00%</span>
                   </div>
                 </div>
@@ -1659,7 +1659,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setSwaptionVol(v)}
                     className="[&_[role=slider]]:bg-violet-500"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
                     <span>5%</span><span>60%</span>
                   </div>
                 </div>

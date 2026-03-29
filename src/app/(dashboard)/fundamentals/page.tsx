@@ -394,7 +394,7 @@ function BarChart({
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="w-full">
       {label && (
-        <text x={width / 2} y={14} textAnchor="middle" className="fill-slate-400 text-[10px]" fontSize={10}>
+        <text x={width / 2} y={14} textAnchor="middle" className="fill-slate-400 text-xs" fontSize={10}>
           {label}
         </text>
       )}

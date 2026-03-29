@@ -595,13 +595,13 @@ function MeanVarianceSection() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-[10px] text-muted-foreground font-medium">Objective:</span>
+        <span className="text-xs text-muted-foreground font-medium">Objective:</span>
         {(["sharpe", "minvar", "riskparity"] as const).map((obj) => (
           <button
             key={obj}
             onClick={() => setObjective(obj)}
             className={cn(
-              "text-[10px] px-2.5 py-1 rounded-md capitalize transition-colors",
+              "text-xs px-2.5 py-1 rounded-md capitalize transition-colors",
               objective === obj ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"
             )}
           >
@@ -612,7 +612,7 @@ function MeanVarianceSection() {
 
       {/* Efficient Frontier */}
       <div className="rounded-lg border border-border bg-muted/20 p-2">
-        <p className="text-[10px] font-medium text-muted-foreground mb-1.5">Efficient Frontier (15-Asset Universe)</p>
+        <p className="text-xs font-medium text-muted-foreground mb-1.5">Efficient Frontier (15-Asset Universe)</p>
         <EfficientFrontierSVG
           points={frontierPoints}
           minVarPt={minVarPt}
@@ -630,7 +630,7 @@ function MeanVarianceSection() {
           ].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
               <div className={cn("w-2 h-2 rounded-full", color)} />
-              <span className="text-[9px] text-muted-foreground">{label}</span>
+              <span className="text-[11px] text-muted-foreground">{label}</span>
             </div>
           ))}
         </div>
@@ -645,17 +645,17 @@ function MeanVarianceSection() {
           { label: "Risk Parity", stats: rpStats, color: "text-orange-400" },
         ].map(({ label, stats, color }) => (
           <div key={label} className="rounded-lg border border-border bg-card/50 p-2.5 space-y-1">
-            <p className={cn("text-[10px] font-semibold", color)}>{label}</p>
+            <p className={cn("text-xs font-semibold", color)}>{label}</p>
             <div className="space-y-0.5">
-              <div className="flex justify-between text-[9px]">
+              <div className="flex justify-between text-[11px]">
                 <span className="text-muted-foreground">Return</span>
                 <span className="font-mono">{stats.ret.toFixed(1)}%</span>
               </div>
-              <div className="flex justify-between text-[9px]">
+              <div className="flex justify-between text-[11px]">
                 <span className="text-muted-foreground">Vol</span>
                 <span className="font-mono">{stats.vol.toFixed(1)}%</span>
               </div>
-              <div className="flex justify-between text-[9px]">
+              <div className="flex justify-between text-[11px]">
                 <span className="text-muted-foreground">Sharpe</span>
                 <span className={cn("font-mono font-semibold", color)}>{stats.sharpe.toFixed(2)}</span>
               </div>
@@ -668,7 +668,7 @@ function MeanVarianceSection() {
       <div>
         <button
           onClick={() => setShowConstraints(v => !v)}
-          className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground hover:text-foreground"
+          className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
         >
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}
             className={cn("transition-transform", showConstraints ? "rotate-90" : "")}>
@@ -679,22 +679,22 @@ function MeanVarianceSection() {
         {showConstraints && (
           <div className="mt-3 space-y-3">
             <div className="flex items-center gap-4">
-              <label className="flex items-center gap-1.5 text-[10px] cursor-pointer">
+              <label className="flex items-center gap-1.5 text-xs cursor-pointer">
                 <input type="checkbox" checked={noShort} onChange={e => setNoShort(e.target.checked)} className="w-3 h-3" />
                 <span className="text-muted-foreground">No Shorting</span>
               </label>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] text-muted-foreground">Max Weight:</span>
+                <span className="text-xs text-muted-foreground">Max Weight:</span>
                 <input
                   type="range" min={10} max={100} step={5} value={maxWeightPct}
                   onChange={e => setMaxWeightPct(Number(e.target.value))}
                   className="w-20 h-1"
                 />
-                <span className="text-[10px] font-mono">{maxWeightPct}%</span>
+                <span className="text-xs font-mono">{maxWeightPct}%</span>
               </div>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-[10px]">
+              <table className="w-full text-xs">
                 <thead>
                   <tr className="border-b border-border/40 text-muted-foreground">
                     <th className="text-left py-1 px-1">Ticker</th>
@@ -733,20 +733,20 @@ function MeanVarianceSection() {
 
       {/* Optimal weights bar chart */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground mb-2">
+        <p className="text-xs font-medium text-muted-foreground mb-2">
           {objective === "sharpe" ? "Max Sharpe" : objective === "minvar" ? "Min Variance" : "Risk Parity"} — Optimal Weights
         </p>
         <div className="space-y-1.5">
           {TICKERS.map((t, i) => (
             <div key={t} className="flex items-center gap-2">
-              <span className="text-[10px] font-medium w-11 shrink-0">{t}</span>
+              <span className="text-xs font-medium w-11 shrink-0">{t}</span>
               <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary transition-all duration-500"
                   style={{ width: `${(optimalW[i] * 100).toFixed(1)}%` }}
                 />
               </div>
-              <span className="text-[10px] font-mono tabular-nums text-muted-foreground w-10 text-right">
+              <span className="text-xs font-mono tabular-nums text-muted-foreground w-10 text-right">
                 {(optimalW[i] * 100).toFixed(1)}%
               </span>
             </div>
@@ -754,7 +754,7 @@ function MeanVarianceSection() {
         </div>
       </div>
 
-      <p className="text-[10px] text-muted-foreground/70 leading-relaxed">
+      <p className="text-xs text-muted-foreground/70 leading-relaxed">
         Based on Markowitz (1952) Mean-Variance Optimization. Covariance matrix uses seeded synthetic data (seed=9999) with sector-based correlation structure. Risk parity uses iterative gradient descent to equalize risk contribution across assets.
       </p>
     </div>
@@ -813,17 +813,17 @@ function RiskParitySection() {
           { label: "Max Sharpe", stats: msStats, color: "text-violet-400" },
         ].map(({ label, stats, color }) => (
           <div key={label} className="rounded-lg border border-border bg-card/50 p-2.5 space-y-1">
-            <p className={cn("text-[10px] font-semibold", color)}>{label}</p>
+            <p className={cn("text-xs font-semibold", color)}>{label}</p>
             <div className="space-y-0.5">
-              <div className="flex justify-between text-[9px]">
+              <div className="flex justify-between text-[11px]">
                 <span className="text-muted-foreground">Return</span>
                 <span className="font-mono">{stats.ret.toFixed(1)}%</span>
               </div>
-              <div className="flex justify-between text-[9px]">
+              <div className="flex justify-between text-[11px]">
                 <span className="text-muted-foreground">Vol</span>
                 <span className="font-mono">{stats.vol.toFixed(1)}%</span>
               </div>
-              <div className="flex justify-between text-[9px]">
+              <div className="flex justify-between text-[11px]">
                 <span className="text-muted-foreground">Sharpe</span>
                 <span className={cn("font-mono font-semibold", color)}>{stats.sharpe.toFixed(2)}</span>
               </div>
@@ -834,7 +834,7 @@ function RiskParitySection() {
 
       {/* Risk contribution chart */}
       <div className="rounded-lg border border-border bg-muted/20 p-2">
-        <p className="text-[10px] font-medium text-muted-foreground mb-1.5">Risk Contribution % by Asset</p>
+        <p className="text-xs font-medium text-muted-foreground mb-1.5">Risk Contribution % by Asset</p>
         <RiskContributionBarChart
           labels={TICKERS}
           series={[
@@ -851,7 +851,7 @@ function RiskParitySection() {
           ].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
               <div className={cn("w-2 h-2 rounded-full", color)} />
-              <span className="text-[9px] text-muted-foreground">{label}</span>
+              <span className="text-[11px] text-muted-foreground">{label}</span>
             </div>
           ))}
         </div>
@@ -859,31 +859,31 @@ function RiskParitySection() {
 
       {/* Leverage panel */}
       <div className="rounded-lg border border-border bg-card/40 p-3">
-        <p className="text-[10px] font-semibold text-muted-foreground mb-2">Leverage Implications</p>
+        <p className="text-xs font-semibold text-muted-foreground mb-2">Leverage Implications</p>
         <div className="grid grid-cols-3 gap-3">
           <div>
-            <p className="text-[9px] text-muted-foreground">RP Unleveraged Vol</p>
+            <p className="text-[11px] text-muted-foreground">RP Unleveraged Vol</p>
             <p className="font-mono text-sm font-semibold text-orange-400">{rpVol.toFixed(1)}%</p>
           </div>
           <div>
-            <p className="text-[9px] text-muted-foreground">Target Vol ({targetVol}%)</p>
+            <p className="text-[11px] text-muted-foreground">Target Vol ({targetVol}%)</p>
             <p className="font-mono text-sm font-semibold text-blue-400">{targetVol}%</p>
           </div>
           <div>
-            <p className="text-[9px] text-muted-foreground">Required Leverage</p>
+            <p className="text-[11px] text-muted-foreground">Required Leverage</p>
             <p className={cn("font-mono text-sm font-semibold", leverage > 1 ? "text-amber-400" : "text-emerald-400")}>
               {leverage.toFixed(2)}x
             </p>
           </div>
         </div>
-        <p className="text-[10px] text-muted-foreground/70 mt-2 leading-relaxed">
+        <p className="text-xs text-muted-foreground/70 mt-2 leading-relaxed">
           Risk parity portfolios often have low intrinsic volatility (dominated by bonds). To achieve target returns, institutions apply {leverage.toFixed(2)}x leverage via futures or swaps.
         </p>
       </div>
 
       {/* Historical comparison */}
       <div className="rounded-lg border border-border bg-muted/20 p-2">
-        <p className="text-[10px] font-medium text-muted-foreground mb-1">5-Year Historical Comparison (simulated, $100 start)</p>
+        <p className="text-xs font-medium text-muted-foreground mb-1">5-Year Historical Comparison (simulated, $100 start)</p>
         <svg viewBox="0 0 340 130" className="w-full" style={{ height: 130 }}>
           {(() => {
             const W = 340, H = 130;
@@ -933,7 +933,7 @@ function RiskParitySection() {
           {[{ color: "bg-blue-500", label: "Equal-Wt" }, { color: "bg-orange-500", label: "Risk Parity" }, { color: "bg-violet-500", label: "Max Sharpe" }].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
               <div className={cn("w-2 h-1.5 rounded-full", color)} />
-              <span className="text-[9px] text-muted-foreground">{label}</span>
+              <span className="text-[11px] text-muted-foreground">{label}</span>
             </div>
           ))}
         </div>
@@ -1017,50 +1017,50 @@ function FactorSection() {
       <div className="grid grid-cols-2 gap-4">
         {/* Factor 1 */}
         <div className="space-y-2">
-          <p className="text-[10px] font-medium text-muted-foreground">Factor 1 (Primary)</p>
+          <p className="text-xs font-medium text-muted-foreground">Factor 1 (Primary)</p>
           <div className="flex flex-wrap gap-1">
             {(["value", "momentum", "quality", "lowvol"] as FactorTilt[]).map(f => (
               <button key={f} onClick={() => setTilt1(f)}
-                className={cn("text-[9px] px-2 py-0.5 rounded capitalize transition-colors",
+                className={cn("text-[11px] px-2 py-0.5 rounded capitalize transition-colors",
                   tilt1 === f ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80")}>
                 {f}
               </button>
             ))}
           </div>
           <div className="rounded border border-border/40 bg-muted/20 p-2">
-            <p className="text-[9px] text-muted-foreground mb-1">{FACTOR_LABELS[tilt1]}</p>
-            <p className="text-[10px] font-semibold text-blue-400">
+            <p className="text-[11px] text-muted-foreground mb-1">{FACTOR_LABELS[tilt1]}</p>
+            <p className="text-xs font-semibold text-blue-400">
               Ret: {w1Stats.ret.toFixed(1)}% | Vol: {w1Stats.vol.toFixed(1)}% | SR: {w1Stats.sharpe.toFixed(2)}
             </p>
-            <p className="text-[9px] text-muted-foreground mt-1">ETF: {FACTOR_ETFS[tilt1].etf}</p>
+            <p className="text-[11px] text-muted-foreground mt-1">ETF: {FACTOR_ETFS[tilt1].etf}</p>
           </div>
         </div>
 
         {/* Factor 2 */}
         <div className="space-y-2">
-          <p className="text-[10px] font-medium text-muted-foreground">Factor 2 (Blend)</p>
+          <p className="text-xs font-medium text-muted-foreground">Factor 2 (Blend)</p>
           <div className="flex flex-wrap gap-1">
             {(["value", "momentum", "quality", "lowvol"] as FactorTilt[]).map(f => (
               <button key={f} onClick={() => setTilt2(f)}
-                className={cn("text-[9px] px-2 py-0.5 rounded capitalize transition-colors",
+                className={cn("text-[11px] px-2 py-0.5 rounded capitalize transition-colors",
                   tilt2 === f ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80")}>
                 {f}
               </button>
             ))}
           </div>
           <div className="rounded border border-border/40 bg-muted/20 p-2">
-            <p className="text-[9px] text-muted-foreground mb-1">{FACTOR_LABELS[tilt2]}</p>
-            <p className="text-[10px] font-semibold text-amber-400">
+            <p className="text-[11px] text-muted-foreground mb-1">{FACTOR_LABELS[tilt2]}</p>
+            <p className="text-xs font-semibold text-amber-400">
               Ret: {w2Stats.ret.toFixed(1)}% | Vol: {w2Stats.vol.toFixed(1)}% | SR: {w2Stats.sharpe.toFixed(2)}
             </p>
-            <p className="text-[9px] text-muted-foreground mt-1">ETF: {FACTOR_ETFS[tilt2].etf}</p>
+            <p className="text-[11px] text-muted-foreground mt-1">ETF: {FACTOR_ETFS[tilt2].etf}</p>
           </div>
         </div>
       </div>
 
       {/* Blend slider */}
       <div className="space-y-1">
-        <div className="flex items-center justify-between text-[10px]">
+        <div className="flex items-center justify-between text-xs">
           <span className="text-muted-foreground">{FACTOR_LABELS[tilt1]}</span>
           <span className="font-medium">Blend: {blendRatio}% / {100 - blendRatio}%</span>
           <span className="text-muted-foreground">{FACTOR_LABELS[tilt2]}</span>
@@ -1068,8 +1068,8 @@ function FactorSection() {
         <input type="range" min={0} max={100} step={5} value={blendRatio}
           onChange={e => setBlendRatio(Number(e.target.value))} className="w-full h-1" />
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-[10px] font-semibold text-violet-400 mb-1">Blended Portfolio</p>
-          <div className="grid grid-cols-3 gap-2 text-[9px]">
+          <p className="text-xs font-semibold text-violet-400 mb-1">Blended Portfolio</p>
+          <div className="grid grid-cols-3 gap-2 text-[11px]">
             <div><span className="text-muted-foreground">Return: </span><span className="font-mono">{blendStats.ret.toFixed(1)}%</span></div>
             <div><span className="text-muted-foreground">Vol: </span><span className="font-mono">{blendStats.vol.toFixed(1)}%</span></div>
             <div><span className="text-muted-foreground">Sharpe: </span><span className="font-mono font-semibold text-violet-400">{blendStats.sharpe.toFixed(2)}</span></div>
@@ -1079,9 +1079,9 @@ function FactorSection() {
 
       {/* Factor exposures */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground mb-2">Factor Exposures Comparison</p>
+        <p className="text-xs font-medium text-muted-foreground mb-2">Factor Exposures Comparison</p>
         <div className="overflow-x-auto">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/40 text-muted-foreground">
                 <th className="text-left py-1">Portfolio</th>
@@ -1116,16 +1116,16 @@ function FactorSection() {
 
       {/* Blended weights */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground mb-2">Blended Portfolio Weights</p>
+        <p className="text-xs font-medium text-muted-foreground mb-2">Blended Portfolio Weights</p>
         <div className="space-y-1">
           {TICKERS.map((t, i) => (
             <div key={t} className="flex items-center gap-2">
-              <span className="text-[10px] font-medium w-11 shrink-0">{t}</span>
+              <span className="text-xs font-medium w-11 shrink-0">{t}</span>
               <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
                 <div className="h-full rounded-full bg-violet-500 transition-all duration-300"
                   style={{ width: `${(blendW[i] * 100).toFixed(1)}%` }} />
               </div>
-              <span className="text-[10px] font-mono text-muted-foreground w-10 text-right">
+              <span className="text-xs font-mono text-muted-foreground w-10 text-right">
                 {(blendW[i] * 100).toFixed(1)}%
               </span>
             </div>
@@ -1133,7 +1133,7 @@ function FactorSection() {
         </div>
       </div>
 
-      <p className="text-[10px] text-muted-foreground/70 leading-relaxed">
+      <p className="text-xs text-muted-foreground/70 leading-relaxed">
         Factor ETFs provide similar exposures with lower complexity and transaction costs. Combining value + momentum (value with momentum filter) historically reduces value traps while maintaining premium capture.
       </p>
     </div>
@@ -1209,7 +1209,7 @@ function LDISection() {
           { label: "Current Assets", value: currentAssets, setter: setCurrentAssets, min: 100000, max: 10000000, step: 50000, format: (v: number) => formatCur(v) },
         ].map(({ label, value, setter, min, max, step, format }) => (
           <div key={label} className="space-y-1">
-            <div className="flex justify-between text-[10px]">
+            <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">{label}</span>
               <span className="font-mono font-medium">{format(value)}</span>
             </div>
@@ -1222,21 +1222,21 @@ function LDISection() {
       {/* Key metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-[9px] text-muted-foreground">Liability PV</p>
+          <p className="text-[11px] text-muted-foreground">Liability PV</p>
           <p className="font-mono text-sm font-semibold text-blue-400">{formatCur(liabilityPV)}</p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-[9px] text-muted-foreground">Funding Ratio</p>
+          <p className="text-[11px] text-muted-foreground">Funding Ratio</p>
           <p className={cn("font-mono text-sm font-semibold", fundingRatio >= 1 ? "text-emerald-400" : fundingRatio >= 0.8 ? "text-amber-400" : "text-red-400")}>
             {(fundingRatio * 100).toFixed(0)}%
           </p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-[9px] text-muted-foreground">Liability Duration</p>
+          <p className="text-[11px] text-muted-foreground">Liability Duration</p>
           <p className="font-mono text-sm font-semibold text-violet-400">{liabilityDuration.toFixed(1)} yrs</p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-[9px] text-muted-foreground">Deficit / Surplus</p>
+          <p className="text-[11px] text-muted-foreground">Deficit / Surplus</p>
           <p className={cn("font-mono text-sm font-semibold", currentAssets >= liabilityPV ? "text-emerald-400" : "text-red-400")}>
             {currentAssets >= liabilityPV ? "+" : ""}{formatCur(currentAssets - liabilityPV)}
           </p>
@@ -1245,18 +1245,18 @@ function LDISection() {
 
       {/* LDI split */}
       <div className="rounded-lg border border-border bg-card/40 p-3">
-        <p className="text-[10px] font-semibold text-muted-foreground mb-2">Asset Allocation Split</p>
+        <p className="text-xs font-semibold text-muted-foreground mb-2">Asset Allocation Split</p>
         <div className="flex rounded-lg overflow-hidden h-5 mb-2">
-          <div className="bg-blue-500/70 flex items-center justify-center text-[9px] font-semibold text-white transition-all duration-300"
+          <div className="bg-blue-500/70 flex items-center justify-center text-[11px] font-semibold text-white transition-all duration-300"
             style={{ width: `${hedgePct}%` }}>
             {parseInt(hedgePct) > 15 ? `Hedge ${hedgePct}%` : ""}
           </div>
-          <div className="bg-violet-500/70 flex items-center justify-center text-[9px] font-semibold text-white transition-all duration-300"
+          <div className="bg-violet-500/70 flex items-center justify-center text-[11px] font-semibold text-white transition-all duration-300"
             style={{ width: `${growthPct}%` }}>
             {parseInt(growthPct) > 15 ? `Growth ${growthPct}%` : ""}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-2 text-[9px]">
+        <div className="grid grid-cols-2 gap-2 text-[11px]">
           <div>
             <p className="font-semibold text-blue-400">Liability-Matching (Hedge) Portfolio</p>
             <p className="text-muted-foreground">Long-duration bonds (TLT/AGG) matched to {liabilityDuration.toFixed(1)}-yr liability duration. Immunizes interest rate risk.</p>
@@ -1270,23 +1270,23 @@ function LDISection() {
 
       {/* Glide path SVG */}
       <div className="rounded-lg border border-border bg-muted/20 p-2">
-        <p className="text-[10px] font-medium text-muted-foreground mb-1">Funding Ratio Glide Path — 30-Year Projection</p>
+        <p className="text-xs font-medium text-muted-foreground mb-1">Funding Ratio Glide Path — 30-Year Projection</p>
         <FundingRatioChart bull={bullPath} base={basePath} bear={bearPath} years={30} />
         <div className="flex gap-3 mt-1 justify-center">
           {[{ color: "bg-emerald-500", label: "Bull" }, { color: "bg-blue-500", label: "Base" }, { color: "bg-red-500", label: "Bear" }].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
               <div className={cn("w-3 h-1 rounded-full", color)} />
-              <span className="text-[9px] text-muted-foreground">{label}</span>
+              <span className="text-[11px] text-muted-foreground">{label}</span>
             </div>
           ))}
           <div className="flex items-center gap-1">
             <div className="w-3 h-0.5 border-t border-dashed border-emerald-500/60" />
-            <span className="text-[9px] text-muted-foreground">Fully Funded (100%)</span>
+            <span className="text-[11px] text-muted-foreground">Fully Funded (100%)</span>
           </div>
         </div>
       </div>
 
-      <p className="text-[10px] text-muted-foreground/70 leading-relaxed">
+      <p className="text-xs text-muted-foreground/70 leading-relaxed">
         LDI (Liability-Driven Investing) is used by pension funds to match asset duration to liabilities, reducing funding ratio volatility. As funding ratio improves, the portfolio glides toward more hedging assets (de-risking).
       </p>
     </div>
@@ -1424,7 +1424,7 @@ function SimulationSection() {
           { label: "Goal Amount", value: goalAmount, setter: setGoalAmount, min: 100000, max: 20000000, step: 100000, fmt: formatCur },
         ].map(({ label, value, setter, min, max, step, fmt }) => (
           <div key={label} className="space-y-1">
-            <div className="flex justify-between text-[10px]">
+            <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">{label}</span>
               <span className="font-mono font-medium">{fmt(value)}</span>
             </div>
@@ -1436,11 +1436,11 @@ function SimulationSection() {
 
       {/* Portfolio type selector */}
       <div className="space-y-2">
-        <p className="text-[10px] font-medium text-muted-foreground">Portfolio Type</p>
+        <p className="text-xs font-medium text-muted-foreground">Portfolio Type</p>
         <div className="flex flex-wrap gap-1.5">
           {(["conservative", "moderate", "aggressive", "custom"] as PortfolioPreset[]).map(p => (
             <button key={p} onClick={() => setPreset(p)}
-              className={cn("text-[10px] px-2.5 py-1 rounded-md capitalize transition-colors",
+              className={cn("text-xs px-2.5 py-1 rounded-md capitalize transition-colors",
                 preset === p ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80")}>
               {PRESET_PARAMS[p].label.split(" ")[0]}
             </button>
@@ -1453,7 +1453,7 @@ function SimulationSection() {
               { label: "Annual Vol %", value: customVol, setter: setCustomVol, min: 1, max: 50, step: 0.5, fmt: (v: number) => `${v.toFixed(1)}%` },
             ].map(({ label, value, setter, min, max, step, fmt }) => (
               <div key={label} className="space-y-1">
-                <div className="flex justify-between text-[10px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">{label}</span>
                   <span className="font-mono">{fmt(value)}</span>
                 </div>
@@ -1463,14 +1463,14 @@ function SimulationSection() {
             ))}
           </div>
         )}
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           {PRESET_PARAMS[preset].label}: {params.ret.toFixed(1)}% return / {params.vol.toFixed(1)}% vol
         </p>
       </div>
 
       {/* Fan chart */}
       <div className="rounded-lg border border-border bg-muted/20 p-2">
-        <p className="text-[10px] font-medium text-muted-foreground mb-1">
+        <p className="text-xs font-medium text-muted-foreground mb-1">
           Monte Carlo Fan Chart — 1,000 Paths over {horizonYears} Years
         </p>
         <FanChart percentiles={fanData} labels={fanLabels} />
@@ -1482,7 +1482,7 @@ function SimulationSection() {
           ].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1">
               <div className={cn("w-2 h-1.5 rounded-full", color)} />
-              <span className="text-[9px] text-muted-foreground">{label}</span>
+              <span className="text-[11px] text-muted-foreground">{label}</span>
             </div>
           ))}
         </div>
@@ -1491,22 +1491,22 @@ function SimulationSection() {
       {/* Outcome summary */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-[9px] text-muted-foreground">Median Outcome</p>
+          <p className="text-[11px] text-muted-foreground">Median Outcome</p>
           <p className="font-mono text-sm font-semibold text-blue-400">{formatCur(finalP50)}</p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-[9px] text-muted-foreground">90th Percentile</p>
+          <p className="text-[11px] text-muted-foreground">90th Percentile</p>
           <p className="font-mono text-sm font-semibold text-emerald-400">{formatCur(finalP90)}</p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-2.5">
-          <p className="text-[9px] text-muted-foreground">10th Percentile</p>
+          <p className="text-[11px] text-muted-foreground">10th Percentile</p>
           <p className="font-mono text-sm font-semibold text-red-400">{formatCur(finalP10)}</p>
         </div>
       </div>
 
       {/* Probability metrics */}
       <div className="rounded-lg border border-border bg-card/40 p-3 space-y-2">
-        <p className="text-[10px] font-semibold text-muted-foreground">Probability of Reaching Milestones (from {formatCur(startCapital)} + {formatCur(monthlyContrib)}/mo)</p>
+        <p className="text-xs font-semibold text-muted-foreground">Probability of Reaching Milestones (from {formatCur(startCapital)} + {formatCur(monthlyContrib)}/mo)</p>
         <div className="grid grid-cols-3 gap-2">
           {[
             { label: "$1M", prob: prob1M },
@@ -1514,7 +1514,7 @@ function SimulationSection() {
             { label: "$10M", prob: prob10M },
           ].map(({ label, prob }) => (
             <div key={label} className="text-center">
-              <p className="text-[9px] text-muted-foreground">{label}</p>
+              <p className="text-[11px] text-muted-foreground">{label}</p>
               <p className={cn("font-mono font-semibold text-sm",
                 parseFloat(prob) >= 50 ? "text-emerald-400" :
                 parseFloat(prob) >= 20 ? "text-amber-400" : "text-red-400")}>
@@ -1524,7 +1524,7 @@ function SimulationSection() {
           ))}
         </div>
         <div className="border-t border-border/30 pt-2">
-          <div className="flex justify-between text-[10px]">
+          <div className="flex justify-between text-xs">
             <span className="text-muted-foreground">Prob. of reaching goal ({formatCur(goalAmount)})</span>
             <span className={cn("font-mono font-semibold",
               parseFloat(probGoal) >= 50 ? "text-emerald-400" :
@@ -1532,14 +1532,14 @@ function SimulationSection() {
               {probGoal}%
             </span>
           </div>
-          <div className="flex justify-between text-[10px] mt-1">
+          <div className="flex justify-between text-xs mt-1">
             <span className="text-muted-foreground">Required monthly contribution to reach goal (median)</span>
             <span className="font-mono font-semibold text-violet-400">{formatCur(requiredContrib)}/mo</span>
           </div>
         </div>
       </div>
 
-      <p className="text-[10px] text-muted-foreground/70 leading-relaxed">
+      <p className="text-xs text-muted-foreground/70 leading-relaxed">
         Monte Carlo simulation uses 1,000 paths with normally distributed monthly returns (Box-Muller transform, seed=9999). Fan chart shows 10th/25th/50th/75th/90th percentile outcomes. Past performance does not guarantee future results.
       </p>
     </div>
@@ -1566,13 +1566,13 @@ export function PortfolioOptimizer() {
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold">Advanced Portfolio Optimizer</h3>
-          <p className="text-[10px] text-muted-foreground mt-0.5">15-asset universe — mulberry32 seed=9999</p>
+          <p className="text-xs text-muted-foreground mt-0.5">15-asset universe — mulberry32 seed=9999</p>
         </div>
         <div className="flex flex-wrap gap-1 justify-end">
           {TICKERS.slice(0, 8).map(t => (
-            <span key={t} className="text-[9px] rounded bg-muted/60 px-1.5 py-0.5 font-mono text-muted-foreground">{t}</span>
+            <span key={t} className="text-[11px] rounded bg-muted/60 px-1.5 py-0.5 font-mono text-muted-foreground">{t}</span>
           ))}
-          <span className="text-[9px] text-muted-foreground">+7</span>
+          <span className="text-[11px] text-muted-foreground">+7</span>
         </div>
       </div>
 
@@ -1583,7 +1583,7 @@ export function PortfolioOptimizer() {
             key={id}
             onClick={() => setActiveTab(id)}
             className={cn(
-              "text-[10px] px-2.5 py-1 rounded-md transition-colors font-medium",
+              "text-xs px-2.5 py-1 rounded-md transition-colors font-medium",
               activeTab === id
                 ? "bg-primary/15 text-primary border border-primary/30"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted/60",

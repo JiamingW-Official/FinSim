@@ -537,7 +537,7 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
               <MetricCard label="Expected Return" value={fmtPct(selected.ytm * (1 - selected.defaultProbability / 100) + selected.recoveryEstimate * selected.defaultProbability / 100 / selected.priceCtsDollar * 100 - 100)} highlight="pos" icon={Zap} sub="risk-adj. est." />
             </div>
             <div className="p-3 rounded border border-white/10 bg-black/20">
-              <p className="text-xs text-white/50 mb-1 font-medium uppercase tracking-wider">Investment Thesis</p>
+              <p className="text-xs text-white/50 mb-1 font-medium">Investment Thesis</p>
               <p className="text-sm text-white/80">
                 {selected.badge === "Loan-to-Own" && "Acquire debt at distressed levels to take ownership control through the restructuring process. Thesis hinges on enterprise value exceeding face value of senior secured claims."}
                 {selected.badge === "Fulcrum Security" && "The fulcrum tranche is the pivot point in the capital structure — likely to receive new equity upon emergence. Risk/reward is asymmetric if purchased below implied reorganization value."}
@@ -861,14 +861,14 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
 
           {/* Relative value table */}
           <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-            <h4 className="text-xs font-medium text-white/50 uppercase tracking-wider mb-2">Relative Value Summary</h4>
+            <h4 className="text-xs font-medium text-white/50 mb-2">Relative Value Summary</h4>
             <div className="space-y-1.5">
               {layers.map((layer) => (
                 <div key={layer.tranche} className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: layer.color }} />
                     <span className="text-white/70">{layer.tranche}</span>
-                    {layer.isFulcrum && <span className="text-yellow-400 text-[10px] font-bold">[F]</span>}
+                    {layer.isFulcrum && <span className="text-yellow-400 text-xs font-bold">[F]</span>}
                   </div>
                   <div className="flex items-center gap-4">
                     <span className="text-white/40 font-mono">{layer.oid}¢</span>
@@ -883,7 +883,7 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
 
           {/* Inter-creditor dynamics */}
           <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-            <h4 className="text-xs font-medium text-white/50 uppercase tracking-wider mb-2">Inter-Creditor Dynamics</h4>
+            <h4 className="text-xs font-medium text-white/50 mb-2">Inter-Creditor Dynamics</h4>
             <div className="space-y-1.5 text-xs text-white/60">
               <div className="flex items-start gap-2">
                 <ArrowRight className="h-3 w-3 text-emerald-400 flex-shrink-0 mt-0.5" />
@@ -1032,7 +1032,7 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
                     <p className="text-sm text-white/60 my-2">{phase.description}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <p className="text-xs text-white/40 uppercase tracking-wider mb-1.5">Key Events</p>
+                        <p className="text-xs text-white/40 mb-1.5">Key Events</p>
                         <ul className="space-y-1">
                           {phase.keyEvents.map((e) => (
                             <li key={e} className="flex items-start gap-1.5 text-xs text-white/60">

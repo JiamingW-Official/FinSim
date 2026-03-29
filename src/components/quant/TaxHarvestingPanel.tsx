@@ -49,7 +49,7 @@ function WashSaleWarning() {
         <line x1="12" y1="9" x2="12" y2="13" strokeLinecap="round" />
         <line x1="12" y1="17" x2="12.01" y2="17" strokeLinecap="round" />
       </svg>
-      <span className="text-[10px] font-medium">Wash sale risk</span>
+      <span className="text-xs font-medium">Wash sale risk</span>
     </div>
   );
 }
@@ -92,25 +92,25 @@ function OpportunityCard({
 
         <div className="grid grid-cols-4 gap-2">
           <div className="space-y-0.5">
-            <p className="text-[10px] text-muted-foreground">Cost Basis</p>
+            <p className="text-xs text-muted-foreground">Cost Basis</p>
             <p className="font-mono tabular-nums text-xs">
               {formatDollar(opp.costBasis)}
             </p>
           </div>
           <div className="space-y-0.5">
-            <p className="text-[10px] text-muted-foreground">Current</p>
+            <p className="text-xs text-muted-foreground">Current</p>
             <p className="font-mono tabular-nums text-xs">
               ${opp.currentPrice.toFixed(2)}
             </p>
           </div>
           <div className="space-y-0.5">
-            <p className="text-[10px] text-muted-foreground">Unreal. Loss</p>
+            <p className="text-xs text-muted-foreground">Unreal. Loss</p>
             <p className="font-mono tabular-nums text-xs text-red-500">
               -{formatDollar(opp.unrealizedLoss)}
             </p>
           </div>
           <div className="space-y-0.5">
-            <p className="text-[10px] text-muted-foreground">Shares</p>
+            <p className="text-xs text-muted-foreground">Shares</p>
             <p className="font-mono tabular-nums text-xs">{qty}</p>
           </div>
         </div>
@@ -132,7 +132,7 @@ function OpportunityCard({
         <div className="border-t p-3 space-y-2">
           <p className="text-xs leading-relaxed">{opp.recommendation}</p>
           <div className="px-3 py-2 rounded-lg bg-muted/50">
-            <p className="text-[10px] text-muted-foreground mb-0.5 font-medium">
+            <p className="text-xs text-muted-foreground mb-0.5 font-medium">
               Educational Note
             </p>
             <p className="text-xs text-muted-foreground leading-relaxed">
@@ -181,7 +181,7 @@ export function TaxHarvestingPanel() {
       {/* Summary stats */}
       <div className="grid grid-cols-3 gap-3">
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Total Tax Savings
           </p>
           <p className="font-mono tabular-nums text-sm font-medium text-emerald-500">
@@ -189,7 +189,7 @@ export function TaxHarvestingPanel() {
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Harvestable Losses
           </p>
           <p className="font-mono tabular-nums text-sm font-medium text-red-500">
@@ -197,7 +197,7 @@ export function TaxHarvestingPanel() {
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Wash Sale Risks</p>
+          <p className="text-xs text-muted-foreground">Wash Sale Risks</p>
           <p
             className={cn(
               "font-mono tabular-nums text-sm font-medium",
@@ -211,7 +211,7 @@ export function TaxHarvestingPanel() {
 
       {/* Tax rate slider */}
       <div className="flex items-center gap-3">
-        <span className="text-[10px] text-muted-foreground">Tax Rate:</span>
+        <span className="text-xs text-muted-foreground">Tax Rate:</span>
         <input
           type="range"
           min={10}
@@ -253,7 +253,7 @@ export function TaxHarvestingPanel() {
       )}
 
       {/* Disclaimer */}
-      <p className="text-[10px] text-muted-foreground leading-relaxed">
+      <p className="text-xs text-muted-foreground leading-relaxed">
         Tax loss harvesting estimates assume the selected marginal tax rate.
         Actual savings depend on your total income, filing status, and
         capital gains situation. Consult a tax professional before making

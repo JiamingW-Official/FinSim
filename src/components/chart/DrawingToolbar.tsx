@@ -168,7 +168,7 @@ export function DrawingToolbar() {
               {icon}
             </button>
           </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={6} className="text-[10px]">
+          <TooltipContent side="right" sideOffset={6} className="text-xs">
             {title}
           </TooltipContent>
         </Tooltip>
@@ -195,7 +195,7 @@ export function DrawingToolbar() {
             <UndoIcon />
           </button>
         </TooltipTrigger>
-        <TooltipContent side="right" sideOffset={6} className="text-[10px]">
+        <TooltipContent side="right" sideOffset={6} className="text-xs">
           Undo last drawing
         </TooltipContent>
       </Tooltip>
@@ -219,7 +219,7 @@ export function DrawingToolbar() {
             <EraserIcon />
           </button>
         </TooltipTrigger>
-        <TooltipContent side="right" sideOffset={6} className="text-[10px]">
+        <TooltipContent side="right" sideOffset={6} className="text-xs">
           {activeTool === "eraser" ? "Click a drawing to remove it" : "Clear all drawings"}
         </TooltipContent>
       </Tooltip>

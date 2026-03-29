@@ -224,7 +224,7 @@ function BSLab() {
       <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
         <h3 className="text-sm font-semibold text-zinc-300 mb-3">Call Price Surface — Vol × Strike</h3>
         <div className="overflow-x-auto">
-          <svg width={W + 60} height={H + 50} className="font-mono text-[9px]">
+          <svg width={W + 60} height={H + 50} className="font-mono text-[11px]">
             {/* Y axis label: vol */}
             <text x={8} y={H / 2 + 25} textAnchor="middle" fill="#a1a1aa" fontSize={10}
               transform={`rotate(-90,8,${H/2+25})`}>Volatility</text>
@@ -370,7 +370,7 @@ function BinomialTree() {
         {/* Tree SVG */}
         <div className="lg:col-span-2 bg-zinc-900 rounded-xl border border-zinc-800 p-4 overflow-x-auto">
           <h3 className="text-sm font-semibold text-zinc-300 mb-2">Binomial Tree (Stock / Option Value)</h3>
-          <svg width={W} height={H} className="font-mono text-[9px]">
+          <svg width={W} height={H} className="font-mono text-[11px]">
             {/* Edges */}
             {Array.from({ length: N }, (_, i) =>
               Array.from({ length: i + 1 }, (_, j) => (

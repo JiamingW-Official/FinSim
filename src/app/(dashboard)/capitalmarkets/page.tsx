@@ -455,8 +455,8 @@ function SectorHeatmap() {
             style={{ background: `rgba(59,130,246,${0.08 + intensity * 0.25})` }}
           >
             <div className="text-xs font-medium text-slate-200 mb-1">{sec.name}</div>
-            <div className="text-[10px] text-slate-400">{sec.ipos} IPOs</div>
-            <div className="text-[10px] text-slate-400">${sec.volume.toFixed(1)}B</div>
+            <div className="text-xs text-slate-400">{sec.ipos} IPOs</div>
+            <div className="text-xs text-slate-400">${sec.volume.toFixed(1)}B</div>
             <div className={cn("text-[11px] font-semibold mt-1", isPos ? "text-green-400" : "text-red-400")}>
               {isPos ? "+" : ""}{sec.avgReturn.toFixed(1)}%
             </div>
@@ -531,7 +531,7 @@ function StatChip({ label, value, color = "blue" }: { label: string; value: stri
   };
   return (
     <div className={cn("inline-flex flex-col rounded-lg border px-3 py-2", colorMap[color])}>
-      <span className="text-[10px] opacity-70">{label}</span>
+      <span className="text-xs opacity-70">{label}</span>
       <span className="text-sm font-bold">{value}</span>
     </div>
   );
@@ -571,7 +571,7 @@ function IPOProcessTab() {
                 )}>
                   {stage.icon}
                 </div>
-                <span className="text-[9px] text-slate-400 text-center leading-tight">{stage.name}</span>
+                <span className="text-[11px] text-slate-400 text-center leading-tight">{stage.name}</span>
                 <span className="text-[8px] text-slate-600">{stage.duration}</span>
               </button>
             ))}
@@ -593,7 +593,7 @@ function IPOProcessTab() {
                 </div>
                 <p className="text-sm text-slate-300 leading-relaxed mb-3">{selectedStage.description}</p>
                 <div>
-                  <span className="text-xs text-slate-500 uppercase tracking-wider">Key Players</span>
+                  <span className="text-xs text-slate-500">Key Players</span>
                   <div className="flex flex-wrap gap-1.5 mt-1.5">
                     {selectedStage.keyPlayers.map((p) => (
                       <span key={p} className="text-xs bg-slate-700/60 text-slate-300 rounded-full px-2 py-0.5">{p}</span>
@@ -1016,17 +1016,17 @@ function SecondaryOfferingsTab() {
               <div className="flex items-center gap-2 mb-2">
                 <span className={iconColorMap[cardColor]}>{ot.icon}</span>
                 <span className="text-sm font-semibold text-slate-200">{ot.name}</span>
-                <span className={cn("ml-auto text-[10px] rounded-full border px-2 py-0.5 capitalize", typeColor(ot.type))}>
+                <span className={cn("ml-auto text-xs rounded-full border px-2 py-0.5 capitalize", typeColor(ot.type))}>
                   {ot.type}
                 </span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed mb-2">{ot.desc}</p>
               <div className="rounded bg-slate-700/40 px-2 py-1.5 mb-1.5">
-                <span className="text-[10px] font-medium text-slate-400 uppercase tracking-wide">Example: </span>
+                <span className="text-xs font-medium text-slate-400 uppercase tracking-wide">Example: </span>
                 <span className="text-xs text-slate-300">{ot.example}</span>
               </div>
               <div className="rounded bg-slate-700/40 px-2 py-1.5">
-                <span className="text-[10px] font-medium text-slate-400 uppercase tracking-wide">Market Impact: </span>
+                <span className="text-xs font-medium text-slate-400 uppercase tracking-wide">Market Impact: </span>
                 <span className="text-xs text-slate-300">{ot.impact}</span>
               </div>
             </div>
@@ -1163,7 +1163,7 @@ function DCMTab() {
                     <td className="pr-3 font-mono text-slate-400">{deal.rating}</td>
                     <td className="pr-3 text-slate-400">{deal.tenor}</td>
                     <td className="pr-3">
-                      <span className={cn("text-[10px] rounded-full px-2 py-0.5 font-medium", typeColor2)}>{typeLabel}</span>
+                      <span className={cn("text-xs rounded-full px-2 py-0.5 font-medium", typeColor2)}>{typeLabel}</span>
                     </td>
                     <td className="pr-3 text-slate-400 max-w-[160px] truncate">{deal.useOfProceeds}</td>
                     <td className="text-slate-500">{deal.date}</td>
@@ -1212,7 +1212,7 @@ function ECMAnalyticsTab() {
                 </div>
                 <div className="text-xs font-mono text-slate-300 w-14 text-right">${entry.volume}B</div>
                 <div className="text-xs text-slate-500 w-10 text-right">{entry.deals} deals</div>
-                <div className={cn("text-[10px] w-8 text-right font-medium",
+                <div className={cn("text-xs w-8 text-right font-medium",
                   entry.change > 0 ? "text-green-400" : entry.change < 0 ? "text-red-400" : "text-slate-600")}>
                   {entry.change > 0 ? `↑${entry.change}` : entry.change < 0 ? `↓${Math.abs(entry.change)}` : "—"}
                 </div>
@@ -1289,7 +1289,7 @@ function ECMAnalyticsTab() {
                     <td className="pr-4 font-mono text-slate-300">${ipo.expectedSize}B</td>
                     <td className="pr-4 text-slate-400">{ipo.expectedQ}</td>
                     <td className="pr-4">
-                      <span className={cn("text-[10px] rounded-full px-2 py-0.5 capitalize font-medium", stageMap[ipo.stage])}>
+                      <span className={cn("text-xs rounded-full px-2 py-0.5 capitalize font-medium", stageMap[ipo.stage])}>
                         {ipo.stage}
                       </span>
                     </td>
@@ -1303,7 +1303,7 @@ function ECMAnalyticsTab() {
             </tbody>
           </table>
         </div>
-        <p className="text-[10px] text-slate-600 mt-2">*Vs Peers based on illustrative estimated revenue multiples. Not investment advice.</p>
+        <p className="text-xs text-slate-600 mt-2">*Vs Peers based on illustrative estimated revenue multiples. Not investment advice.</p>
       </InfoCard>
     </div>
   );

@@ -139,7 +139,7 @@ export function ShortcutsModalProvider({
 
 function KbdKey({ label }: { label: string }) {
   return (
-    <kbd className="inline-flex min-w-[22px] items-center justify-center rounded border border-border bg-muted/50 px-1.5 py-0.5 text-[10px] font-mono font-medium text-foreground">
+    <kbd className="inline-flex min-w-[22px] items-center justify-center rounded border border-border bg-muted/50 px-1.5 py-0.5 text-xs font-mono font-medium text-foreground">
       {label}
     </kbd>
   );
@@ -171,7 +171,7 @@ function KeyboardShortcutsModal({
             <div key={section.title}>
               {/* Section heading */}
               <div
-                className={`mb-2.5 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider ${section.color}`}
+                className={`mb-2.5 flex items-center gap-1.5 text-[11px] font-bold ${section.color}`}
               >
                 <section.icon className="h-3 w-3" />
                 {section.title}
@@ -194,7 +194,7 @@ function KeyboardShortcutsModal({
                           return (
                             <span
                               key={i}
-                              className="text-[10px] text-muted-foreground/50"
+                              className="text-xs text-muted-foreground/50"
                             >
                               –
                             </span>
@@ -212,7 +212,7 @@ function KeyboardShortcutsModal({
 
         {/* Footer */}
         <div className="border-t border-border/50 px-5 pb-4 pt-2">
-          <p className="text-center text-[10px] text-muted-foreground">
+          <p className="text-center text-xs text-muted-foreground">
             Press{" "}
             <KbdKey label="?" /> to toggle this guide &middot; Press{" "}
             <KbdKey label="Esc" /> to close

@@ -46,7 +46,7 @@ function Section({
         className="flex w-full items-center justify-between px-3 py-2 text-left hover:bg-accent/30 transition-colors"
       >
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-foreground">
+          <span className="text-[11px] font-bold text-foreground">
             {title}
           </span>
           {badge}
@@ -79,7 +79,7 @@ function Badge({ color, children }: { color: string; children: React.ReactNode }
   return (
     <span
       className={cn(
-        "rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide",
+        "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide",
         color,
       )}
     >
@@ -102,19 +102,19 @@ function StatRow({
   return (
     <div className="flex items-center justify-between py-0.5">
       <div className="flex items-center gap-1">
-        <span className="text-[10px] text-muted-foreground">{label}</span>
+        <span className="text-xs text-muted-foreground">{label}</span>
         {tooltip && (
           <Tooltip>
             <TooltipTrigger asChild>
               <Info className="h-2.5 w-2.5 text-muted-foreground/50 cursor-help" />
             </TooltipTrigger>
-            <TooltipContent side="right" className="max-w-[160px] text-[10px]">
+            <TooltipContent side="right" className="max-w-[160px] text-xs">
               {tooltip}
             </TooltipContent>
           </Tooltip>
         )}
       </div>
-      <span className={cn("text-[10px] font-medium tabular-nums", valueClass)}>{value}</span>
+      <span className={cn("text-xs font-medium tabular-nums", valueClass)}>{value}</span>
     </div>
   );
 }
@@ -198,7 +198,7 @@ function MarketProfileSection({ currentPrice, seed }: { currentPrice: number; se
       title="Market Profile (TPO)"
       badge={<Badge color="bg-yellow-500/15 text-yellow-400">TPO</Badge>}
     >
-      <div className="mb-2 flex flex-wrap gap-3 text-[10px]">
+      <div className="mb-2 flex flex-wrap gap-3 text-xs">
         <StatRow
           label="POC"
           value={`$${pocPrice.toFixed(2)}`}
@@ -302,7 +302,7 @@ function MarketProfileSection({ currentPrice, seed }: { currentPrice: number; se
         </g>
       </svg>
 
-      <p className="mt-1 text-[9px] text-muted-foreground">
+      <p className="mt-1 text-[11px] text-muted-foreground">
         Each letter A–Z represents a 30-min trading period. Wider bars indicate more time spent at
         that price. POC = price with most TPO letters.
       </p>
@@ -486,7 +486,7 @@ function VolumeProfileSection({
         </text>
       </svg>
 
-      <div className="mt-1 flex gap-3 text-[9px]">
+      <div className="mt-1 flex gap-3 text-[11px]">
         <span className="flex items-center gap-1">
           <span className="inline-block h-2 w-2 rounded-sm bg-amber-500/75" />
           <span className="text-muted-foreground">HVN = strong S/R</span>
@@ -657,7 +657,7 @@ function PivotPointsSection({
             type="button"
             onClick={() => setSelectedType(t)}
             className={cn(
-              "rounded px-2 py-0.5 text-[9px] font-medium transition-colors",
+              "rounded px-2 py-0.5 text-[11px] font-medium transition-colors",
               selectedType === t
                 ? "bg-primary/20 text-primary"
                 : "text-muted-foreground hover:bg-accent hover:text-foreground",
@@ -725,10 +725,10 @@ function PivotPointsSection({
           const dist = ((val - currentPrice) / currentPrice) * 100;
           return (
             <div key={key} className="flex items-center justify-between py-0.5 col-span-1">
-              <span className="text-[9px] font-bold" style={{ color: levelColors[key] }}>
+              <span className="text-[11px] font-bold" style={{ color: levelColors[key] }}>
                 {key}
               </span>
-              <span className="text-[9px] tabular-nums text-muted-foreground">
+              <span className="text-[11px] tabular-nums text-muted-foreground">
                 {dist >= 0 ? "+" : ""}{dist.toFixed(1)}%
               </span>
             </div>
@@ -736,7 +736,7 @@ function PivotPointsSection({
         })}
       </div>
 
-      <p className="mt-1.5 text-[9px] text-muted-foreground">
+      <p className="mt-1.5 text-[11px] text-muted-foreground">
         {selected.label} pivots based on prior day H/L/C. PP = primary support/resistance.
       </p>
     </Section>
@@ -879,7 +879,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
       </div>
 
       {/* A/D Line */}
-      <p className="mb-0.5 text-[9px] font-semibold text-muted-foreground uppercase tracking-wide">
+      <p className="mb-0.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
         A/D Line (20 periods)
       </p>
       <svg viewBox={`0 0 ${svgW} ${adH}`} className="w-full" style={{ maxHeight: 64 }}>
@@ -891,7 +891,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
       </svg>
 
       {/* McClellan Oscillator */}
-      <p className="mb-0.5 mt-2 text-[9px] font-semibold text-muted-foreground uppercase tracking-wide">
+      <p className="mb-0.5 mt-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
         McClellan Oscillator
       </p>
       <svg viewBox={`0 0 ${svgW} ${mcoH}`} className="w-full" style={{ maxHeight: 54 }}>
@@ -1056,7 +1056,7 @@ function ElliottWaveSection({
       badge={<Badge color="bg-purple-500/15 text-purple-400">EW</Badge>}
     >
       <div className="mb-2 flex items-center gap-2">
-        <span className="text-[10px] text-muted-foreground">Likely wave in progress:</span>
+        <span className="text-xs text-muted-foreground">Likely wave in progress:</span>
         <Badge color="bg-purple-500/20 text-purple-300">{currentWave}</Badge>
       </div>
 
@@ -1100,23 +1100,23 @@ function ElliottWaveSection({
       </svg>
 
       {/* Fibonacci relationships */}
-      <p className="mt-2 mb-1 text-[9px] font-semibold text-muted-foreground uppercase tracking-wide">
+      <p className="mt-2 mb-1 text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
         Fibonacci Relationships
       </p>
       <div className="grid grid-cols-2 gap-x-3">
         {fibRelationships.map((f) => (
           <div key={f.rel} className="flex flex-col py-0.5">
-            <span className="text-[9px] text-muted-foreground">{f.rel}</span>
+            <span className="text-[11px] text-muted-foreground">{f.rel}</span>
             <div className="flex items-center gap-1">
-              <span className="text-[10px] font-semibold text-foreground tabular-nums">{f.val}</span>
-              <span className="text-[9px] text-muted-foreground/60">ideal: {f.ideal}</span>
+              <span className="text-xs font-semibold text-foreground tabular-nums">{f.val}</span>
+              <span className="text-[11px] text-muted-foreground/60">ideal: {f.ideal}</span>
             </div>
           </div>
         ))}
       </div>
 
       {/* Wave tooltips */}
-      <p className="mt-2 text-[9px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">
+      <p className="mt-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">
         Wave Descriptions
       </p>
       <div className="grid grid-cols-1 gap-0.5">
@@ -1132,7 +1132,7 @@ function ElliottWaveSection({
             >
               {["a", "b", "c"].includes(pt.label) ? `(${pt.label})` : pt.label}
             </span>
-            <span className="text-[9px] text-muted-foreground">{pt.tooltip}</span>
+            <span className="text-[11px] text-muted-foreground">{pt.tooltip}</span>
           </div>
         ))}
       </div>
@@ -1395,11 +1395,11 @@ function WyckoffSection({
       {/* Phase + confidence */}
       <div className="mb-3 flex items-center justify-between">
         <div>
-          <p className="text-[10px] text-muted-foreground">Detected Phase</p>
+          <p className="text-xs text-muted-foreground">Detected Phase</p>
           <p className={cn("text-[13px] font-bold", phaseColor[phase])}>{phase}</p>
         </div>
         <div className="text-right">
-          <p className="text-[10px] text-muted-foreground">Confidence</p>
+          <p className="text-xs text-muted-foreground">Confidence</p>
           <p className={cn("text-[13px] font-bold tabular-nums", confColor)}>
             {confidence.toFixed(0)}%
           </p>
@@ -1423,10 +1423,10 @@ function WyckoffSection({
       <WyckoffSchematicSVG phase={phase} detectedEvents={detectedEvents} />
 
       {/* Phase description */}
-      <p className="mt-2 text-[9px] leading-relaxed text-muted-foreground">{phaseDesc}</p>
+      <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">{phaseDesc}</p>
 
       {/* Detected events */}
-      <p className="mt-2 mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">
+      <p className="mt-2 mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
         Detected Events
       </p>
       <div className="grid grid-cols-1 gap-1">
@@ -1453,8 +1453,8 @@ function WyckoffSection({
                 {evt.key}
               </span>
               <div className="min-w-0">
-                <p className="text-[9px] font-medium text-foreground">{evt.label}</p>
-                <p className="text-[9px] text-muted-foreground">{evt.desc}</p>
+                <p className="text-[11px] font-medium text-foreground">{evt.label}</p>
+                <p className="text-[11px] text-muted-foreground">{evt.desc}</p>
               </div>
             </div>
           );
@@ -1484,7 +1484,7 @@ export default function AdvancedChartTools({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-sm font-bold text-foreground">Advanced Chart Tools</h2>
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Professional analysis for{" "}
             <span className="font-semibold text-primary">{ticker}</span> ·{" "}
             <span className="tabular-nums">${currentPrice.toFixed(2)}</span>

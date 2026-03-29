@@ -393,7 +393,7 @@ function StarScore({ score }: { score: number }) {
 function DirectionBadge({ direction }: { direction: "bullish" | "bearish" | "neutral" }) {
   if (direction === "bullish") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-sm bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-500">
+      <span className="inline-flex items-center gap-1 rounded-sm bg-emerald-500/10 px-1.5 py-0.5 text-xs font-semibold text-emerald-500">
         <TrendingUp className="h-2.5 w-2.5" />
         Bullish
       </span>
@@ -401,14 +401,14 @@ function DirectionBadge({ direction }: { direction: "bullish" | "bearish" | "neu
   }
   if (direction === "bearish") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-sm bg-rose-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-rose-500">
+      <span className="inline-flex items-center gap-1 rounded-sm bg-rose-500/10 px-1.5 py-0.5 text-xs font-semibold text-rose-500">
         <TrendingDown className="h-2.5 w-2.5" />
         Bearish
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1 rounded-sm bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-amber-500">
+    <span className="inline-flex items-center gap-1 rounded-sm bg-amber-500/10 px-1.5 py-0.5 text-xs font-semibold text-amber-500">
       <Minus className="h-2.5 w-2.5" />
       Neutral
     </span>
@@ -536,12 +536,12 @@ function PatternScannerTab() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
-                <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Ticker</th>
-                <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Pattern</th>
-                <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Direction</th>
-                <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Reliability</th>
-                <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Price</th>
-                <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">% Change</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Ticker</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Pattern</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Direction</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Reliability</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Price</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">% Change</th>
               </tr>
             </thead>
             <tbody>
@@ -698,7 +698,7 @@ function TechnicalScannerTab() {
 
       {/* Condition filter chips */}
       <div className="flex flex-wrap gap-1.5">
-        <span className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <span className="flex items-center gap-1 text-xs font-semibold text-muted-foreground">
           <Filter className="h-3 w-3" />
           Filter:
         </span>
@@ -708,7 +708,7 @@ function TechnicalScannerTab() {
             type="button"
             onClick={() => toggleCondition(c.id)}
             className={cn(
-              "rounded-full border px-2.5 py-0.5 text-[10px] font-medium transition-colors",
+              "rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors",
               selectedConditions.has(c.id)
                 ? c.direction === "bullish"
                   ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-500"
@@ -725,7 +725,7 @@ function TechnicalScannerTab() {
           <button
             type="button"
             onClick={() => setSelectedConditions(new Set())}
-            className="rounded-full border border-border/40 px-2.5 py-0.5 text-[10px] text-muted-foreground hover:text-foreground"
+            className="rounded-full border border-border/40 px-2.5 py-0.5 text-xs text-muted-foreground hover:text-foreground"
           >
             Clear
           </button>
@@ -745,22 +745,22 @@ function TechnicalScannerTab() {
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
                 <th
-                  className="cursor-pointer px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground"
+                  className="cursor-pointer px-3 py-2 text-left text-xs font-semibold text-muted-foreground hover:text-foreground"
                   onClick={() => handleSort("ticker")}
                 >
                   <span className="flex items-center gap-0.5">Ticker <SortIcon col="ticker" /></span>
                 </th>
-                <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Condition</th>
-                <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Value</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Condition</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Value</th>
                 <th
-                  className="cursor-pointer px-3 py-2 text-center text-[10px] font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground"
+                  className="cursor-pointer px-3 py-2 text-center text-xs font-semibold text-muted-foreground hover:text-foreground"
                   onClick={() => handleSort("strength")}
                 >
                   <span className="flex items-center justify-center gap-0.5">Strength <SortIcon col="strength" /></span>
                 </th>
-                <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Price</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Price</th>
                 <th
-                  className="cursor-pointer px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground"
+                  className="cursor-pointer px-3 py-2 text-right text-xs font-semibold text-muted-foreground hover:text-foreground"
                   onClick={() => handleSort("signalCount")}
                 >
                   <span className="flex items-center justify-end gap-0.5">Signals <SortIcon col="signalCount" /></span>
@@ -777,13 +777,13 @@ function TechnicalScannerTab() {
                   <td className="px-3 py-2.5">
                     <div className="flex flex-col gap-0.5">
                       <span className="font-semibold text-foreground">{r.ticker}</span>
-                      <span className="text-[10px] tabular-nums text-muted-foreground">${r.currentPrice.toFixed(2)}</span>
+                      <span className="text-xs tabular-nums text-muted-foreground">${r.currentPrice.toFixed(2)}</span>
                     </div>
                   </td>
                   <td className="px-3 py-2.5">
                     <div className="flex flex-col gap-0.5">
                       <DirectionBadge direction={r.direction} />
-                      <span className="text-[10px] text-muted-foreground">{r.conditionLabel}</span>
+                      <span className="text-xs text-muted-foreground">{r.conditionLabel}</span>
                     </div>
                   </td>
                   <td className="px-3 py-2.5">
@@ -806,7 +806,7 @@ function TechnicalScannerTab() {
                   <td className="px-3 py-2.5 text-right">
                     <span
                       className={cn(
-                        "inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold",
+                        "inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold",
                         r.signalCount >= 4
                           ? "bg-primary/20 text-primary"
                           : r.signalCount >= 2
@@ -924,13 +924,13 @@ function SetupFinderTab() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
-                <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Ticker</th>
-                <th className="px-3 py-2 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Setup</th>
-                <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Entry Zone</th>
-                <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Target</th>
-                <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Stop</th>
-                <th className="px-3 py-2 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">R:R</th>
-                <th className="px-3 py-2 text-center text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Quality</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Ticker</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Setup</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Entry Zone</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Target</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">Stop</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">R:R</th>
+                <th className="px-3 py-2 text-center text-xs font-semibold text-muted-foreground">Quality</th>
               </tr>
             </thead>
             <tbody>
@@ -957,7 +957,7 @@ function SetupFinderTab() {
                   <td className="px-3 py-2.5 text-right">
                     <div className="flex flex-col items-end gap-0.5">
                       <span className="font-mono text-[11px] text-emerald-500">${s.target1.toFixed(2)}</span>
-                      <span className="font-mono text-[10px] text-emerald-400/60">${s.target2.toFixed(2)}</span>
+                      <span className="font-mono text-xs text-emerald-400/60">${s.target2.toFixed(2)}</span>
                     </div>
                   </td>
                   <td className="px-3 py-2.5 text-right">

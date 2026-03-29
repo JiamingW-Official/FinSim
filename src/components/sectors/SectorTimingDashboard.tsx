@@ -798,14 +798,14 @@ function MomentumSection({ data }: { data: MomentumRow[] }) {
               <div key={n} className="flex items-center gap-2 text-xs">
                 <ArrowUp className="w-3 h-3 text-emerald-400 flex-shrink-0" />
                 <span className="text-emerald-300">{n}</span>
-                <span className="text-muted-foreground text-[10px] ml-auto">Entering top decile</span>
+                <span className="text-muted-foreground text-xs ml-auto">Entering top decile</span>
               </div>
             ))}
             {botDecile.map((n) => (
               <div key={n} className="flex items-center gap-2 text-xs">
                 <ArrowDown className="w-3 h-3 text-red-400 flex-shrink-0" />
                 <span className="text-red-300">{n}</span>
-                <span className="text-muted-foreground text-[10px] ml-auto">Entering bottom decile</span>
+                <span className="text-muted-foreground text-xs ml-auto">Entering bottom decile</span>
               </div>
             ))}
           </div>
@@ -817,7 +817,7 @@ function MomentumSection({ data }: { data: MomentumRow[] }) {
           <div className="space-y-1">
             {sortedByComp.slice(0, 5).map((row, i) => (
               <div key={row.name} className="flex items-center gap-2">
-                <span className="text-[10px] text-muted-foreground w-4 text-right">{i + 1}.</span>
+                <span className="text-xs text-muted-foreground w-4 text-right">{i + 1}.</span>
                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: row.color }} />
                 <span className="text-xs text-foreground flex-1 truncate">{row.name}</span>
                 <span className={cn("text-xs font-mono", row.composite >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -893,9 +893,9 @@ export default function SectorTimingDashboard() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-muted-foreground">Current phase:</span>
+          <span className="text-xs text-muted-foreground">Current phase:</span>
           <span
-            className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+            className="text-xs font-semibold px-2 py-0.5 rounded-full"
             style={{ backgroundColor: `${currentPhase.color}22`, color: currentPhase.color }}
           >
             {currentPhase.label}
@@ -964,7 +964,7 @@ export default function SectorTimingDashboard() {
                         <div key={s} className="flex items-center gap-2 text-xs">
                           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sec.color }} />
                           <span className="text-foreground">{s}</span>
-                          <span className="ml-auto text-muted-foreground text-[10px]">{sec.etf}</span>
+                          <span className="ml-auto text-muted-foreground text-xs">{sec.etf}</span>
                         </div>
                       );
                     })}
@@ -981,7 +981,7 @@ export default function SectorTimingDashboard() {
                         <div key={s} className="flex items-center gap-2 text-xs">
                           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sec.color }} />
                           <span className="text-foreground">{s}</span>
-                          <span className="ml-auto text-muted-foreground text-[10px]">{sec.etf}</span>
+                          <span className="ml-auto text-muted-foreground text-xs">{sec.etf}</span>
                         </div>
                       );
                     })}
@@ -994,7 +994,7 @@ export default function SectorTimingDashboard() {
                 <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
                   Avg Returns by Cycle Phase (%)
                 </div>
-                <table className="w-full text-[10px] min-w-[260px]">
+                <table className="w-full text-xs min-w-[260px]">
                   <thead>
                     <tr className="border-b border-white/10">
                       <th className="text-left py-1 px-1 text-muted-foreground font-medium">Sector</th>
@@ -1095,12 +1095,12 @@ export default function SectorTimingDashboard() {
                           <td className="py-1.5 px-2 text-center">
                             <div className="flex gap-1 justify-center">
                               {row.atNewHigh && (
-                                <span className="text-[9px] px-1 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-medium">
+                                <span className="text-[11px] px-1 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-medium">
                                   NEW HIGH
                                 </span>
                               )}
                               {row.divergence && (
-                                <span className="text-[9px] px-1 py-0.5 rounded bg-amber-500/20 text-amber-400 font-medium">
+                                <span className="text-[11px] px-1 py-0.5 rounded bg-amber-500/20 text-amber-400 font-medium">
                                   DIVERGE
                                 </span>
                               )}
@@ -1131,7 +1131,7 @@ export default function SectorTimingDashboard() {
                       <div key={row.name} className="flex items-center gap-2 text-xs">
                         <CheckCircle className="w-3 h-3 text-emerald-400 flex-shrink-0" />
                         <span className="text-foreground">{row.name}</span>
-                        <span className="text-muted-foreground ml-auto text-[10px]">
+                        <span className="text-muted-foreground ml-auto text-xs">
                           RS {row.rsNow.toFixed(3)} — new 52W high
                         </span>
                       </div>
@@ -1151,7 +1151,7 @@ export default function SectorTimingDashboard() {
                       <div key={row.name} className="flex items-center gap-2 text-xs">
                         <AlertTriangle className="w-3 h-3 text-amber-400 flex-shrink-0" />
                         <span className="text-foreground">{row.name}</span>
-                        <span className="text-muted-foreground ml-auto text-[10px]">
+                        <span className="text-muted-foreground ml-auto text-xs">
                           12W RS low but improving
                         </span>
                       </div>
@@ -1170,11 +1170,11 @@ export default function SectorTimingDashboard() {
                 {ECON_INDICATORS.map((ind) => (
                   <div key={ind.name} className="bg-white/3 rounded-lg p-3 border border-white/8">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">
+                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                         {ind.shortName}
                       </span>
                       <div className={cn(
-                        "flex items-center gap-0.5 text-[10px] font-semibold",
+                        "flex items-center gap-0.5 text-xs font-semibold",
                         ind.direction === "up" ? "text-emerald-400" : ind.direction === "down" ? "text-red-400" : "text-amber-400",
                       )}>
                         {ind.direction === "up" ? <ArrowUp className="w-3 h-3" /> : ind.direction === "down" ? <ArrowDown className="w-3 h-3" /> : <Minus className="w-3 h-3" />}
@@ -1182,7 +1182,7 @@ export default function SectorTimingDashboard() {
                       </div>
                     </div>
                     <div className="text-sm font-bold text-foreground">{ind.value}</div>
-                    <div className="text-[10px] text-muted-foreground mt-0.5 truncate">{ind.name}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5 truncate">{ind.name}</div>
                   </div>
                 ))}
               </div>
@@ -1193,7 +1193,7 @@ export default function SectorTimingDashboard() {
                   Current Signal Matrix — Econ Indicator Impact per Sector
                 </div>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-[10px] min-w-[560px]">
+                  <table className="w-full text-xs min-w-[560px]">
                     <thead>
                       <tr className="border-b border-white/10">
                         <th className="text-left py-1.5 px-2 text-muted-foreground font-medium w-36">Sector</th>
@@ -1232,7 +1232,7 @@ export default function SectorTimingDashboard() {
                             <td className="py-1.5 px-2 text-center">
                               <span
                                 className={cn(
-                                  "text-[10px] font-bold px-1.5 py-0.5 rounded",
+                                  "text-xs font-bold px-1.5 py-0.5 rounded",
                                   econ.net > 1 ? "bg-emerald-500/20 text-emerald-400" :
                                   econ.net < -1 ? "bg-red-500/20 text-red-400" :
                                   "bg-muted/20 text-muted-foreground",
@@ -1256,7 +1256,7 @@ export default function SectorTimingDashboard() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
-                    <div className="text-[10px] font-semibold text-emerald-400 mb-1.5">Most Bullish</div>
+                    <div className="text-xs font-semibold text-emerald-400 mb-1.5">Most Bullish</div>
                     {econConfluence.filter((e) => e.net > 0).slice(0, 4).map((e) => {
                       const sec = SECTORS.find((s) => s.name === e.name)!;
                       return (
@@ -1271,13 +1271,13 @@ export default function SectorTimingDashboard() {
                               <span key={i} className="w-1.5 h-3 rounded-sm bg-red-500/40" />
                             ))}
                           </div>
-                          <span className="text-emerald-400 font-mono font-medium text-[10px]">+{e.net}</span>
+                          <span className="text-emerald-400 font-mono font-medium text-xs">+{e.net}</span>
                         </div>
                       );
                     })}
                   </div>
                   <div>
-                    <div className="text-[10px] font-semibold text-red-400 mb-1.5">Most Bearish</div>
+                    <div className="text-xs font-semibold text-red-400 mb-1.5">Most Bearish</div>
                     {econConfluence.filter((e) => e.net < 0).slice(0, 4).map((e) => {
                       const sec = SECTORS.find((s) => s.name === e.name)!;
                       return (
@@ -1292,7 +1292,7 @@ export default function SectorTimingDashboard() {
                               <span key={i} className="w-1.5 h-3 rounded-sm bg-red-500/40" />
                             ))}
                           </div>
-                          <span className="text-red-400 font-mono font-medium text-[10px]">{e.net}</span>
+                          <span className="text-red-400 font-mono font-medium text-xs">{e.net}</span>
                         </div>
                       );
                     })}
@@ -1310,9 +1310,9 @@ export default function SectorTimingDashboard() {
                 {CROSS_ASSETS.map((asset) => (
                   <div key={asset.ticker} className="bg-white/3 rounded-lg p-3 border border-white/8">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-semibold text-muted-foreground">{asset.ticker}</span>
+                      <span className="text-xs font-semibold text-muted-foreground">{asset.ticker}</span>
                       <span className={cn(
-                        "text-[9px] px-1.5 py-0.5 rounded-full font-medium",
+                        "text-[11px] px-1.5 py-0.5 rounded-full font-medium",
                         asset.direction === "risk-on" ? "bg-emerald-500/20 text-emerald-400" :
                         asset.direction === "risk-off" ? "bg-red-500/20 text-red-400" :
                         "bg-muted/20 text-muted-foreground",
@@ -1327,7 +1327,7 @@ export default function SectorTimingDashboard() {
                     )}>
                       {asset.change >= 0 ? "+" : ""}{asset.change.toFixed(2)}%
                     </div>
-                    <div className="text-[10px] text-muted-foreground truncate">{asset.name}</div>
+                    <div className="text-xs text-muted-foreground truncate">{asset.name}</div>
                   </div>
                 ))}
               </div>
@@ -1518,7 +1518,7 @@ export default function SectorTimingDashboard() {
                             </td>
                             <td className="py-1.5 px-2 text-center">
                               <span className={cn(
-                                "text-[10px] px-1.5 py-0.5 rounded font-medium",
+                                "text-xs px-1.5 py-0.5 rounded font-medium",
                                 stanceColor(row.stance),
                               )}>
                                 {row.stance}
@@ -1619,10 +1619,10 @@ export default function SectorTimingDashboard() {
 
       {/* Footer */}
       <div className="flex items-center justify-between pt-2 border-t border-white/10">
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           Simulated data for educational purposes only. Not investment advice.
         </p>
-        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <BarChart2 className="w-3 h-3" />
           <span>Updated: Mar 28, 2026</span>
         </div>

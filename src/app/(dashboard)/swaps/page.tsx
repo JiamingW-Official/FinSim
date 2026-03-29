@@ -165,7 +165,7 @@ function InfoBox({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-white/70 uppercase tracking-widest mb-3">
+    <h3 className="text-sm font-semibold text-white/70 mb-3">
       {children}
     </h3>
   );

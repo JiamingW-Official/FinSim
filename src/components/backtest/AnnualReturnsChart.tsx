@@ -181,7 +181,7 @@ export default function AnnualReturnsChart({ result }: Props) {
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-4 px-1 text-[9px] text-zinc-500">
+      <div className="flex items-center gap-4 px-1 text-[11px] text-zinc-500">
         <span className="flex items-center gap-1">
           <span className="inline-block h-2.5 w-2.5 rounded-sm bg-emerald-500/70" />Strategy
         </span>
@@ -199,16 +199,16 @@ export default function AnnualReturnsChart({ result }: Props) {
       {/* Best/worst summary */}
       <div className="grid grid-cols-2 gap-2">
         <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2">
-          <div className="text-[9px] uppercase tracking-wider text-amber-500/70">Best Year</div>
+          <div className="text-[11px] text-amber-500/70">Best Year</div>
           <div className="text-sm font-bold text-amber-400">{bestYear.year}</div>
-          <div className="text-[10px] text-zinc-400">
+          <div className="text-xs text-zinc-400">
             +{bestYear.strategy.toFixed(1)}% vs SPY {bestYear.spy > 0 ? "+" : ""}{bestYear.spy.toFixed(1)}%
           </div>
         </div>
         <div className="rounded-lg border border-rose-500/20 bg-rose-500/5 px-3 py-2">
-          <div className="text-[9px] uppercase tracking-wider text-rose-500/70">Worst Year</div>
+          <div className="text-[11px] text-rose-500/70">Worst Year</div>
           <div className="text-sm font-bold text-rose-400">{worstYear.year}</div>
-          <div className="text-[10px] text-zinc-400">
+          <div className="text-xs text-zinc-400">
             {worstYear.strategy.toFixed(1)}% vs SPY {worstYear.spy > 0 ? "+" : ""}{worstYear.spy.toFixed(1)}%
           </div>
         </div>

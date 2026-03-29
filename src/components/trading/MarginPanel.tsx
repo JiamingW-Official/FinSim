@@ -85,14 +85,14 @@ export function MarginPanel() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: [1, 1.05, 1], opacity: 1 }}
               transition={{ repeat: Infinity, duration: 1.2 }}
-              className="rounded bg-[#ef4444] px-1.5 py-0.5 text-[10px] font-bold text-white"
+              className="rounded bg-[#ef4444] px-1.5 py-0.5 text-xs font-bold text-white"
             >
               MARGIN CALL!
             </motion.span>
           </AnimatePresence>
         )}
         {isMarginWarning && !isMarginCall && (
-          <span className="rounded bg-[#f59e0b]/20 px-1.5 py-0.5 text-[10px] font-semibold text-[#f59e0b]">
+          <span className="rounded bg-[#f59e0b]/20 px-1.5 py-0.5 text-xs font-semibold text-[#f59e0b]">
             WARNING
           </span>
         )}
@@ -100,7 +100,7 @@ export function MarginPanel() {
 
       {/* Margin call explanation */}
       {isMarginCall && (
-        <div className="flex items-start gap-1.5 rounded-md bg-[#ef4444]/10 px-2 py-1.5 text-[10px] text-[#ef4444]">
+        <div className="flex items-start gap-1.5 rounded-md bg-[#ef4444]/10 px-2 py-1.5 text-xs text-[#ef4444]">
           <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
           <span>
             Equity ({formatCurrency(equity)}) is below 25% maintenance requirement ({formatCurrency(maintenanceRequirement)}).
@@ -160,7 +160,7 @@ export function MarginPanel() {
 
       {/* Margin utilisation bar */}
       <div>
-        <div className="mb-1 flex items-center justify-between text-[10px]">
+        <div className="mb-1 flex items-center justify-between text-xs">
           <span className="text-muted-foreground">Margin Utilisation</span>
           <span
             className="tabular-nums font-semibold"
@@ -178,7 +178,7 @@ export function MarginPanel() {
             transition={{ duration: 0.4, ease: "easeOut" }}
           />
         </div>
-        <div className="mt-0.5 flex justify-between text-[9px] text-muted-foreground/60">
+        <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground/60">
           <span>0%</span>
           <span className="text-[#f59e0b]">Warning 60%</span>
           <span className="text-[#ef4444]">Limit 100%</span>
@@ -188,14 +188,14 @@ export function MarginPanel() {
       {/* Per-position borrow rates */}
       {shortPositions.length > 0 && (
         <div className="space-y-1">
-          <div className="text-[10px] font-medium text-muted-foreground">Short Positions — Borrow Rates</div>
+          <div className="text-xs font-medium text-muted-foreground">Short Positions — Borrow Rates</div>
           {shortPositions.map((p) => {
             const rate = borrowRates[p.ticker] ?? 1.0;
             const dailyCost = p.quantity * p.currentPrice * (rate / 100 / 365);
             return (
               <div
                 key={`${p.ticker}-short`}
-                className="flex items-center justify-between rounded bg-muted/40 px-2 py-1 text-[10px]"
+                className="flex items-center justify-between rounded bg-muted/40 px-2 py-1 text-xs"
               >
                 <span className="font-semibold text-[#a855f7]">{p.ticker}</span>
                 <span className="text-muted-foreground">{p.quantity} sh</span>
@@ -213,7 +213,7 @@ export function MarginPanel() {
       <button
         type="button"
         onClick={accrueMarginInterest}
-        className="w-full rounded border border-border/40 py-1 text-[10px] font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+        className="w-full rounded border border-border/40 py-1 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
       >
         Accrue 1 Day Interest ({formatCurrency(totalDailyInterest)})
       </button>

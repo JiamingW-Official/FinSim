@@ -238,7 +238,7 @@ export default function JournalPageClient() {
           </div>
           <div>
             <h1 className="text-base font-semibold tracking-tight">Trade Journal</h1>
-            <p className="text-[10px] text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               {rows.length} closed trade{rows.length !== 1 ? "s" : ""}
             </p>
           </div>
@@ -450,7 +450,7 @@ export default function JournalPageClient() {
                           key={g}
                           className="flex flex-1 flex-col items-center gap-1 h-full justify-end"
                         >
-                          <span className="text-[10px] tabular-nums text-muted-foreground">
+                          <span className="text-xs tabular-nums text-muted-foreground">
                             {count}
                           </span>
                           <div
@@ -631,24 +631,24 @@ function WinRateDonut({
             <p className="text-2xl font-bold tabular-nums text-foreground">
               {winRate.toFixed(1)}%
             </p>
-            <p className="text-[10px] text-muted-foreground">Win rate</p>
+            <p className="text-xs text-muted-foreground">Win rate</p>
           </div>
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-1.5">
               <div className="h-2 w-2 rounded-full bg-green-400" />
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 {wins} win{wins !== 1 ? "s" : ""}
               </span>
             </div>
             <div className="flex items-center gap-1.5">
               <div className="h-2 w-2 rounded-full bg-red-400" />
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 {losses} loss{losses !== 1 ? "es" : ""}
               </span>
             </div>
             <div className="flex items-center gap-1.5">
               <div className="h-2 w-2 rounded-full bg-muted-foreground/30" />
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 {total} total
               </span>
             </div>
@@ -680,7 +680,7 @@ function AvgWinLossBar({
       <p className="mb-3 text-xs font-semibold">Avg Win vs Avg Loss</p>
       <div className="space-y-3">
         <div>
-          <div className="mb-1 flex items-center justify-between text-[10px]">
+          <div className="mb-1 flex items-center justify-between text-xs">
             <span className="text-green-400 font-medium">Avg Win</span>
             <span className="font-semibold tabular-nums text-green-400">
               {avgWin > 0 ? formatCurrency(avgWin) : "—"}
@@ -694,7 +694,7 @@ function AvgWinLossBar({
           </div>
         </div>
         <div>
-          <div className="mb-1 flex items-center justify-between text-[10px]">
+          <div className="mb-1 flex items-center justify-between text-xs">
             <span className="text-red-400 font-medium">Avg Loss</span>
             <span className="font-semibold tabular-nums text-red-400">
               {avgLoss < 0 ? formatCurrency(avgLoss) : "—"}
@@ -708,7 +708,7 @@ function AvgWinLossBar({
           </div>
         </div>
         <div className="flex items-center justify-between border-t border-border/40 pt-2">
-          <span className="text-[10px] text-muted-foreground">
+          <span className="text-xs text-muted-foreground">
             Reward / Risk ratio
           </span>
           <span
@@ -765,7 +765,7 @@ function TickerBreakdown({ tickerStats }: { tickerStats: TickerStat[] }) {
                   style={{ width: `${((100 - winPct) / 100) * barWidth}%` }}
                 />
               </div>
-              <div className="flex items-center gap-2 text-[10px] text-muted-foreground shrink-0">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground shrink-0">
                 <span className="w-6 text-right tabular-nums">{stat.total}</span>
                 <span
                   className={cn(
@@ -780,7 +780,7 @@ function TickerBreakdown({ tickerStats }: { tickerStats: TickerStat[] }) {
           );
         })}
       </div>
-      <div className="mt-2 flex items-center gap-3 text-[9px] text-muted-foreground/60">
+      <div className="mt-2 flex items-center gap-3 text-[11px] text-muted-foreground/60">
         <div className="flex items-center gap-1">
           <div className="h-2 w-2 rounded-sm bg-green-500/50" />
           Wins
@@ -809,14 +809,14 @@ function StatChip({
 }) {
   return (
     <div className="rounded-lg border border-border bg-card/50 p-3 transition-colors hover:border-border/60">
-      <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+      <div className="text-xs font-medium text-muted-foreground">
         {label}
       </div>
       <div className={cn("mt-1 text-base font-bold tabular-nums", color)}>
         {value}
       </div>
       {sub && (
-        <div className="mt-0.5 text-[10px] text-muted-foreground/60">{sub}</div>
+        <div className="mt-0.5 text-xs text-muted-foreground/60">{sub}</div>
       )}
     </div>
   );

@@ -86,11 +86,11 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
 
       {/* Timeline visualization */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
           IS / OOS Timeline
         </h3>
         <TimelineBar folds={folds} totalBars={totalBars} />
-        <div className="mt-2 flex items-center gap-4 text-[9px] text-zinc-500">
+        <div className="mt-2 flex items-center gap-4 text-[11px] text-zinc-500">
           <span className="flex items-center gap-1">
             <span className="inline-block h-2.5 w-5 rounded-sm bg-blue-600/60" /> In-Sample
           </span>
@@ -102,11 +102,11 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
 
       {/* Fold detail table */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
           Fold Performance
         </h3>
         <div className="overflow-x-auto rounded-lg border border-white/5">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/5 bg-white/[0.02]">
                 <th className="px-3 py-2 text-left text-zinc-500 font-medium">Fold</th>
@@ -140,7 +140,7 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
                       {fold.degradationPct >= 0 ? "+" : ""}{fold.degradationPct.toFixed(1)}%
                     </td>
                     <td className="px-3 py-2 text-right">
-                      <span className={`rounded-full px-2 py-0.5 text-[9px] font-medium ${
+                      <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
                         goodEfficiency
                           ? "bg-emerald-500/10 text-emerald-400"
                           : "bg-rose-500/10 text-rose-400"
@@ -158,11 +158,11 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
 
       {/* Efficiency bar chart (pure SVG) */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
           Fold Efficiency Scores
         </h3>
         <EfficiencyBarChart folds={folds} />
-        <div className="mt-1 text-[9px] text-zinc-600">
+        <div className="mt-1 text-[11px] text-zinc-600">
           Dashed line = 0.5 efficiency threshold (overfitting warning)
         </div>
       </div>
@@ -268,7 +268,7 @@ function EfficiencyBarChart({ folds }: { folds: WalkForwardFold[] }) {
 function MetricChip({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
   return (
     <div className="rounded-lg border border-white/5 bg-white/[0.03] px-3 py-2">
-      <div className="text-[9px] uppercase tracking-wider text-zinc-600">{label}</div>
+      <div className="text-[11px] text-zinc-600">{label}</div>
       <div className={`mt-0.5 text-sm font-bold ${positive === undefined ? "text-zinc-200" : positive ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>

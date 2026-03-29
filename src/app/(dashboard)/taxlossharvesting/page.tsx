@@ -535,7 +535,7 @@ export default function TaxLossHarvestingPage() {
                                 <div className="flex items-center gap-1.5">
                                   <span className="font-semibold text-foreground">{h.ticker}</span>
                                   {h.harvestCandidate && (
-                                    <Badge className="bg-red-500/20 text-red-400 border-red-500/30 border text-[9px] px-1 py-0">
+                                    <Badge className="bg-red-500/20 text-red-400 border-red-500/30 border text-[11px] px-1 py-0">
                                       TLH
                                     </Badge>
                                   )}
@@ -550,12 +550,12 @@ export default function TaxLossHarvestingPage() {
                               <td className="px-3 py-2 text-right font-mono">
                                 <span className={pnl >= 0 ? "text-green-400" : "text-red-400"}>
                                   {formatCurrency(pnl)}
-                                  <span className="text-[9px] ml-1">({pnlPct.toFixed(1)}%)</span>
+                                  <span className="text-[11px] ml-1">({pnlPct.toFixed(1)}%)</span>
                                 </span>
                               </td>
                               <td className="px-3 py-2 text-center">
                                 <Badge
-                                  className={`text-[9px] px-1.5 py-0 border ${
+                                  className={`text-[11px] px-1.5 py-0 border ${
                                     isLT
                                       ? "bg-green-500/20 text-green-400 border-green-500/30"
                                       : "bg-orange-500/20 text-orange-400 border-orange-500/30"
@@ -834,7 +834,7 @@ export default function TaxLossHarvestingPage() {
                         <div key={row.label} className="flex items-center justify-between py-1.5 border-b border-border/50 last:border-0">
                           <div>
                             <p className="text-xs font-medium text-foreground">{row.label}</p>
-                            <p className="text-[10px] text-muted-foreground">{row.note}</p>
+                            <p className="text-xs text-muted-foreground">{row.note}</p>
                           </div>
                           <span className="text-xs font-semibold text-blue-400">{row.value}</span>
                         </div>

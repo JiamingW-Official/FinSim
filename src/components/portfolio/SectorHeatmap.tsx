@@ -67,7 +67,7 @@ export function SectorHeatmap({ performance }: SectorHeatmapProps) {
     <div className="rounded-lg border border-border bg-card overflow-hidden">
       {/* Header with period selector */}
       <div className="flex items-center justify-between px-3 py-2 border-b border-border">
-        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-semibold text-muted-foreground">
           Sector Performance
         </span>
         <div className="flex gap-0.5">
@@ -77,7 +77,7 @@ export function SectorHeatmap({ performance }: SectorHeatmapProps) {
               type="button"
               onClick={() => setPeriod(p.value)}
               className={cn(
-                "px-2 py-0.5 text-[10px] font-medium rounded transition-colors",
+                "px-2 py-0.5 text-xs font-medium rounded transition-colors",
                 period === p.value
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:bg-accent",
@@ -104,7 +104,7 @@ export function SectorHeatmap({ performance }: SectorHeatmapProps) {
             >
               <div className="flex items-start justify-between gap-1">
                 <div className="min-w-0">
-                  <div className="text-[10px] font-medium text-foreground truncate">
+                  <div className="text-xs font-medium text-foreground truncate">
                     {sector.shortName}
                   </div>
                   <div className="text-[8px] text-muted-foreground/70">

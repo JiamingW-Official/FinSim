@@ -277,7 +277,7 @@ function ReadinessTab() {
 
         {/* Milestones */}
         <Card className="p-4 space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Milestones</p>
+          <p className="text-xs font-semibold text-muted-foreground mb-3">Milestones</p>
           {milestones.map((m) => (
             <div key={m.label} className="flex items-center gap-2">
               {m.key ? (
@@ -305,7 +305,7 @@ function ReadinessTab() {
       {/* Inputs */}
       <div className="lg:col-span-2 space-y-4">
         <Card className="p-4 space-y-4">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Your Information</p>
+          <p className="text-xs font-semibold text-muted-foreground">Your Information</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ageInput("currentAge", "Current Age", 20, 70)}
             {ageInput("retirementAge", "Target Retirement Age", 50, 80)}
@@ -318,7 +318,7 @@ function ReadinessTab() {
 
         {/* Coverage bar */}
         <Card className="p-4 space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Coverage Analysis</p>
+          <p className="text-xs font-semibold text-muted-foreground">Coverage Analysis</p>
           <div className="space-y-1">
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>Savings Coverage</span>
@@ -471,7 +471,7 @@ function AccountsTab() {
                   <td className="p-3 font-mono">{a.catchUp}</td>
                   <td className="p-3">{a.match}</td>
                   <td className="p-3">
-                    <Badge variant="outline" className="text-[10px] py-0">
+                    <Badge variant="outline" className="text-xs py-0">
                       {a.taxTreatment}
                     </Badge>
                   </td>
@@ -482,7 +482,7 @@ function AccountsTab() {
             </tbody>
           </table>
         </div>
-        <p className="text-[10px] text-muted-foreground/60 px-3 pb-2">* Traditional IRA deductibility phases out at higher incomes if covered by workplace plan.</p>
+        <p className="text-xs text-muted-foreground/60 px-3 pb-2">* Traditional IRA deductibility phases out at higher incomes if covered by workplace plan.</p>
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -637,7 +637,7 @@ function SocialSecurityTab() {
             <Card key={c.age} className="p-4 space-y-2">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold">{c.label}</p>
-                <Badge variant="outline" style={{ borderColor: c.color, color: c.color }} className="text-[10px]">
+                <Badge variant="outline" style={{ borderColor: c.color, color: c.color }} className="text-xs">
                   Claim at {c.age}
                 </Badge>
               </div>
@@ -650,10 +650,10 @@ function SocialSecurityTab() {
                 <p className="text-sm font-semibold">{fmtK(total)}</p>
               </div>
               {c.age === 62 && (
-                <p className="text-[10px] text-muted-foreground">25% reduction vs FRA</p>
+                <p className="text-xs text-muted-foreground">25% reduction vs FRA</p>
               )}
               {c.age === 70 && (
-                <p className="text-[10px] text-emerald-400">24% bonus vs FRA</p>
+                <p className="text-xs text-emerald-400">24% bonus vs FRA</p>
               )}
             </Card>
           );
@@ -725,7 +725,7 @@ function SocialSecurityTab() {
             </text>
           </svg>
         </div>
-        <div className="flex gap-3 text-[10px] text-muted-foreground flex-wrap">
+        <div className="flex gap-3 text-xs text-muted-foreground flex-wrap">
           {lineData.map((c) => (
             <span key={c.age} className="flex items-center gap-1">
               <span className="inline-block w-3 h-0.5" style={{ backgroundColor: c.color }} />
@@ -911,7 +911,7 @@ function InvestmentStrategyTab() {
             </text>
           </svg>
         </div>
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           Stocks decline from ~90% at age 25 to ~40% at age 65. Bond tent strategy temporarily raises bonds at retirement to reduce sequence-of-returns risk, then gradually returns to stocks.
         </p>
       </Card>
@@ -931,16 +931,16 @@ function InvestmentStrategyTab() {
               <div key={f.name} className="rounded-lg border border-border p-3 space-y-2">
                 <div className="flex items-center justify-between">
                   <p className="font-bold text-sm" style={{ color: f.color }}>Fund {f.name}</p>
-                  <Badge variant="outline" className="text-[10px] py-0" style={{ borderColor: f.color }}>TDF</Badge>
+                  <Badge variant="outline" className="text-xs py-0" style={{ borderColor: f.color }}>TDF</Badge>
                 </div>
-                <p className="text-[10px] text-muted-foreground">{f.desc}</p>
+                <p className="text-xs text-muted-foreground">{f.desc}</p>
                 {/* Stacked bar */}
                 <div className="h-4 rounded-full overflow-hidden flex">
                   <div style={{ width: `${stockBar}%`, backgroundColor: "#3b82f6" }} title={`Stocks ${stockBar}%`} />
                   <div style={{ width: `${bondBar}%`, backgroundColor: "#f59e0b" }} title={`Bonds ${bondBar}%`} />
                   <div style={{ width: `${cashBar}%`, backgroundColor: "#6b7280" }} title={`Cash ${cashBar}%`} />
                 </div>
-                <div className="space-y-0.5 text-[10px]">
+                <div className="space-y-0.5 text-xs">
                   <div className="flex justify-between"><span className="text-blue-400">Stocks</span><span>{stockBar}%</span></div>
                   <div className="flex justify-between"><span className="text-amber-400">Bonds</span><span>{bondBar}%</span></div>
                   <div className="flex justify-between"><span className="text-muted-foreground">Cash</span><span>{cashBar}%</span></div>
@@ -949,7 +949,7 @@ function InvestmentStrategyTab() {
             );
           })}
         </div>
-        <div className="flex gap-4 text-[10px] text-muted-foreground">
+        <div className="flex gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-blue-500" />Stocks</span>
           <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-amber-500" />Bonds</span>
           <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-gray-500" />Cash</span>
@@ -1034,11 +1034,11 @@ function InvestmentStrategyTab() {
             <div key={b.label} className={cn("rounded-lg border p-3 space-y-1.5", b.border, b.bg)}>
               <div className="flex items-center justify-between">
                 <p className={cn("font-bold text-sm", b.color)}>{b.label}</p>
-                <Badge variant="outline" className="text-[10px]">{b.pct}</Badge>
+                <Badge variant="outline" className="text-xs">{b.pct}</Badge>
               </div>
               <p className="text-xs font-semibold text-foreground">{b.horizon}</p>
-              <p className="text-[10px] text-muted-foreground font-medium">{b.assets}</p>
-              <p className="text-[10px] text-muted-foreground">{b.purpose}</p>
+              <p className="text-xs text-muted-foreground font-medium">{b.assets}</p>
+              <p className="text-xs text-muted-foreground">{b.purpose}</p>
             </div>
           ))}
         </div>
@@ -1093,7 +1093,7 @@ function HealthcareRMDsTab() {
             <div key={e.age} className={cn("flex-1 min-w-[200px] rounded-lg border p-3 space-y-1", e.color)}>
               <p className="font-bold text-xs">{e.age}</p>
               <p className="text-xs font-semibold">{e.event}</p>
-              <p className="text-[10px] text-muted-foreground">{e.detail}</p>
+              <p className="text-xs text-muted-foreground">{e.detail}</p>
             </div>
           ))}
         </div>
@@ -1118,8 +1118,8 @@ function HealthcareRMDsTab() {
                 <span className="text-xs text-muted-foreground">— {p.name}</span>
               </div>
               <p className="text-xs font-semibold">{p.premium}</p>
-              <p className="text-[10px] text-muted-foreground">{p.covers}</p>
-              <p className="text-[10px] text-muted-foreground">{p.deductible}</p>
+              <p className="text-xs text-muted-foreground">{p.covers}</p>
+              <p className="text-xs text-muted-foreground">{p.deductible}</p>
             </div>
           ))}
         </div>

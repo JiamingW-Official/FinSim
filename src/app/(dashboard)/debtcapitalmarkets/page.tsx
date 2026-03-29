@@ -561,11 +561,11 @@ export default function DebtCapitalMarketsPage() {
                             <td className="px-3 py-2">
                               <div>
                                 <p className="font-medium text-foreground truncate max-w-[100px]">{deal.issuer}</p>
-                                <p className="text-muted-foreground text-[10px]">{deal.sector}</p>
+                                <p className="text-muted-foreground text-xs">{deal.sector}</p>
                               </div>
                             </td>
                             <td className="px-3 py-2">
-                              <Badge variant="outline" className={`text-[10px] px-1.5 py-0 ${ratingColor(deal.rating)}`}>
+                              <Badge variant="outline" className={`text-xs px-1.5 py-0 ${ratingColor(deal.rating)}`}>
                                 {deal.rating.split("/")[1]}
                               </Badge>
                             </td>
@@ -618,7 +618,7 @@ export default function DebtCapitalMarketsPage() {
                         <p className={`text-xs font-semibold ${activeStep === i ? step.color : "text-foreground"}`}>
                           {step.label}
                         </p>
-                        <p className="text-[10px] text-muted-foreground mt-0.5">{step.duration}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{step.duration}</p>
                         {i < PRICING_STEPS.length - 1 && (
                           <ChevronRight size={12} className="text-muted-foreground absolute top-1/2 -right-2 -translate-y-1/2 hidden md:block" />
                         )}
@@ -776,7 +776,7 @@ export default function DebtCapitalMarketsPage() {
                     <div key={b.bucket} className="bg-muted/20 rounded-lg p-3 border border-border text-center">
                       <p className="text-lg font-bold text-blue-400">{b.pct}</p>
                       <p className="text-xs font-semibold text-foreground mt-1">{b.bucket}</p>
-                      <p className="text-[10px] text-muted-foreground mt-0.5">{b.note}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{b.note}</p>
                     </div>
                   ))}
                 </div>
@@ -866,7 +866,7 @@ export default function DebtCapitalMarketsPage() {
                           <div className="bg-muted/30 rounded-full h-2">
                             <div className={`${item.color} h-2 rounded-full`} style={{ width: `${pct}%` }} />
                           </div>
-                          <div className="flex justify-between text-[10px] text-muted-foreground mt-0.5">
+                          <div className="flex justify-between text-xs text-muted-foreground mt-0.5">
                             <span>Tight ({item.min})</span>
                             <span>Wide ({item.max})</span>
                           </div>

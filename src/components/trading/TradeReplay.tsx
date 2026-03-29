@@ -788,7 +788,7 @@ export function TradeReplay() {
         style={{ width: 280 }}
       >
         <div className="px-3 py-2 border-b border-border">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          <p className="text-xs font-semibold text-muted-foreground">
             Recent Trades
           </p>
         </div>
@@ -819,7 +819,7 @@ export function TradeReplay() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[9px] px-1 py-0 h-4",
+                        "text-[11px] px-1 py-0 h-4",
                         buy.side === "buy"
                           ? "border-emerald-500/30 text-emerald-400"
                           : "border-red-500/30 text-red-400",
@@ -844,12 +844,12 @@ export function TradeReplay() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     {formatShortDate(buy.simulationDate)}
                   </span>
                   <span
                     className={cn(
-                      "text-[10px] tabular-nums",
+                      "text-xs tabular-nums",
                       pnlPct >= 0 ? "text-emerald-400/70" : "text-red-400/70",
                     )}
                   >
@@ -901,7 +901,7 @@ export function TradeReplay() {
             <div className="flex-1 min-w-0">
               <Card className="border-border/50">
                 <CardHeader className="pb-1 pt-3 px-3">
-                  <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  <CardTitle className="text-xs font-medium text-muted-foreground">
                     Price Replay — ±20 Bars
                   </CardTitle>
                 </CardHeader>
@@ -926,7 +926,7 @@ export function TradeReplay() {
             <div className="shrink-0" style={{ width: 220 }}>
               <Card className="border-border/50 h-full">
                 <CardHeader className="pb-1 pt-3 px-3">
-                  <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  <CardTitle className="text-xs font-medium text-muted-foreground">
                     Trade Stats
                   </CardTitle>
                 </CardHeader>
@@ -1009,7 +1009,7 @@ export function TradeReplay() {
           {/* ── AI Critique ── */}
           <Card className="border-border/50">
             <CardHeader className="pb-1 pt-3 px-3">
-              <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+              <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                 <AlertTriangle className="h-3.5 w-3.5" />
                 AI Critique
               </CardTitle>
@@ -1055,7 +1055,7 @@ export function TradeReplay() {
           {/* ── Hypothetical Alternatives ── */}
           <Card className="border-border/50">
             <CardHeader className="pb-1 pt-3 px-3">
-              <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+              <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                 <TrendingUp className="h-3.5 w-3.5" />
                 What Would You Do Differently?
               </CardTitle>
@@ -1079,7 +1079,7 @@ export function TradeReplay() {
                         {formatCurrency(alt.pnl)}
                       </span>
                     </div>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       {alt.description}
                     </p>
                     {alt.prices.length >= 2 && (
@@ -1097,7 +1097,7 @@ export function TradeReplay() {
                       ) : (
                         <TrendingDown className="h-3 w-3 text-red-400" />
                       )}
-                      <span className="text-[10px] text-muted-foreground">
+                      <span className="text-xs text-muted-foreground">
                         {alt.pnl >= selectedPair.sell.realizedPnL
                           ? `+${formatCurrency(alt.pnl - selectedPair.sell.realizedPnL)} vs actual`
                           : `${formatCurrency(alt.pnl - selectedPair.sell.realizedPnL)} vs actual`}

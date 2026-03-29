@@ -107,7 +107,7 @@ export function TimeTravelControls() {
           className={cn(
             "h-8 w-8 shrink-0 transition-all",
             isPlaying &&
-              "bg-primary/15 text-primary ring-1 ring-primary/30 shadow-[0_0_8px_rgba(16,185,129,0.2)]",
+              "bg-primary/15 text-primary ring-1 ring-primary/30",
           )}
           onClick={() => {
             soundEngine.playClick();
@@ -183,7 +183,7 @@ export function TimeTravelControls() {
           </>
         )}
         {atEnd && (
-          <span className="rounded bg-[#ef4444]/10 px-1.5 py-0.5 text-[9px] font-bold text-[#ef4444]">
+          <span className="rounded bg-[#ef4444]/10 px-1.5 py-0.5 text-[11px] font-bold text-[#ef4444]">
             END
           </span>
         )}

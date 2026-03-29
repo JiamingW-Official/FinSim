@@ -83,7 +83,7 @@ export function TradeCalendar() {
   return (
     <div>
       {/* Tooltip */}
-      <div className="mb-2 h-4 text-[10px] text-muted-foreground tabular-nums">
+      <div className="mb-2 h-4 text-xs text-muted-foreground tabular-nums">
         {hovered ? (
           <span>
             {hovered.date}{" "}

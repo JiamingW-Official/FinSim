@@ -196,7 +196,7 @@ function MetricCard({
         <CardContent className="pt-5 pb-4">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{label}</p>
+              <p className="text-xs text-muted-foreground mb-1">{label}</p>
               <p className="text-2xl font-bold" style={{ color }}>{value}</p>
               <p className="text-xs text-muted-foreground mt-1">{sub}</p>
             </div>
@@ -409,9 +409,9 @@ function ICAutocorrelationChart() {
 // ── Signal Status Badge ───────────────────────────────────────────────────────
 
 function StatusBadge({ status }: { status: Signal["status"] }) {
-  if (status === "live")       return <Badge className="bg-green-500/20 text-green-400 border-green-500/30 text-[10px]">Live</Badge>;
-  if (status === "research")   return <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 text-[10px]">Research</Badge>;
-  return                              <Badge className="bg-red-500/20 text-red-400 border-red-500/30 text-[10px]">Deprecated</Badge>;
+  if (status === "live")       return <Badge className="bg-green-500/20 text-green-400 border-green-500/30 text-xs">Live</Badge>;
+  if (status === "research")   return <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 text-xs">Research</Badge>;
+  return                              <Badge className="bg-red-500/20 text-red-400 border-red-500/30 text-xs">Deprecated</Badge>;
 }
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
@@ -613,7 +613,7 @@ export default function AlphaResearchPage() {
                       <div>
                         <p className="text-lg font-bold" style={{ color: m.color }}>{m.value}</p>
                         <p className="text-xs text-muted-foreground">{m.label}</p>
-                        <p className="text-[10px] text-muted-foreground/60">{m.sub}</p>
+                        <p className="text-xs text-muted-foreground/60">{m.sub}</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -675,7 +675,7 @@ export default function AlphaResearchPage() {
                       <div key={ds.label} className="flex items-center gap-1.5">
                         <div className="w-3 h-0.5 rounded-full" style={{ backgroundColor: ds.color }} />
                         <span className="text-xs text-muted-foreground">{ds.label}</span>
-                        <span className="text-[10px] text-muted-foreground/60">(t½={ds.halfLife}d)</span>
+                        <span className="text-xs text-muted-foreground/60">(t½={ds.halfLife}d)</span>
                       </div>
                     ))}
                   </div>
@@ -741,8 +741,8 @@ export default function AlphaResearchPage() {
                         <div key={row.signal} className="flex items-center justify-between py-1 border-b border-border/30 last:border-0">
                           <span className="text-xs font-medium" style={{ color: row.color }}>{row.signal}</span>
                           <div className="flex gap-2 items-center">
-                            <Badge variant="outline" className="text-[10px] h-5">{row.freq}</Badge>
-                            <Badge variant="outline" className="text-[10px] h-5 text-muted-foreground">{row.cost}</Badge>
+                            <Badge variant="outline" className="text-xs h-5">{row.freq}</Badge>
+                            <Badge variant="outline" className="text-xs h-5 text-muted-foreground">{row.cost}</Badge>
                             <span className="text-xs font-bold text-green-400">{row.net}</span>
                           </div>
                         </div>
@@ -771,7 +771,7 @@ export default function AlphaResearchPage() {
                       <div>
                         <p className="text-xl font-bold" style={{ color: m.color }}>{m.value}</p>
                         <p className="text-xs text-muted-foreground">{m.label}</p>
-                        <p className="text-[10px] text-muted-foreground/60">{m.sub}</p>
+                        <p className="text-xs text-muted-foreground/60">{m.sub}</p>
                       </div>
                     </CardContent>
                   </Card>

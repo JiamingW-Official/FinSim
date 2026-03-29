@@ -589,9 +589,9 @@ function CarryRollSVG({ data }: { data: CarryRollPoint[] }) {
 function StatChip({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
     <div className="rounded-lg bg-zinc-800/60 border border-zinc-700/40 px-3 py-2 flex flex-col gap-0.5">
-      <span className="text-[10px] text-zinc-500 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-zinc-500 uppercase tracking-wide">{label}</span>
       <span className="text-sm font-semibold text-zinc-100">{value}</span>
-      {sub && <span className="text-[10px] text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
     </div>
   );
 }
@@ -700,7 +700,7 @@ export default function FixedIncomeRVPage() {
               <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
                 <div className="flex items-center justify-between mb-3">
                   <h2 className="text-sm font-medium">Current Yield Curve</h2>
-                  <span className="text-[10px] text-zinc-500">US Treasuries — 3M to 30Y</span>
+                  <span className="text-xs text-zinc-500">US Treasuries — 3M to 30Y</span>
                 </div>
                 <YieldCurveSVG highlight={curveHighlight} />
                 <div className="flex gap-2 mt-3 flex-wrap">
@@ -709,7 +709,7 @@ export default function FixedIncomeRVPage() {
                       key={String(h)}
                       onClick={() => setCurveHighlight(h)}
                       className={cn(
-                        "text-[10px] px-2.5 py-1 rounded border transition-colors",
+                        "text-xs px-2.5 py-1 rounded border transition-colors",
                         curveHighlight === h
                           ? "bg-indigo-500/20 border-indigo-500/50 text-indigo-300"
                           : "bg-zinc-800/50 border-zinc-700/40 text-zinc-500 hover:text-zinc-300"
@@ -736,7 +736,7 @@ export default function FixedIncomeRVPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
                     <span className="text-sm font-medium text-emerald-400">2s10s Steepener</span>
-                    <span className="ml-auto text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
+                    <span className="ml-auto text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
                       LONG 2Y / SHORT 10Y
                     </span>
                   </div>
@@ -758,7 +758,7 @@ export default function FixedIncomeRVPage() {
                       <div className="font-semibold">{dv01Ratio_2y10y}x</div>
                     </div>
                   </div>
-                  <div className="mt-2 text-[10px] text-zinc-500">
+                  <div className="mt-2 text-xs text-zinc-500">
                     Trade: Long $10M 2Y + Short ${dv01Ratio_2y10y}x notional 10Y &bull; Current slope: {Number(slope2s10s) >= 0 ? "+" : ""}{slope2s10s} bps
                   </div>
                 </div>
@@ -776,7 +776,7 @@ export default function FixedIncomeRVPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingDown className="w-3.5 h-3.5 text-red-400" />
                     <span className="text-sm font-medium text-red-400">2s10s Flattener</span>
-                    <span className="ml-auto text-[10px] bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 rounded">
+                    <span className="ml-auto text-xs bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 rounded">
                       SHORT 2Y / LONG 10Y
                     </span>
                   </div>
@@ -813,7 +813,7 @@ export default function FixedIncomeRVPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <ArrowUpDown className="w-3.5 h-3.5 text-yellow-400" />
                     <span className="text-sm font-medium text-yellow-400">2s5s10s Butterfly</span>
-                    <span className="ml-auto text-[10px] bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 px-2 py-0.5 rounded">
+                    <span className="ml-auto text-xs bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 px-2 py-0.5 rounded">
                       BARBELL vs BULLET
                     </span>
                   </div>
@@ -897,7 +897,7 @@ export default function FixedIncomeRVPage() {
                             {r.zScore > 0 ? "+" : ""}{r.zScore}σ
                           </td>
                           <td className="py-2">
-                            <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-medium", signalBg(r.signal))}>
+                            <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", signalBg(r.signal))}>
                               {r.signal.toUpperCase()}
                             </span>
                           </td>
@@ -918,7 +918,7 @@ export default function FixedIncomeRVPage() {
                 </div>
                 <div className="text-2xl font-bold mb-1">118 <span className="text-sm text-zinc-500 font-normal">bps OAS</span></div>
                 <div className="text-xs text-zinc-500 mb-2">vs 10Y average: 125 bps</div>
-                <div className="text-[10px] text-red-400 bg-red-500/10 border border-red-500/20 rounded px-2 py-1">
+                <div className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded px-2 py-1">
                   Slightly RICH to history — limited upside from spread compression
                 </div>
               </div>
@@ -929,7 +929,7 @@ export default function FixedIncomeRVPage() {
                 </div>
                 <div className="text-2xl font-bold mb-1">382 <span className="text-sm text-zinc-500 font-normal">bps OAS</span></div>
                 <div className="text-xs text-zinc-500 mb-2">vs 10Y average: 420 bps</div>
-                <div className="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded px-2 py-1">
+                <div className="text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded px-2 py-1">
                   FAIR value — select issuer opportunities in BB-rated
                 </div>
               </div>
@@ -940,7 +940,7 @@ export default function FixedIncomeRVPage() {
                 </div>
                 <div className="text-2xl font-bold mb-1">264 <span className="text-sm text-zinc-500 font-normal">bps</span></div>
                 <div className="text-xs text-zinc-500 mb-2">vs 10Y average: 295 bps</div>
-                <div className="text-[10px] text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 rounded px-2 py-1">
+                <div className="text-xs text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 rounded px-2 py-1">
                   Tight differential — HY not well compensated vs IG quality
                 </div>
               </div>
@@ -989,7 +989,7 @@ export default function FixedIncomeRVPage() {
                         <td className="py-2 pr-4">
                           <span
                             className={cn(
-                              "px-1.5 py-0.5 rounded text-[10px]",
+                              "px-1.5 py-0.5 rounded text-xs",
                               row.type === "Treasury" && "bg-zinc-700/50 text-zinc-400",
                               row.type === "Agency" && "bg-blue-500/10 text-blue-400",
                               row.type === "Muni" && "bg-indigo-500/10 text-indigo-400",
@@ -1014,7 +1014,7 @@ export default function FixedIncomeRVPage() {
                           {row.otrOtsPremium != null ? `${row.otrOtsPremium} bps` : <span className="text-zinc-600">—</span>}
                         </td>
                         <td className="py-2">
-                          <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-medium", signalBg(row.signal))}>
+                          <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", signalBg(row.signal))}>
                             {row.signal.toUpperCase()}
                           </span>
                         </td>
@@ -1036,7 +1036,7 @@ export default function FixedIncomeRVPage() {
                   FNMA 2Y trades at +26 bps vs OTR Treasury. Historical range: +18–42 bps. Currently FAIR-to-CHEAP.
                   Implicit GSE government backing provides high credit quality at above-Treasury yields.
                 </p>
-                <div className="flex items-center gap-2 text-[10px]">
+                <div className="flex items-center gap-2 text-xs">
                   <span className="text-zinc-500">Typical range:</span>
                   <span className="text-zinc-300">+18 — +42 bps</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>BUY</span>
@@ -1054,7 +1054,7 @@ export default function FixedIncomeRVPage() {
                   {Math.round(((CURVE_POINTS[7].yield * 0.68) / 0.63 - CURVE_POINTS[7].yield) * 100)} bps pickup vs
                   Treasuries.
                 </p>
-                <div className="flex items-center gap-2 text-[10px]">
+                <div className="flex items-center gap-2 text-xs">
                   <span className="text-zinc-500">Muni/Tsy ratio:</span>
                   <span className="text-indigo-300">68% (below 80% = cheap)</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>BUY</span>
@@ -1071,7 +1071,7 @@ export default function FixedIncomeRVPage() {
                   {(CURVE_POINTS[7].yield - 2.28).toFixed(2)}%. Breakeven inflation: 2.28% — below the 5Y average of
                   2.35%. Suggests TIPS slightly cheap relative to nominals.
                 </p>
-                <div className="flex items-center gap-2 text-[10px]">
+                <div className="flex items-center gap-2 text-xs">
                   <span className="text-zinc-500">5Y avg BE:</span>
                   <span className="text-cyan-300">2.35% &bull; Current: 2.28%</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>TIPS</span>
@@ -1134,7 +1134,7 @@ export default function FixedIncomeRVPage() {
                             {s.spreadPerTurnLev.toFixed(1)}
                           </td>
                           <td className="py-2">
-                            <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-medium", signalBg(s.signal))}>
+                            <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", signalBg(s.signal))}>
                               {s.signal.toUpperCase()}
                             </span>
                           </td>

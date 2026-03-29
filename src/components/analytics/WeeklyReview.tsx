@@ -269,7 +269,7 @@ function MetricRow({
       <span className="text-[11px] text-muted-foreground">{label}</span>
       <div className="text-right">
         <span className={cn("text-[11px] font-semibold tabular-nums", color)}>{value}</span>
-        {sub && <div className="text-[10px] text-muted-foreground">{sub}</div>}
+        {sub && <div className="text-xs text-muted-foreground">{sub}</div>}
       </div>
     </div>
   );
@@ -379,7 +379,7 @@ export function WeeklyReview() {
             >
               {grade}
             </div>
-            <p className="mt-1 text-[10px] text-muted-foreground">Week Grade</p>
+            <p className="mt-1 text-xs text-muted-foreground">Week Grade</p>
           </div>
         </div>
 
@@ -387,7 +387,7 @@ export function WeeklyReview() {
         {metrics.totalTrades > 0 && (
           <div className="mt-3 flex items-center gap-3 rounded-md bg-card/60 px-3 py-2 border border-border/40">
             <div>
-              <p className="text-[10px] text-muted-foreground">Week P&amp;L</p>
+              <p className="text-xs text-muted-foreground">Week P&amp;L</p>
               <p className={cn("text-sm font-semibold tabular-nums", metrics.totalPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {metrics.totalPnL >= 0 ? "+" : ""}{formatCurrency(metrics.totalPnL)}
               </p>
@@ -396,7 +396,7 @@ export function WeeklyReview() {
               <>
                 <div className="h-8 w-px bg-border/40" />
                 <div>
-                  <p className="text-[10px] text-muted-foreground">vs Last Week</p>
+                  <p className="text-xs text-muted-foreground">vs Last Week</p>
                   <div className="flex items-center gap-1">
                     {pnlVsPrev >= 0
                       ? <TrendingUp className="h-3 w-3 text-emerald-400" />
@@ -409,7 +409,7 @@ export function WeeklyReview() {
                 </div>
                 <div className="h-8 w-px bg-border/40" />
                 <div>
-                  <p className="text-[10px] text-muted-foreground">Last Week</p>
+                  <p className="text-xs text-muted-foreground">Last Week</p>
                   <p className={cn("text-[11px] font-medium tabular-nums", prevMetrics.totalPnL >= 0 ? "text-emerald-400/70" : "text-red-400/70")}>
                     {prevMetrics.totalPnL >= 0 ? "+" : ""}{formatCurrency(prevMetrics.totalPnL)}
                   </p>
@@ -525,7 +525,7 @@ export function WeeklyReview() {
           <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <Zap className="h-3 w-3 text-amber-400" />
-              <span className="text-[10px] text-muted-foreground">Total XP</span>
+              <span className="text-xs text-muted-foreground">Total XP</span>
             </div>
             <p className="text-sm font-bold text-amber-400 tabular-nums">{xp.toLocaleString()}</p>
           </div>
@@ -533,7 +533,7 @@ export function WeeklyReview() {
           <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <BookOpen className="h-3 w-3 text-blue-400" />
-              <span className="text-[10px] text-muted-foreground">Lessons</span>
+              <span className="text-xs text-muted-foreground">Lessons</span>
             </div>
             <p className="text-sm font-bold text-blue-400 tabular-nums">{completedLessons.length}</p>
           </div>
@@ -541,7 +541,7 @@ export function WeeklyReview() {
           <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <Flame className="h-3 w-3 text-orange-400" />
-              <span className="text-[10px] text-muted-foreground">Learn Streak</span>
+              <span className="text-xs text-muted-foreground">Learn Streak</span>
             </div>
             <p className="text-sm font-bold text-orange-400 tabular-nums">{learningStreak}d</p>
           </div>
@@ -549,7 +549,7 @@ export function WeeklyReview() {
           <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <Flame className="h-3 w-3 text-red-400" />
-              <span className="text-[10px] text-muted-foreground">Login Streak</span>
+              <span className="text-xs text-muted-foreground">Login Streak</span>
             </div>
             <p className="text-sm font-bold text-red-400 tabular-nums">{loginStreak}d</p>
           </div>
@@ -566,7 +566,7 @@ export function WeeklyReview() {
         <ol className="space-y-2">
           {insights.actionItems.map((item, i) => (
             <li key={i} className="flex items-start gap-2.5">
-              <span className="flex-shrink-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary mt-0.5">
+              <span className="flex-shrink-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary/15 text-xs font-bold text-primary mt-0.5">
                 {i + 1}
               </span>
               <p className="text-[11px] text-muted-foreground leading-relaxed">{item}</p>
@@ -576,7 +576,7 @@ export function WeeklyReview() {
 
         {/* Focus CTA */}
         <div className="mt-4 rounded-md bg-primary/8 border border-primary/20 px-3 py-2.5">
-          <p className="text-[10px] font-semibold text-primary uppercase tracking-wider mb-0.5">
+          <p className="text-xs font-semibold text-primary mb-0.5">
             Focus next week
           </p>
           <p className="text-[12px] font-medium text-foreground">{insights.focusCTA}</p>

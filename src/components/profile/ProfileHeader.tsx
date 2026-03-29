@@ -18,7 +18,7 @@ export function ProfileHeader() {
 
   return (
     <>
-      <div className="relative overflow-hidden rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/10 via-card to-card p-5">
+      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5">
         <div className="flex items-center gap-4">
           {/* Avatar */}
           <motion.div
@@ -34,7 +34,7 @@ export function ProfileHeader() {
           {/* Info */}
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-black">{displayName}</h1>
+              <h1 className="text-xl font-bold">{displayName}</h1>
               <motion.button
                 type="button"
                 onClick={() => setEditOpen(true)}
@@ -48,7 +48,7 @@ export function ProfileHeader() {
             <div className="flex items-center gap-2 mt-0.5">
               <div className="badge-premium flex items-center gap-1 rounded-md px-2 py-0.5">
                 <Shield className="h-3 w-3 text-primary" />
-                <span className="text-[10px] font-bold text-primary">
+                <span className="text-xs font-bold text-primary">
                   Lv.{level} {title}
                 </span>
               </div>

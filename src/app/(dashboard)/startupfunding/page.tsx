@@ -1133,7 +1133,7 @@ function ValuationTab() {
                 {selected.steps.map((step, i) => (
                   <li key={i} className="flex gap-2 text-xs text-zinc-300">
                     <span
-                      className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-white text-[10px] font-bold"
+                      className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-white text-xs font-bold"
                       style={{ backgroundColor: selected.color }}
                     >
                       {i + 1}

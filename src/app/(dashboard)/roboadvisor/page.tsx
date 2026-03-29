@@ -1133,7 +1133,7 @@ export default function RoboAdvisorPage() {
           <h1 className="text-2xl font-bold text-neutral-100">Robo-Advisor & Wealth Tech</h1>
         </div>
         <p className="text-sm text-neutral-500">
-          Automated investing, MPT portfolio construction, cost analysis, smart features, and the AI-powered future of wealth management.
+          Automated investing, MPT portfolio construction, cost analysis, smart features, and the algorithmic future of wealth management.
         </p>
       </motion.div>
 

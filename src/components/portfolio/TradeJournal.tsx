@@ -50,7 +50,7 @@ export function TradeJournal() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "px-1.5 py-0 text-[10px]",
+                      "px-1.5 py-0 text-xs",
                       trade.side === "buy"
                         ? "border-[#10b981]/30 text-[#10b981]"
                         : "border-[#ef4444]/30 text-[#ef4444]",
@@ -91,7 +91,7 @@ export function TradeJournal() {
                       {trade.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full bg-primary/10 px-1.5 py-0 text-[9px] text-primary/70"
+                          className="rounded-full bg-primary/10 px-1.5 py-0 text-[11px] text-primary/70"
                         >
                           {tag}
                         </span>

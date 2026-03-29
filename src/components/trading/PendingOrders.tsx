@@ -24,7 +24,7 @@ export function PendingOrders() {
         <span className="text-xs font-medium text-muted-foreground">
           No pending orders
         </span>
-        <span className="text-[10px] text-muted-foreground/60">
+        <span className="text-xs text-muted-foreground/60">
           Set limit, stop-loss, or take-profit orders
         </span>
       </div>
@@ -72,7 +72,7 @@ export function PendingOrders() {
                 <td className="px-2 py-1.5 text-center">
                   <Badge
                     variant="outline"
-                    className="border-yellow-500/30 px-1.5 py-0 text-[10px] text-yellow-500"
+                    className="border-yellow-500/30 px-1.5 py-0 text-xs text-yellow-500"
                   >
                     <Clock className="mr-0.5 h-2.5 w-2.5" />
                     {order.type.replace("_", " ").toUpperCase()}
@@ -82,7 +82,7 @@ export function PendingOrders() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "px-1.5 py-0 text-[10px]",
+                      "px-1.5 py-0 text-xs",
                       order.side === "buy"
                         ? "border-[#10b981]/30 text-[#10b981]"
                         : "border-[#ef4444]/30 text-[#ef4444]",
@@ -101,7 +101,7 @@ export function PendingOrders() {
                   {proximityPct !== null && isNear ? (
                     <span
                       className={cn(
-                        "inline-flex items-center gap-0.5 rounded px-1 py-0.5 text-[10px] font-medium tabular-nums",
+                        "inline-flex items-center gap-0.5 rounded px-1 py-0.5 text-xs font-medium tabular-nums",
                         isVeryNear
                           ? "bg-red-500/15 text-red-400 proximity-pulse"
                           : "bg-amber-500/15 text-amber-400",
@@ -111,7 +111,7 @@ export function PendingOrders() {
                       {proximityPct.toFixed(1)}%
                     </span>
                   ) : proximityPct !== null ? (
-                    <span className="text-[10px] tabular-nums text-muted-foreground/50">
+                    <span className="text-xs tabular-nums text-muted-foreground/50">
                       {proximityPct.toFixed(1)}%
                     </span>
                   ) : (

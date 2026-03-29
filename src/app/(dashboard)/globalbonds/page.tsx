@@ -834,7 +834,7 @@ function SovereignYieldsTab() {
                       </span>
                       <Badge
                         variant="outline"
-                        className="text-[10px] px-1.5 py-0 border-neutral-600 text-neutral-400"
+                        className="text-xs px-1.5 py-0 border-neutral-600 text-neutral-400"
                       >
                         {bond.region}
                       </Badge>
@@ -1006,7 +1006,7 @@ function YieldCurveTab() {
         <div className="flex items-center gap-2 mb-2">
           <span className="text-base">{flag}</span>
           <span className="text-xs font-semibold text-white">{title}</span>
-          <span className="ml-auto text-[10px] text-neutral-500">
+          <span className="ml-auto text-xs text-neutral-500">
             2Y / 5Y / 10Y / 30Y
           </span>
         </div>
@@ -1231,7 +1231,7 @@ function YieldCurveTab() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "text-[10px] px-1.5 py-0",
+                      "text-xs px-1.5 py-0",
                       a.value < 0
                         ? "border-red-500/40 text-red-400"
                         : "border-green-500/40 text-green-400"
@@ -1296,7 +1296,7 @@ function HedgedReturnsTab() {
           >
             <div className="text-xs text-neutral-400 mb-1">{c.label}</div>
             <div className={cn("font-bold text-sm", c.color)}>{c.val}</div>
-            <div className="text-[10px] text-neutral-500 mt-0.5">{c.sub}</div>
+            <div className="text-xs text-neutral-500 mt-0.5">{c.sub}</div>
           </div>
         ))}
       </div>
@@ -1398,7 +1398,7 @@ function HedgedReturnsTab() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[10px]",
+                        "text-xs",
                         h.hedgedReturn > 3
                           ? "border-green-500/40 text-green-400"
                           : h.hedgedReturn > 1
@@ -1700,7 +1700,7 @@ function EMBondsTab() {
                       <span className="text-white text-xs font-medium">
                         {em.country}
                       </span>
-                      <span className="text-neutral-500 text-[10px]">
+                      <span className="text-neutral-500 text-xs">
                         {em.currency}
                       </span>
                     </div>
@@ -1762,7 +1762,7 @@ function EMBondsTab() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[10px]",
+                        "text-xs",
                         em.ratingClass === "bbb"
                           ? "border-yellow-500/40 text-yellow-400"
                           : em.ratingClass === "bb"
@@ -1979,7 +1979,7 @@ function CentralBankTab() {
                       <div className="text-xs font-semibold text-white">
                         {cb.name}
                       </div>
-                      <div className="text-[10px] text-neutral-500">
+                      <div className="text-xs text-neutral-500">
                         {cb.country}
                       </div>
                     </div>
@@ -1987,7 +1987,7 @@ function CentralBankTab() {
                 </div>
                 <Badge
                   variant="outline"
-                  className={cn("text-[10px] border", stanceColor(cb.stance))}
+                  className={cn("text-xs border", stanceColor(cb.stance))}
                 >
                   {cb.stance.charAt(0).toUpperCase() + cb.stance.slice(1)}
                 </Badge>
@@ -2015,7 +2015,7 @@ function CentralBankTab() {
 
               {/* Inflation vs Target */}
               <div>
-                <div className="flex justify-between text-[10px] text-neutral-400 mb-1">
+                <div className="flex justify-between text-xs text-neutral-400 mb-1">
                   <span>Inflation</span>
                   <span>
                     {cb.currentInflation.toFixed(1)}% vs {cb.inflationTarget}% target
@@ -2043,7 +2043,7 @@ function CentralBankTab() {
 
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <div className="bg-neutral-700/40 rounded p-2">
-                  <div className="text-[9px] text-neutral-500">QE/QT Status</div>
+                  <div className="text-[11px] text-neutral-500">QE/QT Status</div>
                   <div
                     className={cn(
                       "text-xs font-semibold",
@@ -2058,14 +2058,14 @@ function CentralBankTab() {
                   </div>
                 </div>
                 <div className="bg-neutral-700/40 rounded p-2">
-                  <div className="text-[9px] text-neutral-500">Balance Sheet</div>
+                  <div className="text-[11px] text-neutral-500">Balance Sheet</div>
                   <div className="text-xs font-semibold text-neutral-200">
                     ${cb.balanceSheetTrillion.toFixed(1)}T
                   </div>
                 </div>
               </div>
 
-              <div className="text-[10px] text-neutral-500 flex justify-between border-t border-neutral-700/40 pt-2">
+              <div className="text-xs text-neutral-500 flex justify-between border-t border-neutral-700/40 pt-2">
                 <span>Last: {cb.lastMeeting}</span>
                 <span>Next: {cb.nextMeeting}</span>
               </div>

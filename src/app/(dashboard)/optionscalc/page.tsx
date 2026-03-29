@@ -861,7 +861,7 @@ function StrategyBuilderTab() {
                 className={`text-left p-2 rounded border text-xs transition-all ${selectedPreset === name ? "border-blue-500 bg-blue-900/30" : "border-gray-700 bg-gray-800/50 hover:border-gray-600"}`}>
                 <div className="font-medium text-gray-200 truncate">{name}</div>
                 <div className="flex flex-wrap gap-0.5 mt-1">
-                  {preset.tags.map(t => <span key={t} className={`px-1 py-0.5 rounded text-[9px] ${tagColors[t] ?? "bg-gray-700 text-gray-300"}`}>{t}</span>)}
+                  {preset.tags.map(t => <span key={t} className={`px-1 py-0.5 rounded text-[11px] ${tagColors[t] ?? "bg-gray-700 text-gray-300"}`}>{t}</span>)}
                 </div>
               </button>
             ))}
@@ -1168,7 +1168,7 @@ function StrategyComparisonTab() {
                   <td key={name} className="py-1.5 text-right pr-4">
                     <div className="flex flex-wrap gap-1 justify-end">
                       {(strategyTags[name] ?? []).map(tag => (
-                        <Badge key={tag} variant="outline" className="text-[9px] px-1 py-0 border-gray-700 text-gray-400">{tag}</Badge>
+                        <Badge key={tag} variant="outline" className="text-[11px] px-1 py-0 border-gray-700 text-gray-400">{tag}</Badge>
                       ))}
                     </div>
                   </td>
@@ -1375,7 +1375,7 @@ export default function OptionsCalcPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Options Strategies Calculator</h1>
-              <p className="text-sm text-gray-400">Black-Scholes pricing · Real-time payoff diagrams · Multi-leg strategies</p>
+              <p className="text-sm text-gray-400">Black-Scholes pricing · Interactive payoff diagrams · Multi-leg strategies</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">

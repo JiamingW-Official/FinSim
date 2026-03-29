@@ -230,7 +230,7 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle: string })
     <div className="flex items-start gap-2 mb-3">
       <div>
         <h3 className="text-xs font-semibold text-foreground">{title}</h3>
-        <p className="text-[10px] text-muted-foreground mt-0.5">{subtitle}</p>
+        <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
       </div>
     </div>
   );
@@ -283,7 +283,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
           { label: "Total Active", value: totals.totalContribution, color: totals.totalContribution >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400" },
         ].map((chip) => (
           <div key={chip.label} className={cn("rounded-md p-2 text-center", chip.color.split(" ")[0])}>
-            <p className="text-[9px] text-muted-foreground mb-0.5">{chip.label}</p>
+            <p className="text-[11px] text-muted-foreground mb-0.5">{chip.label}</p>
             <p className={cn("text-xs font-bold tabular-nums", chip.color.split(" ")[1])}>
               {pct(chip.value)}
             </p>
@@ -293,7 +293,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
 
       {/* SVG stacked bar — active return by sector */}
       <div>
-        <p className="text-[10px] text-muted-foreground mb-1">Total Contribution by Sector</p>
+        <p className="text-xs text-muted-foreground mb-1">Total Contribution by Sector</p>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ height: svgH }}>
           {/* Zero line */}
           <line x1={midX} y1={padT} x2={midX} y2={padT + chartH} stroke="hsl(var(--border))" strokeWidth={1} />
@@ -345,7 +345,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
 
       {/* Attribution table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-[10px] border-collapse">
+        <table className="w-full text-xs border-collapse">
           <thead>
             <tr className="border-b border-border/50">
               {["Sector", "Wt%", "Bm%", "Rp%", "Rb%", "Alloc", "Select", "Interact", "Total"].map((h) => (
@@ -385,7 +385,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
       {rows.length > 6 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          className="flex items-center gap-1 text-[10px] text-primary hover:underline"
+          className="flex items-center gap-1 text-xs text-primary hover:underline"
         >
           {showAll ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
           {showAll ? "Show less" : `Show all ${rows.length} sectors`}
@@ -411,23 +411,23 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
       {/* R-squared chip */}
       <div className="flex items-center gap-3">
         <div className="rounded-md bg-blue-500/10 px-2 py-1">
-          <span className="text-[9px] text-muted-foreground">Factor R²</span>
+          <span className="text-[11px] text-muted-foreground">Factor R²</span>
           <span className="ml-1.5 text-xs font-bold text-blue-400">{(totalR2 * 100).toFixed(1)}%</span>
         </div>
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           {(totalR2 * 100).toFixed(0)}% of portfolio variance explained by 5 systematic factors
         </p>
       </div>
 
       {/* Horizontal bar chart — factor loadings */}
       <div className="space-y-2">
-        <p className="text-[10px] text-muted-foreground font-medium">Factor Loadings</p>
+        <p className="text-xs text-muted-foreground font-medium">Factor Loadings</p>
         {factors.map((f) => {
           const barPct = Math.abs(f.loading) / maxLoading;
           const isPos = f.loading >= 0;
           return (
             <div key={f.name} className="grid grid-cols-[110px_1fr_60px_60px] gap-2 items-center">
-              <span className="text-[10px] text-muted-foreground truncate">{f.name}</span>
+              <span className="text-xs text-muted-foreground truncate">{f.name}</span>
               <div className="h-3 bg-muted/30 rounded-full overflow-hidden relative flex items-center">
                 <div
                   className={cn(
@@ -439,16 +439,16 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
                 {/* center divider */}
                 <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border/60" />
               </div>
-              <span className={cn("text-[10px] text-right tabular-nums font-medium", isPos ? "text-blue-400" : "text-amber-400")}>
+              <span className={cn("text-xs text-right tabular-nums font-medium", isPos ? "text-blue-400" : "text-amber-400")}>
                 {f.loading.toFixed(2)}
               </span>
-              <span className={cn("text-[10px] text-right tabular-nums", effectColor(f.contribution))}>
+              <span className={cn("text-xs text-right tabular-nums", effectColor(f.contribution))}>
                 {pct(f.contribution, 2)}
               </span>
             </div>
           );
         })}
-        <div className="grid grid-cols-[110px_1fr_60px_60px] gap-2 text-[9px] text-muted-foreground/60 mt-1">
+        <div className="grid grid-cols-[110px_1fr_60px_60px] gap-2 text-[11px] text-muted-foreground/60 mt-1">
           <span />
           <span className="text-center">Loading (negative ← 0 → positive)</span>
           <span className="text-right">Loading</span>
@@ -458,9 +458,9 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
 
       {/* Active bets table */}
       <div>
-        <p className="text-[10px] text-muted-foreground font-medium mb-2">Active Factor Bets vs Benchmark</p>
+        <p className="text-xs text-muted-foreground font-medium mb-2">Active Factor Bets vs Benchmark</p>
         <div className="overflow-x-auto">
-          <table className="w-full text-[10px] border-collapse">
+          <table className="w-full text-xs border-collapse">
             <thead>
               <tr className="border-b border-border/50">
                 {["Factor", "Portfolio Loading", "Benchmark Loading", "Active Bet", "Factor Return", "Return Contrib."].map((h) => (
@@ -557,19 +557,19 @@ function RollingPerformanceSection({ points }: { points: RollingPoint[] }) {
       {/* Stat chips */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-md bg-emerald-500/10 p-2">
-          <p className="text-[9px] text-muted-foreground">Consistency Score</p>
+          <p className="text-[11px] text-muted-foreground">Consistency Score</p>
           <p className="text-xs font-bold text-emerald-400 tabular-nums">{alphaPositivePct.toFixed(0)}%</p>
-          <p className="text-[9px] text-muted-foreground">rolling periods w/ positive alpha</p>
+          <p className="text-[11px] text-muted-foreground">rolling periods w/ positive alpha</p>
         </div>
         <div className="rounded-md bg-blue-500/10 p-2">
-          <p className="text-[9px] text-muted-foreground">Up-Mkt Alpha (avg)</p>
+          <p className="text-[11px] text-muted-foreground">Up-Mkt Alpha (avg)</p>
           <p className={cn("text-xs font-bold tabular-nums", effectColor(upAlpha))}>{pct(upAlpha, 2)}</p>
-          <p className="text-[9px] text-muted-foreground">first half of period</p>
+          <p className="text-[11px] text-muted-foreground">first half of period</p>
         </div>
         <div className="rounded-md bg-amber-500/10 p-2">
-          <p className="text-[9px] text-muted-foreground">Dn-Mkt Alpha (avg)</p>
+          <p className="text-[11px] text-muted-foreground">Dn-Mkt Alpha (avg)</p>
           <p className={cn("text-xs font-bold tabular-nums", effectColor(dnAlpha))}>{pct(dnAlpha, 2)}</p>
-          <p className="text-[9px] text-muted-foreground">second half of period</p>
+          <p className="text-[11px] text-muted-foreground">second half of period</p>
         </div>
       </div>
 
@@ -580,7 +580,7 @@ function RollingPerformanceSection({ points }: { points: RollingPoint[] }) {
             key={m.key}
             onClick={() => setActiveMetric(m.key)}
             className={cn(
-              "rounded px-2 py-0.5 text-[10px] font-medium transition-colors",
+              "rounded px-2 py-0.5 text-xs font-medium transition-colors",
               activeMetric === m.key
                 ? "bg-primary/20 text-primary"
                 : "bg-muted/30 text-muted-foreground hover:bg-muted/50"
@@ -658,25 +658,25 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
       {/* Diversification summary */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-md bg-rose-500/10 p-2">
-          <p className="text-[9px] text-muted-foreground">Portfolio VaR (95%)</p>
+          <p className="text-[11px] text-muted-foreground">Portfolio VaR (95%)</p>
           <p className="text-xs font-bold text-rose-400 tabular-nums">{pct(totalPortfolioVaR, 3)}</p>
-          <p className="text-[9px] text-muted-foreground">1-day at 95% confidence</p>
+          <p className="text-[11px] text-muted-foreground">1-day at 95% confidence</p>
         </div>
         <div className="rounded-md bg-blue-500/10 p-2">
-          <p className="text-[9px] text-muted-foreground">Sum of Individual VaRs</p>
+          <p className="text-[11px] text-muted-foreground">Sum of Individual VaRs</p>
           <p className="text-xs font-bold text-blue-400 tabular-nums">{pct(sumIndividualVaR, 3)}</p>
-          <p className="text-[9px] text-muted-foreground">undiversified VaR</p>
+          <p className="text-[11px] text-muted-foreground">undiversified VaR</p>
         </div>
         <div className="rounded-md bg-emerald-500/10 p-2">
-          <p className="text-[9px] text-muted-foreground">Diversification Benefit</p>
+          <p className="text-[11px] text-muted-foreground">Diversification Benefit</p>
           <p className="text-xs font-bold text-emerald-400 tabular-nums">{divBenefitPct.toFixed(1)}%</p>
-          <p className="text-[9px] text-muted-foreground">reduction from correlation</p>
+          <p className="text-[11px] text-muted-foreground">reduction from correlation</p>
         </div>
       </div>
 
       {/* Stacked component VaR bar chart */}
       <div>
-        <p className="text-[10px] text-muted-foreground font-medium mb-2">Component VaR by Position</p>
+        <p className="text-xs text-muted-foreground font-medium mb-2">Component VaR by Position</p>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ height: svgH }}>
           {varPositions.map((p, i) => {
             const y = i * barSpacing + 4;
@@ -699,7 +699,7 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
 
       {/* VaR table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-[10px] border-collapse">
+        <table className="w-full text-xs border-collapse">
           <thead>
             <tr className="border-b border-border/50">
               {["Ticker", "Weight", "Component VaR", "Marginal VaR", "Corr Contribution", "Role"].map((h) => (
@@ -719,7 +719,7 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
                 </td>
                 <td className="py-1 px-1.5 text-right">
                   <span className={cn(
-                    "rounded px-1 py-0.5 text-[9px] font-medium",
+                    "rounded px-1 py-0.5 text-[11px] font-medium",
                     p.corrContrib < 0
                       ? "bg-emerald-500/15 text-emerald-400"
                       : "bg-red-500/15 text-red-400"
@@ -733,7 +733,7 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
         </table>
       </div>
 
-      <div className="rounded-md bg-muted/20 p-2 text-[10px] text-muted-foreground">
+      <div className="rounded-md bg-muted/20 p-2 text-xs text-muted-foreground">
         <span className="text-foreground font-medium">How to read:</span> Component VaR = position&apos;s contribution to total portfolio VaR.
         Marginal VaR = extra risk from adding 1 more share. Diversifying positions (green) reduce overall portfolio risk through low/negative correlation.
       </div>
@@ -766,7 +766,7 @@ export function AttributionAnalysis() {
           <Info className="h-3.5 w-3.5 text-blue-400 mt-0.5 shrink-0" />
           <div>
             <p className="text-[11px] font-semibold text-blue-400">Portfolio Attribution Analysis</p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5">
               Comprehensive attribution using the Brinson-Hood-Beebower model, Fama-French 5-factor analysis,
               rolling performance metrics, and component VaR decomposition. Synthetic data seeded for demo purposes.
             </p>

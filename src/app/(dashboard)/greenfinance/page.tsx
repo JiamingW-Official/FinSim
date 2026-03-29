@@ -614,8 +614,8 @@ export default function GreenFinancePage() {
                         <span className="text-xs font-semibold text-white truncate max-w-[140px]">{bond.issuer}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Badge className="text-[10px] bg-zinc-800 text-zinc-300 border-none py-0">{bond.certification}</Badge>
-                        <Badge className="text-[10px] bg-zinc-800 text-zinc-300 border-none py-0">{bond.rating}</Badge>
+                        <Badge className="text-xs bg-zinc-800 text-zinc-300 border-none py-0">{bond.certification}</Badge>
+                        <Badge className="text-xs bg-zinc-800 text-zinc-300 border-none py-0">{bond.rating}</Badge>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 text-[11px] text-zinc-400">
@@ -654,21 +654,21 @@ export default function GreenFinancePage() {
                         { label: "Credit Rating", value: selectedBond.rating },
                       ].map((row) => (
                         <div key={row.label} className="rounded bg-white/5 p-2">
-                          <p className="text-[10px] text-zinc-500">{row.label}</p>
+                          <p className="text-xs text-zinc-500">{row.label}</p>
                           <p className="text-xs font-semibold text-white">{row.value}</p>
                         </div>
                       ))}
                     </div>
                     {/* Greenium bar */}
                     <div>
-                      <p className="text-[10px] text-zinc-400 mb-1">Greenium vs Market Range (-15 to 0 bps)</p>
+                      <p className="text-xs text-zinc-400 mb-1">Greenium vs Market Range (-15 to 0 bps)</p>
                       <div className="relative h-2 rounded-full bg-zinc-800">
                         <div
                           className="absolute top-0 left-0 h-full rounded-full bg-emerald-500"
                           style={{ width: `${(Math.abs(selectedBond.greenium) / 15) * 100}%` }}
                         />
                       </div>
-                      <p className="text-[10px] text-emerald-400 mt-1">
+                      <p className="text-xs text-emerald-400 mt-1">
                         {Math.abs(selectedBond.greenium)} bps cheaper than comparable conventional bond
                       </p>
                     </div>
@@ -763,14 +763,14 @@ export default function GreenFinancePage() {
                     { label: "Excluded", pct: obj.excluded, color: "#6b7280" },
                   ].map((row) => (
                     <div key={row.label} className="flex items-center gap-2">
-                      <span className="text-[10px] text-zinc-400 w-20">{row.label}</span>
+                      <span className="text-xs text-zinc-400 w-20">{row.label}</span>
                       <div className="flex-1 h-1.5 rounded-full bg-zinc-800">
                         <div
                           className="h-full rounded-full"
                           style={{ width: `${row.pct}%`, backgroundColor: row.color }}
                         />
                       </div>
-                      <span className="text-[10px] font-mono" style={{ color: row.color }}>{row.pct}%</span>
+                      <span className="text-xs font-mono" style={{ color: row.color }}>{row.pct}%</span>
                     </div>
                   ))}
                 </div>
@@ -843,14 +843,14 @@ export default function GreenFinancePage() {
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-bold text-white">{credit.abbr}</span>
                       <Badge className={cn(
-                        "text-[9px] py-0 border-none",
+                        "text-[11px] py-0 border-none",
                         credit.market === "compliance" ? "bg-blue-500/20 text-blue-300" : "bg-emerald-500/20 text-emerald-300"
                       )}>
                         {credit.market}
                       </Badge>
                     </div>
-                    <p className="text-[10px] text-zinc-400 mb-2">{credit.description}</p>
-                    <div className="space-y-1 text-[10px]">
+                    <p className="text-xs text-zinc-400 mb-2">{credit.description}</p>
+                    <div className="space-y-1 text-xs">
                       <div className="flex justify-between">
                         <span className="text-zinc-500">Price</span>
                         <span className="text-white font-mono">${credit.price}/t</span>
@@ -915,7 +915,7 @@ export default function GreenFinancePage() {
                       <tr key={i} className={cn("border-b border-white/5 hover:bg-white/5 transition-colors")}>
                         <td className="p-2">
                           <span className={cn(
-                            "inline-block px-2 py-0.5 rounded text-[10px] font-bold",
+                            "inline-block px-2 py-0.5 rounded text-xs font-bold",
                             bgMap[ins.color] ?? "bg-zinc-800",
                             colorMap[ins.color] ?? "text-zinc-300"
                           )}>{ins.abbr}</span>
@@ -928,7 +928,7 @@ export default function GreenFinancePage() {
                             ? <CheckCircle size={14} className="mx-auto text-emerald-400" />
                             : <span className="text-zinc-600">—</span>}
                         </td>
-                        <td className="p-2 text-zinc-500 text-[10px]">{ins.examples}</td>
+                        <td className="p-2 text-zinc-500 text-xs">{ins.examples}</td>
                       </tr>
                     );
                   })}
@@ -1010,7 +1010,7 @@ export default function GreenFinancePage() {
                   </div>
                 );
               })}
-              <div className="flex items-center gap-2 pt-1 text-[10px] text-zinc-500">
+              <div className="flex items-center gap-2 pt-1 text-xs text-zinc-500">
                 <div className="w-px h-3 bg-emerald-400" />
                 <span>Paris Agreement 1.5°C target</span>
               </div>
@@ -1026,8 +1026,8 @@ export default function GreenFinancePage() {
                 <div key={tier.article} className={cn("rounded-lg border p-4", borders[i])}>
                   <p className={cn("text-sm font-bold mb-1", colors[i])}>{tier.article}</p>
                   <p className="text-xs text-white mb-1">{tier.label}</p>
-                  <p className="text-[10px] text-zinc-400 mb-2">{tier.desc}</p>
-                  <div className="space-y-1 text-[10px]">
+                  <p className="text-xs text-zinc-400 mb-2">{tier.desc}</p>
+                  <div className="space-y-1 text-xs">
                     <div className="flex justify-between">
                       <span className="text-zinc-500">AUM</span>
                       <span className="text-white">${tier.aum}B</span>

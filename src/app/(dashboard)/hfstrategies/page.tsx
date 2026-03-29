@@ -464,9 +464,9 @@ function ScenarioPnLChart({ themes }: { themes: MacroTheme[] }) {
 function StatPill({ label, value, sub, positive }: { label: string; value: string; sub?: string; positive?: boolean }) {
   return (
     <div className="flex flex-col gap-0.5 bg-slate-800/60 rounded-lg px-3 py-2 border border-slate-700/40">
-      <span className="text-[10px] text-slate-500 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-slate-500 uppercase tracking-wide">{label}</span>
       <span className={`text-sm font-semibold ${positive === undefined ? "text-slate-100" : positive ? "text-green-400" : "text-red-400"}`}>{value}</span>
-      {sub && <span className="text-[10px] text-slate-500">{sub}</span>}
+      {sub && <span className="text-xs text-slate-500">{sub}</span>}
     </div>
   );
 }
@@ -512,7 +512,7 @@ function LongShortTab() {
               <div key={sector} className="flex items-center gap-3">
                 <span className="text-xs text-slate-400 w-28 truncate">{sector}</span>
                 <Progress value={50 + net * 8} className="flex-1 h-1.5" />
-                <Badge variant="outline" className={`text-[10px] px-1.5 py-0 ${isNeutral ? "border-green-700 text-green-400" : "border-amber-700 text-amber-400"}`}>
+                <Badge variant="outline" className={`text-xs px-1.5 py-0 ${isNeutral ? "border-green-700 text-green-400" : "border-amber-700 text-amber-400"}`}>
                   {net > 0 ? "+" : ""}{net.toFixed(1)}% {isNeutral ? "✓" : "!"}
                 </Badge>
               </div>
@@ -622,13 +622,13 @@ function GlobalMacroTab() {
                   <div>
                     <div className="text-sm font-medium text-slate-200">{t.name}</div>
                     <div className="flex items-center gap-2 mt-0.5">
-                      <Badge variant="outline" className="text-[10px] py-0 px-1.5" style={{ borderColor: categoryColors[t.category], color: categoryColors[t.category] }}>
+                      <Badge variant="outline" className="text-xs py-0 px-1.5" style={{ borderColor: categoryColors[t.category], color: categoryColors[t.category] }}>
                         {t.category.toUpperCase()}
                       </Badge>
-                      <Badge variant="outline" className={`text-[10px] py-0 px-1.5 ${t.position === "long" ? "border-green-700 text-green-400" : "border-red-700 text-red-400"}`}>
+                      <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.position === "long" ? "border-green-700 text-green-400" : "border-red-700 text-red-400"}`}>
                         {t.position.toUpperCase()}
                       </Badge>
-                      <Badge variant="outline" className={`text-[10px] py-0 px-1.5 ${t.conviction === "high" ? "border-violet-700 text-violet-400" : t.conviction === "medium" ? "border-amber-700 text-amber-400" : "border-slate-600 text-slate-400"}`}>
+                      <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.conviction === "high" ? "border-violet-700 text-violet-400" : t.conviction === "medium" ? "border-amber-700 text-amber-400" : "border-slate-600 text-slate-400"}`}>
                         {t.conviction}
                       </Badge>
                     </div>
@@ -636,7 +636,7 @@ function GlobalMacroTab() {
                 </div>
                 <div className="text-right">
                   <div className={`text-sm font-semibold ${t.currentPnl >= 0 ? "text-green-400" : "text-red-400"}`}>{t.currentPnl > 0 ? "+" : ""}{t.currentPnl.toFixed(1)}%</div>
-                  <div className="text-[10px] text-slate-500">${t.notional}M notional</div>
+                  <div className="text-xs text-slate-500">${t.notional}M notional</div>
                 </div>
               </div>
               <AnimatePresence>
@@ -676,7 +676,7 @@ function GlobalMacroTab() {
           <ScenarioPnLChart themes={themes} />
           <div className="flex gap-3 flex-wrap mt-2">
             {themes.map((t) => (
-              <div key={t.id} className="flex items-center gap-1.5 text-[10px] text-slate-400">
+              <div key={t.id} className="flex items-center gap-1.5 text-xs text-slate-400">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: t.color }} />
                 {t.name.split(" ").slice(0, 2).join(" ")}
               </div>
@@ -757,10 +757,10 @@ function EventDrivenTab() {
                           </td>
                           <td className="py-2 pr-3 text-blue-400 font-medium">{d.annualizedReturn.toFixed(1)}%</td>
                           <td className="py-2 pr-3">
-                            <Badge variant="outline" className="text-[10px] py-0 px-1.5 border-slate-600 text-slate-400">{d.dealType}</Badge>
+                            <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-slate-400">{d.dealType}</Badge>
                           </td>
                           <td className="py-2">
-                            <Badge variant="outline" className={`text-[10px] py-0 px-1.5 ${statusColors[d.status]}`}>{d.status.replace("_", " ")}</Badge>
+                            <Badge variant="outline" className={`text-xs py-0 px-1.5 ${statusColors[d.status]}`}>{d.status.replace("_", " ")}</Badge>
                           </td>
                         </tr>
                       ))}
@@ -808,7 +808,7 @@ function EventDrivenTab() {
                           <td className="py-2 pr-3 text-green-400">${d.recoveryEst}¢</td>
                           <td className="py-2 pr-3 text-slate-400 max-w-24">{d.catalyst}</td>
                           <td className="py-2">
-                            <Badge variant="outline" className="text-[10px] py-0 px-1.5 border-red-800 text-red-400">{d.rating}</Badge>
+                            <Badge variant="outline" className="text-xs py-0 px-1.5 border-red-800 text-red-400">{d.rating}</Badge>
                           </td>
                         </tr>
                       ))}
@@ -836,8 +836,8 @@ function EventDrivenTab() {
                       <div>
                         <div className="text-sm font-medium text-slate-200">{ss.name}</div>
                         <div className="flex items-center gap-2 mt-1">
-                          <Badge variant="outline" className="text-[10px] py-0 px-1.5 border-violet-700 text-violet-400">{ss.type}</Badge>
-                          <Badge variant="outline" className="text-[10px] py-0 px-1.5 border-slate-600 text-slate-400">{ss.stage}</Badge>
+                          <Badge variant="outline" className="text-xs py-0 px-1.5 border-violet-700 text-violet-400">{ss.type}</Badge>
+                          <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-slate-400">{ss.stage}</Badge>
                         </div>
                         <p className="text-xs text-slate-500 mt-1.5">{ss.catalyst}</p>
                       </div>
@@ -936,7 +936,7 @@ function RelativeValueTab() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-[10px] text-slate-600 mt-2">* Negative mispricing = bond undervalued relative to theoretical — long opportunity after delta hedge</p>
+                <p className="text-xs text-slate-600 mt-2">* Negative mispricing = bond undervalued relative to theoretical — long opportunity after delta hedge</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -957,11 +957,11 @@ function RelativeValueTab() {
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <div className="text-sm font-medium text-slate-200">{d.name}</div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">Long: <span className="text-green-400">{d.longLeg}</span></div>
-                        <div className="text-[10px] text-slate-500">Short: <span className="text-red-400">{d.shortLeg}</span></div>
+                        <div className="text-xs text-slate-500 mt-0.5">Long: <span className="text-green-400">{d.longLeg}</span></div>
+                        <div className="text-xs text-slate-500">Short: <span className="text-red-400">{d.shortLeg}</span></div>
                       </div>
                       <div className="text-right">
-                        <Badge variant="outline" className={`text-[10px] py-0 px-1.5 mb-1 ${d.riskRating === "Low" ? "border-green-700 text-green-400" : d.riskRating === "Medium" ? "border-amber-700 text-amber-400" : "border-red-700 text-red-400"}`}>
+                        <Badge variant="outline" className={`text-xs py-0 px-1.5 mb-1 ${d.riskRating === "Low" ? "border-green-700 text-green-400" : d.riskRating === "Medium" ? "border-amber-700 text-amber-400" : "border-red-700 text-red-400"}`}>
                           {d.riskRating} Risk
                         </Badge>
                         <div className="text-xs text-slate-400">Current: <span className="text-slate-200">{d.currentSpread}bps</span></div>
@@ -969,7 +969,7 @@ function RelativeValueTab() {
                       </div>
                     </div>
                     <div className="mt-2">
-                      <div className="flex justify-between text-[10px] text-slate-500 mb-1">
+                      <div className="flex justify-between text-xs text-slate-500 mb-1">
                         <span>Expected: {d.expectedCapture}bps</span>
                         <span>Current: {d.currentSpread}bps</span>
                       </div>
@@ -1134,7 +1134,7 @@ function PerformanceTab() {
                 key={i}
                 className={`rounded-md p-2 text-center border ${r >= 0 ? "bg-green-950/40 border-green-900/40" : "bg-red-950/40 border-red-900/40"}`}
               >
-                <div className="text-[9px] text-slate-500 mb-0.5">M{i + 1}</div>
+                <div className="text-[11px] text-slate-500 mb-0.5">M{i + 1}</div>
                 <div className={`text-xs font-semibold ${r >= 0 ? "text-green-400" : "text-red-400"}`}>
                   {r > 0 ? "+" : ""}{r.toFixed(1)}%
                 </div>
@@ -1174,7 +1174,7 @@ function PerformanceTab() {
               { label: "Kurtosis", value: "3.12", positive: undefined },
             ].map((m) => (
               <div key={m.label} className="bg-slate-800/40 rounded-lg p-2.5 border border-slate-700/30">
-                <div className="text-[10px] text-slate-500 mb-0.5">{m.label}</div>
+                <div className="text-xs text-slate-500 mb-0.5">{m.label}</div>
                 <div className={`text-sm font-semibold ${m.positive === true ? "text-green-400" : m.positive === false ? "text-red-400" : "text-slate-200"}`}>
                   {m.value}
                 </div>
@@ -1232,7 +1232,7 @@ export default function HFStrategiesPage() {
               <div key={item.label} className="flex flex-col items-center text-center">
                 <div className="flex items-center gap-1 text-slate-500 mb-0.5">
                   {item.icon}
-                  <span className="text-[10px]">{item.label}</span>
+                  <span className="text-xs">{item.label}</span>
                 </div>
                 <span className="text-sm font-semibold text-slate-100">{item.value}</span>
               </div>

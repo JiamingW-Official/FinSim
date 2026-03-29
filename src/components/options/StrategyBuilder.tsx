@@ -67,7 +67,7 @@ export function StrategyBuilder() {
 
   return (
     <div className="p-2">
-      <div className="mb-2 text-[10px] font-bold text-muted-foreground px-1">
+      <div className="mb-2 text-xs font-bold text-muted-foreground px-1">
         Strategy Presets
       </div>
       <div className="space-y-1">
@@ -100,7 +100,7 @@ export function StrategyBuilder() {
                 <Icon className={cn("h-3 w-3", colors.text)} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold leading-tight">
+                <div className="text-xs font-bold leading-tight">
                   {preset.name}
                 </div>
                 <div className="text-[8px] text-muted-foreground leading-tight truncate">

@@ -272,7 +272,7 @@ function MethodRow({
           <div className="flex items-center gap-2">
             <span className="font-medium text-foreground text-xs">{result.method}</span>
             {isRecommended && (
-              <span className="text-[9px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400">
+              <span className="text-[11px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400">
                 Suggested
               </span>
             )}

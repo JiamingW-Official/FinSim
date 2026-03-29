@@ -121,7 +121,7 @@ export function ActivityFeed() {
       <div className="flex flex-col items-center gap-1.5 py-8 text-muted-foreground">
         <BarChart3 className="h-5 w-5 opacity-30" />
         <p className="text-[11px]">No activity yet</p>
-        <p className="text-[10px] opacity-60">
+        <p className="text-xs opacity-60">
           Start trading and completing lessons to build your feed
         </p>
       </div>
@@ -148,12 +148,12 @@ export function ActivityFeed() {
               <div className="flex-1 min-w-0 pt-1">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-[11px] font-bold leading-snug">{item.title}</p>
-                  <span className="shrink-0 text-[9px] tabular-nums text-muted-foreground/50 mt-0.5">
+                  <span className="shrink-0 text-[11px] tabular-nums text-muted-foreground/50 mt-0.5">
                     {formatRelativeTime(item.timestamp)}
                   </span>
                 </div>
                 {item.subtitle && (
-                  <p className="mt-0.5 text-[10px] leading-snug text-muted-foreground truncate">
+                  <p className="mt-0.5 text-xs leading-snug text-muted-foreground truncate">
                     {item.subtitle}
                   </p>
                 )}

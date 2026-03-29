@@ -374,8 +374,8 @@ function HeatmapGrid({
               className="rounded p-1.5 flex flex-col items-center justify-center text-center"
               style={{ background: bg, minHeight: 44 }}
             >
-              <span className={`text-[10px] font-bold ${textDark ? "text-gray-800" : "text-white"}`}>{cell.country}</span>
-              <span className={`text-[9px] ${textDark ? "text-gray-700" : "text-white/90"}`}>{cell.label}</span>
+              <span className={`text-xs font-bold ${textDark ? "text-gray-800" : "text-white"}`}>{cell.country}</span>
+              <span className={`text-[11px] ${textDark ? "text-gray-700" : "text-white/90"}`}>{cell.label}</span>
             </div>
           );
         })}
@@ -425,7 +425,7 @@ function ChartLegend({ series }: { series: LineSeries[] }) {
       {series.map((s) => (
         <div key={s.name} className="flex items-center gap-1.5">
           <div className="w-3 h-0.5 rounded" style={{ backgroundColor: s.color }} />
-          <span className="text-[10px] text-muted-foreground">{s.name}</span>
+          <span className="text-xs text-muted-foreground">{s.name}</span>
         </div>
       ))}
     </div>
@@ -522,7 +522,7 @@ function NBERCycleBar() {
         {cycles.map((c) => (
           <div
             key={c.label}
-            className="flex items-center justify-center text-[9px] font-semibold relative overflow-hidden"
+            className="flex items-center justify-center text-[11px] font-semibold relative overflow-hidden"
             style={{
               width: `${c.pct}%`,
               background: c.type === "expansion" ? "#10b981" : "#ef4444",
@@ -533,7 +533,7 @@ function NBERCycleBar() {
           </div>
         ))}
       </div>
-      <div className="flex justify-between text-[9px] text-muted-foreground mt-1 px-0.5">
+      <div className="flex justify-between text-[11px] text-muted-foreground mt-1 px-0.5">
         <span>Jun 2009</span>
         <span>Feb 2020</span>
         <span>Apr 2020</span>
@@ -592,7 +592,7 @@ export default function MacroDashboardPage() {
             Macroeconomics Dashboard
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">
-            Real-time macro indicators for informed investment decisions
+            Simulated macro indicators for informed investment decisions
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -900,7 +900,7 @@ export default function MacroDashboardPage() {
                         { label: "Long-term unemp", value: "1.2%" },
                       ].map((m) => (
                         <div key={m.label} className="bg-gray-800 rounded p-2 text-center">
-                          <div className="text-[10px] text-muted-foreground">{m.label}</div>
+                          <div className="text-xs text-muted-foreground">{m.label}</div>
                           <div className="text-sm font-bold text-white">{m.value}</div>
                         </div>
                       ))}
@@ -979,7 +979,7 @@ export default function MacroDashboardPage() {
                         </div>
                         <div className="text-xs text-white font-semibold w-10 text-right">{sec.growth}%</div>
                         <Badge
-                          className={`text-[10px] py-0 px-1.5 border ${
+                          className={`text-xs py-0 px-1.5 border ${
                             sec.pressure === "High"
                               ? "bg-red-500/10 text-red-400 border-red-500/30"
                               : sec.pressure === "Medium"
@@ -1035,7 +1035,7 @@ export default function MacroDashboardPage() {
                       maxColor="#065f46"
                       domain={[-0.5, 7.5]}
                     />
-                    <div className="flex justify-between text-[9px] text-muted-foreground mt-2 px-1">
+                    <div className="flex justify-between text-[11px] text-muted-foreground mt-2 px-1">
                       <span className="text-red-400">Contraction</span>
                       <span>Neutral</span>
                       <span className="text-emerald-400">Strong Growth</span>
@@ -1063,7 +1063,7 @@ export default function MacroDashboardPage() {
                       maxColor="#7f1d1d"
                       domain={[0, 8]}
                     />
-                    <div className="flex justify-between text-[9px] text-muted-foreground mt-2 px-1">
+                    <div className="flex justify-between text-[11px] text-muted-foreground mt-2 px-1">
                       <span className="text-emerald-400">Below Target</span>
                       <span>At Target</span>
                       <span className="text-red-400">Above Target</span>
@@ -1091,7 +1091,7 @@ export default function MacroDashboardPage() {
                       maxColor="#1e3a5f"
                       domain={[-4, 6]}
                     />
-                    <div className="flex justify-between text-[9px] text-muted-foreground mt-2 px-1">
+                    <div className="flex justify-between text-[11px] text-muted-foreground mt-2 px-1">
                       <span className="text-red-400">Deficit</span>
                       <span>Balanced</span>
                       <span className="text-blue-400">Surplus</span>
@@ -1170,11 +1170,11 @@ export default function MacroDashboardPage() {
                     <RegimeQuadrant inflation={currentInflation} growth={currentGrowth} />
                     <div className="grid grid-cols-2 gap-2 mt-3">
                       <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
-                        <div className="text-[10px] text-emerald-400 font-semibold mb-1">Expansion Regime</div>
+                        <div className="text-xs text-emerald-400 font-semibold mb-1">Expansion Regime</div>
                         <div className="text-xs text-muted-foreground">Growth above trend, inflation above target. Current US regime. Favor equities, commodities, real assets.</div>
                       </div>
                       <div className="bg-indigo-500/10 border border-indigo-500/20 rounded p-2">
-                        <div className="text-[10px] text-indigo-400 font-semibold mb-1">Asset Implications</div>
+                        <div className="text-xs text-indigo-400 font-semibold mb-1">Asset Implications</div>
                         <div className="text-xs text-muted-foreground">Overweight: cyclicals, energy. Neutral: IG bonds. Underweight: long-duration Treasuries, defensive sectors.</div>
                       </div>
                     </div>
@@ -1215,7 +1215,7 @@ export default function MacroDashboardPage() {
                             <span className={`font-semibold ${passed ? "text-white" : "text-red-400"}`}>
                               {li.value}
                             </span>
-                            <span className="text-muted-foreground text-[10px]">
+                            <span className="text-muted-foreground text-xs">
                               (thr: {li.threshold})
                             </span>
                             {passed ? (
@@ -1251,7 +1251,7 @@ export default function MacroDashboardPage() {
                       <div key={stat.label} className={`bg-${stat.color}-500/10 border border-${stat.color}-500/20 rounded-lg p-3`}>
                         <div className={`text-xs text-${stat.color}-400 font-semibold mb-0.5`}>{stat.label}</div>
                         <div className="text-lg font-bold text-white">{stat.value}</div>
-                        <div className="text-[10px] text-muted-foreground">{stat.sub}</div>
+                        <div className="text-xs text-muted-foreground">{stat.sub}</div>
                       </div>
                     ))}
                   </div>
@@ -1303,7 +1303,7 @@ export default function MacroDashboardPage() {
                         >
                           {item.value}
                         </div>
-                        <div className="text-[10px] text-muted-foreground leading-relaxed">{item.detail}</div>
+                        <div className="text-xs text-muted-foreground leading-relaxed">{item.detail}</div>
                       </div>
                     ))}
                   </div>
@@ -1315,7 +1315,7 @@ export default function MacroDashboardPage() {
       </motion.div>
 
       {/* Footer */}
-      <div className="text-[10px] text-muted-foreground border-t border-gray-800 pt-4">
+      <div className="text-xs text-muted-foreground border-t border-gray-800 pt-4">
         Data shown is simulated for educational purposes. Sources modeled after BEA, BLS, Federal Reserve, ISM, Conference Board, NY Fed. Last updated: Q1 2026.
       </div>
     </div>

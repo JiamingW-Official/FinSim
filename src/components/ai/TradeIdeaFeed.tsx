@@ -147,20 +147,20 @@ function buildPriceLevels(
 function DirectionBadge({ direction }: { direction: TradeIdea["direction"] }) {
   if (direction === "long")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/40 bg-emerald-500/15 px-1.5 py-0.5 text-[8px] font-black text-emerald-400 leading-none uppercase">
+      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/40 bg-emerald-500/15 px-1.5 py-0.5 text-[8px] font-bold text-emerald-400 leading-none uppercase">
         <TrendingUp className="h-2.5 w-2.5" />
         Long
       </span>
     );
   if (direction === "short")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/40 bg-red-500/15 px-1.5 py-0.5 text-[8px] font-black text-red-400 leading-none uppercase">
+      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/40 bg-red-500/15 px-1.5 py-0.5 text-[8px] font-bold text-red-400 leading-none uppercase">
         <TrendingDown className="h-2.5 w-2.5" />
         Short
       </span>
     );
   return (
-    <span className="inline-flex items-center gap-0.5 rounded border border-border bg-muted px-1.5 py-0.5 text-[8px] font-black text-muted-foreground leading-none uppercase">
+    <span className="inline-flex items-center gap-0.5 rounded border border-border bg-muted px-1.5 py-0.5 text-[8px] font-bold text-muted-foreground leading-none uppercase">
       <Minus className="h-2.5 w-2.5" />
       Wait
     </span>
@@ -177,7 +177,7 @@ function RRBadge({ rr }: { rr: number }) {
   return (
     <span
       className={cn(
-        "inline-flex rounded border px-1.5 py-0.5 text-[8px] font-black leading-none",
+        "inline-flex rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none",
         cls,
       )}
     >
@@ -236,7 +236,7 @@ function IdeaCard({
       {/* Row 1: direction + ticker + setup + age */}
       <div className="flex items-center gap-1.5 flex-wrap">
         <DirectionBadge direction={idea.direction} />
-        <span className="text-[11px] font-black text-foreground">
+        <span className="text-[11px] font-bold text-foreground">
           {idea.ticker}
         </span>
         {idea.setupName && (
@@ -447,7 +447,7 @@ export function TradeIdeaFeed({ maxItems = 10, compact = false }: TradeIdeaFeedP
 
   if (ideas.length === 0) {
     return (
-      <p className="text-[9px] text-muted-foreground text-center py-2">
+      <p className="text-[11px] text-muted-foreground text-center py-2">
         Advance the chart to generate trade ideas.
       </p>
     );
@@ -487,7 +487,7 @@ export function TradeIdeaFeed({ maxItems = 10, compact = false }: TradeIdeaFeedP
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-[9px] text-muted-foreground text-center py-1.5">
+        <p className="text-[11px] text-muted-foreground text-center py-1.5">
           No results for current filter.
         </p>
       )}

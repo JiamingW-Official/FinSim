@@ -58,7 +58,7 @@ export function CompoundCalculator() {
         <Calculator className="h-4 w-4 text-primary" />
         <h3 className="text-sm font-bold">Compound Interest Calculator</h3>
       </div>
-      <p className="text-[10px] text-muted-foreground">
+      <p className="text-xs text-muted-foreground">
         See how your money grows over time with the power of compound interest.
       </p>
 
@@ -187,22 +187,22 @@ export function CompoundCalculator() {
         <div className="flex items-center gap-4 mt-2">
           <div className="flex items-center gap-1.5">
             <div className="h-0.5 w-4 bg-emerald-400 rounded" />
-            <span className="text-[9px] text-muted-foreground">Total Value</span>
+            <span className="text-[11px] text-muted-foreground">Total Value</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="h-0.5 w-4 bg-blue-400 rounded" style={{ borderBottom: "1px dashed" }} />
-            <span className="text-[9px] text-muted-foreground">Contributions</span>
+            <span className="text-[11px] text-muted-foreground">Contributions</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="h-2.5 w-4 rounded-sm bg-emerald-500/15" />
-            <span className="text-[9px] text-muted-foreground">Interest Earned</span>
+            <span className="text-[11px] text-muted-foreground">Interest Earned</span>
           </div>
         </div>
       </div>
 
       {/* Insight */}
       <div className="rounded-lg border border-primary/10 bg-primary/5 p-3">
-        <p className="text-[10px] text-foreground/70 leading-relaxed">
+        <p className="text-xs text-foreground/70 leading-relaxed">
           <span className="font-bold text-primary">
             {((result.totalInterest / result.totalContributed) * 100).toFixed(0)}% of your final balance
           </span>{" "}
@@ -235,7 +235,7 @@ function InputField({
     <div className="rounded-lg border border-border/50 bg-card/30 p-2.5">
       <div className="flex items-center gap-1 mb-1">
         {icon}
-        <span className="text-[9px] font-medium text-muted-foreground">{label}</span>
+        <span className="text-[11px] font-medium text-muted-foreground">{label}</span>
       </div>
       <input
         type="number"
@@ -270,8 +270,8 @@ function ResultCard({
 }) {
   return (
     <div className="rounded-lg border border-border/50 bg-card/30 p-2.5 text-center">
-      <div className="text-[9px] text-muted-foreground mb-0.5">{label}</div>
-      <div className={cn("text-xs font-black tabular-nums", className)}>{value}</div>
+      <div className="text-[11px] text-muted-foreground mb-0.5">{label}</div>
+      <div className={cn("text-xs font-bold tabular-nums", className)}>{value}</div>
     </div>
   );
 }

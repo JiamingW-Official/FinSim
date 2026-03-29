@@ -389,7 +389,7 @@ function InfoCard({ title, children, icon: Icon, accent = "#3b82f6" }: {
 // ── Risk Badge ────────────────────────────────────────────────────────────────
 function RiskBadge({ risk }: { risk: "Low" | "Medium" | "High" }) {
   const map = { Low: "bg-emerald-900/50 text-emerald-300 border-emerald-700", Medium: "bg-amber-900/50 text-amber-300 border-amber-700", High: "bg-rose-900/50 text-rose-300 border-rose-700" };
-  return <span className={cn("text-[10px] px-2 py-0.5 rounded border font-medium", map[risk])}>{risk} Risk</span>;
+  return <span className={cn("text-xs px-2 py-0.5 rounded border font-medium", map[risk])}>{risk} Risk</span>;
 }
 
 // ── Tab 1: Exchange Landscape ─────────────────────────────────────────────────
@@ -467,7 +467,7 @@ function ExchangeLandscapeTab() {
               <span className="text-sm font-semibold text-slate-200">{t.title}</span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed mb-2">{t.desc}</p>
-            <div className="text-[10px] text-slate-500 font-medium">{t.examples}</div>
+            <div className="text-xs text-slate-500 font-medium">{t.examples}</div>
           </motion.div>
         ))}
       </div>
@@ -522,10 +522,10 @@ function ExchangeLandscapeTab() {
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold text-slate-200">{ex.abbr}</span>
-                <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-slate-600 text-slate-400">{ex.country}</Badge>
+                <Badge variant="outline" className="text-xs px-1.5 py-0 border-slate-600 text-slate-400">{ex.country}</Badge>
               </div>
               <div className="text-lg font-bold" style={{ color: ex.color }}>{ex.marketCap}</div>
-              <div className="text-[10px] text-slate-500 mt-1">{ex.hours}</div>
+              <div className="text-xs text-slate-500 mt-1">{ex.hours}</div>
             </motion.div>
           ))}
         </div>
@@ -640,7 +640,7 @@ function OrderTypesTab() {
               )}
             >
               <div className="text-xs font-bold text-slate-200 mb-0.5">{o.abbr}</div>
-              <div className="text-[10px] text-slate-500 leading-tight">{o.name}</div>
+              <div className="text-xs text-slate-500 leading-tight">{o.name}</div>
             </motion.button>
           ))}
         </div>
@@ -691,7 +691,7 @@ function OrderTypesTab() {
           <h3 className="text-sm font-semibold text-slate-200 mb-4">Order Book: Price-Time Priority</h3>
           <div className="space-y-1 text-xs mb-3">
             {/* Simplified order book visual */}
-            <div className="grid grid-cols-3 text-slate-500 text-[10px] font-medium border-b border-slate-700 pb-1 mb-2">
+            <div className="grid grid-cols-3 text-slate-500 text-xs font-medium border-b border-slate-700 pb-1 mb-2">
               <span>Size</span><span className="text-center">Price</span><span className="text-right">Side</span>
             </div>
             {[
@@ -706,7 +706,7 @@ function OrderTypesTab() {
                 <span className={cn("text-right", row.color)}>{row.side}</span>
               </div>
             ))}
-            <div className="grid grid-cols-3 text-[10px] py-1 bg-slate-700/30 rounded px-1">
+            <div className="grid grid-cols-3 text-xs py-1 bg-slate-700/30 rounded px-1">
               <span className="text-slate-500">Spread</span>
               <span className="text-center text-amber-300 font-mono font-bold">$0.05</span>
               <span></span>
@@ -724,7 +724,7 @@ function OrderTypesTab() {
               </div>
             ))}
           </div>
-          <div className="text-[10px] text-slate-500 leading-relaxed space-y-1">
+          <div className="text-xs text-slate-500 leading-relaxed space-y-1">
             <p><span className="text-slate-400">Price Priority:</span> Best price always executes first.</p>
             <p><span className="text-slate-400">Time Priority:</span> At same price, earliest order executes first.</p>
             <p><span className="text-slate-400">Pro-rata:</span> Some markets allocate fills proportionally by size.</p>
@@ -939,12 +939,12 @@ function PriceDiscoveryTab() {
               <div key={i} className="text-xs bg-slate-900/50 rounded-lg p-2.5 border border-slate-700/40">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-slate-300 font-medium">{cb.level}</span>
-                  <span className={cn("text-[10px] font-mono", i === 2 ? "text-rose-400" : i === 1 ? "text-amber-400" : "text-yellow-400")}>{cb.trigger}</span>
+                  <span className={cn("text-xs font-mono", i === 2 ? "text-rose-400" : i === 1 ? "text-amber-400" : "text-yellow-400")}>{cb.trigger}</span>
                 </div>
                 <div className="text-slate-500">{cb.halt} — {cb.resumption}</div>
               </div>
             ))}
-            <div className="mt-2 text-[10px] text-slate-500">
+            <div className="mt-2 text-xs text-slate-500">
               <div className="font-medium text-slate-400 mb-1">LULD Bands (Limit Up-Limit Down)</div>
               {LULD_BANDS.map((l, i) => (
                 <div key={i} className="flex justify-between py-0.5 border-b border-slate-700/30">
@@ -994,7 +994,7 @@ function FragmentationTab() {
             Market Quality Metrics by Venue
           </h3>
           <div className="space-y-3">
-            <div className="grid grid-cols-4 text-[10px] text-slate-500 font-medium border-b border-slate-700 pb-1">
+            <div className="grid grid-cols-4 text-xs text-slate-500 font-medium border-b border-slate-700 pb-1">
               <span>Venue</span>
               <span className="text-center">Eff. Spread</span>
               <span className="text-center">Price Impact</span>
@@ -1022,7 +1022,7 @@ function FragmentationTab() {
               </motion.div>
             ))}
           </div>
-          <div className="mt-3 grid grid-cols-3 gap-2 text-[10px] text-slate-500">
+          <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-slate-500">
             <div className="bg-slate-900/40 rounded p-2"><span className="text-slate-400 font-medium">Eff. Spread</span><br />Actual cost relative to midpoint</div>
             <div className="bg-slate-900/40 rounded p-2"><span className="text-slate-400 font-medium">Price Impact</span><br />Market move after execution</div>
             <div className="bg-slate-900/40 rounded p-2"><span className="text-slate-400 font-medium">Fill Rate</span><br />% of orders fully executed</div>
@@ -1295,7 +1295,7 @@ function RegulationTab() {
               style={{ borderTopColor: item.color, borderTopWidth: 2 }}
             >
               <div className="text-xs font-semibold text-slate-200 mb-1">{item.term}</div>
-              <div className="text-[10px] text-slate-500 leading-relaxed">{item.def}</div>
+              <div className="text-xs text-slate-500 leading-relaxed">{item.def}</div>
             </motion.div>
           ))}
         </div>
@@ -1355,7 +1355,7 @@ export default function MarketStructurePage() {
               <span className="text-[11px] text-slate-500">{stat.label}</span>
             </div>
             <div className="text-xl font-bold" style={{ color: stat.color }}>{stat.value}</div>
-            <div className="text-[10px] text-slate-500 mt-0.5">{stat.sub}</div>
+            <div className="text-xs text-slate-500 mt-0.5">{stat.sub}</div>
           </motion.div>
         ))}
       </motion.div>

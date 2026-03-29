@@ -30,7 +30,7 @@ export function PortfolioPie() {
       >
         <div className="absolute inset-3 rounded-full bg-card" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-[10px] font-semibold text-muted-foreground">Portfolio</span>
+          <span className="text-xs font-semibold text-muted-foreground">Portfolio</span>
         </div>
       </motion.div>
       <div className="flex flex-col gap-1">
@@ -40,7 +40,7 @@ export function PortfolioPie() {
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 + i * 0.1 }}
-            className="flex items-center gap-2 text-[10px]"
+            className="flex items-center gap-2 text-xs"
           >
             <div className="h-2.5 w-2.5 rounded-sm" style={{ background: slice.color }} />
             <span className="text-foreground font-medium">{slice.label}</span>

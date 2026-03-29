@@ -371,7 +371,7 @@ function OptionsChainTable() {
               <td className="text-right py-2 pr-4 text-emerald-400">{fmtUSD(row.callAsk, 0)}</td>
               <td className="text-center py-2 px-3">
                 <span className={`font-semibold ${row.isATM ? "text-amber-400" : "text-foreground"}`}>
-                  {row.isATM && <span className="text-[9px] mr-1 text-amber-400">ATM</span>}
+                  {row.isATM && <span className="text-[11px] mr-1 text-amber-400">ATM</span>}
                   {fmtUSD(row.strike, 0)}
                 </span>
               </td>
@@ -384,7 +384,7 @@ function OptionsChainTable() {
           ))}
         </tbody>
       </table>
-      <p className="text-[10px] text-muted-foreground mt-2">
+      <p className="text-xs text-muted-foreground mt-2">
         Expiry: 14 days • Underlying: BTC Spot • Settlement: USDC
       </p>
     </div>
@@ -496,7 +496,7 @@ function MarginToggle() {
           onChange={(e) => setLeverage(Number(e.target.value))}
           className="w-full accent-primary h-2 cursor-pointer"
         />
-        <div className="flex justify-between text-[10px] text-muted-foreground">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span>1×</span>
           <span>{mode === "cross" ? "125×" : "50×"}</span>
         </div>
@@ -557,7 +557,7 @@ function DefiComparisonTable() {
               <td className="py-2.5 pr-3 font-medium text-foreground">{row.name}</td>
               <td className="py-2.5 pr-3">
                 <Badge
-                  className={`text-[9px] px-1.5 py-0 ${
+                  className={`text-[11px] px-1.5 py-0 ${
                     row.type === "CEX"
                       ? "bg-sky-400/10 text-sky-400 border-sky-400/20"
                       : "bg-violet-400/10 text-violet-400 border-violet-400/20"
@@ -718,13 +718,13 @@ export default function CryptoDerivativesPage() {
         ].map((stat) => (
           <Card key={stat.label} className="bg-card border-border">
             <CardContent className="p-3">
-              <div className="flex items-center gap-1.5 text-muted-foreground text-[10px] mb-1">
+              <div className="flex items-center gap-1.5 text-muted-foreground text-xs mb-1">
                 {stat.icon}
                 {stat.label}
               </div>
               <p className={`text-sm font-bold font-mono ${stat.valueClass}`}>{stat.value}</p>
               {stat.sub && (
-                <p className={`text-[10px] mt-0.5 font-mono ${stat.valueClass}`}>{stat.sub}</p>
+                <p className={`text-xs mt-0.5 font-mono ${stat.valueClass}`}>{stat.sub}</p>
               )}
             </CardContent>
           </Card>
@@ -773,14 +773,14 @@ export default function CryptoDerivativesPage() {
                 <div className="grid grid-cols-4 gap-1 mt-3">
                   {fundingHistory.map((d) => (
                     <div key={d.period} className="text-center">
-                      <p className={`text-[9px] font-mono ${d.rate >= 0 ? "text-red-400" : "text-emerald-400"}`}>
+                      <p className={`text-[11px] font-mono ${d.rate >= 0 ? "text-red-400" : "text-emerald-400"}`}>
                         {fmtPct(d.rate, 4)}
                       </p>
                       <p className="text-[8px] text-muted-foreground">{d.period}</p>
                     </div>
                   ))}
                 </div>
-                <div className="flex items-center gap-3 mt-3 text-[10px] text-muted-foreground">
+                <div className="flex items-center gap-3 mt-3 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 inline-block" /> Longs pay shorts</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" /> Shorts pay longs</span>
                 </div>
@@ -805,7 +805,7 @@ export default function CryptoDerivativesPage() {
                     <div key={item.label} className="flex justify-between items-start">
                       <div>
                         <p className="text-xs font-medium text-foreground">{item.label}</p>
-                        <p className="text-[10px] text-muted-foreground">{item.desc}</p>
+                        <p className="text-xs text-muted-foreground">{item.desc}</p>
                       </div>
                       <p className={`text-sm font-mono font-bold ${item.label === "Basis" ? posColor(basis) : "text-foreground"}`}>
                         {item.value}
@@ -935,7 +935,7 @@ export default function CryptoDerivativesPage() {
                       </svg>
                     );
                   })()}
-                  <p className="text-[10px] text-muted-foreground mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     OTM options command higher IV — the &quot;volatility smile&quot;
                   </p>
                 </CardContent>
@@ -976,14 +976,14 @@ export default function CryptoDerivativesPage() {
                 <CardTitle className="text-sm flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
                   BTC Liquidation Heatmap
-                  <Badge className="text-[9px] bg-amber-400/10 text-amber-400 border-amber-400/20" variant="outline">
+                  <Badge className="text-[11px] bg-amber-400/10 text-amber-400 border-amber-400/20" variant="outline">
                     Estimated
                   </Badge>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <LiquidationHeatmap />
-                <div className="mt-3 text-[10px] text-muted-foreground">
+                <div className="mt-3 text-xs text-muted-foreground">
                   <p>Each row = liquidation cluster at that price level. Current mark price highlighted in gold.</p>
                   <p className="mt-1">Top bar = long liquidations (red). Bottom bar = short liquidations (green). Values in $M notional.</p>
                 </div>

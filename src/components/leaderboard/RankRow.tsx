@@ -64,7 +64,7 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
       {/* Avatar */}
       <div
         className={cn(
-          "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[10px] font-black text-white",
+          "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white",
           entry.isUser ? "bg-primary" : colorClass,
         )}
       >
@@ -78,13 +78,13 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
             {entry.name}
           </span>
           {entry.isUser && (
-            <span className="shrink-0 rounded-full bg-primary/15 px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest text-primary">
+            <span className="shrink-0 rounded-full bg-primary/15 px-1.5 py-0.5 text-[8px] font-bold text-primary">
               You
             </span>
           )}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-[10px] text-muted-foreground">
+          <span className="text-xs text-muted-foreground">
             Lv.{entry.level} {entry.title}
           </span>
           <LeagueBadge tier={entry.league} size="sm" />
@@ -95,7 +95,7 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
       <div className="shrink-0 text-right">
         <span
           className={cn(
-            "text-sm font-black tabular-nums",
+            "text-sm font-bold tabular-nums",
             dimConfig.id === "total_pnl"
               ? value >= 0 ? "text-emerald-400" : "text-red-400"
               : dimConfig.id === "risk_control"

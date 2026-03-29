@@ -168,7 +168,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
     <div className="space-y-4">
       {/* Controls */}
       <div className="rounded-lg border border-white/5 bg-white/[0.02] p-4 space-y-3">
-        <h3 className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="text-xs font-semibold text-zinc-500">
           Grid Search Parameters
         </h3>
 
@@ -202,7 +202,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
               <option key={k} value={k}>{PARAM_CONFIGS[k].label}</option>
             ))}
           </select>
-          <span className="text-[10px] text-zinc-600">
+          <span className="text-xs text-zinc-600">
             {PARAM_CONFIGS[param1].min}–{PARAM_CONFIGS[param1].max}, step {PARAM_CONFIGS[param1].step}
           </span>
         </div>
@@ -219,7 +219,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
               <option key={k} value={k}>{PARAM_CONFIGS[k].label}</option>
             ))}
           </select>
-          <span className="text-[10px] text-zinc-600">
+          <span className="text-xs text-zinc-600">
             {PARAM_CONFIGS[param2].min}–{PARAM_CONFIGS[param2].max}, step {PARAM_CONFIGS[param2].step}
           </span>
         </div>
@@ -248,7 +248,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           {/* Best parameters callout */}
           {bestCell && (
             <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 px-4 py-2.5">
-              <div className="text-[10px] text-blue-400 uppercase tracking-wider font-semibold">Best Parameters Found</div>
+              <div className="text-xs text-blue-400 font-semibold">Best Parameters Found</div>
               <div className="mt-1 flex gap-4 text-xs">
                 <span className="text-zinc-300">
                   {PARAM_CONFIGS[param1].label}: <span className="font-bold text-blue-300">{bestCell.p1}</span>
@@ -270,7 +270,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
 
           {/* Heatmap grid */}
           <div>
-            <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+            <h3 className="mb-2 text-xs font-semibold text-zinc-500">
               Sharpe Ratio Heatmap
             </h3>
             <SharpeHeatmap
@@ -285,7 +285,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           </div>
 
           {/* Color scale legend */}
-          <div className="flex items-center gap-2 text-[9px] text-zinc-500">
+          <div className="flex items-center gap-2 text-[11px] text-zinc-500">
             <span>Low Sharpe</span>
             <div className="flex h-3 flex-1 rounded overflow-hidden">
               {Array.from({ length: 20 }, (_, i) => {

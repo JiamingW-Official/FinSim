@@ -908,7 +908,7 @@ export default function QuantPortfolioPage() {
                         <span className="font-medium text-slate-200">{view.asset}</span>
                         <Badge
                           variant="outline"
-                          className={`text-[10px] ${view.type === "absolute" ? "border-sky-500/50 text-sky-400" : "border-purple-500/50 text-purple-400"}`}
+                          className={`text-xs ${view.type === "absolute" ? "border-sky-500/50 text-sky-400" : "border-purple-500/50 text-purple-400"}`}
                         >
                           {view.type}
                         </Badge>
@@ -1058,7 +1058,7 @@ export default function QuantPortfolioPage() {
                           { label: "ERC",     val: `${asset.ercWeight}%`,   cls: "text-indigo-400" },
                         ].map((cell) => (
                           <div key={cell.label}>
-                            <div className="text-slate-500 text-[10px]">{cell.label}</div>
+                            <div className="text-slate-500 text-xs">{cell.label}</div>
                             <div className={`font-medium ${cell.cls}`}>{cell.val}</div>
                           </div>
                         ))}
@@ -1086,7 +1086,7 @@ export default function QuantPortfolioPage() {
                           { label: "Equal Wt",     val: cp.ew  },
                         ].map((cell) => (
                           <div key={cell.label}>
-                            <div className="text-slate-500 text-[10px]">{cell.label}</div>
+                            <div className="text-slate-500 text-xs">{cell.label}</div>
                             <div className={`font-medium ${cell.val >= 0 ? "text-green-400" : "text-red-400"}`}>
                               {cell.val >= 0 ? "+" : ""}{cell.val}%
                             </div>
@@ -1225,9 +1225,9 @@ export default function QuantPortfolioPage() {
                     <div key={t.name} className="px-3 py-2 rounded bg-slate-800 border border-slate-700 text-xs">
                       <div className="flex items-center justify-between mb-1">
                         <span className="font-medium text-slate-200">{t.name}</span>
-                        <Badge variant="outline" className="text-[10px] border-slate-600 text-slate-400">{t.period}</Badge>
+                        <Badge variant="outline" className="text-xs border-slate-600 text-slate-400">{t.period}</Badge>
                       </div>
-                      <div className="grid grid-cols-2 gap-1 text-[10px]">
+                      <div className="grid grid-cols-2 gap-1 text-xs">
                         <span className="text-green-400">+ {t.pro}</span>
                         <span className="text-red-400">- {t.con}</span>
                       </div>

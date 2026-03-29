@@ -41,7 +41,7 @@ function SentimentBadge({ label }: { label: NewsSentimentLabel }) {
   return (
     <span
       className={cn(
-        "text-[10px] font-semibold px-1.5 py-0.5 rounded shrink-0",
+        "text-xs font-semibold px-1.5 py-0.5 rounded shrink-0",
         label === "Bullish" && "bg-green-500/15 text-green-500",
         label === "Bearish" && "bg-red-500/15 text-red-500",
         label === "Neutral" && "bg-muted/60 text-muted-foreground"
@@ -56,7 +56,7 @@ function ImpactBadge({ impact }: { impact: "low" | "medium" | "high" }) {
   return (
     <span
       className={cn(
-        "text-[10px] font-medium px-1.5 py-0.5 rounded shrink-0",
+        "text-xs font-medium px-1.5 py-0.5 rounded shrink-0",
         impact === "low" && "bg-muted text-muted-foreground",
         impact === "medium" && "bg-amber-500/10 text-amber-500",
         impact === "high" && "bg-red-500/10 text-red-500"
@@ -123,7 +123,7 @@ function NewsDetailDrawer({
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1.5">
               <SentimentBadge label={item.sentimentLabel} />
-              <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
+              <span className="text-xs text-muted-foreground font-medium">
                 {item.category}
               </span>
               <ImpactBadge impact={item.impact} />
@@ -156,7 +156,7 @@ function NewsDetailDrawer({
 
           {/* Impact Analysis */}
           <div className="border border-primary/20 rounded-lg bg-primary/5 p-3">
-            <p className="text-[10px] font-semibold text-primary uppercase tracking-wider mb-1.5">
+            <p className="text-xs font-semibold text-primary mb-1.5">
               Impact Analysis
             </p>
             <p className="text-[12px] text-foreground/80 leading-relaxed">{item.impactAnalysis}</p>
@@ -165,7 +165,7 @@ function NewsDetailDrawer({
           {/* Related Tickers */}
           {item.relatedTickers.length > 0 && (
             <div>
-              <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-muted-foreground mb-2">
                 Related Tickers
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -226,7 +226,7 @@ export default function NewsFeed({ ticker }: NewsFeedProps) {
 
       {/* Aggregate sentiment bar */}
       <div className="border border-border/60 rounded-lg bg-card p-3">
-        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1.5">Aggregate Sentiment</p>
+        <p className="text-xs text-muted-foreground mb-1.5">Aggregate Sentiment</p>
         <div className="flex items-center gap-3">
           <span className="text-[11px] text-red-500 font-medium">Bearish</span>
           <div className="flex-1 h-2 bg-muted/30 rounded-full overflow-hidden">
@@ -247,7 +247,7 @@ export default function NewsFeed({ ticker }: NewsFeedProps) {
         <div className="border border-border/60 rounded-lg bg-card p-3">
           <div className="flex items-center gap-1.5 mb-2">
             <TrendingUp className="h-3.5 w-3.5 text-primary" />
-            <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Trending</p>
+            <p className="text-xs font-semibold text-muted-foreground">Trending</p>
           </div>
           <div className="flex flex-wrap gap-1.5">
             {data.trendingTickers.map(({ ticker: t, mentions }) => (
@@ -264,7 +264,7 @@ export default function NewsFeed({ ticker }: NewsFeedProps) {
                 )}
               >
                 {t}
-                <span className="text-[10px] text-muted-foreground font-normal">{mentions}</span>
+                <span className="text-xs text-muted-foreground font-normal">{mentions}</span>
               </button>
             ))}
           </div>
@@ -298,11 +298,11 @@ export default function NewsFeed({ ticker }: NewsFeedProps) {
             <div className="flex-1 min-w-0">
               <p className="text-xs text-foreground leading-relaxed">{item.headline}</p>
               <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                <span className="text-[10px] text-muted-foreground">{item.source}</span>
-                <span className="text-[10px] text-muted-foreground/50">&middot;</span>
-                <span className="text-[10px] text-muted-foreground">{formatTimeAgo(item.timestamp)}</span>
-                <span className="text-[10px] text-muted-foreground/50">&middot;</span>
-                <span className="text-[10px] text-muted-foreground/70 font-medium">{item.category}</span>
+                <span className="text-xs text-muted-foreground">{item.source}</span>
+                <span className="text-xs text-muted-foreground/50">&middot;</span>
+                <span className="text-xs text-muted-foreground">{formatTimeAgo(item.timestamp)}</span>
+                <span className="text-xs text-muted-foreground/50">&middot;</span>
+                <span className="text-xs text-muted-foreground/70 font-medium">{item.category}</span>
               </div>
             </div>
             <div className="flex flex-col items-end gap-1 shrink-0">

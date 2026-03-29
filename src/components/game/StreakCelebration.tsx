@@ -49,7 +49,7 @@ const STREAK_CONFIG: Record<number, {
     message: "You've achieved legendary status!",
     size: "xl",
     color: "text-amber-300",
-    bg: "bg-gradient-to-br from-amber-500/15 to-orange-500/15",
+    bg: "bg-amber-500/10",
     border: "border-amber-400/40",
   },
 };
@@ -146,7 +146,7 @@ export function StreakCelebration() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.15 }}
                 className={cn(
-                  "font-black",
+                  "font-bold",
                   isLarge ? "text-lg" : "text-sm",
                   config.color,
                 )}
@@ -161,7 +161,7 @@ export function StreakCelebration() {
                 transition={{ delay: 0.25 }}
                 className={cn(
                   "text-center text-muted-foreground",
-                  isLarge ? "text-xs" : "text-[10px]",
+                  isLarge ? "text-xs" : "text-xs",
                 )}
               >
                 {config.message}

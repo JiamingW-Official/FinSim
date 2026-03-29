@@ -329,10 +329,10 @@ function MinkyCycleChart() {
       <div className="grid grid-cols-5 gap-1">
         {phases.map((ph) => (
           <div key={ph.label} className="bg-zinc-800/50 rounded p-2">
-            <div className="text-[10px] font-semibold mb-0.5" style={{ color: ph.color }}>
+            <div className="text-xs font-semibold mb-0.5" style={{ color: ph.color }}>
               {ph.label}
             </div>
-            <div className="text-[9px] text-zinc-400 leading-tight">{ph.desc}</div>
+            <div className="text-[11px] text-zinc-400 leading-tight">{ph.desc}</div>
           </div>
         ))}
       </div>
@@ -485,7 +485,7 @@ function EarlyWarningDashboard() {
               <Badge
                 variant="outline"
                 className={cn(
-                  "text-[9px] px-1.5 py-0",
+                  "text-[11px] px-1.5 py-0",
                   isDanger ? "border-red-500 text-red-400" : "border-yellow-500 text-yellow-400"
                 )}
               >
@@ -496,7 +496,7 @@ function EarlyWarningDashboard() {
               {ind.value}
               <span className="text-xs text-zinc-500 ml-1">{ind.unit}</span>
             </div>
-            <div className="text-[9px] text-zinc-500 mt-0.5">Threshold: {ind.threshold} {ind.unit}</div>
+            <div className="text-[11px] text-zinc-500 mt-0.5">Threshold: {ind.threshold} {ind.unit}</div>
           </div>
         );
       })}
@@ -670,17 +670,17 @@ function CrisisGenerationModels() {
               </div>
               <div>
                 <div className="text-[11px] font-bold text-zinc-100">{m.gen}: {m.title}</div>
-                <div className="text-[9px] text-zinc-500">{m.economists}</div>
+                <div className="text-[11px] text-zinc-500">{m.economists}</div>
               </div>
             </div>
-            <p className="text-[10px] text-zinc-400 leading-relaxed">{m.mechanism}</p>
+            <p className="text-xs text-zinc-400 leading-relaxed">{m.mechanism}</p>
             <div className="bg-zinc-800 rounded p-2">
-              <div className="text-[9px] text-zinc-500 mb-0.5">Examples</div>
-              <div className="text-[10px] text-zinc-300">{m.examples}</div>
+              <div className="text-[11px] text-zinc-500 mb-0.5">Examples</div>
+              <div className="text-xs text-zinc-300">{m.examples}</div>
             </div>
             <div className="bg-zinc-800/60 rounded p-2 border-l-2" style={{ borderColor: m.color }}>
-              <div className="text-[9px] text-zinc-500 mb-0.5">Key Insight</div>
-              <div className="text-[10px] text-zinc-300 leading-snug">{m.keyInsight}</div>
+              <div className="text-[11px] text-zinc-500 mb-0.5">Key Insight</div>
+              <div className="text-xs text-zinc-300 leading-snug">{m.keyInsight}</div>
             </div>
           </CardContent>
         </Card>
@@ -762,10 +762,10 @@ function FXReserveMetrics() {
         <div key={m.rule} className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
           <div className="flex items-center justify-between mb-1">
             <span className="text-[12px] font-bold text-zinc-100">{m.rule}</span>
-            <Badge variant="outline" className="text-[9px] border-cyan-500 text-cyan-400">{m.threshold}</Badge>
+            <Badge variant="outline" className="text-[11px] border-cyan-500 text-cyan-400">{m.threshold}</Badge>
           </div>
-          <p className="text-[10px] text-zinc-400 mb-1">{m.desc}</p>
-          <p className="text-[10px] text-zinc-500 italic">{m.rationale}</p>
+          <p className="text-xs text-zinc-400 mb-1">{m.desc}</p>
+          <p className="text-xs text-zinc-500 italic">{m.rationale}</p>
         </div>
       ))}
     </div>
@@ -785,7 +785,7 @@ function CarryUnwindExplainer() {
       {steps.map((s) => (
         <div key={s.step} className="flex items-start gap-2">
           <div
-            className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold text-black shrink-0"
+            className="w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold text-black shrink-0"
             style={{ backgroundColor: s.color }}
           >
             {s.step}
@@ -851,7 +851,7 @@ function CurrencyCrisesTab() {
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-[12px] font-bold text-zinc-100">{cs.country}</span>
-                  <span className="text-[10px] text-zinc-400">{cs.year}</span>
+                  <span className="text-xs text-zinc-400">{cs.year}</span>
                 </div>
                 <div className="flex items-center gap-1 mb-1">
                   <ArrowDownRight className="w-3 h-3 text-red-400" />
@@ -884,15 +884,15 @@ function CurrencyCrisesTab() {
                     {CURRENCY_CRISES[selectedCase].country} {CURRENCY_CRISES[selectedCase].year}
                   </div>
                   <div>
-                    <span className="text-[10px] text-red-400 font-semibold uppercase tracking-wide">Trigger: </span>
+                    <span className="text-xs text-red-400 font-semibold uppercase tracking-wide">Trigger: </span>
                     <span className="text-[11px] text-zinc-300">{CURRENCY_CRISES[selectedCase].trigger}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-yellow-400 font-semibold uppercase tracking-wide">Response: </span>
+                    <span className="text-xs text-yellow-400 font-semibold uppercase tracking-wide">Response: </span>
                     <span className="text-[11px] text-zinc-300">{CURRENCY_CRISES[selectedCase].response}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-green-400 font-semibold uppercase tracking-wide">Outcome: </span>
+                    <span className="text-xs text-green-400 font-semibold uppercase tracking-wide">Outcome: </span>
                     <span className="text-[11px] text-zinc-300">{CURRENCY_CRISES[selectedCase].outcome}</span>
                   </div>
                 </div>
@@ -927,7 +927,7 @@ function CurrencyCrisesTab() {
           <CardContent>
             <CarryUnwindExplainer />
             <div className="mt-3 bg-zinc-800/50 rounded p-2">
-              <div className="text-[9px] text-zinc-500 mb-1">IMF Conditionality (typical program)</div>
+              <div className="text-[11px] text-zinc-500 mb-1">IMF Conditionality (typical program)</div>
               <div className="grid grid-cols-2 gap-1">
                 {[
                   "Fiscal consolidation (-3–5% GDP)",
@@ -939,7 +939,7 @@ function CurrencyCrisesTab() {
                 ].map((c) => (
                   <div key={c} className="flex items-center gap-1">
                     <div className="w-1 h-1 rounded-full bg-cyan-400 shrink-0" />
-                    <span className="text-[9px] text-zinc-400">{c}</span>
+                    <span className="text-[11px] text-zinc-400">{c}</span>
                   </div>
                 ))}
               </div>
@@ -1088,7 +1088,7 @@ function CreditorHierarchy() {
       {tiers.map((t) => (
         <div key={t.rank} className="flex items-start gap-3 bg-zinc-800/40 rounded p-2">
           <div
-            className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-black shrink-0"
+            className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-black shrink-0"
             style={{ backgroundColor: t.color }}
           >
             {t.rank}
@@ -1100,7 +1100,7 @@ function CreditorHierarchy() {
                 {t.type}
               </Badge>
             </div>
-            <div className="text-[10px] text-zinc-400 mt-0.5">{t.status}</div>
+            <div className="text-xs text-zinc-400 mt-0.5">{t.status}</div>
           </div>
         </div>
       ))}
@@ -1142,13 +1142,13 @@ function PostDefaultRecovery() {
         <div key={c.country} className="bg-zinc-800/50 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-[12px] font-bold text-zinc-100">{c.country} ({c.year})</span>
-            <Badge variant="outline" className="text-[9px]" style={{ borderColor: c.color, color: c.color }}>
+            <Badge variant="outline" className="text-[11px]" style={{ borderColor: c.color, color: c.color }}>
               {c.haircut}% haircut
             </Badge>
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <div className="text-[9px] text-zinc-500 mb-1">Market Access Recovery</div>
+              <div className="text-[11px] text-zinc-500 mb-1">Market Access Recovery</div>
               <div className="flex items-center gap-1">
                 <div className="flex-1 h-1.5 bg-zinc-700 rounded-full">
                   <div
@@ -1156,11 +1156,11 @@ function PostDefaultRecovery() {
                     style={{ width: `${(c.recoveryYears / 8) * 100}%`, backgroundColor: c.color }}
                   />
                 </div>
-                <span className="text-[10px] text-zinc-300">{c.recoveryYears}y</span>
+                <span className="text-xs text-zinc-300">{c.recoveryYears}y</span>
               </div>
             </div>
             <div>
-              <div className="text-[9px] text-zinc-500 mb-1">Avg GDP Growth Post-Restructuring</div>
+              <div className="text-[11px] text-zinc-500 mb-1">Avg GDP Growth Post-Restructuring</div>
               <span className="text-[11px] font-semibold" style={{ color: c.color }}>+{c.gdpRecovery}% p.a.</span>
             </div>
           </div>
@@ -1196,7 +1196,7 @@ function SovereignDebtTab() {
         </CardHeader>
         <CardContent className="space-y-3">
           <DebtRestructuringProcess />
-          <div className="grid grid-cols-3 gap-2 text-[10px]">
+          <div className="grid grid-cols-3 gap-2 text-xs">
             <div className="bg-zinc-800/50 rounded p-2">
               <div className="text-yellow-400 font-semibold mb-1">Brady Bonds (1989)</div>
               <div className="text-zinc-400 leading-tight">
@@ -1231,8 +1231,8 @@ function SovereignDebtTab() {
           <CardContent>
             <CreditorHierarchy />
             <div className="mt-2 bg-red-950/20 border border-red-500/30 rounded p-2">
-              <div className="text-[9px] text-red-400 font-semibold mb-1">NML Capital vs Argentina (2012)</div>
-              <div className="text-[9px] text-zinc-400">
+              <div className="text-[11px] text-red-400 font-semibold mb-1">NML Capital vs Argentina (2012)</div>
+              <div className="text-[11px] text-zinc-400">
                 Hedge fund bought defaulted bonds at 20 cents, refused 2001 restructuring. Won NY court judgment blocking all payments to other creditors until holdouts paid in full (pari passu). Argentina locked out of markets until 2016.
               </div>
             </div>
@@ -1353,10 +1353,10 @@ function SorosCaseStudy() {
       {timeline.map((t, i) => (
         <div key={i} className="flex gap-3">
           <div className="w-24 shrink-0">
-            <span className="text-[9px] text-yellow-400 font-semibold">{t.date}</span>
+            <span className="text-[11px] text-yellow-400 font-semibold">{t.date}</span>
           </div>
           <div className="flex-1">
-            <span className="text-[10px] text-zinc-300 leading-snug">{t.event}</span>
+            <span className="text-xs text-zinc-300 leading-snug">{t.event}</span>
           </div>
         </div>
       ))}
@@ -1382,13 +1382,13 @@ function PositioningChecklist() {
         <div key={item.asset} className="flex items-center gap-2">
           <Badge
             variant="outline"
-            className="text-[9px] w-12 justify-center shrink-0"
+            className="text-[11px] w-12 justify-center shrink-0"
             style={{ borderColor: item.color, color: item.color }}
           >
             {item.action}
           </Badge>
           <span className="text-[11px] font-medium text-zinc-100 w-40 shrink-0">{item.asset}</span>
-          <span className="text-[10px] text-zinc-400">{item.rationale}</span>
+          <span className="text-xs text-zinc-400">{item.rationale}</span>
         </div>
       ))}
     </div>
@@ -1443,15 +1443,15 @@ function CrisisInvestingTab() {
           <CrisisBottomChart />
           <div className="grid grid-cols-3 gap-2 mt-2">
             <div className="bg-zinc-800/50 rounded p-2 text-center">
-              <div className="text-[10px] text-zinc-500">Avg Decline</div>
+              <div className="text-xs text-zinc-500">Avg Decline</div>
               <div className="text-xl font-bold text-red-400">-52%</div>
             </div>
             <div className="bg-zinc-800/50 rounded p-2 text-center">
-              <div className="text-[10px] text-zinc-500">Avg Recovery</div>
+              <div className="text-xs text-zinc-500">Avg Recovery</div>
               <div className="text-xl font-bold text-green-400">18mo</div>
             </div>
             <div className="bg-zinc-800/50 rounded p-2 text-center">
-              <div className="text-[10px] text-zinc-500">Best Entry Window</div>
+              <div className="text-xs text-zinc-500">Best Entry Window</div>
               <div className="text-xl font-bold text-yellow-400">±6mo</div>
             </div>
           </div>
@@ -1470,9 +1470,9 @@ function CrisisInvestingTab() {
           <div className="grid grid-cols-4 gap-2">
             {entryTriggers.map((t) => (
               <div key={t.metric} className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
-                <div className="text-[10px] text-zinc-400 mb-1">{t.metric}</div>
+                <div className="text-xs text-zinc-400 mb-1">{t.metric}</div>
                 <div className="text-[12px] font-bold mb-1" style={{ color: t.color }}>{t.threshold}</div>
-                <div className="text-[9px] text-zinc-500">{t.meaning}</div>
+                <div className="text-[11px] text-zinc-500">{t.meaning}</div>
               </div>
             ))}
           </div>
@@ -1506,7 +1506,7 @@ function CrisisInvestingTab() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-[9px] px-1.5",
+                          "text-[11px] px-1.5",
                           theme.riskLevel === "extreme"
                             ? "border-red-500 text-red-400"
                             : theme.riskLevel === "very-high"
@@ -1516,10 +1516,10 @@ function CrisisInvestingTab() {
                       >
                         {theme.riskLevel.toUpperCase()}
                       </Badge>
-                      <span className="text-zinc-500 text-[10px]">{selectedTheme === i ? "▲" : "▼"}</span>
+                      <span className="text-zinc-500 text-xs">{selectedTheme === i ? "▲" : "▼"}</span>
                     </div>
                   </div>
-                  <p className="text-[10px] text-zinc-400 mt-1 leading-snug">{theme.description}</p>
+                  <p className="text-xs text-zinc-400 mt-1 leading-snug">{theme.description}</p>
                 </button>
                 <AnimatePresence>
                   {selectedTheme === i && (
@@ -1531,16 +1531,16 @@ function CrisisInvestingTab() {
                     >
                       <div className="bg-zinc-800 rounded-b-lg p-3 border-x border-b border-indigo-500/50 space-y-1.5">
                         <div>
-                          <span className="text-[9px] text-blue-400 font-semibold uppercase">Examples: </span>
-                          <span className="text-[10px] text-zinc-300">{theme.examples}</span>
+                          <span className="text-[11px] text-blue-400 font-semibold uppercase">Examples: </span>
+                          <span className="text-xs text-zinc-300">{theme.examples}</span>
                         </div>
                         <div>
-                          <span className="text-[9px] text-green-400 font-semibold uppercase">Entry: </span>
-                          <span className="text-[10px] text-zinc-300">{theme.entry}</span>
+                          <span className="text-[11px] text-green-400 font-semibold uppercase">Entry: </span>
+                          <span className="text-xs text-zinc-300">{theme.entry}</span>
                         </div>
                         <div>
-                          <span className="text-[9px] text-yellow-400 font-semibold uppercase">Timing: </span>
-                          <span className="text-[10px] text-zinc-300">{theme.timing}</span>
+                          <span className="text-[11px] text-yellow-400 font-semibold uppercase">Timing: </span>
+                          <span className="text-xs text-zinc-300">{theme.timing}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -1564,8 +1564,8 @@ function CrisisInvestingTab() {
           <CardContent>
             <SorosCaseStudy />
             <div className="mt-3 bg-yellow-950/20 border border-yellow-500/30 rounded p-2">
-              <div className="text-[9px] text-yellow-400 font-semibold mb-1">Key Lesson</div>
-              <div className="text-[9px] text-zinc-400">
+              <div className="text-[11px] text-yellow-400 font-semibold mb-1">Key Lesson</div>
+              <div className="text-[11px] text-zinc-400">
                 A government commitment to a fixed rate is only credible if the underlying macro supports it.
                 When unemployment was rising, the political cost of defending the peg exceeded its benefit — Soros bet on this asymmetry.
               </div>
@@ -1607,8 +1607,8 @@ function CrisisInvestingTab() {
                 { phase: "Rebound (18–48mo)", desc: "Growth returns, spreads tighten, re-rating" },
               ].map((p) => (
                 <div key={p.phase} className="bg-zinc-800/50 rounded p-2">
-                  <div className="text-[10px] font-semibold text-indigo-400 mb-0.5">{p.phase}</div>
-                  <div className="text-[9px] text-zinc-400">{p.desc}</div>
+                  <div className="text-xs font-semibold text-indigo-400 mb-0.5">{p.phase}</div>
+                  <div className="text-[11px] text-zinc-400">{p.desc}</div>
                 </div>
               ))}
             </div>

@@ -46,7 +46,7 @@ function ToggleButton({
     <button
       onClick={onClick}
       className={cn(
-        "rounded px-2 py-1 text-[10px] font-medium transition-colors",
+        "rounded px-2 py-1 text-xs font-medium transition-colors",
         active
           ? "border border-orange-500/30 bg-orange-500/15 text-orange-400"
           : "text-muted-foreground hover:text-foreground",
@@ -103,7 +103,7 @@ export function ChainFiltersBar({
             key={exp.expiry}
             onClick={() => onSelectExpiry(exp.expiry)}
             className={cn(
-              "rounded px-2 py-0.5 text-[9px] font-medium transition-colors",
+              "rounded px-2 py-0.5 text-[11px] font-medium transition-colors",
               selectedExpiry === exp.expiry
                 ? "border border-orange-500/40 bg-orange-500/12 text-orange-400"
                 : "text-muted-foreground hover:text-foreground",

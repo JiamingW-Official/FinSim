@@ -90,7 +90,7 @@ export function LessonNode({
         )}>
           {lesson.title}
         </p>
-        <p className="text-[10px] text-muted-foreground truncate">
+        <p className="text-xs text-muted-foreground truncate">
           {lesson.description}
         </p>
         {/* Stars with shimmer */}
@@ -129,7 +129,7 @@ export function LessonNode({
 
       {/* XP badge */}
       {isUnlocked && !isCompleted && (
-        <span className="text-[10px] font-bold text-muted-foreground">
+        <span className="text-xs font-bold text-muted-foreground">
           +{lesson.xpReward} XP
         </span>
       )}

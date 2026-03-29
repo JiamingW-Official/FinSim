@@ -103,7 +103,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
               {isPotentialSqueeze ? "Potential Short Squeeze" : "Short Interest Monitor"}
             </span>
             {isExtremeShort && priceRising && (
-              <span className="ml-auto rounded bg-[#ef4444] px-1.5 py-0.5 text-[9px] font-bold text-white">
+              <span className="ml-auto rounded bg-[#ef4444] px-1.5 py-0.5 text-[11px] font-bold text-white">
                 EXTREME
               </span>
             )}
@@ -111,7 +111,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
 
           {/* Status line */}
           {isPotentialSqueeze && (
-            <div className="text-[10px] text-[#f59e0b] leading-snug">
+            <div className="text-xs text-[#f59e0b] leading-snug">
               {currentTicker} has {shortFloat.toFixed(1)}% short float and price is rising —
               short sellers may be forced to cover, amplifying upward momentum.
             </div>
@@ -175,7 +175,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
 
           {/* Short float visual bar */}
           <div>
-            <div className="mb-0.5 text-[9px] text-muted-foreground">Short Float vs 20% threshold</div>
+            <div className="mb-0.5 text-[11px] text-muted-foreground">Short Float vs 20% threshold</div>
             <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted">
               <motion.div
                 className="h-full rounded-full"
@@ -194,7 +194,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
                 style={{ left: "20%" }}
               />
             </div>
-            <div className="mt-0.5 flex justify-between text-[9px] text-muted-foreground/60">
+            <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground/60">
               <span>0%</span>
               <span className="text-[#f59e0b]">20% threshold</span>
               <span className="text-[#ef4444]">35%+ extreme</span>
@@ -202,7 +202,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
           </div>
 
           {/* Days-to-cover interpretation */}
-          <div className="rounded-md bg-muted/40 px-2 py-1.5 text-[10px] text-muted-foreground leading-snug">
+          <div className="rounded-md bg-muted/40 px-2 py-1.5 text-xs text-muted-foreground leading-snug">
             <span className="font-medium text-foreground">Days-to-cover: </span>
             {daysToCover.toFixed(1)} days — estimated time for all short sellers to close positions
             at current average daily volume. Higher = more squeeze risk.
@@ -211,11 +211,11 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
           {/* Historical examples (educational) */}
           {isPotentialSqueeze && (
             <div className="space-y-1.5">
-              <div className="text-[10px] font-medium text-muted-foreground">Historical Squeeze Examples</div>
+              <div className="text-xs font-medium text-muted-foreground">Historical Squeeze Examples</div>
               {SQUEEZE_EXAMPLES.slice(0, 2).map((ex) => (
                 <div
                   key={ex.ticker}
-                  className="rounded-md border border-border/30 bg-muted/30 p-2 text-[10px]"
+                  className="rounded-md border border-border/30 bg-muted/30 p-2 text-xs"
                 >
                   <div className="flex items-center justify-between mb-0.5">
                     <span className="font-semibold text-[#f59e0b]">
@@ -226,7 +226,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
                   <p className="text-muted-foreground leading-snug">{ex.description}</p>
                 </div>
               ))}
-              <p className="text-[9px] text-muted-foreground/60 italic">
+              <p className="text-[11px] text-muted-foreground/60 italic">
                 Past squeezes are educational only and do not predict future outcomes.
               </p>
             </div>

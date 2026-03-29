@@ -1137,7 +1137,7 @@ export default function TokenizationPage() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Asset: Manhattan Office Block</p>
+                    <p className="text-xs text-slate-400 font-semibold">Asset: Manhattan Office Block</p>
                     {[
                       { label: "Property Value", value: "$25,000,000" },
                       { label: "Tokens Issued", value: "25,000,000 PROP" },
@@ -1153,7 +1153,7 @@ export default function TokenizationPage() {
                     ))}
                   </div>
                   <div className="space-y-3">
-                    <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Secondary Market Liquidity</p>
+                    <p className="text-xs text-slate-400 font-semibold">Secondary Market Liquidity</p>
                     <div className="space-y-2">
                       {[
                         { exchange: "tZERO ATS", volume: "$2.1M/day", spread: "0.3%" },

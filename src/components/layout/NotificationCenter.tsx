@@ -67,11 +67,11 @@ function NotificationRow({ n }: { n: AppNotification }) {
       </div>
       <div className="min-w-0 flex-1">
         <p className="truncate text-[11px] font-semibold">{n.title}</p>
-        <p className="truncate text-[10px] text-muted-foreground">
+        <p className="truncate text-xs text-muted-foreground">
           {n.description}
         </p>
       </div>
-      <span className="shrink-0 text-[9px] text-muted-foreground/60">
+      <span className="shrink-0 text-[11px] text-muted-foreground/60">
         {formatRelativeTime(n.timestamp)}
       </span>
     </motion.div>
@@ -139,7 +139,7 @@ export function NotificationCenter() {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Clear
                   </button>
@@ -160,7 +160,7 @@ export function NotificationCenter() {
                 <div className="flex flex-col items-center gap-1.5 py-8 text-muted-foreground">
                   <Bell className="h-5 w-5 opacity-30" />
                   <p className="text-[11px]">No activity yet</p>
-                  <p className="text-[10px] opacity-60">
+                  <p className="text-xs opacity-60">
                     Start trading to see updates here
                   </p>
                 </div>

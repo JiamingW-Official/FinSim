@@ -177,7 +177,7 @@ function PatternHistoryLog({ history }: { history: PatternHistoryEntry[] }) {
 
   return (
     <div className="space-y-0.5">
-      <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40 px-1">
+      <div className="text-[11px] font-bold text-foreground/40 px-1">
         Recent Pattern History
       </div>
       <div className="max-h-28 overflow-y-auto scrollbar-hide space-y-px">
@@ -199,7 +199,7 @@ function PatternHistoryLog({ history }: { history: PatternHistoryEntry[] }) {
               <div className="flex items-center gap-1.5 min-w-0">
                 <span
                   className={cn(
-                    "text-[8px] font-black shrink-0 w-3 text-center",
+                    "text-[8px] font-bold shrink-0 w-3 text-center",
                     isBull
                       ? "text-green-400"
                       : isBear
@@ -209,7 +209,7 @@ function PatternHistoryLog({ history }: { history: PatternHistoryEntry[] }) {
                 >
                   {entry.pattern.name[0]}
                 </span>
-                <span className="text-[9px] text-foreground/70 truncate">
+                <span className="text-[11px] text-foreground/70 truncate">
                   {entry.pattern.name}
                 </span>
               </div>
@@ -263,7 +263,7 @@ function PatternCard({ pattern }: { pattern: CandlePattern }) {
         <div className="flex items-center gap-1.5 min-w-0">
           <span
             className={cn(
-              "text-[8px] font-black rounded px-1 py-0.5 leading-none shrink-0",
+              "text-[8px] font-bold rounded px-1 py-0.5 leading-none shrink-0",
               isBull
                 ? "bg-green-500/20 text-green-400"
                 : isBear
@@ -273,13 +273,13 @@ function PatternCard({ pattern }: { pattern: CandlePattern }) {
           >
             {isBull ? "BULL" : isBear ? "BEAR" : "NEUT"}
           </span>
-          <span className="text-[10px] font-bold text-foreground/90 truncate">
+          <span className="text-xs font-bold text-foreground/90 truncate">
             {pattern.name}
           </span>
         </div>
         <div className="flex items-center gap-1.5 shrink-0">
           <StrengthDots strength={pattern.strength} />
-          <span className="text-[9px] font-mono text-muted-foreground">
+          <span className="text-[11px] font-mono text-muted-foreground">
             {confidence}%
           </span>
         </div>
@@ -310,7 +310,7 @@ export function PatternRadar({ patterns, history }: PatternRadarProps) {
   if (!hasPatterns && !hasHistory) {
     return (
       <div className="rounded-md border border-border/40 bg-muted/20 px-2 py-3 text-center">
-        <p className="text-[9px] text-muted-foreground/60">
+        <p className="text-[11px] text-muted-foreground/60">
           No candlestick patterns detected in current bars.
         </p>
         <p className="text-[8.5px] text-muted-foreground/40 mt-0.5">
@@ -324,7 +324,7 @@ export function PatternRadar({ patterns, history }: PatternRadarProps) {
     <div className="space-y-2">
       {/* Section header */}
       <div className="flex items-center justify-between">
-        <span className="text-[9px] font-black uppercase tracking-wider text-foreground/40">
+        <span className="text-[11px] font-bold text-foreground/40">
           Pattern Radar
         </span>
         {hasPatterns && (
@@ -343,7 +343,7 @@ export function PatternRadar({ patterns, history }: PatternRadarProps) {
             ))}
           </div>
         ) : (
-          <p className="text-[9px] text-muted-foreground/50 px-1">
+          <p className="text-[11px] text-muted-foreground/50 px-1">
             No patterns on current bar.
           </p>
         )}

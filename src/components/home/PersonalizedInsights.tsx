@@ -51,13 +51,13 @@ export function PersonalizedInsights() {
           {profile.strengths.slice(0, 2).map((s) => (
             <div key={s} className="flex items-start gap-1.5 rounded-lg border border-emerald-500/10 bg-emerald-500/5 px-2.5 py-2">
               <CheckCircle2 className="h-3 w-3 text-emerald-400 mt-0.5 shrink-0" />
-              <span className="text-[10px] text-emerald-400/80">{s}</span>
+              <span className="text-xs text-emerald-400/80">{s}</span>
             </div>
           ))}
           {profile.weaknesses.slice(0, 2).map((w) => (
             <div key={w} className="flex items-start gap-1.5 rounded-lg border border-amber-500/10 bg-amber-500/5 px-2.5 py-2">
               <AlertCircle className="h-3 w-3 text-amber-400 mt-0.5 shrink-0" />
-              <span className="text-[10px] text-amber-400/80">{w}</span>
+              <span className="text-xs text-amber-400/80">{w}</span>
             </div>
           ))}
         </div>
@@ -79,7 +79,7 @@ export function PersonalizedInsights() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-medium">{action.title}</p>
-                    <p className="text-[10px] text-muted-foreground truncate">
+                    <p className="text-xs text-muted-foreground truncate">
                       {action.description}
                     </p>
                   </div>

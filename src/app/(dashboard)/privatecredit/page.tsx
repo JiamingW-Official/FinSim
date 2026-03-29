@@ -237,7 +237,7 @@ function DirectLendingTab() {
                     style={{ left: `${leftPct}%`, width: `${widthPct}%`, opacity: 0.8 }}
                   />
                   <div className="absolute top-0 h-full border-l border-white/30" style={{ left: "50%" }} />
-                  <span className="absolute top-0.5 text-[9px] text-zinc-500" style={{ left: "50.5%" }}>5×</span>
+                  <span className="absolute top-0.5 text-[11px] text-zinc-500" style={{ left: "50.5%" }}>5×</span>
                 </div>
               </div>
             );
@@ -323,7 +323,7 @@ function DirectLendingTab() {
                 <div className="relative h-2 rounded bg-white/5">
                   <div className="h-full rounded bg-blue-500" style={{ width: `${(l.aum / 450) * 100}%`, opacity: 0.7 }} />
                 </div>
-                <p className="text-[10px] text-zinc-500 mt-0.5">{l.focus}</p>
+                <p className="text-xs text-zinc-500 mt-0.5">{l.focus}</p>
               </div>
             </div>
           ))}
@@ -499,7 +499,7 @@ function MezzanineTab() {
                   <InfoPill text={s.timeline} color="zinc" />
                 </div>
               </div>
-              <p className="text-[10px] text-zinc-500 mt-1.5">{s.example}</p>
+              <p className="text-xs text-zinc-500 mt-1.5">{s.example}</p>
             </div>
           ))}
         </div>
@@ -648,7 +648,7 @@ function DistressedTab() {
                   <p className="text-xs font-semibold text-zinc-200">{s.type}</p>
                   <InfoPill text={s.irr} color="emerald" />
                 </div>
-                <p className="text-[10px] text-zinc-500 mt-0.5">{s.desc}</p>
+                <p className="text-xs text-zinc-500 mt-0.5">{s.desc}</p>
               </div>
             </div>
           ))}
@@ -817,7 +817,7 @@ function MarketDynamicsTab() {
             </div>
           ))}
         </div>
-        <div className="flex items-center gap-4 mt-3 text-[10px] text-zinc-500">
+        <div className="flex items-center gap-4 mt-3 text-xs text-zinc-500">
           <span className="flex items-center gap-1">
             <span className="inline-block w-3 h-2 rounded bg-zinc-600 opacity-60" /> Current
           </span>
@@ -840,7 +840,7 @@ function MarketDynamicsTab() {
                     <p className="text-xs font-semibold text-zinc-200">{risk.risk}</p>
                     <InfoPill text={risk.severity} color={risk.color} />
                   </div>
-                  <p className="text-[10px] text-zinc-500 mt-1">{risk.detail}</p>
+                  <p className="text-xs text-zinc-500 mt-1">{risk.detail}</p>
                 </div>
               </div>
             </div>

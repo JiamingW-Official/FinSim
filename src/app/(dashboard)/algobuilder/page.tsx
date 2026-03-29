@@ -515,7 +515,7 @@ function MonthlyHeatmap({ data }: { data: number[][] }) {
                     <td key={mi} className="text-center py-0.5">
                       <div
                         className={cn(
-                          "rounded px-1 py-0.5 text-[10px] font-mono",
+                          "rounded px-1 py-0.5 text-xs font-mono",
                           isPos ? "text-emerald-300" : "text-red-300"
                         )}
                         style={{
@@ -999,7 +999,7 @@ export default function AlgoBuilderPage() {
             <TabsTrigger value="monitor" className="text-xs relative">
               Live Monitor
               {newSignalCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[9px] rounded-full w-4 h-4 flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[11px] rounded-full w-4 h-4 flex items-center justify-center font-bold">
                   {newSignalCount > 9 ? "9+" : newSignalCount}
                 </span>
               )}
@@ -1105,11 +1105,11 @@ export default function AlgoBuilderPage() {
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className={cn("flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border border-current/30", meta.bg, meta.color)}>
+                            <span className={cn("flex items-center gap-1 text-xs px-1.5 py-0.5 rounded-full border border-current/30", meta.bg, meta.color)}>
                               {meta.icon} {meta.label}
                             </span>
                             <span className={cn(
-                              "text-[10px] font-bold px-1.5 py-0.5 rounded",
+                              "text-xs font-bold px-1.5 py-0.5 rounded",
                               signal.rating === "A" ? "bg-emerald-500/20 text-emerald-400" :
                               signal.rating === "B" ? "bg-blue-500/20 text-blue-400" :
                               "bg-red-500/20 text-red-400"
@@ -1143,19 +1143,19 @@ export default function AlgoBuilderPage() {
                       <div className="grid grid-cols-4 gap-2 text-center">
                         <div>
                           <div className="text-xs font-semibold text-emerald-400">{signal.winRate}%</div>
-                          <div className="text-[10px] text-muted-foreground">Win Rate</div>
+                          <div className="text-xs text-muted-foreground">Win Rate</div>
                         </div>
                         <div>
                           <div className="text-xs font-semibold text-blue-400">+{signal.avgReturn}%</div>
-                          <div className="text-[10px] text-muted-foreground">Avg Return</div>
+                          <div className="text-xs text-muted-foreground">Avg Return</div>
                         </div>
                         <div>
                           <div className="text-xs font-semibold text-red-400">{signal.maxDrawdown}%</div>
-                          <div className="text-[10px] text-muted-foreground">Max DD</div>
+                          <div className="text-xs text-muted-foreground">Max DD</div>
                         </div>
                         <div>
                           <div className="text-xs font-semibold text-muted-foreground">{signal.tradesPerYear}</div>
-                          <div className="text-[10px] text-muted-foreground">Trades/Yr</div>
+                          <div className="text-xs text-muted-foreground">Trades/Yr</div>
                         </div>
                       </div>
 
@@ -1172,13 +1172,13 @@ export default function AlgoBuilderPage() {
                               <p className="text-xs text-muted-foreground leading-relaxed">{signal.description}</p>
                               {Object.entries(signal.correlation).length > 0 && (
                                 <div className="mt-2">
-                                  <p className="text-[10px] text-muted-foreground mb-1">Signal Correlation</p>
+                                  <p className="text-xs text-muted-foreground mb-1">Signal Correlation</p>
                                   <div className="space-y-1">
                                     {Object.entries(signal.correlation).map(([otherId, corr]) => {
                                       const other = SIGNALS.find(s => s.id === otherId);
                                       if (!other) return null;
                                       return (
-                                        <div key={otherId} className="flex items-center gap-2 text-[10px]">
+                                        <div key={otherId} className="flex items-center gap-2 text-xs">
                                           <span className="text-muted-foreground truncate flex-1">{other.name}</span>
                                           <div className="w-16 h-1.5 rounded bg-muted overflow-hidden">
                                             <div
@@ -1234,13 +1234,13 @@ export default function AlgoBuilderPage() {
                         const meta = CAT_META[sig.category];
                         return (
                           <div key={id} className="flex items-center gap-3 p-2 rounded bg-muted/30 border border-border">
-                            <span className={cn("text-[10px] px-1.5 py-0.5 rounded border border-current/30", meta.bg, meta.color)}>
+                            <span className={cn("text-xs px-1.5 py-0.5 rounded border border-current/30", meta.bg, meta.color)}>
                               {meta.label}
                             </span>
                             <span className="text-xs flex-1">{sig.name}</span>
                             <div className="flex items-center gap-1">
-                              <span className="text-[10px] text-muted-foreground">Win: {sig.winRate}%</span>
-                              <span className="text-[10px] text-muted-foreground ml-2">Avg: +{sig.avgReturn}%</span>
+                              <span className="text-xs text-muted-foreground">Win: {sig.winRate}%</span>
+                              <span className="text-xs text-muted-foreground ml-2">Avg: +{sig.avgReturn}%</span>
                             </div>
                             <button onClick={() => toggleSignal(id)} className="text-muted-foreground hover:text-foreground">
                               <X size={12} />
@@ -1445,7 +1445,7 @@ export default function AlgoBuilderPage() {
                         <div className={cn("text-xs font-medium mb-1", strategy.sizing === sz.id ? "text-primary" : "")}>
                           {sz.label}
                         </div>
-                        <div className="text-[10px] text-muted-foreground leading-relaxed">{sz.desc}</div>
+                        <div className="text-xs text-muted-foreground leading-relaxed">{sz.desc}</div>
                       </button>
                     ))}
                   </div>
@@ -1484,7 +1484,7 @@ export default function AlgoBuilderPage() {
                   {selectedSignals.length > 0 && (
                     <>
                       <div className="mt-4 pt-4 border-t border-border space-y-3">
-                        <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Estimated Characteristics</div>
+                        <div className="text-xs text-muted-foreground">Estimated Characteristics</div>
                         {(() => {
                           const r = mulberry32(1984 + selectedSignals.length * 9);
                           return [
@@ -1568,7 +1568,7 @@ export default function AlgoBuilderPage() {
                         ].map(metric => (
                           <Card key={metric.label} className="p-3">
                             <div className={cn("text-lg font-bold font-mono", metric.color)}>{metric.value}</div>
-                            <div className="text-[10px] text-muted-foreground mt-0.5">{metric.label}</div>
+                            <div className="text-xs text-muted-foreground mt-0.5">{metric.label}</div>
                           </Card>
                         ))}
                       </div>
@@ -1605,7 +1605,7 @@ export default function AlgoBuilderPage() {
                       <Card className="p-5">
                         <h3 className="text-sm font-semibold mb-3">Rolling 12-Month Returns</h3>
                         <Rolling12mChart data={backtestResult.rolling12m} />
-                        <div className="flex gap-4 text-[10px] text-muted-foreground mt-2">
+                        <div className="flex gap-4 text-xs text-muted-foreground mt-2">
                           <span className="flex items-center gap-1"><span className="w-3 h-1.5 bg-emerald-400/30 inline-block rounded" /> Positive periods</span>
                           <span className="flex items-center gap-1"><span className="w-3 h-1.5 bg-red-400/30 inline-block rounded" /> Negative periods</span>
                         </div>
@@ -1650,7 +1650,7 @@ export default function AlgoBuilderPage() {
                 <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                   <GitCompare size={14} className="text-primary" /> Factor Exposures
                 </h3>
-                <p className="text-[10px] text-muted-foreground mb-4">Bars show β exposure; whiskers show 95% confidence interval</p>
+                <p className="text-xs text-muted-foreground mb-4">Bars show β exposure; whiskers show 95% confidence interval</p>
                 <FactorExposureChart factors={factorData} />
               </Card>
 
@@ -1701,7 +1701,7 @@ export default function AlgoBuilderPage() {
                     <div key={m.label} className="p-3 rounded bg-muted/30 border border-border">
                       <div className="text-base font-bold font-mono text-red-400">{m.value}</div>
                       <div className="text-xs text-foreground mt-0.5">{m.label}</div>
-                      <div className="text-[10px] text-muted-foreground mt-0.5">{m.desc}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{m.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -1718,16 +1718,16 @@ export default function AlgoBuilderPage() {
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <div className="text-xs font-medium">{st.event}</div>
-                          <div className="text-[10px] text-muted-foreground">{st.period}</div>
+                          <div className="text-xs text-muted-foreground">{st.period}</div>
                         </div>
                         <div className="text-right">
                           <div className="text-xs font-mono text-red-400">{st.stratRet.toFixed(1)}%</div>
-                          <div className="text-[10px] text-muted-foreground">strategy</div>
+                          <div className="text-xs text-muted-foreground">strategy</div>
                         </div>
                       </div>
                       {/* Comparison bars */}
                       <div className="space-y-1">
-                        <div className="flex items-center gap-2 text-[10px]">
+                        <div className="flex items-center gap-2 text-xs">
                           <span className="w-16 text-muted-foreground">Strategy</span>
                           <div className="flex-1 h-1.5 rounded bg-muted overflow-hidden">
                             <div
@@ -1737,7 +1737,7 @@ export default function AlgoBuilderPage() {
                           </div>
                           <span className="w-12 text-right font-mono text-red-400">{st.stratRet.toFixed(1)}%</span>
                         </div>
-                        <div className="flex items-center gap-2 text-[10px]">
+                        <div className="flex items-center gap-2 text-xs">
                           <span className="w-16 text-muted-foreground">Market</span>
                           <div className="flex-1 h-1.5 rounded bg-muted overflow-hidden">
                             <div
@@ -1749,7 +1749,7 @@ export default function AlgoBuilderPage() {
                         </div>
                       </div>
                       <div className={cn(
-                        "text-[10px] mt-2 font-medium",
+                        "text-xs mt-2 font-medium",
                         st.stratRet > st.mktRet ? "text-emerald-400" : "text-red-400"
                       )}>
                         {st.stratRet > st.mktRet
@@ -1781,7 +1781,7 @@ export default function AlgoBuilderPage() {
                         <div className={cn("text-xl font-bold font-mono", color)}>
                           {f.corr > 0 ? "+" : ""}{f.corr.toFixed(2)}
                         </div>
-                        <div className="text-[10px] text-muted-foreground mt-1">Diversification: {f.benefit}</div>
+                        <div className="text-xs text-muted-foreground mt-1">Diversification: {f.benefit}</div>
                       </div>
                     );
                   })}
@@ -1799,9 +1799,9 @@ export default function AlgoBuilderPage() {
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="text-sm font-medium">Live Signal Monitor</span>
                 </div>
-                <Badge variant="outline" className="text-[10px]">Updates every 3s</Badge>
+                <Badge variant="outline" className="text-xs">Updates every 3s</Badge>
                 {newSignalCount > 0 && (
-                  <Badge className="text-[10px] gap-1">
+                  <Badge className="text-xs gap-1">
                     <BellRing size={10} /> {newSignalCount} new signals
                   </Badge>
                 )}
@@ -1834,7 +1834,7 @@ export default function AlgoBuilderPage() {
                       <thead>
                         <tr className="border-b border-border">
                           {["Ticker", "Signal", "Direction", "Strength", "Entry Price", "Size (%)", "Time"].map(h => (
-                            <th key={h} className="text-left text-[10px] text-muted-foreground font-normal pb-2 pr-3">{h}</th>
+                            <th key={h} className="text-left text-xs text-muted-foreground font-normal pb-2 pr-3">{h}</th>
                           ))}
                         </tr>
                       </thead>
@@ -1852,7 +1852,7 @@ export default function AlgoBuilderPage() {
                               <td className="py-2 pr-3 text-muted-foreground max-w-[160px] truncate">{sig.signalType}</td>
                               <td className="py-2 pr-3">
                                 <span className={cn(
-                                  "px-1.5 py-0.5 rounded text-[10px] font-medium",
+                                  "px-1.5 py-0.5 rounded text-xs font-medium",
                                   sig.direction === "long"
                                     ? "bg-emerald-500/20 text-emerald-400"
                                     : "bg-red-500/20 text-red-400"
@@ -1892,7 +1892,7 @@ export default function AlgoBuilderPage() {
                 <Card className="p-4">
                   <h3 className="text-sm font-semibold mb-3">Signal Strength Distribution</h3>
                   <SignalHistogram signals={liveSignals} />
-                  <div className="flex justify-between text-[10px] text-muted-foreground mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span className="text-red-400">Weak</span>
                     <span className="text-amber-400">Medium</span>
                     <span className="text-emerald-400">Strong</span>
@@ -1908,7 +1908,7 @@ export default function AlgoBuilderPage() {
                         <div key={sig.id} className="flex items-center gap-2 text-xs">
                           <span className="font-mono font-semibold w-12">{sig.ticker}</span>
                           <span className={cn(
-                            "text-[10px] px-1.5 py-0.5 rounded w-14 text-center",
+                            "text-xs px-1.5 py-0.5 rounded w-14 text-center",
                             sig.direction === "long" ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"
                           )}>
                             {sig.direction === "long" ? "BUY" : "SELL"}

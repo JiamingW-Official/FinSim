@@ -77,7 +77,7 @@ export function SeasonRewardTrack() {
                     isClaimed
                       ? "border-amber-500/50 bg-amber-500/10 text-amber-400"
                       : isAvailable
-                        ? "border-amber-500 bg-amber-500/20 text-amber-300 shadow-lg shadow-amber-500/20 cursor-pointer animate-pulse"
+                        ? "border-amber-500 bg-amber-500/20 text-amber-300 cursor-pointer"
                         : isCurrent
                           ? "border-zinc-600 bg-zinc-800/50 text-zinc-400"
                           : "border-zinc-800 bg-zinc-900/50 text-zinc-700 cursor-not-allowed",
@@ -96,8 +96,8 @@ export function SeasonRewardTrack() {
                 {/* Tooltip on hover — group class on parent div enables group-hover */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-20">
                   <div className="rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 shadow-xl whitespace-nowrap text-center">
-                    <p className="text-[10px] font-bold text-zinc-200">{tier.reward.label}</p>
-                    <p className="text-[9px] text-zinc-500 mt-0.5">{tier.xpRequired} XP required</p>
+                    <p className="text-xs font-bold text-zinc-200">{tier.reward.label}</p>
+                    <p className="text-[11px] text-zinc-500 mt-0.5">{tier.xpRequired} XP required</p>
                   </div>
                 </div>
               </div>

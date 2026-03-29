@@ -819,12 +819,12 @@ export default function IBDealsPage() {
                       <td className="px-4 py-2 text-zinc-300">{d.target}</td>
                       <td className="px-4 py-2 text-right font-semibold text-emerald-400">{fmtB(d.value)}</td>
                       <td className="px-4 py-2 text-center">
-                        <span className={cn("px-2 py-0.5 rounded text-[10px] border", typeColor(d.type))}>
+                        <span className={cn("px-2 py-0.5 rounded text-xs border", typeColor(d.type))}>
                           {d.type}
                         </span>
                       </td>
                       <td className="px-4 py-2 text-center">
-                        <span className={cn("px-2 py-0.5 rounded text-[10px] border", statusColor(d.status))}>
+                        <span className={cn("px-2 py-0.5 rounded text-xs border", statusColor(d.status))}>
                           {d.status}
                         </span>
                       </td>
@@ -1202,7 +1202,7 @@ export default function IBDealsPage() {
                   {COMPS.map((c, i) => (
                     <tr key={c.name} className={cn("border-t border-zinc-800", c.name === selectedTarget ? "bg-blue-900/20" : "")}>
                       <td className="px-3 py-2 font-medium text-white flex items-center gap-1">
-                        {c.name === selectedTarget && <span className="text-blue-400 text-[9px]">TARGET</span>}
+                        {c.name === selectedTarget && <span className="text-blue-400 text-[11px]">TARGET</span>}
                         {c.name}
                       </td>
                       <td className="px-3 py-2 text-right text-zinc-300">{fmtB(c.revenue)}</td>
@@ -1400,7 +1400,7 @@ export default function IBDealsPage() {
                   </div>
                   <div className="flex gap-2">
                     <div className="flex-1 bg-zinc-800 rounded p-2">
-                      <div className="text-[9px] text-zinc-500 mb-1">Phase 1</div>
+                      <div className="text-[11px] text-zinc-500 mb-1">Phase 1</div>
                       <div className="text-xs text-zinc-200">{reg.phase1}</div>
                       <div
                         className="mt-1 h-1 rounded-full"
@@ -1408,7 +1408,7 @@ export default function IBDealsPage() {
                       />
                     </div>
                     <div className="flex-1 bg-zinc-800 rounded p-2">
-                      <div className="text-[9px] text-zinc-500 mb-1">Phase 2 (if triggered)</div>
+                      <div className="text-[11px] text-zinc-500 mb-1">Phase 2 (if triggered)</div>
                       <div className="text-xs text-zinc-200">{reg.phase2}</div>
                       <div
                         className="mt-1 h-1 rounded-full"
@@ -1508,9 +1508,9 @@ export default function IBDealsPage() {
                   <div key={i} className="flex items-start justify-between bg-zinc-800/40 rounded p-2 gap-2">
                     <div className="flex-1">
                       <p className="text-xs text-zinc-200">{r.remedy}</p>
-                      <span className="text-[9px] text-zinc-500">{r.type}</span>
+                      <span className="text-[11px] text-zinc-500">{r.type}</span>
                     </div>
-                    <span className={cn("text-[9px] px-1.5 py-0.5 rounded",
+                    <span className={cn("text-[11px] px-1.5 py-0.5 rounded",
                       r.likelihood === "High" ? "bg-red-500/20 text-red-400" :
                       r.likelihood === "Medium" ? "bg-amber-500/20 text-amber-400" : "bg-zinc-700 text-zinc-400"
                     )}>
@@ -1547,12 +1547,12 @@ export default function IBDealsPage() {
                       <td className="px-3 py-2 text-right text-zinc-400">{r.year}</td>
                       <td className="px-3 py-2 text-zinc-400">{r.regulator}</td>
                       <td className="px-3 py-2 text-center">
-                        <span className={cn("px-2 py-0.5 rounded text-[10px]", outcomeColor(r.outcome))}>
+                        <span className={cn("px-2 py-0.5 rounded text-xs", outcomeColor(r.outcome))}>
                           {r.outcome}
                         </span>
                       </td>
                       <td className="px-3 py-2 text-right text-zinc-400">{r.hhi}</td>
-                      <td className="px-3 py-2 text-zinc-500 text-[10px]">{r.note}</td>
+                      <td className="px-3 py-2 text-zinc-500 text-xs">{r.note}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1680,7 +1680,7 @@ export default function IBDealsPage() {
                         {lboCalcs.exitScenarios.map((sc, i) => (
                           <tr key={i} className={cn("border-t border-zinc-800", i === 2 ? "bg-emerald-900/10 font-semibold" : "")}>
                             <td className="px-3 py-2 text-center text-zinc-200">
-                              {sc.multiple}×{i === 2 && <span className="text-emerald-400 ml-1 text-[9px]">BASE</span>}
+                              {sc.multiple}×{i === 2 && <span className="text-emerald-400 ml-1 text-[11px]">BASE</span>}
                             </td>
                             <td className="px-3 py-2 text-right text-zinc-300">{fmtB(sc.exitEV)}</td>
                             <td className="px-3 py-2 text-right text-zinc-300">{fmtB(sc.exitEquity)}</td>
@@ -1843,7 +1843,7 @@ export default function IBDealsPage() {
                             className="border-t border-zinc-800 hover:bg-zinc-800/20"
                           >
                             <td className="px-4 py-2 text-center">
-                              <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold mx-auto",
+                              <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mx-auto",
                                 i === 0 ? "bg-amber-500/20 text-amber-400" :
                                 i === 1 ? "bg-zinc-400/20 text-zinc-300" :
                                 i === 2 ? "bg-orange-600/20 text-orange-400" :
@@ -1863,7 +1863,7 @@ export default function IBDealsPage() {
                                     style={{ width: `${(entry.value / maxValue) * 100}%` }}
                                   />
                                 </div>
-                                <span className="text-zinc-400 text-[10px]">{fmt(entry.share, 1)}%</span>
+                                <span className="text-zinc-400 text-xs">{fmt(entry.share, 1)}%</span>
                               </div>
                             </td>
                             <td className="px-4 py-2 text-right text-amber-400">{fmtM(entry.fees)}</td>
@@ -1893,7 +1893,7 @@ export default function IBDealsPage() {
                   <div className="font-semibold text-xs text-blue-400 mb-1">{f.type}</div>
                   <div className="text-xs text-zinc-200 mb-1">Rate: {f.rate}</div>
                   <div className="text-xs text-emerald-400 mb-2">Typical: {f.typical}</div>
-                  <div className="text-[10px] text-zinc-500">{f.note}</div>
+                  <div className="text-xs text-zinc-500">{f.note}</div>
                 </div>
               ))}
             </div>
@@ -1941,7 +1941,7 @@ export default function IBDealsPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-[10px] text-zinc-500 mt-2">
+            <p className="text-xs text-zinc-500 mt-2">
               * Compensation figures are representative estimates for bulge bracket / elite boutique banks (Goldman, Morgan Stanley, JPMorgan, Lazard, Evercore). Actual figures vary by bank, group, and performance.
             </p>
           </div>

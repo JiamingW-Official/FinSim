@@ -578,7 +578,7 @@ function StatChip({ label, value, color = "blue" }: { label: string; value: stri
   };
   return (
     <div className={cn("flex flex-col items-center px-3 py-1.5 rounded-lg border", colorMap[color] ?? colorMap.blue)}>
-      <span className="text-[10px] text-zinc-500 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-zinc-500 uppercase tracking-wide">{label}</span>
       <span className="text-sm font-semibold">{value}</span>
     </div>
   );
@@ -587,7 +587,7 @@ function StatChip({ label, value, color = "blue" }: { label: string; value: stri
 // ─── Section heading ──────────────────────────────────────────────────────────
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2 mt-4">
+    <h3 className="text-xs font-semibold text-zinc-500 mb-2 mt-4">
       {children}
     </h3>
   );
@@ -1027,7 +1027,7 @@ export default function FinancialModelPage() {
                   { key: "taxRate" as const, label: "Tax Rate", min: 0, max: 40 },
                 ].map(({ key, label, min, max }) => (
                   <div key={key} className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3">
-                    <p className="text-[10px] text-zinc-500 uppercase tracking-wide mb-1.5">{label} (Forecast)</p>
+                    <p className="text-xs text-zinc-500 uppercase tracking-wide mb-1.5">{label} (Forecast)</p>
                     <EditableCell
                       value={isAssumptions[key]}
                       onChange={(v) => updateAssumption(key, v)}
@@ -1055,7 +1055,7 @@ export default function FinancialModelPage() {
                           )}
                         >
                           {y}
-                          {i >= 5 && <span className="ml-1 text-[9px] text-blue-600">E</span>}
+                          {i >= 5 && <span className="ml-1 text-[11px] text-blue-600">E</span>}
                         </th>
                       ))}
                     </tr>
@@ -1245,7 +1245,7 @@ export default function FinancialModelPage() {
                   <SectionHeading>Cash Flow Statement (LTM, $B)</SectionHeading>
                   <table className="w-full text-xs">
                     <tbody>
-                      <tr><td colSpan={2} className="pt-2 pb-1 text-[10px] uppercase tracking-widest text-blue-400 font-semibold">Operating Activities</td></tr>
+                      <tr><td colSpan={2} className="pt-2 pb-1 text-xs text-blue-400 font-semibold">Operating Activities</td></tr>
                       {[
                         { label: "Net Income", value: cfData.ni },
                         { label: "  + D&A", value: cfData.da },
@@ -1257,7 +1257,7 @@ export default function FinancialModelPage() {
                           <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-zinc-300", bold && "text-white font-semibold")}>{fmt(value)}</td>
                         </tr>
                       ))}
-                      <tr><td colSpan={2} className="pt-3 pb-1 text-[10px] uppercase tracking-widest text-purple-400 font-semibold">Investing Activities</td></tr>
+                      <tr><td colSpan={2} className="pt-3 pb-1 text-xs text-purple-400 font-semibold">Investing Activities</td></tr>
                       {[
                         { label: "  Capital Expenditures", value: -cfData.capex },
                         { label: "  Acquisitions & Other", value: -1.5 },
@@ -1268,7 +1268,7 @@ export default function FinancialModelPage() {
                           <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-zinc-300", bold && "text-white font-semibold")}>{fmt(value)}</td>
                         </tr>
                       ))}
-                      <tr><td colSpan={2} className="pt-3 pb-1 text-[10px] uppercase tracking-widest text-amber-400 font-semibold">Financing Activities</td></tr>
+                      <tr><td colSpan={2} className="pt-3 pb-1 text-xs text-amber-400 font-semibold">Financing Activities</td></tr>
                       {[
                         { label: "  Debt Issuance / (Repay.)", value: cfData.debtChange },
                         { label: "  Share Buybacks", value: cfData.buybacks },
@@ -1331,7 +1331,7 @@ export default function FinancialModelPage() {
                   { label: "Exit EV/EBITDA", value: exitMultiple, setter: setExitMultiple, min: 8, max: 40, step: 0.5, suffix: "x" },
                 ].map(({ label, value, setter, min, max, step, suffix }) => (
                   <div key={label} className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3">
-                    <p className="text-[10px] text-zinc-500 uppercase tracking-wide mb-1.5">{label}</p>
+                    <p className="text-xs text-zinc-500 uppercase tracking-wide mb-1.5">{label}</p>
                     <div className="flex flex-col gap-1.5">
                       <EditableCell
                         value={value}
@@ -1475,7 +1475,7 @@ export default function FinancialModelPage() {
                       return (
                         <tr key={p.ticker} className={cn("border-b border-white/5", isSelected && "bg-blue-500/10")}>
                           <td className={cn("py-1.5 px-3 font-medium", isSelected ? "text-blue-400" : "text-zinc-300")}>
-                            {p.ticker} {isSelected && <span className="text-[9px] bg-blue-500/20 text-blue-400 px-1 rounded">Selected</span>}
+                            {p.ticker} {isSelected && <span className="text-[11px] bg-blue-500/20 text-blue-400 px-1 rounded">Selected</span>}
                           </td>
                           <td className="py-1.5 px-3 text-right font-mono text-zinc-300">{p.revenue.toFixed(1)}</td>
                           <td className="py-1.5 px-3 text-right font-mono text-zinc-300">{p.ebitda.toFixed(1)}</td>
@@ -1571,7 +1571,7 @@ export default function FinancialModelPage() {
                     <div key={sc.scenario} className={cn("rounded-xl border p-4", c.bg, c.border)}>
                       <div className="flex items-center justify-between mb-3">
                         <span className={cn("text-sm font-semibold capitalize", c.text)}>{sc.scenario} Case</span>
-                        <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium", c.badge)}>2026E</span>
+                        <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", c.badge)}>2026E</span>
                       </div>
                       {[
                         { label: "Revenue", value: fmt(sc.revenue) },
@@ -1597,7 +1597,7 @@ export default function FinancialModelPage() {
                 {/* Tornado chart */}
                 <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
                   <p className="text-xs font-medium text-zinc-300 mb-1">Tornado Chart — Sensitivity of DCF Value</p>
-                  <p className="text-[10px] text-zinc-500 mb-3">Each bar shows impact of ±1 standard deviation change</p>
+                  <p className="text-xs text-zinc-500 mb-3">Each bar shows impact of ±1 standard deviation change</p>
                   <div className="overflow-x-auto">
                     <TornadoChart rows={tornadoRows} baseValue={dcfData.intrinsicGGM} width={380} />
                   </div>
@@ -1606,7 +1606,7 @@ export default function FinancialModelPage() {
                 {/* Monte Carlo */}
                 <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
                   <p className="text-xs font-medium text-zinc-300 mb-1">Monte Carlo — 500 Simulations</p>
-                  <p className="text-[10px] text-zinc-500 mb-3">Random variation on WACC ±2%, growth ±10%, margins ±5%</p>
+                  <p className="text-xs text-zinc-500 mb-3">Random variation on WACC ±2%, growth ±10%, margins ±5%</p>
                   <div className="overflow-x-auto">
                     <MonteCarloChart outcomes={monteCarloResults} width={380} height={110} />
                   </div>
@@ -1635,21 +1635,21 @@ export default function FinancialModelPage() {
               {/* Break-even analysis */}
               <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
                 <p className="text-xs font-medium text-zinc-300 mb-1">Break-Even Analysis</p>
-                <p className="text-[10px] text-zinc-500 mb-3">Revenue growth rate required for stock to be fairly valued (DCF = Current Price)</p>
+                <p className="text-xs text-zinc-500 mb-3">Revenue growth rate required for stock to be fairly valued (DCF = Current Price)</p>
                 <div className="flex items-center gap-4 flex-wrap">
                   <div className="flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3">
                     <div>
-                      <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Current Price</p>
+                      <p className="text-xs text-zinc-500 uppercase tracking-wide">Current Price</p>
                       <p className="text-lg font-bold text-white">{fmtM(companyData.currentPrice)}</p>
                     </div>
                     <div className="text-zinc-600 text-xl">=</div>
                     <div>
-                      <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Break-Even Revenue Growth</p>
+                      <p className="text-xs text-zinc-500 uppercase tracking-wide">Break-Even Revenue Growth</p>
                       <p className="text-lg font-bold text-amber-400">{breakEvenGrowth}%</p>
                     </div>
                     <div className="text-zinc-600 text-xl">vs</div>
                     <div>
-                      <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Your Forecast</p>
+                      <p className="text-xs text-zinc-500 uppercase tracking-wide">Your Forecast</p>
                       <p className={cn("text-lg font-bold", isAssumptions.revenueGrowth >= parseFloat(breakEvenGrowth) ? "text-emerald-400" : "text-red-400")}>
                         {isAssumptions.revenueGrowth.toFixed(1)}%
                       </p>

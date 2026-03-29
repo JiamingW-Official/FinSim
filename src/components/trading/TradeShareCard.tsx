@@ -119,13 +119,13 @@ function TradeResultCard({
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-black tracking-widest text-primary">
+          <span className="text-xs font-bold tracking-widest text-primary">
             FINSIM
           </span>
           <span className="text-xs text-muted-foreground">Trade Result</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-muted-foreground">{dateStr}</span>
+          <span className="text-xs text-muted-foreground">{dateStr}</span>
           <button
             onClick={onClose}
             className="rounded-md p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
@@ -139,8 +139,8 @@ function TradeResultCard({
       <div className="flex flex-col items-center gap-3 px-6 py-5">
         {/* Ticker + Grade */}
         <div className="flex w-full items-center justify-between">
-          <span className="text-2xl font-black tracking-wide">{trade.ticker}</span>
-          <span className={`text-3xl font-black ${GRADE_COLOR[grade]}`}>{grade}</span>
+          <span className="text-2xl font-bold tracking-wide">{trade.ticker}</span>
+          <span className={`text-3xl font-bold ${GRADE_COLOR[grade]}`}>{grade}</span>
         </div>
 
         {/* P&L */}
@@ -151,7 +151,7 @@ function TradeResultCard({
             ) : (
               <TrendingDown className="h-5 w-5" />
             )}
-            <span className="text-3xl font-black tabular-nums">
+            <span className="text-3xl font-bold tabular-nums">
               {pnlSign}{formatCurrency(Math.abs(pnl))}
             </span>
           </div>
@@ -161,7 +161,7 @@ function TradeResultCard({
         </div>
 
         {/* Details row */}
-        <div className="grid w-full grid-cols-3 gap-1 rounded-lg bg-background/60 px-3 py-2 text-center text-[10px]">
+        <div className="grid w-full grid-cols-3 gap-1 rounded-lg bg-background/60 px-3 py-2 text-center text-xs">
           <div>
             <div className="text-muted-foreground">Exit</div>
             <div className="font-bold tabular-nums">{formatCurrency(exitPrice)}</div>
@@ -181,20 +181,20 @@ function TradeResultCard({
         {/* Player stats */}
         <div className="flex gap-4 text-center">
           <div>
-            <div className="text-[10px] text-muted-foreground">Level</div>
-            <div className="text-lg font-black text-primary">{level}</div>
+            <div className="text-xs text-muted-foreground">Level</div>
+            <div className="text-lg font-bold text-primary">{level}</div>
           </div>
           <div className="h-8 w-px self-center bg-border/50" />
           <div>
-            <div className="text-[10px] text-muted-foreground">Total XP</div>
-            <div className="text-lg font-black">{xp.toLocaleString()}</div>
+            <div className="text-xs text-muted-foreground">Total XP</div>
+            <div className="text-lg font-bold">{xp.toLocaleString()}</div>
           </div>
         </div>
 
         {/* CTA */}
         <div className="text-center">
-          <div className="text-sm font-black">Can you beat this?</div>
-          <div className="text-[9px] text-muted-foreground">finsim.app</div>
+          <div className="text-sm font-bold">Can you beat this?</div>
+          <div className="text-[11px] text-muted-foreground">finsim.app</div>
         </div>
       </div>
 
@@ -202,7 +202,7 @@ function TradeResultCard({
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-black text-white transition-colors hover:bg-primary/90 active:bg-primary/80"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90 active:bg-primary/80"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
@@ -244,7 +244,7 @@ function StreakShareCard({
     <>
       <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-black tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-bold tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Win Streak</span>
         </div>
         <button
@@ -258,20 +258,20 @@ function StreakShareCard({
       <div className="flex flex-col items-center gap-4 px-6 py-6">
         <Flame className="h-10 w-10 text-orange-400" />
         <div className="flex items-baseline gap-1">
-          <span className="text-6xl font-black tabular-nums text-orange-400">{streak}</span>
+          <span className="text-6xl font-bold tabular-nums text-orange-400">{streak}</span>
           <span className="text-lg font-bold text-muted-foreground">in a row</span>
         </div>
         <div className="text-center">
-          <div className="text-sm font-black">Trade Win Streak</div>
-          <div className="text-[10px] text-muted-foreground">Level {level} • finsim.app</div>
+          <div className="text-sm font-bold">Trade Win Streak</div>
+          <div className="text-xs text-muted-foreground">Level {level} • finsim.app</div>
         </div>
-        <div className="text-[10px] text-muted-foreground">Can you beat this?</div>
+        <div className="text-xs text-muted-foreground">Can you beat this?</div>
       </div>
 
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-black text-white transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
@@ -315,7 +315,7 @@ function LevelUpShareCard({
     <>
       <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-black tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-bold tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Level Up</span>
         </div>
         <button
@@ -330,22 +330,22 @@ function LevelUpShareCard({
         <Star className="h-10 w-10 text-primary" />
         <div className="flex flex-col items-center">
           <div className="flex items-baseline gap-1">
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">Level</span>
-            <span className="text-6xl font-black tabular-nums text-primary">{level}</span>
+            <span className="text-xs text-muted-foreground">Level</span>
+            <span className="text-6xl font-bold tabular-nums text-primary">{level}</span>
           </div>
           <span className="mt-1 text-base font-bold text-foreground">{title}</span>
         </div>
         <div className="rounded-lg bg-background/60 px-4 py-2 text-center">
-          <div className="text-[10px] text-muted-foreground">Total XP</div>
-          <div className="text-lg font-black tabular-nums">{xp.toLocaleString()}</div>
+          <div className="text-xs text-muted-foreground">Total XP</div>
+          <div className="text-lg font-bold tabular-nums">{xp.toLocaleString()}</div>
         </div>
-        <div className="text-[10px] text-muted-foreground">finsim.app</div>
+        <div className="text-xs text-muted-foreground">finsim.app</div>
       </div>
 
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-black text-white transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
@@ -390,7 +390,7 @@ function PortfolioMilestoneCard({
     <>
       <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-black tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-bold tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Portfolio Milestone</span>
         </div>
         <button
@@ -404,8 +404,8 @@ function PortfolioMilestoneCard({
       <div className="flex flex-col items-center gap-3 px-6 py-5">
         <BarChart2 className="h-8 w-8 text-teal-400" />
         <div className="text-center">
-          <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Portfolio Value</div>
-          <div className="text-3xl font-black tabular-nums text-teal-400">
+          <div className="text-xs text-muted-foreground">Portfolio Value</div>
+          <div className="text-3xl font-bold tabular-nums text-teal-400">
             {formatCurrency(portfolioValue)}
           </div>
           <div className="text-sm font-bold text-emerald-400">
@@ -413,13 +413,13 @@ function PortfolioMilestoneCard({
           </div>
         </div>
         <MiniGrowthChart value={portfolioValue} baseline={baseline} />
-        <div className="text-[10px] text-muted-foreground">Level {level} • finsim.app</div>
+        <div className="text-xs text-muted-foreground">Level {level} • finsim.app</div>
       </div>
 
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-black text-white transition-colors hover:bg-primary/90"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text

@@ -547,17 +547,17 @@ function DarkPoolLandscapeTab() {
                 />
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-medium text-white truncate">{pool.name}</div>
-                  <div className="text-[10px] text-neutral-500">{pool.operator}</div>
+                  <div className="text-xs text-neutral-500">{pool.operator}</div>
                 </div>
                 <div className="text-right shrink-0">
                   <div className="text-xs font-semibold text-white tabular-nums">
                     ${pool.volume}B
                   </div>
-                  <div className="text-[10px] text-neutral-400">{pool.share}%</div>
+                  <div className="text-xs text-neutral-400">{pool.share}%</div>
                 </div>
                 <Badge
                   variant="outline"
-                  className="text-[9px] px-1.5 py-0 border-neutral-600 text-neutral-400 shrink-0"
+                  className="text-[11px] px-1.5 py-0 border-neutral-600 text-neutral-400 shrink-0"
                 >
                   {pool.type === "Broker-Dealer" ? "BD" : pool.type === "Exchange-Owned" ? "EX" : "IND"}
                 </Badge>
@@ -618,7 +618,7 @@ function DarkPoolLandscapeTab() {
                     </svg>
                   );
                 })()}
-                <div className="text-[10px] text-neutral-500 text-center">
+                <div className="text-xs text-neutral-500 text-center">
                   Simulated 20-day volume trend · ${selectedPool.volume}B avg/day
                 </div>
               </div>
@@ -783,7 +783,7 @@ function WhyDarkPoolsTab() {
                 >
                   {st.value}
                 </div>
-                <div className="text-[10px] text-neutral-400 mt-0.5">{st.label}</div>
+                <div className="text-xs text-neutral-400 mt-0.5">{st.label}</div>
               </div>
             ))}
           </div>
@@ -836,7 +836,7 @@ function WhyDarkPoolsTab() {
             </tbody>
           </table>
         </div>
-        <p className="text-[10px] text-neutral-500 mt-3">
+        <p className="text-xs text-neutral-500 mt-3">
           Price improvement measured against NBBO midpoint at time of order submission.
         </p>
       </div>
@@ -1237,7 +1237,7 @@ function HFTInteractionTab() {
           {(["regulation", "incident", "technology", "research"] as const).map((t) => (
             <div key={t} className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: typeColor[t] }} />
-              <span className="text-[10px] text-neutral-400">{typeLabel[t]}</span>
+              <span className="text-xs text-neutral-400">{typeLabel[t]}</span>
             </div>
           ))}
         </div>
@@ -1271,7 +1271,7 @@ function HFTInteractionTab() {
                 <span className="text-xs font-semibold text-white">{ev.title}</span>
                 <Badge
                   variant="outline"
-                  className="ml-auto text-[9px] px-1.5 py-0 border-neutral-600"
+                  className="ml-auto text-[11px] px-1.5 py-0 border-neutral-600"
                   style={{ color: ev.color, borderColor: ev.color + "44" }}
                 >
                   {typeLabel[ev.type]}
@@ -1379,7 +1379,7 @@ function LitVsDarkTab() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-neutral-500 w-6">Lit</span>
+                    <span className="text-xs text-neutral-500 w-6">Lit</span>
                     <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
                       <motion.div
                         className="h-full rounded-full bg-blue-500/70"
@@ -1390,7 +1390,7 @@ function LitVsDarkTab() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-neutral-500 w-6">Dark</span>
+                    <span className="text-xs text-neutral-500 w-6">Dark</span>
                     <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
                       <motion.div
                         className="h-full rounded-full bg-purple-500/70"
@@ -1405,7 +1405,7 @@ function LitVsDarkTab() {
             );
           })}
         </div>
-        <p className="text-[10px] text-neutral-500 mt-4">
+        <p className="text-xs text-neutral-500 mt-4">
           Lower is better for impact/reversion/leakage metrics · Higher is better for fill rate/improvement.
         </p>
       </div>
@@ -1599,7 +1599,7 @@ export default function DarkPoolsPage() {
         </Tabs>
 
         {/* Footer disclaimer */}
-        <div className="text-[10px] text-neutral-600 border-t border-neutral-800 pt-4">
+        <div className="text-xs text-neutral-600 border-t border-neutral-800 pt-4">
           Educational simulation only. Dark pool volume figures, price improvement statistics, and regulatory details are illustrative approximations based on publicly available research.
         </div>
       </div>

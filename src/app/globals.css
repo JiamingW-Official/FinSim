@@ -825,17 +825,9 @@
    MARKET MOOD ORB GLOWS
    ============================================ */
 
-.orb-glow-green {
-  box-shadow: 0 0 8px #10b981;
-}
-
-.orb-glow-red {
-  box-shadow: 0 0 8px #ef4444;
-}
-
-.orb-glow-amber {
-  box-shadow: 0 0 8px #f59e0b;
-}
+.orb-glow-green {}
+.orb-glow-red {}
+.orb-glow-amber {}
 
 /* ============================================
    TOOLTIP PREMIUM

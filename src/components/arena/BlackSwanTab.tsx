@@ -343,20 +343,20 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
       <div className="flex items-start justify-between gap-2 mb-2">
         <div>
           <div className="text-sm font-bold text-zinc-200">{scenario.name}</div>
-          <div className="text-[10px] text-zinc-500 mt-0.5">{scenario.subtitle}</div>
+          <div className="text-xs text-zinc-500 mt-0.5">{scenario.subtitle}</div>
         </div>
-        <span className={cn("rounded-full border px-2 py-0.5 text-[9px] font-bold shrink-0 mt-0.5", severityColor[scenario.severity] ?? "text-zinc-400 bg-zinc-800 border-zinc-700")}>
+        <span className={cn("rounded-full border px-2 py-0.5 text-[11px] font-bold shrink-0 mt-0.5", severityColor[scenario.severity] ?? "text-zinc-400 bg-zinc-800 border-zinc-700")}>
           {scenario.severity}
         </span>
       </div>
 
-      <div className="flex items-center gap-3 mt-3 text-[10px] text-zinc-500">
+      <div className="flex items-center gap-3 mt-3 text-xs text-zinc-500">
         <span className="text-red-400 font-bold">-{scenario.drop}%</span>
         <span>{scenario.bars} bars</span>
         <span>{scenario.events.length} key events</span>
       </div>
 
-      <div className="mt-3 flex items-center gap-1 text-[10px] text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="mt-3 flex items-center gap-1 text-xs text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity">
         <ChevronRight className="h-3 w-3" />
         Start scenario
       </div>
@@ -472,7 +472,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
       <div className="flex items-center justify-between">
         <div>
           <div className="text-sm font-bold text-zinc-200">{scenario.name}</div>
-          <div className="text-[10px] text-zinc-500">Bar {revealedBars} / {scenario.bars}</div>
+          <div className="text-xs text-zinc-500">Bar {revealedBars} / {scenario.bars}</div>
         </div>
         <button
           type="button"
@@ -486,25 +486,25 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
       {/* Portfolio value */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
-          <div className="text-[9px] text-zinc-600 mb-1">Portfolio</div>
-          <div className="text-sm font-black tabular-nums text-zinc-200">
+          <div className="text-[11px] text-zinc-600 mb-1">Portfolio</div>
+          <div className="text-sm font-bold tabular-nums text-zinc-200">
             ${Math.round(portfolio).toLocaleString()}
           </div>
-          <div className={cn("text-[10px] font-bold tabular-nums", pnlPct >= 0 ? "text-teal-400" : "text-red-400")}>
+          <div className={cn("text-xs font-bold tabular-nums", pnlPct >= 0 ? "text-teal-400" : "text-red-400")}>
             {pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(1)}%
           </div>
         </div>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
-          <div className="text-[9px] text-zinc-600 mb-1">Market</div>
-          <div className={cn("text-sm font-black tabular-nums", pricePct >= 0 ? "text-teal-400" : "text-red-400")}>
+          <div className="text-[11px] text-zinc-600 mb-1">Market</div>
+          <div className={cn("text-sm font-bold tabular-nums", pricePct >= 0 ? "text-teal-400" : "text-red-400")}>
             {pricePct >= 0 ? "+" : ""}{pricePct.toFixed(1)}%
           </div>
-          <div className="text-[9px] text-zinc-600">{scenario.drop}% max drop</div>
+          <div className="text-[11px] text-zinc-600">{scenario.drop}% max drop</div>
         </div>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
-          <div className="text-[9px] text-zinc-600 mb-1">Exposure</div>
-          <div className="text-sm font-black tabular-nums text-zinc-200">{100 - soldPct}%</div>
-          <div className={cn("text-[9px] font-bold", hedged ? "text-amber-400" : "text-zinc-600")}>
+          <div className="text-[11px] text-zinc-600 mb-1">Exposure</div>
+          <div className="text-sm font-bold tabular-nums text-zinc-200">{100 - soldPct}%</div>
+          <div className={cn("text-[11px] font-bold", hedged ? "text-amber-400" : "text-zinc-600")}>
             {hedged ? "Hedged" : "Unhedged"}
           </div>
         </div>
@@ -524,8 +524,8 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
             >
               <AlertTriangle className="h-3 w-3 text-amber-400 shrink-0 mt-0.5" />
               <div>
-                <span className="text-[10px] font-bold text-amber-400">{currentEvent.label}: </span>
-                <span className="text-[10px] text-zinc-400">{currentEvent.detail}</span>
+                <span className="text-xs font-bold text-amber-400">{currentEvent.label}: </span>
+                <span className="text-xs text-zinc-400">{currentEvent.detail}</span>
               </div>
             </motion.div>
           )}
@@ -565,7 +565,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
               type="button"
               onClick={() => setSpeed(s)}
               className={cn(
-                "rounded px-2 py-1 text-[10px] font-bold transition-colors",
+                "rounded px-2 py-1 text-xs font-bold transition-colors",
                 speed === s ? "bg-white/10 text-zinc-200" : "text-zinc-600 hover:text-zinc-400",
               )}
             >
@@ -578,7 +578,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           type="button"
           onClick={doAdvance}
           disabled={isComplete || isPlaying}
-          className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-[10px] text-zinc-500 hover:text-zinc-300 disabled:opacity-40 transition-colors"
+          className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-xs text-zinc-500 hover:text-zinc-300 disabled:opacity-40 transition-colors"
         >
           Step
         </button>
@@ -653,7 +653,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 300, damping: 15 }}
-          className={cn("text-6xl font-black", color)}
+          className={cn("text-6xl font-bold", color)}
         >
           {grade}
         </motion.div>
@@ -664,12 +664,12 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
       {/* Result chips */}
       <div className="grid grid-cols-2 gap-2">
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-center">
-          <div className="text-[10px] text-zinc-600 mb-1">Final Portfolio</div>
-          <div className="text-sm font-black tabular-nums text-zinc-200">${Math.round(finalPortfolio).toLocaleString()}</div>
+          <div className="text-xs text-zinc-600 mb-1">Final Portfolio</div>
+          <div className="text-sm font-bold tabular-nums text-zinc-200">${Math.round(finalPortfolio).toLocaleString()}</div>
         </div>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-center">
-          <div className="text-[10px] text-zinc-600 mb-1">Loss</div>
-          <div className={cn("text-sm font-black tabular-nums", lossPct < 20 ? "text-teal-400" : "text-red-400")}>
+          <div className="text-xs text-zinc-600 mb-1">Loss</div>
+          <div className={cn("text-sm font-bold tabular-nums", lossPct < 20 ? "text-teal-400" : "text-red-400")}>
             -{lossPct.toFixed(1)}%
           </div>
         </div>
@@ -688,7 +688,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
           <div className={cn("text-xs font-bold", passed ? "text-teal-400" : "text-red-400")}>
             {gold ? "Gold rank achieved!" : passed ? "Passed — loss below 20%" : "Failed — loss exceeded 20%"}
           </div>
-          <div className="text-[10px] text-zinc-500 mt-0.5">
+          <div className="text-xs text-zinc-500 mt-0.5">
             {gold ? "Elite risk management." : passed ? "Strong discipline under pressure." : "Next time: sell early, hedge sooner."}
           </div>
         </div>

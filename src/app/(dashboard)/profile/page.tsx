@@ -630,23 +630,23 @@ export default function ProfilePage() {
 
         <Tabs defaultValue="dna">
           <TabsList className="grid w-full grid-cols-5 mb-4 h-9">
-            <TabsTrigger value="dna" className="text-[10px] px-1">
+            <TabsTrigger value="dna" className="text-xs px-1">
               <Brain className="h-3 w-3 mr-1" />
               DNA
             </TabsTrigger>
-            <TabsTrigger value="skills" className="text-[10px] px-1">
+            <TabsTrigger value="skills" className="text-xs px-1">
               <Star className="h-3 w-3 mr-1" />
               Skills
             </TabsTrigger>
-            <TabsTrigger value="path" className="text-[10px] px-1">
+            <TabsTrigger value="path" className="text-xs px-1">
               <BookOpen className="h-3 w-3 mr-1" />
               Path
             </TabsTrigger>
-            <TabsTrigger value="analytics" className="text-[10px] px-1">
+            <TabsTrigger value="analytics" className="text-xs px-1">
               <BarChart3 className="h-3 w-3 mr-1" />
               Analytics
             </TabsTrigger>
-            <TabsTrigger value="goals" className="text-[10px] px-1">
+            <TabsTrigger value="goals" className="text-xs px-1">
               <Trophy className="h-3 w-3 mr-1" />
               Goals
             </TabsTrigger>
@@ -740,14 +740,14 @@ export default function ProfilePage() {
                 <motion.div key="result" variants={fadeUp} initial="hidden" animate="show" className="space-y-4">
                   {/* Archetype card */}
                   <Card className="border-border bg-card overflow-hidden">
-                    <div className="h-1 w-full bg-gradient-to-r from-primary via-violet-500 to-cyan-500" />
+                    <div className="h-1 w-full bg-primary" />
                     <CardContent className="pt-5 space-y-4">
                       <div className="flex items-start gap-4">
                         <div className="text-4xl">{archetype.icon}</div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <h2 className="text-base font-bold">{archetype.name}</h2>
-                            <Badge variant="secondary" className="text-[10px]">Your Archetype</Badge>
+                            <Badge variant="secondary" className="text-xs">Your Archetype</Badge>
                           </div>
                           <p className="text-xs text-muted-foreground leading-relaxed">{archetype.description}</p>
                         </div>
@@ -755,7 +755,7 @@ export default function ProfilePage() {
 
                       <div className="grid grid-cols-2 gap-3">
                         <div className="rounded-lg bg-emerald-500/8 border border-emerald-500/20 p-3">
-                          <p className="text-[10px] text-emerald-400 font-semibold uppercase mb-2">Strengths</p>
+                          <p className="text-xs text-emerald-400 font-semibold uppercase mb-2">Strengths</p>
                           <ul className="space-y-1">
                             {archetype.strengths.map((s) => (
                               <li key={s} className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -766,7 +766,7 @@ export default function ProfilePage() {
                           </ul>
                         </div>
                         <div className="rounded-lg bg-amber-500/8 border border-amber-500/20 p-3">
-                          <p className="text-[10px] text-amber-400 font-semibold uppercase mb-2">Blind Spots</p>
+                          <p className="text-xs text-amber-400 font-semibold uppercase mb-2">Blind Spots</p>
                           <ul className="space-y-1">
                             {archetype.blindSpots.map((s) => (
                               <li key={s} className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -779,10 +779,10 @@ export default function ProfilePage() {
                       </div>
 
                       <div className="rounded-lg bg-primary/5 border border-primary/15 p-3">
-                        <p className="text-[10px] text-primary font-semibold uppercase mb-2">Recommended Strategies</p>
+                        <p className="text-xs text-primary font-semibold uppercase mb-2">Recommended Strategies</p>
                         <div className="flex flex-wrap gap-1.5">
                           {archetype.strategies.map((s) => (
-                            <Badge key={s} variant="secondary" className="text-[10px]">{s}</Badge>
+                            <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
                           ))}
                         </div>
                       </div>
@@ -835,11 +835,11 @@ export default function ProfilePage() {
                             <span className="text-xs font-medium">{branch.name}</span>
                           </div>
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] text-muted-foreground">
+                            <span className="text-xs text-muted-foreground">
                               {SKILL_LEVELS[branch.level]}
                             </span>
                             {branch.level === 4 && (
-                              <Badge className="text-[9px] py-0 px-1.5 h-4" style={{ backgroundColor: branch.color + "30", color: branch.color, border: `1px solid ${branch.color}40` }}>
+                              <Badge className="text-[11px] py-0 px-1.5 h-4" style={{ backgroundColor: branch.color + "30", color: branch.color, border: `1px solid ${branch.color}40` }}>
                                 Master
                               </Badge>
                             )}
@@ -862,12 +862,12 @@ export default function ProfilePage() {
                     return (
                       <div key={i} className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-3 py-2.5 hover:border-primary/30 transition-colors cursor-pointer">
                         <div className="flex items-center gap-2.5">
-                          <div className="flex h-6 w-6 items-center justify-center rounded-md text-[10px] font-bold text-white/70 bg-white/8">
+                          <div className="flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold text-white/70 bg-white/8">
                             {i + 1}
                           </div>
                           <div>
                             <p className="text-xs font-medium">{lesson.title}</p>
-                            <p className="text-[10px] text-muted-foreground capitalize">{lesson.branch} · {lesson.eta}</p>
+                            <p className="text-xs text-muted-foreground capitalize">{lesson.branch} · {lesson.eta}</p>
                           </div>
                         </div>
                         <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
@@ -890,7 +890,7 @@ export default function ProfilePage() {
                       const gap = branch.level - avgLevel;
                       return (
                         <div key={branch.id} className="space-y-1">
-                          <div className="flex items-center justify-between text-[10px]">
+                          <div className="flex items-center justify-between text-xs">
                             <span className="text-muted-foreground">{branch.name}</span>
                             <span className={gap >= 0 ? "text-emerald-400" : "text-red-400"}>
                               {gap >= 0 ? "+" : ""}{gap} levels vs avg
@@ -913,7 +913,7 @@ export default function ProfilePage() {
                         </div>
                       );
                     })}
-                    <div className="flex gap-3 mt-2 text-[9px] text-muted-foreground">
+                    <div className="flex gap-3 mt-2 text-[11px] text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <div className="w-2.5 h-1.5 rounded-full bg-primary" />
                         You
@@ -945,7 +945,7 @@ export default function ProfilePage() {
                       <CardContent className="pt-3 pb-3 text-center">
                         <Icon className={`h-4 w-4 mx-auto mb-1 ${stat.color}`} />
                         <div className="text-base font-bold">{stat.value}</div>
-                        <div className="text-[10px] text-muted-foreground">{stat.label}</div>
+                        <div className="text-xs text-muted-foreground">{stat.label}</div>
                       </CardContent>
                     </Card>
                   );
@@ -960,7 +960,7 @@ export default function ProfilePage() {
                     <span className="text-muted-foreground">{completedLessons.length} / {TOTAL_LESSONS_ESTIMATE} lessons</span>
                   </div>
                   <Progress value={lessonPct} className="h-2" />
-                  <p className="text-[10px] text-muted-foreground">{TOTAL_LESSONS_ESTIMATE - completedLessons.length} lessons remaining</p>
+                  <p className="text-xs text-muted-foreground">{TOTAL_LESSONS_ESTIMATE - completedLessons.length} lessons remaining</p>
                 </CardContent>
               </Card>
 
@@ -983,7 +983,7 @@ export default function ProfilePage() {
                       step={15}
                       className="w-full"
                     />
-                    <div className="flex justify-between text-[10px] text-muted-foreground">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>15 min</span>
                       <span>30 min</span>
                       <span>45 min</span>
@@ -1002,7 +1002,7 @@ export default function ProfilePage() {
                         <button
                           key={style.id}
                           onClick={() => setLearningStyle(style.id as typeof learningStyle)}
-                          className={`rounded-lg border py-2 text-[10px] font-medium transition-all ${
+                          className={`rounded-lg border py-2 text-xs font-medium transition-all ${
                             learningStyle === style.id
                               ? "border-primary/60 bg-primary/10 text-foreground"
                               : "border-border bg-background/50 text-muted-foreground hover:border-primary/30"
@@ -1026,7 +1026,7 @@ export default function ProfilePage() {
                   {curriculum.map((week, wi) => (
                     <div key={wi} className="space-y-2">
                       <div className="flex items-center gap-2">
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[9px] font-bold text-primary">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[11px] font-bold text-primary">
                           {week.week}
                         </div>
                         <span className="text-xs font-semibold">Week {week.week}: {week.theme}</span>
@@ -1035,10 +1035,10 @@ export default function ProfilePage() {
                         {week.days.map((d, di) => (
                           <div key={di} className="flex items-center justify-between rounded-md bg-white/3 px-2.5 py-1.5">
                             <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-medium text-muted-foreground w-6">{d.day}</span>
+                              <span className="text-[11px] font-medium text-muted-foreground w-6">{d.day}</span>
                               <span className="text-[11px]">{d.lesson}</span>
                             </div>
-                            <span className="text-[10px] text-muted-foreground">{d.duration}m</span>
+                            <span className="text-xs text-muted-foreground">{d.duration}m</span>
                           </div>
                         ))}
                       </div>
@@ -1097,7 +1097,7 @@ export default function ProfilePage() {
                           <span className="text-muted-foreground">{current} / {target}</span>
                         </div>
                         <Progress value={pct} className="h-1.5" />
-                        <p className="text-[10px] text-muted-foreground">{def.description}</p>
+                        <p className="text-xs text-muted-foreground">{def.description}</p>
                       </div>
                     );
                   })}
@@ -1125,7 +1125,7 @@ export default function ProfilePage() {
                       <CardContent className="pt-3 pb-3">
                         <div className="flex items-center gap-2 mb-1">
                           <Icon className={`h-3.5 w-3.5 ${stat.color}`} />
-                          <span className="text-[10px] text-muted-foreground">{stat.label}</span>
+                          <span className="text-xs text-muted-foreground">{stat.label}</span>
                         </div>
                         <div className="text-sm font-bold">{stat.value}</div>
                       </CardContent>
@@ -1150,7 +1150,7 @@ export default function ProfilePage() {
                         initial={{ width: 0 }}
                         animate={{ width: `${communityPercentile}%` }}
                         transition={{ duration: 1, ease: "easeOut" }}
-                        className="h-full rounded-full bg-gradient-to-r from-primary to-violet-500"
+                        className="h-full rounded-full bg-primary"
                       />
                     </div>
                   </div>
@@ -1160,7 +1160,7 @@ export default function ProfilePage() {
                     { label: "Learning Rank", pct: Math.min(99, completedLessons.length * 4) },
                   ].map((item) => (
                     <div key={item.label} className="space-y-1">
-                      <div className="flex items-center justify-between text-[10px]">
+                      <div className="flex items-center justify-between text-xs">
                         <span className="text-muted-foreground">{item.label}</span>
                         <span>Top {100 - Math.round(item.pct)}%</span>
                       </div>
@@ -1185,13 +1185,13 @@ export default function ProfilePage() {
                       <div key={row.style} className="flex items-center justify-between py-2 border-b border-border/50 last:border-0">
                         <div>
                           <p className="text-xs font-medium">{row.style}</p>
-                          <p className="text-[10px] text-muted-foreground">{row.trades} trades</p>
+                          <p className="text-xs text-muted-foreground">{row.trades} trades</p>
                         </div>
                         <div className="text-right">
                           <p className={`text-xs font-medium ${row.winRate >= 50 ? "text-emerald-400" : "text-red-400"}`}>
                             {row.winRate.toFixed(0)}% WR
                           </p>
-                          <p className={`text-[10px] ${row.pnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                          <p className={`text-xs ${row.pnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                             {row.pnl >= 0 ? "+" : ""}${row.pnl.toFixed(0)}
                           </p>
                         </div>
@@ -1243,7 +1243,7 @@ export default function ProfilePage() {
                           <Icon className="h-3.5 w-3.5 text-muted-foreground" />
                           <div>
                             <p className="text-xs font-medium">{item.label}</p>
-                            <p className="text-[10px] text-muted-foreground">{item.note}</p>
+                            <p className="text-xs text-muted-foreground">{item.note}</p>
                           </div>
                         </div>
                         <span className="text-xs font-semibold">{item.value}</span>
@@ -1260,7 +1260,7 @@ export default function ProfilePage() {
                 </CardHeader>
                 <CardContent>
                   <HeatmapCalendar tradeHistory={tradeHistory} />
-                  <p className="text-[10px] text-muted-foreground mt-2">Each cell = trading activity intensity</p>
+                  <p className="text-xs text-muted-foreground mt-2">Each cell = trading activity intensity</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -1271,7 +1271,7 @@ export default function ProfilePage() {
             <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-4">
               {/* Level progression */}
               <Card className="border-border bg-card overflow-hidden">
-                <div className="h-0.5 w-full bg-gradient-to-r from-violet-500 to-cyan-500" />
+                <div className="h-0.5 w-full bg-primary" />
                 <CardContent className="pt-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -1280,14 +1280,14 @@ export default function ProfilePage() {
                       </div>
                       <div>
                         <p className="text-xs font-semibold">Current Level</p>
-                        <p className="text-[10px] text-muted-foreground">{xp.toLocaleString()} XP total</p>
+                        <p className="text-xs text-muted-foreground">{xp.toLocaleString()} XP total</p>
                       </div>
                     </div>
                     <ArrowRight className="h-4 w-4 text-muted-foreground" />
                     <div className="flex items-center gap-3">
                       <div>
                         <p className="text-xs font-semibold text-right">Level {nextLevel}</p>
-                        <p className="text-[10px] text-muted-foreground">{levelProgress.needed - levelProgress.current} XP needed</p>
+                        <p className="text-xs text-muted-foreground">{levelProgress.needed - levelProgress.current} XP needed</p>
                       </div>
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/15 border border-violet-500/25">
                         <span className="text-sm font-bold text-violet-400">{nextLevel}</span>
@@ -1295,7 +1295,7 @@ export default function ProfilePage() {
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <div className="flex justify-between text-[10px] text-muted-foreground">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>{levelProgress.current} XP</span>
                       <span>{levelProgress.needed} XP</span>
                     </div>
@@ -1304,7 +1304,7 @@ export default function ProfilePage() {
                         initial={{ width: 0 }}
                         animate={{ width: `${levelProgress.pct}%` }}
                         transition={{ duration: 1.2, ease: "easeOut" }}
-                        className="h-full rounded-full bg-gradient-to-r from-primary to-violet-500"
+                        className="h-full rounded-full bg-primary"
                       />
                     </div>
                   </div>
@@ -1324,7 +1324,7 @@ export default function ProfilePage() {
                         <DollarSign className="h-3.5 w-3.5 text-emerald-400" />
                         <span className="text-xs font-medium">Portfolio Target</span>
                       </div>
-                      <Badge variant="secondary" className="text-[9px]">Active</Badge>
+                      <Badge variant="secondary" className="text-[11px]">Active</Badge>
                     </div>
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground">Current: ${portfolioValue.toLocaleString()}</span>
@@ -1334,7 +1334,7 @@ export default function ProfilePage() {
                       value={Math.min(100, (portfolioValue / portfolioGoal) * 100)}
                       className="h-1.5"
                     />
-                    <p className="text-[10px] text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                       {portfolioValue >= portfolioGoal
                         ? "Goal achieved!"
                         : `$${(portfolioGoal - portfolioValue).toLocaleString()} remaining`}
@@ -1348,14 +1348,14 @@ export default function ProfilePage() {
                         <BookOpen className="h-3.5 w-3.5 text-blue-400" />
                         <span className="text-xs font-medium">Learning Goal</span>
                       </div>
-                      <Badge variant="secondary" className="text-[9px]">Active</Badge>
+                      <Badge variant="secondary" className="text-[11px]">Active</Badge>
                     </div>
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground">Completed: {completedLessons.length}</span>
                       <span className="font-medium">Target: 20 lessons</span>
                     </div>
                     <Progress value={Math.min(100, (completedLessons.length / 20) * 100)} className="h-1.5" />
-                    <p className="text-[10px] text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                       {completedLessons.length >= 20 ? "Goal achieved!" : `${20 - completedLessons.length} lessons to go`}
                     </p>
                   </div>
@@ -1367,14 +1367,14 @@ export default function ProfilePage() {
                         <Target className="h-3.5 w-3.5 text-violet-400" />
                         <span className="text-xs font-medium">Win Rate Goal</span>
                       </div>
-                      <Badge variant="secondary" className="text-[9px]">Active</Badge>
+                      <Badge variant="secondary" className="text-[11px]">Active</Badge>
                     </div>
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground">Current: {winRate.toFixed(1)}%</span>
                       <span className="font-medium">Target: 60%</span>
                     </div>
                     <Progress value={Math.min(100, (winRate / 60) * 100)} className="h-1.5" />
-                    <p className="text-[10px] text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                       {winRate >= 60 ? "Goal achieved!" : `${(60 - winRate).toFixed(1)}% improvement needed`}
                     </p>
                   </div>
@@ -1398,9 +1398,9 @@ export default function ProfilePage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-medium">{a.name}</p>
-                          <p className="text-[10px] text-muted-foreground truncate">{a.description}</p>
+                          <p className="text-xs text-muted-foreground truncate">{a.description}</p>
                         </div>
-                        <span className="text-[9px] text-muted-foreground shrink-0">
+                        <span className="text-[11px] text-muted-foreground shrink-0">
                           {new Date(a.unlockedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                         </span>
                       </div>
@@ -1422,7 +1422,7 @@ export default function ProfilePage() {
                 </CardHeader>
                 <CardContent>
                   <HeatmapCalendar tradeHistory={tradeHistory} />
-                  <div className="mt-3 flex items-center justify-between text-[10px] text-muted-foreground">
+                  <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
                     <span>Less active</span>
                     <div className="flex gap-1">
                       {[0.1, 0.3, 0.5, 0.7, 0.95].map((o, i) => (

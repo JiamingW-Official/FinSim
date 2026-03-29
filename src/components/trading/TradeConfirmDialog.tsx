@@ -80,7 +80,7 @@ export function TradeConfirmDialog({
           {/* Ticker + Type */}
           <div className="flex items-center justify-between">
             <span className="text-sm font-bold">{ticker}</span>
-            <span className="rounded bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+            <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
               {typeLabel}
             </span>
           </div>
@@ -118,7 +118,7 @@ export function TradeConfirmDialog({
 
           {/* Condition text for non-market orders */}
           {!isMarket && (
-            <p className="text-[10px] text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               {orderType === "limit" && isBuy && `Triggers when price drops to ${formatCurrency(execPrice)}`}
               {orderType === "limit" && !isBuy && `Triggers when price rises to ${formatCurrency(execPrice)}`}
               {orderType === "stop_loss" && `Triggers when price drops to ${formatCurrency(execPrice)}`}

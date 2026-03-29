@@ -20,7 +20,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ─────────────────────────────────────────────────────────────
 
@@ -681,15 +680,11 @@ export default function CleantechPage() {
   const solarGrowth = (((capacityLatest.solar - capacityFirst.solar) / capacityFirst.solar) * 100).toFixed(0);
   const windGrowth = (((capacityLatest.wind - capacityFirst.wind) / capacityFirst.wind) * 100).toFixed(0);
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.35 } },
-  };
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 p-4 md:p-6">
       {/* Header */}
-      <motion.div initial="hidden" animate="visible" variants={fadeUp} className="mb-6">
+      <div className="mb-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 bg-emerald-500/10 rounded-lg">
             <Leaf className="w-5 h-5 text-emerald-400" />
@@ -699,13 +694,10 @@ export default function CleantechPage() {
         <p className="text-gray-400 text-sm ml-12">
           Renewable capacity, cost trajectories, investment vehicles, and policy landscape
         </p>
-      </motion.div>
+      </div>
 
       {/* KPI Bar */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
+      <div
         className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"
       >
         {[
@@ -714,7 +706,7 @@ export default function CleantechPage() {
           { label: "Storage GW (Grid)", value: capacityLatest.storage.toLocaleString(), icon: Battery, color: "text-emerald-400", sub: "Grid-scale deployed" },
           { label: "Onshore Wind LCOE", value: "$26/MWh", icon: TrendingDown, color: "text-purple-400", sub: "Cheapest energy ever" },
         ].map((kpi) => (
-          <motion.div key={kpi.label} variants={fadeUp}>
+          <div key={kpi.label}>
             <Card className="bg-gray-900 border-gray-800">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-2">
@@ -725,9 +717,9 @@ export default function CleantechPage() {
                 <div className="text-gray-500 text-xs mt-1">{kpi.sub}</div>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -751,9 +743,9 @@ export default function CleantechPage() {
 
         {/* ── Tab 1: Energy Transition Overview ─────────────────────────────── */}
         <TabsContent value="overview" className="data-[state=inactive]:hidden">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.08 } } }}>
+          <div>
             {/* Capacity Growth Chart */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -765,10 +757,10 @@ export default function CleantechPage() {
                   <CapacityChart />
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* LCOE Comparison */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -807,10 +799,10 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* IEA Net Zero Pathway */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -847,15 +839,15 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </TabsContent>
 
         {/* ── Tab 2: Solar & Wind ───────────────────────────────────────────── */}
         <TabsContent value="solarwind" className="data-[state=inactive]:hidden">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.08 } } }}>
+          <div>
             {/* Learning Curve */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -880,10 +872,10 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* Companies */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -923,10 +915,10 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* Capacity Factors & Grid Parity */}
-            <motion.div variants={fadeUp}>
+            <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-gray-900 border-gray-800">
                   <CardHeader className="pb-2">
@@ -987,15 +979,15 @@ export default function CleantechPage() {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </TabsContent>
 
         {/* ── Tab 3: Energy Storage ──────────────────────────────────────────── */}
         <TabsContent value="storage" className="data-[state=inactive]:hidden">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.08 } } }}>
+          <div>
             {/* Battery Cost Chart */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -1014,10 +1006,10 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* EV Adoption Chart */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -1029,10 +1021,10 @@ export default function CleantechPage() {
                   <EvAdoptionChart data={evAdoption} />
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* Grid-Scale Storage Economics */}
-            <motion.div variants={fadeUp}>
+            <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <Card className="bg-gray-900 border-gray-800">
                   <CardHeader className="pb-2">
@@ -1117,15 +1109,15 @@ export default function CleantechPage() {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </TabsContent>
 
         {/* ── Tab 4: Investment Vehicles ─────────────────────────────────────── */}
         <TabsContent value="vehicles" className="data-[state=inactive]:hidden">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.08 } } }}>
+          <div>
             {/* ETF Table */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -1171,10 +1163,10 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* YieldCo & Green Bonds */}
-            <motion.div variants={fadeUp}>
+            <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <Card className="bg-gray-900 border-gray-800">
                   <CardHeader className="pb-2">
@@ -1241,10 +1233,10 @@ export default function CleantechPage() {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
+            </div>
 
             {/* Risk factors */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-amber-400">Key Investment Risks</CardTitle>
@@ -1264,15 +1256,15 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </TabsContent>
 
         {/* ── Tab 5: Policy & Subsidies ─────────────────────────────────────── */}
         <TabsContent value="policy" className="data-[state=inactive]:hidden">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.08 } } }}>
+          <div>
             {/* IRA Highlights */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -1301,10 +1293,10 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* Policy Timeline */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -1335,10 +1327,10 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
 
             {/* Carbon Pricing */}
-            <motion.div variants={fadeUp}>
+            <div>
               <Card className="bg-gray-900 border-gray-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
@@ -1403,8 +1395,8 @@ export default function CleantechPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </TabsContent>
       </Tabs>
 

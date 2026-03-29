@@ -25,7 +25,7 @@ export function FeaturedAchievement() {
         <button
           type="button"
           onClick={() => setPickerOpen(!pickerOpen)}
-          className="flex items-center gap-0.5 rounded-lg px-2 py-0.5 text-[10px] font-bold text-amber-400/70 hover:bg-amber-500/10"
+          className="flex items-center gap-0.5 rounded-lg px-2 py-0.5 text-xs font-bold text-amber-400/70 hover:bg-amber-500/10"
         >
           {featured ? "Change" : "Select"}
           <ChevronDown className={cn("h-3 w-3 transition-transform", pickerOpen && "rotate-180")} />
@@ -40,7 +40,7 @@ export function FeaturedAchievement() {
           </div>
           <div>
             <p className="text-sm font-bold text-amber-300">{featured.name}</p>
-            <p className="text-[10px] text-muted-foreground">{featured.description ?? "Achievement unlocked"}</p>
+            <p className="text-xs text-muted-foreground">{featured.description ?? "Achievement unlocked"}</p>
           </div>
         </div>
       ) : (
@@ -78,7 +78,7 @@ export function FeaturedAchievement() {
                   )}
                 >
                   <Trophy className="h-3.5 w-3.5 shrink-0 text-amber-400" />
-                  <span className="text-[10px] font-bold leading-tight truncate">
+                  <span className="text-xs font-bold leading-tight truncate">
                     {a.name}
                   </span>
                 </button>

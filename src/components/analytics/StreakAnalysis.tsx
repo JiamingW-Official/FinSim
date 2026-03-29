@@ -97,7 +97,7 @@ export function StreakAnalysis() {
   return (
     <div className="space-y-4">
       {/* Stat chips */}
-      <div className="flex flex-wrap gap-2 text-[10px]">
+      <div className="flex flex-wrap gap-2 text-xs">
         <span className="rounded border border-border bg-card/60 px-2 py-0.5">
           Longest win streak{" "}
           <span className="font-mono text-green-400">{longestWin}</span>
@@ -163,7 +163,7 @@ export function StreakAnalysis() {
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-4 text-[10px] text-muted-foreground">
+      <div className="flex items-center gap-4 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
           <span className="inline-block h-3 w-3 rounded-sm bg-green-700/80" />
           Win

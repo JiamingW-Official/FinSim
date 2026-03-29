@@ -82,7 +82,7 @@ function StatCard({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -218,7 +218,7 @@ function WalletHierarchySVG() {
         {tiers.map((t) => (
           <div key={t.label} className="rounded-lg border border-white/10 bg-white/5 p-2 text-center">
             <p className="text-xs text-zinc-300 font-semibold">{t.label}</p>
-            <p className="text-[10px] text-zinc-500 mt-0.5">{t.sub}</p>
+            <p className="text-xs text-zinc-500 mt-0.5">{t.sub}</p>
           </div>
         ))}
       </div>
@@ -505,7 +505,7 @@ function Tab1CustodyArchitecture() {
               <div className="rounded-lg border border-indigo-500/30 bg-indigo-500/10 p-2.5 text-center min-w-[100px]">
                 <div className="text-indigo-400 font-bold text-xs mb-0.5">Step {step.step}</div>
                 <div className="text-zinc-200 text-xs font-medium">{step.label}</div>
-                <div className="text-zinc-500 text-[10px] mt-0.5 leading-tight">{step.desc}</div>
+                <div className="text-zinc-500 text-xs mt-0.5 leading-tight">{step.desc}</div>
               </div>
               {i < keyDerivationSteps.length - 1 && (
                 <ArrowRight size={14} className="text-zinc-600 shrink-0" />

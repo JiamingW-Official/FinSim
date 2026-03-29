@@ -803,7 +803,7 @@ export function EfficientFrontier() {
 
         {/* Asset Universe */}
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground mb-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
             Asset Universe
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -816,7 +816,7 @@ export function EfficientFrontier() {
                   type="button"
                   onClick={() => toggleTicker(ticker)}
                   className={cn(
-                    "flex flex-col items-center rounded-md border px-2.5 py-1.5 text-[10px] font-semibold transition-colors",
+                    "flex flex-col items-center rounded-md border px-2.5 py-1.5 text-xs font-semibold transition-colors",
                     selected
                       ? "border-primary/50 bg-primary/10 text-primary"
                       : "border-border bg-background text-muted-foreground hover:border-primary/30",
@@ -835,7 +835,7 @@ export function EfficientFrontier() {
               );
             })}
           </div>
-          <p className="text-[9px] text-muted-foreground mt-1">
+          <p className="text-[11px] text-muted-foreground mt-1">
             {selectedTickers.length} selected (min 2)
           </p>
         </div>
@@ -845,8 +845,8 @@ export function EfficientFrontier() {
           {/* Min Weight */}
           <div className="space-y-1">
             <div className="flex items-center justify-between">
-              <label className="text-[10px] font-medium text-muted-foreground">Min Weight</label>
-              <span className="text-[10px] font-mono text-foreground">{minWeight}%</span>
+              <label className="text-xs font-medium text-muted-foreground">Min Weight</label>
+              <span className="text-xs font-mono text-foreground">{minWeight}%</span>
             </div>
             <input
               type="range" min={0} max={20} step={1}
@@ -866,8 +866,8 @@ export function EfficientFrontier() {
           {/* Max Weight */}
           <div className="space-y-1">
             <div className="flex items-center justify-between">
-              <label className="text-[10px] font-medium text-muted-foreground">Max Weight</label>
-              <span className="text-[10px] font-mono text-foreground">{maxWeight}%</span>
+              <label className="text-xs font-medium text-muted-foreground">Max Weight</label>
+              <span className="text-xs font-mono text-foreground">{maxWeight}%</span>
             </div>
             <input
               type="range" min={20} max={100} step={5}
@@ -883,8 +883,8 @@ export function EfficientFrontier() {
           {/* Risk-free rate */}
           <div className="space-y-1">
             <div className="flex items-center justify-between">
-              <label className="text-[10px] font-medium text-muted-foreground">Risk-Free Rate</label>
-              <span className="text-[10px] font-mono text-foreground">{rfRate.toFixed(2)}%</span>
+              <label className="text-xs font-medium text-muted-foreground">Risk-Free Rate</label>
+              <span className="text-xs font-mono text-foreground">{rfRate.toFixed(2)}%</span>
             </div>
             <input
               type="range" min={0} max={10} step={0.25}
@@ -900,7 +900,7 @@ export function EfficientFrontier() {
 
         {/* Objective */}
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground mb-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
             Optimization Objective
           </p>
           <div className="flex flex-wrap gap-2">
@@ -935,7 +935,7 @@ export function EfficientFrontier() {
       {/* ── Efficient Frontier Chart ── */}
       <div className="rounded-lg border border-border bg-card p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
             Efficient Frontier — {scatterPoints.length} random portfolios
           </p>
         </div>
@@ -955,25 +955,25 @@ export function EfficientFrontier() {
             <svg width={14} height={14} viewBox="0 0 14 14">
               <path d={starPath(7, 7, 6)} fill="#f59e0b" />
             </svg>
-            <span className="text-[9px] text-muted-foreground">Current Portfolio</span>
+            <span className="text-[11px] text-muted-foreground">Current Portfolio</span>
           </div>
           <div className="flex items-center gap-1">
             <svg width={14} height={14} viewBox="0 0 14 14">
               <path d={diamondPath(7, 7, 6)} fill="#a78bfa" />
             </svg>
-            <span className="text-[9px] text-muted-foreground">Optimal Portfolio</span>
+            <span className="text-[11px] text-muted-foreground">Optimal Portfolio</span>
           </div>
           {objective !== "minVariance" && (
             <div className="flex items-center gap-1">
               <svg width={14} height={14} viewBox="0 0 14 14">
                 <circle cx={7} cy={7} r={5} fill="#10b981" />
               </svg>
-              <span className="text-[9px] text-muted-foreground">Min Variance</span>
+              <span className="text-[11px] text-muted-foreground">Min Variance</span>
             </div>
           )}
           <div className="flex items-center gap-1">
             <div className="w-6 h-1 rounded-full bg-blue-400" />
-            <span className="text-[9px] text-muted-foreground">Frontier curve</span>
+            <span className="text-[11px] text-muted-foreground">Frontier curve</span>
           </div>
         </div>
       </div>
@@ -993,25 +993,25 @@ export function EfficientFrontier() {
             const diff = opt - curr;
             return (
               <div key={label} className="space-y-2">
-                <p className="text-[10px] text-muted-foreground font-medium">{label}</p>
+                <p className="text-xs text-muted-foreground font-medium">{label}</p>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-[9px] text-muted-foreground">Current</span>
-                    <span className="text-[10px] font-mono tabular-nums text-muted-foreground">
+                    <span className="text-[11px] text-muted-foreground">Current</span>
+                    <span className="text-xs font-mono tabular-nums text-muted-foreground">
                       {fmt(curr)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-medium text-primary">Optimal</span>
+                    <span className="text-[11px] font-medium text-primary">Optimal</span>
                     <span className={cn(
-                      "text-[10px] font-mono tabular-nums font-semibold",
+                      "text-xs font-mono tabular-nums font-semibold",
                       better ? "text-emerald-400" : "text-red-400",
                     )}>
                       {fmt(opt)}
                     </span>
                   </div>
                   <div className={cn(
-                    "text-[9px] font-mono text-right",
+                    "text-[11px] font-mono text-right",
                     better ? "text-emerald-400/70" : "text-red-400/70",
                   )}>
                     {diff > 0 ? "+" : ""}{fmt(diff)}
@@ -1024,13 +1024,13 @@ export function EfficientFrontier() {
 
         {/* Weight table */}
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground mb-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
             Recommended Weights
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-border/60 text-[10px] text-muted-foreground">
+                <tr className="border-b border-border/60 text-xs text-muted-foreground">
                   <th className="text-left py-1.5 px-1 font-medium">Ticker</th>
                   <th className="text-right py-1.5 px-1 font-medium">Target %</th>
                   <th className="text-right py-1.5 px-1 font-medium">Current %</th>
@@ -1060,7 +1060,7 @@ export function EfficientFrontier() {
                     </td>
                     <td className="py-1.5 px-1 text-right">
                       <span className={cn(
-                        "rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase",
+                        "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
                         row.action === "buy"
                           ? "bg-emerald-500/12 text-emerald-400"
                           : row.action === "sell"
@@ -1088,7 +1088,7 @@ export function EfficientFrontier() {
       <div className="rounded-lg border border-border bg-card p-4 space-y-3">
         <div className="flex items-center justify-between">
           <h4 className="text-sm font-semibold">Correlation Matrix</h4>
-          <span className="text-[10px] text-muted-foreground">
+          <span className="text-xs text-muted-foreground">
             {selectedTickers.length}×{selectedTickers.length} — synthetic 2-year returns
           </span>
         </div>
@@ -1106,14 +1106,14 @@ export function EfficientFrontier() {
           </div>
           <span className="text-[8px] text-muted-foreground">+1 (red)</span>
         </div>
-        <p className="text-[9px] text-muted-foreground leading-relaxed">
+        <p className="text-[11px] text-muted-foreground leading-relaxed">
           Correlation measures how assets move together. Values near +1 (red) indicate assets
           move in tandem — poor diversification. Values near -1 (blue) indicate inverse movement —
           excellent hedging. Target a mix of low/negative correlations for a well-diversified portfolio.
         </p>
       </div>
 
-      <p className="text-[9px] text-muted-foreground leading-relaxed px-1">
+      <p className="text-[11px] text-muted-foreground leading-relaxed px-1">
         Efficient Frontier based on Modern Portfolio Theory (Markowitz, 1952). Returns and
         volatilities derived from synthetic 2-year daily return series. Optimization uses
         gradient-based iterative solvers (3,000 iterations). Results are illustrative —

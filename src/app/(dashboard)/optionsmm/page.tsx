@@ -372,7 +372,7 @@ function QuotingTab() {
                           >
                             {call.strike}
                             {isAtm && (
-                              <span className="ml-1 text-[10px] text-amber-500">ATM</span>
+                              <span className="ml-1 text-xs text-amber-500">ATM</span>
                             )}
                           </span>
                         </td>
@@ -406,7 +406,7 @@ function QuotingTab() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-[10px] shrink-0",
+                    "text-xs shrink-0",
                     d.impact.includes("Tighter") ? "border-emerald-700 text-emerald-400" : "border-rose-700 text-rose-400"
                   )}
                 >
@@ -787,7 +787,7 @@ function InventoryTab() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[10px]",
+                        "text-xs",
                         row.pinRisk === "Extreme"
                           ? "border-rose-600 text-rose-400"
                           : row.pinRisk === "Medium"
@@ -1031,7 +1031,7 @@ function AdverseSelectionTab() {
                 { step: "5", desc: "MM unwinds position over time across multiple venues", color: "text-zinc-300" },
               ].map((s) => (
                 <div key={s.step} className="flex items-start gap-2">
-                  <div className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-[10px] text-zinc-400 shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-xs text-zinc-400 shrink-0 mt-0.5">
                     {s.step}
                   </div>
                   <span className={s.color}>{s.desc}</span>
@@ -1117,7 +1117,7 @@ function AdverseSelectionTab() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-[10px]",
+                    "text-xs",
                     h.severity === "Automatic"
                       ? "border-rose-700 text-rose-400"
                       : h.severity === "Voluntary"
@@ -1380,7 +1380,7 @@ function EconomicsTab() {
                     <span className="text-xs font-semibold text-zinc-200">{item.year}</span>
                     <span className="text-xs font-mono text-amber-400">{item.latency}</span>
                     {item.key && (
-                      <Badge variant="outline" className="text-[9px] border-amber-700 text-amber-400">
+                      <Badge variant="outline" className="text-[11px] border-amber-700 text-amber-400">
                         Milestone
                       </Badge>
                     )}

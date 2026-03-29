@@ -292,9 +292,9 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
         >
           <div className="mb-1 flex items-center justify-between gap-3">
             <span className="text-[11px] font-semibold">{tooltip.ticker}</span>
-            <span className="text-[10px] text-muted-foreground">{tooltip.expiry.slice(5)}</span>
+            <span className="text-xs text-muted-foreground">{tooltip.expiry.slice(5)}</span>
           </div>
-          <div className="space-y-0.5 text-[10px]">
+          <div className="space-y-0.5 text-xs">
             <div className="flex justify-between gap-4">
               <span className="text-muted-foreground">Call flow</span>
               <span className={cn(tooltip.callFlow >= 0 ? "text-emerald-400" : "text-red-400")}>

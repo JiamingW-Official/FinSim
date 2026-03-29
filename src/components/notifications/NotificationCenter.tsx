@@ -143,14 +143,14 @@ function NotificationRow({
       {/* Body */}
       <div className="min-w-0 flex-1">
         <p className="truncate text-[11px] font-semibold leading-tight">{n.title}</p>
-        <p className="line-clamp-2 text-[10px] text-muted-foreground leading-relaxed">
+        <p className="line-clamp-2 text-xs text-muted-foreground leading-relaxed">
           {n.description}
         </p>
       </div>
 
       {/* Meta: time + unread dot */}
       <div className="flex shrink-0 flex-col items-end gap-1">
-        <span className="text-[9px] text-muted-foreground/60 whitespace-nowrap">
+        <span className="text-[11px] text-muted-foreground/60 whitespace-nowrap">
           {formatRelativeTime(n.timestamp)}
         </span>
         {!n.read && (
@@ -246,15 +246,15 @@ export function NotificationCenter() {
                     <button
                       type="button"
                       onClick={markAllRead}
-                      className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                     >
                       Mark all read
                     </button>
-                    <span className="text-muted-foreground/30 text-[10px]">·</span>
+                    <span className="text-muted-foreground/30 text-xs">·</span>
                     <button
                       type="button"
                       onClick={clearAll}
-                      className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                     >
                       Clear
                     </button>
@@ -277,7 +277,7 @@ export function NotificationCenter() {
                 <div className="flex flex-col items-center gap-1.5 py-8 text-muted-foreground">
                   <Bell className="h-5 w-5 opacity-30" />
                   <p className="text-[11px] font-medium">All caught up!</p>
-                  <p className="text-[10px] opacity-60">
+                  <p className="text-xs opacity-60">
                     No new notifications
                   </p>
                 </div>
@@ -287,7 +287,7 @@ export function NotificationCenter() {
                     <div key={group.label}>
                       {/* Date group header */}
                       <div className="sticky top-0 bg-card/95 px-3 py-1 backdrop-blur-sm">
-                        <span className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground/50">
+                        <span className="text-[11px] font-semibold text-muted-foreground/50">
                           {group.label}
                         </span>
                       </div>
@@ -308,7 +308,7 @@ export function NotificationCenter() {
 
             {/* Footer */}
             {notifications.length > 20 && (
-              <div className="border-t border-border px-3 py-2 text-center text-[10px] text-muted-foreground">
+              <div className="border-t border-border px-3 py-2 text-center text-xs text-muted-foreground">
                 Showing 20 of {notifications.length} — clear to reset
               </div>
             )}

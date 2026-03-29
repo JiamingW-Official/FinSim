@@ -340,14 +340,14 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
         >
           {/* Question front */}
           <div className="space-y-1">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">
+            <span className="text-xs font-semibold text-primary/70">
               {question.card.category}
             </span>
             <p className="text-sm font-medium leading-relaxed whitespace-pre-line">
               {question.card.front}
             </p>
             {question.card.hint && (
-              <p className="text-[10px] text-muted-foreground italic">
+              <p className="text-xs text-muted-foreground italic">
                 Hint: {question.card.hint}
               </p>
             )}
@@ -381,7 +381,7 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
                   disabled={answerState !== "idle"}
                 >
                   <div className="flex items-start gap-2">
-                    <span className="shrink-0 text-[10px] font-bold text-muted-foreground/50 mt-0.5">
+                    <span className="shrink-0 text-xs font-bold text-muted-foreground/50 mt-0.5">
                       {String.fromCharCode(65 + i)}
                     </span>
                     <span className="flex-1">{opt}</span>

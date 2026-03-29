@@ -352,7 +352,7 @@ function ECAOverviewTab() {
               <InfoCard label="Products" value={`${selected.products.length} types`} />
             </div>
             <div>
-              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Product Range</div>
+              <div className="text-xs font-semibold text-muted-foreground mb-2">Product Range</div>
               <div className="flex flex-wrap gap-2">
                 {selected.products.map((p) => (
                   <span key={p} className="px-2 py-1 rounded-md text-xs font-medium bg-primary/10 text-primary">{p}</span>
@@ -711,7 +711,7 @@ function BuyerCreditFlow() {
         ))}
       </div>
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Key Features</div>
+        <div className="text-xs font-semibold text-muted-foreground mb-2">Key Features</div>
         <ul className="space-y-1">
           {[
             "Exporter receives payment immediately upon shipment/delivery",

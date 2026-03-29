@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
 import { PerformanceMetrics } from "@/components/portfolio/PerformanceMetrics";
 import { TradeJournal } from "@/components/portfolio/TradeJournal";
 import { QuantDashboard } from "@/components/portfolio/QuantDashboard";
@@ -81,14 +80,6 @@ const TradeCalendar = dynamic(
   { ssr: false },
 );
 
-const stagger = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
-} as const;
-const fadeUp = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 25 } },
-};
 
 export default function PortfolioPage() {
   const level = useGameStore((s) => s.level);
@@ -102,70 +93,67 @@ export default function PortfolioPage() {
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <motion.div
+      <div
         className="space-y-4 p-4"
-        variants={stagger}
-        initial="hidden"
-        animate="show"
       >
         {/* Header */}
-        <motion.div variants={fadeUp} className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10">
               <Briefcase className="h-4 w-4 text-blue-400" />
             </div>
             <div>
               <h1 className="text-base font-semibold">Portfolio</h1>
-              <p className="text-[10px] text-muted-foreground">Performance and analytics</p>
+              <p className="text-xs text-muted-foreground">Performance and analytics</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <ExportMenu />
             <div className="flex items-center gap-1.5 rounded-md bg-primary/8 px-2 py-1">
               <Shield className="h-3 w-3 text-primary" />
-              <span className="text-[10px] font-medium text-primary">Lv.{level} {title}</span>
+              <span className="text-xs font-medium text-primary">Lv.{level} {title}</span>
             </div>
             {achievements.length > 0 && (
               <div className="flex items-center gap-1 rounded-md bg-amber-500/8 px-2 py-1">
                 <Trophy className="h-3 w-3 text-amber-400" />
-                <span className="text-[10px] font-medium text-amber-400">{achievements.length}</span>
+                <span className="text-xs font-medium text-amber-400">{achievements.length}</span>
               </div>
             )}
           </div>
-        </motion.div>
+        </div>
 
         {/* Quick Stats Row */}
-        <motion.div variants={fadeUp} className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           <div className="rounded-lg border border-border bg-card/50 p-3">
-            <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground mb-1">
+            <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
               <Wallet className="h-3 w-3" />
               Portfolio Value
             </div>
             <p className="text-base font-semibold tabular-nums">{formatCurrency(portfolioValue)}</p>
           </div>
           <div className="rounded-lg border border-border bg-card/50 p-3">
-            <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground mb-1">
+            <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
               {totalPnL >= 0 ? <TrendingUp className="h-3 w-3 text-emerald-400" /> : <TrendingDown className="h-3 w-3 text-red-400" />}
               Total P&L
             </div>
             <p className={cn("text-base font-semibold tabular-nums", totalPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
               {totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)}
             </p>
-            <p className={cn("text-[10px] font-bold tabular-nums", totalPnLPct >= 0 ? "text-emerald-400/70" : "text-red-400/70")}>
+            <p className={cn("text-xs font-bold tabular-nums", totalPnLPct >= 0 ? "text-emerald-400/70" : "text-red-400/70")}>
               {totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}%
             </p>
           </div>
           <div className="rounded-lg border border-border bg-card/50 p-3">
-            <div className="text-[10px] font-medium text-muted-foreground mb-1">Positions</div>
+            <div className="text-xs font-medium text-muted-foreground mb-1">Positions</div>
             <p className="text-base font-semibold tabular-nums">{positions.length}</p>
-            <p className="text-[10px] text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Cash: {formatCurrency(cash)}
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Tabbed content */}
-        <motion.div variants={fadeUp}>
+        <div>
           <Tabs defaultValue="overview">
             <div className="mb-4 overflow-x-auto">
               <TabsList className="flex h-8 min-w-max w-full gap-0.5 rounded-lg bg-card/60 p-0.5">
@@ -474,8 +462,8 @@ export default function PortfolioPage() {
               </div>
             </TabsContent>
           </Tabs>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -500,7 +488,7 @@ function RecentTradesPreview() {
           <BookOpen className="h-3.5 w-3.5 text-teal-400" />
           Recent Trades
         </div>
-        <span className="text-[10px] text-muted-foreground/60">Last 5 closed</span>
+        <span className="text-xs text-muted-foreground/60">Last 5 closed</span>
       </div>
 
       <div className="space-y-1">
@@ -522,7 +510,7 @@ function RecentTradesPreview() {
               >
                 <span className="font-semibold w-10 shrink-0">{trade.ticker}</span>
                 <span className={cn(
-                  "rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase",
+                  "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
                   trade.side === "sell" ? "bg-green-500/12 text-green-400" : "bg-red-500/12 text-red-400",
                 )}>
                   {trade.side === "sell" ? "long" : "short"}
@@ -539,7 +527,7 @@ function RecentTradesPreview() {
                 {tags.length > 0 && (
                   <div className="flex gap-1 shrink-0">
                     {tags.slice(0, 2).map((tag) => (
-                      <span key={tag} className="rounded-full bg-primary/10 px-1.5 text-[9px] text-primary/70">
+                      <span key={tag} className="rounded-full bg-primary/10 px-1.5 text-[11px] text-primary/70">
                         {tag}
                       </span>
                     ))}
@@ -566,7 +554,7 @@ function RecentTradesPreview() {
                   {tags.length > 0 && (
                     <div className="mt-1.5 flex flex-wrap gap-1">
                       {tags.map((tag) => (
-                        <span key={tag} className="rounded-full bg-primary/10 px-2 py-0.5 text-[9px] text-primary/70">
+                        <span key={tag} className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] text-primary/70">
                           {tag}
                         </span>
                       ))}

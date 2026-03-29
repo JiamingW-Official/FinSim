@@ -331,7 +331,7 @@ function SectorBadge({ sector }: { sector: Sector }) {
   return (
     <span
       className={cn(
-        "inline-block text-[10px] font-medium px-1.5 py-0.5 rounded",
+        "inline-block text-xs font-medium px-1.5 py-0.5 rounded",
         SECTOR_COLORS[sector]
       )}
     >
@@ -405,7 +405,7 @@ function DistributionBar({
           );
         })}
       </svg>
-      <div className="flex justify-between text-[10px] text-white/30 mt-0.5">
+      <div className="flex justify-between text-xs text-white/30 mt-0.5">
         <span>{min.toFixed(1)}</span>
         <span>{max.toFixed(1)}</span>
       </div>

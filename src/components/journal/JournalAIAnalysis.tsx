@@ -299,7 +299,7 @@ export function EmotionPicker({
 }) {
   return (
     <div>
-      <label className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+      <label className="text-xs font-medium text-muted-foreground">
         How did you feel?
       </label>
       <div className="mt-1.5 flex flex-wrap gap-1.5">
@@ -314,7 +314,7 @@ export function EmotionPicker({
                 onSelect(tradeId, e);
               }}
               className={cn(
-                "flex items-center gap-1 rounded border px-2 py-0.5 text-[10px] font-medium transition-colors",
+                "flex items-center gap-1 rounded border px-2 py-0.5 text-xs font-medium transition-colors",
                 active
                   ? cfg.bgColor + " " + cfg.color
                   : "border-border text-muted-foreground hover:text-foreground",
@@ -354,7 +354,7 @@ export function NarrativeButton({
 
   return (
     <div>
-      <label className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+      <label className="text-xs font-medium text-muted-foreground">
         AI Narrative
       </label>
       <div className="mt-1.5">
@@ -379,7 +379,7 @@ export function NarrativeButton({
         {narrative && (
           <button
             onClick={handleGenerate}
-            className="mt-1.5 flex items-center gap-1 text-[10px] text-muted-foreground/60 transition-colors hover:text-muted-foreground"
+            className="mt-1.5 flex items-center gap-1 text-xs text-muted-foreground/60 transition-colors hover:text-muted-foreground"
           >
             <Sparkles className="h-2.5 w-2.5" /> Regenerate
           </button>
@@ -461,7 +461,7 @@ function EmotionWinRateBar({
         const wr = total > 0 ? (wins / total) * 100 : 0;
         return (
           <div key={e} className="flex items-center gap-2">
-            <span className="w-20 shrink-0 text-[10px] font-medium text-muted-foreground">
+            <span className="w-20 shrink-0 text-xs font-medium text-muted-foreground">
               {cfg.emoji} {cfg.label}
             </span>
             <div className="flex h-4 flex-1 overflow-hidden rounded-sm bg-muted/20">
@@ -470,10 +470,10 @@ function EmotionWinRateBar({
                 style={{ width: `${wr}%` }}
               />
             </div>
-            <span className={cn("w-10 shrink-0 text-right text-[10px] tabular-nums font-medium", wr >= 50 ? "text-green-400" : "text-red-400")}>
+            <span className={cn("w-10 shrink-0 text-right text-xs tabular-nums font-medium", wr >= 50 ? "text-green-400" : "text-red-400")}>
               {wr.toFixed(0)}%
             </span>
-            <span className="w-12 shrink-0 text-right text-[9px] text-muted-foreground/60">
+            <span className="w-12 shrink-0 text-right text-[11px] text-muted-foreground/60">
               {wins}/{total}
             </span>
           </div>
@@ -641,11 +641,11 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
             <span className="text-lg font-bold tabular-nums text-orange-400">
               {streakData.currentStreak}
             </span>
-            <span className="text-[10px] text-muted-foreground">days</span>
+            <span className="text-xs text-muted-foreground">days</span>
           </div>
         </div>
         <StreakHeatmap history={streakData.history} />
-        <p className="mt-2 text-[9px] text-muted-foreground/50">
+        <p className="mt-2 text-[11px] text-muted-foreground/50">
           Last 30 days — activity recorded when you visit the journal
         </p>
       </div>
@@ -754,7 +754,7 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
           )}
 
           {rows.length < 5 && (
-            <p className="text-[10px] text-muted-foreground/60">
+            <p className="text-xs text-muted-foreground/60">
               Add more trades and tags for richer insights.
             </p>
           )}
@@ -776,7 +776,7 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
           <div className="space-y-4">
             {/* Monthly distribution donut */}
             <div>
-              <p className="mb-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              <p className="mb-2 text-xs font-medium text-muted-foreground">
                 This Month&apos;s Emotion Distribution
               </p>
               <div className="flex items-center gap-4">
@@ -793,8 +793,8 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
                     return (
                       <div key={e} className="flex items-center gap-1.5">
                         <span className="text-xs">{cfg.emoji}</span>
-                        <span className="text-[10px] text-muted-foreground">{cfg.label}</span>
-                        <span className={cn("ml-1 text-[10px] font-semibold tabular-nums", cfg.color)}>
+                        <span className="text-xs text-muted-foreground">{cfg.label}</span>
+                        <span className={cn("ml-1 text-xs font-semibold tabular-nums", cfg.color)}>
                           {pct}%
                         </span>
                       </div>
@@ -806,7 +806,7 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
 
             {/* Win rate by emotion */}
             <div>
-              <p className="mb-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              <p className="mb-2 text-xs font-medium text-muted-foreground">
                 Win Rate by Emotion
               </p>
               {analysis && (
@@ -839,7 +839,7 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
             Export PDF (Print)
           </button>
         </div>
-        <p className="mt-2 text-[9px] text-muted-foreground/50">
+        <p className="mt-2 text-[11px] text-muted-foreground/50">
           CSV includes: date, ticker, direction, entry, exit, P&L, tags, emotions, notes
         </p>
       </div>
@@ -880,7 +880,7 @@ function DebriefCard({
         <div className={cn("mt-0.5 shrink-0", iconColor)}>{icon}</div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 mb-1">
-            <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+            <span className="text-xs font-medium text-muted-foreground">
               {label}
             </span>
             {sentiment === "positive" ? (

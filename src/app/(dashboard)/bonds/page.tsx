@@ -598,14 +598,14 @@ export default function BondsPage() {
         </div>
         <div className="ml-auto flex items-center gap-2">
           <span className={cn(
-            "rounded-full px-2.5 py-1 text-[10px] font-semibold",
+            "rounded-full px-2.5 py-1 text-xs font-semibold",
             isInverted ? "bg-red-500/15 text-red-400" :
             isFlat ? "bg-amber-500/15 text-amber-400" :
             "bg-green-500/15 text-green-400",
           )}>
             {curveRegime} Yield Curve
           </span>
-          <span className="text-[10px] text-muted-foreground/50">
+          <span className="text-xs text-muted-foreground/50">
             10Y-2Y: {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(0)} bps
           </span>
         </div>
@@ -642,12 +642,12 @@ export default function BondsPage() {
             <div className="mb-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
               <div className="col-span-2 rounded-lg border border-border/50 bg-card p-4">
                 <div className="mb-3 flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  <span className="text-xs font-semibold text-muted-foreground">
                     US Treasury Yield Curve
                   </span>
                   <div className="flex items-center gap-2">
                     {isInverted && (
-                      <span className="flex items-center gap-1 text-[10px] text-red-400">
+                      <span className="flex items-center gap-1 text-xs text-red-400">
                         <AlertTriangle className="h-3 w-3" />
                         Inverted — recession signal
                       </span>
@@ -663,14 +663,14 @@ export default function BondsPage() {
                   isFlat ? "border-amber-500/30 bg-amber-500/5" :
                   "border-green-500/30 bg-green-500/5",
                 )}>
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+                  <div className="text-xs font-semibold text-muted-foreground mb-1">
                     10Y – 2Y Spread
                   </div>
                   <div className={cn("text-2xl font-bold tabular-nums",
                     isInverted ? "text-red-400" : isFlat ? "text-amber-400" : "text-green-400")}>
                     {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(1)} bps
                   </div>
-                  <div className="mt-1.5 text-[10px] text-muted-foreground">
+                  <div className="mt-1.5 text-xs text-muted-foreground">
                     {isInverted ? "Historically precedes recession by 12-18 months." :
                      isFlat ? "Transition — watch for further inversion." :
                      "Healthy growth expectation embedded."}
@@ -694,7 +694,7 @@ export default function BondsPage() {
                 "High Yield Bonds";
               return (
                 <div key={type} className="mb-5">
-                  <h3 className={cn("mb-3 text-xs font-semibold uppercase tracking-wider",
+                  <h3 className={cn("mb-3 text-xs font-semibold",
                     type === "treasury" ? "text-blue-400" :
                     type === "corporate-ig" ? "text-purple-400" :
                     "text-red-400"
@@ -716,14 +716,14 @@ export default function BondsPage() {
                         >
                           <div className="mb-2 flex items-start justify-between">
                             <div>
-                              <div className="text-[10px] font-semibold text-muted-foreground">{b.ticker}</div>
+                              <div className="text-xs font-semibold text-muted-foreground">{b.ticker}</div>
                               <div className="mt-0.5 text-xs font-semibold text-foreground leading-tight">{b.name}</div>
                             </div>
-                            <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-bold", rc)}>
+                            <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-bold", rc)}>
                               {b.creditRating}
                             </span>
                           </div>
-                          <div className="grid grid-cols-2 gap-1.5 text-[10px]">
+                          <div className="grid grid-cols-2 gap-1.5 text-xs">
                             <div className="flex flex-col">
                               <span className="text-muted-foreground">Coupon</span>
                               <span className="font-semibold text-foreground">{b.coupon.toFixed(2)}%</span>
@@ -761,7 +761,7 @@ export default function BondsPage() {
               );
             })}
 
-            <p className="mt-1 text-[10px] text-muted-foreground/40">
+            <p className="mt-1 text-xs text-muted-foreground/40">
               Prices per $1,000 face value. Yield change (bps): yield rise = price falls. Synthetic data for educational purposes.
             </p>
           </motion.div>
@@ -832,11 +832,11 @@ export default function BondsPage() {
                     ].map(({ label, value, highlight, sub }) => (
                       <div key={label} className={cn("rounded-md border p-3",
                         highlight ? "border-primary/30 bg-primary/5" : "border-border/40 bg-muted/20")}>
-                        <div className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground">{label}</div>
+                        <div className="text-[11px] font-medium text-muted-foreground">{label}</div>
                         <div className={cn("mt-1 text-sm font-bold tabular-nums", highlight ? "text-primary" : "text-foreground")}>
                           {value}
                         </div>
-                        {sub && <div className="mt-0.5 text-[9px] text-muted-foreground/60">{sub}</div>}
+                        {sub && <div className="mt-0.5 text-[11px] text-muted-foreground/60">{sub}</div>}
                       </div>
                     ))}
                   </div>
@@ -844,7 +844,7 @@ export default function BondsPage() {
 
                 {/* Duration visual explainer */}
                 <div className="rounded-lg border border-border/50 bg-card p-4">
-                  <h4 className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                  <h4 className="mb-3 text-xs font-semibold text-muted-foreground">
                     Duration Impact — Rate Scenarios
                   </h4>
                   <div className="space-y-2">
@@ -857,14 +857,14 @@ export default function BondsPage() {
                       const barW = Math.abs(chg) * 3;
                       return (
                         <div key={delta} className="flex items-center gap-3">
-                          <div className="w-28 text-[10px] text-muted-foreground">{label}</div>
+                          <div className="w-28 text-xs text-muted-foreground">{label}</div>
                           <div className="flex flex-1 items-center gap-1.5">
                             <div className="h-4 rounded-sm" style={{
                               width: `${Math.min(barW, 100)}%`,
                               background: delta < 0 ? "rgba(34,197,94,0.4)" : delta > 0 ? "rgba(239,68,68,0.4)" : "rgba(99,102,241,0.4)",
                             }} />
                           </div>
-                          <div className={cn("w-24 text-right text-[10px] font-semibold tabular-nums",
+                          <div className={cn("w-24 text-right text-xs font-semibold tabular-nums",
                             chg > 0 ? "text-green-400" : chg < 0 ? "text-red-400" : "text-primary")}>
                             ${price.toFixed(2)} ({chg >= 0 ? "+" : ""}{chg.toFixed(2)}%)
                           </div>
@@ -872,7 +872,7 @@ export default function BondsPage() {
                       );
                     })}
                   </div>
-                  <p className="mt-3 text-[9px] text-muted-foreground/50">
+                  <p className="mt-3 text-[11px] text-muted-foreground/50">
                     Price change ≈ −ModDuration × ΔYield × Price. Convexity provides a second-order correction.
                   </p>
                 </div>
@@ -882,10 +882,10 @@ export default function BondsPage() {
             {/* Price-yield chart */}
             <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
               <div className="mb-3 flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                <span className="text-xs font-semibold text-muted-foreground">
                   Price–Yield Relationship (Convex Curve, 1%–15%)
                 </span>
-                <span className="text-[10px] text-muted-foreground/60">
+                <span className="text-xs text-muted-foreground/60">
                   Amber dot = current yield | Convexity = bond outperforms linear estimate
                 </span>
               </div>
@@ -901,10 +901,10 @@ export default function BondsPage() {
             <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
               <div className="col-span-2 rounded-lg border border-border/50 bg-card p-5">
                 <div className="mb-3 flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  <span className="text-xs font-semibold text-muted-foreground">
                     Yield Curve — Historical Comparison
                   </span>
-                  <div className="flex items-center gap-3 text-[9px] text-muted-foreground/60">
+                  <div className="flex items-center gap-3 text-[11px] text-muted-foreground/60">
                     <span className="flex items-center gap-1">
                       <span className="inline-block h-0.5 w-5 bg-green-400" /> Current
                     </span>
@@ -925,14 +925,14 @@ export default function BondsPage() {
                   isInverted ? "border-red-500/30 bg-red-500/5" :
                   isFlat ? "border-amber-500/30 bg-amber-500/5" :
                   "border-green-500/30 bg-green-500/5")}>
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+                  <div className="text-xs font-semibold text-muted-foreground mb-1">
                     Current Regime
                   </div>
                   <div className={cn("text-xl font-bold",
                     isInverted ? "text-red-400" : isFlat ? "text-amber-400" : "text-green-400")}>
                     {curveRegime}
                   </div>
-                  <div className="mt-2 text-[10px] text-muted-foreground leading-relaxed">
+                  <div className="mt-2 text-xs text-muted-foreground leading-relaxed">
                     {isInverted
                       ? "Short-term rates exceed long-term rates. Historically predicts recession within 12-18 months. Fed policy likely too tight."
                       : isFlat
@@ -943,7 +943,7 @@ export default function BondsPage() {
 
                 {/* Curve shape guide */}
                 <div className="rounded-lg border border-border/50 bg-card p-4">
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-3">Shape Guide</div>
+                  <div className="text-xs font-semibold text-muted-foreground mb-3">Shape Guide</div>
                   <div className="space-y-2.5">
                     {[
                       { shape: "Normal", color: "text-green-400", bg: "bg-green-500", desc: "Long > Short — growth & inflation expected" },
@@ -954,8 +954,8 @@ export default function BondsPage() {
                       <div key={s.shape} className="flex items-start gap-2">
                         <div className={cn("mt-1 h-1.5 w-1.5 shrink-0 rounded-full", s.bg)} />
                         <div>
-                          <span className={cn("text-[10px] font-semibold", s.color)}>{s.shape}</span>
-                          <span className="ml-1.5 text-[9px] text-muted-foreground">{s.desc}</span>
+                          <span className={cn("text-xs font-semibold", s.color)}>{s.shape}</span>
+                          <span className="ml-1.5 text-[11px] text-muted-foreground">{s.desc}</span>
                         </div>
                       </div>
                     ))}
@@ -969,7 +969,7 @@ export default function BondsPage() {
               <div className="rounded-lg border border-border/50 bg-card p-5">
                 <h3 className="mb-4 text-sm font-semibold">Spread Analysis (bps)</h3>
                 <SpreadBarSVG />
-                <div className="mt-4 grid grid-cols-2 gap-2 text-[10px]">
+                <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
                   {[
                     { label: "10Y–2Y Spread", value: `${spreads.spread10y2y >= 0 ? "+" : ""}${spreads.spread10y2y.toFixed(1)} bps`, color: spreads.spread10y2y < 0 ? "text-red-400" : "text-green-400" },
                     { label: "IG Credit Spread", value: `+${spreads.igCreditSpread.toFixed(1)} bps`, color: "text-purple-400" },
@@ -1020,8 +1020,8 @@ export default function BondsPage() {
                       <div key={item.title} className="flex items-start gap-2.5">
                         <Icon className={cn("h-3.5 w-3.5 mt-0.5 shrink-0", item.color)} />
                         <div>
-                          <div className={cn("text-[10px] font-semibold", item.color)}>{item.title}</div>
-                          <div className="mt-0.5 text-[9px] text-muted-foreground leading-relaxed">{item.desc}</div>
+                          <div className={cn("text-xs font-semibold", item.color)}>{item.title}</div>
+                          <div className="mt-0.5 text-[11px] text-muted-foreground leading-relaxed">{item.desc}</div>
                         </div>
                       </div>
                     );
@@ -1042,7 +1042,7 @@ export default function BondsPage() {
 
                 {/* Target duration slider */}
                 <div className="mb-4 rounded-md border border-border/40 bg-muted/20 p-3">
-                  <div className="mb-2 flex items-center justify-between text-[10px]">
+                  <div className="mb-2 flex items-center justify-between text-xs">
                     <span className="text-muted-foreground">Target Portfolio Duration</span>
                     <span className="font-bold text-primary">{targetDuration.toFixed(1)} yrs</span>
                   </div>
@@ -1051,7 +1051,7 @@ export default function BondsPage() {
                     onChange={e => setTargetDuration(Number(e.target.value))}
                     className="w-full accent-primary"
                   />
-                  <div className="mt-1 flex justify-between text-[9px] text-muted-foreground/50">
+                  <div className="mt-1 flex justify-between text-[11px] text-muted-foreground/50">
                     <span>1yr (short)</span><span>8yr (mid)</span><span>15yr (long)</span>
                   </div>
                 </div>
@@ -1068,8 +1068,8 @@ export default function BondsPage() {
                         <div className="flex items-center gap-2">
                           <span className={cn("rounded px-1 py-0.5 text-[8px] font-bold", tl.cls)}>{tl.label}</span>
                           <div>
-                            <div className="text-[10px] font-semibold text-foreground">{b.ticker}</div>
-                            <div className="text-[9px] text-muted-foreground">{b.maturityYears}yr · {b.ytm.toFixed(2)}% YTM</div>
+                            <div className="text-xs font-semibold text-foreground">{b.ticker}</div>
+                            <div className="text-[11px] text-muted-foreground">{b.maturityYears}yr · {b.ytm.toFixed(2)}% YTM</div>
                           </div>
                         </div>
                         <button
@@ -1101,7 +1101,7 @@ export default function BondsPage() {
                       { label: "Annual Coupon / $100k", value: `$${portfolioMetrics.totalCouponPer100k.toLocaleString("en-US", { maximumFractionDigits: 0 })}`, color: "text-foreground" },
                     ].map(m => (
                       <div key={m.label} className="rounded-lg border border-border/50 bg-card px-4 py-3">
-                        <div className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">{m.label}</div>
+                        <div className="text-[11px] font-semibold text-muted-foreground">{m.label}</div>
                         <div className={cn("mt-1 text-base font-bold tabular-nums", m.color)}>{m.value}</div>
                       </div>
                     ))}
@@ -1122,7 +1122,7 @@ export default function BondsPage() {
                         <thead>
                           <tr className="border-b border-border/50 bg-muted/30">
                             {["Bond", "Weight %", "Dur Contrib", "Yield Contrib", "Remove"].map(h => (
-                              <th key={h} className="px-3 py-2.5 text-left text-[9px] font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                              <th key={h} className="px-3 py-2.5 text-left text-[11px] font-semibold text-muted-foreground whitespace-nowrap">
                                 {h}
                               </th>
                             ))}
@@ -1140,7 +1140,7 @@ export default function BondsPage() {
                               <tr key={h.bondId} className="border-b border-border/20 hover:bg-accent/20">
                                 <td className="px-3 py-2.5">
                                   <div className="font-semibold text-foreground">{bond.ticker}</div>
-                                  <div className="text-[9px] text-muted-foreground">{bond.name}</div>
+                                  <div className="text-[11px] text-muted-foreground">{bond.name}</div>
                                 </td>
                                 <td className="px-3 py-2.5">
                                   <input
@@ -1169,11 +1169,11 @@ export default function BondsPage() {
                 {/* Maturity ladder SVG */}
                 {portfolio.length > 0 && (
                   <div className="rounded-lg border border-border/50 bg-card p-5">
-                    <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    <h4 className="mb-3 text-xs font-semibold text-muted-foreground">
                       Bond Maturity Ladder
                     </h4>
                     <MaturityLadderSVG />
-                    <div className="mt-2 flex items-center gap-4 text-[9px] text-muted-foreground/60">
+                    <div className="mt-2 flex items-center gap-4 text-[11px] text-muted-foreground/60">
                       <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-blue-400" /> Treasury</span>
                       <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-violet-400" /> IG Corp</span>
                       <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-sm bg-red-400" /> High Yield</span>
@@ -1198,7 +1198,7 @@ export default function BondsPage() {
                         <div className="text-xs font-semibold text-foreground">
                           Duration Gap: {(portfolioMetrics.wAvgDuration - targetDuration).toFixed(2)} yrs
                         </div>
-                        <div className="mt-0.5 text-[10px] text-muted-foreground">
+                        <div className="mt-0.5 text-xs text-muted-foreground">
                           Portfolio duration {portfolioMetrics.wAvgDuration.toFixed(2)}yr vs target {targetDuration.toFixed(1)}yr.
                           {Math.abs(portfolioMetrics.wAvgDuration - targetDuration) < 0.5
                             ? " On target."
@@ -1224,7 +1224,7 @@ export default function BondsPage() {
                 <AlertTriangle className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-xs font-semibold text-amber-400">Fallen Angel Risk Detected</div>
-                  <div className="mt-0.5 text-[10px] text-muted-foreground">
+                  <div className="mt-0.5 text-xs text-muted-foreground">
                     One or more investment-grade bonds have deteriorating credit metrics and may be at risk of downgrade to high yield.
                     "Fallen angels" can trigger forced selling by index funds, causing price dislocation.
                   </div>
@@ -1261,18 +1261,18 @@ export default function BondsPage() {
                             <span className={cn("rounded px-1 py-0.5 text-[8px] font-bold", rc)}>{bond.creditRating}</span>
                           </div>
                           <div className="mt-0.5 text-xs font-semibold text-foreground leading-tight">{bond.name}</div>
-                          <div className="text-[9px] text-muted-foreground">{bond.sector}</div>
+                          <div className="text-[11px] text-muted-foreground">{bond.sector}</div>
                         </div>
                       </div>
                       {ca.atRisk && (
-                        <span className="rounded-full bg-red-500/15 px-2 py-0.5 text-[9px] font-semibold text-red-400">
+                        <span className="rounded-full bg-red-500/15 px-2 py-0.5 text-[11px] font-semibold text-red-400">
                           AT RISK
                         </span>
                       )}
                     </div>
 
                     {/* Financials */}
-                    <div className="grid grid-cols-2 gap-1.5 text-[9px]">
+                    <div className="grid grid-cols-2 gap-1.5 text-[11px]">
                       {[
                         { label: "Revenue", value: `$${ca.revenue}B` },
                         { label: "EBITDA", value: `$${ca.ebitda}B` },
@@ -1299,8 +1299,8 @@ export default function BondsPage() {
                     {/* Altman Z-score */}
                     <div className="mt-3 rounded border border-border/30 bg-muted/20 px-3 py-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[9px] text-muted-foreground">Altman Z-Score</span>
-                        <span className={cn("text-[10px] font-bold tabular-nums", zColor)}>
+                        <span className="text-[11px] text-muted-foreground">Altman Z-Score</span>
+                        <span className={cn("text-xs font-bold tabular-nums", zColor)}>
                           {ca.zScore.toFixed(2)} — {zLabel}
                         </span>
                       </div>
@@ -1317,7 +1317,7 @@ export default function BondsPage() {
 
                     {/* Credit score bar */}
                     <div className="mt-2">
-                      <div className="mb-1 flex justify-between text-[9px]">
+                      <div className="mb-1 flex justify-between text-[11px]">
                         <span className="text-muted-foreground">Credit Score</span>
                         <span className={cn("font-bold", ca.score >= 70 ? "text-green-400" : ca.score >= 50 ? "text-amber-400" : "text-red-400")}>
                           {ca.score}/100
@@ -1366,12 +1366,12 @@ export default function BondsPage() {
                   },
                 ].map(g => (
                   <div key={g.metric}>
-                    <div className="mb-2 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{g.metric}</div>
+                    <div className="mb-2 text-xs font-semibold text-muted-foreground">{g.metric}</div>
                     <div className="space-y-1.5">
                       {g.thresholds.map(t => (
                         <div key={t.label} className="flex items-start gap-2">
-                          <span className={cn("mt-0.5 text-[10px] font-bold w-14 shrink-0 tabular-nums", t.color)}>{t.label}</span>
-                          <span className="text-[9px] text-muted-foreground">{t.desc}</span>
+                          <span className={cn("mt-0.5 text-xs font-bold w-14 shrink-0 tabular-nums", t.color)}>{t.label}</span>
+                          <span className="text-[11px] text-muted-foreground">{t.desc}</span>
                         </div>
                       ))}
                     </div>

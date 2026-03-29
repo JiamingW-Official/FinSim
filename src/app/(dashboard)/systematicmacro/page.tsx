@@ -549,7 +549,7 @@ export default function SystematicMacroPage() {
                     <CardContent className="pt-4 pb-3 px-4">
                       <div className="flex items-center justify-between mb-2">
                         <Icon className={`w-4 h-4 ${signalText(card.dir)}`} />
-                        <Badge className={`text-[10px] px-1.5 py-0 ${card.dir === "buy" ? "bg-green-500/20 text-green-400 border-green-500/40" : card.dir === "sell" ? "bg-red-500/20 text-red-400 border-red-500/40" : "bg-muted text-muted-foreground border-border"}`} variant="outline">
+                        <Badge className={`text-xs px-1.5 py-0 ${card.dir === "buy" ? "bg-green-500/20 text-green-400 border-green-500/40" : card.dir === "sell" ? "bg-red-500/20 text-red-400 border-red-500/40" : "bg-muted text-muted-foreground border-border"}`} variant="outline">
                           {signalLabel(card.dir)}
                         </Badge>
                       </div>
@@ -557,7 +557,7 @@ export default function SystematicMacroPage() {
                       <p className={`text-lg font-bold mt-0.5 ${card.dir === "buy" ? "text-green-400" : card.dir === "sell" ? "text-red-400" : "text-muted-foreground"}`}>
                         {card.pct}
                       </p>
-                      <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{card.desc}</p>
+                      <p className="text-xs text-muted-foreground mt-1 leading-tight">{card.desc}</p>
                     </CardContent>
                   </Card>
                 );
@@ -680,7 +680,7 @@ export default function SystematicMacroPage() {
               {RISK_METRICS.map((m, i) => (
                 <Card key={i} className="bg-card border-border">
                   <CardContent className="pt-4 pb-3 px-4">
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-wide">{m.label}</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide">{m.label}</p>
                     <p
                       className={`text-xl font-bold mt-1 ${
                         m.positive === true ? "text-green-400" : m.positive === false ? "text-red-400" : "text-foreground"
@@ -688,7 +688,7 @@ export default function SystematicMacroPage() {
                     >
                       {m.value}
                     </p>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">{m.note}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{m.note}</p>
                   </CardContent>
                 </Card>
               ))}

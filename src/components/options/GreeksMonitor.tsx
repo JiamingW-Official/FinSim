@@ -35,7 +35,7 @@ function SectionTitle({ title, subtitle }: { title: string; subtitle?: string })
         {title}
       </span>
       {subtitle && (
-        <span className="text-[10px] text-muted-foreground">{subtitle}</span>
+        <span className="text-xs text-muted-foreground">{subtitle}</span>
       )}
     </div>
   );
@@ -146,11 +146,11 @@ function PortfolioSummary({ positions, spotPrice }: PortfolioSummaryProps) {
           return (
             <div key={row.label} className="space-y-0.5">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-semibold text-foreground">{row.label}</span>
+                <span className="text-xs font-semibold text-foreground">{row.label}</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-[9px] text-muted-foreground">{row.desc}</span>
+                  <span className="text-[11px] text-muted-foreground">{row.desc}</span>
                   <span
-                    className="font-mono text-[10px] font-bold"
+                    className="font-mono text-xs font-bold"
                     style={{ color: row.color }}
                   >
                     {displayVal}
@@ -185,7 +185,7 @@ function PortfolioSummary({ positions, spotPrice }: PortfolioSummaryProps) {
       {/* Dollar Greeks & P&L attribution */}
       <div className="mt-4 grid grid-cols-3 gap-2">
         <div className="rounded-md bg-muted/20 p-2 text-center">
-          <div className="text-[9px] text-muted-foreground">Δ × $1 move</div>
+          <div className="text-[11px] text-muted-foreground">Δ × $1 move</div>
           <div
             className="font-mono text-[11px] font-bold"
             style={{ color: totals.delta >= 0 ? "#10b981" : "#ef4444" }}
@@ -194,7 +194,7 @@ function PortfolioSummary({ positions, spotPrice }: PortfolioSummaryProps) {
           </div>
         </div>
         <div className="rounded-md bg-muted/20 p-2 text-center">
-          <div className="text-[9px] text-muted-foreground">Vega × 1% IV</div>
+          <div className="text-[11px] text-muted-foreground">Vega × 1% IV</div>
           <div
             className="font-mono text-[11px] font-bold"
             style={{ color: dollarVega >= 0 ? "#a78bfa" : "#ef4444" }}
@@ -203,7 +203,7 @@ function PortfolioSummary({ positions, spotPrice }: PortfolioSummaryProps) {
           </div>
         </div>
         <div className="rounded-md bg-muted/20 p-2 text-center">
-          <div className="text-[9px] text-muted-foreground">Theta / day</div>
+          <div className="text-[11px] text-muted-foreground">Theta / day</div>
           <div
             className="font-mono text-[11px] font-bold"
             style={{ color: dollarTheta >= 0 ? "#10b981" : "#f97316" }}
@@ -214,10 +214,10 @@ function PortfolioSummary({ positions, spotPrice }: PortfolioSummaryProps) {
       </div>
 
       <div className="mt-2 rounded-md border border-border/30 bg-muted/10 p-2">
-        <div className="mb-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">
+        <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
           P&L Attribution — Spot +1% ({fmtSign(dS, 2)})
         </div>
-        <div className="flex items-center gap-3 text-[10px]">
+        <div className="flex items-center gap-3 text-xs">
           <span>
             <span className="text-muted-foreground">Delta P&L: </span>
             <span
@@ -337,13 +337,13 @@ function GreeksVsStrikeChart({ spotPrice, iv, dte }: GreeksVsStrikeProps) {
         title="Greeks vs Strike"
         subtitle={`${dte}d to expiry · ATM IV ${(iv * 100).toFixed(0)}%`}
       />
-      <div className="mb-2 flex items-center gap-4 text-[10px]">
+      <div className="mb-2 flex items-center gap-4 text-xs">
         <span className="flex items-center gap-1">
-          <span className="inline-block h-0.5 w-4 bg-blue-400" />
+          <span className="inline-block h-0.5 w-4 bg-orange-400" />
           <span className="text-muted-foreground">Delta (left axis)</span>
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block h-0.5 w-4 bg-purple-400" />
+          <span className="inline-block h-0.5 w-4 bg-orange-500" />
           <span className="text-muted-foreground">Gamma (right axis)</span>
         </span>
         <span className="flex items-center gap-1">
@@ -738,7 +738,7 @@ function IVSensTable({ positions }: IVSensTableProps) {
         subtitle={`Net Vega: ${fmtSign(totalVega, 1)}`}
       />
       <div className="overflow-x-auto">
-        <table className="w-full text-[10px]">
+        <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border/30">
               <th className="py-1 text-left font-semibold text-muted-foreground">IV Change</th>
@@ -754,7 +754,7 @@ function IVSensTable({ positions }: IVSensTableProps) {
                 <tr key={pp} className="border-b border-border/20">
                   <td className="py-1 font-mono">
                     <span
-                      className="rounded px-1 text-[9px] font-semibold"
+                      className="rounded px-1 text-[11px] font-semibold"
                       style={{
                         backgroundColor: pp < 0 ? "rgba(239,68,68,0.1)" : "rgba(16,185,129,0.1)",
                         color: pp < 0 ? "#ef4444" : "#10b981",
@@ -792,7 +792,7 @@ function IVSensTable({ positions }: IVSensTableProps) {
       </div>
 
       {vegaNeutralShift !== null && Math.abs(vegaNeutralShift) < 30 && (
-        <div className="mt-2 rounded-md bg-muted/10 px-2 py-1.5 text-[10px]">
+        <div className="mt-2 rounded-md bg-muted/10 px-2 py-1.5 text-xs">
           <span className="text-muted-foreground">Vega neutral point: </span>
           <span className="font-mono font-semibold text-amber-400">
             IV {vegaNeutralShift >= 0 ? "+" : ""}
@@ -849,15 +849,15 @@ function DeltaHedgingStatus({ positions, spotPrice }: DeltaHedgingProps) {
       <div className="grid grid-cols-2 gap-3">
         {/* Net Delta gauge */}
         <div className="rounded-md bg-muted/20 p-3">
-          <div className="mb-1 text-[9px] text-muted-foreground">Net Portfolio Delta</div>
+          <div className="mb-1 text-[11px] text-muted-foreground">Net Portfolio Delta</div>
           <div
-            className="font-mono text-2xl font-black leading-none"
+            className="font-mono text-2xl font-bold leading-none"
             style={{ color: isDeltaNeutral ? "#10b981" : isLongBias ? "#60a5fa" : "#f87171" }}
           >
             {fmtSign(netDelta, 2)}
           </div>
           <div
-            className="mt-1 text-[9px] font-semibold"
+            className="mt-1 text-[11px] font-semibold"
             style={{ color: isDeltaNeutral ? "#10b981" : "#64748b" }}
           >
             {isDeltaNeutral ? "Delta Neutral" : isLongBias ? "Long Bias" : "Short Bias"}
@@ -867,7 +867,7 @@ function DeltaHedgingStatus({ positions, spotPrice }: DeltaHedgingProps) {
         {/* Hedge details */}
         <div className="space-y-2">
           <div className="rounded-md bg-muted/20 p-2">
-            <div className="text-[9px] text-muted-foreground">Shares to Hedge</div>
+            <div className="text-[11px] text-muted-foreground">Shares to Hedge</div>
             <div
               className="font-mono text-[13px] font-bold"
               style={{ color: sharesNeeded >= 0 ? "#10b981" : "#f87171" }}
@@ -877,7 +877,7 @@ function DeltaHedgingStatus({ positions, spotPrice }: DeltaHedgingProps) {
             </div>
           </div>
           <div className="rounded-md bg-muted/20 p-2">
-            <div className="text-[9px] text-muted-foreground">Hedge Cost (notional)</div>
+            <div className="text-[11px] text-muted-foreground">Hedge Cost (notional)</div>
             <div className="font-mono text-[11px] font-bold text-foreground">
               ${hedgeCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}
             </div>
@@ -887,10 +887,10 @@ function DeltaHedgingStatus({ positions, spotPrice }: DeltaHedgingProps) {
 
       {/* P&L tracking */}
       <div className="mt-3 rounded-md border border-border/30 bg-muted/10 p-2">
-        <div className="mb-1.5 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">
+        <div className="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
           Hedged Portfolio P&L — Spot +1%
         </div>
-        <div className="grid grid-cols-3 gap-2 text-[10px]">
+        <div className="grid grid-cols-3 gap-2 text-xs">
           <div>
             <div className="text-muted-foreground">Options</div>
             <div
@@ -923,7 +923,7 @@ function DeltaHedgingStatus({ positions, spotPrice }: DeltaHedgingProps) {
 
       {/* Visual delta bar */}
       <div className="mt-3">
-        <div className="mb-1 flex items-center justify-between text-[9px] text-muted-foreground">
+        <div className="mb-1 flex items-center justify-between text-[11px] text-muted-foreground">
           <span>Short Δ −2</span>
           <span>Neutral</span>
           <span>Long Δ +2</span>

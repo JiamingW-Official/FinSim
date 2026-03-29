@@ -1151,18 +1151,18 @@ export default function CurrencyMarketsPage() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Attack Mechanics</div>
+                      <div className="text-slate-400 text-xs font-semibold mb-2">Attack Mechanics</div>
                       <p className="text-slate-300 text-sm leading-relaxed">{selectedCrisisData.mechanism}</p>
                     </div>
                     <div>
-                      <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Outcome</div>
+                      <div className="text-slate-400 text-xs font-semibold mb-2">Outcome</div>
                       <p className="text-slate-300 text-sm leading-relaxed">{selectedCrisisData.outcome}</p>
                     </div>
                   </div>
 
                   {/* Speculative pressure indicators */}
                   <div>
-                    <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">Speculative Pressure Indicators</div>
+                    <div className="text-slate-400 text-xs font-semibold mb-2">Speculative Pressure Indicators</div>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       {[
                         { label: "Reserve Depletion", value: selectedCrisis === 0 ? 72 : selectedCrisis === 1 ? 85 : selectedCrisis === 2 ? 91 : selectedCrisis === 3 ? 88 : 20, unit: "%" },
@@ -1193,7 +1193,7 @@ export default function CurrencyMarketsPage() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                  <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider">First-Generation Model (Krugman 1979)</div>
+                  <div className="text-slate-400 text-xs font-semibold">First-Generation Model (Krugman 1979)</div>
                   <p className="text-slate-400 text-xs leading-relaxed">
                     Fiscal deficits monetized by central banks create inflation, depleting foreign exchange reserves. When reserves approach zero, a speculative attack forces the abandonment of the peg. The attack is rational — speculators anticipate the inevitable. <strong className="text-white">Fundamentals-driven.</strong>
                   </p>
@@ -1208,7 +1208,7 @@ export default function CurrencyMarketsPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Second-Generation Model (Obstfeld 1994)</div>
+                  <div className="text-slate-400 text-xs font-semibold">Second-Generation Model (Obstfeld 1994)</div>
                   <p className="text-slate-400 text-xs leading-relaxed">
                     Multiple equilibria: a peg can be sustainable if everyone believes it will hold, but self-fulfilling attacks can force abandonment even with strong fundamentals. The cost of defending the peg depends on market expectations — creating a coordination game. <strong className="text-white">Expectations-driven.</strong>
                   </p>

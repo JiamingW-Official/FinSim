@@ -138,10 +138,10 @@ export function MarketDepthChart({ ticker, currentPrice, priceMin, priceMax }: M
   return (
     <div className="rounded-lg border border-border bg-card overflow-hidden">
       <div className="flex items-center justify-between px-2 py-1.5 border-b border-border">
-        <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-semibold text-muted-foreground">
           Market Depth
         </span>
-        <span className="text-[9px] font-mono tabular-nums text-muted-foreground">
+        <span className="text-[11px] font-mono tabular-nums text-muted-foreground">
           Mid: ${book.midpoint.toFixed(2)}
         </span>
       </div>
@@ -256,7 +256,7 @@ export function MarketDepthChart({ ticker, currentPrice, priceMin, priceMax }: M
       </svg>
 
       {/* Legend */}
-      <div className="flex items-center justify-center gap-4 px-2 pb-1.5 text-[9px]">
+      <div className="flex items-center justify-center gap-4 px-2 pb-1.5 text-[11px]">
         <div className="flex items-center gap-1">
           <div className="w-3 h-1.5 rounded-sm bg-emerald-500/70" />
           <span className="text-muted-foreground/70">Bids</span>

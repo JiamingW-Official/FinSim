@@ -135,7 +135,7 @@ export function ExportMenu() {
             transition={{ duration: 0.15 }}
             className="absolute right-0 top-full z-50 mt-1 w-56 overflow-hidden rounded-xl border border-border bg-card shadow-xl"
           >
-            <div className="px-3 py-2 text-[10px] font-bold text-muted-foreground">
+            <div className="px-3 py-2 text-xs font-bold text-muted-foreground">
               Export & Share
             </div>
             <div className="border-t border-border/50">
@@ -149,7 +149,7 @@ export function ExportMenu() {
                   <item.icon className={cn("h-3.5 w-3.5", item.color)} />
                   <div>
                     <p className="text-[11px] font-bold">{item.label}</p>
-                    <p className="text-[9px] text-muted-foreground">
+                    <p className="text-[11px] text-muted-foreground">
                       {item.description}
                     </p>
                   </div>

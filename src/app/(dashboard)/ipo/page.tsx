@@ -1149,7 +1149,7 @@ export default function IPOPage() {
                   <div className="mt-4 rounded-xl border border-border bg-muted/20 p-4">
                     <div className="flex items-center gap-4 mb-3">
                       <div className={cn(
-                        "flex h-14 w-14 items-center justify-center rounded-xl text-2xl font-black border-2",
+                        "flex h-14 w-14 items-center justify-center rounded-xl text-2xl font-bold border-2",
                         gradeResult.score >= 78 ? "border-green-500 bg-green-500/10 text-green-400" :
                         gradeResult.score >= 55 ? "border-blue-500 bg-blue-500/10 text-blue-400" :
                         gradeResult.score >= 38 ? "border-amber-500 bg-amber-500/10 text-amber-400" :

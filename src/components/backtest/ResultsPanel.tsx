@@ -36,8 +36,8 @@ import StrategyComparison from "./StrategyComparison";
 import RiskReturnScatter from "./RiskReturnScatter";
 
 const GRADE_CONFIG = {
-  S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", glow: "shadow-[0_0_40px_rgba(251,191,36,0.3)]", icon: Trophy, label: "Outstanding!" },
-  A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", glow: "shadow-[0_0_30px_rgba(52,211,153,0.2)]", icon: Star, label: "Excellent!" },
+  S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", glow: "", icon: Trophy, label: "Outstanding!" },
+  A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", glow: "", icon: Star, label: "Excellent!" },
   B: { color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/30", glow: "", icon: ThumbsUp, label: "Good job!" },
   C: { color: "text-zinc-400", bg: "bg-zinc-400/10", border: "border-zinc-400/30", glow: "", icon: Dumbbell, label: "Keep trying!" },
 } as const;
@@ -74,7 +74,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
-            className={`flex flex-1 items-center justify-center gap-1 py-2.5 text-[10px] font-medium transition-all ${
+            className={`flex flex-1 items-center justify-center gap-1 py-2.5 text-xs font-medium transition-all ${
               tab === t.id
                 ? "border-b-2 border-violet-500 text-violet-300"
                 : "text-zinc-500 hover:text-zinc-300"
@@ -98,7 +98,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
               className={`grade-reveal flex flex-col items-center gap-2 rounded-xl border p-4 ${config.bg} ${config.border} ${config.glow}`}
             >
               <GradeIcon className={`h-8 w-8 ${config.color}`} />
-              <div className={`text-3xl font-black ${config.color}`}>{grade}</div>
+              <div className={`text-3xl font-bold ${config.color}`}>{grade}</div>
               <div className="text-xs text-zinc-400">{config.label}</div>
               <div className="mt-1 rounded-full bg-violet-500/20 px-3 py-1 text-xs font-semibold text-violet-300">
                 +{xpEarned} XP
@@ -119,7 +119,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
 
             {/* Enhanced Metrics */}
             <div>
-              <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Deep Metrics</h3>
+              <h3 className="mb-2 text-xs font-semibold text-zinc-500">Deep Metrics</h3>
               <div className="grid grid-cols-2 gap-2">
                 <MetricCard
                   icon={<BarChart3 className="h-3.5 w-3.5" />}
@@ -168,13 +168,13 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
 
             {/* Equity Curve */}
             <div className="space-y-1">
-              <h3 className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Equity Curve</h3>
+              <h3 className="text-xs font-semibold text-zinc-500">Equity Curve</h3>
               <MiniEquityCurve equityCurve={equityCurve} startingCapital={result.config.startingCapital} />
             </div>
 
             {/* Annual Returns */}
             <div className="space-y-1">
-              <h3 className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Annual Returns vs SPY</h3>
+              <h3 className="text-xs font-semibold text-zinc-500">Annual Returns vs SPY</h3>
               <AnnualReturnsChart result={result} />
             </div>
           </div>
@@ -185,13 +185,13 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
             <AnalyticsPanel result={result} />
             <div className="space-y-4 px-4 pb-4">
               <div>
-                <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-500">
                   Trade Return Distribution
                 </h3>
                 <TradeDistributionChart trades={result.trades} />
               </div>
               <div>
-                <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-500">
                   Risk-Adjusted Scatter
                 </h3>
                 <RiskReturnScatter baseConfig={result.config} />
@@ -206,7 +206,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
 
         {tab === "trades" && (
           <div className="space-y-1 p-4">
-            <h3 className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+            <h3 className="text-xs font-semibold text-zinc-500">
               All Trades ({trades.length})
             </h3>
             <div className="space-y-1">
@@ -218,12 +218,12 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
                       {t.pnl >= 0 ? "+" : ""}${t.pnl.toFixed(2)}
                     </span>
                   </div>
-                  <div className="mt-1 flex items-center gap-3 text-[10px] text-zinc-500">
+                  <div className="mt-1 flex items-center gap-3 text-xs text-zinc-500">
                     <span>{t.exitReason}</span>
                     <span>{t.holdingBars} bars</span>
                     <span>${t.entryPrice.toFixed(2)} → ${t.exitPrice.toFixed(2)}</span>
                   </div>
-                  <div className="mt-1 flex items-center gap-3 text-[10px]">
+                  <div className="mt-1 flex items-center gap-3 text-xs">
                     <span className="text-rose-400/70">MAE -{t.mae.toFixed(1)}%</span>
                     <span className="text-emerald-400/70">MFE +{t.mfe.toFixed(1)}%</span>
                     <span className="text-zinc-600">Fee ${t.commission.toFixed(2)}</span>
@@ -241,7 +241,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
           <div className="space-y-4 p-4">
             <div>
               <h3 className="mb-0.5 text-xs font-semibold text-zinc-200">Strategy Comparison</h3>
-              <p className="mb-3 text-[10px] text-zinc-500">RSI-7 / RSI-14 / RSI-21 on identical market data</p>
+              <p className="mb-3 text-xs text-zinc-500">RSI-7 / RSI-14 / RSI-21 on identical market data</p>
               <StrategyComparison baseConfig={result.config} />
             </div>
           </div>
@@ -286,12 +286,12 @@ function MetricCard({ icon, label, value, sub, positive }: { icon: React.ReactNo
     <div className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
       <div className="flex items-center gap-1.5 text-zinc-500">
         {icon}
-        <span className="text-[10px] uppercase tracking-wider">{label}</span>
+        <span className="text-xs">{label}</span>
       </div>
       <div className={`mt-0.5 text-sm font-bold ${positive === undefined ? "text-zinc-200" : positive ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>
-      {sub && <div className="text-[10px] text-zinc-500">{sub}</div>}
+      {sub && <div className="text-xs text-zinc-500">{sub}</div>}
     </div>
   );
 }

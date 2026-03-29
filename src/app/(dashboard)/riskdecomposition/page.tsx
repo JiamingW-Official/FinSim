@@ -426,7 +426,7 @@ function RiskDecompositionTab() {
                         <span className={syst > 70 ? "text-indigo-400" : "text-zinc-400"}>{syst}%</span>
                       </td>
                       <td className="py-2 pl-4">
-                        <Badge variant="outline" className="text-zinc-400 border-zinc-700 text-[10px]">
+                        <Badge variant="outline" className="text-zinc-400 border-zinc-700 text-xs">
                           {p.sector}
                         </Badge>
                       </td>
@@ -531,9 +531,9 @@ function MarginalContributionTab() {
                         <td className="py-2 text-right font-semibold text-zinc-200">{r.pctRiskContrib.toFixed(1)}%</td>
                         <td className="py-2 text-right">
                           {over ? (
-                            <Badge className="bg-red-500/20 text-red-300 border-0 text-[10px]">Risk Heavy</Badge>
+                            <Badge className="bg-red-500/20 text-red-300 border-0 text-xs">Risk Heavy</Badge>
                           ) : (
-                            <Badge className="bg-emerald-500/20 text-emerald-300 border-0 text-[10px]">Efficient</Badge>
+                            <Badge className="bg-emerald-500/20 text-emerald-300 border-0 text-xs">Efficient</Badge>
                           )}
                         </td>
                       </tr>
@@ -709,26 +709,26 @@ function StressTestingTab() {
                             </div>
                             <div className="mt-3 grid grid-cols-3 gap-3">
                               <div className="bg-zinc-900 rounded-lg p-2">
-                                <div className="text-[10px] text-zinc-500 mb-0.5">Portfolio vs Market</div>
+                                <div className="text-xs text-zinc-500 mb-0.5">Portfolio vs Market</div>
                                 <div className={`text-sm font-bold ${(sc.portfolioReturn - sc.marketReturn) > 0 ? "text-emerald-400" : "text-red-400"}`}>
                                   {(sc.portfolioReturn - sc.marketReturn) > 0 ? "+" : ""}
                                   {(sc.portfolioReturn - sc.marketReturn).toFixed(1)}%
                                 </div>
-                                <div className="text-[10px] text-zinc-500">alpha vs index</div>
+                                <div className="text-xs text-zinc-500">alpha vs index</div>
                               </div>
                               <div className="bg-zinc-900 rounded-lg p-2">
-                                <div className="text-[10px] text-zinc-500 mb-0.5">Portfolio Beta Used</div>
+                                <div className="text-xs text-zinc-500 mb-0.5">Portfolio Beta Used</div>
                                 <div className="text-sm font-bold text-indigo-300">
                                   {(sc.portfolioReturn / sc.marketReturn).toFixed(2)}x
                                 </div>
-                                <div className="text-[10px] text-zinc-500">implied beta</div>
+                                <div className="text-xs text-zinc-500">implied beta</div>
                               </div>
                               <div className="bg-zinc-900 rounded-lg p-2">
-                                <div className="text-[10px] text-zinc-500 mb-0.5">Recovery Speed</div>
+                                <div className="text-xs text-zinc-500 mb-0.5">Recovery Speed</div>
                                 <div className={`text-sm font-bold ${sc.recoveryDays < 200 ? "text-emerald-400" : sc.recoveryDays < 600 ? "text-amber-400" : "text-red-400"}`}>
                                   {sc.recoveryDays < 200 ? "Fast" : sc.recoveryDays < 600 ? "Moderate" : "Slow"}
                                 </div>
-                                <div className="text-[10px] text-zinc-500">{sc.recoveryDays} days</div>
+                                <div className="text-xs text-zinc-500">{sc.recoveryDays} days</div>
                               </div>
                             </div>
                           </td>
@@ -764,7 +764,7 @@ function StressTestingTab() {
                       animate={{ width: `${barW}%` }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     />
-                    <span className="absolute right-2 top-0.5 text-[10px] text-zinc-300">
+                    <span className="absolute right-2 top-0.5 text-xs text-zinc-300">
                       {sc.portfolioReturn.toFixed(1)}%
                     </span>
                   </div>
@@ -1228,11 +1228,11 @@ function RiskBudgetingTab() {
                       </td>
                       <td className="py-2 text-right">
                         {Math.abs(delta) < 0.5 ? (
-                          <Badge className="bg-zinc-700 text-zinc-300 border-0 text-[10px]">Hold</Badge>
+                          <Badge className="bg-zinc-700 text-zinc-300 border-0 text-xs">Hold</Badge>
                         ) : delta > 0 ? (
-                          <Badge className="bg-emerald-500/20 text-emerald-300 border-0 text-[10px]">Buy</Badge>
+                          <Badge className="bg-emerald-500/20 text-emerald-300 border-0 text-xs">Buy</Badge>
                         ) : (
-                          <Badge className="bg-red-500/20 text-red-300 border-0 text-[10px]">Trim</Badge>
+                          <Badge className="bg-red-500/20 text-red-300 border-0 text-xs">Trim</Badge>
                         )}
                       </td>
                     </tr>

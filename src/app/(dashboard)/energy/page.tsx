@@ -52,7 +52,7 @@ function posNeg(v: number): string {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+    <h3 className="text-xs font-semibold text-zinc-400 mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -682,7 +682,7 @@ function Tab2() {
               <div key={b.name} className="flex items-center gap-3">
                 <div className="w-36 text-xs text-zinc-300 shrink-0">
                   {b.name}
-                  <div className="text-zinc-600 text-[10px]">{b.country}</div>
+                  <div className="text-zinc-600 text-xs">{b.country}</div>
                 </div>
                 <div className="flex-1 h-5 bg-zinc-800/60 rounded-md overflow-hidden relative">
                   <div
@@ -695,7 +695,7 @@ function Tab2() {
                         "#f87171",
                     }}
                   />
-                  <span className="absolute left-2 top-0 h-full flex items-center text-[10px] font-semibold text-zinc-900">
+                  <span className="absolute left-2 top-0 h-full flex items-center text-xs font-semibold text-zinc-900">
                     ${b.breakeven}/bbl
                   </span>
                 </div>
@@ -755,7 +755,7 @@ function Tab2() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-[10px]",
+                          "text-xs",
                           b.co2perBbl > 25 ? "border-rose-500/50 text-rose-400" :
                           b.co2perBbl > 12 ? "border-amber-500/50 text-amber-400" :
                           "border-emerald-500/50 text-emerald-400"
@@ -918,15 +918,15 @@ function Tab3() {
               <div className="grid grid-cols-3 gap-2 text-center">
                 <div>
                   <div className="text-lg font-bold" style={{ color: w.color }}>${w.lcoe}</div>
-                  <div className="text-[10px] text-zinc-500">LCOE $/MWh</div>
+                  <div className="text-xs text-zinc-500">LCOE $/MWh</div>
                 </div>
                 <div>
                   <div className="text-lg font-bold text-white">${w.capex}</div>
-                  <div className="text-[10px] text-zinc-500">CapEx $/kW</div>
+                  <div className="text-xs text-zinc-500">CapEx $/kW</div>
                 </div>
                 <div>
                   <div className="text-lg font-bold text-white">{w.cf}</div>
-                  <div className="text-[10px] text-zinc-500">Capacity Factor</div>
+                  <div className="text-xs text-zinc-500">Capacity Factor</div>
                 </div>
               </div>
               <div className="text-xs text-zinc-400">{w.trend}</div>
@@ -1025,7 +1025,7 @@ function Tab3() {
               <div className="text-center">
                 <div className="text-xs text-zinc-500 mb-0.5">2024 Cost</div>
                 <div className="text-lg font-bold text-emerald-400">${b.cost2024}</div>
-                <div className="text-[10px] text-zinc-600">/kWh</div>
+                <div className="text-xs text-zinc-600">/kWh</div>
               </div>
               <div className="text-center">
                 <div className="text-xs text-zinc-500 mb-0.5">Energy Density</div>
@@ -1055,7 +1055,7 @@ function Tab3() {
               <div key={h.type} className="flex items-center gap-4">
                 <div className="w-32 shrink-0">
                   <div className="text-xs font-semibold text-white">{h.type}</div>
-                  <div className="text-[10px] text-zinc-500">{h.source}</div>
+                  <div className="text-xs text-zinc-500">{h.source}</div>
                 </div>
                 <div className="flex-1 h-6 bg-zinc-800/60 rounded-md overflow-hidden relative">
                   <div
@@ -1160,7 +1160,7 @@ function Tab4() {
               },
             ].map((s) => (
               <div key={s.step} className="flex gap-3">
-                <div className={cn("text-2xl font-black shrink-0", s.color)}>{s.step}</div>
+                <div className={cn("text-2xl font-bold shrink-0", s.color)}>{s.step}</div>
                 <div>
                   <div className="text-sm font-semibold text-white mb-1">{s.title}</div>
                   <div className="text-xs text-zinc-400">{s.desc}</div>
@@ -1263,7 +1263,7 @@ function Tab4() {
               <div key={stat.label} className="p-3 rounded-lg bg-white/5">
                 <div className={cn("text-2xl font-bold", stat.color)}>{stat.value}</div>
                 <div className="text-xs text-zinc-500 mt-1">{stat.unit}</div>
-                <div className="text-[10px] text-zinc-600 mt-1">{stat.label}</div>
+                <div className="text-xs text-zinc-600 mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -1368,7 +1368,7 @@ function Tab5() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-[10px]",
+                          "text-xs",
                           m.riskLevel === "Critical" ? "border-red-500/60 text-red-400" :
                           m.riskLevel === "High" ? "border-rose-500/50 text-rose-400" :
                           "border-amber-500/50 text-amber-400"
@@ -1427,16 +1427,16 @@ function Tab5() {
             <Card key={a.asset} className={cn("flex flex-col gap-3 border", a.border)}>
               <div>
                 <div className="text-sm font-semibold text-white">{a.asset}</div>
-                <Badge variant="outline" className={cn("text-[10px] mt-1", `border-current ${a.color}`)}>{a.severity} Risk</Badge>
+                <Badge variant="outline" className={cn("text-xs mt-1", `border-current ${a.color}`)}>{a.severity} Risk</Badge>
               </div>
               <div className="flex gap-4 text-center">
                 <div>
                   <div className={cn("text-lg font-bold", a.color)}>{a.valueAtRisk}</div>
-                  <div className="text-[10px] text-zinc-600">Value at Risk</div>
+                  <div className="text-xs text-zinc-600">Value at Risk</div>
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-zinc-300">{a.timeline}</div>
-                  <div className="text-[10px] text-zinc-600">Peak Risk Window</div>
+                  <div className="text-xs text-zinc-600">Peak Risk Window</div>
                 </div>
               </div>
               <div className="text-xs text-zinc-400">{a.detail}</div>
@@ -1456,7 +1456,7 @@ function Tab5() {
               <div key={c.name} className="flex items-center gap-3">
                 <div className="w-48 text-xs text-zinc-300 shrink-0">
                   {c.name}
-                  <div className="text-zinc-600 text-[10px]">{c.maturity}</div>
+                  <div className="text-zinc-600 text-xs">{c.maturity}</div>
                 </div>
                 <div className="flex-1 h-5 bg-zinc-800/60 rounded-md overflow-hidden relative">
                   <div
@@ -1466,7 +1466,7 @@ function Tab5() {
                       backgroundColor: c.cost < 60 ? "#34d399" : c.cost < 130 ? "#fbbf24" : "#f87171",
                     }}
                   />
-                  <span className="absolute left-2 top-0 h-full flex items-center text-[10px] font-bold text-zinc-900">
+                  <span className="absolute left-2 top-0 h-full flex items-center text-xs font-bold text-zinc-900">
                     ${c.cost}/tonne CO₂
                   </span>
                 </div>

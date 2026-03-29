@@ -54,7 +54,7 @@ function CurrentAnnotations({ patterns, barIndex }: CurrentAnnotationsProps) {
           >
             <span
               className={cn(
-                "font-black text-[9px] leading-none w-4 text-center",
+                "font-bold text-[11px] leading-none w-4 text-center",
                 isBull
                   ? "text-green-400"
                   : isBear
@@ -172,7 +172,7 @@ export function ChartPatternAnnotations({
     <div className="border-t border-border/30 bg-card/60 backdrop-blur-sm px-3 py-1.5 space-y-1">
       {currentPatterns.length > 0 && (
         <div className="flex items-start gap-1.5">
-          <span className="text-[8px] font-black uppercase tracking-wider text-primary/60 shrink-0 mt-0.5 w-14">
+          <span className="text-[8px] font-bold text-primary/60 shrink-0 mt-0.5 w-14">
             Detected
           </span>
           <CurrentAnnotations
@@ -184,7 +184,7 @@ export function ChartPatternAnnotations({
 
       {history.length > 1 && (
         <div className="flex items-start gap-1.5">
-          <span className="text-[8px] font-black uppercase tracking-wider text-muted-foreground/40 shrink-0 mt-0.5 w-14">
+          <span className="text-[8px] font-bold text-muted-foreground/40 shrink-0 mt-0.5 w-14">
             Prior
           </span>
           <HistoryAnnotations history={history} />

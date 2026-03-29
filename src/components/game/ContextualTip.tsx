@@ -20,7 +20,7 @@ export function ContextualTip() {
         >
           <div className="flex items-center gap-2 border-t border-primary/20 bg-primary/5 px-3 py-1.5">
             <Lightbulb className="h-3 w-3 shrink-0 text-primary" />
-            <span className="flex-1 text-[10px] text-primary/80">
+            <span className="flex-1 text-xs text-primary/80">
               {tip.message}
             </span>
             <button

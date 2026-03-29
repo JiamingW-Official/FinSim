@@ -41,7 +41,7 @@ function resetSeed() {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-3">
+    <h3 className="text-xs font-semibold text-white/50 mb-3">
       {children}
     </h3>
   );
@@ -1509,7 +1509,7 @@ function StructuredCreditTab() {
             <div key={i} className="flex gap-3">
               <Badge
                 variant="outline"
-                className="border-amber-500/40 text-amber-400 text-[10px] shrink-0 h-fit mt-0.5"
+                className="border-amber-500/40 text-amber-400 text-xs shrink-0 h-fit mt-0.5"
               >
                 {item.reform.split(" ")[0]}
               </Badge>

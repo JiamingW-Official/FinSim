@@ -614,7 +614,7 @@ function EstateTab() {
       </Card>
 
       <div className="space-y-2">
-        <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+        <div className="text-xs font-semibold text-slate-400 mb-3">
           Estate Planning Vehicles
         </div>
         {ESTATE_TOOLS.map((tool) => {

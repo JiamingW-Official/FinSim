@@ -451,7 +451,7 @@ function MertonPanel() {
             onValueChange={(v) => setAssetValue(v[0])}
             className="w-full"
           />
-          <div className="flex justify-between text-[10px] text-zinc-500">
+          <div className="flex justify-between text-xs text-zinc-500">
             <span>$200M</span><span>$1,500M</span>
           </div>
         </div>
@@ -470,7 +470,7 @@ function MertonPanel() {
             onValueChange={(v) => setDebtFace(v[0])}
             className="w-full"
           />
-          <div className="flex justify-between text-[10px] text-zinc-500">
+          <div className="flex justify-between text-xs text-zinc-500">
             <span>$100M</span><span>$1,200M</span>
           </div>
         </div>
@@ -489,7 +489,7 @@ function MertonPanel() {
             onValueChange={(v) => setAssetVol(v[0])}
             className="w-full"
           />
-          <div className="flex justify-between text-[10px] text-zinc-500">
+          <div className="flex justify-between text-xs text-zinc-500">
             <span>5%</span><span>80%</span>
           </div>
         </div>
@@ -702,7 +702,7 @@ function DistressedScreener() {
                     <span className="text-sm font-semibold text-zinc-100">{co.name}</span>
                     <span className="text-xs text-zinc-500 ml-2 font-mono">{co.ticker}</span>
                   </div>
-                  <Badge className={`text-[10px] px-1.5 ${meta.color}`}>{meta.label}</Badge>
+                  <Badge className={`text-xs px-1.5 ${meta.color}`}>{meta.label}</Badge>
                 </div>
                 <ChevronRight
                   className={`w-4 h-4 text-zinc-500 transition-transform ${isSelected ? "rotate-90" : ""}`}
@@ -729,7 +729,7 @@ function DistressedScreener() {
                   <span className="text-zinc-500">EBITDA </span>
                   <span className="text-zinc-300">${co.ebitda.toFixed(0)}M</span>
                 </div>
-                <Badge className="text-[10px] bg-zinc-700/50 text-zinc-400 border-zinc-600/30">{co.industry}</Badge>
+                <Badge className="text-xs bg-zinc-700/50 text-zinc-400 border-zinc-600/30">{co.industry}</Badge>
               </div>
             </div>
             {isSelected && (
@@ -828,7 +828,7 @@ export default function CapitalStructurePage() {
             <CardContent className="p-3 flex items-center gap-2">
               <k.icon className={`w-4 h-4 ${k.color} shrink-0`} />
               <div>
-                <p className="text-[10px] text-zinc-500">{k.label}</p>
+                <p className="text-xs text-zinc-500">{k.label}</p>
                 <p className="text-sm font-semibold text-zinc-100 leading-tight">{k.value}</p>
               </div>
             </CardContent>
@@ -882,7 +882,7 @@ export default function CapitalStructurePage() {
           {/* Capital stack legend */}
           <div className="flex flex-wrap gap-2 pt-1">
             {TRANCHES.map((t) => (
-              <div key={t.name} className="flex items-center gap-1.5 text-[10px] text-zinc-400">
+              <div key={t.name} className="flex items-center gap-1.5 text-xs text-zinc-400">
                 <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: t.color }} />
                 <span>{t.name.split(" ").slice(0, 2).join(" ")}</span>
                 <span className="text-zinc-600">${t.amount}M</span>
@@ -948,7 +948,7 @@ export default function CapitalStructurePage() {
                               <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: t.color }} />
                               <span className={isFulcrum ? "text-blue-300 font-medium" : "text-zinc-300"}>{t.name}</span>
                               {isFulcrum && (
-                                <Badge className="text-[9px] bg-blue-500/20 text-blue-400 border-blue-500/30 px-1 py-0">
+                                <Badge className="text-[11px] bg-blue-500/20 text-blue-400 border-blue-500/30 px-1 py-0">
                                   FULCRUM
                                 </Badge>
                               )}
@@ -1018,7 +1018,7 @@ export default function CapitalStructurePage() {
               <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
                 <TrendingDown className="w-4 h-4 text-red-400" />
                 Distressed Debt Screener
-                <Badge className="ml-auto text-[10px] bg-red-500/15 text-red-400 border-red-500/25">
+                <Badge className="ml-auto text-xs bg-red-500/15 text-red-400 border-red-500/25">
                   Price &lt;70¢
                 </Badge>
               </CardTitle>

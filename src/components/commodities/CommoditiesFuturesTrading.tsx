@@ -565,7 +565,7 @@ function ContractExplorer({
                     <div className="flex items-center gap-2">
                       <span
                         className={cn(
-                          "text-[10px] font-semibold px-1.5 py-0.5 rounded border",
+                          "text-xs font-semibold px-1.5 py-0.5 rounded border",
                           SECTOR_COLORS[g.sector]
                         )}
                       >
@@ -573,7 +573,7 @@ function ContractExplorer({
                       </span>
                       <div>
                         <div className="font-medium text-xs">{g.name}</div>
-                        <div className="text-[10px] text-muted-foreground">{g.unit}</div>
+                        <div className="text-xs text-muted-foreground">{g.unit}</div>
                       </div>
                     </div>
                   </td>
@@ -590,7 +590,7 @@ function ContractExplorer({
                     <span className={cn("text-xs font-semibold tabular-nums", contangoColor)}>
                       {fmtPct(g.contangoPct)}
                     </span>
-                    <div className={cn("text-[9px] mt-0.5", contangoColor)}>
+                    <div className={cn("text-[11px] mt-0.5", contangoColor)}>
                       {isContango ? "Contango" : "Backw."}
                     </div>
                   </td>
@@ -603,7 +603,7 @@ function ContractExplorer({
                   <td className="py-2 px-3">
                     <button
                       onClick={() => onSelectContract(g.id)}
-                      className="text-[10px] px-2 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 transition-colors whitespace-nowrap"
+                      className="text-xs px-2 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 transition-colors whitespace-nowrap"
                     >
                       View Curve
                     </button>
@@ -675,7 +675,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
               {isBackwardation ? "Backwardation" : "Contango"}
             </span>
           </div>
-          <p className="text-[10px] text-muted-foreground mb-3">
+          <p className="text-xs text-muted-foreground mb-3">
             {isBackwardation
               ? "Spot > Futures — Physical scarcity or high convenience yield. Positive roll yield."
               : "Futures > Spot — Storage + financing cost premium. Negative roll yield."}
@@ -698,7 +698,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
             <div className={cn("text-xl font-bold tabular-nums", rollPositive ? "text-green-400" : "text-red-400")}>
               {rollPositive ? "+" : ""}{rollYield}%
             </div>
-            <p className="text-[10px] text-muted-foreground mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {rollPositive ? "Positive: benefit from rolling front contract" : "Negative: cost drag from rolling in contango"}
             </p>
           </div>
@@ -740,7 +740,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
                     <span className="text-muted-foreground">{label}</span>
                     <span className="tabular-nums font-medium">{fmtPrice(price)}</span>
                     {i > 0 && (
-                      <span className={cn("tabular-nums text-[10px]", diff >= 0 ? "text-red-400" : "text-green-400")}>
+                      <span className={cn("tabular-nums text-xs", diff >= 0 ? "text-red-400" : "text-green-400")}>
                         {fmtPct(diff)}
                       </span>
                     )}
@@ -807,22 +807,22 @@ function SpreadTrading() {
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="text-xs font-semibold">{s.name}</div>
-                    <div className="text-[10px] text-muted-foreground mt-0.5">{s.leg1} / {s.leg2}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{s.leg1} / {s.leg2}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-sm font-bold tabular-nums" style={{ color: s.color }}>
                       {currentVal >= 100 ? currentVal.toFixed(1) : currentVal.toFixed(2)}
                     </div>
-                    <div className="text-[10px] text-muted-foreground">{s.unit}</div>
+                    <div className="text-xs text-muted-foreground">{s.unit}</div>
                   </div>
                 </div>
-                <p className="text-[10px] text-muted-foreground">{s.description}</p>
-                <div className="flex justify-between text-[10px]">
+                <p className="text-xs text-muted-foreground">{s.description}</p>
+                <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Z-score:</span>
                   <span className={cn("font-semibold tabular-nums", zColor)}>{zScore.toFixed(2)}σ</span>
                 </div>
                 {weekRange && (
-                  <div className="flex justify-between text-[10px]">
+                  <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">52W Range:</span>
                     <span className="text-muted-foreground tabular-nums">{weekRange.low.toFixed(1)} – {weekRange.high.toFixed(1)}</span>
                   </div>
@@ -856,11 +856,11 @@ function SpreadTrading() {
                     <div className={cn("text-sm font-bold tabular-nums", isPositive ? "text-green-400" : "text-red-400")}>
                       {isPositive ? "+" : ""}{currentVal.toFixed(3)}
                     </div>
-                    <div className="text-[10px] text-muted-foreground">{s.unit}</div>
+                    <div className="text-xs text-muted-foreground">{s.unit}</div>
                   </div>
                 </div>
-                <p className="text-[10px] text-muted-foreground">{s.description}</p>
-                <div className="flex justify-between text-[10px]">
+                <p className="text-xs text-muted-foreground">{s.description}</p>
+                <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Z-score:</span>
                   <span className={cn("font-semibold tabular-nums", zColor)}>{zScore.toFixed(2)}σ</span>
                 </div>
@@ -889,7 +889,7 @@ function SpreadTrading() {
             { label: "Heating Oil (USD/gal)", val: crackHeating, set: setCrackHeating, step: 0.01, color: "text-amber-400" },
           ].map(({ label, val, set, step, color }) => (
             <div key={label}>
-              <label className="text-[10px] text-muted-foreground block mb-1">{label}</label>
+              <label className="text-xs text-muted-foreground block mb-1">{label}</label>
               <input
                 type="number"
                 value={val}
@@ -897,7 +897,7 @@ function SpreadTrading() {
                 onChange={(e) => set(parseFloat(e.target.value) || 0)}
                 className="w-full bg-muted/30 border border-border/50 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
               />
-              <div className={cn("text-[10px] mt-0.5 tabular-nums", color)}>
+              <div className={cn("text-xs mt-0.5 tabular-nums", color)}>
                 {label.includes("gal") ? `= $${(val * 42).toFixed(2)}/bbl` : ""}
               </div>
             </div>
@@ -940,7 +940,7 @@ function SpreadTrading() {
             { label: "Soybean Meal (USD/ton)", val: crushMeal, set: setCrushMeal, step: 1, color: "text-amber-400" },
           ].map(({ label, val, set, step, color }) => (
             <div key={label}>
-              <label className="text-[10px] text-muted-foreground block mb-1">{label}</label>
+              <label className="text-xs text-muted-foreground block mb-1">{label}</label>
               <input
                 type="number"
                 value={val}
@@ -948,7 +948,7 @@ function SpreadTrading() {
                 onChange={(e) => set(parseFloat(e.target.value) || 0)}
                 className="w-full bg-muted/30 border border-border/50 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus:outline-none focus:ring-1 focus:ring-primary"
               />
-              <div className={cn("text-[10px] mt-0.5 font-medium tabular-nums", color)}>
+              <div className={cn("text-xs mt-0.5 font-medium tabular-nums", color)}>
                 {label.includes("Oil") ? `$${(val * 100).toFixed(2)}¢/lb equiv.` : ""}
               </div>
             </div>
@@ -1037,7 +1037,7 @@ function OrderEntrySimulator() {
             <span className="text-blue-400 font-medium tabular-nums">{leverage.toFixed(1)}x</span>
           </div>
         </div>
-        <div className="mt-2 pt-2 border-t border-border/40 text-[10px] text-muted-foreground">
+        <div className="mt-2 pt-2 border-t border-border/40 text-xs text-muted-foreground">
           Order simulated — no real positions opened
         </div>
       </div>
@@ -1264,7 +1264,7 @@ function StorageCarryAnalysis() {
             { label: "Time (months)", val: timeMonths, set: setTimeMonths, step: 1, min: 1, max: 12 },
           ].map(({ label, val, set, step, min, max }) => (
             <div key={label}>
-              <label className="text-[10px] text-muted-foreground block mb-1">{label}</label>
+              <label className="text-xs text-muted-foreground block mb-1">{label}</label>
               <input
                 type="number"
                 value={val}
@@ -1286,7 +1286,7 @@ function StorageCarryAnalysis() {
           <div className="rounded-lg bg-primary/10 border border-primary/20 p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Fair Value ({timeMonths}M Futures)</div>
             <div className="text-xl font-bold tabular-nums text-primary">${fairValue.toFixed(2)}</div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">
+            <div className="text-xs text-muted-foreground mt-0.5">
               {fairValue > spot ? "Contango" : "Backwardation"}: {fmtPct(((fairValue - spot) / spot) * 100)}
             </div>
           </div>
@@ -1303,7 +1303,7 @@ function StorageCarryAnalysis() {
             )}>
               {basis >= 0 ? "+" : ""}{basis.toFixed(2)}
             </div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">
+            <div className="text-xs text-muted-foreground mt-0.5">
               {Math.abs(basisPct) < 0.5 ? "Fairly priced" :
                basis > 0 ? "Market premium to fair value" : "Market discount to fair value"}
             </div>
@@ -1372,7 +1372,7 @@ function StorageCarryAnalysis() {
                   <span className="text-xs font-medium">{inv.name}</span>
                   <div className="flex items-center gap-2">
                     <span className={cn(
-                      "text-[10px] font-semibold px-1.5 py-0.5 rounded-full border",
+                      "text-xs font-semibold px-1.5 py-0.5 rounded-full border",
                       above
                         ? "text-red-400 bg-red-400/10 border-red-400/20"
                         : "text-green-400 bg-green-400/10 border-green-400/20"
@@ -1386,26 +1386,26 @@ function StorageCarryAnalysis() {
                 </div>
                 {/* Current bar */}
                 <div className="flex items-center gap-2">
-                  <div className="text-[10px] text-muted-foreground w-20">Current</div>
+                  <div className="text-xs text-muted-foreground w-20">Current</div>
                   <div className="flex-1 relative h-4 bg-muted rounded overflow-hidden">
                     <div
                       className="absolute inset-y-0 left-0 rounded transition-all"
                       style={{ width: `${currPct}%`, background: above ? "#f87171" : "#4ade80" }}
                     />
-                    <span className="absolute inset-y-0 right-2 flex items-center text-[10px] font-medium text-white">
+                    <span className="absolute inset-y-0 right-2 flex items-center text-xs font-medium text-white">
                       {inv.current.toFixed(1)}{inv.unit}
                     </span>
                   </div>
                 </div>
                 {/* 5Y avg bar */}
                 <div className="flex items-center gap-2">
-                  <div className="text-[10px] text-muted-foreground w-20">5-Yr Avg</div>
+                  <div className="text-xs text-muted-foreground w-20">5-Yr Avg</div>
                   <div className="flex-1 relative h-4 bg-muted rounded overflow-hidden">
                     <div
                       className="absolute inset-y-0 left-0 bg-blue-500/50 rounded"
                       style={{ width: `${avgPct}%` }}
                     />
-                    <span className="absolute inset-y-0 right-2 flex items-center text-[10px] font-medium text-white">
+                    <span className="absolute inset-y-0 right-2 flex items-center text-xs font-medium text-white">
                       {inv.avg5yr.toFixed(1)}{inv.unit}
                     </span>
                   </div>

@@ -57,7 +57,7 @@ function PieChart({
         {arcs}
         <circle cx={cx} cy={cy} r={20} className="fill-card" />
       </svg>
-      <p className="text-[10px] text-muted-foreground mt-1">{label}</p>
+      <p className="text-xs text-muted-foreground mt-1">{label}</p>
     </div>
   );
 }
@@ -88,7 +88,7 @@ function DeviationBar({ deviation }: { deviation: number }) {
       </div>
       <span
         className={cn(
-          "font-mono tabular-nums text-[10px] w-12 text-right",
+          "font-mono tabular-nums text-xs w-12 text-right",
           deviation > 2
             ? "text-red-500"
             : deviation < -2
@@ -113,7 +113,7 @@ function ActionBadge({ action }: { action: RebalanceAction["action"] }) {
   };
   const c = config[action];
   return (
-    <span className={cn("text-[10px] px-1.5 py-0.5 rounded font-medium", c.className)}>
+    <span className={cn("text-xs px-1.5 py-0.5 rounded font-medium", c.className)}>
       {c.text}
     </span>
   );
@@ -179,7 +179,7 @@ export function RebalancingPanel() {
         <h3 className="text-sm font-semibold">Portfolio Rebalancing</h3>
         <span
           className={cn(
-            "text-[10px] px-1.5 py-0.5 rounded font-medium",
+            "text-xs px-1.5 py-0.5 rounded font-medium",
             result.needsRebalance
               ? "bg-amber-500/10 text-amber-500"
               : "bg-emerald-500/10 text-emerald-500",
@@ -208,7 +208,7 @@ export function RebalancingPanel() {
               className="w-2 h-2 rounded-sm"
               style={{ backgroundColor: COLORS[i % COLORS.length] }}
             />
-            <span className="text-[10px] text-muted-foreground">
+            <span className="text-xs text-muted-foreground">
               {p.ticker}
             </span>
           </div>
@@ -217,7 +217,7 @@ export function RebalancingPanel() {
 
       {/* Threshold slider */}
       <div className="flex items-center gap-3">
-        <span className="text-[10px] text-muted-foreground">Threshold:</span>
+        <span className="text-xs text-muted-foreground">Threshold:</span>
         <input
           type="range"
           min={1}
@@ -284,19 +284,19 @@ export function RebalancingPanel() {
       {/* Summary */}
       <div className="grid grid-cols-3 gap-3">
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Turnover</p>
+          <p className="text-xs text-muted-foreground">Turnover</p>
           <p className="font-mono tabular-nums text-xs font-medium">
             {result.totalTurnover.toFixed(1)}%
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Est. Cost</p>
+          <p className="text-xs text-muted-foreground">Est. Cost</p>
           <p className="font-mono tabular-nums text-xs font-medium">
             {formatDollar(result.estimatedCost)}
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Portfolio</p>
+          <p className="text-xs text-muted-foreground">Portfolio</p>
           <p className="font-mono tabular-nums text-xs font-medium">
             {formatDollar(portfolioValue)}
           </p>
@@ -304,7 +304,7 @@ export function RebalancingPanel() {
       </div>
 
       {/* Educational note */}
-      <p className="text-[10px] text-muted-foreground leading-relaxed">
+      <p className="text-xs text-muted-foreground leading-relaxed">
         {result.educationalNote}
       </p>
     </div>

@@ -716,7 +716,7 @@ function CandlestickMasteryTab() {
                     <span className="text-xs font-semibold text-white truncate">{pattern.name}</span>
                     <Badge
                       className={cn(
-                        "text-[10px] h-4 px-1",
+                        "text-xs h-4 px-1",
                         pattern.sentiment === "bullish" ? "bg-green-500/20 text-green-400 border-green-500/30"
                         : pattern.sentiment === "bearish" ? "bg-red-500/20 text-red-400 border-red-500/30"
                         : "bg-gray-500/20 text-gray-400 border-gray-500/30"
@@ -726,7 +726,7 @@ function CandlestickMasteryTab() {
                     </Badge>
                   </div>
                   <div className="flex items-center gap-2 mt-0.5">
-                    <span className="text-[10px] text-gray-400">Reliability:</span>
+                    <span className="text-xs text-gray-400">Reliability:</span>
                     <div className="flex-1 h-1 bg-gray-800 rounded-full">
                       <div
                         className={cn(
@@ -736,7 +736,7 @@ function CandlestickMasteryTab() {
                         style={{ width: `${pattern.reliability}%` }}
                       />
                     </div>
-                    <span className="text-[10px] text-gray-300">{pattern.reliability}%</span>
+                    <span className="text-xs text-gray-300">{pattern.reliability}%</span>
                   </div>
                 </div>
               </div>
@@ -752,16 +752,16 @@ function CandlestickMasteryTab() {
                   >
                     <div className="pt-2 border-t border-gray-800 space-y-1.5 mt-1">
                       <div className="flex gap-1.5 flex-wrap">
-                        <Badge variant="outline" className="text-[10px] h-4 border-gray-700 text-gray-400">
+                        <Badge variant="outline" className="text-xs h-4 border-gray-700 text-gray-400">
                           {pattern.timeframe}
                         </Badge>
                       </div>
-                      <p className="text-[10px] text-gray-400"><span className="text-blue-400 font-medium">Entry:</span> {pattern.entry}</p>
-                      <p className="text-[10px] text-gray-400"><span className="text-red-400 font-medium">Stop:</span> {pattern.stop}</p>
+                      <p className="text-xs text-gray-400"><span className="text-blue-400 font-medium">Entry:</span> {pattern.entry}</p>
+                      <p className="text-xs text-gray-400"><span className="text-red-400 font-medium">Stop:</span> {pattern.stop}</p>
                       <Button
                         size="sm"
                         variant="outline"
-                        className="h-6 text-[10px] border-gray-700 text-yellow-400 hover:bg-yellow-500/10 w-full mt-1"
+                        className="h-6 text-xs border-gray-700 text-yellow-400 hover:bg-yellow-500/10 w-full mt-1"
                         onClick={(e) => { e.stopPropagation(); setShowOverlay(true); }}
                       >
                         <Eye className="h-2.5 w-2.5 mr-1" /> Find in chart
@@ -1029,8 +1029,8 @@ function TrendAnalysisTab() {
             ].map((row) => (
               <div key={row.range} className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: row.color }} />
-                <span className="text-[10px] text-gray-400 w-10">{row.range}</span>
-                <span className="text-[10px] text-gray-300">{row.label}</span>
+                <span className="text-xs text-gray-400 w-10">{row.range}</span>
+                <span className="text-xs text-gray-300">{row.label}</span>
               </div>
             ))}
           </div>
@@ -1060,7 +1060,7 @@ function TrendAnalysisTab() {
             ))}
           </div>
           <div className="mt-3 p-2 rounded bg-gray-800/50">
-            <p className="text-[10px] text-gray-400 leading-relaxed">
+            <p className="text-xs text-gray-400 leading-relaxed">
               <span className="text-yellow-400 font-medium">Golden Cross:</span> EMA20 crosses above EMA50 — bullish signal.{" "}
               <span className="text-purple-400 font-medium">Death Cross:</span> EMA20 crosses below EMA50 — bearish signal.
             </p>
@@ -1076,8 +1076,8 @@ function TrendAnalysisTab() {
               <div className="w-2 h-2 rounded-full" style={{ background: ch.color }} />
               <h4 className="text-xs font-semibold text-white">{ch.name}</h4>
             </div>
-            <p className="text-[10px] text-gray-400 mb-1">{ch.desc}</p>
-            <p className="text-[10px]" style={{ color: ch.color }}>
+            <p className="text-xs text-gray-400 mb-1">{ch.desc}</p>
+            <p className="text-xs" style={{ color: ch.color }}>
               <ArrowRight className="h-2.5 w-2.5 inline mr-0.5" />{ch.signal}
             </p>
           </Card>
@@ -1232,7 +1232,7 @@ function OscillatorTab() {
             {[{ color: "#6366f1", label: "Upper" }, { color: "#9ca3af", label: "Mid" }, { color: "#6366f1", label: "Lower" }, { color: "#f3f4f6", label: "Price" }].map((l) => (
               <div key={l.label} className="flex items-center gap-1">
                 <div className="w-3 h-0.5" style={{ background: l.color }} />
-                <span className="text-[9px] text-gray-500">{l.label}</span>
+                <span className="text-[11px] text-gray-500">{l.label}</span>
               </div>
             ))}
           </div>
@@ -1260,7 +1260,7 @@ function OscillatorTab() {
           <h3 className="text-sm font-semibold text-white">RSI (14)</h3>
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-400">Current: <span className="font-mono text-white">{lastRSI.toFixed(1)}</span></span>
-            <Badge className="text-[10px] h-5 px-1.5" style={{ background: `${signalColor(rsiSignal)}20`, color: signalColor(rsiSignal), borderColor: `${signalColor(rsiSignal)}50` }}>
+            <Badge className="text-xs h-5 px-1.5" style={{ background: `${signalColor(rsiSignal)}20`, color: signalColor(rsiSignal), borderColor: `${signalColor(rsiSignal)}50` }}>
               {rsiSignal}
             </Badge>
           </div>
@@ -1280,7 +1280,7 @@ function OscillatorTab() {
           <h3 className="text-sm font-semibold text-white">MACD (12, 26, 9)</h3>
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-400">MACD: <span className="font-mono text-white">{lastMACD.toFixed(3)}</span></span>
-            <Badge className="text-[10px] h-5 px-1.5" style={{ background: `${signalColor(macdSignal)}20`, color: signalColor(macdSignal), borderColor: `${signalColor(macdSignal)}50` }}>
+            <Badge className="text-xs h-5 px-1.5" style={{ background: `${signalColor(macdSignal)}20`, color: signalColor(macdSignal), borderColor: `${signalColor(macdSignal)}50` }}>
               {macdSignal}
             </Badge>
           </div>
@@ -1318,7 +1318,7 @@ function OscillatorTab() {
           <h3 className="text-sm font-semibold text-white">Stochastic (14, 3)</h3>
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-400">%K: <span className="font-mono text-white">{lastK.toFixed(1)}</span> %D: <span className="font-mono text-white">{lastD.toFixed(1)}</span></span>
-            <Badge className="text-[10px] h-5 px-1.5" style={{ background: `${signalColor(stochSignal)}20`, color: signalColor(stochSignal), borderColor: `${signalColor(stochSignal)}50` }}>
+            <Badge className="text-xs h-5 px-1.5" style={{ background: `${signalColor(stochSignal)}20`, color: signalColor(stochSignal), borderColor: `${signalColor(stochSignal)}50` }}>
               {stochSignal}
             </Badge>
           </div>
@@ -1435,19 +1435,19 @@ function VolumeAnalysisTab() {
               const isValueArea = pct > 50;
               return (
                 <div key={i} className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-gray-500 w-12 text-right">{lvl.price.toFixed(1)}</span>
+                  <span className="text-xs font-mono text-gray-500 w-12 text-right">{lvl.price.toFixed(1)}</span>
                   <div className="flex-1 h-4 bg-gray-800 rounded-sm overflow-hidden">
                     <div
                       className={cn("h-full transition-all", isValueArea ? "bg-blue-500" : "bg-blue-500/40")}
                       style={{ width: `${pct}%` }}
                     />
                   </div>
-                  {isValueArea && <Badge className="text-[9px] h-4 px-1 bg-blue-500/20 text-blue-400 border-blue-500/30">VAP</Badge>}
+                  {isValueArea && <Badge className="text-[11px] h-4 px-1 bg-blue-500/20 text-blue-400 border-blue-500/30">VAP</Badge>}
                 </div>
               );
             })}
           </div>
-          <p className="text-[10px] text-gray-500 mt-2">VAP = Value Area Price (high activity)</p>
+          <p className="text-xs text-gray-500 mt-2">VAP = Value Area Price (high activity)</p>
         </Card>
 
         {/* OBV + Price overlay */}
@@ -1464,8 +1464,8 @@ function VolumeAnalysisTab() {
             <text x={W - padR} y={padT + 8} textAnchor="end" fontSize="7" fill="#6366f1">{priceMax.toFixed(0)}</text>
           </svg>
           <div className="flex gap-3 mt-2">
-            <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-green-500" /><span className="text-[10px] text-gray-400">OBV</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-indigo-400" style={{ borderTop: "1px dashed #6366f1" }} /><span className="text-[10px] text-gray-400">Price</span></div>
+            <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-green-500" /><span className="text-xs text-gray-400">OBV</span></div>
+            <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-indigo-400" style={{ borderTop: "1px dashed #6366f1" }} /><span className="text-xs text-gray-400">Price</span></div>
           </div>
         </Card>
       </div>
@@ -1492,9 +1492,9 @@ function VolumeAnalysisTab() {
           })()}
         </svg>
         <div className="flex gap-3 mt-2">
-          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-white" /><span className="text-[10px] text-gray-400">Price</span></div>
-          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-yellow-400" /><span className="text-[10px] text-gray-400">VWAP</span></div>
-          <span className="text-[10px] text-gray-500 ml-auto">Current VWAP: ${vwap[vwap.length - 1].toFixed(2)}</span>
+          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-white" /><span className="text-xs text-gray-400">Price</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-yellow-400" /><span className="text-xs text-gray-400">VWAP</span></div>
+          <span className="text-xs text-gray-500 ml-auto">Current VWAP: ${vwap[vwap.length - 1].toFixed(2)}</span>
         </div>
       </Card>
 
@@ -1518,9 +1518,9 @@ function VolumeAnalysisTab() {
               )}
               <div>
                 <p className="text-xs font-semibold text-white">{sig.name}</p>
-                <p className="text-[10px] text-gray-400 mt-0.5">{sig.desc}</p>
+                <p className="text-xs text-gray-400 mt-0.5">{sig.desc}</p>
                 {sig.active && (
-                  <Badge className="mt-1 text-[9px] h-4 px-1" style={{
+                  <Badge className="mt-1 text-[11px] h-4 px-1" style={{
                     background: sig.bullish ? "#10b98120" : "#ef444420",
                     color: sig.bullish ? "#10b981" : "#ef4444",
                     borderColor: sig.bullish ? "#10b98150" : "#ef444450",
@@ -1682,14 +1682,14 @@ function SRTab() {
         {showFib && (
           <div className="grid grid-cols-2 gap-4 mb-4 p-3 bg-gray-800/50 rounded-lg">
             <div>
-              <div className="flex justify-between text-[10px] text-gray-400 mb-1">
+              <div className="flex justify-between text-xs text-gray-400 mb-1">
                 <span>Fib Swing Low (bar)</span>
                 <span className="text-purple-400">{fibLow} — ${fibLowPrice.toFixed(2)}</span>
               </div>
               <Slider value={[fibLow]} onValueChange={([v]) => setFibLow(Math.min(v, fibHigh - 5))} min={0} max={90} step={1} className="h-1" />
             </div>
             <div>
-              <div className="flex justify-between text-[10px] text-gray-400 mb-1">
+              <div className="flex justify-between text-xs text-gray-400 mb-1">
                 <span>Fib Swing High (bar)</span>
                 <span className="text-purple-400">{fibHigh} — ${fibHighPrice.toFixed(2)}</span>
               </div>
@@ -1771,11 +1771,11 @@ function SRTab() {
               <div key={i} className="flex items-center gap-2 py-1 border-b border-gray-800/50">
                 <div className={cn("w-1.5 h-1.5 rounded-full flex-shrink-0", lvl.type === "resistance" ? "bg-red-400" : "bg-green-400")} />
                 <span className="text-xs font-mono text-gray-200 w-14">${lvl.price.toFixed(2)}</span>
-                <span className={cn("text-[10px] capitalize", lvl.type === "resistance" ? "text-red-400" : "text-green-400")}>{lvl.type}</span>
-                <span className="text-[10px] text-gray-500 flex-1">{lvl.source}</span>
+                <span className={cn("text-xs capitalize", lvl.type === "resistance" ? "text-red-400" : "text-green-400")}>{lvl.type}</span>
+                <span className="text-xs text-gray-500 flex-1">{lvl.source}</span>
                 <Badge
                   className={cn(
-                    "text-[9px] h-4 px-1",
+                    "text-[11px] h-4 px-1",
                     lvl.strength === "strong" ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
                     : lvl.strength === "medium" ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
                     : "bg-gray-500/20 text-gray-400 border-gray-500/30"
@@ -1797,13 +1797,13 @@ function SRTab() {
                 <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: pl.color }} />
                 <span className="text-xs font-semibold w-8" style={{ color: pl.color }}>{pl.label}</span>
                 <span className="text-xs font-mono text-gray-200">${pl.price.toFixed(2)}</span>
-                <span className="text-[10px] text-gray-500 ml-auto">
+                <span className="text-xs text-gray-500 ml-auto">
                   {pl.label === "PP" ? "Pivot" : pl.label.startsWith("R") ? "Resistance" : "Support"}
                 </span>
               </div>
             ))}
           </div>
-          <p className="text-[10px] text-gray-500 mt-2">Based on previous session H/L/C</p>
+          <p className="text-xs text-gray-500 mt-2">Based on previous session H/L/C</p>
         </Card>
       </div>
 
@@ -1819,14 +1819,14 @@ function SRTab() {
               <div key={f.label} className="p-2 rounded bg-gray-800/60 border border-gray-700/50">
                 <div className="flex items-center gap-1.5 mb-1">
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: f.color }} />
-                  <span className="text-[10px] font-semibold text-gray-200">{f.label}</span>
+                  <span className="text-xs font-semibold text-gray-200">{f.label}</span>
                 </div>
                 <span className="text-xs font-mono" style={{ color: f.color }}>${f.price.toFixed(2)}</span>
               </div>
             ))}
           </div>
           <div className="mt-2 p-2 rounded bg-gray-800/40">
-            <p className="text-[10px] text-gray-400 leading-relaxed">
+            <p className="text-xs text-gray-400 leading-relaxed">
               <span className="text-yellow-400 font-medium">Key levels:</span> 38.2%, 50%, and 61.8% are the most watched retracement zones. Price often pauses or reverses at these levels. The 61.8% "golden ratio" is considered the strongest.
             </p>
           </div>

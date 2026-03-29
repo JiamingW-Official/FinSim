@@ -45,11 +45,11 @@ function CardTitle({
 }) {
   return (
     <div className="flex items-center justify-between border-b border-border/50 px-3 py-1.5">
-      <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+      <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
         {title}
       </span>
       {subtitle && (
-        <span className="rounded bg-muted/30 px-1.5 py-0.5 text-[9px] text-muted-foreground">
+        <span className="rounded bg-muted/30 px-1.5 py-0.5 text-[11px] text-muted-foreground">
           {subtitle}
         </span>
       )}
@@ -355,7 +355,7 @@ function HorizontalStrikeChart({
       <div className="flex flex-col rounded-lg border border-border/50 bg-card">
         <CardTitle title={title} subtitle={subtitle} />
         <div className="flex flex-1 items-center justify-center py-8">
-          <span className="text-[10px] text-muted-foreground">No data</span>
+          <span className="text-xs text-muted-foreground">No data</span>
         </div>
       </div>
     );
@@ -483,7 +483,7 @@ function VolSmileChart({
       <div className="flex flex-col rounded-lg border border-border/50 bg-card">
         <CardTitle title="Volatility Smile" />
         <div className="flex flex-1 items-center justify-center py-8">
-          <span className="text-[10px] text-muted-foreground">No data</span>
+          <span className="text-xs text-muted-foreground">No data</span>
         </div>
       </div>
     );
@@ -642,7 +642,7 @@ function TermStructureChart({
       <div className="flex flex-col rounded-lg border border-border/50 bg-card">
         <CardTitle title="Vol Term Structure" />
         <div className="flex flex-1 items-center justify-center py-8">
-          <span className="text-[10px] text-muted-foreground">No data</span>
+          <span className="text-xs text-muted-foreground">No data</span>
         </div>
       </div>
     );
@@ -813,14 +813,14 @@ function ScenarioAnalysis({
       />
       <div className="p-3">
         <div className="overflow-x-auto">
-          <table className="w-full text-center text-[10px]">
+          <table className="w-full text-center text-xs">
             <thead>
               <tr>
-                <th className="pb-2 pr-2 text-left text-[9px] font-semibold text-muted-foreground">
+                <th className="pb-2 pr-2 text-left text-[11px] font-semibold text-muted-foreground">
                   Price \ IV
                 </th>
                 {ivChanges.map((iv) => (
-                  <th key={iv} className="pb-2 text-[9px] font-semibold text-muted-foreground">
+                  <th key={iv} className="pb-2 text-[11px] font-semibold text-muted-foreground">
                     {iv > 0 ? "+" : ""}{(iv * 100).toFixed(0)}pp IV
                   </th>
                 ))}
@@ -850,7 +850,7 @@ function ScenarioAnalysis({
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-[9px] text-muted-foreground">
+        <p className="mt-2 text-[11px] text-muted-foreground">
           P&L per 1 ATM call contract (100 shares) vs. base scenario. Rows = price change; Cols = IV change.
         </p>
       </div>

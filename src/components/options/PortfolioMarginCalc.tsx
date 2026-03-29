@@ -448,7 +448,7 @@ function SectionTitle({ children, subtitle }: { children: React.ReactNode; subti
         {children}
       </span>
       {subtitle && (
-        <span className="text-[10px] text-muted-foreground">{subtitle}</span>
+        <span className="text-xs text-muted-foreground">{subtitle}</span>
       )}
     </div>
   );
@@ -591,7 +591,7 @@ export function PortfolioMarginCalc() {
             <Button
               size="sm"
               variant="outline"
-              className="h-6 px-2 text-[10px]"
+              className="h-6 px-2 text-xs"
               onClick={addPosition}
             >
               + Add Position
@@ -599,7 +599,7 @@ export function PortfolioMarginCalc() {
           </div>
         </CardHeader>
         <CardContent className="overflow-x-auto px-3 pb-3">
-          <table className="w-full min-w-[860px] text-[10px]">
+          <table className="w-full min-w-[860px] text-xs">
             <thead>
               <tr className="border-b border-border/50">
                 {[
@@ -624,7 +624,7 @@ export function PortfolioMarginCalc() {
                     {/* Symbol */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-14 px-1 text-[10px] bg-transparent border-border/40"
+                        className="h-6 w-14 px-1 text-xs bg-transparent border-border/40"
                         value={pos.symbol}
                         onChange={(e) => updatePosition(pos.id, "symbol", e.target.value)}
                       />
@@ -632,7 +632,7 @@ export function PortfolioMarginCalc() {
                     {/* Type */}
                     <td className="py-1 pr-2">
                       <select
-                        className="h-6 rounded border border-border/40 bg-transparent px-1 text-[10px] text-foreground"
+                        className="h-6 rounded border border-border/40 bg-transparent px-1 text-xs text-foreground"
                         value={pos.type}
                         onChange={(e) => updatePosition(pos.id, "type", e.target.value)}
                       >
@@ -643,7 +643,7 @@ export function PortfolioMarginCalc() {
                     {/* Strike */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-16 px-1 text-[10px] bg-transparent border-border/40"
+                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/40"
                         type="number"
                         value={pos.strike}
                         onChange={(e) => updatePosition(pos.id, "strike", e.target.value)}
@@ -652,7 +652,7 @@ export function PortfolioMarginCalc() {
                     {/* Expiry */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-24 px-1 text-[10px] bg-transparent border-border/40"
+                        className="h-6 w-24 px-1 text-xs bg-transparent border-border/40"
                         type="date"
                         value={pos.expiry}
                         onChange={(e) => updatePosition(pos.id, "expiry", e.target.value)}
@@ -662,8 +662,8 @@ export function PortfolioMarginCalc() {
                     <td className="py-1 pr-2">
                       <Input
                         className={cn(
-                          "h-6 w-14 px-1 text-[10px] bg-transparent border-border/40",
-                          isShort ? "text-red-400" : "text-green-400",
+                          "h-6 w-14 px-1 text-xs bg-transparent border-border/40",
+                          isShort ? "text-red-500" : "text-emerald-500",
                         )}
                         type="number"
                         value={pos.quantity}
@@ -673,7 +673,7 @@ export function PortfolioMarginCalc() {
                     {/* Price */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-16 px-1 text-[10px] bg-transparent border-border/40"
+                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/40"
                         type="number"
                         step="0.01"
                         value={pos.currentPrice.toFixed(2)}
@@ -683,7 +683,7 @@ export function PortfolioMarginCalc() {
                     {/* IV */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-14 px-1 text-[10px] bg-transparent border-border/40"
+                        className="h-6 w-14 px-1 text-xs bg-transparent border-border/40"
                         type="number"
                         step="0.01"
                         value={pos.iv.toFixed(2)}
@@ -693,7 +693,7 @@ export function PortfolioMarginCalc() {
                     {/* Underlying */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-16 px-1 text-[10px] bg-transparent border-border/40"
+                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/40"
                         type="number"
                         step="0.01"
                         value={pos.underlyingPrice}
@@ -701,16 +701,16 @@ export function PortfolioMarginCalc() {
                       />
                     </td>
                     {/* Greeks (read-only) */}
-                    <td className={cn("py-1 pr-2 font-mono", g.delta >= 0 ? "text-green-400" : "text-red-400")}>
+                    <td className={cn("py-1 pr-2 font-mono", g.delta >= 0 ? "text-emerald-500" : "text-red-500")}>
                       {fmtSigned(g.delta, 1)}
                     </td>
-                    <td className="py-1 pr-2 font-mono text-blue-400">
+                    <td className="py-1 pr-2 font-mono text-orange-400">
                       {fmtSigned(g.gamma, 2)}
                     </td>
-                    <td className={cn("py-1 pr-2 font-mono", g.theta <= 0 ? "text-red-400" : "text-green-400")}>
+                    <td className={cn("py-1 pr-2 font-mono", g.theta <= 0 ? "text-red-500" : "text-emerald-500")}>
                       {fmtSigned(g.theta, 2)}
                     </td>
-                    <td className="py-1 pr-2 font-mono text-purple-400">
+                    <td className="py-1 pr-2 font-mono text-orange-500">
                       {fmtSigned(g.vega, 2)}
                     </td>
                     {/* Delete */}
@@ -742,17 +742,17 @@ export function PortfolioMarginCalc() {
           <CardHeader className="pb-2 pt-3 px-3">
             <CardTitle className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide">
               Reg-T Margin
-              <Badge variant="outline" className="text-[9px] px-1 py-0 border-amber-500/50 text-amber-400">
+              <Badge variant="outline" className="text-[11px] px-1 py-0 border-amber-500/50 text-amber-400">
                 Standard
               </Badge>
             </CardTitle>
           </CardHeader>
           <CardContent className="px-3 pb-3 space-y-2">
             <div className="flex items-end justify-between">
-              <span className="text-[10px] text-muted-foreground">Total Margin Required</span>
+              <span className="text-xs text-muted-foreground">Total Margin Required</span>
               <span className="text-xl font-bold text-amber-400">{fmt$(regTMargin)}</span>
             </div>
-            <div className="rounded-md border border-border/40 bg-muted/20 p-2 text-[10px] text-muted-foreground">
+            <div className="rounded-md border border-border/40 bg-muted/20 p-2 text-xs text-muted-foreground">
               <p className="font-semibold text-foreground/80 mb-1">Calculation basis</p>
               <p>20% × underlying value per contract</p>
               <p>Minimum $250 per contract</p>
@@ -764,7 +764,7 @@ export function PortfolioMarginCalc() {
               {positions.filter((p) => p.quantity < 0).map((p) => {
                 const m = Math.max(p.underlyingPrice * 100 * 0.20, 250) * Math.abs(p.quantity);
                 return (
-                  <div key={p.id} className="flex justify-between text-[9px]">
+                  <div key={p.id} className="flex justify-between text-[11px]">
                     <span className="text-muted-foreground">
                       {p.symbol} {p.type === "call" ? "C" : "P"}{p.strike} ({p.quantity})
                     </span>
@@ -773,7 +773,7 @@ export function PortfolioMarginCalc() {
                 );
               })}
               {positions.filter((p) => p.quantity < 0).length === 0 && (
-                <p className="text-[10px] text-muted-foreground">No short positions.</p>
+                <p className="text-xs text-muted-foreground">No short positions.</p>
               )}
             </div>
           </CardContent>
@@ -785,11 +785,11 @@ export function PortfolioMarginCalc() {
             <CardTitle className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide">
               Portfolio Margin
               {pmEligible ? (
-                <Badge className="text-[9px] px-1 py-0 bg-green-500/20 text-green-400 border-green-500/30">
+                <Badge className="text-[11px] px-1 py-0 bg-emerald-500/20 text-emerald-500 border-emerald-500/30">
                   PM Eligible
                 </Badge>
               ) : (
-                <Badge variant="outline" className="text-[9px] px-1 py-0 border-red-500/40 text-red-400">
+                <Badge variant="outline" className="text-[11px] px-1 py-0 border-red-500/40 text-red-500">
                   Need $100k+
                 </Badge>
               )}
@@ -797,26 +797,26 @@ export function PortfolioMarginCalc() {
           </CardHeader>
           <CardContent className="px-3 pb-3 space-y-2">
             <div className="flex items-end justify-between">
-              <span className="text-[10px] text-muted-foreground">Stress-Test Margin</span>
-              <span className="text-xl font-bold text-green-400">{fmt$(pmMargin)}</span>
+              <span className="text-xs text-muted-foreground">Stress-Test Margin</span>
+              <span className="text-xl font-bold text-emerald-500">{fmt$(pmMargin)}</span>
             </div>
-            <div className="rounded-md border border-border/40 bg-muted/20 p-2 text-[10px] text-muted-foreground">
+            <div className="rounded-md border border-border/40 bg-muted/20 p-2 text-xs text-muted-foreground">
               <p className="font-semibold text-foreground/80 mb-1">Stress scenarios</p>
               <p>Stock ±15%, ±10%, ±5%, ±3%, 0%</p>
               <p>IV shift ±4 percentage points</p>
-              <p className="mt-1 text-green-400/80">Margin = worst-case P&L loss</p>
+              <p className="mt-1 text-emerald-500/80">Margin = worst-case P&L loss</p>
             </div>
             {/* Savings */}
-            <div className="rounded-md border border-green-500/20 bg-green-500/5 p-2">
-              <div className="flex justify-between text-[10px]">
+            <div className="rounded-md border border-emerald-500/20 bg-emerald-500/5 p-2">
+              <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Capital Savings vs Reg-T</span>
-                <span className="font-bold text-green-400">
+                <span className="font-bold text-emerald-500">
                   {fmt$(Math.max(regTMargin - pmMargin, 0))}
                 </span>
               </div>
-              <div className="flex justify-between text-[10px] mt-1">
+              <div className="flex justify-between text-xs mt-1">
                 <span className="text-muted-foreground">% Reduction</span>
-                <span className="font-bold text-green-400">
+                <span className="font-bold text-emerald-500">
                   {savings > 0 ? `${(savings * 100).toFixed(1)}%` : "0%"}
                 </span>
               </div>
@@ -838,13 +838,13 @@ export function PortfolioMarginCalc() {
               <StressChart positions={positions} />
               {/* Scenario table */}
               <div className="overflow-x-auto">
-                <table className="w-full text-[9px]">
+                <table className="w-full text-[11px]">
                   <thead>
                     <tr className="border-b border-border/40">
                       <th className="pb-1 pr-2 text-left text-muted-foreground">Move</th>
-                      <th className="pb-1 pr-2 text-right text-purple-400">IV +4pp</th>
+                      <th className="pb-1 pr-2 text-right text-orange-500">IV +4pp</th>
                       <th className="pb-1 pr-2 text-right text-orange-400">Base IV</th>
-                      <th className="pb-1 pr-2 text-right text-blue-400">IV -4pp</th>
+                      <th className="pb-1 pr-2 text-right text-orange-400">IV -4pp</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -853,13 +853,13 @@ export function PortfolioMarginCalc() {
                         <td className="py-0.5 pr-2 font-mono text-foreground/80">
                           {move > 0 ? `+${(move * 100).toFixed(0)}%` : `${(move * 100).toFixed(0)}%`}
                         </td>
-                        <td className={cn("py-0.5 pr-2 text-right font-mono", pnlUp >= 0 ? "text-green-400" : "text-red-400")}>
+                        <td className={cn("py-0.5 pr-2 text-right font-mono", pnlUp >= 0 ? "text-emerald-500" : "text-red-500")}>
                           {fmt$(pnlUp)}
                         </td>
-                        <td className={cn("py-0.5 pr-2 text-right font-mono", pnlBase >= 0 ? "text-green-400" : "text-red-400")}>
+                        <td className={cn("py-0.5 pr-2 text-right font-mono", pnlBase >= 0 ? "text-emerald-500" : "text-red-500")}>
                           {fmt$(pnlBase)}
                         </td>
-                        <td className={cn("py-0.5 pr-2 text-right font-mono", pnlDown >= 0 ? "text-green-400" : "text-red-400")}>
+                        <td className={cn("py-0.5 pr-2 text-right font-mono", pnlDown >= 0 ? "text-emerald-500" : "text-red-500")}>
                           {fmt$(pnlDown)}
                         </td>
                       </tr>
@@ -891,34 +891,34 @@ export function PortfolioMarginCalc() {
                 label: "Net Delta",
                 value: netGreeks.delta.toFixed(1),
                 sub: "shares equiv.",
-                color: netGreeks.delta >= 0 ? "text-green-400" : "text-red-400",
+                color: netGreeks.delta >= 0 ? "text-emerald-500" : "text-red-500",
               },
               {
                 label: "Net Gamma",
                 value: netGreeks.gamma.toFixed(3),
                 sub: "per $1 move",
-                color: netGreeks.gamma >= 0 ? "text-blue-400" : "text-orange-400",
+                color: netGreeks.gamma >= 0 ? "text-orange-400" : "text-orange-400",
               },
               {
                 label: "Net Theta",
                 value: fmt$(netGreeks.theta, 2),
                 sub: "per day",
-                color: netGreeks.theta >= 0 ? "text-green-400" : "text-red-400",
+                color: netGreeks.theta >= 0 ? "text-emerald-500" : "text-red-500",
               },
               {
                 label: "Net Vega",
                 value: fmt$(netGreeks.vega, 2),
                 sub: "per 1% IV",
-                color: netGreeks.vega >= 0 ? "text-purple-400" : "text-orange-400",
+                color: netGreeks.vega >= 0 ? "text-orange-500" : "text-orange-400",
               },
             ].map((item) => (
               <div
                 key={item.label}
                 className="rounded-lg border border-border/40 bg-muted/10 p-2 text-center"
               >
-                <p className="text-[9px] text-muted-foreground">{item.label}</p>
+                <p className="text-[11px] text-muted-foreground">{item.label}</p>
                 <p className={cn("text-sm font-bold font-mono", item.color)}>{item.value}</p>
-                <p className="text-[9px] text-muted-foreground">{item.sub}</p>
+                <p className="text-[11px] text-muted-foreground">{item.sub}</p>
               </div>
             ))}
           </div>
@@ -926,12 +926,12 @@ export function PortfolioMarginCalc() {
           {/* Dollar impact table */}
           <div>
             <SectionTitle subtitle="estimated">1% Stock Move Impact</SectionTitle>
-            <div className="rounded-md border border-border/40 bg-muted/10 p-2 text-[10px] space-y-1">
+            <div className="rounded-md border border-border/40 bg-muted/10 p-2 text-xs space-y-1">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">
                   Delta P&L (net Δ × avg spot × 1%)
                 </span>
-                <span className={cn("font-mono font-semibold", deltaImpact >= 0 ? "text-green-400" : "text-red-400")}>
+                <span className={cn("font-mono font-semibold", deltaImpact >= 0 ? "text-emerald-500" : "text-red-500")}>
                   {fmt$(deltaImpact, 2)}
                 </span>
               </div>
@@ -939,13 +939,13 @@ export function PortfolioMarginCalc() {
                 <span className="text-muted-foreground">
                   Gamma P&L (½ × Γ × (1% × S)²)
                 </span>
-                <span className={cn("font-mono font-semibold", gammaImpact >= 0 ? "text-green-400" : "text-red-400")}>
+                <span className={cn("font-mono font-semibold", gammaImpact >= 0 ? "text-emerald-500" : "text-red-500")}>
                   {fmt$(gammaImpact, 2)}
                 </span>
               </div>
               <div className="flex justify-between border-t border-border/30 pt-1">
                 <span className="font-semibold text-foreground/80">Total Impact</span>
-                <span className={cn("font-mono font-bold", totalImpact >= 0 ? "text-green-400" : "text-red-400")}>
+                <span className={cn("font-mono font-bold", totalImpact >= 0 ? "text-emerald-500" : "text-red-500")}>
                   {fmt$(totalImpact, 2)}
                 </span>
               </div>
@@ -957,10 +957,10 @@ export function PortfolioMarginCalc() {
             <Badge
               variant="outline"
               className={cn(
-                "text-[9px] px-2",
+                "text-[11px] px-2",
                 netGreeks.delta >= 0
-                  ? "border-green-500/40 text-green-400"
-                  : "border-red-500/40 text-red-400",
+                  ? "border-emerald-500/40 text-emerald-500"
+                  : "border-red-500/40 text-red-500",
               )}
             >
               {netGreeks.delta >= 0 ? "Delta Long" : "Delta Short"}
@@ -968,9 +968,9 @@ export function PortfolioMarginCalc() {
             <Badge
               variant="outline"
               className={cn(
-                "text-[9px] px-2",
+                "text-[11px] px-2",
                 netGreeks.gamma >= 0
-                  ? "border-blue-500/40 text-blue-400"
+                  ? "border-orange-500/40 text-orange-400"
                   : "border-orange-500/40 text-orange-400",
               )}
             >
@@ -979,10 +979,10 @@ export function PortfolioMarginCalc() {
             <Badge
               variant="outline"
               className={cn(
-                "text-[9px] px-2",
+                "text-[11px] px-2",
                 netGreeks.theta >= 0
-                  ? "border-green-500/40 text-green-400"
-                  : "border-red-500/40 text-red-400",
+                  ? "border-emerald-500/40 text-emerald-500"
+                  : "border-red-500/40 text-red-500",
               )}
             >
               {netGreeks.theta >= 0 ? "Theta Positive" : "Theta Negative"}
@@ -990,9 +990,9 @@ export function PortfolioMarginCalc() {
             <Badge
               variant="outline"
               className={cn(
-                "text-[9px] px-2",
+                "text-[11px] px-2",
                 netGreeks.vega >= 0
-                  ? "border-purple-500/40 text-purple-400"
+                  ? "border-orange-500/40 text-orange-500"
                   : "border-amber-500/40 text-amber-400",
               )}
             >
@@ -1019,13 +1019,13 @@ export function PortfolioMarginCalc() {
                   label: "Return on Margin (ann.)",
                   value: `${(romAnnualized * 100).toFixed(1)}%`,
                   desc: "Net Theta × 365 / Margin",
-                  color: romAnnualized >= 0 ? "text-green-400" : "text-red-400",
+                  color: romAnnualized >= 0 ? "text-emerald-500" : "text-red-500",
                 },
                 {
                   label: "Capital Efficiency",
                   value: `${(capitalEfficiency * 100).toFixed(1)}%`,
                   desc: "Premium Collected / Margin",
-                  color: capitalEfficiency >= 0.1 ? "text-blue-400" : "text-amber-400",
+                  color: capitalEfficiency >= 0.1 ? "text-orange-400" : "text-amber-400",
                 },
                 {
                   label: "Premium Collected",
@@ -1036,8 +1036,8 @@ export function PortfolioMarginCalc() {
               ].map((item) => (
                 <div key={item.label} className="flex items-start justify-between gap-2">
                   <div>
-                    <p className="text-[10px] text-foreground/80">{item.label}</p>
-                    <p className="text-[9px] text-muted-foreground">{item.desc}</p>
+                    <p className="text-xs text-foreground/80">{item.label}</p>
+                    <p className="text-[11px] text-muted-foreground">{item.desc}</p>
                   </div>
                   <span className={cn("text-sm font-bold font-mono shrink-0", item.color)}>
                     {item.value}
@@ -1049,28 +1049,28 @@ export function PortfolioMarginCalc() {
             <div className="space-y-2">
               <SectionTitle>Buying Power Reduction</SectionTitle>
               <div className="space-y-1">
-                <div className="flex justify-between text-[10px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Reg-T BPR</span>
                   <span className="font-mono text-amber-400">{fmt$(regTMargin)}</span>
                 </div>
-                <div className="flex justify-between text-[10px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Portfolio Margin BPR</span>
-                  <span className="font-mono text-green-400">{fmt$(pmMargin)}</span>
+                  <span className="font-mono text-emerald-500">{fmt$(pmMargin)}</span>
                 </div>
                 <div className="my-1 h-px bg-border/40" />
-                <div className="flex justify-between text-[10px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Account Size</span>
                   <span className="font-mono text-foreground/80">{fmt$(ACCOUNT_SIZE)}</span>
                 </div>
-                <div className="flex justify-between text-[10px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Remaining BP (Reg-T)</span>
                   <span className="font-mono text-foreground/60">
                     {fmt$(Math.max(ACCOUNT_SIZE - regTMargin, 0))}
                   </span>
                 </div>
-                <div className="flex justify-between text-[10px]">
+                <div className="flex justify-between text-xs">
                   <span className="text-muted-foreground">Remaining BP (PM)</span>
-                  <span className="font-mono text-green-400">
+                  <span className="font-mono text-emerald-500">
                     {fmt$(Math.max(ACCOUNT_SIZE - pmMargin, 0))}
                   </span>
                 </div>
@@ -1080,8 +1080,8 @@ export function PortfolioMarginCalc() {
 
           {/* Strategy suggestion */}
           <div className="rounded-md border border-orange-500/20 bg-orange-500/5 p-3">
-            <p className="mb-1 text-[10px] font-semibold text-orange-400">Optimal Strategy Suggestion</p>
-            <p className="text-[10px] text-muted-foreground">
+            <p className="mb-1 text-xs font-semibold text-orange-400">Optimal Strategy Suggestion</p>
+            <p className="text-xs text-muted-foreground">
               {(() => {
                 const isShortGamma = netGreeks.gamma < 0;
                 const isShortVega = netGreeks.vega < 0;

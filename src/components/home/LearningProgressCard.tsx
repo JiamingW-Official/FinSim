@@ -96,13 +96,13 @@ export function LearningProgressCard() {
     <div className="rounded-lg border border-border bg-card p-4">
       {/* Header */}
       <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <BookOpen className="h-3 w-3" />
           Learning Progress
         </div>
         <Link
           href="/learn"
-          className="flex items-center gap-0.5 text-[10px] font-medium text-primary hover:underline"
+          className="flex items-center gap-0.5 text-xs font-medium text-primary hover:underline"
         >
           Continue
           <ChevronRight className="h-3 w-3" />
@@ -145,7 +145,7 @@ export function LearningProgressCard() {
           </svg>
           {/* Center text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-sm font-black tabular-nums text-primary">
+            <span className="text-sm font-bold tabular-nums text-primary">
               {progressPct}%
             </span>
           </div>
@@ -185,7 +185,7 @@ export function LearningProgressCard() {
               : 0;
           return (
             <div key={cat.id} className="flex items-center gap-2">
-              <span className="w-[72px] truncate text-[10px] text-muted-foreground">
+              <span className="w-[72px] truncate text-xs text-muted-foreground">
                 {cat.label}
               </span>
               <div
@@ -204,7 +204,7 @@ export function LearningProgressCard() {
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 />
               </div>
-              <span className="w-7 text-right text-[10px] tabular-nums font-semibold text-muted-foreground">
+              <span className="w-7 text-right text-xs tabular-nums font-semibold text-muted-foreground">
                 {pct}%
               </span>
             </div>
@@ -232,7 +232,7 @@ function MiniStat({
     <div className="flex items-center gap-1.5">
       {icon}
       <div className="min-w-0">
-        <p className="text-[10px] text-muted-foreground">{label}</p>
+        <p className="text-xs text-muted-foreground">{label}</p>
         <p className="text-[11px] font-bold tabular-nums">{value}</p>
       </div>
     </div>

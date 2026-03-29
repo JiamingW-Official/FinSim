@@ -125,7 +125,7 @@ function ComponentBar({ name, value, signal }: { name: string; value: number; si
           style={{ width: `${Math.max(2, value)}%` }}
         />
       </div>
-      <p className="text-[10px] text-muted-foreground leading-tight">{signal}</p>
+      <p className="text-xs text-muted-foreground leading-tight">{signal}</p>
     </div>
   );
 }

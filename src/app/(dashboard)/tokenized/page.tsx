@@ -247,7 +247,7 @@ function TypeBadge({ type }: { type: AssetType }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-medium",
+        "inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-xs font-medium",
         TYPE_COLOR[type],
       )}
     >
@@ -571,22 +571,22 @@ function AssetCard({
       <div className="flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium leading-tight truncate">{asset.name}</p>
-          <p className="text-[10px] text-muted-foreground mt-0.5">{asset.location}</p>
+          <p className="text-xs text-muted-foreground mt-0.5">{asset.location}</p>
         </div>
         <TypeBadge type={asset.type} />
       </div>
 
       <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
         <div>
-          <p className="text-[10px] text-muted-foreground">Token Price</p>
+          <p className="text-xs text-muted-foreground">Token Price</p>
           <p className="font-mono text-sm font-semibold">${fmt(asset.tokenPrice)}</p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground">24h Change</p>
+          <p className="text-xs text-muted-foreground">24h Change</p>
           <ChangeChip value={asset.change24h} />
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             {asset.type === "Commodities" ? "Yield" : "APY"}
           </p>
           <p className="text-sm font-medium text-emerald-400">
@@ -594,15 +594,15 @@ function AssetCard({
           </p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground">Market Cap</p>
+          <p className="text-xs text-muted-foreground">Market Cap</p>
           <p className="text-sm font-medium">{fmtCompact(asset.marketCap)}</p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground">Total Supply</p>
+          <p className="text-xs text-muted-foreground">Total Supply</p>
           <p className="font-mono text-xs">{asset.totalSupply.toLocaleString()}</p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground">Min. Investment</p>
+          <p className="text-xs text-muted-foreground">Min. Investment</p>
           <p className="font-mono text-xs">${asset.minInvestment.toLocaleString()}</p>
         </div>
       </div>
@@ -864,7 +864,7 @@ function PortfolioTab({
           <DonutChart slices={slices} />
           <div className="w-full space-y-1">
             {slices.map((s) => (
-              <div key={s.label} className="flex items-center gap-2 text-[10px]">
+              <div key={s.label} className="flex items-center gap-2 text-xs">
                 <span
                   className="inline-block h-2 w-2 rounded-full shrink-0"
                   style={{ background: s.color }}
@@ -893,7 +893,7 @@ function SummaryChip({
 }) {
   return (
     <div className="rounded-lg border bg-card p-3 space-y-1">
-      <p className="text-[10px] text-muted-foreground">{label}</p>
+      <p className="text-xs text-muted-foreground">{label}</p>
       <p className={cn("text-sm font-semibold font-mono", className)}>{value}</p>
     </div>
   );
@@ -984,7 +984,7 @@ function YieldCalculatorTab() {
             onChange={(e) => setInvestmentAmount(Number(e.target.value))}
             className="w-full accent-primary"
           />
-          <div className="flex justify-between text-[10px] text-muted-foreground">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>$1,000</span>
             <span>$1,000,000</span>
           </div>
@@ -1047,7 +1047,7 @@ function YieldCalculatorTab() {
         {/* Legend */}
         <div className="flex flex-wrap gap-3">
           {chartSeries.map((s) => (
-            <div key={s.label} className="flex items-center gap-1.5 text-[10px]">
+            <div key={s.label} className="flex items-center gap-1.5 text-xs">
               <span
                 className="inline-block h-2 w-2 rounded-sm"
                 style={{ background: s.color }}
@@ -1391,7 +1391,7 @@ export default function TokenizedPage() {
             </p>
           </div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="rounded border bg-emerald-500/10 border-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
+            <span className="rounded border bg-emerald-500/10 border-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-400">
               {holdings.length} positions
             </span>
           </div>

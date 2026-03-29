@@ -187,7 +187,7 @@ function SpreadPieChart() {
           <div key={seg.label} className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: seg.color }} />
             <span className="text-xs text-slate-300">{seg.label}</span>
-            <Badge variant="outline" className="text-[10px] px-1 py-0 border-slate-600 text-slate-400">{seg.value}%</Badge>
+            <Badge variant="outline" className="text-xs px-1 py-0 border-slate-600 text-slate-400">{seg.value}%</Badge>
           </div>
         ))}
       </div>
@@ -770,7 +770,7 @@ export default function MicrostructureDepthPage() {
                   <div key={s.label} className="bg-slate-800/50 rounded-lg p-2 border border-slate-700/50">
                     <p className="text-xs text-slate-400">{s.label}</p>
                     <p className="text-base font-bold text-slate-100">{s.value}</p>
-                    <p className="text-[10px] text-slate-500">{s.sub}</p>
+                    <p className="text-xs text-slate-500">{s.sub}</p>
                   </div>
                 ))}
               </div>
@@ -804,7 +804,7 @@ export default function MicrostructureDepthPage() {
                       <span className="text-xs text-slate-400 w-10 text-right">{row.toxicPct}%</span>
                       <Badge
                         className={cn(
-                          "text-[10px] px-1.5 py-0 shrink-0",
+                          "text-xs px-1.5 py-0 shrink-0",
                           row.classification === "High Toxic" ? "bg-red-500/20 text-red-400 border-red-500/30" :
                           row.classification === "Elevated" ? "bg-amber-500/20 text-amber-400 border-amber-500/30" :
                           "bg-green-500/20 text-green-400 border-green-500/30"
@@ -843,8 +843,8 @@ export default function MicrostructureDepthPage() {
                           { range: ">0.65", label: "High Risk", color: "bg-red-500/20 text-red-400 border-red-500/30" },
                         ].map((z) => (
                           <div key={z.range} className={cn("text-center px-2 py-1 rounded border", z.color)}>
-                            <p className="text-[10px] font-mono">{z.range}</p>
-                            <p className="text-[10px]">{z.label}</p>
+                            <p className="text-xs font-mono">{z.range}</p>
+                            <p className="text-xs">{z.label}</p>
                           </div>
                         ))}
                       </div>
@@ -871,7 +871,7 @@ export default function MicrostructureDepthPage() {
                       <div key={r.rule} className="p-2 rounded bg-slate-800/40 border border-slate-700/30">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-slate-200 font-medium">{r.rule}</span>
-                          <Badge variant="outline" className="text-[10px] px-1.5 border-green-500/30 text-green-400">{r.accuracy}%</Badge>
+                          <Badge variant="outline" className="text-xs px-1.5 border-green-500/30 text-green-400">{r.accuracy}%</Badge>
                         </div>
                         <p className="text-slate-500">{r.desc}</p>
                         <Progress value={r.accuracy} className="h-1 mt-1.5 bg-slate-700" />
@@ -940,7 +940,7 @@ export default function MicrostructureDepthPage() {
                     step={0.1}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+                  <div className="flex justify-between text-xs text-slate-600 mt-1">
                     <span>$0.1M</span><span>$50M</span>
                   </div>
                 </div>
@@ -952,7 +952,7 @@ export default function MicrostructureDepthPage() {
                     { label: "√(Q/ADV)", value: `${Math.sqrt(qm / adv).toFixed(3)}`, color: "text-blue-400" },
                   ].map((s) => (
                     <div key={s.label} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50 text-center">
-                      <p className="text-[10px] text-slate-500 mb-1">{s.label}</p>
+                      <p className="text-xs text-slate-500 mb-1">{s.label}</p>
                       <p className={cn("text-sm font-bold", s.color)}>{s.value}</p>
                     </div>
                   ))}
@@ -985,7 +985,7 @@ export default function MicrostructureDepthPage() {
                         <Badge
                           variant="outline"
                           className={cn(
-                            "text-[10px] px-1.5",
+                            "text-xs px-1.5",
                             asset.liquidity === "Very High" ? "border-green-500/30 text-green-400" :
                             asset.liquidity === "High" ? "border-blue-500/30 text-blue-400" :
                             asset.liquidity === "Medium" ? "border-amber-500/30 text-amber-400" :
@@ -999,7 +999,7 @@ export default function MicrostructureDepthPage() {
                       <div className="mt-1.5 bg-slate-700 rounded-full h-1.5">
                         <div className="h-1.5 rounded-full bg-purple-500" style={{ width: `${pct}%` }} />
                       </div>
-                      <p className="text-[10px] text-slate-500 mt-1">λ × order flow = price Δ</p>
+                      <p className="text-xs text-slate-500 mt-1">λ × order flow = price Δ</p>
                     </div>
                   );
                 })}
@@ -1116,7 +1116,7 @@ export default function MicrostructureDepthPage() {
                       <p className="text-lg mb-0.5">{s.icon}</p>
                       <p className="text-[11px] text-slate-400 font-medium mb-1">{s.strategy}</p>
                       <p className={cn("text-sm font-bold", bpsNum < 2 ? "text-green-400" : bpsNum < 4 ? "text-amber-400" : "text-red-400")}>{s.bps} bps</p>
-                      <p className="text-[10px] text-slate-500">${costPerM} / $1M</p>
+                      <p className="text-xs text-slate-500">${costPerM} / $1M</p>
                     </div>
                   );
                 })}

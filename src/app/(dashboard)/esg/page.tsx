@@ -676,7 +676,7 @@ export default function EsgPage() {
                               </td>
                               <td className="px-2 py-2 text-right font-bold">{c.total}</td>
                               <td className="px-3 py-2 text-center">
-                                <span className={`inline-block px-1.5 py-0.5 rounded border text-[10px] font-medium ${controversyBadge(c.controversyLevel)}`}>
+                                <span className={`inline-block px-1.5 py-0.5 rounded border text-xs font-medium ${controversyBadge(c.controversyLevel)}`}>
                                   {c.controversyLevel}
                                 </span>
                               </td>
@@ -1099,7 +1099,7 @@ export default function EsgPage() {
                           </text>
                         </svg>
                         <span className="text-xs font-semibold">{c.ticker}</span>
-                        <span className="text-[10px] text-muted-foreground">{c.sector}</span>
+                        <span className="text-xs text-muted-foreground">{c.sector}</span>
                       </div>
                     );
                   })}
@@ -1215,7 +1215,7 @@ export default function EsgPage() {
                             </td>
                             <td className="px-2 py-2 text-right font-semibold">{c.total}</td>
                             <td className="px-2 py-2 text-center">
-                              <span className={`px-1.5 py-0.5 rounded border text-[10px] font-medium ${controversyBadge(c.controversyLevel)}`}>
+                              <span className={`px-1.5 py-0.5 rounded border text-xs font-medium ${controversyBadge(c.controversyLevel)}`}>
                                 {c.controversyLevel}
                               </span>
                             </td>
@@ -1253,7 +1253,7 @@ export default function EsgPage() {
                             <td className="px-3 py-2">
                               <div className="font-semibold">{e.ticker}</div>
                               <div className="text-muted-foreground truncate max-w-[130px]">{e.name}</div>
-                              <Badge variant="outline" className="text-[10px] mt-0.5 px-1 py-0">{e.theme}</Badge>
+                              <Badge variant="outline" className="text-xs mt-0.5 px-1 py-0">{e.theme}</Badge>
                             </td>
                             <td className="px-2 py-2 text-right font-semibold">{e.aum.toFixed(1)}</td>
                             <td className={`px-2 py-2 text-right font-semibold ${e.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}>
@@ -1264,7 +1264,7 @@ export default function EsgPage() {
                             <td className="px-3 py-2">
                               <div className="flex gap-1 flex-wrap">
                                 {e.sdgAlignment.map((sdg) => (
-                                  <span key={sdg} className="text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded px-1">SDG {sdg}</span>
+                                  <span key={sdg} className="text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded px-1">SDG {sdg}</span>
                                 ))}
                               </div>
                             </td>

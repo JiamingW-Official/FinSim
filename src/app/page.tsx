@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Brain, Activity, Target, ArrowRight } from "lucide-react";
+import { BookOpen, Activity, Target, ArrowRight } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -15,23 +15,23 @@ const fadeUp = {
 
 const FEATURES = [
   {
-    icon: Brain,
-    title: "AI Trading Coach",
-    desc: "Get real-time analysis from AlphaBot — 50+ signals, candlestick patterns, regime detection, and personalised trade plans.",
+    icon: BookOpen,
+    title: "Trading Academy",
+    desc: "650+ bite-sized lessons across stocks, options, crypto, and more. Learn concepts, practice on the simulator, then review your trades.",
     color: "text-blue-400",
     bg: "bg-blue-500/10",
   },
   {
     icon: Activity,
-    title: "20+ Indicators",
-    desc: "Full technical toolkit: SMA, EMA, RSI, MACD, Bollinger Bands, VWAP, ADX, OBV, CCI, Williams %R, and more — each with educational tooltips.",
+    title: "Market Simulator",
+    desc: "Trade with real chart patterns and 20+ technical indicators. Build intuition through hands-on practice with simulated execution — no real money at stake.",
     color: "text-emerald-400",
     bg: "bg-emerald-500/10",
   },
   {
     icon: Target,
     title: "Prediction Markets",
-    desc: "Test your market views on real outcomes — Fed decisions, earnings, macro trends. Build probability thinking and calibration skills.",
+    desc: "Bet on macro outcomes — Fed decisions, earnings, sector trends. Sharpen your probability thinking and calibration skills.",
     color: "text-rose-400",
     bg: "bg-rose-500/10",
   },
@@ -67,10 +67,10 @@ export default function LandingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          Master the Markets{" "}
+          Learn to Trade{" "}
           <br className="hidden sm:block" />
-          Before Risking{" "}
-          <span className="text-primary">Real Money</span>
+          Without Risking{" "}
+          <span className="text-primary">a Dollar</span>
         </motion.h1>
 
         <motion.p
@@ -79,8 +79,8 @@ export default function LandingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.4 }}
         >
-          FinSim is an AI-powered trading simulator that teaches you to trade through
-          hands-on practice — with real market data and zero real money at risk.
+          Practice trading, build financial intuition, and develop market sense
+          — all in a risk-free simulation.
         </motion.p>
 
         <motion.div
@@ -93,7 +93,7 @@ export default function LandingPage() {
             href="/home"
             className="inline-flex items-center gap-2 rounded-md bg-primary px-7 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
-            Start Trading Free
+            Start Learning Free
             <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
@@ -105,7 +105,7 @@ export default function LandingPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.4 }}
         >
-          10+ asset classes&nbsp;&nbsp;•&nbsp;&nbsp;20+ indicators&nbsp;&nbsp;•&nbsp;&nbsp;650+ bite-sized lessons&nbsp;&nbsp;•&nbsp;&nbsp;Zero real money
+          100% free&nbsp;&nbsp;•&nbsp;&nbsp;No real money&nbsp;&nbsp;•&nbsp;&nbsp;No sign-up required
         </motion.p>
       </section>
 
@@ -119,7 +119,7 @@ export default function LandingPage() {
           variants={fadeUp}
           custom={0}
         >
-          Everything you need to learn how to trade
+          Built for students, by students
         </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -156,13 +156,13 @@ export default function LandingPage() {
             Ready to start learning?
           </h2>
           <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-7">
-            Join thousands of learners building real trading skills — completely free.
+            650+ lessons, 10 asset classes, 20+ indicators — all free, forever.
           </p>
           <Link
             href="/home"
             className="inline-flex items-center gap-2 rounded-md bg-primary px-8 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
-            Start Trading Free
+            Start Learning Free
             <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
@@ -175,8 +175,12 @@ export default function LandingPage() {
             <span className="text-xs font-black text-primary">FS</span>
             <span className="text-xs text-muted-foreground">FinSim</span>
           </div>
-          <p className="text-[11px] text-muted-foreground">
-            &copy; {new Date().getFullYear()} FinSim. Built for financial literacy education.
+          <p className="text-[11px] text-muted-foreground text-right">
+            <span>For educational purposes only. Not financial advice.</span>
+            <br />
+            <span>All market data is simulated.</span>
+            <br />
+            <span>&copy; {new Date().getFullYear()} FinSim</span>
           </p>
         </div>
       </footer>

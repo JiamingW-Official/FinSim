@@ -671,7 +671,7 @@ function GdpTab() {
     <div className="space-y-5">
       {/* GDP Nowcast widget */}
       <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-3 sm:col-span-1 bg-gradient-to-br from-indigo-600/20 to-indigo-900/10 border border-indigo-500/20 rounded-2xl p-5">
+        <div className="col-span-3 sm:col-span-1 bg-card border border-border rounded-2xl p-5">
           <p className="text-xs text-indigo-400 font-medium mb-1">GDP Nowcast — Q1 2026</p>
           <p className="text-4xl font-bold text-indigo-300">2.4%</p>
           <p className="text-xs text-gray-400 mt-1">Annualized real growth rate</p>

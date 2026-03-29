@@ -528,7 +528,7 @@ function IronCondorTab() {
                 { action: "BUY", type: "CALL", strike: longCallK, premium: longCallPrem, dir: -1 },
               ].map((leg) => (
                 <div key={`${leg.action}-${leg.type}-${leg.strike.toFixed(0)}`} className="flex justify-between items-center">
-                  <Badge variant="outline" className={`text-[10px] ${leg.action === "SELL" ? "border-green-500/50 text-green-400" : "border-red-500/50 text-red-400"}`}>
+                  <Badge variant="outline" className={`text-xs ${leg.action === "SELL" ? "border-green-500/50 text-green-400" : "border-red-500/50 text-red-400"}`}>
                     {leg.action}
                   </Badge>
                   <span className="text-neutral-300">{leg.type} ${leg.strike.toFixed(1)}</span>
@@ -959,7 +959,7 @@ function StrategyComparisonTab() {
                   </td>
                   <td className="px-4 py-2.5 text-right font-mono text-neutral-300">{s.deltaExposure}</td>
                   <td className="px-4 py-2.5 text-left">
-                    <Badge variant="outline" className="text-[10px] border-neutral-700 text-neutral-400">
+                    <Badge variant="outline" className="text-xs border-neutral-700 text-neutral-400">
                       {s.bestFor}
                     </Badge>
                   </td>

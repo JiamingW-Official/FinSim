@@ -27,14 +27,6 @@ import type { LeaderboardDimension, LeagueTier, RankedEntry } from "@/types/lead
 type MainTab = "global" | "friends" | "stats" | "trophies";
 type TimePeriod = "week" | "month" | "all";
 
-const stagger = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
-} as const;
-const fadeUp = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 25 } },
-};
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   DollarSign,
@@ -176,46 +168,35 @@ export default function LeaderboardPage() {
       {/* ===== HEADER ===== */}
       <div className="border-b border-border px-4 py-4">
         <div className="flex items-center gap-3">
-          <motion.div
+          <div
             className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10"
-            initial={{ scale: 0, rotate: -15 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
             <Trophy className="h-5 w-5 text-purple-400" />
-          </motion.div>
+          </div>
           <div>
-            <h1 className="text-lg font-black">Leaderboard</h1>
+            <h1 className="text-lg font-bold">Leaderboard</h1>
             <p className="text-[11px] text-muted-foreground">
               Compete with other traders
             </p>
           </div>
           <div className="flex-1" />
-          <motion.div
-            className="flex items-center gap-2"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, type: "spring", stiffness: 400, damping: 15 }}
-          >
+          <div className="flex items-center gap-2">
             <LeagueBadge tier={league} size="lg" />
-          </motion.div>
+          </div>
         </div>
 
         {/* Rank badge */}
         <div className="flex items-center gap-2 mt-3">
-          <motion.div
+          <div
             className="flex items-center gap-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 px-3 py-1.5"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
           >
-            <span className="text-[11px] font-black tabular-nums text-purple-400">
+            <span className="text-[11px] font-bold tabular-nums text-purple-400">
               Rank #{userRank?.rank ?? "-"}
             </span>
-            <span className="text-[10px] text-muted-foreground">
+            <span className="text-xs text-muted-foreground">
               of {ranked.length}
             </span>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -281,7 +262,7 @@ export default function LeaderboardPage() {
                         type="button"
                         onClick={() => setDimension(dim.id)}
                         className={cn(
-                          "flex items-center gap-1 rounded-md px-2.5 py-1 text-[10px] font-bold transition-colors whitespace-nowrap",
+                          "flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-bold transition-colors whitespace-nowrap",
                           isActive
                             ? "bg-purple-500/20 border border-purple-500/40 text-purple-300"
                             : "bg-muted/20 border border-border text-muted-foreground hover:text-foreground",
@@ -306,7 +287,7 @@ export default function LeaderboardPage() {
                         type="button"
                         onClick={() => setTimePeriod(p)}
                         className={cn(
-                          "rounded-md px-2.5 py-1 text-[10px] font-bold transition-colors",
+                          "rounded-md px-2.5 py-1 text-xs font-bold transition-colors",
                           timePeriod === p
                             ? "bg-card text-foreground shadow-sm"
                             : "text-muted-foreground hover:text-foreground",
@@ -321,40 +302,33 @@ export default function LeaderboardPage() {
 
               <div className="flex gap-5">
                 {/* Left column — main leaderboard */}
-                <motion.div
+                <div
                   className="flex-1 min-w-0 space-y-4"
-                  variants={stagger}
-                  initial="hidden"
-                  animate="show"
                 >
-                  <motion.div variants={fadeUp}>
+                  <div>
                     <PlayerStatsCard />
-                  </motion.div>
+                  </div>
 
-                  <motion.div variants={fadeUp}>
+                  <div>
                     <LeaderboardTable ranked={filteredRanked} dimension={dimension} />
-                  </motion.div>
+                  </div>
 
-                  <motion.div variants={fadeUp}>
+                  <div>
                     <BeatTheBestPanel top3={top3} />
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
 
                 {/* Right column — sidebar panels */}
-                <motion.div
+                <div
                   className="hidden lg:flex w-72 shrink-0 flex-col gap-4"
-                  variants={stagger}
-                  initial="hidden"
-                  animate="show"
                 >
                   {/* Podium: Top 3 */}
-                  <motion.div
-                    variants={fadeUp}
+                  <div
                     className="rounded-xl border border-border bg-card/50 p-4"
                   >
                     <div className="flex items-center gap-2 mb-4">
                       <Crown className="h-4 w-4 text-amber-400" />
-                      <span className="text-sm font-black">Top 3 — {dimConfig.label}</span>
+                      <span className="text-sm font-bold">Top 3 — {dimConfig.label}</span>
                     </div>
 
                     <div className="flex items-end justify-center gap-3">
@@ -362,16 +336,15 @@ export default function LeaderboardPage() {
                       {top3[0] && <PodiumSlot entry={top3[0]} dimConfig={dimConfig} place={1} />}
                       {top3[2] && <PodiumSlot entry={top3[2]} dimConfig={dimConfig} place={3} />}
                     </div>
-                  </motion.div>
+                  </div>
 
                   {/* League Distribution */}
-                  <motion.div
-                    variants={fadeUp}
+                  <div
                     className="rounded-xl border border-border bg-card/50 p-4"
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Gem className="h-4 w-4 text-cyan-400" />
-                      <span className="text-sm font-black">Leagues</span>
+                      <span className="text-sm font-bold">Leagues</span>
                     </div>
 
                     <div className="space-y-2">
@@ -382,64 +355,57 @@ export default function LeaderboardPage() {
                         const isUserLeague = tier === league;
 
                         return (
-                          <motion.div
+                          <div
                             key={tier}
                             className={cn(
                               "flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors",
                               isUserLeague && "bg-purple-500/5 border border-purple-500/20",
                             )}
-                            initial={{ opacity: 0, x: 8 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.3 }}
                           >
                             <span className="text-sm">{info.emoji}</span>
                             <span className={cn("text-[11px] font-bold flex-1", info.color)}>
                               {info.label}
                             </span>
-                            <span className="text-[10px] font-bold tabular-nums text-muted-foreground">
+                            <span className="text-xs font-bold tabular-nums text-muted-foreground">
                               {count}
                             </span>
                             <div className="w-12 h-1.5 rounded-full bg-muted/30 overflow-hidden">
-                              <motion.div
-                                className={cn("h-full rounded-full", {
+                              <div
+                                className={cn("h-full rounded-full transition-all duration-200", {
                                   "bg-purple-400": tier === "alpha",
                                   "bg-cyan-400": tier === "diamond",
                                   "bg-amber-400": tier === "gold",
                                   "bg-gray-300": tier === "silver",
                                   "bg-orange-400": tier === "bronze",
                                 })}
-                                initial={{ width: 0 }}
-                                animate={{ width: `${pct}%` }}
-                                transition={{ delay: 0.5, duration: 0.6 }}
+                                style={{ width: `${pct}%` }}
                               />
                             </div>
-                          </motion.div>
+                          </div>
                         );
                       })}
                     </div>
-                  </motion.div>
+                  </div>
 
                   {/* Your Next Goal */}
-                  <motion.div
-                    variants={fadeUp}
+                  <div
                     className="rounded-xl border border-border bg-card/50 p-4"
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Medal className="h-4 w-4 text-purple-400" />
-                      <span className="text-sm font-black">Your Next Goal</span>
+                      <span className="text-sm font-bold">Your Next Goal</span>
                     </div>
                     <NextGoalContent userRank={userRank} dimConfig={dimConfig} ranked={filteredRanked} />
-                  </motion.div>
+                  </div>
 
                   {/* Trading Tip */}
-                  <motion.div
-                    variants={fadeUp}
+                  <div
                     className="rounded-xl border border-primary/15 bg-primary/5 p-4"
                   >
                     <div className="flex items-start gap-2">
                       <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                       <div>
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-primary/70">
+                        <span className="text-xs font-bold text-primary/70">
                           Pro Tip
                         </span>
                         <p className="text-[11px] text-primary/80 leading-relaxed mt-1">
@@ -447,8 +413,8 @@ export default function LeaderboardPage() {
                         </p>
                       </div>
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}
@@ -503,8 +469,8 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Users className="h-4 w-4 text-muted-foreground" />
-        <h2 className="text-sm font-black">Friends Leaderboard</h2>
-        <span className="rounded-full bg-muted/30 px-2 py-0.5 text-[10px] font-bold text-muted-foreground">
+        <h2 className="text-sm font-bold">Friends Leaderboard</h2>
+        <span className="rounded-full bg-muted/30 px-2 py-0.5 text-xs font-bold text-muted-foreground">
           {friends.length}
         </span>
       </div>
@@ -512,12 +478,12 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
       {/* Column headers */}
       <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
         <div className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 px-3 py-2 border-b border-border/50">
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">#</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Player</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-right">Portfolio</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-right">Return</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-right">Win %</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">Action</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-center">#</span>
+          <span className="text-[11px] font-bold text-muted-foreground">Player</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-right">Portfolio</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-right">Return</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-right">Win %</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-center">Action</span>
         </div>
 
         {friends.map((friend, i) => {
@@ -525,23 +491,20 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
           const isChallenged = challenged.has(friend.id);
 
           return (
-            <motion.div
+            <div
               key={friend.id}
               className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 items-center px-3 py-2.5 hover:bg-accent/20 transition-colors border-b border-border/30 last:border-0"
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.06 }}
             >
               <span className="text-[11px] font-bold text-muted-foreground text-center">{i + 1}</span>
 
               <div className="flex items-center gap-2 min-w-0">
-                <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[10px] font-black text-white", colorClass)}>
+                <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white", colorClass)}>
                   {getInitials(friend.name)}
                 </div>
                 <div className="min-w-0">
                   <span className="text-[11px] font-bold truncate block">{friend.name}</span>
                   <div className="flex items-center gap-1">
-                    <span className="text-[9px] text-muted-foreground">Lv.{friend.level}</span>
+                    <span className="text-[11px] text-muted-foreground">Lv.{friend.level}</span>
                     <LeagueBadge tier={friend.league} size="sm" />
                   </div>
                 </div>
@@ -566,7 +529,7 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
                   onClick={() => setChallenged((prev) => new Set([...prev, friend.id]))}
                   disabled={isChallenged}
                   className={cn(
-                    "rounded-md px-2 py-1 text-[9px] font-black transition-colors",
+                    "rounded-md px-2 py-1 text-[11px] font-bold transition-colors",
                     isChallenged
                       ? "bg-muted/20 text-muted-foreground cursor-default"
                       : "bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20",
@@ -575,7 +538,7 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
                   {isChallenged ? "Sent" : "Challenge"}
                 </button>
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>
@@ -673,8 +636,8 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             <Trophy className="h-4 w-4 text-purple-400" />
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Global Rank</span>
           </div>
-          <div className="text-3xl font-black tabular-nums text-purple-400">#{rank}</div>
-          <p className="text-[10px] text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
+          <div className="text-3xl font-bold tabular-nums text-purple-400">#{rank}</div>
+          <p className="text-xs text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
         </div>
 
         <div className="rounded-xl border border-border bg-card/50 p-4">
@@ -682,16 +645,14 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             <Star className="h-4 w-4 text-amber-400" />
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">Percentile</span>
           </div>
-          <div className="text-3xl font-black tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
+          <div className="text-3xl font-bold tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
           <div className="mt-2 h-2 rounded-full bg-muted/30 overflow-hidden">
-            <motion.div
-              className="h-full rounded-full bg-amber-400"
-              initial={{ width: 0 }}
-              animate={{ width: `${percentile}%` }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+            <div
+              className="h-full rounded-full bg-amber-400 transition-all duration-200"
+              style={{ width: `${percentile}%` }}
             />
           </div>
-          <p className="text-[10px] text-muted-foreground mt-1">Better than {percentile}% of players</p>
+          <p className="text-xs text-muted-foreground mt-1">Better than {percentile}% of players</p>
         </div>
       </div>
 
@@ -699,8 +660,8 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       <div className="rounded-xl border border-border bg-card/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp className="h-4 w-4 text-primary" />
-          <span className="text-sm font-black">Rank History</span>
-          <span className="text-[10px] text-muted-foreground ml-auto">Last 30 days</span>
+          <span className="text-sm font-bold">Rank History</span>
+          <span className="text-xs text-muted-foreground ml-auto">Last 30 days</span>
         </div>
 
         <div className="relative">
@@ -750,12 +711,12 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
           </svg>
 
           <div className="flex justify-between mt-1">
-            <span className="text-[9px] text-muted-foreground">30 days ago</span>
-            <span className="text-[9px] text-muted-foreground">Today</span>
+            <span className="text-[11px] text-muted-foreground">30 days ago</span>
+            <span className="text-[11px] text-muted-foreground">Today</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5 mt-2 text-[10px] text-muted-foreground">
+        <div className="flex items-center gap-1.5 mt-2 text-xs text-muted-foreground">
           {rankHistory[0] > rank ? (
             <ChevronUp className="h-3 w-3 text-emerald-400" />
           ) : (
@@ -774,14 +735,14 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       {/* Comparison table */}
       <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
         <div className="px-4 py-3 border-b border-border/50">
-          <span className="text-sm font-black">Performance Comparison</span>
+          <span className="text-sm font-bold">Performance Comparison</span>
         </div>
 
         <div className="grid grid-cols-4 px-4 py-2 border-b border-border/30">
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Metric</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">You</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">Top 10 Avg</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">All Avg</span>
+          <span className="text-[11px] font-bold text-muted-foreground">Metric</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-center">You</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-center">Top 10 Avg</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-center">All Avg</span>
         </div>
 
         {compRows.map((row, i) => (
@@ -790,7 +751,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
             className={cn("grid grid-cols-4 px-4 py-2.5 items-center", i % 2 === 0 ? "bg-muted/5" : "")}
           >
             <span className="text-[11px] font-bold text-muted-foreground">{row.label}</span>
-            <span className={cn("text-[11px] font-black tabular-nums text-center", row.userBetter ? "text-emerald-400" : "text-foreground")}>
+            <span className={cn("text-[11px] font-bold tabular-nums text-center", row.userBetter ? "text-emerald-400" : "text-foreground")}>
               {row.user}
             </span>
             <span className="text-[11px] tabular-nums text-muted-foreground text-center">{row.top10}</span>
@@ -828,20 +789,18 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
       <div className="rounded-xl border border-border bg-card/50 p-4">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <span className="text-sm font-black">Trophy Case</span>
-            <p className="text-[10px] text-muted-foreground mt-0.5">{unlockedCount} of {allDefs.length} unlocked</p>
+            <span className="text-sm font-bold">Trophy Case</span>
+            <p className="text-xs text-muted-foreground mt-0.5">{unlockedCount} of {allDefs.length} unlocked</p>
           </div>
           <div className="text-right">
-            <span className="text-2xl font-black tabular-nums text-amber-400">{unlockedCount}</span>
-            <span className="text-[10px] text-muted-foreground">/{allDefs.length}</span>
+            <span className="text-2xl font-bold tabular-nums text-amber-400">{unlockedCount}</span>
+            <span className="text-xs text-muted-foreground">/{allDefs.length}</span>
           </div>
         </div>
         <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
-          <motion.div
-            className="h-full rounded-full bg-amber-400"
-            initial={{ width: 0 }}
-            animate={{ width: `${(unlockedCount / allDefs.length) * 100}%` }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+          <div
+            className="h-full rounded-full bg-amber-400 transition-all duration-200"
+            style={{ width: `${(unlockedCount / allDefs.length) * 100}%` }}
           />
         </div>
       </div>
@@ -849,27 +808,24 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
       {/* Unlocked achievements */}
       {unlocked.length > 0 && (
         <div>
-          <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Earned</h3>
+          <h3 className="text-[11px] font-bold text-muted-foreground mb-3">Earned</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {unlocked.map((a, i) => (
-              <motion.div
+              <div
                 key={a.id}
                 className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.04 }}
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <Trophy className="h-4 w-4 text-amber-400 shrink-0" />
-                  <span className="text-[11px] font-black text-amber-400 truncate">{a.name}</span>
+                  <span className="text-[11px] font-bold text-amber-400 truncate">{a.name}</span>
                 </div>
-                <p className="text-[10px] text-muted-foreground leading-relaxed mb-1">{a.description}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-1">{a.description}</p>
                 {a.unlockedAt > 0 && (
-                  <p className="text-[9px] text-muted-foreground/60">
+                  <p className="text-[11px] text-muted-foreground/60">
                     {new Date(a.unlockedAt).toLocaleDateString()}
                   </p>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -878,22 +834,19 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
       {/* Locked achievements */}
       {locked.length > 0 && (
         <div>
-          <h3 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Locked</h3>
+          <h3 className="text-[11px] font-bold text-muted-foreground mb-3">Locked</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {locked.map((a, i) => (
-              <motion.div
+              <div
                 key={a.id}
                 className="rounded-xl border border-border bg-muted/5 p-3 opacity-50 grayscale"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.5 }}
-                transition={{ delay: i * 0.03 }}
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
-                  <span className="text-[11px] font-black text-muted-foreground truncate">{a.name}</span>
+                  <span className="text-[11px] font-bold text-muted-foreground truncate">{a.name}</span>
                 </div>
-                <p className="text-[10px] text-muted-foreground/70 leading-relaxed">{a.description}</p>
-              </motion.div>
+                <p className="text-xs text-muted-foreground/70 leading-relaxed">{a.description}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -920,21 +873,18 @@ function PodiumSlot({
   const initials = getInitials(entry.name);
 
   return (
-    <motion.div
+    <div
       className="flex flex-col items-center gap-1.5"
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: place === 1 ? 0.2 : place === 2 ? 0.3 : 0.4, type: "spring" as const, stiffness: 300, damping: 25 }}
     >
       {/* Place label (no emoji) */}
       <span className={cn(
-        "text-xs font-black tabular-nums",
+        "text-xs font-bold tabular-nums",
         place === 1 ? "text-amber-400" : place === 2 ? "text-gray-300" : "text-orange-400",
       )}>{placeLabels[place - 1]}</span>
 
       {/* Avatar */}
       <div className={cn(
-        "flex items-center justify-center rounded-xl font-black text-white",
+        "flex items-center justify-center rounded-xl font-bold text-white",
         sizes[place],
         entry.isUser ? "bg-primary" : color,
       )}>
@@ -942,12 +892,12 @@ function PodiumSlot({
       </div>
 
       {/* Name */}
-      <span className={cn("text-[10px] font-bold truncate max-w-[72px] text-center", entry.isUser && "text-primary")}>
+      <span className={cn("text-xs font-bold truncate max-w-[72px] text-center", entry.isUser && "text-primary")}>
         {entry.name}
       </span>
 
       {/* Value */}
-      <span className="text-[10px] font-black tabular-nums text-muted-foreground">
+      <span className="text-xs font-bold tabular-nums text-muted-foreground">
         {dimConfig.format(dimConfig.getValue(entry))}
       </span>
 
@@ -959,7 +909,7 @@ function PodiumSlot({
         place === 2 ? "bg-gray-400/10 border border-gray-400/30" :
                       "bg-orange-400/10 border border-orange-400/30",
       )} />
-    </motion.div>
+    </div>
   );
 }
 
@@ -979,8 +929,8 @@ function NextGoalContent({
       <div className="flex items-center gap-2 rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-2">
         <Crown className="h-4 w-4 text-amber-400 shrink-0" />
         <div>
-          <span className="text-xs font-black text-amber-400">You&apos;re #1!</span>
-          <p className="text-[10px] text-muted-foreground">Defend your title.</p>
+          <span className="text-xs font-bold text-amber-400">You&apos;re #1!</span>
+          <p className="text-xs text-muted-foreground">Defend your title.</p>
         </div>
       </div>
     );
@@ -1000,15 +950,15 @@ function NextGoalContent({
         <span className="text-[11px] text-muted-foreground">
           Beat <span className="font-bold text-foreground">{target.name}</span>
         </span>
-        <span className="text-[10px] font-bold text-muted-foreground">#{targetRank}</span>
+        <span className="text-xs font-bold text-muted-foreground">#{targetRank}</span>
       </div>
       <div className="flex items-center justify-between rounded-lg bg-muted/15 px-3 py-2">
-        <span className="text-[10px] text-muted-foreground">Gap</span>
-        <span className="text-sm font-black tabular-nums text-purple-400">
+        <span className="text-xs text-muted-foreground">Gap</span>
+        <span className="text-sm font-bold tabular-nums text-purple-400">
           {dimConfig.format(Math.abs(diff))}
         </span>
       </div>
-      <p className="text-[10px] text-muted-foreground/70 leading-relaxed">
+      <p className="text-xs text-muted-foreground/70 leading-relaxed">
         {dimConfig.sortDescending
           ? `Increase your ${dimConfig.label.toLowerCase()} by ${dimConfig.format(Math.abs(diff))} to rank up.`
           : `Reduce your ${dimConfig.label.toLowerCase()} by ${dimConfig.format(Math.abs(diff))} to rank up.`}

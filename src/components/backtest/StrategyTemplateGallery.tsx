@@ -98,7 +98,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                     </div>
                     <div className="text-[11px] text-zinc-500">{template.subtitle}</div>
                     <div className="mt-1.5 flex items-center gap-2">
-                      <span className={`rounded border px-1.5 py-0.5 text-[9px] font-medium ${catInfo?.color ?? ""} border-current/20`}>
+                      <span className={`rounded border px-1.5 py-0.5 text-[11px] font-medium ${catInfo?.color ?? ""} border-current/20`}>
                         {catInfo?.label ?? template.category}
                       </span>
                       <span className="flex items-center gap-0.5">
@@ -110,7 +110,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                           />
                         ))}
                       </span>
-                      <span className={`text-[9px] ${DIFFICULTY_COLORS[template.difficulty]}`}>
+                      <span className={`text-[11px] ${DIFFICULTY_COLORS[template.difficulty]}`}>
                         {DIFFICULTY_LABELS[template.difficulty]}
                       </span>
                     </div>
@@ -145,7 +145,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                     <div className="space-y-2">
                       {selected.signals.map((signal, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <span className={`mt-0.5 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase ${
+                          <span className={`mt-0.5 rounded px-1.5 py-0.5 text-[11px] font-bold uppercase ${
                             signal.type === "entry"
                               ? "bg-emerald-500/15 text-emerald-400"
                               : "bg-rose-500/15 text-rose-400"
@@ -192,11 +192,11 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                         <div key={i} className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
                           <div className="flex items-center justify-between">
                             <span className="text-[11px] font-medium text-zinc-300">{param.name}</span>
-                            <span className="rounded bg-violet-500/20 px-1.5 py-0.5 text-[10px] font-mono font-semibold text-violet-300">
+                            <span className="rounded bg-violet-500/20 px-1.5 py-0.5 text-xs font-mono font-semibold text-violet-300">
                               {param.default}
                             </span>
                           </div>
-                          <div className="mt-0.5 text-[10px] text-zinc-600">{param.description}</div>
+                          <div className="mt-0.5 text-xs text-zinc-600">{param.description}</div>
                         </div>
                       ))}
                     </div>
@@ -210,7 +210,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   {/* Use Strategy Button */}
                   <button
                     onClick={() => handleUseStrategy(selected)}
-                    className="w-full rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 py-3 text-sm font-bold text-white shadow-lg shadow-violet-500/20 transition-all hover:shadow-violet-500/40"
+                    className="w-full rounded-xl bg-violet-600 py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-violet-500"
                   >
                     Use This Strategy
                   </button>
@@ -238,7 +238,7 @@ function Section({ icon, title, children }: { icon: React.ReactNode; title: stri
     <div>
       <div className="mb-2 flex items-center gap-2">
         {icon}
-        <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400">{title}</h3>
+        <h3 className="text-xs font-bold text-zinc-400">{title}</h3>
       </div>
       {children}
     </div>

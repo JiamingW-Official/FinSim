@@ -176,8 +176,8 @@ function RiskGauge({ label, value, warning, caption }: RiskGaugeProps) {
           </span>
         )}
       </div>
-      <p className="text-[10px] font-medium text-center leading-tight">{label}</p>
-      <p className="text-[9px] text-muted-foreground text-center leading-tight">{caption}</p>
+      <p className="text-xs font-medium text-center leading-tight">{label}</p>
+      <p className="text-[11px] text-muted-foreground text-center leading-tight">{caption}</p>
     </div>
   );
 }
@@ -456,7 +456,7 @@ export function LivePnLDashboard() {
           <Activity className="h-3.5 w-3.5 text-blue-400" />
           Live P&L Dashboard
         </div>
-        <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
+        <span className="flex items-center gap-1 text-xs text-muted-foreground">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
           Live
         </span>
@@ -467,7 +467,7 @@ export function LivePnLDashboard() {
         <div className="flex items-end justify-between gap-4">
           {/* Unrealized */}
           <div>
-            <p className="text-[10px] text-muted-foreground mb-0.5">Unrealized P&L</p>
+            <p className="text-xs text-muted-foreground mb-0.5">Unrealized P&L</p>
             <p className="text-2xl font-bold leading-none">
               <AnimatedNumber
                 value={unrealizedPnL}
@@ -498,7 +498,7 @@ export function LivePnLDashboard() {
 
           {/* Today's realized */}
           <div className="text-right">
-            <p className="text-[10px] text-muted-foreground mb-0.5">Today Realized</p>
+            <p className="text-xs text-muted-foreground mb-0.5">Today Realized</p>
             <p
               className={cn(
                 "text-base font-semibold tabular-nums",
@@ -512,7 +512,7 @@ export function LivePnLDashboard() {
 
           {/* Total */}
           <div className="text-right">
-            <p className="text-[10px] text-muted-foreground mb-0.5">All-Time P&L</p>
+            <p className="text-xs text-muted-foreground mb-0.5">All-Time P&L</p>
             <p
               className={cn(
                 "text-base font-semibold tabular-nums",
@@ -524,7 +524,7 @@ export function LivePnLDashboard() {
             </p>
             <p
               className={cn(
-                "text-[10px] font-bold tabular-nums",
+                "text-xs font-bold tabular-nums",
                 totalPnLPct >= 0 ? "text-emerald-400/70" : "text-red-400/70",
               )}
             >
@@ -537,7 +537,7 @@ export function LivePnLDashboard() {
       {/* ── Section 2: Position Ladder ───────────────────────────────────────── */}
       {sortedPositions.length > 0 && (
         <div>
-          <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
             Position Ladder
           </p>
           <div className="space-y-1">
@@ -551,12 +551,12 @@ export function LivePnLDashboard() {
               return (
                 <div key={`${pos.ticker}-${pos.side}`} className="space-y-0.5">
                   {/* Row header */}
-                  <div className="flex items-center justify-between text-[10px]">
+                  <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5">
                       <span className="font-semibold w-10">{pos.ticker}</span>
                       <span
                         className={cn(
-                          "rounded px-1 py-0.5 text-[9px] font-semibold uppercase",
+                          "rounded px-1 py-0.5 text-[11px] font-semibold uppercase",
                           pos.side === "long"
                             ? "bg-emerald-500/12 text-emerald-400"
                             : "bg-red-500/12 text-red-400",
@@ -583,7 +583,7 @@ export function LivePnLDashboard() {
                       </span>
                       <span
                         className={cn(
-                          "tabular-nums text-[9px]",
+                          "tabular-nums text-[11px]",
                           isPos ? "text-emerald-400/70" : "text-red-400/70",
                         )}
                       >
@@ -604,7 +604,7 @@ export function LivePnLDashboard() {
                       opacity={0.75}
                     />
                   </svg>
-                  <div className="flex justify-between text-[9px] text-muted-foreground/60">
+                  <div className="flex justify-between text-[11px] text-muted-foreground/60">
                     <span>Value {formatCurrency(value)}</span>
                     <span>
                       {portfolioValue > 0
@@ -622,7 +622,7 @@ export function LivePnLDashboard() {
       {/* ── Section 3: P&L Attribution Breakdown ────────────────────────────── */}
       {attribution && (
         <div>
-          <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
             Daily P&L Attribution
           </p>
           <div className="space-y-2">
@@ -667,7 +667,7 @@ export function LivePnLDashboard() {
                           className="w-2 h-2 rounded-sm flex-shrink-0"
                           style={{ backgroundColor: item.color }}
                         />
-                        <span className="text-[10px] text-muted-foreground">
+                        <span className="text-xs text-muted-foreground">
                           {item.label}{" "}
                           <span
                             className={cn(
@@ -688,25 +688,25 @@ export function LivePnLDashboard() {
 
             {/* vs SPY */}
             <div className="flex items-center gap-2 pt-1 border-t border-border/40">
-              <span className="text-[10px] text-muted-foreground">vs SPY today:</span>
+              <span className="text-xs text-muted-foreground">vs SPY today:</span>
               <span
                 className={cn(
-                  "text-[10px] font-semibold tabular-nums",
+                  "text-xs font-semibold tabular-nums",
                   spyPnL >= 0 ? "text-blue-400" : "text-red-400",
                 )}
               >
                 {spyPnL >= 0 ? "+" : ""}
                 {formatCurrency(spyPnL)}
               </span>
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 ({fmtPct(spyReturn * 100, true)})
               </span>
               {unrealizedPnL > spyPnL ? (
-                <span className="ml-auto text-[9px] rounded px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400">
+                <span className="ml-auto text-[11px] rounded px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400">
                   Outperforming
                 </span>
               ) : (
-                <span className="ml-auto text-[9px] rounded px-1.5 py-0.5 bg-red-500/10 text-red-400">
+                <span className="ml-auto text-[11px] rounded px-1.5 py-0.5 bg-red-500/10 text-red-400">
                   Underperforming
                 </span>
               )}
@@ -717,7 +717,7 @@ export function LivePnLDashboard() {
 
       {/* ── Section 4: Risk Meters ───────────────────────────────────────────── */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-3">
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">
           Risk Meters
         </p>
         <div className="grid grid-cols-4 gap-2">
@@ -748,16 +748,16 @@ export function LivePnLDashboard() {
       {/* ── Section 5: Intraday P&L Chart ───────────────────────────────────── */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Intraday P&L
           </p>
           <div className="flex items-center gap-2">
-            <span className="text-[9px] text-muted-foreground">
+            <span className="text-[11px] text-muted-foreground">
               Open: {intradayPoints.length > 0 ? fmt$(intradayPoints[0].pnl, true) : "—"}
             </span>
             <span
               className={cn(
-                "text-[9px] font-semibold",
+                "text-[11px] font-semibold",
                 unrealizedPnL >= 0 ? "text-emerald-400" : "text-red-400",
               )}
             >

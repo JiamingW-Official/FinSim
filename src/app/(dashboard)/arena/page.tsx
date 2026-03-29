@@ -152,7 +152,7 @@ export default function ArenaPage() {
             <Crosshair className="h-5 w-5 text-red-400" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-black">Arena</h1>
+            <h1 className="text-lg font-bold">Arena</h1>
             <p className="text-[11px] text-muted-foreground">
               Competitive trading challenges
             </p>

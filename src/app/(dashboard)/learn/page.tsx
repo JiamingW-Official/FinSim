@@ -68,7 +68,7 @@ type DifficultyFilter = "all" | "beginner" | "intermediate" | "advanced";
 const DIFFICULTY_COLORS: Record<string, string> = {
   beginner: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
   intermediate: "text-amber-400 bg-amber-400/10 border-amber-400/20",
-  advanced: "text-rose-400 bg-rose-400/10 border-rose-400/20",
+  advanced: "text-red-500 bg-red-500/10 border-red-500/20",
 };
 
 // Learning path groupings
@@ -85,7 +85,7 @@ const LEARNING_PATHS = [
   },
   {
     label: "Advanced Path",
-    color: "rose",
+    color: "red",
     unitIds: ["macro-trading", "crypto-trading", "advanced-technical-analysis", "portfolio-construction"],
   },
 ];
@@ -196,7 +196,7 @@ export default function LearnPage() {
           </div>
           <div>
             <h1 className="text-sm font-semibold">Trading Academy</h1>
-            <p className="text-[9px] text-muted-foreground">
+            <p className="text-[11px] text-muted-foreground">
               {completedCount}/{totalLessons} lessons complete
             </p>
           </div>
@@ -205,7 +205,7 @@ export default function LearnPage() {
           {learningStreak > 0 && (
             <div className="flex items-center gap-1 rounded-full bg-amber-500/10 border border-amber-500/20 px-2 py-0.5">
               <Flame className="h-3.5 w-3.5 text-amber-500" />
-              <span className="text-[11px] font-black text-amber-500">{learningStreak}</span>
+              <span className="text-[11px] font-bold text-amber-500">{learningStreak}</span>
             </div>
           )}
           <DailyGoal compact />
@@ -242,7 +242,7 @@ export default function LearnPage() {
               <div className="rounded-lg border border-border bg-card p-4">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-semibold">Overall Progress</span>
-                  <span className="text-[10px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     {completedCount}/{totalLessons} lessons
                   </span>
                 </div>
@@ -256,17 +256,17 @@ export default function LearnPage() {
                   <div className="flex flex-col items-center gap-1 rounded-md bg-muted/20 py-2">
                     <Zap className="h-3.5 w-3.5 text-primary" />
                     <span className="text-[11px] font-bold">{xp.toLocaleString()}</span>
-                    <span className="text-[9px] text-muted-foreground">Total XP</span>
+                    <span className="text-[11px] text-muted-foreground">Total XP</span>
                   </div>
                   <div className="flex flex-col items-center gap-1 rounded-md bg-muted/20 py-2">
                     <Flame className="h-3.5 w-3.5 text-amber-400" />
                     <span className="text-[11px] font-bold">{learningStreak}</span>
-                    <span className="text-[9px] text-muted-foreground">Day Streak</span>
+                    <span className="text-[11px] text-muted-foreground">Day Streak</span>
                   </div>
                   <div className="flex flex-col items-center gap-1 rounded-md bg-muted/20 py-2">
                     <Trophy className="h-3.5 w-3.5 text-amber-400" />
                     <span className="text-[11px] font-bold">{completedCount}</span>
-                    <span className="text-[9px] text-muted-foreground">Completed</span>
+                    <span className="text-[11px] text-muted-foreground">Completed</span>
                   </div>
                 </div>
               </div>
@@ -276,16 +276,16 @@ export default function LearnPage() {
                 <div className="rounded-lg border border-primary/30 bg-primary/5 p-3">
                   <div className="flex items-center gap-2 mb-1.5">
                     <ChevronRight className="h-3.5 w-3.5 text-primary" />
-                    <span className="text-[10px] font-semibold text-primary uppercase tracking-wide">Up Next</span>
+                    <span className="text-xs font-semibold text-primary uppercase tracking-wide">Up Next</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-xs font-semibold">{recommendedLesson.lesson.title}</p>
-                      <p className="text-[9px] text-muted-foreground">{recommendedLesson.unit.title}</p>
+                      <p className="text-[11px] text-muted-foreground">{recommendedLesson.unit.title}</p>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <Zap className="h-3 w-3 text-primary" />
-                      <span className="text-[10px] font-bold text-primary">+{recommendedLesson.lesson.xpReward} XP</span>
+                      <span className="text-xs font-bold text-primary">+{recommendedLesson.lesson.xpReward} XP</span>
                     </div>
                   </div>
                 </div>
@@ -297,20 +297,20 @@ export default function LearnPage() {
                 const pathLessons = pathUnits.flatMap((u) => u.lessons);
                 const pathCompleted = pathLessons.filter((l) => completedLessons.includes(l.id)).length;
                 const colorMap: Record<string, string> = {
-                  emerald: "text-emerald-400 border-emerald-500/30 bg-emerald-500/5",
-                  amber: "text-amber-400 border-amber-500/30 bg-amber-500/5",
-                  rose: "text-rose-400 border-rose-500/30 bg-rose-500/5",
+                  emerald: "text-emerald-500 border-emerald-500/30 bg-emerald-500/5",
+                  amber: "text-amber-500 border-amber-500/30 bg-amber-500/5",
+                  red: "text-red-500 border-red-500/30 bg-red-500/5",
                 };
                 const barColorMap: Record<string, string> = {
-                  emerald: "bg-emerald-400",
-                  amber: "bg-amber-400",
-                  rose: "bg-rose-400",
+                  emerald: "bg-emerald-500",
+                  amber: "bg-amber-500",
+                  red: "bg-red-500",
                 };
                 return (
                   <div key={path.label} className={`rounded-lg border p-3 ${colorMap[path.color]}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[11px] font-bold">{path.label}</span>
-                      <span className="text-[9px] font-medium">
+                      <span className="text-[11px] font-medium">
                         {pathCompleted}/{pathLessons.length}
                       </span>
                     </div>
@@ -335,7 +335,7 @@ export default function LearnPage() {
                             ) : (
                               <UnitIconComp className="h-2.5 w-2.5 text-muted-foreground" />
                             )}
-                            <span className="text-[9px] text-muted-foreground">{u.title}</span>
+                            <span className="text-[11px] text-muted-foreground">{u.title}</span>
                           </div>
                         );
                       })}
@@ -347,7 +347,7 @@ export default function LearnPage() {
               {/* Recently Completed */}
               {recentlyCompleted.length > 0 && (
                 <div className="space-y-2">
-                  <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+                  <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
                     <Clock className="h-3 w-3" />
                     Recently Completed
                   </h3>
@@ -362,12 +362,12 @@ export default function LearnPage() {
                         </div>
                         <div>
                           <p className="text-[11px] font-medium">{lesson.title}</p>
-                          <p className="text-[9px] text-muted-foreground">{unit.title}</p>
+                          <p className="text-[11px] text-muted-foreground">{unit.title}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         {score && (
-                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                          <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${
                             score.grade === "S" ? "text-amber-400 bg-amber-400/10" :
                             score.grade === "A" ? "text-emerald-400 bg-emerald-400/10" :
                             "text-muted-foreground bg-muted/20"
@@ -375,7 +375,7 @@ export default function LearnPage() {
                             {score.grade}
                           </span>
                         )}
-                        <span className="text-[9px] text-primary">+{lesson.xpReward} XP</span>
+                        <span className="text-[11px] text-primary">+{lesson.xpReward} XP</span>
                       </div>
                     </div>
                   ))}
@@ -383,7 +383,7 @@ export default function LearnPage() {
               )}
 
               {/* Mini-game cards */}
-              <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+              <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
                 <Star className="h-3 w-3" />
                 Practice Games
               </h3>
@@ -391,27 +391,27 @@ export default function LearnPage() {
                 <button
                   type="button"
                   onClick={() => setActiveGame("flashcards")}
-                  className="flex flex-col items-start gap-2 rounded-lg border border-purple-500/25 bg-purple-500/5 p-3 text-left transition-colors hover:bg-purple-500/10"
+                  className="flex flex-col items-start gap-2 rounded-lg border border-orange-500/25 bg-orange-500/5 p-3 text-left transition-colors hover:bg-orange-500/10"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-purple-500/15 border border-purple-500/25">
-                      <Brain className="h-3.5 w-3.5 text-purple-400" />
+                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-orange-500/15 border border-orange-500/25">
+                      <Brain className="h-3.5 w-3.5 text-orange-400" />
                     </div>
-                    <span className="text-xs font-semibold text-purple-300">Flashcards</span>
+                    <span className="text-xs font-semibold text-orange-400">Flashcards</span>
                   </div>
                   <div className="flex items-center gap-2 w-full">
                     <div className="flex-1 h-1.5 rounded-full bg-muted/30 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-purple-400 transition-all"
+                        className="h-full rounded-full bg-orange-400 transition-all"
                         style={{ width: `${Math.min((flashcardToday / 10) * 100, 100)}%` }}
                       />
                     </div>
-                    <span className="text-[9px] font-bold tabular-nums text-muted-foreground">
+                    <span className="text-[11px] font-bold tabular-nums text-muted-foreground">
                       {flashcardToday}/10
                     </span>
                     {flashcardToday >= 10 && <Check className="h-3 w-3 text-emerald-400" />}
                   </div>
-                  <span className="text-[9px] text-muted-foreground">{overallMastery}% mastery</span>
+                  <span className="text-[11px] text-muted-foreground">{overallMastery}% mastery</span>
                 </button>
 
                 <button
@@ -429,21 +429,21 @@ export default function LearnPage() {
                     {predictionStreak > 0 && (
                       <div className="flex items-center gap-1">
                         <Flame className="h-3 w-3 text-amber-400" />
-                        <span className="text-[9px] font-black text-amber-400">{predictionStreak}</span>
+                        <span className="text-[11px] font-bold text-amber-400">{predictionStreak}</span>
                       </div>
                     )}
-                    <span className="text-[9px] text-muted-foreground flex-1">
+                    <span className="text-[11px] text-muted-foreground flex-1">
                       {predictionAccuracy > 0 ? `${predictionAccuracy}% accuracy` : "Predict next candle"}
                     </span>
                   </div>
-                  <span className="text-[9px] text-muted-foreground">
+                  <span className="text-[11px] text-muted-foreground">
                     {predictionToday > 0 ? `${predictionToday} played today` : "Start playing"}
                   </span>
                 </button>
               </div>
 
               {/* Interactive Tools */}
-              <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+              <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
                 <Zap className="h-3 w-3" />
                 Interactive Tools
               </h3>
@@ -459,20 +459,20 @@ export default function LearnPage() {
                     </div>
                     <span className="text-xs font-semibold text-orange-300">Scenarios</span>
                   </div>
-                  <span className="text-[9px] text-muted-foreground">Simulate historical crashes</span>
+                  <span className="text-[11px] text-muted-foreground">Simulate historical crashes</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTool(activeTool === "calculator" ? null : "calculator")}
-                  className="flex flex-col items-start gap-2 rounded-lg border border-cyan-500/25 bg-cyan-500/5 p-3 text-left transition-colors hover:bg-cyan-500/10"
+                  className="flex flex-col items-start gap-2 rounded-lg border border-border bg-muted/30 p-3 text-left transition-colors hover:bg-muted/50"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-cyan-500/15 border border-cyan-500/25">
-                      <Calculator className="h-3.5 w-3.5 text-cyan-400" />
+                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-orange-500/15 border border-orange-500/25">
+                      <Calculator className="h-3.5 w-3.5 text-orange-400" />
                     </div>
-                    <span className="text-xs font-semibold text-cyan-300">Calculator</span>
+                    <span className="text-xs font-semibold text-orange-400">Calculator</span>
                   </div>
-                  <span className="text-[9px] text-muted-foreground">Compound interest growth</span>
+                  <span className="text-[11px] text-muted-foreground">Compound interest growth</span>
                 </button>
               </div>
 
@@ -517,7 +517,7 @@ export default function LearnPage() {
                     key={d}
                     type="button"
                     onClick={() => setDifficultyFilter(d)}
-                    className={`rounded-full px-2.5 py-0.5 text-[10px] font-medium border transition-colors capitalize ${
+                    className={`rounded-full px-2.5 py-0.5 text-xs font-medium border transition-colors capitalize ${
                       difficultyFilter === d
                         ? d === "all"
                           ? "bg-primary/15 text-primary border-primary/30"
@@ -579,16 +579,16 @@ export default function LearnPage() {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap mb-0.5">
                               <span className="text-xs font-semibold truncate">{unit.title}</span>
-                              <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full border capitalize ${DIFFICULTY_COLORS[primaryDifficulty]}`}>
+                              <span className={`text-[11px] font-medium px-1.5 py-0.5 rounded-full border capitalize ${DIFFICULTY_COLORS[primaryDifficulty]}`}>
                                 {primaryDifficulty}
                               </span>
                               {isComplete && (
-                                <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 text-emerald-400">
+                                <span className="text-[11px] font-medium px-1.5 py-0.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 text-emerald-400">
                                   Complete
                                 </span>
                               )}
                             </div>
-                            <p className="text-[9px] text-muted-foreground line-clamp-1">{unit.description}</p>
+                            <p className="text-[11px] text-muted-foreground line-clamp-1">{unit.description}</p>
                           </div>
                         </div>
 
@@ -600,38 +600,38 @@ export default function LearnPage() {
                               style={{ width: `${unit.lessons.length > 0 ? (unitCompletedCount / unit.lessons.length) * 100 : 0}%` }}
                             />
                           </div>
-                          <span className="text-[9px] tabular-nums text-muted-foreground">
+                          <span className="text-[11px] tabular-nums text-muted-foreground">
                             {unitCompletedCount}/{unit.lessons.length}
                           </span>
                         </div>
 
                         {/* Meta row */}
                         <div className="flex items-center gap-3">
-                          <div className="flex items-center gap-1 text-[9px] text-muted-foreground">
+                          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
                             <Clock className="h-2.5 w-2.5" />
                             <span>{totalDuration}m</span>
                           </div>
-                          <div className="flex items-center gap-1 text-[9px] text-muted-foreground">
+                          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
                             <Zap className="h-2.5 w-2.5" />
                             <span>{totalXP} XP</span>
                           </div>
-                          <div className="flex items-center gap-1 text-[9px] text-muted-foreground">
+                          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
                             <BookOpen className="h-2.5 w-2.5" />
                             <span>{unit.lessons.length} lessons</span>
                           </div>
                           <div className="ml-auto">
                             {!isUnlocked ? (
-                              <span className="text-[9px] text-muted-foreground">Locked</span>
+                              <span className="text-[11px] text-muted-foreground">Locked</span>
                             ) : isComplete ? (
-                              <span className="rounded-md bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-[9px] font-semibold px-2 py-0.5">
+                              <span className="rounded-md bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-[11px] font-semibold px-2 py-0.5">
                                 Review
                               </span>
                             ) : isInProgress ? (
-                              <span className="rounded-md bg-primary/10 border border-primary/20 text-primary text-[9px] font-semibold px-2 py-0.5">
+                              <span className="rounded-md bg-primary/10 border border-primary/20 text-primary text-[11px] font-semibold px-2 py-0.5">
                                 Continue
                               </span>
                             ) : (
-                              <span className="rounded-md bg-muted/20 border border-border text-muted-foreground text-[9px] font-semibold px-2 py-0.5">
+                              <span className="rounded-md bg-muted/20 border border-border text-muted-foreground text-[11px] font-semibold px-2 py-0.5">
                                 Start
                               </span>
                             )}
@@ -656,7 +656,7 @@ export default function LearnPage() {
                     <span className="text-[11px] font-semibold">Lessons</span>
                   </div>
                   <p className="text-xl font-bold">{completedCount}</p>
-                  <p className="text-[9px] text-muted-foreground">of {totalLessons} completed</p>
+                  <p className="text-[11px] text-muted-foreground">of {totalLessons} completed</p>
                 </div>
                 <div className="rounded-lg border border-border bg-card p-3">
                   <div className="flex items-center gap-2 mb-2">
@@ -664,7 +664,7 @@ export default function LearnPage() {
                     <span className="text-[11px] font-semibold">XP Earned</span>
                   </div>
                   <p className="text-xl font-bold">{xp.toLocaleString()}</p>
-                  <p className="text-[9px] text-muted-foreground">total experience</p>
+                  <p className="text-[11px] text-muted-foreground">total experience</p>
                 </div>
                 <div className="rounded-lg border border-border bg-card p-3">
                   <div className="flex items-center gap-2 mb-2">
@@ -672,20 +672,20 @@ export default function LearnPage() {
                     <span className="text-[11px] font-semibold">Streak</span>
                   </div>
                   <p className="text-xl font-bold">{learningStreak}</p>
-                  <p className="text-[9px] text-muted-foreground">days in a row</p>
+                  <p className="text-[11px] text-muted-foreground">days in a row</p>
                 </div>
                 <div className="rounded-lg border border-border bg-card p-3">
                   <div className="flex items-center gap-2 mb-2">
-                    <Brain className="h-4 w-4 text-purple-400" />
+                    <Brain className="h-4 w-4 text-orange-400" />
                     <span className="text-[11px] font-semibold">Mastery</span>
                   </div>
                   <p className="text-xl font-bold">{overallMastery}%</p>
-                  <p className="text-[9px] text-muted-foreground">flashcard mastery</p>
+                  <p className="text-[11px] text-muted-foreground">flashcard mastery</p>
                 </div>
               </div>
 
               {/* Unit-by-unit breakdown */}
-              <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+              <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
                 <BarChart2 className="h-3 w-3" />
                 Unit Breakdown
               </h3>
@@ -705,7 +705,7 @@ export default function LearnPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[11px] font-medium truncate">{unit.title}</span>
-                          <span className="text-[9px] text-muted-foreground ml-2 shrink-0">{done}/{unit.lessons.length}</span>
+                          <span className="text-[11px] text-muted-foreground ml-2 shrink-0">{done}/{unit.lessons.length}</span>
                         </div>
                         <div className="h-1 w-full rounded-full bg-muted/30 overflow-hidden">
                           <div
@@ -714,7 +714,7 @@ export default function LearnPage() {
                           />
                         </div>
                       </div>
-                      <span className="text-[10px] font-bold text-muted-foreground shrink-0 w-8 text-right">
+                      <span className="text-xs font-bold text-muted-foreground shrink-0 w-8 text-right">
                         {pct}%
                       </span>
                     </div>
@@ -723,7 +723,7 @@ export default function LearnPage() {
               </div>
 
               {/* Full skill tree below */}
-              <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+              <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
                 <GraduationCap className="h-3 w-3" />
                 Skill Tree
               </h3>
@@ -748,7 +748,7 @@ export default function LearnPage() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.88, opacity: 0, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="w-full max-w-md rounded-2xl border border-border bg-card shadow-2xl overflow-hidden"
+              className="w-full max-w-md rounded-xl border border-border bg-card shadow-sm overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {activeGame === "flashcards" ? (

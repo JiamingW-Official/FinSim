@@ -12,7 +12,7 @@ interface ArenaRankBadgeProps {
 export function ArenaRankBadge({ rank, size = "md", showLabel = true }: ArenaRankBadgeProps) {
   const info = ARENA_RANKS[rank];
   const sizes = {
-    xs: "text-[10px] px-1 py-0 gap-0.5",
+    xs: "text-xs px-1 py-0 gap-0.5",
     sm: "text-xs px-1.5 py-0.5 gap-1",
     md: "text-sm px-2.5 py-1 gap-1.5",
     lg: "text-base px-3 py-1.5 gap-2",

@@ -292,14 +292,14 @@ function TaxOverviewTab() {
                       : "border-border bg-muted/20 opacity-60"
                   }`}
                 >
-                  <p className="text-2xl font-black text-foreground">{b.label}</p>
+                  <p className="text-2xl font-bold text-foreground">{b.label}</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     {b.max === Infinity
                       ? `Income > $${(CAPITAL_GAINS_BRACKETS[i - 1]?.max / 1000).toFixed(0)}k`
                       : `Income $0 – $${(b.max / 1000).toFixed(0)}k`}
                   </p>
                   {active && (
-                    <Badge className="mt-2 text-[9px]" variant="default">Your Rate</Badge>
+                    <Badge className="mt-2 text-[11px]" variant="default">Your Rate</Badge>
                   )}
                 </div>
               );
@@ -441,7 +441,7 @@ function TaxLossHarvestingTab() {
                   </span>
                   <Badge
                     variant={isLoss ? "destructive" : "default"}
-                    className={`text-[9px] shrink-0 ${!isLoss ? "bg-green-500/20 text-green-400 border-green-500/30" : ""}`}
+                    className={`text-[11px] shrink-0 ${!isLoss ? "bg-green-500/20 text-green-400 border-green-500/30" : ""}`}
                   >
                     {isLoss ? "" : "+"}{formatPct(pnlPct)}
                   </Badge>
@@ -470,7 +470,7 @@ function TaxLossHarvestingTab() {
                       <span className="font-mono font-bold w-12">{p.ticker}</span>
                       <span className="text-muted-foreground">replace with</span>
                       {WASH_SALE_ALTERNATIVES[p.ticker].map((alt) => (
-                        <Badge key={alt} variant="outline" className="text-[9px]">{alt}</Badge>
+                        <Badge key={alt} variant="outline" className="text-[11px]">{alt}</Badge>
                       ))}
                     </div>
                   ))}
@@ -637,7 +637,7 @@ function AccountOptimizerTab() {
                   <span className="text-sm font-semibold">{acct.account}</span>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1.5">Best Fit</p>
+                  <p className="text-xs font-semibold text-muted-foreground mb-1.5">Best Fit</p>
                   <div className="space-y-1">
                     {acct.ideal.map((a) => (
                       <div key={a} className="flex items-start gap-1.5 text-xs">
@@ -648,7 +648,7 @@ function AccountOptimizerTab() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1.5">Avoid</p>
+                  <p className="text-xs font-semibold text-muted-foreground mb-1.5">Avoid</p>
                   <div className="space-y-1">
                     {acct.avoid.map((a) => (
                       <div key={a} className="flex items-start gap-1.5 text-xs text-muted-foreground/70">
@@ -658,7 +658,7 @@ function AccountOptimizerTab() {
                     ))}
                   </div>
                 </div>
-                <p className="text-[10px] text-muted-foreground border-t border-border pt-2 leading-relaxed">
+                <p className="text-xs text-muted-foreground border-t border-border pt-2 leading-relaxed">
                   {acct.reason}
                 </p>
               </div>
@@ -749,19 +749,19 @@ function AccountOptimizerTab() {
             <div className="rounded-lg bg-muted/30 p-3 text-center">
               <p className="text-xs text-muted-foreground">Conversion Tax Cost</p>
               <p className="text-lg font-bold text-red-400">{formatCurrency(conversionTaxCost)}</p>
-              <p className="text-[9px] text-muted-foreground mt-1">
+              <p className="text-[11px] text-muted-foreground mt-1">
                 {formatPct(conversionEffectiveRate)} effective rate on conversion
               </p>
             </div>
             <div className="rounded-lg bg-orange-500/10 border border-orange-500/20 p-3 text-center">
               <p className="text-xs text-muted-foreground">Traditional (20yr)</p>
               <p className="text-lg font-bold text-orange-400">{formatCurrency(traditionalAfterTax)}</p>
-              <p className="text-[9px] text-muted-foreground mt-1">After est. withdrawal taxes</p>
+              <p className="text-[11px] text-muted-foreground mt-1">After est. withdrawal taxes</p>
             </div>
             <div className="rounded-lg bg-green-500/10 border border-green-500/20 p-3 text-center">
               <p className="text-xs text-muted-foreground">Roth (20yr)</p>
               <p className="text-lg font-bold text-green-400">{formatCurrency(rothFinal)}</p>
-              <p className="text-[9px] text-muted-foreground mt-1">100% tax-free growth</p>
+              <p className="text-[11px] text-muted-foreground mt-1">100% tax-free growth</p>
             </div>
           </div>
 
@@ -878,7 +878,7 @@ function CapitalGainsPlannerTab() {
                       <div className="flex items-center gap-1.5">
                         {p.days}d
                         {!p.isLT && p.pnl > 0 && (
-                          <span className="text-amber-400 text-[9px]">({365 - p.days}d to LT)</span>
+                          <span className="text-amber-400 text-[11px]">({365 - p.days}d to LT)</span>
                         )}
                       </div>
                     </td>
@@ -888,7 +888,7 @@ function CapitalGainsPlannerTab() {
                     <td className="py-2.5 px-2">
                       <Badge
                         variant="outline"
-                        className={`text-[9px] ${p.isLT ? "border-green-500/40 text-green-400" : "border-orange-500/40 text-orange-400"}`}
+                        className={`text-[11px] ${p.isLT ? "border-green-500/40 text-green-400" : "border-orange-500/40 text-orange-400"}`}
                       >
                         {p.isLT ? "Long-Term" : "Short-Term"}
                       </Badge>
@@ -933,8 +933,8 @@ function CapitalGainsPlannerTab() {
               </p>
               <div className="rounded bg-green-500/20 px-3 py-2 text-center">
                 <p className="text-xs text-muted-foreground">Tax rate</p>
-                <p className="text-2xl font-black text-green-400">{formatPct(ltRate)}</p>
-                <p className="text-[10px] text-muted-foreground">Same as long-term capital gains</p>
+                <p className="text-2xl font-bold text-green-400">{formatPct(ltRate)}</p>
+                <p className="text-xs text-muted-foreground">Same as long-term capital gains</p>
               </div>
             </div>
             <div className="rounded-lg bg-orange-500/10 border border-orange-500/30 p-4 space-y-3">
@@ -947,8 +947,8 @@ function CapitalGainsPlannerTab() {
               </p>
               <div className="rounded bg-orange-500/20 px-3 py-2 text-center">
                 <p className="text-xs text-muted-foreground">Tax rate</p>
-                <p className="text-2xl font-black text-orange-400">{formatPct(stRate)}</p>
-                <p className="text-[10px] text-muted-foreground">Same as ordinary income</p>
+                <p className="text-2xl font-bold text-orange-400">{formatPct(stRate)}</p>
+                <p className="text-xs text-muted-foreground">Same as ordinary income</p>
               </div>
             </div>
           </div>
@@ -1006,8 +1006,8 @@ function EstateGiftTab() {
               <Gift className="h-3.5 w-3.5 text-primary" />
               <p className="text-xs text-muted-foreground">Annual Gift Exclusion</p>
             </div>
-            <p className="text-xl font-black text-primary">$18,000</p>
-            <p className="text-[10px] text-muted-foreground">Per recipient, 2024</p>
+            <p className="text-xl font-bold text-primary">$18,000</p>
+            <p className="text-xs text-muted-foreground">Per recipient, 2024</p>
           </CardContent>
         </Card>
         <Card className="bg-muted/40">
@@ -1016,8 +1016,8 @@ function EstateGiftTab() {
               <Building2 className="h-3.5 w-3.5 text-muted-foreground" />
               <p className="text-xs text-muted-foreground">Estate Tax Exemption</p>
             </div>
-            <p className="text-xl font-black text-foreground">$13.61M</p>
-            <p className="text-[10px] text-muted-foreground">Federal 2024 (sunsets 2026)</p>
+            <p className="text-xl font-bold text-foreground">$13.61M</p>
+            <p className="text-xs text-muted-foreground">Federal 2024 (sunsets 2026)</p>
           </CardContent>
         </Card>
         <Card className="bg-red-500/10 border-red-500/30">
@@ -1026,8 +1026,8 @@ function EstateGiftTab() {
               <AlertTriangle className="h-3.5 w-3.5 text-red-400" />
               <p className="text-xs text-muted-foreground">Estate Tax Rate</p>
             </div>
-            <p className="text-xl font-black text-red-400">40%</p>
-            <p className="text-[10px] text-muted-foreground">On taxable estate amount</p>
+            <p className="text-xl font-bold text-red-400">40%</p>
+            <p className="text-xs text-muted-foreground">On taxable estate amount</p>
           </CardContent>
         </Card>
       </div>
@@ -1123,13 +1123,13 @@ function EstateGiftTab() {
 
           <div className="grid grid-cols-3 gap-3">
             <div className="rounded-lg bg-indigo-500/10 p-3 text-center">
-              <p className="text-[10px] text-muted-foreground">Exemption Used</p>
+              <p className="text-xs text-muted-foreground">Exemption Used</p>
               <p className="text-sm font-bold text-indigo-400">
                 {formatCurrency(Math.min(estateValue, ESTATE_EXEMPTION))}
               </p>
             </div>
             <div className={`rounded-lg p-3 text-center ${taxableEstate > 0 ? "bg-red-500/10" : "bg-muted/30"}`}>
-              <p className="text-[10px] text-muted-foreground">Taxable Estate</p>
+              <p className="text-xs text-muted-foreground">Taxable Estate</p>
               <p className={`text-sm font-bold ${taxableEstate > 0 ? "text-red-400" : "text-green-400"}`}>
                 {formatCurrency(taxableEstate)}
               </p>
@@ -1137,7 +1137,7 @@ function EstateGiftTab() {
             <div
               className={`rounded-lg p-3 text-center ${estateTax > 0 ? "bg-red-500/10 border border-red-500/30" : "bg-green-500/10"}`}
             >
-              <p className="text-[10px] text-muted-foreground">Estate Tax (40%)</p>
+              <p className="text-xs text-muted-foreground">Estate Tax (40%)</p>
               <p className={`text-sm font-bold ${estateTax > 0 ? "text-red-400" : "text-green-400"}`}>
                 {estateTax > 0 ? formatCurrency(estateTax) : "None"}
               </p>
@@ -1262,7 +1262,7 @@ function EstateGiftTab() {
                   <span className="text-primary">{formatCurrency(dafTaxSaving)}</span>
                 </div>
               </div>
-              <p className="text-[10px] text-muted-foreground border-t border-border pt-2">
+              <p className="text-xs text-muted-foreground border-t border-border pt-2">
                 Power move: contribute appreciated stock to avoid capital gains AND get the full deduction.
               </p>
             </div>
@@ -1282,7 +1282,7 @@ function EstateGiftTab() {
                   <span className="text-green-400">{formatCurrency(Math.min(charitableAmount, 105000))}</span>
                 </div>
               </div>
-              <p className="text-[10px] text-muted-foreground border-t border-border pt-2">
+              <p className="text-xs text-muted-foreground border-t border-border pt-2">
                 Unlike regular deductions, QCDs benefit you even if you take the standard deduction.
               </p>
             </div>
@@ -1371,8 +1371,8 @@ export default function TaxPage() {
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <Badge variant="outline" className="text-[10px]">2024 Tax Year</Badge>
-            <Badge variant="outline" className="text-[10px] border-amber-500/50 text-amber-400">
+            <Badge variant="outline" className="text-xs">2024 Tax Year</Badge>
+            <Badge variant="outline" className="text-xs border-amber-500/50 text-amber-400">
               <AlertTriangle className="h-2.5 w-2.5 mr-1" />
               Educational Only
             </Badge>
@@ -1397,10 +1397,10 @@ export default function TaxPage() {
               <CardContent className="pt-3 pb-3">
                 <div className="flex items-center gap-1.5 mb-1">
                   <s.icon className={`h-3.5 w-3.5 ${s.color}`} />
-                  <p className="text-[10px] text-muted-foreground">{s.label}</p>
+                  <p className="text-xs text-muted-foreground">{s.label}</p>
                 </div>
-                <p className={`text-lg font-black ${s.color}`}>{s.value}</p>
-                <p className="text-[10px] text-muted-foreground">{s.sub}</p>
+                <p className={`text-lg font-bold ${s.color}`}>{s.value}</p>
+                <p className="text-xs text-muted-foreground">{s.sub}</p>
               </CardContent>
             </Card>
           ))}

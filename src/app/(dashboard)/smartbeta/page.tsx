@@ -854,7 +854,7 @@ export default function SmartBetaPage() {
 
         {/* Factor metrics grid */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Factor Premium Summary (Long-Run)</h2>
+          <h2 className="text-sm font-semibold text-muted-foreground mb-3">Factor Premium Summary (Long-Run)</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {nonMarketFactors.map((f, i) => (
               <FactorCard key={f.id} factor={f} rank={i} />

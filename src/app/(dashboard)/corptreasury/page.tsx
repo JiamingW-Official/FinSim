@@ -538,25 +538,25 @@ function HedgeAccountingDiagram() {
         >
           <div className="flex items-center gap-2 mb-2">
             <span className="text-sm font-bold" style={{ color: item.color }}>{item.type}</span>
-            <span className="text-[10px] text-muted-foreground">(IFRS 9 / ASC 815)</span>
+            <span className="text-xs text-muted-foreground">(IFRS 9 / ASC 815)</span>
           </div>
           <div className="grid grid-cols-1 gap-1 text-xs sm:grid-cols-3">
             <div>
-              <p className="text-muted-foreground/70 text-[10px] uppercase tracking-wide mb-0.5">Hedged Item</p>
+              <p className="text-muted-foreground/70 text-xs uppercase tracking-wide mb-0.5">Hedged Item</p>
               <p className="text-foreground/80">{item.hedgedItem}</p>
             </div>
             <div>
-              <p className="text-muted-foreground/70 text-[10px] uppercase tracking-wide mb-0.5">Hedging Instrument</p>
+              <p className="text-muted-foreground/70 text-xs uppercase tracking-wide mb-0.5">Hedging Instrument</p>
               <p className="text-foreground/80">{item.hedgingInstrument}</p>
             </div>
             <div>
-              <p className="text-muted-foreground/70 text-[10px] uppercase tracking-wide mb-0.5">P&L Effect</p>
+              <p className="text-muted-foreground/70 text-xs uppercase tracking-wide mb-0.5">P&L Effect</p>
               <p className="text-foreground/80">{item.accountingEffect}</p>
             </div>
           </div>
           <div className="mt-2 flex items-start gap-1.5">
             <Info className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
-            <p className="text-[10px] text-muted-foreground/70">{item.requirement}</p>
+            <p className="text-xs text-muted-foreground/70">{item.requirement}</p>
           </div>
         </div>
       ))}
@@ -613,9 +613,9 @@ function WaccBreakdown() {
           { label: "ERP Estimate",   value: "5.2%",  note: "Damodaran Jan 2026",     color: "text-amber-400" },
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
-            <p className="text-[10px] text-muted-foreground">{item.label}</p>
+            <p className="text-xs text-muted-foreground">{item.label}</p>
             <p className={cn("text-xl font-bold tabular-nums mt-0.5", item.color)}>{item.value}</p>
-            <p className="text-[10px] text-muted-foreground/60">{item.note}</p>
+            <p className="text-xs text-muted-foreground/60">{item.note}</p>
           </div>
         ))}
       </div>
@@ -638,9 +638,9 @@ function CashLiquidityTab() {
           { label: "T-Bill Yield",       value: "5.25%", sub: "3-month as of today",   color: "text-amber-400" },
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
-            <p className="text-[10px] text-muted-foreground">{item.label}</p>
+            <p className="text-xs text-muted-foreground">{item.label}</p>
             <p className={cn("mt-0.5 text-xl font-bold tabular-nums", item.color)}>{item.value}</p>
-            <p className="text-[10px] text-muted-foreground/60">{item.sub}</p>
+            <p className="text-xs text-muted-foreground/60">{item.sub}</p>
           </div>
         ))}
       </div>
@@ -692,7 +692,7 @@ function CashLiquidityTab() {
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-xs font-semibold text-foreground">{tier.label}</span>
                 <span className={cn(
-                  "text-[10px] rounded px-1.5 py-0.5 font-medium",
+                  "text-xs rounded px-1.5 py-0.5 font-medium",
                   tier.risk === "none"     ? "bg-emerald-500/15 text-emerald-400" :
                   tier.risk === "very-low" ? "bg-blue-500/15 text-blue-400"       :
                   tier.risk === "low"      ? "bg-yellow-500/15 text-yellow-400"   :
@@ -712,7 +712,7 @@ function CashLiquidityTab() {
                   animate={{ opacity: 1, height: "auto" }}
                   className="mt-2 pt-2 border-t border-border/40"
                 >
-                  <p className="text-[10px] text-muted-foreground">{tier.examples}</p>
+                  <p className="text-xs text-muted-foreground">{tier.examples}</p>
                 </motion.div>
               )}
             </button>
@@ -737,7 +737,7 @@ function CashLiquidityTab() {
                 {item.icon}
                 <span className="font-semibold text-[11px]">{item.label}</span>
               </div>
-              <p className="text-[10px] text-muted-foreground leading-relaxed">{item.action}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{item.action}</p>
             </div>
           ))}
         </div>
@@ -757,9 +757,9 @@ function CashLiquidityTab() {
           ].map((item) => (
             <div key={item.label} className="rounded-lg border border-border/40 bg-card/40 p-2.5">
               <div className="text-primary font-bold text-sm mb-0.5">{item.label}</div>
-              <div className="text-[10px] text-muted-foreground/70 mb-1">{item.full}</div>
-              <div className="text-[10px] text-foreground/80 mb-1">{item.examples}</div>
-              <div className="text-[10px] text-muted-foreground leading-relaxed">{item.desc}</div>
+              <div className="text-xs text-muted-foreground/70 mb-1">{item.full}</div>
+              <div className="text-xs text-foreground/80 mb-1">{item.examples}</div>
+              <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
             </div>
           ))}
         </div>
@@ -783,9 +783,9 @@ function FXRiskTab() {
           { label: "Hedging Cost (avg)", value: "0.65%",  sub: "% of notional hedged",           color: "text-amber-400" },
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
-            <p className="text-[10px] text-muted-foreground">{item.label}</p>
+            <p className="text-xs text-muted-foreground">{item.label}</p>
             <p className={cn("mt-0.5 text-xl font-bold tabular-nums", item.color)}>{item.value}</p>
-            <p className="text-[10px] text-muted-foreground/60">{item.sub}</p>
+            <p className="text-xs text-muted-foreground/60">{item.sub}</p>
           </div>
         ))}
       </div>
@@ -828,12 +828,12 @@ function FXRiskTab() {
               <p className="text-[11px] text-muted-foreground mb-2">{item.desc}</p>
               <div className="space-y-1.5">
                 <div>
-                  <p className="text-[9px] uppercase tracking-wide text-muted-foreground/60 mb-0.5">Example</p>
-                  <p className="text-[10px] text-foreground/80">{item.example}</p>
+                  <p className="text-[11px] uppercase tracking-wide text-muted-foreground/60 mb-0.5">Example</p>
+                  <p className="text-xs text-foreground/80">{item.example}</p>
                 </div>
                 <div>
-                  <p className="text-[9px] uppercase tracking-wide text-muted-foreground/60 mb-0.5">Hedging Approach</p>
-                  <p className="text-[10px] text-emerald-400">{item.hedge}</p>
+                  <p className="text-[11px] uppercase tracking-wide text-muted-foreground/60 mb-0.5">Hedging Approach</p>
+                  <p className="text-xs text-emerald-400">{item.hedge}</p>
                 </div>
               </div>
             </div>
@@ -851,7 +851,7 @@ function FXRiskTab() {
             <thead>
               <tr className="border-b border-border/40">
                 {["Currency", "Transaction ($M)", "Translation ($M)", "Economic ($M)", "Hedge Ratio", "Instrument"].map((h) => (
-                  <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium text-[10px] uppercase tracking-wide">{h}</th>
+                  <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium text-xs uppercase tracking-wide">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -923,7 +923,7 @@ function FXRiskTab() {
                 <div key={em.currency} className="rounded bg-card/60 p-2">
                   <p className="font-bold text-amber-400">{em.currency}</p>
                   <p className="text-red-400 text-[11px]">{em.cost}</p>
-                  <p className="text-muted-foreground text-[10px]">{em.note}</p>
+                  <p className="text-muted-foreground text-xs">{em.note}</p>
                 </div>
               ))}
             </div>
@@ -959,9 +959,9 @@ function DebtMarketsTab() {
           { label: "Avg New Issue Conc.",  value: "8bps",   sub: "IG NIC — tight conditions", color: "text-foreground" },
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
-            <p className="text-[10px] text-muted-foreground">{item.label}</p>
+            <p className="text-xs text-muted-foreground">{item.label}</p>
             <p className={cn("mt-0.5 text-xl font-bold tabular-nums", item.color)}>{item.value}</p>
-            <p className="text-[10px] text-muted-foreground/60">{item.sub}</p>
+            <p className="text-xs text-muted-foreground/60">{item.sub}</p>
           </div>
         ))}
       </div>
@@ -980,7 +980,7 @@ function DebtMarketsTab() {
               className="w-full text-left rounded-lg border border-border/30 bg-card/40 px-3 py-2.5 hover:bg-card/80 transition-colors"
             >
               <div className="flex items-center gap-3">
-                <span className="shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px] font-bold">
+                <span className="shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold">
                   {step.step}
                 </span>
                 <span className="text-sm font-medium text-foreground">{step.label}</span>
@@ -1017,7 +1017,7 @@ function DebtMarketsTab() {
                 {item.icon}
                 <span className="font-semibold text-[11px]">{item.label}</span>
               </div>
-              <p className="text-[10px] text-muted-foreground leading-relaxed">{item.desc}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -1033,7 +1033,7 @@ function DebtMarketsTab() {
             <thead>
               <tr className="border-b border-border/40">
                 {["Feature", "Investment Grade Corp", "LBO / Leveraged Buyout"].map((h) => (
-                  <th key={h} className="text-left py-2 pr-6 text-muted-foreground font-medium text-[10px] uppercase tracking-wide">{h}</th>
+                  <th key={h} className="text-left py-2 pr-6 text-muted-foreground font-medium text-xs uppercase tracking-wide">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -1077,9 +1077,9 @@ function CapitalAllocationTab() {
           { label: "M&A Deal Volume YTD",     value: "$1.2T",  sub: "Global announced deals",      color: "text-amber-400" },
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/40 bg-card/60 p-3">
-            <p className="text-[10px] text-muted-foreground">{item.label}</p>
+            <p className="text-xs text-muted-foreground">{item.label}</p>
             <p className={cn("mt-0.5 text-xl font-bold tabular-nums", item.color)}>{item.value}</p>
-            <p className="text-[10px] text-muted-foreground/60">{item.sub}</p>
+            <p className="text-xs text-muted-foreground/60">{item.sub}</p>
           </div>
         ))}
       </div>
@@ -1091,7 +1091,7 @@ function CapitalAllocationTab() {
           <span className="text-xs text-muted-foreground ml-1">(Illustrative $120B EBITDA company)</span>
         </div>
         <CapAllocWaterfall />
-        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 text-[10px]">
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 text-xs">
           {CAP_ALLOC_WATERFALL.filter((item) => !item.label.startsWith("=")).map((item) => (
             <div key={item.label} className="flex items-start gap-2">
               <span className="w-2.5 h-2.5 rounded-sm mt-0.5 shrink-0" style={{ backgroundColor: item.color }} />
@@ -1118,9 +1118,9 @@ function CapitalAllocationTab() {
           ].map((item) => (
             <div key={item.metric} className="rounded-lg border border-border/40 bg-card/40 p-2.5">
               <p className="font-bold text-primary text-sm mb-1">{item.metric}</p>
-              <p className="text-[10px] text-muted-foreground leading-relaxed mb-2">{item.desc}</p>
-              <p className="text-[9px] text-emerald-400">+ {item.pro}</p>
-              <p className="text-[9px] text-red-400">- {item.con}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-2">{item.desc}</p>
+              <p className="text-[11px] text-emerald-400">+ {item.pro}</p>
+              <p className="text-[11px] text-red-400">- {item.con}</p>
             </div>
           ))}
         </div>
@@ -1150,18 +1150,18 @@ function CapitalAllocationTab() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="grid grid-cols-3 gap-2 text-[10px] pt-2 border-t border-border/40"
+                  className="grid grid-cols-3 gap-2 text-xs pt-2 border-t border-border/40"
                 >
                   <div>
-                    <p className="text-muted-foreground/60 uppercase text-[9px] mb-0.5">Speed</p>
+                    <p className="text-muted-foreground/60 uppercase text-[11px] mb-0.5">Speed</p>
                     <p className="text-foreground">{method.speed}</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground/60 uppercase text-[9px] mb-0.5">Premium</p>
+                    <p className="text-muted-foreground/60 uppercase text-[11px] mb-0.5">Premium</p>
                     <p className="text-orange-400">{method.premium}</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground/60 uppercase text-[9px] mb-0.5">Best For</p>
+                    <p className="text-muted-foreground/60 uppercase text-[11px] mb-0.5">Best For</p>
                     <p className="text-foreground">{method.useCase}</p>
                   </div>
                 </motion.div>
@@ -1181,7 +1181,7 @@ function CapitalAllocationTab() {
             <thead>
               <tr className="border-b border-border/40">
                 {["Company", "Cash ($B)", "FCF Yield", "Div Yield", "Buyback Yield", "Capex %FCF", "M&A %FCF", "Cash Return %FCF", "Rating"].map((h) => (
-                  <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium text-[10px] uppercase tracking-wide whitespace-nowrap">{h}</th>
+                  <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium text-xs uppercase tracking-wide whitespace-nowrap">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -1190,7 +1190,7 @@ function CapitalAllocationTab() {
                 <tr key={co.ticker} className="border-b border-border/20 hover:bg-card/80 transition-colors">
                   <td className="py-2 pr-4">
                     <div className="font-semibold text-foreground">{co.company}</div>
-                    <div className="text-muted-foreground/60 text-[10px]">{co.ticker}</div>
+                    <div className="text-muted-foreground/60 text-xs">{co.ticker}</div>
                   </td>
                   <td className="py-2 pr-4 tabular-nums text-emerald-400 font-medium">${co.cashOnHand}</td>
                   <td className="py-2 pr-4 tabular-nums text-primary font-medium">{co.fcfYield.toFixed(1)}%</td>
@@ -1200,7 +1200,7 @@ function CapitalAllocationTab() {
                   <td className="py-2 pr-4 tabular-nums text-muted-foreground">{co.maPct}%</td>
                   <td className="py-2 pr-4">
                     <span className={cn(
-                      "text-[10px] font-semibold rounded px-1.5 py-0.5",
+                      "text-xs font-semibold rounded px-1.5 py-0.5",
                       co.cashReturnPct >= 100 ? "bg-emerald-500/15 text-emerald-400" :
                       co.cashReturnPct >= 80  ? "bg-blue-500/15 text-blue-400"       :
                       "bg-orange-500/15 text-orange-400",
@@ -1214,7 +1214,7 @@ function CapitalAllocationTab() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 grid grid-cols-2 gap-2 text-[10px] sm:grid-cols-4">
+        <div className="mt-3 grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">
           {[
             { company: "Apple",     insight: "Cash return > 100% FCF — funded by issuing debt at low rates; highly efficient capital structure leveraged by AAA balance sheet.",  color: "#22c55e" },
             { company: "Microsoft", insight: "Significant M&A capex (Activision $69B); excluding that, return profile is similar to Apple. AI capex now accelerating.",          color: "#6366f1" },

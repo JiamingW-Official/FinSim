@@ -380,7 +380,7 @@ function PerformanceAttribution() {
           { label: "Positive Contributors", value: `${positiveRows}/10`, color: "text-blue-400" },
         ].map((s) => (
           <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
-            <div className="text-[9px] text-muted-foreground">{s.label}</div>
+            <div className="text-[11px] text-muted-foreground">{s.label}</div>
             <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
           </div>
         ))}
@@ -388,7 +388,7 @@ function PerformanceAttribution() {
 
       {/* Attribution table */}
       <div className="overflow-x-auto rounded-md border border-border/50">
-        <table className="w-full text-[10px]">
+        <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border/40 bg-muted/30">
               {["Sector", "Wt %", "Allocation", "Selection", "Interaction", "Total"].map((h) => (
@@ -414,7 +414,7 @@ function PerformanceAttribution() {
 
       {/* Rolling 12m alpha chart */}
       <div>
-        <div className="text-[10px] text-muted-foreground mb-2">Rolling 36-Month Active Return vs Benchmark</div>
+        <div className="text-xs text-muted-foreground mb-2">Rolling 36-Month Active Return vs Benchmark</div>
         <div className="w-full overflow-x-auto">
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: 300 }}>
             {[0.25, 0.5, 0.75].map((t) => {
@@ -442,7 +442,7 @@ function PerformanceAttribution() {
       {/* IC Scatter */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <div className="text-[10px] text-muted-foreground mb-2">Information Coefficient (Predicted vs Actual)</div>
+          <div className="text-xs text-muted-foreground mb-2">Information Coefficient (Predicted vs Actual)</div>
           <svg viewBox={`0 0 ${icW} ${icH}`} className="w-full max-w-[200px]">
             <line x1={icPad} y1={icH - icPad} x2={icW - icPad} y2={icH - icPad} stroke="#374151" strokeWidth={0.5} />
             <line x1={icPad} y1={icPad} x2={icPad} y2={icH - icPad} stroke="#374151" strokeWidth={0.5} />
@@ -455,9 +455,9 @@ function PerformanceAttribution() {
           </svg>
         </div>
         <div className="flex flex-col justify-center gap-2">
-          <div className="text-[10px] text-muted-foreground">IC measures correlation between predicted and actual returns. Target &gt; 0.05 is considered skilled.</div>
+          <div className="text-xs text-muted-foreground">IC measures correlation between predicted and actual returns. Target &gt; 0.05 is considered skilled.</div>
           <div className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
-            <div className="text-[9px] text-muted-foreground">Estimated IC</div>
+            <div className="text-[11px] text-muted-foreground">Estimated IC</div>
             <div className="text-sm font-semibold text-blue-400 tabular-nums">0.12</div>
           </div>
         </div>
@@ -530,7 +530,7 @@ function RiskAdjustedSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Metrics table */}
         <div className="overflow-x-auto rounded-md border border-border/50">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground">Metric</th>
@@ -555,11 +555,11 @@ function RiskAdjustedSection() {
           <CalmarGauge value={metrics.calmar} />
           <div className="grid grid-cols-2 gap-2 w-full">
             <div className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2 text-center">
-              <div className="text-[9px] text-muted-foreground">Up Capture</div>
+              <div className="text-[11px] text-muted-foreground">Up Capture</div>
               <div className={cn("text-sm font-semibold tabular-nums", metrics.upsideCapture > 100 ? "text-emerald-400" : "text-amber-400")}>{metrics.upsideCapture.toFixed(1)}%</div>
             </div>
             <div className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2 text-center">
-              <div className="text-[9px] text-muted-foreground">Down Capture</div>
+              <div className="text-[11px] text-muted-foreground">Down Capture</div>
               <div className={cn("text-sm font-semibold tabular-nums", metrics.downsideCapture < 100 ? "text-emerald-400" : "text-red-400")}>{metrics.downsideCapture.toFixed(1)}%</div>
             </div>
           </div>
@@ -568,7 +568,7 @@ function RiskAdjustedSection() {
 
       {/* Rolling 12m Sharpe */}
       <div>
-        <div className="text-[10px] text-muted-foreground mb-2">Rolling 12-Month Sharpe Ratio</div>
+        <div className="text-xs text-muted-foreground mb-2">Rolling 12-Month Sharpe Ratio</div>
         <SvgSparkline values={sharpeTimeSeries} color="#3b82f6" height={70} />
       </div>
     </div>
@@ -636,9 +636,9 @@ function FactorAnalysisSection() {
           { label: "Active Factors", value: `${loadings.filter((f) => Math.abs(f.tStat) > 2).length}/5`, color: "text-amber-400", desc: "|t-stat| > 2" },
         ].map((s) => (
           <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
-            <div className="text-[9px] text-muted-foreground">{s.label}</div>
+            <div className="text-[11px] text-muted-foreground">{s.label}</div>
             <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
-            <div className="text-[9px] text-muted-foreground/70 mt-0.5">{s.desc}</div>
+            <div className="text-[11px] text-muted-foreground/70 mt-0.5">{s.desc}</div>
           </div>
         ))}
       </div>
@@ -646,7 +646,7 @@ function FactorAnalysisSection() {
       <FactorLoadingChart loadings={loadings} />
 
       <div className="overflow-x-auto rounded-md border border-border/50">
-        <table className="w-full text-[10px]">
+        <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border/40 bg-muted/30">
               <th className="px-3 py-2 text-left font-medium text-muted-foreground">Factor</th>
@@ -667,12 +667,12 @@ function FactorAnalysisSection() {
                   {f.tStat.toFixed(2)}
                 </td>
                 <td className="px-3 py-2 text-right">
-                  <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-medium", f.beneficial ? "bg-emerald-500/15 text-emerald-400" : "bg-red-500/15 text-red-400")}>
+                  <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-medium", f.beneficial ? "bg-emerald-500/15 text-emerald-400" : "bg-red-500/15 text-red-400")}>
                     {f.beneficial ? "Beneficial" : "Detrimental"}
                   </span>
                 </td>
                 <td className="px-3 py-2 text-right">
-                  <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-medium", f.crowded ? "bg-red-500/15 text-red-400" : "bg-emerald-500/15 text-emerald-400")}>
+                  <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-medium", f.crowded ? "bg-red-500/15 text-red-400" : "bg-emerald-500/15 text-emerald-400")}>
                     {f.crowded ? "Crowded" : "Uncrowded"}
                   </span>
                 </td>
@@ -744,7 +744,7 @@ function DrawdownSection() {
           { label: "Current Drawdown", value: `${underwaterSeries[underwaterSeries.length - 1].toFixed(2)}%`, color: underwaterSeries[underwaterSeries.length - 1] < -5 ? "text-red-400" : "text-emerald-400" },
         ].map((s) => (
           <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2">
-            <div className="text-[9px] text-muted-foreground">{s.label}</div>
+            <div className="text-[11px] text-muted-foreground">{s.label}</div>
             <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
           </div>
         ))}
@@ -753,7 +753,7 @@ function DrawdownSection() {
       <UnderwaterChart series={underwaterSeries} />
 
       <div className="overflow-x-auto rounded-md border border-border/50">
-        <table className="w-full text-[10px]">
+        <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border/40 bg-muted/30">
               {["#", "Peak", "Trough", "Recovery", "Depth", "Duration", "Recovery Time"].map((h, i) => (
@@ -777,7 +777,7 @@ function DrawdownSection() {
         </table>
       </div>
 
-      <div className="flex items-start gap-1.5 rounded-md border border-blue-500/30 bg-blue-500/8 px-3 py-2 text-[10px] text-muted-foreground">
+      <div className="flex items-start gap-1.5 rounded-md border border-blue-500/30 bg-blue-500/8 px-3 py-2 text-xs text-muted-foreground">
         <span className="text-blue-400 font-medium shrink-0">DD Correlation {ddCorrelation.toFixed(2)}:</span>
         <span>{ddCorrelation > 0.6 ? "Portfolio drawdowns are highly correlated with market drawdowns — limited diversification benefit in crises." : "Portfolio shows some independence from market drawdowns — provides diversification in stress."}</span>
       </div>
@@ -855,9 +855,9 @@ function TailRiskSection() {
           { label: "Skewness", value: data.skewness.toFixed(2), color: data.skewness < 0 ? "text-red-400" : "text-emerald-400", desc: "Left skew = more bad days" },
         ].map((s) => (
           <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2">
-            <div className="text-[9px] text-muted-foreground">{s.label}</div>
+            <div className="text-[11px] text-muted-foreground">{s.label}</div>
             <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
-            <div className="text-[9px] text-muted-foreground/70 mt-0.5">{s.desc}</div>
+            <div className="text-[11px] text-muted-foreground/70 mt-0.5">{s.desc}</div>
           </div>
         ))}
       </div>
@@ -867,16 +867,16 @@ function TailRiskSection() {
       {data.excessKurtosis > 1 && (
         <div className="flex items-start gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/8 px-3 py-2">
           <AlertTriangle className="h-3 w-3 text-amber-400 mt-0.5 shrink-0" />
-          <div className="text-[10px] text-muted-foreground">
+          <div className="text-xs text-muted-foreground">
             <span className="text-amber-400 font-medium">Fat tails detected.</span> Excess kurtosis of {data.excessKurtosis.toFixed(2)} indicates the portfolio has more extreme return events than a normal distribution predicts. Standard VaR may underestimate true risk.
           </div>
         </div>
       )}
 
       <div>
-        <div className="text-[10px] text-muted-foreground mb-2">Black Swan Resilience — Crisis Period Performance</div>
+        <div className="text-xs text-muted-foreground mb-2">Black Swan Resilience — Crisis Period Performance</div>
         <div className="overflow-x-auto rounded-md border border-border/50">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground">Crisis Period</th>
@@ -921,7 +921,7 @@ function StyleBox({ styleIndex }: { styleIndex: number }) {
 
   return (
     <div>
-      <div className="text-[9px] text-muted-foreground mb-1 text-center">Morningstar Style Box</div>
+      <div className="text-[11px] text-muted-foreground mb-1 text-center">Morningstar Style Box</div>
       <div className="inline-grid grid-cols-3 gap-0.5">
         {rows.map((r, ri) =>
           cols.map((c, ci) => {
@@ -958,7 +958,7 @@ function QuartileBar({ quartile }: { quartile: number }) {
           <div key={q} className={cn("h-3 flex-1 rounded-sm", q === quartile ? colors[q] : "bg-muted/30")} />
         ))}
       </div>
-      <span className="text-[9px] text-muted-foreground">{labels[quartile]}</span>
+      <span className="text-[11px] text-muted-foreground">{labels[quartile]}</span>
     </div>
   );
 }
@@ -971,7 +971,7 @@ function PeerComparisonSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Peer metrics table */}
         <div className="overflow-x-auto rounded-md border border-border/50">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground">Metric</th>
@@ -997,7 +997,7 @@ function PeerComparisonSection() {
         <div className="space-y-3">
           <div className="flex items-start gap-6 p-3 rounded-md border border-border/50 bg-background/60">
             <StyleBox styleIndex={styleBox} />
-            <div className="space-y-1.5 text-[10px]">
+            <div className="space-y-1.5 text-xs">
               <div className="text-muted-foreground font-medium">Style Classification</div>
               {[
                 { label: "Active Share", value: `${activeShare.toFixed(1)}%`, color: activeShare > 60 ? "text-emerald-400" : "text-amber-400", note: activeShare > 60 ? "High conviction" : "Closet indexer risk" },
@@ -1007,7 +1007,7 @@ function PeerComparisonSection() {
                 <div key={s.label} className="flex items-center gap-2">
                   <span className="text-muted-foreground/70 w-24">{s.label}</span>
                   <span className={cn("font-semibold tabular-nums", s.color)}>{s.value}</span>
-                  <span className="text-muted-foreground/50 text-[9px]">{s.note}</span>
+                  <span className="text-muted-foreground/50 text-[11px]">{s.note}</span>
                 </div>
               ))}
             </div>
@@ -1016,7 +1016,7 @@ function PeerComparisonSection() {
           {activeShare < 50 && (
             <div className="flex items-start gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/8 px-3 py-2">
               <AlertTriangle className="h-3 w-3 text-amber-400 mt-0.5 shrink-0" />
-              <div className="text-[10px] text-muted-foreground">
+              <div className="text-xs text-muted-foreground">
                 <span className="text-amber-400 font-medium">Closet indexer risk.</span> Active share below 50% suggests the portfolio closely mirrors the benchmark. Consider whether management fees are justified.
               </div>
             </div>
@@ -1060,7 +1060,7 @@ export default function AdvancedAnalytics() {
       <div className="flex items-center gap-2">
         <Target className="h-4 w-4 text-primary" />
         <h2 className="text-sm font-semibold text-foreground">Advanced Portfolio Analytics</h2>
-        <span className="ml-auto text-[10px] text-muted-foreground">Professional-grade metrics</span>
+        <span className="ml-auto text-xs text-muted-foreground">Professional-grade metrics</span>
       </div>
 
       {/* Tab nav */}
@@ -1071,7 +1071,7 @@ export default function AdvancedAnalytics() {
             type="button"
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[10px] font-medium transition-all",
+              "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-all",
               activeTab === tab.id
                 ? cn("bg-card border border-border shadow-sm", tab.color)
                 : "text-muted-foreground hover:text-foreground hover:bg-muted/30"

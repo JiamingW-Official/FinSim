@@ -724,7 +724,7 @@ function PersonalityCard({
       <div className="flex items-center gap-2">
         <span className="text-lg leading-none shrink-0">{personality.icon}</span>
         <div className="min-w-0">
-          <div className={cn("text-[10px] font-black leading-none", selected ? "text-primary" : "text-foreground")}>
+          <div className={cn("text-xs font-bold leading-none", selected ? "text-primary" : "text-foreground")}>
             {personality.name}
           </div>
           <div className="text-[8.5px] text-muted-foreground mt-0.5">{personality.subtitle}</div>
@@ -760,7 +760,7 @@ function SectionAccordion({
       >
         <div className="flex items-center gap-1.5">
           <Icon className="h-3 w-3 text-primary/70 shrink-0" />
-          <span className="text-[9.5px] font-black uppercase tracking-wider text-foreground/70">{title}</span>
+          <span className="text-[9.5px] font-bold text-foreground/70">{title}</span>
         </div>
         {open ? (
           <ChevronUp className="h-3 w-3 text-muted-foreground shrink-0" />
@@ -896,7 +896,7 @@ export function PersonalizedCoach() {
       {/* ── Section 2: Adaptive Learning Profile ─────────────────────────── */}
       <SectionAccordion title="Your Trading DNA" icon={Brain} defaultOpen>
         {profile.totalTrades === 0 ? (
-          <div className="text-[9px] text-muted-foreground text-center py-2">
+          <div className="text-[11px] text-muted-foreground text-center py-2">
             Make trades to build your profile
           </div>
         ) : (
@@ -938,19 +938,19 @@ export function PersonalizedCoach() {
             <div className="grid grid-cols-3 gap-1 text-center">
               <div className="rounded border border-border/30 bg-background/30 py-1">
                 <div className="text-[8px] text-muted-foreground">Win Rate</div>
-                <div className={cn("text-[10px] font-black font-mono", profile.winRate >= 0.5 ? "text-emerald-400" : "text-amber-400")}>
+                <div className={cn("text-xs font-bold font-mono", profile.winRate >= 0.5 ? "text-emerald-400" : "text-amber-400")}>
                   {(profile.winRate * 100).toFixed(0)}%
                 </div>
               </div>
               <div className="rounded border border-border/30 bg-background/30 py-1">
                 <div className="text-[8px] text-muted-foreground">Avg Win</div>
-                <div className="text-[10px] font-black font-mono text-emerald-400">
+                <div className="text-xs font-bold font-mono text-emerald-400">
                   ${profile.avgWin.toFixed(0)}
                 </div>
               </div>
               <div className="rounded border border-border/30 bg-background/30 py-1">
                 <div className="text-[8px] text-muted-foreground">Avg Loss</div>
-                <div className="text-[10px] font-black font-mono text-red-400">
+                <div className="text-xs font-bold font-mono text-red-400">
                   ${profile.avgLoss.toFixed(0)}
                 </div>
               </div>
@@ -959,7 +959,7 @@ export function PersonalizedCoach() {
             {/* Strengths / Weaknesses */}
             <div className="grid grid-cols-2 gap-1.5">
               <div className="rounded border border-emerald-500/20 bg-emerald-500/5 px-2 py-1.5">
-                <div className="text-[8px] font-black uppercase tracking-wider text-emerald-400/70 mb-1">
+                <div className="text-[8px] font-bold text-emerald-400/70 mb-1">
                   Top Strengths
                 </div>
                 {profile.strengths.map((s) => (
@@ -970,7 +970,7 @@ export function PersonalizedCoach() {
                 ))}
               </div>
               <div className="rounded border border-red-500/20 bg-red-500/5 px-2 py-1.5">
-                <div className="text-[8px] font-black uppercase tracking-wider text-red-400/70 mb-1">
+                <div className="text-[8px] font-bold text-red-400/70 mb-1">
                   Work On
                 </div>
                 {profile.weaknesses.map((w) => (
@@ -1007,16 +1007,16 @@ export function PersonalizedCoach() {
           <div className="flex items-center gap-1.5">
             <span className="text-base leading-none shrink-0">{personality.icon}</span>
             <div>
-              <div className="text-[10px] font-black text-foreground">{brief.heading}</div>
+              <div className="text-xs font-bold text-foreground">{brief.heading}</div>
               <div className="text-[8px] text-muted-foreground">{personality.name} mode</div>
             </div>
           </div>
-          <p className="text-[9px] text-muted-foreground leading-relaxed">{brief.body}</p>
+          <p className="text-[11px] text-muted-foreground leading-relaxed">{brief.body}</p>
           <div className="rounded border border-primary/30 bg-primary/10 px-2 py-1.5">
-            <div className="text-[8px] font-black uppercase tracking-wider text-primary/70 mb-0.5">
+            <div className="text-[8px] font-bold text-primary/70 mb-0.5">
               Today&apos;s Focus
             </div>
-            <p className="text-[9px] text-foreground/80 leading-tight">{brief.focus}</p>
+            <p className="text-[11px] text-foreground/80 leading-tight">{brief.focus}</p>
           </div>
           {completedLessons.length > 0 && (
             <div className="flex items-center gap-1.5 text-[8.5px] text-muted-foreground">
@@ -1033,7 +1033,7 @@ export function PersonalizedCoach() {
         <div className="space-y-2">
           {/* Preset questions */}
           <div className="space-y-1">
-            <div className="text-[8px] font-black uppercase tracking-wider text-foreground/40">
+            <div className="text-[8px] font-bold text-foreground/40">
               Quick Questions
             </div>
             <div className="flex flex-wrap gap-1">
@@ -1066,7 +1066,7 @@ export function PersonalizedCoach() {
               >
                 <div className="flex items-center gap-1.5 mb-1">
                   <span className="text-sm leading-none">{personality.icon}</span>
-                  <span className="text-[8px] font-black text-muted-foreground">
+                  <span className="text-[8px] font-bold text-muted-foreground">
                     {personality.name}
                   </span>
                   {isTyping && (
@@ -1083,7 +1083,7 @@ export function PersonalizedCoach() {
                     </button>
                   )}
                 </div>
-                <p className="text-[9px] text-foreground/80 leading-relaxed">
+                <p className="text-[11px] text-foreground/80 leading-relaxed">
                   {displayedAnswer}
                   {isTyping && (
                     <span className="inline-block h-2 w-0.5 bg-primary ml-0.5 animate-pulse" />
@@ -1095,7 +1095,7 @@ export function PersonalizedCoach() {
 
           {/* Custom input */}
           <div className="space-y-1">
-            <div className="text-[8px] font-black uppercase tracking-wider text-foreground/40">
+            <div className="text-[8px] font-bold text-foreground/40">
               Ask Anything
             </div>
             <div className="flex gap-1.5">
@@ -1107,7 +1107,7 @@ export function PersonalizedCoach() {
                   if (e.key === "Enter") handleCustomSubmit();
                 }}
                 placeholder={`Ask ${personality.name.split(" ").pop()}...`}
-                className="flex-1 rounded border border-border/40 bg-background/30 px-2 py-1 text-[9px] text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary/50 focus:bg-background/50 transition-colors"
+                className="flex-1 rounded border border-border/40 bg-background/30 px-2 py-1 text-[11px] text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary/50 focus:bg-background/50 transition-colors"
               />
               <button
                 type="button"

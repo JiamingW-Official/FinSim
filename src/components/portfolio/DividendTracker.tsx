@@ -66,7 +66,7 @@ function DividendRow({
     <tr className="border-b border-muted/40 text-xs">
       <td className="py-2 px-1">
         <p className="font-semibold">{stock.ticker}</p>
-        <p className="text-[10px] text-muted-foreground">{stock.sector}</p>
+        <p className="text-xs text-muted-foreground">{stock.sector}</p>
       </td>
       <td className="py-2 px-1 text-right font-mono tabular-nums">{stock.shares}</td>
       <td className="py-2 px-1 text-right font-mono tabular-nums">${stock.price.toFixed(2)}</td>
@@ -77,7 +77,7 @@ function DividendRow({
         ${annualIncome.toFixed(0)}
       </td>
       <td className="py-2 px-1 text-center">
-        <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400">
+        <span className="text-xs px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400">
           {nextExDiv}
         </span>
       </td>
@@ -138,12 +138,12 @@ function CompoundingCalc({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">10-Year Projection</p>
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">10-Year Projection</p>
         <div className="text-right">
           <p className="text-sm font-semibold text-emerald-400">
             ${(finalValue / 1000).toFixed(1)}K
           </p>
-          <p className="text-[10px] text-muted-foreground">+{totalReturn.toFixed(0)}% total</p>
+          <p className="text-xs text-muted-foreground">+{totalReturn.toFixed(0)}% total</p>
         </div>
       </div>
 
@@ -188,7 +188,7 @@ function CompoundingCalc({
         ))}
       </svg>
 
-      <p className="text-[10px] text-muted-foreground leading-relaxed">
+      <p className="text-xs text-muted-foreground leading-relaxed">
         Assumes {(avgYield * 100).toFixed(2)}% avg dividend yield, 7% annual price appreciation,
         {(reinvestPct * 100).toFixed(0)}% dividends reinvested (DRIP).
       </p>
@@ -202,11 +202,11 @@ function QuarterlyHistory({ stock }: { stock: DividendStock }) {
   const history = useMemo(() => buildDividendHistory(stock), [stock]);
   return (
     <div>
-      <p className="text-[10px] font-medium text-muted-foreground mb-1.5">{stock.ticker} — Historical Dividends</p>
+      <p className="text-xs font-medium text-muted-foreground mb-1.5">{stock.ticker} — Historical Dividends</p>
       <div className="grid grid-cols-4 gap-1">
         {history.map((h) => (
           <div key={h.quarter} className="rounded bg-muted/40 p-1.5 text-center">
-            <p className="text-[9px] text-muted-foreground">{h.quarter}</p>
+            <p className="text-[11px] text-muted-foreground">{h.quarter}</p>
             <p className="text-xs font-mono font-semibold">${h.dps.toFixed(3)}</p>
           </div>
         ))}
@@ -234,7 +234,7 @@ function IncomeBar({ stocks }: { stocks: DividendStock[] }) {
 
   return (
     <div>
-      <p className="text-[10px] font-medium text-muted-foreground mb-2 uppercase tracking-wide">Monthly Income Distribution</p>
+      <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Monthly Income Distribution</p>
       <div className="flex items-end gap-1 h-12">
         {monthlyIncome.map((inc, m) => {
           const height = maxIncome > 0 ? (inc / maxIncome) * 100 : 0;
@@ -282,7 +282,7 @@ export function DividendTracker() {
     <div className="rounded-lg border border-border bg-card p-4 space-y-5">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">Dividend Tracker</h3>
-        <span className="text-[10px] text-muted-foreground">Income Portfolio</span>
+        <span className="text-xs text-muted-foreground">Income Portfolio</span>
       </div>
 
       {/* Summary stats */}
@@ -294,7 +294,7 @@ export function DividendTracker() {
           { label: "Quarterly", value: `$${quarterlyIncome.toFixed(0)}`, color: "text-foreground" },
         ].map((s) => (
           <div key={s.label} className="space-y-0.5">
-            <p className="text-[10px] text-muted-foreground">{s.label}</p>
+            <p className="text-xs text-muted-foreground">{s.label}</p>
             <p className={cn("font-mono tabular-nums text-sm font-semibold", s.color)}>{s.value}</p>
           </div>
         ))}
@@ -305,11 +305,11 @@ export function DividendTracker() {
 
       {/* Holdings table */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground mb-2 uppercase tracking-wide">Holdings</p>
+        <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Holdings</p>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b text-muted-foreground text-[10px]">
+              <tr className="border-b text-muted-foreground text-xs">
                 <th className="text-left py-1 px-1 font-medium">Stock</th>
                 <th className="text-right py-1 px-1 font-medium">Shares</th>
                 <th className="text-right py-1 px-1 font-medium">Price</th>
@@ -330,7 +330,7 @@ export function DividendTracker() {
 
       {/* Reinvestment slider */}
       <div className="flex items-center gap-3">
-        <span className="text-[10px] text-muted-foreground whitespace-nowrap">DRIP Rate:</span>
+        <span className="text-xs text-muted-foreground whitespace-nowrap">DRIP Rate:</span>
         <input
           type="range"
           min={0}
@@ -356,14 +356,14 @@ export function DividendTracker() {
 
       {/* Historical dividends per stock */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground mb-2 uppercase tracking-wide">Historical Dividends (Last 4 Quarters)</p>
+        <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Historical Dividends (Last 4 Quarters)</p>
         <div className="flex gap-1 mb-3 flex-wrap">
           {DIVIDEND_STOCKS.map((s) => (
             <button
               key={s.ticker}
               onClick={() => setSelectedTicker(s.ticker)}
               className={cn(
-                "text-[10px] px-2 py-0.5 rounded transition-colors",
+                "text-xs px-2 py-0.5 rounded transition-colors",
                 selectedTicker === s.ticker
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -376,7 +376,7 @@ export function DividendTracker() {
         <QuarterlyHistory stock={selectedStock} />
       </div>
 
-      <p className="text-[10px] text-muted-foreground leading-relaxed">
+      <p className="text-xs text-muted-foreground leading-relaxed">
         Dividend yields and ex-dividend dates are illustrative. DRIP (Dividend Reinvestment Plan) automatically uses dividend payments to purchase additional shares. Over time, compounding can significantly amplify total returns.
       </p>
     </div>

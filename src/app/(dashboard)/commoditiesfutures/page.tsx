@@ -1391,12 +1391,12 @@ function SectorsTab() {
                     <td className="py-1.5">
                       <div className="flex flex-col">
                         <span className="text-zinc-100 font-medium">{c.name}</span>
-                        <span className="text-zinc-500 text-[10px]">{c.ticker}</span>
+                        <span className="text-zinc-500 text-xs">{c.ticker}</span>
                       </div>
                     </td>
                     <td className="py-1.5 text-right font-mono text-zinc-100">
                       ${c.price > 100 ? fmt(c.price, 2) : fmt(c.price, 2)}
-                      <div className="text-[10px] text-zinc-500">{c.unit}</div>
+                      <div className="text-xs text-zinc-500">{c.unit}</div>
                     </td>
                     <td className={`py-1.5 text-right font-mono ${pos(c.change1d)}`}>
                       {fmtPct(c.change1d)}
@@ -1454,10 +1454,10 @@ function SectorsTab() {
                         variant="outline"
                         className={
                           row.trend === "tightening"
-                            ? "border-red-500 text-red-400 text-[10px]"
+                            ? "border-red-500 text-red-400 text-xs"
                             : row.trend === "loosening"
-                            ? "border-emerald-500 text-emerald-400 text-[10px]"
-                            : "border-zinc-500 text-zinc-400 text-[10px]"
+                            ? "border-emerald-500 text-emerald-400 text-xs"
+                            : "border-zinc-500 text-zinc-400 text-xs"
                         }
                       >
                         {row.trend}

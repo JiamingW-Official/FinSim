@@ -17,7 +17,7 @@ function MetricCard({
 }) {
   return (
     <div className="rounded-lg border border-border bg-card p-3">
-      <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+      <div className="text-xs font-medium text-muted-foreground">
         {label}
       </div>
       <div className={cn("mt-1 text-lg font-bold tabular-nums", color)}>

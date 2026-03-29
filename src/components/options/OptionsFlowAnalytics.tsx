@@ -264,7 +264,7 @@ function FilterChip({
     <button
       onClick={onClick}
       className={cn(
-        "rounded px-2 py-1 text-[10px] font-medium transition-colors",
+        "rounded px-2 py-1 text-xs font-medium transition-colors",
         active
           ? "border border-primary/30 bg-primary/15 text-primary"
           : "text-muted-foreground hover:text-foreground",
@@ -278,7 +278,7 @@ function FilterChip({
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="border-b border-border/50 px-4 py-2">
-      <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+      <span className="text-xs font-bold text-muted-foreground">
         {children}
       </span>
     </div>
@@ -323,8 +323,8 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
       {/* Summary bar */}
       <div className="mx-4 mt-3 rounded-md border border-border/50 bg-card/40 p-3">
         <div className="mb-2 flex items-center justify-between">
-          <span className="text-[10px] font-semibold text-foreground">Daily Flow Summary</span>
-          <span className="text-[9px] text-muted-foreground">{entries.length} alerts</span>
+          <span className="text-xs font-semibold text-foreground">Daily Flow Summary</span>
+          <span className="text-[11px] text-muted-foreground">{entries.length} alerts</span>
         </div>
         <div className="flex h-2.5 overflow-hidden rounded-full">
           <div
@@ -336,7 +336,7 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
             style={{ width: totalFlow > 0 ? `${(totalBearish / totalFlow * 100).toFixed(1)}%` : "50%" }}
           />
         </div>
-        <div className="mt-1 flex justify-between text-[9px]">
+        <div className="mt-1 flex justify-between text-[11px]">
           <span className="text-emerald-400">
             Bullish {totalFlow > 0 ? (totalBullish / totalFlow * 100).toFixed(0) : 50}% · {fmtPrem(totalBullish)}
           </span>
@@ -353,7 +353,7 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
             <FilterChip key={v} active={filter === v} onClick={() => setFilter(v)}>{l}</FilterChip>
           ))}
         </div>
-        <div className="ml-auto flex items-center gap-1 text-[9px] text-muted-foreground">
+        <div className="ml-auto flex items-center gap-1 text-[11px] text-muted-foreground">
           Sort:
           {(["premium", "ticker", "expiry"] as SortKey[]).map((k) => (
             <button
@@ -376,7 +376,7 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b border-border/50">
               {["Time","Ticker","Exp","Strike","C/P","Type","Size","Premium","OI%","IV","Sentiment"].map((h, i) => (
-                <th key={`h-${i}`} className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70 whitespace-nowrap">
+                <th key={`h-${i}`} className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70 whitespace-nowrap">
                   {h}
                 </th>
               ))}
@@ -402,36 +402,36 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
                         : "border-l-transparent hover:bg-accent/10",
                     )}
                   >
-                    <td className="px-2 py-1.5 text-[10px] text-muted-foreground whitespace-nowrap">
+                    <td className="px-2 py-1.5 text-xs text-muted-foreground whitespace-nowrap">
                       {relTime(e.timestamp)}
                     </td>
-                    <td className="px-2 py-1.5 text-[10px] font-semibold">{e.ticker}</td>
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">{e.expiry.slice(5)}</td>
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums">${e.strike}</td>
-                    <td className="px-2 py-1.5 text-[10px] font-semibold">
+                    <td className="px-2 py-1.5 text-xs font-semibold">{e.ticker}</td>
+                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">{e.expiry.slice(5)}</td>
+                    <td className="px-2 py-1.5 text-xs tabular-nums">${e.strike}</td>
+                    <td className="px-2 py-1.5 text-xs font-semibold">
                       <span className={e.callPut === "call" ? "text-emerald-400" : "text-red-400"}>
                         {e.callPut === "call" ? "C" : "P"}
                       </span>
                     </td>
-                    <td className="px-2 py-1.5 text-[10px]">
+                    <td className="px-2 py-1.5 text-xs">
                       <span className={cn(
-                        "rounded px-1 py-0.5 text-[9px] font-semibold",
+                        "rounded px-1 py-0.5 text-[11px] font-semibold",
                         e.orderType === "sweep"
                           ? "bg-orange-500/15 text-orange-400"
                           : e.orderType === "block"
-                          ? "bg-purple-500/15 text-purple-400"
-                          : "bg-blue-500/15 text-blue-400",
+                          ? "bg-orange-500/15 text-orange-500"
+                          : "bg-muted text-muted-foreground",
                       )}>
                         {e.orderType.toUpperCase()}
                       </span>
                     </td>
                     <td className={cn(
-                      "px-2 py-1.5 text-[10px] tabular-nums font-medium",
+                      "px-2 py-1.5 text-xs tabular-nums font-medium",
                       isBullish ? "text-emerald-400" : isBearish ? "text-red-400" : "",
                     )}>
                       {e.size.toLocaleString()}
                     </td>
-                    <td className="px-2 py-1.5 text-[10px] font-medium tabular-nums text-orange-400 whitespace-nowrap">
+                    <td className="px-2 py-1.5 text-xs font-medium tabular-nums text-orange-400 whitespace-nowrap">
                       {isWhale && <span className="mr-0.5">🐋</span>}
                       {isWhale && (
                         <span className="mr-1 rounded bg-amber-500/20 px-1 py-0.5 text-[8px] font-semibold text-amber-400">
@@ -440,9 +440,9 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
                       )}
                       {fmtPrem(e.premium)}
                     </td>
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">{e.oiPct.toFixed(1)}x</td>
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">{(e.iv * 100).toFixed(0)}%</td>
-                    <td className="px-2 py-1.5 text-[10px]">
+                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">{e.oiPct.toFixed(1)}x</td>
+                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">{(e.iv * 100).toFixed(0)}%</td>
+                    <td className="px-2 py-1.5 text-xs">
                       {isBullish ? (
                         <span className="text-emerald-400"><span className="mr-0.5 text-[8px]">●</span>Bullish</span>
                       ) : isBearish ? (
@@ -527,26 +527,26 @@ function FlowHeatmapSection({ entries }: { entries: FlowEntry[] }) {
       {/* Summary */}
       <div className="flex items-center gap-3">
         <div className="flex-1 rounded-md border border-border/50 bg-card/40 p-2">
-          <div className="mb-1 text-[9px] text-muted-foreground">Today&apos;s Flow</div>
+          <div className="mb-1 text-[11px] text-muted-foreground">Today&apos;s Flow</div>
           <div className="flex h-2 overflow-hidden rounded-full">
             <div className="bg-emerald-500/60" style={{ width: `${(totalBull / totalAll * 100).toFixed(0)}%` }} />
             <div className="bg-red-500/60"     style={{ width: `${(totalBear / totalAll * 100).toFixed(0)}%` }} />
           </div>
-          <div className="mt-1 flex justify-between text-[9px]">
+          <div className="mt-1 flex justify-between text-[11px]">
             <span className="text-emerald-400">Bull {fmtPrem(totalBull)}</span>
             <span className="text-red-400">Bear {fmtPrem(totalBear)}</span>
           </div>
         </div>
         {topSector && (
           <div className="rounded-md border border-border/50 bg-card/40 p-2 text-center">
-            <div className="text-[9px] text-muted-foreground">Most Active Sector</div>
+            <div className="text-[11px] text-muted-foreground">Most Active Sector</div>
             <div className={cn(
               "mt-0.5 text-[11px] font-semibold",
               topSector[1] > 0 ? "text-emerald-400" : "text-red-400",
             )}>
               {topSector[0]}
             </div>
-            <div className="text-[9px] text-muted-foreground">{fmtPrem(Math.abs(topSector[1]))}</div>
+            <div className="text-[11px] text-muted-foreground">{fmtPrem(Math.abs(topSector[1]))}</div>
           </div>
         )}
       </div>
@@ -639,9 +639,9 @@ function FlowHeatmapSection({ entries }: { entries: FlowEntry[] }) {
           >
             <div className="mb-2 flex items-center gap-2">
               <span className="text-[11px] font-semibold">{selectedCell.ticker}</span>
-              <span className="text-[10px] text-muted-foreground">{selectedCell.expiry}</span>
+              <span className="text-xs text-muted-foreground">{selectedCell.expiry}</span>
             </div>
-            <div className="grid grid-cols-3 gap-2 text-[10px]">
+            <div className="grid grid-cols-3 gap-2 text-xs">
               <div>
                 <div className="text-muted-foreground">Call Flow</div>
                 <div className="font-medium text-emerald-400">{fmtPrem(selectedCell.callFlow)}</div>
@@ -730,9 +730,9 @@ function PCRatioDashboard({ seed }: { seed: number }) {
             : "Neutral";
           return (
             <div key={label} className={cn("rounded-md border p-3", color)}>
-              <div className="text-[9px] text-muted-foreground">{label}</div>
+              <div className="text-[11px] text-muted-foreground">{label}</div>
               <div className="text-[22px] font-bold tabular-nums">{value.toFixed(2)}</div>
-              <div className="text-[9px] font-medium">{signal}</div>
+              <div className="text-[11px] font-medium">{signal}</div>
               <div className="mt-0.5 text-[8px] text-muted-foreground">{desc}</div>
             </div>
           );
@@ -741,7 +741,7 @@ function PCRatioDashboard({ seed }: { seed: number }) {
 
       {/* 5-day chart */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-2 text-[10px] font-semibold">5-Day P/C Ratio</div>
+        <div className="mb-2 text-xs font-semibold">5-Day P/C Ratio</div>
         <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="overflow-visible">
           <defs>
             <linearGradient id={`${uid}-eq`} x1="0" x2="0" y1="0" y2="1">
@@ -804,13 +804,13 @@ function PCRatioDashboard({ seed }: { seed: number }) {
             </g>
           ))}
         </svg>
-        <div className="mt-1 flex gap-3 text-[9px]">
+        <div className="mt-1 flex gap-3 text-[11px]">
           <span className="flex items-center gap-1">
             <span className="inline-block h-0.5 w-4 rounded bg-emerald-400" />
             Equity
           </span>
           <span className="flex items-center gap-1">
-            <span className="inline-block h-0.5 w-4 rounded bg-violet-400" style={{ borderTop: "1px dashed" }} />
+            <span className="inline-block h-0.5 w-4 rounded bg-orange-400" style={{ borderTop: "1px dashed" }} />
             Index
           </span>
           <span className="ml-auto text-muted-foreground">0.7 = bullish · 1.2 = bearish</span>
@@ -819,7 +819,7 @@ function PCRatioDashboard({ seed }: { seed: number }) {
 
       {/* Sector P/C bar chart */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-2 text-[10px] font-semibold">P/C Ratio by Sector</div>
+        <div className="mb-2 text-xs font-semibold">P/C Ratio by Sector</div>
         <svg viewBox={`0 0 260 ${barSvgH}`} width="100%">
           {sorted.map(({ sector, pc }, i) => {
             const barLen = Math.max(4, ((pc - pcMin) / (pcMax - pcMin)) * BAR_W);
@@ -846,10 +846,10 @@ function PCRatioDashboard({ seed }: { seed: number }) {
 
       {/* Historical P/C extremes */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-2 text-[10px] font-semibold">Historical Extremes (Contrarian Signals)</div>
+        <div className="mb-2 text-xs font-semibold">Historical Extremes (Contrarian Signals)</div>
         <div className="space-y-1.5">
           {extremes.map((ex) => (
-            <div key={ex.date} className="flex items-center gap-2 text-[10px]">
+            <div key={ex.date} className="flex items-center gap-2 text-xs">
               <span className="w-20 shrink-0 text-muted-foreground">{ex.date.slice(5)}</span>
               <span className={cn(
                 "font-mono font-semibold tabular-nums",
@@ -857,7 +857,7 @@ function PCRatioDashboard({ seed }: { seed: number }) {
               )}>{ex.pc.toFixed(2)}</span>
               <span className="flex-1 text-muted-foreground">{ex.signal}</span>
               <span className={cn(
-                "rounded px-1 py-0.5 text-[9px] font-semibold",
+                "rounded px-1 py-0.5 text-[11px] font-semibold",
                 ex.contrarian === "bullish"
                   ? "bg-emerald-500/15 text-emerald-400"
                   : "bg-red-500/15 text-red-400",
@@ -908,7 +908,7 @@ function OIAnalysis({ seed }: { seed: number }) {
             key={ex}
             onClick={() => setSelectedExpiry(i)}
             className={cn(
-              "rounded px-2 py-1 text-[9px] font-medium transition-colors",
+              "rounded px-2 py-1 text-[11px] font-medium transition-colors",
               selectedExpiry === i
                 ? "bg-primary/20 text-primary"
                 : "text-muted-foreground hover:text-foreground",
@@ -922,17 +922,17 @@ function OIAnalysis({ seed }: { seed: number }) {
       {/* Max Pain + Walls summary */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-md border border-border/50 bg-card/40 p-2 text-center">
-          <div className="text-[9px] text-muted-foreground">Max Pain</div>
+          <div className="text-[11px] text-muted-foreground">Max Pain</div>
           <div className="text-[14px] font-bold tabular-nums">${maxPain}</div>
           <div className="text-[8px] text-muted-foreground">Options expire worthless</div>
         </div>
         <div className="rounded-md border border-emerald-500/20 bg-emerald-500/5 p-2 text-center">
-          <div className="text-[9px] text-muted-foreground">Call Wall</div>
+          <div className="text-[11px] text-muted-foreground">Call Wall</div>
           <div className="text-[14px] font-bold tabular-nums text-emerald-400">${callWall?.strike ?? 0}</div>
           <div className="text-[8px] text-muted-foreground">{fmtShares(callWall?.callOI ?? 0)} OI</div>
         </div>
         <div className="rounded-md border border-red-500/20 bg-red-500/5 p-2 text-center">
-          <div className="text-[9px] text-muted-foreground">Put Wall</div>
+          <div className="text-[11px] text-muted-foreground">Put Wall</div>
           <div className="text-[14px] font-bold tabular-nums text-red-400">${putWall?.strike ?? 0}</div>
           <div className="text-[8px] text-muted-foreground">{fmtShares(putWall?.putOI ?? 0)} OI</div>
         </div>
@@ -940,7 +940,7 @@ function OIAnalysis({ seed }: { seed: number }) {
 
       {/* OI by Strike chart */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-2 text-[10px] font-semibold">OI by Strike — {expLabel.slice(5)}</div>
+        <div className="mb-2 text-xs font-semibold">OI by Strike — {expLabel.slice(5)}</div>
         <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="overflow-visible">
           {/* Y-axis */}
           {[0, 0.5, 1].map((frac) => {
@@ -988,7 +988,7 @@ function OIAnalysis({ seed }: { seed: number }) {
             );
           })}
         </svg>
-        <div className="mt-1 flex items-center gap-3 text-[9px]">
+        <div className="mt-1 flex items-center gap-3 text-[11px]">
           <span className="flex items-center gap-1">
             <span className="inline-block h-2 w-2 rounded-sm bg-emerald-400/70" />Call OI
           </span>
@@ -1003,8 +1003,8 @@ function OIAnalysis({ seed }: { seed: number }) {
 
       {/* GEX chart */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-1 text-[10px] font-semibold">Gamma Exposure (GEX) by Strike</div>
-        <div className="mb-2 text-[9px] text-muted-foreground">Positive GEX = market makers long gamma (stabilizing) · Negative GEX = short gamma (amplifying)</div>
+        <div className="mb-1 text-xs font-semibold">Gamma Exposure (GEX) by Strike</div>
+        <div className="mb-2 text-[11px] text-muted-foreground">Positive GEX = market makers long gamma (stabilizing) · Negative GEX = short gamma (amplifying)</div>
         <svg viewBox={`0 0 ${W} 90`} width="100%" className="overflow-visible">
           {(() => {
             const GH = 90, GMT = 8, GMB = 18;
@@ -1072,15 +1072,15 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
     <div className="flex flex-col gap-4 px-4 py-3">
       {/* Dark pool buy/sell summary */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-2 flex items-center justify-between text-[10px]">
-          <span className="font-semibold">Dark Pool 24h Flow</span>
+        <div className="mb-2 flex items-center justify-between text-xs">
+          <span className="font-semibold">Simulated Institutional 24h Flow</span>
           <span className="text-muted-foreground">{prints.length} prints</span>
         </div>
         <div className="flex h-3 overflow-hidden rounded-full">
           <div className="bg-emerald-500/70" style={{ width: `${(buyDollar / total * 100).toFixed(0)}%` }} />
           <div className="bg-red-500/70"     style={{ width: `${(sellDollar / total * 100).toFixed(0)}%` }} />
         </div>
-        <div className="mt-1.5 flex justify-between text-[9px]">
+        <div className="mt-1.5 flex justify-between text-[11px]">
           <span className="text-emerald-400">Buy {(buyDollar / total * 100).toFixed(0)}% · {formatDollar(buyDollar)}</span>
           <span className="text-red-400">Sell {(sellDollar / total * 100).toFixed(0)}% · {formatDollar(sellDollar)}</span>
         </div>
@@ -1088,13 +1088,13 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
 
       {/* Correlation table */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-2 text-[10px] font-semibold">DP + Options Signal Correlation</div>
+        <div className="mb-2 text-xs font-semibold">DP + Options Signal Correlation</div>
         <div className="overflow-auto">
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b border-border/50">
                 {["Ticker","DP Buy%","Opts Bull%","Corr","Score","Follow-Thru","DP First?"].map((h, i) => (
-                  <th key={`dph-${i}`} className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70 whitespace-nowrap">
+                  <th key={`dph-${i}`} className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70 whitespace-nowrap">
                     {h}
                   </th>
                 ))}
@@ -1111,20 +1111,20 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
                       ? "border-l-primary/60 hover:bg-primary/5"
                       : "border-l-transparent hover:bg-accent/10",
                   )}>
-                    <td className="px-2 py-1.5 text-[10px] font-semibold">{c.ticker}</td>
-                    <td className={cn("px-2 py-1.5 text-[10px] tabular-nums", c.dpBuySide > 55 ? "text-emerald-400" : "text-red-400")}>
+                    <td className="px-2 py-1.5 text-xs font-semibold">{c.ticker}</td>
+                    <td className={cn("px-2 py-1.5 text-xs tabular-nums", c.dpBuySide > 55 ? "text-emerald-400" : "text-red-400")}>
                       {c.dpBuySide.toFixed(0)}%
                     </td>
-                    <td className={cn("px-2 py-1.5 text-[10px] tabular-nums", c.optionsSentiment > 55 ? "text-emerald-400" : "text-red-400")}>
+                    <td className={cn("px-2 py-1.5 text-xs tabular-nums", c.optionsSentiment > 55 ? "text-emerald-400" : "text-red-400")}>
                       {c.optionsSentiment.toFixed(0)}%
                     </td>
                     <td className={cn(
-                      "px-2 py-1.5 text-[10px] tabular-nums font-medium",
+                      "px-2 py-1.5 text-xs tabular-nums font-medium",
                       c.correlation > 0.3 ? "text-emerald-400" : c.correlation < -0.3 ? "text-red-400" : "text-muted-foreground",
                     )}>
                       {c.correlation.toFixed(2)}
                     </td>
-                    <td className="px-2 py-1.5 text-[10px]">
+                    <td className="px-2 py-1.5 text-xs">
                       <div className="flex items-center gap-1">
                         <div className="h-1.5 w-12 overflow-hidden rounded-full bg-muted/30">
                           <div
@@ -1138,15 +1138,15 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
                       </div>
                     </td>
                     <td className={cn(
-                      "px-2 py-1.5 text-[10px] tabular-nums",
+                      "px-2 py-1.5 text-xs tabular-nums",
                       c.followThrough > 65 ? "text-emerald-400" : c.followThrough > 50 ? "text-amber-400" : "text-red-400",
                     )}>
                       {c.followThrough.toFixed(0)}%
                     </td>
-                    <td className="px-2 py-1.5 text-[10px]">
+                    <td className="px-2 py-1.5 text-xs">
                       <span className={cn(
-                        "rounded px-1 py-0.5 text-[9px] font-medium",
-                        c.dpPrecedesOpts ? "bg-blue-500/15 text-blue-400" : "bg-muted/20 text-muted-foreground",
+                        "rounded px-1 py-0.5 text-[11px] font-medium",
+                        c.dpPrecedesOpts ? "bg-orange-500/15 text-orange-400" : "bg-muted/20 text-muted-foreground",
                       )}>
                         {c.dpPrecedesOpts ? "Yes" : "No"}
                       </span>
@@ -1161,7 +1161,7 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
 
       {/* Scatter: DP buy% vs Options bull% */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-1 text-[10px] font-semibold">DP Buy% vs Options Bullish% (Conviction Map)</div>
+        <div className="mb-1 text-xs font-semibold">DP Buy% vs Options Bullish% (Conviction Map)</div>
         <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="overflow-visible">
           <defs>
             <linearGradient id={`${uid}-conv`} x1="0" x2="1" y1="1" y2="0">
@@ -1215,20 +1215,20 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
             );
           })}
         </svg>
-        <div className="mt-1 text-[9px] text-muted-foreground">
+        <div className="mt-1 text-[11px] text-muted-foreground">
           Circle size = signal score. On-diagonal = DP and options agree.
         </div>
       </div>
 
       {/* DP prints feed (top 10) */}
       <div className="rounded-md border border-border/50 bg-card/40 p-3">
-        <div className="mb-2 text-[10px] font-semibold">Recent Dark Pool Prints</div>
+        <div className="mb-2 text-xs font-semibold">Recent Simulated Institutional Prints</div>
         <div className="overflow-auto">
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b border-border/50">
                 {["Time","Ticker","Size","Price","$Value","Side"].map((h, i) => (
-                  <th key={`dpt-${i}`} className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70">
+                  <th key={`dpt-${i}`} className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70">
                     {h}
                   </th>
                 ))}
@@ -1245,18 +1245,18 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
                     : isBelow ? "border-l-red-500/40 hover:bg-red-500/5"
                     : "border-l-transparent hover:bg-accent/10",
                   )}>
-                    <td className="px-2 py-1.5 text-[10px] text-muted-foreground">{relTime(p.timestamp)}</td>
-                    <td className="px-2 py-1.5 text-[10px] font-semibold">{p.ticker}</td>
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums font-medium">{fmtShares(p.size)}</td>
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums">${p.price.toFixed(2)}</td>
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums text-orange-400">{formatDollar(p.dollarValue)}</td>
-                    <td className="px-2 py-1.5 text-[10px]">
+                    <td className="px-2 py-1.5 text-xs text-muted-foreground">{relTime(p.timestamp)}</td>
+                    <td className="px-2 py-1.5 text-xs font-semibold">{p.ticker}</td>
+                    <td className="px-2 py-1.5 text-xs tabular-nums font-medium">{fmtShares(p.size)}</td>
+                    <td className="px-2 py-1.5 text-xs tabular-nums">${p.price.toFixed(2)}</td>
+                    <td className="px-2 py-1.5 text-xs tabular-nums text-orange-400">{formatDollar(p.dollarValue)}</td>
+                    <td className="px-2 py-1.5 text-xs">
                       {isAbove ? (
-                        <span className="rounded bg-emerald-500/15 px-1 py-0.5 text-[9px] font-semibold text-emerald-400">Above Ask</span>
+                        <span className="rounded bg-emerald-500/15 px-1 py-0.5 text-[11px] font-semibold text-emerald-400">Above Ask</span>
                       ) : isBelow ? (
-                        <span className="rounded bg-red-500/15 px-1 py-0.5 text-[9px] font-semibold text-red-400">Below Bid</span>
+                        <span className="rounded bg-red-500/15 px-1 py-0.5 text-[11px] font-semibold text-red-400">Below Bid</span>
                       ) : (
-                        <span className="rounded bg-muted/20 px-1 py-0.5 text-[9px] text-muted-foreground">Mid</span>
+                        <span className="rounded bg-muted/20 px-1 py-0.5 text-[11px] text-muted-foreground">Mid</span>
                       )}
                     </td>
                   </tr>
@@ -1280,7 +1280,7 @@ const TABS: { key: TabKey; label: string }[] = [
   { key: "heatmap",  label: "Heatmap" },
   { key: "pcr",      label: "P/C Ratio" },
   { key: "oi",       label: "OI Analysis" },
-  { key: "darkpool", label: "Dark Pool" },
+  { key: "darkpool", label: "Simulated Institutional Flow" },
 ];
 
 // ── Root Component ────────────────────────────────────────────────────────────
@@ -1312,19 +1312,19 @@ export default function OptionsFlowAnalytics() {
       {/* Header */}
       <div className="flex shrink-0 items-center justify-between border-b border-border/50 px-4 py-2">
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider">Options Flow Analytics</span>
+          <span className="text-[11px] font-bold">Options Flow Analytics</span>
           <motion.span
             key={tick}
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-400"
+            className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-400"
           >
             LIVE
           </motion.span>
         </div>
         <button
           onClick={refresh}
-          className="rounded border border-border/50 bg-muted/20 px-2 py-1 text-[9px] text-muted-foreground transition-colors hover:text-foreground"
+          className="rounded border border-border/50 bg-muted/20 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
         >
           Refresh
         </button>
@@ -1337,7 +1337,7 @@ export default function OptionsFlowAnalytics() {
             key={key}
             onClick={() => setTab(key)}
             className={cn(
-              "rounded px-2.5 py-1 text-[10px] font-medium transition-colors",
+              "rounded px-2.5 py-1 text-xs font-medium transition-colors",
               tab === key
                 ? "bg-primary/15 text-primary"
                 : "text-muted-foreground hover:text-foreground",
@@ -1362,7 +1362,7 @@ export default function OptionsFlowAnalytics() {
             {tab === "heatmap"  && <><SectionTitle>Flow Heatmap — Ticker × Expiry</SectionTitle><FlowHeatmapSection entries={entries} /></>}
             {tab === "pcr"      && <><SectionTitle>Put/Call Ratio Dashboard</SectionTitle><PCRatioDashboard seed={seed} /></>}
             {tab === "oi"       && <><SectionTitle>Open Interest Analysis</SectionTitle><OIAnalysis seed={seed} /></>}
-            {tab === "darkpool" && <><SectionTitle>Dark Pool + Options Correlation</SectionTitle><DarkPoolCorrelation seed={seed} /></>}
+            {tab === "darkpool" && <><SectionTitle>Simulated Institutional Flow + Options Correlation</SectionTitle><DarkPoolCorrelation seed={seed} /></>}
           </motion.div>
         </AnimatePresence>
       </div>

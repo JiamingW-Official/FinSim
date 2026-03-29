@@ -290,7 +290,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="rounded-md border border-border/50 bg-muted/20 px-3 py-2 text-[10px] text-muted-foreground">
+            <div className="rounded-md border border-border/50 bg-muted/20 px-3 py-2 text-xs text-muted-foreground">
               <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
                 <span>
                   <kbd className="rounded border border-border/50 bg-muted px-1 font-mono">Space</kbd> flip card
@@ -347,7 +347,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                   {cat && (
                     <span
                       className={cn(
-                        "text-[9px] font-bold uppercase tracking-widest",
+                        "text-[11px] font-bold",
                         cat.color,
                       )}
                     >
@@ -356,12 +356,12 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                   )}
                   <div className="ml-auto flex items-center gap-1.5">
                     {isNew && (
-                      <span className="rounded-sm bg-blue-500/10 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-blue-400">
+                      <span className="rounded-sm bg-blue-500/10 px-1.5 py-0.5 text-[8px] font-bold text-blue-400">
                         New
                       </span>
                     )}
                     {!isNew && cardMastery > 0 && (
-                      <span className="text-[9px] tabular-nums text-muted-foreground">
+                      <span className="text-[11px] tabular-nums text-muted-foreground">
                         {cardMastery}% mastery
                       </span>
                     )}
@@ -379,7 +379,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                     transition={{ duration: 2.2, repeat: Infinity, type: "tween" }}
                   >
                     <RotateCcw className="h-3 w-3 text-muted-foreground" />
-                    <span className="text-[10px] text-muted-foreground">
+                    <span className="text-xs text-muted-foreground">
                       Click or press Space to flip
                     </span>
                   </motion.div>
@@ -391,7 +391,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                 {cat && (
                   <span
                     className={cn(
-                      "text-[9px] font-bold uppercase tracking-widest",
+                      "text-[11px] font-bold",
                       cat.color,
                     )}
                   >
@@ -402,7 +402,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                   {currentCard.back}
                 </p>
                 {currentCard.hint && (
-                  <p className="text-[10px] text-muted-foreground italic border-t border-border/40 pt-2 mt-1">
+                  <p className="text-xs text-muted-foreground italic border-t border-border/40 pt-2 mt-1">
                     {currentCard.hint}
                   </p>
                 )}
@@ -453,7 +453,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                   {isEasy && <Check className="h-3.5 w-3.5" />}
                   {isHard && <RotateCcw className="h-3.5 w-3.5" />}
                   <span className={color}>{label}</span>
-                  <span className="text-[9px] font-mono text-muted-foreground/60">({rating})</span>
+                  <span className="text-[11px] font-mono text-muted-foreground/60">({rating})</span>
                 </button>
               );
             })}
@@ -474,7 +474,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
             Prev
           </button>
 
-          <span className="text-[10px] text-muted-foreground">
+          <span className="text-xs text-muted-foreground">
             {filteredCards.filter((c) => !mastery[c.id]).length} new
           </span>
 
@@ -542,11 +542,11 @@ function StatTile({
 }) {
   return (
     <div className="flex flex-col gap-0.5 rounded-lg border border-border/50 bg-card px-3 py-2.5">
-      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+      <span className="text-[11px] font-bold text-muted-foreground">
         {label}
       </span>
-      <span className={cn("text-sm font-black tabular-nums", valueColor)}>{value}</span>
-      <span className="text-[9px] text-muted-foreground">{sub}</span>
+      <span className={cn("text-sm font-bold tabular-nums", valueColor)}>{value}</span>
+      <span className="text-[11px] text-muted-foreground">{sub}</span>
     </div>
   );
 }

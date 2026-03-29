@@ -56,7 +56,7 @@ export function PnLHistogram() {
             key={bucket.label}
             className="flex flex-1 flex-col items-center gap-1"
           >
-            <span className="text-[9px] font-bold tabular-nums text-muted-foreground">
+            <span className="text-[11px] font-bold tabular-nums text-muted-foreground">
               {bucket.count > 0 ? bucket.count : ""}
             </span>
             <div

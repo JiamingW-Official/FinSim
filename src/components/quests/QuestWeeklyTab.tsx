@@ -84,7 +84,7 @@ export function QuestWeeklyTab() {
           <CheckCircle2 className="h-5 w-5 text-emerald-400" />
           <div>
             <p className="text-xs font-bold text-emerald-300">All weekly quests completed!</p>
-            <p className="text-[10px] text-emerald-400/60">New quests arrive Monday.</p>
+            <p className="text-xs text-emerald-400/60">New quests arrive Monday.</p>
           </div>
         </motion.div>
       )}

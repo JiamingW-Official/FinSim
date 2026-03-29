@@ -52,7 +52,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
     return (
       <div className="flex flex-col items-center justify-center gap-1.5 py-8 text-muted-foreground">
         <Activity className="h-5 w-5 opacity-30" />
-        <p className="text-[10px]">Select options to see payoff diagram</p>
+        <p className="text-xs">Select options to see payoff diagram</p>
       </div>
     );
   }
@@ -274,7 +274,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
 
       {/* Bottom info bar */}
       <div className="mt-1 flex items-center justify-between">
-        <div className="flex items-center gap-3 text-[9px]">
+        <div className="flex items-center gap-3 text-[11px]">
           <div className="flex items-center gap-1">
             <div className="h-0.5 w-3 bg-orange-500" />
             <span className="text-muted-foreground">At Expiry</span>
@@ -303,7 +303,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
 
         {/* Time slider */}
         <div className="flex items-center gap-2">
-          <span className="text-[9px] text-muted-foreground">
+          <span className="text-[11px] text-muted-foreground">
             DTE: {timeSlider}d
           </span>
           <input

@@ -108,14 +108,14 @@ function SimpleQuestCard({
             </h3>
             <span
               className={cn(
-                "shrink-0 rounded border px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide",
+                "shrink-0 rounded border px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-wide",
                 timeBadgeClass,
               )}
             >
               {timeLabel}
             </span>
             {isComplete && (
-              <span className="shrink-0 text-[10px] font-bold text-emerald-400">
+              <span className="shrink-0 text-xs font-bold text-emerald-400">
                 Complete
               </span>
             )}
@@ -127,7 +127,7 @@ function SimpleQuestCard({
 
           {/* Progress bar */}
           <div className="mt-2 space-y-1">
-            <div className="flex items-center justify-between text-[10px]">
+            <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">
                 {quest.id === "daily_60_winrate"
                   ? `${progress}% / ${quest.target}%`
@@ -173,7 +173,7 @@ function SimpleQuestCard({
           />
           <span
             className={cn(
-              "text-[10px] font-bold tabular-nums",
+              "text-xs font-bold tabular-nums",
               isComplete ? "text-emerald-400" : "text-amber-400",
             )}
           >
@@ -410,7 +410,7 @@ function BranchGrid() {
                 {branch.name}
               </span>
               {!isUnlocked && (
-                <span className="text-[9px] font-bold uppercase tracking-wide text-muted-foreground border border-border rounded px-1 py-0.5">
+                <span className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground border border-border rounded px-1 py-0.5">
                   {branch.unlockAt} quests to unlock
                 </span>
               )}
@@ -541,7 +541,7 @@ export default function QuestsPage() {
             <ScrollText className="h-5 w-5 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-black">Quest Board</h1>
+            <h1 className="text-lg font-bold">Quest Board</h1>
             <p className="text-[11px] text-muted-foreground">
               Complete quests across all game modes
             </p>
@@ -554,7 +554,7 @@ export default function QuestsPage() {
             transition={{ delay: 0.3, type: "spring", stiffness: 400, damping: 15 }}
           >
             <Trophy className="h-3 w-3 text-primary" />
-            <span className="text-[10px] font-black text-primary">
+            <span className="text-xs font-bold text-primary">
               {totalCompleted} completed
             </span>
           </motion.div>
@@ -569,10 +569,10 @@ export default function QuestsPage() {
             transition={{ delay: 0.1 }}
           >
             <Zap className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-black tabular-nums text-amber-400">
+            <span className="text-[11px] font-bold tabular-nums text-amber-400">
               {completedDailyCount}/{DAILY_QUESTS.length}
             </span>
-            <span className="text-[10px] text-muted-foreground">daily</span>
+            <span className="text-xs text-muted-foreground">daily</span>
           </motion.div>
 
           <motion.div
@@ -582,10 +582,10 @@ export default function QuestsPage() {
             transition={{ delay: 0.13 }}
           >
             <CalendarDays className="h-3.5 w-3.5 text-violet-400" />
-            <span className="text-[11px] font-black tabular-nums text-violet-400">
+            <span className="text-[11px] font-bold tabular-nums text-violet-400">
               {completedWeeklyCount}/{WEEKLY_QUESTS.length}
             </span>
-            <span className="text-[10px] text-muted-foreground">weekly</span>
+            <span className="text-xs text-muted-foreground">weekly</span>
           </motion.div>
 
           {dailyStreak > 0 && (
@@ -596,10 +596,10 @@ export default function QuestsPage() {
               transition={{ delay: 0.16 }}
             >
               <Flame className="h-3.5 w-3.5 text-orange-400" />
-              <span className="text-[11px] font-black tabular-nums text-orange-400">
+              <span className="text-[11px] font-bold tabular-nums text-orange-400">
                 {dailyStreak}
               </span>
-              <span className="text-[10px] text-muted-foreground">day streak</span>
+              <span className="text-xs text-muted-foreground">day streak</span>
             </motion.div>
           )}
         </div>

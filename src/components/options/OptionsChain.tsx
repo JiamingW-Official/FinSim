@@ -69,24 +69,24 @@ export function OptionsChain({
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-[10px] tabular-nums" role="table">
+      <table className="w-full text-xs tabular-nums" role="table">
         <thead className="sticky top-0 z-10 bg-card">
           <tr className="border-b border-border text-muted-foreground">
             {showCalls && (
               <th
                 colSpan={CALL_COLS.length}
                 scope="col"
-                className="px-2 py-1.5 text-center text-[10px] font-bold text-emerald-400 whitespace-nowrap"
+                className="px-2 py-1.5 text-center text-xs font-bold text-emerald-400 whitespace-nowrap"
               >
                 CALLS
               </th>
             )}
-            <th scope="col" className="px-2 py-1.5 text-center text-[10px] font-bold whitespace-nowrap">Strike</th>
+            <th scope="col" className="px-2 py-1.5 text-center text-xs font-bold whitespace-nowrap">Strike</th>
             {showPuts && (
               <th
                 colSpan={PUT_COLS.length}
                 scope="col"
-                className="px-2 py-1.5 text-center text-[10px] font-bold text-red-400 whitespace-nowrap"
+                className="px-2 py-1.5 text-center text-xs font-bold text-red-400 whitespace-nowrap"
               >
                 PUTS
               </th>

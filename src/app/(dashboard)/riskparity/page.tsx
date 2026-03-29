@@ -549,7 +549,7 @@ export default function RiskParityPage() {
                               <div className="flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: a.color }} />
                                 <span className="font-medium">{a.name}</span>
-                                <Badge variant="outline" className="text-[9px] py-0 px-1">{a.ticker}</Badge>
+                                <Badge variant="outline" className="text-[11px] py-0 px-1">{a.ticker}</Badge>
                                 {expandedAsset === i
                                   ? <ChevronUp className="w-3 h-3 text-muted-foreground ml-auto" />
                                   : <ChevronDown className="w-3 h-3 text-muted-foreground ml-auto" />
@@ -650,7 +650,7 @@ export default function RiskParityPage() {
                     <div key={s.label} className="rounded-lg bg-muted/40 p-2">
                       <div className="text-muted-foreground">{s.label}</div>
                       <div className={`font-mono font-bold text-base ${s.color}`}>{s.value}</div>
-                      <div className="text-muted-foreground text-[10px]">final value</div>
+                      <div className="text-muted-foreground text-xs">final value</div>
                     </div>
                   ))}
                 </div>
@@ -813,16 +813,16 @@ export default function RiskParityPage() {
                           <span className="text-xs font-medium">{r.regime}</span>
                           <div className="flex gap-3 text-xs font-mono text-right">
                             <div>
-                              <div className="text-muted-foreground text-[10px]">RP</div>
+                              <div className="text-muted-foreground text-xs">RP</div>
                               <div className={r.rp.startsWith("+") ? "text-emerald-400" : "text-red-400"}>{r.rp}</div>
                             </div>
                             <div>
-                              <div className="text-muted-foreground text-[10px]">60/40</div>
+                              <div className="text-muted-foreground text-xs">60/40</div>
                               <div className={r.s60.startsWith("+") ? "text-emerald-400" : "text-red-400"}>{r.s60}</div>
                             </div>
                           </div>
                         </div>
-                        <p className={`text-[10px] mt-1 ${r.color}`}>{r.note}</p>
+                        <p className={`text-xs mt-1 ${r.color}`}>{r.note}</p>
                       </div>
                     ))}
                   </div>
@@ -868,7 +868,7 @@ export default function RiskParityPage() {
                     <div key={r.title} className="rounded-lg bg-muted/30 p-3 space-y-1">
                       <div className="flex items-center gap-2">
                         <span className="font-semibold text-foreground">{r.title}</span>
-                        <Badge variant="outline" className={`text-[9px] py-0 ${r.badgeColor}`}>{r.badge}</Badge>
+                        <Badge variant="outline" className={`text-[11px] py-0 ${r.badgeColor}`}>{r.badge}</Badge>
                       </div>
                       <p className="text-muted-foreground leading-relaxed">{r.desc}</p>
                     </div>

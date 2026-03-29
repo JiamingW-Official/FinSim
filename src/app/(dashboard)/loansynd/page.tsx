@@ -154,7 +154,7 @@ function Pill({ children, color = "default" }: { children: React.ReactNode; colo
 function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="bg-white/5 rounded-xl border border-white/10 p-4">
-      <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">{title}</p>
+      <p className="text-xs font-semibold text-white/40 mb-3">{title}</p>
       {children}
     </div>
   );

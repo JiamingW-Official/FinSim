@@ -31,7 +31,7 @@ function DirectionBadge({ direction }: { direction: ChartPattern["direction"] })
   return (
     <span
       className={cn(
-        "text-[10px] font-medium px-2 py-0.5 rounded-full",
+        "text-xs font-medium px-2 py-0.5 rounded-full",
         direction === "bullish" && "bg-green-500/10 text-green-500",
         direction === "bearish" && "bg-red-500/10 text-red-500",
         direction === "both" && "bg-blue-500/10 text-blue-500"
@@ -53,7 +53,7 @@ function PatternCard({ pattern }: { pattern: ChartPattern }) {
           <div className="flex items-center gap-2 mt-1">
             <span
               className={cn(
-                "text-[10px] font-medium px-2 py-0.5 rounded-full",
+                "text-xs font-medium px-2 py-0.5 rounded-full",
                 pattern.type === "reversal" ? "bg-amber-500/10 text-amber-500" : "bg-blue-500/10 text-blue-500"
               )}
             >
@@ -82,7 +82,7 @@ function PatternCard({ pattern }: { pattern: ChartPattern }) {
             <ol className="space-y-1">
               {pattern.howToIdentify.map((step, i) => (
                 <li key={i} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
-                  <span className="text-[10px] font-medium text-primary shrink-0 w-4 text-right">{i + 1}.</span>
+                  <span className="text-xs font-medium text-primary shrink-0 w-4 text-right">{i + 1}.</span>
                   <span>{step}</span>
                 </li>
               ))}

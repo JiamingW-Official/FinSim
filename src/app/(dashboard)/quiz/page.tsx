@@ -309,7 +309,7 @@ function QuickQuizTab() {
         <div className="w-full space-y-4">
           {/* Topic filter */}
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+            <label className="text-xs font-medium text-muted-foreground">
               Topic
             </label>
             <div className="flex flex-wrap gap-2">
@@ -367,7 +367,7 @@ function QuickQuizTab() {
         {/* Recent results */}
         {Object.keys(topicStats).length > 0 && (
           <div className="w-full space-y-2">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+            <p className="text-xs font-medium text-muted-foreground">
               Your accuracy by topic
             </p>
             {Object.entries(topicStats)
@@ -413,7 +413,7 @@ function QuickQuizTab() {
       >
         <div className="text-center">
           <div
-            className={`text-7xl font-black mb-1 ${color}`}
+            className={`text-7xl font-bold mb-1 ${color}`}
           >
             {grade}
           </div>
@@ -692,15 +692,15 @@ function FlashcardsTab() {
       <div className="flex gap-3">
         <div className="flex-1 rounded-xl border border-border/50 bg-muted/20 px-3 py-2 text-center">
           <div className="text-lg font-bold text-primary">{masteredCount}</div>
-          <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Mastered</div>
+          <div className="text-xs text-muted-foreground">Mastered</div>
         </div>
         <div className="flex-1 rounded-xl border border-border/50 bg-muted/20 px-3 py-2 text-center">
           <div className="text-lg font-bold text-amber-400">{dueCount}</div>
-          <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Due Today</div>
+          <div className="text-xs text-muted-foreground">Due Today</div>
         </div>
         <div className="flex-1 rounded-xl border border-border/50 bg-muted/20 px-3 py-2 text-center">
           <div className="text-lg font-bold">{FLASHCARDS.length}</div>
-          <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Total</div>
+          <div className="text-xs text-muted-foreground">Total</div>
         </div>
       </div>
 
@@ -755,7 +755,7 @@ function FlashcardsTab() {
               style={{ backfaceVisibility: "hidden" }}
               className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-border/60 bg-card px-6 py-8 text-center shadow-lg"
             >
-              <span className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+              <span className="mb-3 text-xs font-semibold text-muted-foreground">
                 {card.category}
               </span>
               <p className="text-lg font-bold leading-snug whitespace-pre-line">{card.front}</p>
@@ -781,7 +781,7 @@ function FlashcardsTab() {
                       style={{ width: `${cardMasteryPct}%` }}
                     />
                   </div>
-                  <span className="text-[10px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     {cardMasteryPct}% mastery
                   </span>
                 </div>
@@ -1279,18 +1279,18 @@ function MyStatsTab() {
                   key={i}
                   className="flex items-center gap-3 rounded-lg bg-muted/20 px-3 py-2"
                 >
-                  <span className={`text-base font-black w-6 text-center ${color}`}>
+                  <span className={`text-base font-bold w-6 text-center ${color}`}>
                     {grade}
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-medium truncate">{label}</p>
-                    <p className="text-[10px] text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                       {session.score}/{session.totalQuestions} correct
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-xs font-semibold text-primary">+{session.xpEarned} XP</p>
-                    <p className="text-[10px] text-muted-foreground">{dateStr}</p>
+                    <p className="text-xs text-muted-foreground">{dateStr}</p>
                   </div>
                 </div>
               );

@@ -31,7 +31,7 @@ export function RecentActivity() {
       <div className="flex flex-col items-center gap-1.5 py-6 text-muted-foreground">
         <Zap className="h-5 w-5 opacity-30" />
         <p className="text-[11px]">No activity yet</p>
-        <p className="text-[10px] opacity-60">Start trading to see your activity here</p>
+        <p className="text-xs opacity-60">Start trading to see your activity here</p>
       </div>
     );
   }
@@ -51,10 +51,10 @@ export function RecentActivity() {
             <div className="min-w-0 flex-1">
               <p className="text-[11px] font-bold truncate">{n.title}</p>
               {n.description && (
-                <p className="text-[9px] text-muted-foreground truncate">{n.description}</p>
+                <p className="text-[11px] text-muted-foreground truncate">{n.description}</p>
               )}
             </div>
-            <span className="shrink-0 text-[9px] tabular-nums text-muted-foreground/50">
+            <span className="shrink-0 text-[11px] tabular-nums text-muted-foreground/50">
               {formatRelativeTime(n.timestamp)}
             </span>
           </div>

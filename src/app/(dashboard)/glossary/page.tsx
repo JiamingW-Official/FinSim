@@ -64,17 +64,17 @@ function ReliabilityDots({ score, max = 5 }: { score: number; max?: number }) {
 
 function DirectionBadge({ direction }: { direction: "bullish" | "bearish" | "both" }) {
   if (direction === "bullish")
-    return <Badge className="bg-green-500/15 text-green-400 border-green-500/20 text-[10px]">Bullish</Badge>;
+    return <Badge className="bg-green-500/15 text-green-400 border-green-500/20 text-xs">Bullish</Badge>;
   if (direction === "bearish")
-    return <Badge className="bg-red-500/15 text-red-400 border-red-500/20 text-[10px]">Bearish</Badge>;
-  return <Badge className="bg-muted-foreground/15 text-muted-foreground border-muted-foreground/20 text-[10px]">Both</Badge>;
+    return <Badge className="bg-red-500/15 text-red-400 border-red-500/20 text-xs">Bearish</Badge>;
+  return <Badge className="bg-muted-foreground/15 text-muted-foreground border-muted-foreground/20 text-xs">Both</Badge>;
 }
 
 function TypeBadge({ type }: { type: "continuation" | "reversal" }) {
   return (
     <Badge
       className={cn(
-        "text-[10px]",
+        "text-xs",
         type === "continuation"
           ? "bg-blue-500/15 text-blue-400 border-blue-500/20"
           : "bg-amber-500/15 text-amber-400 border-amber-500/20"
@@ -391,7 +391,7 @@ function DictionaryTab() {
                     >
                       <div className="flex items-start justify-between gap-2">
                         <span className="text-sm font-semibold leading-tight">{entry.term}</span>
-                        <Badge className={cn("text-[10px] shrink-0", cat.color)}>
+                        <Badge className={cn("text-xs shrink-0", cat.color)}>
                           {cat.label}
                         </Badge>
                       </div>
@@ -476,33 +476,33 @@ function IndicatorsTab() {
               {isOpen && (
                 <div className="border-t border-border/40 p-3 flex flex-col gap-3">
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">How to read</p>
+                    <p className="text-xs text-muted-foreground/50 mb-1">How to read</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">{info.howToRead}</p>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="rounded-md bg-green-500/5 border border-green-500/15 p-2">
-                      <p className="text-[10px] text-green-400 font-medium mb-0.5">Bull signal</p>
+                      <p className="text-xs text-green-400 font-medium mb-0.5">Bull signal</p>
                       <p className="text-[11px] text-muted-foreground">{info.bullSignal}</p>
                     </div>
                     <div className="rounded-md bg-red-500/5 border border-red-500/15 p-2">
-                      <p className="text-[10px] text-red-400 font-medium mb-0.5">Bear signal</p>
+                      <p className="text-xs text-red-400 font-medium mb-0.5">Bear signal</p>
                       <p className="text-[11px] text-muted-foreground">{info.bearSignal}</p>
                     </div>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">Best for</p>
+                    <p className="text-xs text-muted-foreground/50 mb-1">Best for</p>
                     <p className="text-xs text-muted-foreground">{info.bestFor}</p>
                   </div>
                   <div className="rounded-md bg-amber-500/5 border border-amber-500/15 p-2">
-                    <p className="text-[10px] text-amber-400 font-medium mb-0.5">Common mistake</p>
+                    <p className="text-xs text-amber-400 font-medium mb-0.5">Common mistake</p>
                     <p className="text-[11px] text-muted-foreground leading-relaxed">{info.commonMistakes}</p>
                   </div>
                   <div className="rounded-md bg-primary/5 border border-primary/15 p-2">
-                    <p className="text-[10px] text-primary font-medium mb-0.5">Pro tip</p>
+                    <p className="text-xs text-primary font-medium mb-0.5">Pro tip</p>
                     <p className="text-[11px] text-muted-foreground leading-relaxed">{info.proTip}</p>
                   </div>
                   <div className="rounded-md bg-muted/30 p-2">
-                    <p className="text-[10px] text-muted-foreground/60 font-medium mb-0.5">Example scenario</p>
+                    <p className="text-xs text-muted-foreground/60 font-medium mb-0.5">Example scenario</p>
                     <p className="text-[11px] text-muted-foreground/80 italic leading-relaxed">{info.exampleScenario}</p>
                   </div>
                 </div>
@@ -562,14 +562,14 @@ function ChartPatternsTab() {
                   <TypeBadge type={pattern.type} />
                   <DirectionBadge direction={pattern.direction} />
                   <div className="flex items-center gap-1 ml-auto">
-                    <span className="text-[10px] text-muted-foreground/50">Reliability</span>
+                    <span className="text-xs text-muted-foreground/50">Reliability</span>
                     <ReliabilityDots score={pattern.reliability} />
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
                   <ChartPatternSVG name={pattern.name} direction={pattern.direction} />
                   <div className="text-right">
-                    <p className="text-[10px] text-muted-foreground/50">Timeframe</p>
+                    <p className="text-xs text-muted-foreground/50">Timeframe</p>
                     <p className="text-[11px] text-muted-foreground">{pattern.timeframe.split(".")[0]}</p>
                   </div>
                 </div>
@@ -579,11 +579,11 @@ function ChartPatternsTab() {
                 <div className="border-t border-border/40 p-3 flex flex-col gap-2.5">
                   <p className="text-xs text-muted-foreground leading-relaxed">{pattern.description}</p>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">Psychology</p>
+                    <p className="text-xs text-muted-foreground/50 mb-1">Psychology</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">{pattern.psychology}</p>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">How to identify</p>
+                    <p className="text-xs text-muted-foreground/50 mb-1">How to identify</p>
                     <ul className="space-y-0.5">
                       {pattern.howToIdentify.map((step, i) => (
                         <li key={i} className="flex gap-1.5 text-xs text-muted-foreground">
@@ -596,7 +596,7 @@ function ChartPatternsTab() {
                   <div className="grid grid-cols-3 gap-2">
                     {(["entry", "stopLoss", "target"] as const).map((field) => (
                       <div key={field} className="rounded-md bg-muted/30 p-2">
-                        <p className="text-[10px] text-muted-foreground/50 font-medium mb-0.5 capitalize">
+                        <p className="text-xs text-muted-foreground/50 font-medium mb-0.5 capitalize">
                           {field === "stopLoss" ? "Stop Loss" : field === "entry" ? "Entry" : "Target"}
                         </p>
                         <p className="text-[11px] text-muted-foreground leading-relaxed">{pattern.tradeSetup[field]}</p>
@@ -676,11 +676,11 @@ function CandlestickPatternsTab() {
                   )}
                 </div>
                 <div className="flex items-center gap-2 mb-3">
-                  <Badge className={cn("text-[10px]", typeColor)}>
+                  <Badge className={cn("text-xs", typeColor)}>
                     {pattern.type}
                   </Badge>
                   <div className="flex items-center gap-1 ml-auto">
-                    <span className="text-[10px] text-muted-foreground/50">Reliability</span>
+                    <span className="text-xs text-muted-foreground/50">Reliability</span>
                     <ReliabilityDots score={pattern.reliability} />
                   </div>
                 </div>
@@ -701,15 +701,15 @@ function CandlestickPatternsTab() {
                 <div className="border-t border-border/40 p-3 flex flex-col gap-2.5">
                   <p className="text-xs text-muted-foreground leading-relaxed">{pattern.description}</p>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">Psychology</p>
+                    <p className="text-xs text-muted-foreground/50 mb-1">Psychology</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">{pattern.psychology}</p>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">How to trade</p>
+                    <p className="text-xs text-muted-foreground/50 mb-1">How to trade</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">{pattern.howToTrade}</p>
                   </div>
                   <div className="rounded-md bg-primary/5 border border-primary/15 p-2">
-                    <p className="text-[10px] text-primary font-medium mb-0.5">Confirmation needed</p>
+                    <p className="text-xs text-primary font-medium mb-0.5">Confirmation needed</p>
                     <p className="text-[11px] text-muted-foreground leading-relaxed">{pattern.confirmation}</p>
                   </div>
                 </div>
@@ -767,7 +767,7 @@ function MarketWisdomTab() {
             </p>
             <p className="text-xs text-primary font-medium">— {wisdom.author}</p>
             <div className="mt-1 pt-2 border-t border-border/30">
-              <Badge className={cn("text-[10px] mb-1.5", categoryColors[wisdom.category])}>
+              <Badge className={cn("text-xs mb-1.5", categoryColors[wisdom.category])}>
                 {wisdom.category}
               </Badge>
               <p className="text-xs text-muted-foreground leading-relaxed">{wisdom.lesson}</p>
@@ -819,10 +819,10 @@ function EconomicIndicatorsTab() {
               <div className="flex flex-col gap-1">
                 <span className="text-sm font-semibold">{ind.name}</span>
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <Badge className={cn("text-[10px]", frequencyBadgeColor(ind.frequency))}>
+                  <Badge className={cn("text-xs", frequencyBadgeColor(ind.frequency))}>
                     {ind.frequency}
                   </Badge>
-                  <Badge className={cn("text-[10px]", leadingBadgeColor(ind.leadingOrLagging))}>
+                  <Badge className={cn("text-xs", leadingBadgeColor(ind.leadingOrLagging))}>
                     {ind.leadingOrLagging}
                   </Badge>
                   <span className="text-[11px] text-muted-foreground/60">{ind.source}</span>
@@ -842,19 +842,19 @@ function EconomicIndicatorsTab() {
             {isOpen && (
               <div className="border-t border-border/40 p-3 flex flex-col gap-3">
                 <div>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">Why it matters</p>
+                  <p className="text-xs text-muted-foreground/50 mb-1">Why it matters</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{ind.whyItMatters}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">How to read it</p>
+                  <p className="text-xs text-muted-foreground/50 mb-1">How to read it</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{ind.howToRead}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1">Market impact</p>
+                  <p className="text-xs text-muted-foreground/50 mb-1">Market impact</p>
                   <div className="grid grid-cols-3 gap-2">
                     {(["stocks", "bonds", "forex"] as const).map((asset) => (
                       <div key={asset} className="rounded-md bg-muted/30 p-2">
-                        <p className="text-[10px] text-muted-foreground/50 capitalize mb-0.5">{asset}</p>
+                        <p className="text-xs text-muted-foreground/50 capitalize mb-0.5">{asset}</p>
                         <p className="text-[11px] text-muted-foreground leading-relaxed">{ind.marketImpact[asset]}</p>
                       </div>
                     ))}
@@ -862,10 +862,10 @@ function EconomicIndicatorsTab() {
                 </div>
                 {ind.relatedIndicators.length > 0 && (
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/50 mb-1.5">Related indicators</p>
+                    <p className="text-xs text-muted-foreground/50 mb-1.5">Related indicators</p>
                     <div className="flex flex-wrap gap-1">
                       {ind.relatedIndicators.map((r) => (
-                        <Badge key={r} className="text-[10px] bg-muted/50 text-muted-foreground border-border/50">
+                        <Badge key={r} className="text-xs bg-muted/50 text-muted-foreground border-border/50">
                           {r}
                         </Badge>
                       ))}

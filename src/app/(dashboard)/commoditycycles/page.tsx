@@ -1194,13 +1194,13 @@ export default function CommodityCyclesPage() {
                             {row.name}
                           </td>
                           <td className="py-2 pr-4">
-                            <Badge className="text-[10px] bg-white/5 text-gray-400 border-white/10">
+                            <Badge className="text-xs bg-white/5 text-gray-400 border-white/10">
                               {row.type}
                             </Badge>
                           </td>
                           <td className="py-2 pr-4 text-right font-mono text-white">
                             ${row.price.toFixed(2)}
-                            <span className="text-gray-500 ml-1 text-[10px]">
+                            <span className="text-gray-500 ml-1 text-xs">
                               {row.unit}
                             </span>
                           </td>
@@ -1313,7 +1313,7 @@ export default function CommodityCyclesPage() {
                           }}
                         />
                       </div>
-                      <p className="text-[10px] text-gray-600">{note}</p>
+                      <p className="text-xs text-gray-600">{note}</p>
                     </div>
                   ))}
                 </CardContent>
@@ -1358,7 +1358,7 @@ export default function CommodityCyclesPage() {
                             {row.price >= 1000
                               ? `$${row.price.toLocaleString()}`
                               : `$${row.price.toFixed(2)}`}
-                            <span className="text-gray-500 ml-1 text-[10px]">
+                            <span className="text-gray-500 ml-1 text-xs">
                               {row.unit}
                             </span>
                           </td>
@@ -1373,11 +1373,11 @@ export default function CommodityCyclesPage() {
                           </td>
                           <td className="py-2 text-right">
                             {row.deficit ? (
-                              <Badge className="text-[10px] bg-red-500/15 text-red-400 border-red-500/25">
+                              <Badge className="text-xs bg-red-500/15 text-red-400 border-red-500/25">
                                 Deficit
                               </Badge>
                             ) : (
-                              <Badge className="text-[10px] bg-emerald-500/15 text-emerald-400 border-emerald-500/25">
+                              <Badge className="text-xs bg-emerald-500/15 text-emerald-400 border-emerald-500/25">
                                 Surplus
                               </Badge>
                             )}
@@ -1433,7 +1433,7 @@ export default function CommodityCyclesPage() {
                       <span className="font-semibold text-white text-sm">
                         {name}
                       </span>
-                      <Badge className="text-[10px] bg-white/5 text-gray-500 border-white/10">
+                      <Badge className="text-xs bg-white/5 text-gray-500 border-white/10">
                         {ticker}
                       </Badge>
                     </div>
@@ -1553,7 +1553,7 @@ export default function CommodityCyclesPage() {
                             {row.price >= 1000
                               ? `$${row.price.toLocaleString()}`
                               : `$${row.price.toFixed(2)}`}
-                            <span className="text-gray-500 ml-1 text-[10px]">
+                            <span className="text-gray-500 ml-1 text-xs">
                               {row.unit}
                             </span>
                           </td>
@@ -1565,7 +1565,7 @@ export default function CommodityCyclesPage() {
                           </td>
                           <td className="py-2 pr-4 text-center">
                             <Badge
-                              className={`text-[10px] ${
+                              className={`text-xs ${
                                 row.laNinaImpact === "Negative"
                                   ? "bg-red-500/15 text-red-400 border-red-500/25"
                                   : row.laNinaImpact === "Positive"
@@ -1672,7 +1672,7 @@ export default function CommodityCyclesPage() {
                         (m) => (
                           <span
                             key={m}
-                            className="flex-1 text-center text-[9px] text-gray-600"
+                            className="flex-1 text-center text-[11px] text-gray-600"
                           >
                             {m}
                           </span>
@@ -1680,7 +1680,7 @@ export default function CommodityCyclesPage() {
                       )}
                     </div>
                   </div>
-                  <div className="flex gap-4 text-[10px] text-gray-500 mt-1">
+                  <div className="flex gap-4 text-xs text-gray-500 mt-1">
                     <span className="flex items-center gap-1">
                       <span className="w-3 h-2 rounded-sm bg-white/30 inline-block" />
                       Planting
@@ -1734,13 +1734,13 @@ export default function CommodityCyclesPage() {
                             <span className="font-medium text-white">
                               {v.name}
                             </span>
-                            <span className="text-blue-400 ml-1.5 font-mono text-[10px]">
+                            <span className="text-blue-400 ml-1.5 font-mono text-xs">
                               {v.ticker}
                             </span>
                           </td>
                           <td className="py-2 pr-4">
                             <Badge
-                              className={`text-[10px] ${
+                              className={`text-xs ${
                                 v.type === "ETF"
                                   ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
                                   : v.type === "Futures"
@@ -1794,7 +1794,7 @@ export default function CommodityCyclesPage() {
                   >
                     <div className="flex items-center gap-3">
                       <Badge
-                        className={`text-[10px] ${
+                        className={`text-xs ${
                           v.type === "ETF"
                             ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
                             : v.type === "Futures"

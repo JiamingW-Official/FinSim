@@ -238,7 +238,7 @@ export function MetricTooltip({ metric, children }: MetricTooltipProps) {
         <p className="text-[11px] text-foreground/80 leading-relaxed">
           {edu.definition}
         </p>
-        <p className="text-[10px] leading-relaxed">
+        <p className="text-xs leading-relaxed">
           <span className="font-bold text-primary/90">Trading implication: </span>
           <span className="text-muted-foreground">{edu.tradingImplication}</span>
         </p>
@@ -246,7 +246,7 @@ export function MetricTooltip({ metric, children }: MetricTooltipProps) {
           {edu.ranges.map((r, i) => (
             <div
               key={i}
-              className={`flex-1 rounded px-1 py-0.5 text-center text-[9px] font-bold ${rangeColorClasses[r.color]}`}
+              className={`flex-1 rounded px-1 py-0.5 text-center text-[11px] font-bold ${rangeColorClasses[r.color]}`}
             >
               <div>{r.label}</div>
               <div className="font-normal opacity-70">{r.condition}</div>

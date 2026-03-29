@@ -205,9 +205,9 @@ function buildCorrelationMatrix(seed: number): number[][] {
 function SectionHeader({ title, badge }: { title: string; badge?: string }) {
   return (
     <div className="flex items-center justify-between mb-3">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{title}</h3>
+      <h3 className="text-xs font-semibold text-muted-foreground">{title}</h3>
       {badge && (
-        <span className="text-[10px] font-mono bg-muted px-1.5 py-0.5 rounded text-muted-foreground">{badge}</span>
+        <span className="text-xs font-mono bg-muted px-1.5 py-0.5 rounded text-muted-foreground">{badge}</span>
       )}
     </div>
   );
@@ -234,7 +234,7 @@ function LiveTickerSection({ assets }: { assets: TickerAsset[] }) {
             >
               <div className="flex items-center gap-2 min-w-0">
                 <span className="font-mono text-xs font-bold w-16 shrink-0 text-foreground">{asset.symbol}</span>
-                <span className="text-[10px] text-muted-foreground truncate hidden sm:block">{asset.name}</span>
+                <span className="text-xs text-muted-foreground truncate hidden sm:block">{asset.name}</span>
               </div>
               <div className="flex items-center gap-3 shrink-0">
                 <AnimatePresence mode="popLayout">
@@ -251,7 +251,7 @@ function LiveTickerSection({ assets }: { assets: TickerAsset[] }) {
                 </AnimatePresence>
                 <span
                   className={cn(
-                    "font-mono text-[10px] tabular-nums w-14 text-right",
+                    "font-mono text-xs tabular-nums w-14 text-right",
                     isUp ? "text-emerald-400" : "text-red-400",
                   )}
                 >
@@ -259,7 +259,7 @@ function LiveTickerSection({ assets }: { assets: TickerAsset[] }) {
                 </span>
                 <span
                   className={cn(
-                    "font-mono text-[10px] tabular-nums w-12 text-right",
+                    "font-mono text-xs tabular-nums w-12 text-right",
                     isUp ? "text-emerald-400/70" : "text-red-400/70",
                   )}
                 >
@@ -312,7 +312,7 @@ function BreadthArcGauge({ value, label }: { value: number; label: string }) {
           {value}%
         </text>
       </svg>
-      <span className="text-[10px] text-muted-foreground text-center leading-tight">{label}</span>
+      <span className="text-xs text-muted-foreground text-center leading-tight">{label}</span>
     </div>
   );
 }
@@ -340,7 +340,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
       <div className="space-y-2">
         {/* Advance/Decline bar */}
         <div className="space-y-1">
-          <div className="flex justify-between text-[10px] text-muted-foreground">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-emerald-400 font-mono">{advancers.toLocaleString()} Adv</span>
             <span className="font-mono text-xs">{adRatio.toFixed(2)}x A/D</span>
             <span className="text-red-400 font-mono">{decliners.toLocaleString()} Dec</span>
@@ -353,7 +353,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
         </div>
         {/* New Highs vs Lows */}
         <div className="space-y-1">
-          <div className="flex justify-between text-[10px] text-muted-foreground">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span className="text-emerald-400 font-mono">{newHighs} 52W Hi</span>
             <span className="text-red-400 font-mono">{newLows} 52W Lo</span>
           </div>
@@ -365,7 +365,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
         </div>
         {/* Up/Down Volume */}
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-muted-foreground">Up Vol/Down Vol</span>
+          <span className="text-xs text-muted-foreground">Up Vol/Down Vol</span>
           <span className={cn("font-mono text-xs font-semibold",
             upVol > downVol ? "text-emerald-400" : "text-red-400")}>
             {upVol}B / {downVol}B ({(upVol / downVol).toFixed(2)}x)
@@ -373,7 +373,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
         </div>
         {/* McClellan Oscillator */}
         <div className="flex items-center justify-between pt-1 border-t border-border/50">
-          <span className="text-[10px] text-muted-foreground">McClellan Osc.</span>
+          <span className="text-xs text-muted-foreground">McClellan Osc.</span>
           <span className={cn("font-mono text-xs font-semibold",
             mcclellan > 0 ? "text-emerald-400" : "text-red-400")}>
             {mcclellan > 0 ? "+" : ""}{mcclellan}
@@ -462,7 +462,7 @@ function FearGreedMiniChart({ history }: { history: number[] }) {
 
   return (
     <div className="mt-2">
-      <p className="text-[10px] text-muted-foreground mb-1">Last 7 days</p>
+      <p className="text-xs text-muted-foreground mb-1">Last 7 days</p>
       <svg viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ height: 28 }}>
         <defs>
           <linearGradient id="fg-grad" x1="0" y1="0" x2="0" y2="1">
@@ -495,7 +495,7 @@ function FearGreedSection({ seed }: { seed: number }) {
             : c.value < 70 ? "bg-yellow-500" : "bg-emerald-500";
           return (
             <div key={c.name} className="space-y-0.5">
-              <div className="flex items-center justify-between text-[10px]">
+              <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">{c.name}</span>
                 <span className="font-mono text-foreground">{c.value} — {c.signal}</span>
               </div>
@@ -559,8 +559,8 @@ function SectorHeatmapGrid({ sectors, period }: { sectors: SectorData[]; period:
           <div key={s.abbr}
             className="rounded px-1 py-1 text-center"
             style={{ background: bg }}>
-            <div className="text-[9px] font-semibold text-foreground">{s.abbr}</div>
-            <div className={cn("text-[9px] font-mono", v >= 0 ? "text-emerald-300" : "text-red-300")}>
+            <div className="text-[11px] font-semibold text-foreground">{s.abbr}</div>
+            <div className={cn("text-[11px] font-mono", v >= 0 ? "text-emerald-300" : "text-red-300")}>
               {v >= 0 ? "+" : ""}{v.toFixed(1)}%
             </div>
           </div>
@@ -593,7 +593,7 @@ function SectorRotationSection({ seed }: { seed: number }) {
       <div className="flex gap-1 mb-3">
         {(["1D", "1W", "1M", "3M"] as PerfPeriod[]).map((p) => (
           <button key={p} onClick={() => setPeriod(p)}
-            className={cn("text-[10px] px-2 py-0.5 rounded font-mono transition-colors",
+            className={cn("text-xs px-2 py-0.5 rounded font-mono transition-colors",
               period === p
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted")}>
@@ -607,9 +607,9 @@ function SectorRotationSection({ seed }: { seed: number }) {
           const v = s[perfKey] as number;
           return (
             <div key={s.abbr} className="flex items-center gap-2">
-              <span className="text-[10px] font-mono w-12 text-muted-foreground shrink-0">{s.abbr}</span>
+              <span className="text-xs font-mono w-12 text-muted-foreground shrink-0">{s.abbr}</span>
               <SectorPerfBar value={v} maxAbs={maxAbs} />
-              <span className={cn("text-[10px] font-mono w-10 text-right tabular-nums shrink-0",
+              <span className={cn("text-xs font-mono w-10 text-right tabular-nums shrink-0",
                 v >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {v >= 0 ? "+" : ""}{v.toFixed(1)}%
               </span>
@@ -619,12 +619,12 @@ function SectorRotationSection({ seed }: { seed: number }) {
       </div>
       {/* Heatmap grid */}
       <div className="mb-2">
-        <p className="text-[10px] text-muted-foreground mb-1.5">Performance Heatmap ({period})</p>
+        <p className="text-xs text-muted-foreground mb-1.5">Performance Heatmap ({period})</p>
         <SectorHeatmapGrid sectors={sectors} period={period} />
       </div>
       {/* Money flow */}
       <div className="pt-2 border-t border-border/50">
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           Inflows today:{" "}
           <span className="text-emerald-400 font-mono">{inflowSectors.join(", ")}</span>
         </p>
@@ -687,10 +687,10 @@ function VixTermStructureChart({ data }: { data: VixTermStructure }) {
 }
 
 function VolRegimeBadge({ vix }: { vix: number }) {
-  if (vix < 15) return <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-semibold">Low Regime</span>;
-  if (vix < 25) return <span className="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 font-semibold">Normal Regime</span>;
-  if (vix < 35) return <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 font-semibold">Elevated Regime</span>;
-  return <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 font-semibold">Crisis Regime</span>;
+  if (vix < 15) return <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-semibold">Low Regime</span>;
+  if (vix < 25) return <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 font-semibold">Normal Regime</span>;
+  if (vix < 35) return <span className="text-xs px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 font-semibold">Elevated Regime</span>;
+  return <span className="text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 font-semibold">Crisis Regime</span>;
 }
 
 function VolatilitySection({ seed }: { seed: number }) {
@@ -705,15 +705,15 @@ function VolatilitySection({ seed }: { seed: number }) {
       <div className="flex items-center justify-between mb-3">
         <div>
           <span className="font-mono text-xl font-bold text-foreground">{data.spot.toFixed(2)}</span>
-          <span className="text-[10px] text-muted-foreground ml-1">VIX</span>
+          <span className="text-xs text-muted-foreground ml-1">VIX</span>
         </div>
         <VolRegimeBadge vix={data.spot} />
       </div>
       {/* Term structure chart */}
       <div className="mb-2">
         <div className="flex items-center justify-between mb-1">
-          <p className="text-[10px] text-muted-foreground">VIX Term Structure</p>
-          <span className={cn("text-[10px] font-mono", contango ? "text-emerald-400" : "text-red-400")}>
+          <p className="text-xs text-muted-foreground">VIX Term Structure</p>
+          <span className={cn("text-xs font-mono", contango ? "text-emerald-400" : "text-red-400")}>
             {contango ? "Contango" : "Backwardation"}
           </span>
         </div>
@@ -722,17 +722,17 @@ function VolatilitySection({ seed }: { seed: number }) {
       {/* VIX vs HV30 */}
       <div className="grid grid-cols-3 gap-2 mb-3">
         <div className="bg-muted/50 rounded p-2">
-          <p className="text-[10px] text-muted-foreground">HV30</p>
+          <p className="text-xs text-muted-foreground">HV30</p>
           <p className="font-mono text-sm font-semibold">{data.hv30.toFixed(1)}</p>
         </div>
         <div className={cn("rounded p-2", volRich ? "bg-red-500/10" : "bg-emerald-500/10")}>
-          <p className="text-[10px] text-muted-foreground">Vol</p>
+          <p className="text-xs text-muted-foreground">Vol</p>
           <p className={cn("font-mono text-sm font-semibold", volRich ? "text-red-400" : "text-emerald-400")}>
             {volRich ? "Rich" : "Cheap"}
           </p>
         </div>
         <div className={cn("rounded p-2", vvixHigh ? "bg-orange-500/10" : "bg-muted/50")}>
-          <p className="text-[10px] text-muted-foreground">VVIX</p>
+          <p className="text-xs text-muted-foreground">VVIX</p>
           <p className={cn("font-mono text-sm font-semibold", vvixHigh ? "text-orange-400" : "text-foreground")}>
             {data.vvix.toFixed(0)}
           </p>
@@ -740,7 +740,7 @@ function VolatilitySection({ seed }: { seed: number }) {
       </div>
       {/* Vol ratio bar */}
       <div className="space-y-1">
-        <div className="flex justify-between text-[10px] text-muted-foreground">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span>IV/HV Ratio</span>
           <span className="font-mono">{(data.spot / data.hv30).toFixed(2)}x</span>
         </div>
@@ -751,7 +751,7 @@ function VolatilitySection({ seed }: { seed: number }) {
       </div>
       {vvixHigh && (
         <div className="mt-2 px-2 py-1.5 rounded bg-orange-500/10 border border-orange-500/20">
-          <p className="text-[10px] text-orange-400">VVIX elevated — unstable vol regime</p>
+          <p className="text-xs text-orange-400">VVIX elevated — unstable vol regime</p>
         </div>
       )}
     </div>
@@ -764,7 +764,7 @@ function CorrCell({ value, i, j }: { value: number; i: number; j: number }) {
   const isDiag = i === j;
   if (isDiag) return (
     <div className="aspect-square rounded text-center flex items-center justify-center bg-muted/30">
-      <span className="text-[9px] font-mono text-muted-foreground">1.00</span>
+      <span className="text-[11px] font-mono text-muted-foreground">1.00</span>
     </div>
   );
   const intensity = Math.abs(value);
@@ -774,7 +774,7 @@ function CorrCell({ value, i, j }: { value: number; i: number; j: number }) {
   return (
     <div className="aspect-square rounded text-center flex items-center justify-center"
       style={{ background: bg }}>
-      <span className={cn("text-[9px] font-mono",
+      <span className={cn("text-[11px] font-mono",
         value > 0 ? "text-emerald-200" : "text-red-200")}>
         {value.toFixed(2)}
       </span>
@@ -802,13 +802,13 @@ function CorrelationSection({ seed }: { seed: number }) {
       <SectionHeader title="Cross-Asset Correlations" />
       {/* Regime badge */}
       <div className="flex items-center gap-2 mb-3">
-        <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-semibold",
+        <span className={cn("text-xs px-2 py-0.5 rounded-full font-semibold",
           riskOn ? "bg-emerald-500/20 text-emerald-400"
             : riskOff ? "bg-amber-500/20 text-amber-400"
             : "bg-muted text-muted-foreground")}>
           {riskOn ? "Risk-On" : riskOff ? "Risk-Off" : "Mixed Signals"}
         </span>
-        <span className="text-[10px] text-muted-foreground">
+        <span className="text-xs text-muted-foreground">
           SPY/TLT: <span className="font-mono text-foreground">{spyTlt.toFixed(2)}</span>
         </span>
       </div>
@@ -840,21 +840,21 @@ function CorrelationSection({ seed }: { seed: number }) {
       <div className="flex items-center gap-3 mb-2">
         <div className="flex items-center gap-1">
           <div className="w-3 h-3 rounded" style={{ background: "rgba(34,197,94,0.6)" }} />
-          <span className="text-[9px] text-muted-foreground">Positive</span>
+          <span className="text-[11px] text-muted-foreground">Positive</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="w-3 h-3 rounded" style={{ background: "rgba(239,68,68,0.6)" }} />
-          <span className="text-[9px] text-muted-foreground">Negative</span>
+          <span className="text-[11px] text-muted-foreground">Negative</span>
         </div>
       </div>
       {/* Divergence alerts */}
       {brokenPairs.length > 0 && (
         <div className="space-y-1 pt-2 border-t border-border/50">
-          <p className="text-[10px] text-muted-foreground font-semibold">Correlation Breaks</p>
+          <p className="text-xs text-muted-foreground font-semibold">Correlation Breaks</p>
           {brokenPairs.map((pair) => (
             <div key={pair} className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-              <span className="text-[10px] text-amber-400">{pair}</span>
+              <span className="text-xs text-amber-400">{pair}</span>
             </div>
           ))}
         </div>
@@ -943,9 +943,9 @@ export default function MarketPulseWidget() {
             className="flex items-center gap-1.5"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span className="text-[10px] text-emerald-400 font-mono">LIVE</span>
+            <span className="text-xs text-emerald-400 font-mono">LIVE</span>
           </motion.div>
-          <span className="text-[10px] text-[#8b949e] font-mono">{timeStr}</span>
+          <span className="text-xs text-[#8b949e] font-mono">{timeStr}</span>
         </div>
       </div>
 
@@ -956,7 +956,7 @@ export default function MarketPulseWidget() {
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "px-3 py-2 text-[10px] font-mono whitespace-nowrap transition-colors shrink-0",
+              "px-3 py-2 text-xs font-mono whitespace-nowrap transition-colors shrink-0",
               activeTab === tab.id
                 ? "text-[#e6edf3] border-b-2 border-blue-500 -mb-px bg-[#0d1117]"
                 : "text-[#8b949e] hover:text-[#c9d1d9]",
@@ -989,8 +989,8 @@ export default function MarketPulseWidget() {
 
       {/* Footer */}
       <div className="px-4 py-1.5 border-t border-[#21262d] bg-[#161b22] flex items-center justify-between">
-        <span className="text-[9px] text-[#8b949e] font-mono">Simulated data — educational use only</span>
-        <span className="text-[9px] text-[#8b949e] font-mono">FinSim v2</span>
+        <span className="text-[11px] text-[#8b949e] font-mono">Simulated data — educational use only</span>
+        <span className="text-[11px] text-[#8b949e] font-mono">FinSim v2</span>
       </div>
     </div>
   );

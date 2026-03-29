@@ -234,7 +234,7 @@ function FearGreedGauge({ value, history }: { value: number; history: DailyFGPoi
         ].map((item) => (
           <div key={item.name} className="bg-muted/40 rounded p-2">
             <p className="font-medium text-[11px]">{item.name}</p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">{item.hint}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{item.hint}</p>
           </div>
         ))}
       </div>
@@ -268,7 +268,7 @@ function FearGreedGauge({ value, history }: { value: number; history: DailyFGPoi
             fill="#6366f1"
           />
         </svg>
-        <div className="flex justify-between text-[10px] text-muted-foreground">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span>30 days ago</span>
           <span>Today: {value}</span>
         </div>
@@ -303,7 +303,7 @@ function PutCallDashboard({ data }: { data: PutCallData }) {
               <div className="flex items-start justify-between gap-1">
                 <div>
                   <p className="text-[11px] font-medium">{r.label}</p>
-                  <p className="text-[10px] text-muted-foreground">{r.desc}</p>
+                  <p className="text-xs text-muted-foreground">{r.desc}</p>
                 </div>
                 <span className="font-mono tabular-nums text-sm font-bold shrink-0">
                   {r.value.toFixed(2)}
@@ -312,7 +312,7 @@ function PutCallDashboard({ data }: { data: PutCallData }) {
               <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                 <div className={cn("h-full rounded-full", barColor)} style={{ width: `${barPct}%` }} />
               </div>
-              <p className={cn("text-[10px] leading-tight", sig.color)}>{sig.label}</p>
+              <p className={cn("text-xs leading-tight", sig.color)}>{sig.label}</p>
             </div>
           );
         })}
@@ -386,7 +386,7 @@ function MarketBreadthSection({ data }: { data: BreadthData }) {
             strokeLinejoin="round"
           />
         </svg>
-        <div className="flex justify-between text-[10px] text-muted-foreground">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span>30 days ago</span>
           <span>Current: {data.adLine[data.adLine.length - 1].toLocaleString()}</span>
         </div>
@@ -411,7 +411,7 @@ function MarketBreadthSection({ data }: { data: BreadthData }) {
                   style={{ width: `${item.value}%` }}
                 />
               </div>
-              <p className="text-[10px] text-muted-foreground">{item.suffix}</p>
+              <p className="text-xs text-muted-foreground">{item.suffix}</p>
             </div>
           );
         })}
@@ -435,7 +435,7 @@ function MarketBreadthSection({ data }: { data: BreadthData }) {
             {data.lows52w}
           </span>
         </div>
-        <div className="flex justify-between text-[10px] text-muted-foreground">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span>New Highs</span>
           <span>New Lows</span>
         </div>
@@ -456,7 +456,7 @@ function MarketBreadthSection({ data }: { data: BreadthData }) {
           />
           <div className="absolute top-0 left-1/2 w-px h-full bg-muted-foreground/30" />
         </div>
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           {data.mcclellan > 60
             ? "Overbought — breadth surge may reverse"
             : data.mcclellan > 0
@@ -614,19 +614,19 @@ function SentimentSummaryCard({
   const bearCount = indicators.length - bullCount;
 
   const tempColors: Record<string, string> = {
-    Icy: "from-blue-900/30 to-blue-800/10 border-blue-500/20",
-    Cool: "from-cyan-900/30 to-cyan-800/10 border-cyan-500/20",
-    Warm: "from-yellow-900/30 to-yellow-800/10 border-yellow-500/20",
-    Hot: "from-orange-900/30 to-orange-800/10 border-orange-500/20",
-    Overheated: "from-red-900/30 to-red-800/10 border-red-500/20",
+    Icy: "border-blue-500/20 bg-muted/30",
+    Cool: "border-cyan-500/20 bg-muted/30",
+    Warm: "border-yellow-500/20 bg-muted/30",
+    Hot: "border-orange-500/20 bg-muted/30",
+    Overheated: "border-red-500/20 bg-muted/30",
   };
 
   const thermometerWidth = (bullCount / indicators.length) * 100;
 
   return (
     <div className={cn(
-      "rounded-lg border bg-gradient-to-br p-4 space-y-4",
-      tempColors[temp.label] ?? "from-muted/30 to-muted/10 border-border",
+      "rounded-lg border p-4 space-y-4",
+      tempColors[temp.label] ?? "border-border bg-muted/30",
     )}>
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">Market Temperature</h3>

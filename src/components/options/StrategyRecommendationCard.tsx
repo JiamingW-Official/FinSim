@@ -108,7 +108,7 @@ export function StrategyRecommendationCard({
         <span className="text-[11px] font-bold text-foreground leading-tight">{preset.name}</span>
         <span
           className={cn(
-            "text-[9px] font-semibold px-1.5 py-0.5 rounded shrink-0",
+            "text-[11px] font-semibold px-1.5 py-0.5 rounded shrink-0",
             SENTIMENT_STYLES[preset.sentiment] ?? "bg-gray-500/10 text-gray-400",
           )}
         >
@@ -190,7 +190,7 @@ export function StrategyRecommendationCard({
       </div>
 
       {/* Row 3: Stats grid */}
-      <div className="grid grid-cols-2 gap-1 text-[9px]">
+      <div className="grid grid-cols-2 gap-1 text-[11px]">
         <div className="flex gap-1 items-baseline">
           <span className="text-muted-foreground">P/P:</span>
           <span className={cn("font-bold", popColor)}>{probabilityOfProfit.toFixed(0)}%</span>
@@ -222,7 +222,7 @@ export function StrategyRecommendationCard({
           e.stopPropagation();
           onSelect(rec);
         }}
-        className="w-full rounded bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] font-bold py-1 hover:bg-orange-500/20 transition-colors"
+        className="w-full rounded bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-bold py-1 hover:bg-orange-500/20 transition-colors"
       >
         Select Strategy &rarr;
       </button>

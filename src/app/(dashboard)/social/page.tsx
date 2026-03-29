@@ -350,7 +350,7 @@ const REGIME_VOTES = { bull: 318, bear: 142, sideways: 227 };
 // ─── Helper components ────────────────────────────────────────────────────────
 
 function Avatar({ initials, color, size = "md" }: { initials: string; color: string; size?: "sm" | "md" | "lg" }) {
-  const sizeClass = size === "sm" ? "h-7 w-7 text-[10px]" : size === "lg" ? "h-12 w-12 text-base" : "h-9 w-9 text-xs";
+  const sizeClass = size === "sm" ? "h-7 w-7 text-xs" : size === "lg" ? "h-12 w-12 text-base" : "h-9 w-9 text-xs";
   return (
     <div className={cn("shrink-0 rounded-full flex items-center justify-center font-bold text-white", color, sizeClass)}>
       {initials}
@@ -404,7 +404,7 @@ function PodiumCard({ trader, place }: { trader: Trader; place: 1 | 2 | 3 }) {
         <ReturnBadge value={trader.returnPct} />
       </div>
       <div className={cn("w-full rounded-t-md border-t border-x flex items-end justify-center pb-1 min-w-[72px]", heights[place], colors[place])}>
-        <span className="text-[10px] font-bold text-muted-foreground">{labels[place]}</span>
+        <span className="text-xs font-bold text-muted-foreground">{labels[place]}</span>
       </div>
     </div>
   );
@@ -488,7 +488,7 @@ function LeaderboardTab() {
 
       {/* Podium */}
       <div className="bg-card border border-border/50 rounded-xl p-6">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/60 mb-4 text-center">Top Performers</p>
+        <p className="text-xs font-semibold text-muted-foreground/60 mb-4 text-center">Top Performers</p>
         <div className="flex items-end justify-center gap-4">
           {top3[1] && <PodiumCard trader={top3[1]} place={2} />}
           {top3[0] && <PodiumCard trader={top3[0]} place={1} />}
@@ -518,14 +518,14 @@ function LeaderboardTab() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border/50 bg-muted/30">
-              <th className="py-2 px-3 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60 w-8">#</th>
-              <th className="py-2 px-3 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">Trader</th>
-              <th className="py-2 px-3 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">Return</th>
-              <th className="py-2 px-3 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">Sharpe</th>
-              <th className="py-2 px-3 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">Win %</th>
-              <th className="py-2 px-3 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60 hidden sm:table-cell">Trades</th>
-              <th className="py-2 px-3 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60 hidden md:table-cell">Followers</th>
-              <th className="py-2 px-3 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">ELO</th>
+              <th className="py-2 px-3 text-left text-xs font-semibold text-muted-foreground/60 w-8">#</th>
+              <th className="py-2 px-3 text-left text-xs font-semibold text-muted-foreground/60">Trader</th>
+              <th className="py-2 px-3 text-right text-xs font-semibold text-muted-foreground/60">Return</th>
+              <th className="py-2 px-3 text-right text-xs font-semibold text-muted-foreground/60">Sharpe</th>
+              <th className="py-2 px-3 text-right text-xs font-semibold text-muted-foreground/60">Win %</th>
+              <th className="py-2 px-3 text-right text-xs font-semibold text-muted-foreground/60 hidden sm:table-cell">Trades</th>
+              <th className="py-2 px-3 text-right text-xs font-semibold text-muted-foreground/60 hidden md:table-cell">Followers</th>
+              <th className="py-2 px-3 text-right text-xs font-semibold text-muted-foreground/60">ELO</th>
             </tr>
           </thead>
           <tbody>
@@ -550,7 +550,7 @@ function LeaderboardTab() {
                     <Avatar initials={trader.initials} color={trader.avatarColor} size="sm" />
                     <span className={cn("font-medium text-xs", trader.isYou ? "text-primary" : "")}>
                       {trader.username}
-                      {trader.isYou && <span className="ml-1.5 text-[10px] bg-primary/20 text-primary rounded px-1">You</span>}
+                      {trader.isYou && <span className="ml-1.5 text-xs bg-primary/20 text-primary rounded px-1">You</span>}
                     </span>
                   </div>
                 </td>
@@ -594,12 +594,12 @@ function IdeaCard({
           <Avatar initials={idea.trader.initials} color={idea.trader.avatarColor} size="sm" />
           <div>
             <p className="text-xs font-semibold">{idea.trader.username}</p>
-            <p className="text-[10px] text-muted-foreground">{idea.hoursAgo}h ago</p>
+            <p className="text-xs text-muted-foreground">{idea.hoursAgo}h ago</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           <ConvictionDot conviction={idea.conviction} />
-          <span className="text-[10px] text-muted-foreground capitalize">{idea.conviction} conviction</span>
+          <span className="text-xs text-muted-foreground capitalize">{idea.conviction} conviction</span>
         </div>
       </div>
 
@@ -771,7 +771,7 @@ function PostIdeaModal({ onClose }: { onClose: () => void }) {
       <div>
         <div className="flex items-center justify-between mb-1">
           <label className="text-xs font-medium text-muted-foreground">Thesis</label>
-          <span className={cn("text-[10px]", charCount > 260 ? "text-rose-400" : "text-muted-foreground/60")}>
+          <span className={cn("text-xs", charCount > 260 ? "text-rose-400" : "text-muted-foreground/60")}>
             {charCount}/280
           </span>
         </div>
@@ -873,7 +873,7 @@ function TradeIdeasTab() {
       <div className="bg-card border border-border/50 rounded-xl p-4">
         <div className="flex items-center gap-2 mb-3">
           <Flame className="h-4 w-4 text-orange-400" />
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">Trending Ideas</h3>
+          <h3 className="text-xs font-semibold text-muted-foreground/80">Trending Ideas</h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {trending.map((idea) => (
@@ -884,14 +884,14 @@ function TradeIdeasTab() {
               </div>
               <div className="flex items-center gap-2">
                 <span className={cn(
-                  "text-[10px] font-bold px-1.5 py-0.5 rounded uppercase",
+                  "text-xs font-bold px-1.5 py-0.5 rounded uppercase",
                   idea.direction === "long" ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400",
                 )}>
                   {idea.direction}
                 </span>
                 <span className="text-xs font-bold">{idea.ticker}</span>
               </div>
-              <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
                 <Heart className="h-3 w-3" />
                 <span>{idea.likes + (likedIds.has(idea.id) ? 1 : 0)} likes</span>
               </div>
@@ -968,7 +968,7 @@ function CopyTraderCard({
 
       {/* Portfolio similarity bar */}
       <div>
-        <div className="flex justify-between text-[10px] text-muted-foreground/60 mb-1">
+        <div className="flex justify-between text-xs text-muted-foreground/60 mb-1">
           <span>Style similarity</span>
           <span>{trader.similarity}%</span>
         </div>
@@ -990,12 +990,12 @@ function CopyTraderCard({
             className="overflow-hidden"
           >
             <div className="border-t border-border/40 pt-3 space-y-1">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60 mb-2">Recent trades</p>
+              <p className="text-xs font-semibold text-muted-foreground/60 mb-2">Recent trades</p>
               {trader.recentTrades.map((trade, idx) => (
                 <div key={idx} className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2">
                     <span className={cn(
-                      "text-[10px] font-bold px-1.5 rounded",
+                      "text-xs font-bold px-1.5 rounded",
                       trade.direction === "Long" ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400",
                     )}>
                       {trade.direction}
@@ -1008,10 +1008,10 @@ function CopyTraderCard({
 
               {/* Copy button for latest idea */}
               <div className="pt-2 flex items-center justify-between">
-                <div className="text-[10px] text-muted-foreground">
+                <div className="text-xs text-muted-foreground">
                   {autoExecute ? `Auto-copy: $${maxCopySize} max` : "Manual copy mode"}
                 </div>
-                <button className="flex items-center gap-1 px-2.5 py-1 rounded bg-primary/10 text-primary text-[10px] font-medium hover:bg-primary/20 transition-colors">
+                <button className="flex items-center gap-1 px-2.5 py-1 rounded bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors">
                   <Copy className="h-3 w-3" />
                   Copy Latest
                 </button>
@@ -1045,7 +1045,7 @@ function CopyTradingTab() {
       <div className="bg-card border border-border/50 rounded-xl p-4">
         <div className="flex items-center gap-2 mb-4">
           <Settings2 className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">Auto-Copy Settings</h3>
+          <h3 className="text-xs font-semibold text-muted-foreground/80">Auto-Copy Settings</h3>
         </div>
         <div className="flex flex-wrap gap-6 items-center">
           <div>
@@ -1087,7 +1087,7 @@ function CopyTradingTab() {
               <button
                 key={t.id}
                 onClick={() => toggleFollow(t.id)}
-                className="flex items-center gap-1 text-[10px] bg-muted/50 rounded px-1.5 py-0.5 text-muted-foreground hover:text-rose-400 transition-colors"
+                className="flex items-center gap-1 text-xs bg-muted/50 rounded px-1.5 py-0.5 text-muted-foreground hover:text-rose-400 transition-colors"
               >
                 <span>{t.username}</span>
                 <X className="h-2.5 w-2.5" />
@@ -1224,9 +1224,9 @@ function CommunityStatsTab() {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <BarChart2 className="h-4 w-4 text-muted-foreground" />
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">Market Sentiment</h3>
+            <h3 className="text-xs font-semibold text-muted-foreground/80">Market Sentiment</h3>
           </div>
-          <span className="text-[10px] text-muted-foreground/60">% of traders long vs short</span>
+          <span className="text-xs text-muted-foreground/60">% of traders long vs short</span>
         </div>
         <div className="space-y-2">
           {TICKER_SENTIMENT_DATA.map((s) => {
@@ -1243,14 +1243,14 @@ function CommunityStatsTab() {
                     <div className="h-full bg-rose-500 flex-1" />
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-[10px] w-32 justify-end">
+                <div className="flex items-center gap-2 text-xs w-32 justify-end">
                   <span className="text-emerald-400">{s.longPct}% L</span>
                   <span className="text-rose-400">{s.shortPct}% S</span>
                   {contrarian && (
                     <span className="text-amber-400 font-semibold">!</span>
                   )}
                 </div>
-                <div className="flex items-center gap-1 text-[10px] w-20 justify-end">
+                <div className="flex items-center gap-1 text-xs w-20 justify-end">
                   {s.change >= 0
                     ? <ArrowUpRight className="h-3 w-3 text-emerald-400" />
                     : <ArrowDownRight className="h-3 w-3 text-rose-400" />}
@@ -1262,7 +1262,7 @@ function CommunityStatsTab() {
             );
           })}
         </div>
-        <p className="mt-3 text-[10px] text-amber-400/80 flex items-center gap-1">
+        <p className="mt-3 text-xs text-amber-400/80 flex items-center gap-1">
           <Shield className="h-3 w-3" />
           Tickers with &gt;80% long or &lt;20% long may be contrarian signals
         </p>
@@ -1272,7 +1272,7 @@ function CommunityStatsTab() {
       <div className="bg-card border border-border/50 rounded-xl p-4">
         <div className="flex items-center gap-2 mb-3">
           <Zap className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">Market Regime Vote</h3>
+          <h3 className="text-xs font-semibold text-muted-foreground/80">Market Regime Vote</h3>
         </div>
         <div className="grid grid-cols-3 gap-3 mb-3">
           {(["bull", "bear", "sideways"] as MarketRegimeVote[]).map((r) => {
@@ -1300,7 +1300,7 @@ function CommunityStatsTab() {
                 </p>
                 <p className="text-xs font-semibold capitalize">{r}</p>
                 <p className="text-xl font-bold mt-1">{pct}%</p>
-                <p className="text-[10px] text-muted-foreground">{votes.toLocaleString()} votes</p>
+                <p className="text-xs text-muted-foreground">{votes.toLocaleString()} votes</p>
               </button>
             );
           })}
@@ -1317,7 +1317,7 @@ function CommunityStatsTab() {
       <div className="bg-card border border-border/50 rounded-xl p-4">
         <div className="flex items-center gap-2 mb-3">
           <MessageSquare className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">Most Discussed This Week</h3>
+          <h3 className="text-xs font-semibold text-muted-foreground/80">Most Discussed This Week</h3>
         </div>
         <BubbleChart data={discussionData} />
       </div>
@@ -1326,10 +1326,10 @@ function CommunityStatsTab() {
       <div className="bg-card border border-border/50 rounded-xl p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">Community P&L Distribution (This Month)</h3>
+          <h3 className="text-xs font-semibold text-muted-foreground/80">Community P&L Distribution (This Month)</h3>
         </div>
         <ReturnHistogram data={histogramData} />
-        <div className="flex justify-between text-[10px] text-muted-foreground/60 mt-1 px-1">
+        <div className="flex justify-between text-xs text-muted-foreground/60 mt-1 px-1">
           <span>Losses</span>
           <span>Breakeven</span>
           <span>Gains</span>
@@ -1340,23 +1340,23 @@ function CommunityStatsTab() {
       <div className="bg-card border border-border/50 rounded-xl p-4">
         <div className="flex items-center gap-2 mb-3">
           <Trophy className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">Active Challenges</h3>
+          <h3 className="text-xs font-semibold text-muted-foreground/80">Active Challenges</h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CHALLENGES.map((c) => (
             <div key={c.id} className="rounded-lg border border-border/50 p-3 space-y-2 hover:border-border/70 transition-colors">
               <div className="flex items-start justify-between">
-                <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-primary/10 text-primary">{c.category}</span>
-                <span className="text-[10px] text-muted-foreground">Ends in {c.endsIn}</span>
+                <span className="text-xs font-semibold px-1.5 py-0.5 rounded bg-primary/10 text-primary">{c.category}</span>
+                <span className="text-xs text-muted-foreground">Ends in {c.endsIn}</span>
               </div>
               <p className="text-xs font-semibold">{c.title}</p>
               <p className="text-[11px] text-muted-foreground/80 leading-relaxed">{c.description}</p>
               <div className="flex items-center justify-between pt-1">
-                <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <Users className="h-3 w-3" />
                   <span>{c.participants} participants</span>
                 </div>
-                <div className="flex items-center gap-1 text-[10px] text-amber-400 font-medium">
+                <div className="flex items-center gap-1 text-xs text-amber-400 font-medium">
                   <Star className="h-3 w-3 fill-current" />
                   <span>{c.prize}</span>
                 </div>

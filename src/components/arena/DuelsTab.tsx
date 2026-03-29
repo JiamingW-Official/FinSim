@@ -106,7 +106,7 @@ function PnlRaceBar({ yourPnl, oppPnl }: { yourPnl: number; oppPnl: number }) {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[10px] font-bold text-zinc-500 w-6 text-right">YOU</span>
+      <span className="text-xs font-bold text-zinc-500 w-6 text-right">YOU</span>
       <div className="flex-1 relative h-5 rounded-full bg-white/[0.03] overflow-hidden flex">
         {/* Left half — you */}
         <div className="w-1/2 flex justify-end">
@@ -128,12 +128,12 @@ function PnlRaceBar({ yourPnl, oppPnl }: { yourPnl: number; oppPnl: number }) {
         </div>
         {/* Center label */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={cn("text-[9px] font-black tabular-nums", youAhead ? "text-teal-400" : "text-zinc-500")}>
+          <span className={cn("text-[11px] font-bold tabular-nums", youAhead ? "text-teal-400" : "text-zinc-500")}>
             {(yourPnl - oppPnl) >= 0 ? "+" : ""}{(yourPnl - oppPnl).toFixed(0)}
           </span>
         </div>
       </div>
-      <span className="text-[10px] font-bold text-zinc-500 w-6">OPP</span>
+      <span className="text-xs font-bold text-zinc-500 w-6">OPP</span>
     </div>
   );
 }
@@ -244,7 +244,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
           animate={isUrgent ? { scale: [1, 1.06, 1] } : {}}
           transition={isUrgent ? { duration: 0.6, repeat: Infinity } : {}}
           className={cn(
-            "flex items-center gap-2 rounded-xl px-5 py-2 font-mono text-2xl font-black tabular-nums",
+            "flex items-center gap-2 rounded-xl px-5 py-2 font-mono text-2xl font-bold tabular-nums",
             isUrgent ? "bg-red-500/15 text-red-400" : "bg-white/5 text-zinc-200",
           )}
         >
@@ -257,25 +257,25 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
       <div className="grid grid-cols-2 gap-2">
         {/* Your side */}
         <div className="rounded-lg border border-teal-500/20 bg-teal-500/5 p-3">
-          <div className="text-[10px] font-bold text-teal-400 mb-1">YOU</div>
-          <div className={cn("text-lg font-black tabular-nums", yours.pnl >= 0 ? "text-teal-400" : "text-red-400")}>
+          <div className="text-xs font-bold text-teal-400 mb-1">YOU</div>
+          <div className={cn("text-lg font-bold tabular-nums", yours.pnl >= 0 ? "text-teal-400" : "text-red-400")}>
             {yours.pnl >= 0 ? "+" : ""}${yours.pnl.toFixed(0)}
           </div>
-          <div className="text-[10px] text-zinc-500 mt-0.5">{yours.trades} trades</div>
-          <div className="text-[9px] text-zinc-600 capitalize mt-0.5">{yours.position}</div>
+          <div className="text-xs text-zinc-500 mt-0.5">{yours.trades} trades</div>
+          <div className="text-[11px] text-zinc-600 capitalize mt-0.5">{yours.position}</div>
         </div>
 
         {/* Opponent side */}
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3">
           <div className="flex items-center gap-1 mb-1">
             <ArenaRankBadge rank={opponent.rank} size="xs" showLabel={false} />
-            <span className="text-[10px] font-bold text-zinc-400 truncate">{opponent.name}</span>
+            <span className="text-xs font-bold text-zinc-400 truncate">{opponent.name}</span>
           </div>
-          <div className={cn("text-lg font-black tabular-nums", opp.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-lg font-bold tabular-nums", opp.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {opp.pnl >= 0 ? "+" : ""}${opp.pnl.toFixed(0)}
           </div>
-          <div className="text-[10px] text-zinc-500 mt-0.5">{opp.trades} trades</div>
-          <div className="text-[9px] text-zinc-600 capitalize mt-0.5">{opp.position}</div>
+          <div className="text-xs text-zinc-500 mt-0.5">{opp.trades} trades</div>
+          <div className="text-[11px] text-zinc-600 capitalize mt-0.5">{opp.position}</div>
         </div>
       </div>
 
@@ -346,7 +346,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         initial={{ scale: 0, rotate: -10 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 15 }}
-        className={cn("text-4xl font-black tracking-tight", won ? "text-teal-400" : "text-red-400")}
+        className={cn("text-4xl font-bold tracking-tight", won ? "text-teal-400" : "text-red-400")}
       >
         {won ? "VICTORY!" : "DEFEAT"}
       </motion.div>
@@ -357,10 +357,10 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
       <div className="flex items-center gap-6">
         <div className="text-center">
           <div className="text-xs text-zinc-500 mb-1">You</div>
-          <div className={cn("text-2xl font-black tabular-nums", yourPnl >= 0 ? "text-teal-400" : "text-red-400")}>
+          <div className={cn("text-2xl font-bold tabular-nums", yourPnl >= 0 ? "text-teal-400" : "text-red-400")}>
             {yourPnl >= 0 ? "+" : ""}${yourPnl.toFixed(0)}
           </div>
-          <div className="text-[10px] text-zinc-600 mt-0.5">{yourTrades} trades</div>
+          <div className="text-xs text-zinc-600 mt-0.5">{yourTrades} trades</div>
         </div>
         <div className="text-zinc-700 text-xl font-bold">vs</div>
         <div className="text-center">
@@ -368,10 +368,10 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
             <ArenaRankBadge rank={opponent.rank} size="xs" showLabel={false} />
             <span className="text-xs text-zinc-500">{opponent.name}</span>
           </div>
-          <div className={cn("text-2xl font-black tabular-nums", oppPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-2xl font-bold tabular-nums", oppPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {oppPnl >= 0 ? "+" : ""}${oppPnl.toFixed(0)}
           </div>
-          <div className="text-[10px] text-zinc-600 mt-0.5">{opponent.elo} ELO</div>
+          <div className="text-xs text-zinc-600 mt-0.5">{opponent.elo} ELO</div>
         </div>
       </div>
 
@@ -380,7 +380,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         <span className="text-xs text-zinc-500">ELO</span>
         <span className="text-sm font-bold text-zinc-400 tabular-nums">{eloBefore}</span>
         <ChevronRight className="h-3 w-3 text-zinc-600" />
-        <span className={cn("text-sm font-black tabular-nums", eloChange >= 0 ? "text-teal-400" : "text-red-400")}>
+        <span className={cn("text-sm font-bold tabular-nums", eloChange >= 0 ? "text-teal-400" : "text-red-400")}>
           {eloChange >= 0 ? "+" : ""}{eloChange}
         </span>
         <ChevronRight className="h-3 w-3 text-zinc-600" />
@@ -498,8 +498,8 @@ export function DuelsTab() {
                     <div className={cn("text-xs font-bold", selectedMode.id === m.id ? "text-teal-400" : "text-zinc-300")}>
                       {m.label}
                     </div>
-                    <div className="text-[10px] text-zinc-500 mt-0.5">{m.duration}s</div>
-                    <div className="text-[9px] text-zinc-600 mt-1">{m.description}</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">{m.duration}s</div>
+                    <div className="text-[11px] text-zinc-600 mt-1">{m.description}</div>
                   </button>
                 ))}
               </div>
@@ -536,7 +536,7 @@ export function DuelsTab() {
                     <ArenaRankBadge rank={opp.rank} size="xs" showLabel={false} />
                     <span className="flex-1 text-zinc-300">{opp.name}</span>
                     <span className="tabular-nums text-zinc-500">{opp.elo} ELO</span>
-                    <span className="text-[10px] text-zinc-600 capitalize">{opp.personality}</span>
+                    <span className="text-xs text-zinc-600 capitalize">{opp.personality}</span>
                   </div>
                 ))}
               </div>

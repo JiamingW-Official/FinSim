@@ -87,12 +87,12 @@ export function ContractDetail({
   const expMovePct = spotPrice > 0 ? (analytics.expectedMove1SD / spotPrice) * 100 : 0;
 
   const greekRows = [
-    { symbol: "Δ", label: "Delta", value: greeks.delta.toFixed(3), color: "text-blue-400" },
-    { symbol: "Γ", label: "Gamma", value: greeks.gamma.toFixed(4), color: "text-purple-400" },
-    { symbol: "Θ", label: "Theta", value: greeks.theta.toFixed(3), color: "text-red-400" },
-    { symbol: "V", label: "Vega", value: greeks.vega.toFixed(3), color: "text-emerald-400" },
-    { symbol: "ρ", label: "Rho", value: greeks.rho.toFixed(3), color: "text-cyan-400" },
-    { symbol: "Vanna", label: "Vanna", value: greeks.vanna.toFixed(4), color: "text-amber-400" },
+    { symbol: "Δ", label: "Delta", value: greeks.delta.toFixed(3), color: "text-orange-400" },
+    { symbol: "Γ", label: "Gamma", value: greeks.gamma.toFixed(4), color: "text-orange-500" },
+    { symbol: "Θ", label: "Theta", value: greeks.theta.toFixed(3), color: "text-red-500" },
+    { symbol: "V", label: "Vega", value: greeks.vega.toFixed(3), color: "text-emerald-500" },
+    { symbol: "ρ", label: "Rho", value: greeks.rho.toFixed(3), color: "text-muted-foreground" },
+    { symbol: "Vanna", label: "Vanna", value: greeks.vanna.toFixed(4), color: "text-amber-500" },
   ];
 
   return (
@@ -120,12 +120,12 @@ export function ContractDetail({
 
       {/* Section 2 - Price block */}
       <div className="px-3 py-2 border-b border-[#1e293b] flex items-center gap-2">
-        <span className="text-2xl font-black tabular-nums text-foreground">
+        <span className="text-2xl font-bold tabular-nums text-foreground">
           ${contract.mid.toFixed(2)}
         </span>
         <span
           className={cn(
-            "text-[10px] font-semibold px-1.5 py-0.5 rounded",
+            "text-xs font-semibold px-1.5 py-0.5 rounded",
             changePositive
               ? "bg-emerald-500/10 text-emerald-400"
               : "bg-red-500/10 text-red-400",
@@ -135,11 +135,11 @@ export function ContractDetail({
           {synthChgPct.toFixed(1)}%)
         </span>
         {contract.inTheMoney ? (
-          <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span className="text-[11px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
             ITM
           </span>
         ) : (
-          <span className="text-[9px] px-1.5 py-0.5 rounded bg-muted/20 text-muted-foreground border border-border/40">
+          <span className="text-[11px] px-1.5 py-0.5 rounded bg-muted/20 text-muted-foreground border border-border/40">
             OTM
           </span>
         )}
@@ -147,14 +147,14 @@ export function ContractDetail({
 
       {/* Section 3 - Greeks 2x3 grid */}
       <div className="px-3 py-2 border-b border-[#1e293b]">
-        <p className="text-[9px] text-muted-foreground font-semibold uppercase mb-1.5">Greeks</p>
+        <p className="text-[11px] text-muted-foreground font-semibold uppercase mb-1.5">Greeks</p>
         <div className="grid grid-cols-3 gap-1.5">
           {greekRows.map((g) => (
             <div
               key={g.label}
               className="rounded bg-[#0a0e17] border border-[#1e293b]/50 p-1.5 flex flex-col"
             >
-              <span className={cn("text-[10px] font-medium", g.color)}>{g.symbol}</span>
+              <span className={cn("text-xs font-medium", g.color)}>{g.symbol}</span>
               <span className="text-[11px] font-bold tabular-nums text-foreground">{g.value}</span>
             </div>
           ))}
@@ -171,7 +171,7 @@ export function ContractDetail({
             { label: "Last", value: `$${contract.last.toFixed(2)}` },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col">
-              <span className="text-[9px] text-muted-foreground">{stat.label}</span>
+              <span className="text-[11px] text-muted-foreground">{stat.label}</span>
               <span className="text-[11px] font-semibold tabular-nums text-foreground">
                 {stat.value}
               </span>
@@ -182,7 +182,7 @@ export function ContractDetail({
 
       {/* Section 5 - Bid/Ask visual */}
       <div className="px-3 py-2 border-b border-[#1e293b]">
-        <p className="text-[9px] text-muted-foreground uppercase mb-1.5">Bid/Ask</p>
+        <p className="text-[11px] text-muted-foreground uppercase mb-1.5">Bid/Ask</p>
         <div className="flex items-center gap-2 mb-1">
           <span className="text-[11px] font-bold text-emerald-400 tabular-nums">
             ${contract.bid.toFixed(2)}
@@ -214,7 +214,7 @@ export function ContractDetail({
             ${contract.ask.toFixed(2)}
           </span>
         </div>
-        <p className="text-[9px] text-muted-foreground text-center">
+        <p className="text-[11px] text-muted-foreground text-center">
           Mid ${contract.mid.toFixed(2)}
         </p>
       </div>
@@ -241,12 +241,12 @@ export function ContractDetail({
 
       {/* Section 7 - Probability */}
       <div className="px-3 py-2 border-b border-[#1e293b]">
-        <p className="text-[9px] text-muted-foreground uppercase mb-2">Probability</p>
+        <p className="text-[11px] text-muted-foreground uppercase mb-2">Probability</p>
         <div className="flex flex-col gap-2">
           <div>
             <div className="flex justify-between mb-0.5">
-              <span className="text-[9px] text-muted-foreground">Prob of Profit</span>
-              <span className="text-[9px] font-bold text-emerald-400">{pop.toFixed(0)}%</span>
+              <span className="text-[11px] text-muted-foreground">Prob of Profit</span>
+              <span className="text-[11px] font-bold text-emerald-400">{pop.toFixed(0)}%</span>
             </div>
             <div className="w-full h-1.5 bg-muted/30 rounded overflow-hidden">
               <div
@@ -257,20 +257,20 @@ export function ContractDetail({
           </div>
           <div>
             <div className="flex justify-between mb-0.5">
-              <span className="text-[9px] text-muted-foreground">Prob ITM</span>
-              <span className="text-[9px] font-bold text-blue-400">
+              <span className="text-[11px] text-muted-foreground">Prob ITM</span>
+              <span className="text-[11px] font-bold text-orange-400">
                 {Math.max(0, probITM).toFixed(0)}%
               </span>
             </div>
             <div className="w-full h-1.5 bg-muted/30 rounded overflow-hidden">
               <div
-                className="h-full bg-blue-500 rounded transition-all"
+                className="h-full bg-orange-500 rounded transition-all"
                 style={{ width: `${Math.min(100, Math.max(0, probITM))}%` }}
               />
             </div>
           </div>
         </div>
-        <p className="text-[9px] text-muted-foreground mt-2">
+        <p className="text-[11px] text-muted-foreground mt-2">
           Exp Move &plusmn;${analytics.expectedMove1SD.toFixed(2)} (&plusmn;{expMovePct.toFixed(1)}%)
         </p>
       </div>

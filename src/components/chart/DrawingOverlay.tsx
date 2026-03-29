@@ -610,7 +610,7 @@ export function DrawingOverlay({ priceHigh, priceLow, height, width }: DrawingOv
           <button
             type="button"
             onClick={commitText}
-            className="rounded bg-primary/20 px-1.5 py-0.5 text-[10px] text-primary hover:bg-primary/30"
+            className="rounded bg-primary/20 px-1.5 py-0.5 text-xs text-primary hover:bg-primary/30"
           >
             Add
           </button>

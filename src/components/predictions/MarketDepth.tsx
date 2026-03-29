@@ -110,7 +110,7 @@ function SpreadRow({ bestBid, bestAsk }: { bestBid: number; bestAsk: number }) {
   const spread = bestAsk - bestBid;
   const mid = (bestBid + bestAsk) / 2;
   return (
-    <div className="my-1 flex items-center gap-2 rounded bg-muted/30 px-2 py-1 text-[10px] text-muted-foreground">
+    <div className="my-1 flex items-center gap-2 rounded bg-muted/30 px-2 py-1 text-xs text-muted-foreground">
       <span>Spread: {spread}¢</span>
       <span className="text-border">|</span>
       <span>
@@ -202,7 +202,7 @@ export function MarketDepth({ market }: MarketDepthProps) {
     <div className="space-y-3">
       {/* Market header */}
       <div className="rounded-lg border border-border bg-card px-3 py-2">
-        <div className="mb-1 text-[10px] text-muted-foreground line-clamp-1">
+        <div className="mb-1 text-xs text-muted-foreground line-clamp-1">
           {market.question}
         </div>
         <div className="flex items-center gap-3 text-[11px]">
@@ -222,7 +222,7 @@ export function MarketDepth({ market }: MarketDepthProps) {
 
       {/* Depth chart SVG */}
       <div className="rounded-lg border border-border bg-card p-3">
-        <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="mb-1.5 text-xs font-semibold text-muted-foreground">
           Market Depth
         </div>
         <svg
@@ -277,7 +277,7 @@ export function MarketDepth({ market }: MarketDepthProps) {
             </text>
           ))}
         </svg>
-        <div className="mt-1 flex items-center gap-4 text-[9px] text-muted-foreground">
+        <div className="mt-1 flex items-center gap-4 text-[11px] text-muted-foreground">
           <div className="flex items-center gap-1">
             <div className="h-2 w-3 rounded-sm bg-green-500/30" />
             <span>YES bids (cumulative)</span>
@@ -291,16 +291,16 @@ export function MarketDepth({ market }: MarketDepthProps) {
 
       {/* Order book table */}
       <div className="rounded-lg border border-border bg-card overflow-hidden">
-        <div className="border-b border-border px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="border-b border-border px-3 py-2 text-xs font-semibold text-muted-foreground">
           Order Book — YES Contracts
         </div>
 
         {/* Column headers */}
         <div className="grid grid-cols-2 divide-x divide-border">
-          <div className="px-3 pb-1 pt-2 text-[9px] text-center font-semibold uppercase tracking-wider text-green-400/70">
+          <div className="px-3 pb-1 pt-2 text-[11px] text-center font-semibold text-green-400/70">
             Bids (Buy YES)
           </div>
-          <div className="px-3 pb-1 pt-2 text-[9px] text-center font-semibold uppercase tracking-wider text-red-400/70">
+          <div className="px-3 pb-1 pt-2 text-[11px] text-center font-semibold text-red-400/70">
             Asks (Sell YES)
           </div>
         </div>
@@ -308,7 +308,7 @@ export function MarketDepth({ market }: MarketDepthProps) {
         <div className="grid grid-cols-2 divide-x divide-border">
           {/* Bids */}
           <div className="px-3 py-1 space-y-0.5">
-            <div className="flex justify-between text-[9px] text-muted-foreground mb-1">
+            <div className="flex justify-between text-[11px] text-muted-foreground mb-1">
               <span>Price</span>
               <span>Volume</span>
             </div>
@@ -318,7 +318,7 @@ export function MarketDepth({ market }: MarketDepthProps) {
           </div>
           {/* Asks */}
           <div className="px-3 py-1 space-y-0.5">
-            <div className="flex justify-between text-[9px] text-muted-foreground mb-1">
+            <div className="flex justify-between text-[11px] text-muted-foreground mb-1">
               <span>Price</span>
               <span>Volume</span>
             </div>
@@ -334,7 +334,7 @@ export function MarketDepth({ market }: MarketDepthProps) {
         </div>
       </div>
 
-      <p className="text-[9px] text-muted-foreground">
+      <p className="text-[11px] text-muted-foreground">
         Simulated order book seeded from market ID. Prices in cents (100c = $1.00 per share). Implied probability = mid price.
       </p>
     </div>

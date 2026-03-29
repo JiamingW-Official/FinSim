@@ -328,7 +328,7 @@ function StatChip({ label, value, color = "text-zinc-100" }: StatChipProps) {
   return (
     <div className="flex flex-col items-center bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 min-w-[90px]">
       <span className={cn("text-base font-bold tabular-nums", color)}>{value}</span>
-      <span className="text-[10px] text-zinc-500 mt-0.5 text-center leading-tight">{label}</span>
+      <span className="text-xs text-zinc-500 mt-0.5 text-center leading-tight">{label}</span>
     </div>
   );
 }
@@ -425,21 +425,21 @@ export default function BankingRegPage() {
                   <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700/50">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-sky-400">LCR — Liquidity Coverage Ratio</span>
-                      <Badge className="bg-sky-900/40 text-sky-300 text-[10px]">≥ 100%</Badge>
+                      <Badge className="bg-sky-900/40 text-sky-300 text-xs">≥ 100%</Badge>
                     </div>
                     <p>HQLA / Net cash outflows over 30-day stress. Ensures short-term liquidity. Level 1 (cash, sovereign) and Level 2 (corporate bonds) assets.</p>
                   </div>
                   <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700/50">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-amber-400">NSFR — Net Stable Funding Ratio</span>
-                      <Badge className="bg-amber-900/40 text-amber-300 text-[10px]">≥ 100%</Badge>
+                      <Badge className="bg-amber-900/40 text-amber-300 text-xs">≥ 100%</Badge>
                     </div>
                     <p>Available stable funding / Required stable funding over 1-year horizon. Discourages over-reliance on short-term wholesale funding.</p>
                   </div>
                   <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700/50">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-emerald-400">SLR — Supplementary Leverage Ratio</span>
-                      <Badge className="bg-emerald-900/40 text-emerald-300 text-[10px]">≥ 3%</Badge>
+                      <Badge className="bg-emerald-900/40 text-emerald-300 text-xs">≥ 3%</Badge>
                     </div>
                     <p>Tier 1 capital / Total leverage exposure. Non-risk-based backstop. G-SIBs face enhanced SLR (eSLR) of 5% at holding company, 6% at bank sub.</p>
                   </div>
@@ -677,11 +677,11 @@ export default function BankingRegPage() {
                           transition={{ delay: i * 0.06 }}
                           className="flex items-start gap-2 text-xs"
                         >
-                          <span className={cn("font-mono text-[10px] shrink-0 mt-0.5 w-12", `text-[${f.color}]`)} style={{ color: f.color }}>{f.date}</span>
+                          <span className={cn("font-mono text-xs shrink-0 mt-0.5 w-12", `text-[${f.color}]`)} style={{ color: f.color }}>{f.date}</span>
                           <div className="flex-1 bg-zinc-800/50 rounded-md px-2 py-1.5 border border-zinc-700/40">
                             <div className="flex items-center justify-between mb-0.5">
                               <span className="font-semibold text-zinc-200">{f.bank}</span>
-                              <span style={{ color: f.color }} className="text-[10px] font-mono">{f.assets}</span>
+                              <span style={{ color: f.color }} className="text-xs font-mono">{f.assets}</span>
                             </div>
                             <span className="text-zinc-500">{f.cause}</span>
                           </div>

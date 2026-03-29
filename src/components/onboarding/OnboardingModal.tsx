@@ -622,7 +622,7 @@ function StepRiskTolerance({
               <span className="text-xs font-semibold">{opt.label}</span>
               <span
                 className={cn(
-                  "ml-auto text-[10px] font-medium px-1.5 py-0.5 rounded",
+                  "ml-auto text-xs font-medium px-1.5 py-0.5 rounded",
                   opt.value === "conservative" &&
                     "bg-blue-500/10 text-blue-400",
                   opt.value === "moderate" &&
@@ -634,11 +634,11 @@ function StepRiskTolerance({
               </span>
             </div>
             <div className="mt-1.5 grid grid-cols-2 gap-x-4 gap-y-0.5">
-              <span className="text-[10px]">
+              <span className="text-xs">
                 <span className="text-muted-foreground/60">Volatility: </span>
                 {opt.volatility}
               </span>
-              <span className="text-[10px] col-span-2">
+              <span className="text-xs col-span-2">
                 <span className="text-muted-foreground/60">Instruments: </span>
                 {opt.instruments}
               </span>
@@ -685,7 +685,7 @@ function StepLearningStyle({
             )}
           >
             <span className="text-[11px] font-semibold">{opt.label}</span>
-            <span className="text-[10px] leading-snug opacity-70">
+            <span className="text-xs leading-snug opacity-70">
               {opt.desc}
             </span>
           </button>
@@ -755,7 +755,7 @@ function StepComplete({
         )}
         {goals.length > 0 && (
           <div className="rounded-lg border border-border/40 bg-muted/10 px-3.5 py-3">
-            <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+            <span className="text-xs font-medium text-muted-foreground">
               Goals
             </span>
             <div className="flex flex-wrap gap-1.5 mt-1.5">
@@ -795,7 +795,7 @@ function StepComplete({
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between rounded-lg border border-border/40 bg-muted/10 px-3.5 py-2.5">
-      <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+      <span className="text-xs font-medium text-muted-foreground">
         {label}
       </span>
       <span className="text-xs font-semibold">{value}</span>

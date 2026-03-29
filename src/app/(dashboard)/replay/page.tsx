@@ -237,7 +237,7 @@ function SectionCard({
       )}
     >
       <div className="border-b border-border px-4 py-2.5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <p className="text-xs font-semibold text-muted-foreground">
           {title}
         </p>
       </div>
@@ -269,13 +269,13 @@ function StatsCard({
     <SectionCard title="Session Stats">
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <p className="text-[10px] text-muted-foreground">Start</p>
+          <p className="text-xs text-muted-foreground">Start</p>
           <p className="font-mono text-sm font-medium">
             {formatCurrency(startPrice)}
           </p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground">Current</p>
+          <p className="text-xs text-muted-foreground">Current</p>
           <p
             className={cn(
               "font-mono text-sm font-medium",
@@ -286,13 +286,13 @@ function StatsCard({
           </p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground">Session High</p>
+          <p className="text-xs text-muted-foreground">Session High</p>
           <p className="font-mono text-sm font-medium text-emerald-500">
             {formatCurrency(sessionHigh)}
           </p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground">Session Low</p>
+          <p className="text-xs text-muted-foreground">Session Low</p>
           <p className="font-mono text-sm font-medium text-red-500">
             {formatCurrency(sessionLow)}
           </p>
@@ -341,7 +341,7 @@ function TradeActions({ currentPrice, onTrade, disabled }: TradeActionsProps) {
     <SectionCard title="Simulated Trade">
       <div className="flex flex-col gap-3">
         <div>
-          <label className="mb-1 block text-[10px] text-muted-foreground">
+          <label className="mb-1 block text-xs text-muted-foreground">
             Quantity (shares)
           </label>
           <input
@@ -353,7 +353,7 @@ function TradeActions({ currentPrice, onTrade, disabled }: TradeActionsProps) {
             className="w-full rounded-md border border-border bg-background px-3 py-1.5 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
-        <div className="text-[10px] text-muted-foreground">
+        <div className="text-xs text-muted-foreground">
           Market price:{" "}
           <span className="font-mono font-medium text-foreground">
             {formatCurrency(currentPrice)}
@@ -410,7 +410,7 @@ function TradeLog({ trades, currentPrice }: TradeLogProps) {
                   <div className="flex items-center gap-1.5">
                     <Badge
                       className={cn(
-                        "h-4 px-1.5 text-[9px]",
+                        "h-4 px-1.5 text-[11px]",
                         t.side === "buy"
                           ? "bg-emerald-600/20 text-emerald-400"
                           : "bg-red-600/20 text-red-400",
@@ -424,7 +424,7 @@ function TradeLog({ trades, currentPrice }: TradeLogProps) {
                   </div>
                   <div className="flex items-center gap-1">
                     {isOpen && (
-                      <Badge className="h-4 bg-blue-600/20 px-1 text-[9px] text-blue-400">
+                      <Badge className="h-4 bg-blue-600/20 px-1 text-[11px] text-blue-400">
                         OPEN
                       </Badge>
                     )}
@@ -440,7 +440,7 @@ function TradeLog({ trades, currentPrice }: TradeLogProps) {
                   </div>
                 </div>
                 {t.exitPrice != null && (
-                  <p className="mt-0.5 text-[10px] text-muted-foreground">
+                  <p className="mt-0.5 text-xs text-muted-foreground">
                     Exit: {formatCurrency(t.exitPrice)}
                   </p>
                 )}
@@ -471,7 +471,7 @@ function AICommentary({ barIndex, isActive }: AICommentaryProps) {
       {isActive ? (
         <>
           <p className="text-sm leading-relaxed text-foreground">{comment}</p>
-          <p className="mt-2 text-[10px] text-muted-foreground">
+          <p className="mt-2 text-xs text-muted-foreground">
             Bar {triggerBar} — updates every 10 bars
           </p>
         </>
@@ -498,7 +498,7 @@ function KeyboardHints() {
               <Keyboard className="h-3 w-3" />
               {desc}
             </span>
-            <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px]">
+            <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">
               {key}
             </kbd>
           </div>
@@ -1119,7 +1119,7 @@ export default function ReplayPage() {
 
           {/* Seek slider */}
           <div className="ml-auto flex items-center gap-2">
-            <span className="font-mono text-[10px] text-muted-foreground">
+            <span className="font-mono text-xs text-muted-foreground">
               {Math.round(progress)}%
             </span>
             <input

@@ -288,28 +288,28 @@ export function ReportCard() {
       <div className="grid grid-cols-2 gap-2">
         <div className={cn("flex items-center justify-between rounded-xl border p-3", GRADE_BG[overallGrade])}>
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <p className="text-xs font-bold text-muted-foreground">
               Overall Grade
             </p>
-            <p className="text-[9px] text-muted-foreground mt-0.5">
+            <p className="text-[11px] text-muted-foreground mt-0.5">
               {stats.totalTrades} trades, 6 dimensions
             </p>
           </div>
-          <span className={cn("text-4xl font-black tabular-nums", GRADE_COLOR[overallGrade])}>
+          <span className={cn("text-4xl font-bold tabular-nums", GRADE_COLOR[overallGrade])}>
             {overallGrade}
           </span>
         </div>
 
         <div className={cn("flex items-center justify-between rounded-xl border p-3", GRADE_BG[performanceGrade])}>
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <p className="text-xs font-bold text-muted-foreground">
               Performance Grade
             </p>
-            <p className="text-[9px] text-muted-foreground mt-0.5">
+            <p className="text-[11px] text-muted-foreground mt-0.5">
               Win rate + R:R ratio
             </p>
           </div>
-          <span className={cn("text-4xl font-black tabular-nums", GRADE_COLOR[performanceGrade])}>
+          <span className={cn("text-4xl font-bold tabular-nums", GRADE_COLOR[performanceGrade])}>
             {performanceGrade}
           </span>
         </div>
@@ -318,7 +318,7 @@ export function ReportCard() {
       {/* Trading DNA */}
       {tradingDNA.length > 0 && (
         <div className="rounded-xl border border-border bg-card/50 p-3 space-y-2">
-          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
             <Brain className="h-3.5 w-3.5 text-primary" />
             Trading DNA
           </div>
@@ -326,7 +326,7 @@ export function ReportCard() {
             {tradingDNA.map((trait) => (
               <span
                 key={trait}
-                className="rounded-md border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-bold text-primary"
+                className="rounded-md border border-primary/20 bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary"
               >
                 {trait}
               </span>
@@ -344,7 +344,7 @@ export function ReportCard() {
           >
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold">{m.label}</span>
-              <span className={cn("text-lg font-black", GRADE_COLOR[m.grade])}>{m.grade}</span>
+              <span className={cn("text-lg font-bold", GRADE_COLOR[m.grade])}>{m.grade}</span>
             </div>
             {/* Score bar */}
             <div className="h-1.5 w-full rounded-full bg-muted/30 overflow-hidden">
@@ -359,7 +359,7 @@ export function ReportCard() {
                 style={{ width: `${m.score}%` }}
               />
             </div>
-            <p className="text-[9px] leading-relaxed text-muted-foreground">{m.comment}</p>
+            <p className="text-[11px] leading-relaxed text-muted-foreground">{m.comment}</p>
           </div>
         ))}
       </div>
@@ -367,7 +367,7 @@ export function ReportCard() {
       {/* Improvement Areas */}
       {improvementAreas.length > 0 && (
         <div className="rounded-xl border border-border bg-card/50 p-3 space-y-2">
-          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
             <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
             Improvement Areas
           </div>
@@ -375,7 +375,7 @@ export function ReportCard() {
             {improvementAreas.map((area, i) => (
               <div key={i} className="flex items-start gap-2">
                 <TrendingUp className="h-3 w-3 mt-0.5 shrink-0 text-primary/60" />
-                <p className="text-[10px] leading-snug text-muted-foreground">{area}</p>
+                <p className="text-xs leading-snug text-muted-foreground">{area}</p>
               </div>
             ))}
           </div>

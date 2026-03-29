@@ -33,7 +33,7 @@ export default function InstitutionalHoldingsPanel({ ticker }: InstitutionalHold
 
       {/* Total ownership */}
       <div className="border border-border/60 rounded-lg bg-card p-3">
-        <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Total Institutional Ownership</p>
+        <p className="text-xs text-muted-foreground">Total Institutional Ownership</p>
         <div className="flex items-center gap-3 mt-1.5">
           <p className="text-lg font-semibold text-foreground">{data.totalInstitutionalOwnership}%</p>
           <div className="flex-1 h-2 bg-muted/30 rounded-full overflow-hidden">
@@ -49,7 +49,7 @@ export default function InstitutionalHoldingsPanel({ ticker }: InstitutionalHold
       <div className="border border-border/60 rounded-lg bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[400px]">
           <thead>
-            <tr className="border-b border-border/40 text-[10px] text-muted-foreground uppercase tracking-wider">
+            <tr className="border-b border-border/40 text-xs text-muted-foreground">
               <th className="text-left p-2.5 font-medium">Institution</th>
               <th className="text-right p-2.5 font-medium">Shares</th>
               <th className="text-right p-2.5 font-medium">Value</th>

@@ -49,9 +49,9 @@ export function ComboMeter() {
             }
             className={cn(
               "flex items-center gap-2.5 rounded-xl border px-4 py-2 backdrop-blur-sm shadow-lg",
-              tier === "max" && "border-amber-400/60 bg-gradient-to-r from-amber-500/20 to-orange-500/20 shadow-amber-500/20",
-              tier === "fire" && "border-orange-400/40 bg-gradient-to-r from-orange-500/15 to-red-500/15 shadow-orange-500/15",
-              tier === "hot" && "border-amber-500/30 bg-amber-500/10 shadow-amber-500/10",
+              tier === "max" && "border-amber-400/60 bg-amber-500/15",
+              tier === "fire" && "border-orange-400/40 bg-orange-500/10",
+              tier === "hot" && "border-amber-500/30 bg-amber-500/10",
               tier === "warm" && "border-primary/20 bg-card/90",
             )}
           >
@@ -79,7 +79,7 @@ export function ComboMeter() {
                 initial={{ scale: 1.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 className={cn(
-                  "text-xl font-black tabular-nums leading-none",
+                  "text-xl font-bold tabular-nums leading-none",
                   tier === "max" && "text-amber-400",
                   tier === "fire" && "text-orange-400",
                   tier === "hot" && "text-amber-300",
@@ -89,7 +89,7 @@ export function ComboMeter() {
                 {comboCount}
               </motion.span>
               <span className={cn(
-                "text-[8px] font-bold uppercase tracking-widest",
+                "text-[8px] font-bold",
                 tier === "max" ? "text-amber-500/70" :
                 tier === "fire" ? "text-orange-500/70" :
                 tier === "hot" ? "text-amber-500/60" :
@@ -101,7 +101,7 @@ export function ComboMeter() {
 
             {/* Multiplier */}
             <div className={cn(
-              "rounded-lg px-2 py-1 text-sm font-black tabular-nums",
+              "rounded-lg px-2 py-1 text-sm font-bold tabular-nums",
               tier === "max" && "bg-amber-500/20 text-amber-300",
               tier === "fire" && "bg-orange-500/15 text-orange-300",
               tier === "hot" && "bg-amber-500/10 text-amber-300/80",

@@ -547,7 +547,7 @@ function EquityFuturesTab() {
                       </td>
                       <td className="px-3 py-2.5 text-xs text-muted-foreground max-w-[160px] truncate">{f.name}</td>
                       <td className="px-3 py-2.5">
-                        <Badge variant="outline" className="text-[10px] py-0">{f.region}</Badge>
+                        <Badge variant="outline" className="text-xs py-0">{f.region}</Badge>
                       </td>
                       <td className="px-3 py-2.5 tabular-nums text-xs font-medium">{fmtPrice(f.spotPrice)}</td>
                       <td className="px-3 py-2.5 tabular-nums text-xs font-semibold text-foreground">{fmtPrice(f.futuresPrice)}</td>
@@ -585,13 +585,13 @@ function EquityFuturesTab() {
               <div key={f.symbol} className="rounded-lg border border-border bg-muted/20 p-2.5">
                 <div className="flex items-center justify-between mb-1">
                   <span className={cn("text-xs font-bold", regionColors[f.region] ?? "text-foreground")}>{f.symbol}</span>
-                  <Badge variant="outline" className="text-[10px] py-0">{f.expiry}</Badge>
+                  <Badge variant="outline" className="text-xs py-0">{f.expiry}</Badge>
                 </div>
                 <div className="text-xs text-muted-foreground">Roll spread</div>
                 <div className="text-sm font-semibold tabular-nums text-amber-400">
                   {f.rollSpread > 0 ? "+" : ""}{f.rollSpread.toFixed(2)}
                 </div>
-                <div className="text-[10px] text-muted-foreground mt-0.5">
+                <div className="text-xs text-muted-foreground mt-0.5">
                   {f.rollSpread < 0 ? "Backwardation" : "Contango"}
                 </div>
               </div>
@@ -757,7 +757,7 @@ function InterestRateFuturesTab() {
                 <span className="text-xs font-semibold tabular-nums text-foreground w-14 text-right">{s.impliedRate.toFixed(3)}%</span>
               </div>
             ))}
-            <p className="text-[10px] text-muted-foreground mt-1">Implied overnight rate from SOFR futures pricing</p>
+            <p className="text-xs text-muted-foreground mt-1">Implied overnight rate from SOFR futures pricing</p>
           </CardContent>
         </Card>
       </div>
@@ -827,7 +827,7 @@ function InterestRateFuturesTab() {
                     <td className="px-3 py-2.5 font-bold text-xs text-blue-400">{f.symbol}</td>
                     <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.name}</td>
                     <td className="px-3 py-2.5">
-                      <Badge variant="outline" className="text-[10px] py-0">{f.country}</Badge>
+                      <Badge variant="outline" className="text-xs py-0">{f.country}</Badge>
                     </td>
                     <td className="px-3 py-2.5 tabular-nums text-xs font-semibold">{f.price.toFixed(3)}</td>
                     <td className="px-3 py-2.5 tabular-nums text-xs text-amber-400">{f.yield_.toFixed(3)}%</td>
@@ -924,11 +924,11 @@ function CurrencyCryptoTab() {
               <div key={c.pair} className="rounded-lg border border-border bg-muted/20 p-3 text-center">
                 <div className="text-xs text-muted-foreground mb-1">{c.pair}</div>
                 <div className="text-sm font-bold tabular-nums text-foreground">{fmtPrice(c.rate)}</div>
-                <div className="text-[10px] text-muted-foreground mt-0.5">Implied from futures</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Implied from futures</div>
               </div>
             ))}
           </div>
-          <p className="text-[10px] text-muted-foreground mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Cross rates derived from: EUR/GBP = EUR/USD ÷ GBP/USD. Covered Interest Parity: F = S × (1+r_d)/(1+r_f)
           </p>
         </CardContent>
@@ -951,7 +951,7 @@ function CurrencyCryptoTab() {
               <div className="rounded-lg border border-border bg-muted/20 p-3">
                 <div className="text-xs text-muted-foreground mb-1">Perpetual</div>
                 <div className="text-sm font-bold tabular-nums text-amber-400">${fmtLarge(c.perpPrice)}</div>
-                <div className="text-[10px] text-muted-foreground">
+                <div className="text-xs text-muted-foreground">
                   Basis: <span className={chgCls(c.basis)}>{c.basis > 0 ? "+" : ""}{c.basis.toFixed(3)}%</span>
                 </div>
               </div>
@@ -984,7 +984,7 @@ function CurrencyCryptoTab() {
                   <div className="text-xs font-medium text-foreground">in ~4h 22m</div>
                 </div>
               </div>
-              <p className="text-[10px] text-muted-foreground mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 {c.fundingRate8h > 0
                   ? "Positive funding: longs pay shorts. Signals over-leveraged long positioning."
                   : "Negative funding: shorts pay longs. Signals over-leveraged short positioning."}
@@ -1048,7 +1048,7 @@ function VolatilityTab() {
             <div className={cn("text-2xl font-bold tabular-nums", vixSpot < 20 ? "text-emerald-400" : vixSpot < 30 ? "text-amber-400" : "text-red-400")}>
               {vixSpot.toFixed(2)}
             </div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">
+            <div className="text-xs text-muted-foreground mt-0.5">
               {vixSpot < 20 ? "Low fear" : vixSpot < 30 ? "Moderate" : "High fear"}
             </div>
           </CardContent>
@@ -1059,7 +1059,7 @@ function VolatilityTab() {
             <div className={cn("text-2xl font-bold tabular-nums", vvix < 100 ? "text-emerald-400" : "text-amber-400")}>
               {vvix.toFixed(1)}
             </div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">VIX of VIX options</div>
+            <div className="text-xs text-muted-foreground mt-0.5">VIX of VIX options</div>
           </CardContent>
         </Card>
         <Card className="bg-card border-border">
@@ -1084,7 +1084,7 @@ function VolatilityTab() {
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
               VIX Futures Strip (M1–M6)
-              <Badge variant="outline" className={cn("text-[10px]", isContango ? "text-orange-400 border-orange-400/30" : "text-emerald-400 border-emerald-400/30")}>
+              <Badge variant="outline" className={cn("text-xs", isContango ? "text-orange-400 border-orange-400/30" : "text-emerald-400 border-emerald-400/30")}>
                 {isContango ? "Contango" : "Backwardation"}
               </Badge>
             </CardTitle>
@@ -1163,11 +1163,11 @@ function VolatilityTab() {
                   <th className="px-3 py-2 text-right font-semibold text-muted-foreground" colSpan={2}>Put</th>
                 </tr>
                 <tr className="border-b border-border/50">
-                  <th className="px-3 py-1.5 text-left text-[10px] text-muted-foreground">Price</th>
-                  <th className="px-3 py-1.5 text-left text-[10px] text-muted-foreground">IV</th>
-                  <th className="px-3 py-1.5 text-center text-[10px] font-bold text-foreground">Strike</th>
-                  <th className="px-3 py-1.5 text-right text-[10px] text-muted-foreground">IV</th>
-                  <th className="px-3 py-1.5 text-right text-[10px] text-muted-foreground">Price</th>
+                  <th className="px-3 py-1.5 text-left text-xs text-muted-foreground">Price</th>
+                  <th className="px-3 py-1.5 text-left text-xs text-muted-foreground">IV</th>
+                  <th className="px-3 py-1.5 text-center text-xs font-bold text-foreground">Strike</th>
+                  <th className="px-3 py-1.5 text-right text-xs text-muted-foreground">IV</th>
+                  <th className="px-3 py-1.5 text-right text-xs text-muted-foreground">Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -1199,23 +1199,23 @@ function VolatilityTab() {
             <div key={v.tenor} className="rounded-lg border border-border bg-muted/20 p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-bold text-foreground">{v.tenor} Variance Swap</span>
-                <Badge variant="outline" className={cn("text-[10px]", v.spread > 0 ? "text-orange-400 border-orange-400/30" : "text-emerald-400 border-emerald-400/30")}>
+                <Badge variant="outline" className={cn("text-xs", v.spread > 0 ? "text-orange-400 border-orange-400/30" : "text-emerald-400 border-emerald-400/30")}>
                   Spread: {v.spread > 0 ? "+" : ""}{v.spread.toFixed(2)} vol pts
                 </Badge>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <div className="text-[10px] text-muted-foreground mb-1">Implied Variance (var vega × 10k)</div>
+                  <div className="text-xs text-muted-foreground mb-1">Implied Variance (var vega × 10k)</div>
                   <Progress value={(v.impliedVar / 80)} className="h-2 mb-1" />
-                  <div className="flex justify-between text-[10px]">
+                  <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Implied Vol: {v.impliedVol.toFixed(2)}%</span>
                     <span className="text-amber-400">{v.impliedVar.toFixed(1)} vv</span>
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] text-muted-foreground mb-1">Realized Variance</div>
+                  <div className="text-xs text-muted-foreground mb-1">Realized Variance</div>
                   <Progress value={(v.realizedVar / 80)} className="h-2 mb-1" />
-                  <div className="flex justify-between text-[10px]">
+                  <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Realized Vol: {v.realizedVol.toFixed(2)}%</span>
                     <span className="text-emerald-400">{v.realizedVar.toFixed(1)} vv</span>
                   </div>
@@ -1250,7 +1250,7 @@ function VolatilityTab() {
             })}
             <line x1={20} y1={histH - 20} x2={histW - 10} y2={histH - 20} stroke="#374151" strokeWidth={1} />
           </svg>
-          <p className="text-[10px] text-muted-foreground mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Distribution of daily VIX closes. VIX &lt; 20 = low fear (green), 20-30 = moderate (amber), &gt; 30 = elevated (red).
           </p>
         </CardContent>
@@ -1416,23 +1416,23 @@ function MarginOrderTab() {
           {/* Results */}
           <div className="rounded-lg border border-border bg-muted/20 p-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
             <div>
-              <div className="text-[10px] text-muted-foreground">P&L per Contract</div>
+              <div className="text-xs text-muted-foreground">P&L per Contract</div>
               <div className={cn("text-sm font-bold tabular-nums", chgCls(pnlPerContract))}>
                 {pnlPerContract > 0 ? "+" : ""}${pnlPerContract.toFixed(2)}
               </div>
             </div>
             <div>
-              <div className="text-[10px] text-muted-foreground">Total P&L ({numContracts} ct)</div>
+              <div className="text-xs text-muted-foreground">Total P&L ({numContracts} ct)</div>
               <div className={cn("text-sm font-bold tabular-nums", chgCls(totalPnl))}>
                 {totalPnl > 0 ? "+" : ""}${totalPnl.toFixed(2)}
               </div>
             </div>
             <div>
-              <div className="text-[10px] text-muted-foreground">Notional Value</div>
+              <div className="text-xs text-muted-foreground">Notional Value</div>
               <div className="text-sm font-bold tabular-nums">${fmtLarge(notional)}</div>
             </div>
             <div>
-              <div className="text-[10px] text-muted-foreground">Return on Margin</div>
+              <div className="text-xs text-muted-foreground">Return on Margin</div>
               <div className={cn("text-sm font-bold tabular-nums", chgCls(totalPnl))}>
                 {initMarginReq > 0 ? `${((totalPnl / initMarginReq) * 100).toFixed(2)}%` : "N/A"}
               </div>
@@ -1563,21 +1563,21 @@ function MarginOrderTab() {
         <CardContent className="px-4 pb-4 flex flex-col gap-2">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <div className="rounded-lg border border-border bg-muted/20 p-3">
-              <div className="text-[10px] text-muted-foreground mb-1">Entry Price</div>
+              <div className="text-xs text-muted-foreground mb-1">Entry Price</div>
               <div className="text-sm font-bold tabular-nums">{fmtPrice(entryPrice)}</div>
             </div>
             <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-3">
-              <div className="text-[10px] text-muted-foreground mb-1">Margin Call Price</div>
+              <div className="text-xs text-muted-foreground mb-1">Margin Call Price</div>
               <div className="text-sm font-bold tabular-nums text-orange-400">{fmtPrice(marginCallPrice)}</div>
             </div>
             <div className="rounded-lg border border-border bg-muted/20 p-3">
-              <div className="text-[10px] text-muted-foreground mb-1">Move to Call</div>
+              <div className="text-xs text-muted-foreground mb-1">Move to Call</div>
               <div className={cn("text-sm font-bold tabular-nums", chgCls(marginCallPrice - entryPrice))}>
                 {((marginCallPrice - entryPrice) / entryPrice * 100).toFixed(2)}%
               </div>
             </div>
             <div className="rounded-lg border border-border bg-muted/20 p-3">
-              <div className="text-[10px] text-muted-foreground mb-1">Excess Margin (1 ct)</div>
+              <div className="text-xs text-muted-foreground mb-1">Excess Margin (1 ct)</div>
               <div className="text-sm font-bold tabular-nums text-emerald-400">
                 ${(initMarginReq - maintMarginReq).toLocaleString()}
               </div>
@@ -1615,7 +1615,7 @@ export default function FuturesPage() {
         <div className="flex items-center gap-2">
           <BarChart2 className="h-5 w-5 text-primary" />
           <h1 className="text-xl font-bold text-foreground">Futures & Financial Derivatives</h1>
-          <Badge variant="outline" className="text-[10px] text-muted-foreground border-muted-foreground/30">SIMULATED</Badge>
+          <Badge variant="outline" className="text-xs text-muted-foreground border-muted-foreground/30">SIMULATED</Badge>
         </div>
         <p className="text-xs text-muted-foreground">
           Equity index, interest rate, currency, volatility futures — margin calculations and contract specifications.

@@ -63,9 +63,9 @@ function ImbalanceMeter({ imbalance }: { imbalance: number }) {
   return (
     <div className="px-2 py-1.5">
       <div className="flex items-center justify-between mb-1">
-        <span className="text-[9px] text-muted-foreground">Bids</span>
-        <span className="text-[9px] text-muted-foreground font-medium">{label}</span>
-        <span className="text-[9px] text-muted-foreground">Asks</span>
+        <span className="text-[11px] text-muted-foreground">Bids</span>
+        <span className="text-[11px] text-muted-foreground font-medium">{label}</span>
+        <span className="text-[11px] text-muted-foreground">Asks</span>
       </div>
       <div className="h-1.5 rounded-full bg-muted overflow-hidden flex">
         <div
@@ -117,7 +117,7 @@ function LevelRow({
       />
 
       {/* Content */}
-      <div className="relative z-10 flex items-center w-full gap-1 text-[10px] font-mono tabular-nums">
+      <div className="relative z-10 flex items-center w-full gap-1 text-xs font-mono tabular-nums">
         {isBid ? (
           <>
             <span className={cn("w-[52px] text-right", isLarge ? "text-amber-400 font-semibold" : "text-muted-foreground")}>
@@ -199,14 +199,14 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
     <div className="rounded-lg border border-border bg-card overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-2 py-1.5 border-b border-border">
-        <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-semibold text-muted-foreground">
           Level 2 Order Book
         </span>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono tabular-nums text-muted-foreground">
+          <span className="text-xs font-mono tabular-nums text-muted-foreground">
             {bps} bps
           </span>
-          <span className="text-[10px] font-mono tabular-nums text-muted-foreground">
+          <span className="text-xs font-mono tabular-nums text-muted-foreground">
             Spread: ${book.spread.toFixed(2)}
           </span>
         </div>
@@ -217,7 +217,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
         <span className="text-sm font-semibold font-mono tabular-nums text-foreground">
           {formatPrice(book.midpoint)}
         </span>
-        <span className="ml-2 text-[9px] text-muted-foreground uppercase tracking-wider">Mid</span>
+        <span className="ml-2 text-[11px] text-muted-foreground">Mid</span>
       </div>
 
       {/* Imbalance meter */}
@@ -225,12 +225,12 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
 
       {/* Column headers */}
       <div className="flex px-1 py-0.5 border-b border-border/50">
-        <div className="flex items-center w-1/2 gap-1 text-[9px] text-muted-foreground/60">
+        <div className="flex items-center w-1/2 gap-1 text-[11px] text-muted-foreground/60">
           <span className="w-[52px] text-right">Size</span>
           <span className="w-[36px] text-right">Ord</span>
           <span className="flex-1 text-right">Bid</span>
         </div>
-        <div className="flex items-center w-1/2 gap-1 text-[9px] text-muted-foreground/60">
+        <div className="flex items-center w-1/2 gap-1 text-[11px] text-muted-foreground/60">
           <span className="flex-1 text-left">Ask</span>
           <span className="w-[36px] text-left">Ord</span>
           <span className="w-[52px] text-left">Size</span>
@@ -254,7 +254,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       </div>
 
       {/* Footer totals */}
-      <div className="flex items-center justify-between px-2 py-1 border-t border-border text-[9px] font-mono tabular-nums text-muted-foreground">
+      <div className="flex items-center justify-between px-2 py-1 border-t border-border text-[11px] font-mono tabular-nums text-muted-foreground">
         <span>
           Bid Vol: <span className="text-emerald-500">{formatSize(totalBidVol)}</span>
         </span>
@@ -267,7 +267,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       {/* Tape section */}
       <div className="border-t border-border">
         <div className="px-2 py-1 border-b border-border/50">
-          <span className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wider">
+          <span className="text-[11px] font-semibold text-muted-foreground">
             Last Trades
           </span>
         </div>
@@ -276,7 +276,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
             <div
               key={entry.id}
               className={cn(
-                "flex items-center gap-1 px-2 h-4 text-[9px] font-mono tabular-nums",
+                "flex items-center gap-1 px-2 h-4 text-[11px] font-mono tabular-nums",
                 entry.direction === "up" ? "text-emerald-500" : "text-red-500",
                 entry.size > 1000 && "font-semibold bg-amber-500/5",
               )}

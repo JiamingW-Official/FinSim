@@ -422,7 +422,7 @@ function ValuationTab() {
                   onChange={(e) => setCapRate(parseFloat(e.target.value))}
                   className="w-full accent-primary"
                 />
-                <div className="flex justify-between text-[10px] text-muted-foreground mt-0.5">
+                <div className="flex justify-between text-xs text-muted-foreground mt-0.5">
                   <span>3% (Premium)</span><span>12% (Distressed)</span>
                 </div>
               </div>
@@ -938,7 +938,7 @@ function PortfolioTab() {
                     <span className="text-emerald-400 w-10 text-right">{h.divYield.toFixed(1)}%</span>
                   </div>
                 ))}
-                <div className="pt-1 flex gap-3 text-[10px] text-muted-foreground">
+                <div className="pt-1 flex gap-3 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1"><div className="w-2 h-1.5 bg-muted/50 rounded" /> Weight</span>
                   <span className="text-emerald-400">% = Div Yield</span>
                 </div>
@@ -976,7 +976,7 @@ function PortfolioTab() {
                         className={`h-full rounded ${isPos ? "bg-emerald-500/60" : "bg-rose-500/60"}`}
                       />
                     </div>
-                    <p className="text-[10px] text-muted-foreground">{c.note}</p>
+                    <p className="text-xs text-muted-foreground">{c.note}</p>
                   </div>
                 );
               })}

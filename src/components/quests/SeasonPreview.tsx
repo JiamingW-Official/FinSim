@@ -60,19 +60,19 @@ export function SeasonPreview() {
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Season Pass</p>
-            <h3 className="mt-0.5 text-sm font-black text-zinc-100">{season.name}</h3>
+            <p className="text-xs font-bold text-zinc-600">Season Pass</p>
+            <h3 className="mt-0.5 text-sm font-bold text-zinc-100">{season.name}</h3>
           </div>
           <div className="shrink-0 text-right">
-            <p className="text-[10px] text-zinc-600">Season XP</p>
-            <p className="text-lg font-black tabular-nums text-zinc-200">{seasonXP.toLocaleString()}</p>
+            <p className="text-xs text-zinc-600">Season XP</p>
+            <p className="text-lg font-bold tabular-nums text-zinc-200">{seasonXP.toLocaleString()}</p>
           </div>
         </div>
 
         {/* Progress to next tier */}
         {nextTierInfo && (
           <div className="mt-3 space-y-1.5">
-            <div className="flex items-center justify-between text-[10px]">
+            <div className="flex items-center justify-between text-xs">
               <span className="text-zinc-600">Tier {currentTier} → Tier {nextTierInfo.tierNumber}</span>
               <span className="font-bold text-zinc-400">
                 {nextTierInfo.current.toLocaleString()} / {nextTierInfo.required.toLocaleString()} XP
@@ -124,7 +124,7 @@ export function SeasonPreview() {
               {/* Tier number */}
               <div
                 className={cn(
-                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border text-[11px] font-black",
+                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border text-[11px] font-bold",
                   isClaimed
                     ? "border-green-500/30 bg-green-500/15 text-green-400"
                     : isUnlocked
@@ -147,14 +147,14 @@ export function SeasonPreview() {
                     {tier.xpRequired.toLocaleString()} Season XP
                   </span>
                   {isCurrent && !isClaimed && (
-                    <span className="rounded px-1 py-0.5 text-[9px] font-bold bg-cyan-500/15 text-cyan-400 uppercase tracking-wide">
+                    <span className="rounded px-1 py-0.5 text-[11px] font-bold bg-cyan-500/15 text-cyan-400 uppercase tracking-wide">
                       Current
                     </span>
                   )}
                 </div>
                 <span
                   className={cn(
-                    "text-[10px]",
+                    "text-xs",
                     isUnlocked ? "text-zinc-500" : "text-zinc-800",
                   )}
                 >
@@ -165,7 +165,7 @@ export function SeasonPreview() {
               {/* Reward pill */}
               <div
                 className={cn(
-                  "flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold",
+                  "flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-bold",
                   isUnlocked ? rewardColor(tier.reward.type) : "text-zinc-800 bg-transparent border-zinc-800",
                 )}
               >
@@ -184,7 +184,7 @@ export function SeasonPreview() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleClaim(tier.tier, tier.reward.value)}
-                  className="flex shrink-0 items-center gap-1 rounded-lg bg-amber-500 px-2.5 py-1.5 text-[10px] font-black text-black shadow-md shadow-amber-500/20 transition-colors hover:bg-amber-400"
+                  className="flex shrink-0 items-center gap-1 rounded-lg bg-amber-500 px-2.5 py-1.5 text-xs font-bold text-black shadow-sm transition-colors hover:bg-amber-400"
                 >
                   <Gift className="h-3 w-3" />
                   Claim

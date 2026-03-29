@@ -425,7 +425,7 @@ function MonthlyHeatmap() {
                 <td key={m.label} className="px-0.5 py-0.5 text-center">
                   <div
                     className={cn(
-                      "rounded px-1 py-0.5 text-[10px] font-medium tabular-nums",
+                      "rounded px-1 py-0.5 text-xs font-medium tabular-nums",
                       m.ret >= 2 ? "bg-emerald-500/30 text-emerald-300" :
                       m.ret >= 0.5 ? "bg-emerald-500/15 text-emerald-400" :
                       m.ret >= -0.5 ? "bg-zinc-700/50 text-zinc-400" :
@@ -574,7 +574,7 @@ export default function AlgoTradingPage() {
                       </Badge>
                       <Badge
                         className={cn(
-                          "text-[10px] px-1.5 py-0.5",
+                          "text-xs px-1.5 py-0.5",
                           ot.risk === "Low" ? "bg-emerald-500/15 text-emerald-400" :
                           ot.risk === "Medium" ? "bg-amber-500/15 text-amber-400" :
                           "bg-red-500/15 text-red-400"
@@ -736,7 +736,7 @@ export default function AlgoTradingPage() {
                         step={1}
                         className="w-full"
                       />
-                      <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
+                      <div className="flex justify-between text-xs text-zinc-600 mt-1">
                         <span>Patient</span>
                         <span>Urgent</span>
                       </div>
@@ -803,7 +803,7 @@ export default function AlgoTradingPage() {
                       </div>
                       <div>
                         <CardTitle className="text-sm text-zinc-100">{strat.name}</CardTitle>
-                        <Badge className={cn("text-[10px] px-1.5 py-0 mt-1 border", strat.tagColor)}>
+                        <Badge className={cn("text-xs px-1.5 py-0 mt-1 border", strat.tagColor)}>
                           {strat.tag}
                         </Badge>
                       </div>
@@ -811,18 +811,18 @@ export default function AlgoTradingPage() {
                   </CardHeader>
                   <CardContent className="p-4 pt-0 space-y-3">
                     <div>
-                      <div className="text-[10px] text-zinc-500 uppercase tracking-wide mb-1">Mechanics</div>
+                      <div className="text-xs text-zinc-500 uppercase tracking-wide mb-1">Mechanics</div>
                       <p className="text-xs text-zinc-400 leading-relaxed">{strat.mechanics}</p>
                     </div>
                     <div>
-                      <div className="text-[10px] text-zinc-500 uppercase tracking-wide mb-1">Profitability</div>
+                      <div className="text-xs text-zinc-500 uppercase tracking-wide mb-1">Profitability</div>
                       <div className="flex items-start gap-1.5">
                         <ArrowUpRight className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
                         <p className="text-xs text-zinc-400 leading-relaxed">{strat.profitability}</p>
                       </div>
                     </div>
                     <div>
-                      <div className="text-[10px] text-zinc-500 uppercase tracking-wide mb-1">Regulatory / Risk</div>
+                      <div className="text-xs text-zinc-500 uppercase tracking-wide mb-1">Regulatory / Risk</div>
                       <div className="flex items-start gap-1.5">
                         <AlertTriangle className="w-3 h-3 text-amber-400 mt-0.5 shrink-0" />
                         <p className="text-xs text-zinc-400 leading-relaxed">{strat.concern}</p>
@@ -949,7 +949,7 @@ export default function AlgoTradingPage() {
                           <td className="py-2.5 pl-4 text-right">
                             <Badge
                               className={cn(
-                                "text-[10px] px-1.5 py-0",
+                                "text-xs px-1.5 py-0",
                                 row.status === "good" ? "bg-emerald-500/15 text-emerald-400" :
                                 row.status === "neutral" ? "bg-amber-500/15 text-amber-400" :
                                 "bg-red-500/15 text-red-400"

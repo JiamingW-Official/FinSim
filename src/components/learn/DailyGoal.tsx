@@ -21,7 +21,7 @@ export function DailyGoal({ compact }: DailyGoalProps) {
         <ProgressRing progress={progress} size={20} strokeWidth={2.5}>
           <span className="text-[7px] font-bold">{dailyLessonsCompleted}</span>
         </ProgressRing>
-        <span className="text-[10px] text-muted-foreground">
+        <span className="text-xs text-muted-foreground">
           {dailyLessonsCompleted}/{dailyGoal}
         </span>
       </div>
@@ -41,7 +41,7 @@ export function DailyGoal({ compact }: DailyGoalProps) {
         <p className="text-xs font-semibold">
           {goalMet ? "Goal Complete!" : "Daily Goal"}
         </p>
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           {dailyLessonsCompleted}/{dailyGoal} lessons today
         </p>
       </div>

@@ -702,7 +702,7 @@ function OUFormulaCard() {
         </div>
         <div className="bg-[#1e293b]/40 rounded p-2">
           <p className="text-slate-500 mb-0.5">Kalman Filter hedge ratio update</p>
-          <p className="font-mono text-sky-400 text-[10px]">
+          <p className="font-mono text-sky-400 text-xs">
             K_t = P_t H^T (H P_t H^T + R)⁻¹ ; β_t = β_{"{t-1}"} + K_t(y_t - H·β_{"{t-1}"})
           </p>
         </div>
@@ -859,7 +859,7 @@ function StatArbTab() {
               <li>Breaks down in trending regimes</li>
               <li>Does not estimate mean-reversion speed</li>
             </ul>
-            <Badge variant="outline" className="text-emerald-400 border-emerald-400/30 text-[10px]">
+            <Badge variant="outline" className="text-emerald-400 border-emerald-400/30 text-xs">
               Best for: large-universe screening
             </Badge>
           </CardContent>
@@ -876,7 +876,7 @@ function StatArbTab() {
               <li>Dynamic via Kalman Filter updates</li>
               <li>Sensitive to structural breaks</li>
             </ul>
-            <Badge variant="outline" className="text-sky-400 border-sky-400/30 text-[10px]">
+            <Badge variant="outline" className="text-sky-400 border-sky-400/30 text-xs">
               Best for: single-pair deep analysis
             </Badge>
           </CardContent>
@@ -904,11 +904,11 @@ function StatArbTab() {
             ].map(({ label, var: v, color }) => (
               <div key={label} className="bg-[#1e293b]/40 rounded p-2 text-center">
                 <p className={`font-medium text-[11px] ${color}`}>{label}</p>
-                <p className="text-slate-500 text-[10px]">Explains {v}</p>
+                <p className="text-slate-500 text-xs">Explains {v}</p>
               </div>
             ))}
           </div>
-          <p className="text-slate-500 text-[10px] mt-1">
+          <p className="text-slate-500 text-xs mt-1">
             Residuals from the first k PCs exhibit half-lives of 3–15 days, suitable for stat arb strategies.
           </p>
         </CardContent>
@@ -954,7 +954,7 @@ function MLFinanceTab() {
         </CardHeader>
         <CardContent>
           <FeatureImportanceSVG />
-          <div className="flex gap-4 mt-2 text-[10px] text-slate-500">
+          <div className="flex gap-4 mt-2 text-xs text-slate-500">
             <span><span className="text-violet-400">■</span> Momentum factors</span>
             <span><span className="text-emerald-400">■</span> Quality / value</span>
             <span><span className="text-amber-400">■</span> Alternative</span>
@@ -1003,7 +1003,7 @@ function MLFinanceTab() {
                 { label: "Max DD", value: `${activeModel.maxDD.toFixed(1)}%`, color: "text-rose-400" },
               ].map(({ label, value, color }) => (
                 <div key={label} className="bg-[#1e293b]/50 rounded-lg p-3 text-center">
-                  <p className="text-slate-500 text-[10px] mb-1">{label}</p>
+                  <p className="text-slate-500 text-xs mb-1">{label}</p>
                   <p className={`text-lg font-bold ${color}`}>{value}</p>
                 </div>
               ))}
@@ -1044,7 +1044,7 @@ function MLFinanceTab() {
                 <AlertTriangle className="w-3 h-3 text-amber-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-slate-300">{trap}</p>
-                  <p className="text-slate-500 text-[10px]">{fix}</p>
+                  <p className="text-slate-500 text-xs">{fix}</p>
                 </div>
               </div>
             ))}
@@ -1098,7 +1098,7 @@ function MLFinanceTab() {
                 </div>
               ))}
             </div>
-            <p className="text-slate-500 text-[10px]">Signals decay within 1–3 days post-publication.</p>
+            <p className="text-slate-500 text-xs">Signals decay within 1–3 days post-publication.</p>
           </CardContent>
         </Card>
 
@@ -1108,12 +1108,12 @@ function MLFinanceTab() {
           </CardHeader>
           <CardContent className="text-xs text-slate-400 space-y-2">
             <p>Agent learns execution policy to minimise implementation shortfall + market impact.</p>
-            <div className="bg-[#1e293b]/40 rounded p-2 font-mono text-[10px] text-slate-300">
+            <div className="bg-[#1e293b]/40 rounded p-2 font-mono text-xs text-slate-300">
               <p>State: (inventory, time_remaining, spread, vol)</p>
               <p>Action: quantity_to_trade ∈ [0, max_slice]</p>
               <p>Reward: −(impact_cost + timing_risk)</p>
             </div>
-            <p className="text-slate-500 text-[10px]">
+            <p className="text-slate-500 text-xs">
               Outperforms TWAP/VWAP by 15–30% in simulated environments with intraday vol patterns.
             </p>
           </CardContent>
@@ -1139,7 +1139,7 @@ function MLFinanceTab() {
               { step: "Shadow Mode", color: "bg-slate-500/20 text-slate-300" },
             ].map(({ step, color }, i) => (
               <div key={step} className="flex items-center gap-1">
-                <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${color}`}>{step}</span>
+                <span className={`px-2 py-0.5 rounded text-xs font-medium ${color}`}>{step}</span>
                 {i < 5 && <ArrowRight className="w-3 h-3 text-slate-600" />}
               </div>
             ))}
@@ -1208,9 +1208,9 @@ function HFTMarketMakingTab() {
                   ) : (
                     <TrendingDown className="w-3 h-3 text-rose-400" />
                   )}
-                  <p className="text-slate-300 text-[10px] font-medium">{label}</p>
+                  <p className="text-slate-300 text-xs font-medium">{label}</p>
                 </div>
-                <p className="text-slate-500 text-[10px]">{effect}</p>
+                <p className="text-slate-500 text-xs">{effect}</p>
               </div>
             ))}
           </div>
@@ -1266,7 +1266,7 @@ function HFTMarketMakingTab() {
               </div>
             </div>
           ))}
-          <p className="text-[10px] text-slate-500 pt-1">
+          <p className="text-xs text-slate-500 pt-1">
             P&amp;L = Spread Earned − Adverse Selection Cost − Inventory Risk. Trending/shock regimes
             flip P&amp;L negative due to adverse selection dominating.
           </p>
@@ -1295,7 +1295,7 @@ function HFTMarketMakingTab() {
                 <span className="text-slate-400">{stage}</span>
                 <div className="text-right">
                   <span className={`font-mono font-medium ${color}`}>{lat}</span>
-                  <p className="text-[9px] text-slate-600">{tech}</p>
+                  <p className="text-[11px] text-slate-600">{tech}</p>
                 </div>
               </div>
             ))}
@@ -1322,7 +1322,7 @@ function HFTMarketMakingTab() {
                 <CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-slate-300">{ctrl}</p>
-                  <p className="text-slate-600 text-[10px]">{desc}</p>
+                  <p className="text-slate-600 text-xs">{desc}</p>
                 </div>
               </div>
             ))}
@@ -1350,8 +1350,8 @@ function HFTMarketMakingTab() {
               { range: "OBI &lt; −0.3", signal: "Lean bid (sell)", color: "text-rose-400" },
             ].map(({ range, signal, color }) => (
               <div key={range} className="bg-[#1e293b]/40 rounded p-2 text-center">
-                <p className="font-mono text-[10px] text-slate-400">{range}</p>
-                <p className={`text-[10px] mt-0.5 font-medium ${color}`}>{signal}</p>
+                <p className="font-mono text-xs text-slate-400">{range}</p>
+                <p className={`text-xs mt-0.5 font-medium ${color}`}>{signal}</p>
               </div>
             ))}
           </div>
@@ -1424,7 +1424,7 @@ function ExecutionTab() {
               <div key={q} className="bg-[#1e293b]/40 rounded p-2 text-center">
                 <p className="text-slate-500">{q}</p>
                 <p className="text-violet-400 font-bold">{imp}</p>
-                <p className="text-slate-600 text-[10px]">{note}</p>
+                <p className="text-slate-600 text-xs">{note}</p>
               </div>
             ))}
           </div>
@@ -1458,7 +1458,7 @@ function ExecutionTab() {
                 <div className="h-2 bg-[#1e293b] rounded-full overflow-hidden">
                   <div className={`h-full ${color} rounded-full`} style={{ width: `${pct}%` }} />
                 </div>
-                <p className="text-[10px] text-slate-600 mt-0.5">{desc}</p>
+                <p className="text-xs text-slate-600 mt-0.5">{desc}</p>
               </div>
             ))}
           </div>
@@ -1500,7 +1500,7 @@ function ExecutionTab() {
                   >
                     <td className="px-4 py-2">
                       <p className={`font-bold ${a.color}`}>{a.name}</p>
-                      <p className="text-slate-600 text-[10px]">{a.fullName}</p>
+                      <p className="text-slate-600 text-xs">{a.fullName}</p>
                     </td>
                     <td className="px-3 py-2 text-slate-400">{a.objective}</td>
                     <td className="px-3 py-2 text-slate-500">{a.bestFor}</td>
@@ -1563,7 +1563,7 @@ function ExecutionTab() {
                     <span className={color}>{impact} impact</span>
                   </div>
                 </div>
-                <p className="text-slate-600 text-[10px] mt-0.5">{note}</p>
+                <p className="text-slate-600 text-xs mt-0.5">{note}</p>
               </div>
             ))}
           </CardContent>

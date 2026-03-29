@@ -35,7 +35,7 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-black tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-bold tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Achievement</span>
         </div>
         <button
@@ -55,10 +55,10 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
 
         {/* Name + description */}
         <div className="text-center">
-          <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+          <div className="text-xs font-bold text-muted-foreground">
             Unlocked in FinSim
           </div>
-          <div className="mt-1 text-xl font-black">{achievement.name}</div>
+          <div className="mt-1 text-xl font-bold">{achievement.name}</div>
           <div className="mt-1 text-xs text-muted-foreground">{achievement.description}</div>
         </div>
 
@@ -66,18 +66,18 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
         {xpReward > 0 && (
           <div className="flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1">
             <Star className="h-3.5 w-3.5 text-primary" />
-            <span className="text-xs font-black text-primary">+{xpReward} XP</span>
+            <span className="text-xs font-bold text-primary">+{xpReward} XP</span>
           </div>
         )}
 
-        <div className="text-[9px] text-muted-foreground">finsim.app</div>
+        <div className="text-[11px] text-muted-foreground">finsim.app</div>
       </div>
 
       {/* Actions */}
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-black text-white transition-colors hover:bg-primary/90 active:bg-primary/80"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary/90 active:bg-primary/80"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
@@ -147,16 +147,16 @@ export function AchievementToastContent({ achievement, xpReward, toastId }: Achi
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+          <span className="text-xs font-bold text-muted-foreground">
             Achievement
           </span>
           {xpReward > 0 && (
-            <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[9px] font-black text-primary">
+            <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[11px] font-bold text-primary">
               +{xpReward} XP
             </span>
           )}
         </div>
-        <div className="truncate text-sm font-black">{achievement.name}</div>
+        <div className="truncate text-sm font-bold">{achievement.name}</div>
         <div className="truncate text-[11px] text-muted-foreground">{achievement.description}</div>
       </div>
       <button

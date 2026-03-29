@@ -637,7 +637,7 @@ function EventImpactTab() {
                     >
                       <td className="px-4 py-2">
                         <div className="font-medium text-neutral-200 leading-tight">{evt.name}</div>
-                        <div className="text-neutral-500 text-[10px]">{evt.date} · {evt.category}</div>
+                        <div className="text-neutral-500 text-xs">{evt.date} · {evt.category}</div>
                       </td>
                       {[evt.d1, evt.w1, evt.m1, evt.m3].map((v, i) => (
                         <td key={i} className="text-right px-2 py-2 font-mono" style={{ color: impactColor(v) }}>
@@ -715,13 +715,13 @@ function EventImpactTab() {
                     <div className="text-neutral-400 font-medium mb-1.5">Asset Class Winners</div>
                     <div className="flex flex-wrap gap-1 mb-3">
                       {selectedEvent.winners.map(w => (
-                        <Badge key={w} className="bg-green-900/40 text-green-400 border-green-800 text-[10px]">{w}</Badge>
+                        <Badge key={w} className="bg-green-900/40 text-green-400 border-green-800 text-xs">{w}</Badge>
                       ))}
                     </div>
                     <div className="text-neutral-400 font-medium mb-1.5">Asset Class Losers</div>
                     <div className="flex flex-wrap gap-1">
                       {selectedEvent.losers.map(l => (
-                        <Badge key={l} className="bg-red-900/40 text-red-400 border-red-800 text-[10px]">{l}</Badge>
+                        <Badge key={l} className="bg-red-900/40 text-red-400 border-red-800 text-xs">{l}</Badge>
                       ))}
                     </div>
                   </div>
@@ -943,7 +943,7 @@ function SanctionsTradeTab() {
                           <div className="text-xs text-neutral-300 leading-relaxed">{evt.event}</div>
                           <Badge
                             className={cn(
-                              "text-[9px] mt-1",
+                              "text-[11px] mt-1",
                               evt.impact === "high"
                                 ? "bg-red-900/40 text-red-400 border-red-800"
                                 : evt.impact === "medium"
@@ -996,7 +996,7 @@ function SanctionsTradeTab() {
                             <span style={{ color }} className="mt-0.5">•</span> {p}
                           </div>
                         ))}
-                        <div className="mt-2 text-neutral-500 text-[10px]">Risk: {risk}</div>
+                        <div className="mt-2 text-neutral-500 text-xs">Risk: {risk}</div>
                       </div>
                     ))}
                   </div>
@@ -1099,7 +1099,7 @@ function RiskPremiumTab() {
                   <span className="text-green-400 font-mono">+{sh.avgReturn1m.toFixed(1)}% avg 1M</span>
                 </div>
                 <Progress value={sh.correlation * 100} className="h-1.5" />
-                <div className="text-[10px] text-neutral-600">{sh.mechanism}</div>
+                <div className="text-xs text-neutral-600">{sh.mechanism}</div>
               </div>
             ))}
           </CardContent>
@@ -1329,9 +1329,9 @@ function PortfolioPositioningTab() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-3 py-2 text-center text-neutral-400 text-[10px]">{hs.cost}</td>
+                    <td className="px-3 py-2 text-center text-neutral-400 text-xs">{hs.cost}</td>
                     <td className="px-3 py-2 text-center">
-                      <Badge className={cn("text-[9px]",
+                      <Badge className={cn("text-[11px]",
                         hs.complexity === "Low" ? "bg-green-900/40 text-green-400 border-green-800"
                         : hs.complexity === "Medium" ? "bg-amber-900/40 text-amber-400 border-amber-800"
                         : "bg-red-900/40 text-red-400 border-red-800"
@@ -1370,7 +1370,7 @@ function PortfolioPositioningTab() {
                   <span className="text-neutral-400">{label}</span>
                   <div className="flex items-center gap-1.5">
                     <span className="font-mono text-neutral-200">{value.toFixed(2)}</span>
-                    <Badge className={cn("text-[9px]", good
+                    <Badge className={cn("text-[11px]", good
                       ? "bg-green-900/40 text-green-400 border-green-800"
                       : "bg-red-900/40 text-red-400 border-red-800")}>
                       {good ? "OK" : "High"}
@@ -1381,7 +1381,7 @@ function PortfolioPositioningTab() {
                   value={Math.min((value / (threshold * 2)) * 100, 100)}
                   className="h-1"
                 />
-                <div className="text-neutral-600 text-[10px] mt-0.5">{desc}</div>
+                <div className="text-neutral-600 text-xs mt-0.5">{desc}</div>
               </div>
             ))}
           </CardContent>
@@ -1416,7 +1416,7 @@ function PortfolioPositioningTab() {
                     <span className={cn("font-mono", em > 35 ? "text-amber-400" : "text-neutral-300")}>{em}%</span>
                   </div>
                 </div>
-                <Badge className={cn("text-[9px] flex-shrink-0",
+                <Badge className={cn("text-[11px] flex-shrink-0",
                   tariffRisk === "Very High" ? "bg-red-900/40 text-red-400 border-red-800"
                   : tariffRisk === "High" ? "bg-orange-900/40 text-orange-400 border-orange-800"
                   : tariffRisk === "Medium" ? "bg-amber-900/40 text-amber-400 border-amber-800"
@@ -1426,7 +1426,7 @@ function PortfolioPositioningTab() {
                 </Badge>
               </div>
             ))}
-            <div className="text-neutral-600 text-[10px] pt-1">
+            <div className="text-neutral-600 text-xs pt-1">
               CN = China revenue exposure. EM = total emerging market exposure. Tariff risk based on product mix and bilateral trade volumes.
             </div>
           </CardContent>

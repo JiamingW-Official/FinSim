@@ -657,7 +657,7 @@ function BusinessModelsTab() {
       extreme: "bg-violet-500/20 text-violet-400",
     };
     return (
-      <span className={cn("rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide", styles[level])}>
+      <span className={cn("rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide", styles[level])}>
         {level}
       </span>
     );
@@ -687,7 +687,7 @@ function BusinessModelsTab() {
             <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">{cat.description}</p>
             <div className="flex flex-wrap gap-1 mb-2">
               {cat.examples.map((ex) => (
-                <span key={ex} className="rounded bg-muted px-1.5 py-0.5 text-[9px] text-muted-foreground">{ex}</span>
+                <span key={ex} className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground">{ex}</span>
               ))}
             </div>
             <div className="flex items-center gap-2">
@@ -697,7 +697,7 @@ function BusinessModelsTab() {
                   style={{ width: `${(cat.fundingBn / 13) * 100}%` }}
                 />
               </div>
-              <span className="text-[10px] text-muted-foreground font-mono">${cat.fundingBn}B raised</span>
+              <span className="text-xs text-muted-foreground font-mono">${cat.fundingBn}B raised</span>
             </div>
           </motion.button>
         ))}
@@ -717,7 +717,7 @@ function BusinessModelsTab() {
             <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">{selectedCategory.description}</p>
             <div className="flex flex-wrap gap-2">
               {selectedCategory.examples.map((ex) => (
-                <span key={ex} className="rounded-full border border-primary/30 px-2.5 py-1 text-[10px] text-primary">{ex}</span>
+                <span key={ex} className="rounded-full border border-primary/30 px-2.5 py-1 text-xs text-primary">{ex}</span>
               ))}
             </div>
           </motion.div>
@@ -727,14 +727,14 @@ function BusinessModelsTab() {
       {/* Funding chart */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">Global InsurTech Funding 2018–2024 ($B)</h3>
-        <p className="text-[10px] text-muted-foreground mb-3">2021 ZIRP boom drove record $15.8B; normalization since</p>
+        <p className="text-xs text-muted-foreground mb-3">2021 ZIRP boom drove record $15.8B; normalization since</p>
         <FundingBarChart />
       </div>
 
       {/* Value chain disruption map */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">Insurance Value Chain — Disruption Map</h3>
-        <p className="text-[10px] text-muted-foreground mb-3">Purple = actively disrupted by InsurTech entrants</p>
+        <p className="text-xs text-muted-foreground mb-3">Purple = actively disrupted by InsurTech entrants</p>
         <ValueChainSVG />
       </div>
 
@@ -763,13 +763,13 @@ function BusinessModelsTab() {
                   </td>
                   <td className="py-1.5">
                     {row.winner === "challenger" && (
-                      <span className="text-[9px] rounded-full bg-emerald-500/20 text-emerald-400 px-2 py-0.5 font-semibold">Challenger</span>
+                      <span className="text-[11px] rounded-full bg-emerald-500/20 text-emerald-400 px-2 py-0.5 font-semibold">Challenger</span>
                     )}
                     {row.winner === "incumbent" && (
-                      <span className="text-[9px] rounded-full bg-blue-500/20 text-blue-400 px-2 py-0.5 font-semibold">Incumbent</span>
+                      <span className="text-[11px] rounded-full bg-blue-500/20 text-blue-400 px-2 py-0.5 font-semibold">Incumbent</span>
                     )}
                     {row.winner === "tie" && (
-                      <span className="text-[9px] rounded-full bg-slate-500/20 text-slate-400 px-2 py-0.5 font-semibold">Tie</span>
+                      <span className="text-[11px] rounded-full bg-slate-500/20 text-slate-400 px-2 py-0.5 font-semibold">Tie</span>
                     )}
                   </td>
                 </tr>
@@ -801,7 +801,7 @@ function ParametricTab() {
       {/* How it works */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">How Parametric Insurance Works</h3>
-        <p className="text-[10px] text-muted-foreground mb-4 leading-relaxed">
+        <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
           Payouts are based on a pre-agreed index or trigger (e.g., rainfall levels, wind speed, seismic magnitude)
           rather than actual losses. When the index crosses the trigger threshold, payment is made automatically.
           No claims adjuster. No loss verification. Settles in hours.
@@ -818,9 +818,9 @@ function ParametricTab() {
               <div className="flex items-center gap-2 mb-1.5">
                 <Zap className="h-3.5 w-3.5 text-amber-400 shrink-0" />
                 <span className="text-[11px] font-semibold text-foreground">{wt.peril}</span>
-                <span className="text-[10px] text-muted-foreground">— {wt.parameter}</span>
+                <span className="text-xs text-muted-foreground">— {wt.parameter}</span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-[10px]">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-xs">
                 <div>
                   <span className="text-muted-foreground">Trigger: </span>
                   <span className="text-amber-300">{wt.trigger}</span>
@@ -858,7 +858,7 @@ function ParametricTab() {
       {/* Agricultural parametric simulator */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">Agricultural Parametric Simulator — Drought Coverage</h3>
-        <p className="text-[10px] text-muted-foreground mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           Coverage: $500,000. Trigger: Drought Severity Index &gt; 40. Full payout at index &gt; 80.
         </p>
 
@@ -877,7 +877,7 @@ function ParametricTab() {
               onChange={(e) => setDroughtSeverity(Number(e.target.value))}
               className="w-full h-2 accent-primary cursor-pointer"
             />
-            <div className="flex justify-between text-[9px] text-muted-foreground mt-1">
+            <div className="flex justify-between text-[11px] text-muted-foreground mt-1">
               <span>0 — No drought</span>
               <span className="text-amber-400">40 — Trigger threshold</span>
               <span className="text-red-400">100 — Extreme drought</span>
@@ -890,7 +890,7 @@ function ParametricTab() {
               <span className="text-[11px] text-muted-foreground">Automatic Payout</span>
               <span
                 className={cn(
-                  "text-[9px] rounded-full px-2 py-0.5 font-semibold",
+                  "text-[11px] rounded-full px-2 py-0.5 font-semibold",
                   isTriggered ? "bg-emerald-500/20 text-emerald-400" : "bg-slate-500/20 text-slate-400",
                 )}
               >
@@ -913,12 +913,12 @@ function ParametricTab() {
               />
             </div>
             {!isTriggered && droughtSeverity > 0 && (
-              <p className="text-[10px] text-muted-foreground mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Trigger requires Drought Severity Index &ge; 40 (current: {droughtSeverity}). No payout until threshold crossed.
               </p>
             )}
             {isTriggered && (
-              <p className="text-[10px] text-emerald-400 mt-2">
+              <p className="text-xs text-emerald-400 mt-2">
                 Threshold exceeded. Settlement initiated automatically via smart contract. No claims process required.
               </p>
             )}
@@ -942,8 +942,8 @@ function ParametricTab() {
               {CAT_BOND_DATA.slice(-3).map((d) => (
                 <div key={d.year} className="text-center">
                   <div className="text-sm font-bold font-mono text-violet-300">${d.issuance.toFixed(1)}B</div>
-                  <div className="text-[9px] text-muted-foreground">issuance {d.year}</div>
-                  <div className="text-[10px] text-violet-400 font-mono">+{d.spread.toFixed(1)}% spread</div>
+                  <div className="text-[11px] text-muted-foreground">issuance {d.year}</div>
+                  <div className="text-xs text-violet-400 font-mono">+{d.spread.toFixed(1)}% spread</div>
                 </div>
               ))}
             </div>
@@ -976,7 +976,7 @@ function AIDataTab() {
       {/* ML inputs grid */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">ML Underwriting Model Inputs</h3>
-        <p className="text-[10px] text-muted-foreground mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           Lift = incremental accuracy improvement over baseline actuarial model. Click a card to expand.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
@@ -994,7 +994,7 @@ function AIDataTab() {
               <div className="flex items-center gap-2 mb-1.5">
                 {categoryIcon[inp.category]}
                 <span className="text-[11px] font-semibold">{inp.source}</span>
-                <span className="ml-auto text-[10px] font-mono font-bold">+{inp.liftPct}% lift</span>
+                <span className="ml-auto text-xs font-mono font-bold">+{inp.liftPct}% lift</span>
               </div>
               <div className="h-1 bg-current/10 rounded-full overflow-hidden">
                 <div
@@ -1008,7 +1008,7 @@ function AIDataTab() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="text-[10px] mt-2 leading-relaxed opacity-80 overflow-hidden"
+                    className="text-xs mt-2 leading-relaxed opacity-80 overflow-hidden"
                   >
                     {inp.features}
                   </motion.p>
@@ -1022,9 +1022,9 @@ function AIDataTab() {
       {/* Accuracy comparison */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">Underwriting Accuracy: ML vs. Traditional Actuarial</h3>
-        <p className="text-[10px] text-muted-foreground mb-3">Gini coefficient on holdout test set (%)</p>
+        <p className="text-xs text-muted-foreground mb-3">Gini coefficient on holdout test set (%)</p>
         <MLAccuracySVG />
-        <p className="text-[9px] text-muted-foreground mt-2">
+        <p className="text-[11px] text-muted-foreground mt-2">
           Deep learning models with telematics achieve ~91% accuracy vs. 68% for traditional GLMs.
           Gap narrows on sparse data segments (new drivers, rare perils).
         </p>
@@ -1033,7 +1033,7 @@ function AIDataTab() {
       {/* UBI pricing curve */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">Usage-Based Insurance (UBI) Pricing Curve</h3>
-        <p className="text-[10px] text-muted-foreground mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           UBI (pay-per-mile) vs. traditional flat-rate auto premium — low-mileage drivers save significantly
         </p>
         <UBIPricingCurveSVG />
@@ -1045,8 +1045,8 @@ function AIDataTab() {
             { label: "Very high (>18k mi)", saving: "28% premium", color: "text-red-400" },
           ].map((item) => (
             <div key={item.label} className="rounded-lg bg-muted/20 p-2.5 text-center">
-              <div className={cn("text-[10px] font-semibold", item.color)}>{item.saving}</div>
-              <div className="text-[9px] text-muted-foreground mt-0.5">{item.label}</div>
+              <div className={cn("text-xs font-semibold", item.color)}>{item.saving}</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5">{item.label}</div>
             </div>
           ))}
         </div>
@@ -1070,7 +1070,7 @@ function AIDataTab() {
                       style={{ width: `${(fm.traditional / maxVal) * 100}%` }}
                     />
                   </div>
-                  <span className="text-[10px] font-mono text-muted-foreground w-14 text-right">
+                  <span className="text-xs font-mono text-muted-foreground w-14 text-right">
                     {fm.unit === "$B" ? `$${fm.traditional}B` : fm.unit === "$" ? `$${fm.traditional.toLocaleString()}` : `${fm.traditional}${fm.unit}`}
                   </span>
                 </div>
@@ -1081,7 +1081,7 @@ function AIDataTab() {
                       style={{ width: `${(fm.ml / maxVal) * 100}%` }}
                     />
                   </div>
-                  <span className={cn("text-[10px] font-mono font-semibold w-14 text-right", mlWin ? "text-emerald-400" : "text-red-400")}>
+                  <span className={cn("text-xs font-mono font-semibold w-14 text-right", mlWin ? "text-emerald-400" : "text-red-400")}>
                     {fm.unit === "$B" ? `$${fm.ml}B` : fm.unit === "$" ? `$${fm.ml.toLocaleString()}` : `${fm.ml}${fm.unit}`}
                   </span>
                 </div>
@@ -1092,11 +1092,11 @@ function AIDataTab() {
         <div className="flex gap-4 mt-3">
           <div className="flex items-center gap-1.5">
             <div className="h-1.5 w-5 rounded-full bg-slate-500" />
-            <span className="text-[9px] text-muted-foreground">Traditional</span>
+            <span className="text-[11px] text-muted-foreground">Traditional</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="h-1.5 w-5 rounded-full bg-emerald-500" />
-            <span className="text-[9px] text-muted-foreground">ML Model</span>
+            <span className="text-[11px] text-muted-foreground">ML Model</span>
           </div>
         </div>
       </div>
@@ -1127,7 +1127,7 @@ function MarketDynamicsTab() {
       {/* Quarterly funding line chart */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">Global InsurTech Funding — Quarterly ($B)</h3>
-        <p className="text-[10px] text-muted-foreground mb-3">2020 Q1 through 2024 Q4 — from boom to reset</p>
+        <p className="text-xs text-muted-foreground mb-3">2020 Q1 through 2024 Q4 — from boom to reset</p>
         <QuarterlyFundingLineSVG />
         <div className="grid grid-cols-3 gap-3 mt-3">
           {[
@@ -1137,7 +1137,7 @@ function MarketDynamicsTab() {
           ].map((item) => (
             <div key={item.label} className="rounded-lg bg-muted/20 p-2.5 text-center">
               <div className={cn("text-sm font-bold font-mono", item.color)}>{item.value}</div>
-              <div className="text-[9px] text-muted-foreground mt-0.5">{item.label}</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5">{item.label}</div>
             </div>
           ))}
         </div>
@@ -1146,13 +1146,13 @@ function MarketDynamicsTab() {
       {/* Combined ratio */}
       <div className="rounded-xl border border-border bg-card p-4">
         <h3 className="text-xs font-semibold mb-1">Combined Ratio Improvement 2021 → 2023</h3>
-        <p className="text-[10px] text-muted-foreground mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Combined ratio &gt; 100 = underwriting loss. InsurTech carriers improving but still above break-even.
         </p>
         <CombinedRatioSVG />
         <div className="flex gap-2.5 mt-3 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
           <AlertTriangle className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />
-          <p className="text-[10px] text-amber-300/80 leading-relaxed">
+          <p className="text-xs text-amber-300/80 leading-relaxed">
             InsurTech carriers have improved rapidly (avg −22 pts) but remain above 100 in most cases.
             Traditional incumbents run closer to break-even due to decades of actuarial refinement.
             Path to profitability requires either scale (law of large numbers) or niche underwriting moats.
@@ -1166,15 +1166,15 @@ function MarketDynamicsTab() {
         <div className="space-y-2">
           {MA_ACTIVITY.map((deal) => (
             <div key={`${deal.acquirer}-${deal.target}`} className="flex items-center gap-3 rounded-lg bg-muted/10 border border-border/40 p-2.5">
-              <span className="text-[10px] text-muted-foreground font-mono shrink-0">{deal.year}</span>
+              <span className="text-xs text-muted-foreground font-mono shrink-0">{deal.year}</span>
               <div className="flex-1 min-w-0">
                 <span className="text-[11px] font-semibold text-foreground">{deal.acquirer}</span>
                 <span className="text-[11px] text-muted-foreground"> → </span>
                 <span className="text-[11px] text-primary">{deal.target}</span>
               </div>
-              <span className="text-[10px] font-mono text-emerald-400 shrink-0">{deal.value}</span>
+              <span className="text-xs font-mono text-emerald-400 shrink-0">{deal.value}</span>
               <span className={cn(
-                "text-[9px] rounded-full px-2 py-0.5 font-semibold shrink-0",
+                "text-[11px] rounded-full px-2 py-0.5 font-semibold shrink-0",
                 deal.type === "acquisition" ? "bg-blue-500/20 text-blue-400"
                   : deal.type === "investment" ? "bg-violet-500/20 text-violet-400"
                   : "bg-amber-500/20 text-amber-400",
@@ -1206,7 +1206,7 @@ function MarketDynamicsTab() {
               ].map((item) => (
                 <div key={item.label} className="rounded bg-blue-500/10 p-2 text-center">
                   <div className="text-sm font-bold font-mono text-blue-300">{item.value}</div>
-                  <div className="text-[9px] text-blue-400/70">{item.label}</div>
+                  <div className="text-[11px] text-blue-400/70">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -1219,28 +1219,28 @@ function MarketDynamicsTab() {
         <h3 className="text-xs font-semibold mb-3">Profitability Challenge — Path to Sustainability</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-2">
-            <h4 className="text-[10px] font-semibold text-red-400 uppercase tracking-wide">Loss Ratio Struggles</h4>
+            <h4 className="text-xs font-semibold text-red-400 uppercase tracking-wide">Loss Ratio Struggles</h4>
             {[
               "Adverse selection: early tech adopters are often better risks; as scale grows, pool quality regresses",
               "Reinsurance cost: new carriers pay 40–60% more for reinsurance than incumbents with track records",
               "CAT exposure mispricing: first-loss property books often underestimate tail risk",
               "Leaky unit economics: growth marketing at $200–400 CAC vs. $900 LTV creates negative contribution margin",
             ].map((point, i) => (
-              <div key={i} className="flex gap-2 text-[10px] text-muted-foreground">
+              <div key={i} className="flex gap-2 text-xs text-muted-foreground">
                 <TrendingDown className="h-3 w-3 text-red-400 shrink-0 mt-0.5" />
                 <span>{point}</span>
               </div>
             ))}
           </div>
           <div className="space-y-2">
-            <h4 className="text-[10px] font-semibold text-emerald-400 uppercase tracking-wide">Paths to Sustainability</h4>
+            <h4 className="text-xs font-semibold text-emerald-400 uppercase tracking-wide">Paths to Sustainability</h4>
             {[
               "Embedded insurance: near-zero distribution cost when bundled into existing platforms",
               "Data flywheel: more policies → better ML → lower loss ratio → competitive pricing moat",
               "Specialty/niche underwriting: cyber, parametric, gig economy risks legacy carriers avoid",
               "Capital markets access: ILS/cat bond programs reduce reinsurance dependency at scale",
             ].map((point, i) => (
-              <div key={i} className="flex gap-2 text-[10px] text-muted-foreground">
+              <div key={i} className="flex gap-2 text-xs text-muted-foreground">
                 <TrendingUp className="h-3 w-3 text-emerald-400 shrink-0 mt-0.5" />
                 <span>{point}</span>
               </div>
@@ -1261,7 +1261,7 @@ function MarketDynamicsTab() {
             <div className={cn("mb-2", item.color)}>{item.icon}</div>
             <div className={cn("text-xl font-bold font-mono tabular-nums", item.color)}>{item.value}</div>
             <div className="text-[11px] font-medium text-foreground mt-0.5">{item.label}</div>
-            <div className="text-[9px] text-muted-foreground">{item.sub}</div>
+            <div className="text-[11px] text-muted-foreground">{item.sub}</div>
           </div>
         ))}
       </div>
@@ -1296,10 +1296,10 @@ export default function InsurtechPage() {
           </p>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-[9px] rounded-full bg-violet-500/20 text-violet-400 px-2 py-0.5 font-semibold uppercase tracking-wide">
+          <span className="text-[11px] rounded-full bg-violet-500/20 text-violet-400 px-2 py-0.5 font-semibold uppercase tracking-wide">
             Sector Analysis
           </span>
-          <span className="text-[9px] rounded-full bg-blue-500/20 text-blue-400 px-2 py-0.5 font-semibold uppercase tracking-wide">
+          <span className="text-[11px] rounded-full bg-blue-500/20 text-blue-400 px-2 py-0.5 font-semibold uppercase tracking-wide">
             Interactive
           </span>
         </div>

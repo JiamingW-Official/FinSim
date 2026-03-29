@@ -302,7 +302,7 @@ function StatusBadge({ status }: { status: SpacStatus }) {
   };
   const Icon = icons[status];
   return (
-    <span className={cn("inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold", cfg)}>
+    <span className={cn("inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-semibold", cfg)}>
       <Icon className="h-2.5 w-2.5" />
       {status}
     </span>
@@ -318,7 +318,7 @@ function DeltaBadge({ delta }: { delta: number }) {
     delta >= 0.2 ? "bg-amber-500/20 text-amber-400 border-amber-500/30" :
     "bg-slate-500/20 text-slate-400 border-slate-500/30";
   return (
-    <span className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold tabular-nums", color)}>
+    <span className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold tabular-nums", color)}>
       Δ {delta.toFixed(2)}
     </span>
   );
@@ -355,21 +355,21 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
         </div>
         <div className="grid grid-cols-3 gap-2">
           <div className="text-center">
-            <p className="text-[10px] text-muted-foreground">Trust Value</p>
+            <p className="text-xs text-muted-foreground">Trust Value</p>
             <p className="text-sm font-bold text-green-400">${spac.trustValue.toFixed(2)}</p>
           </div>
           <div className="text-center">
-            <p className="text-[10px] text-muted-foreground">Current Price</p>
+            <p className="text-xs text-muted-foreground">Current Price</p>
             <p className="text-sm font-bold text-foreground">${spac.currentPrice.toFixed(2)}</p>
           </div>
           <div className="text-center">
-            <p className="text-[10px] text-muted-foreground">Downside</p>
+            <p className="text-xs text-muted-foreground">Downside</p>
             <p className={cn("text-sm font-bold", downside <= 0 ? "text-green-400" : "text-red-400")}>
               {downside <= 0 ? `$${Math.abs(downside).toFixed(2)}` : `-$${Math.abs(downside).toFixed(2)}`}
             </p>
           </div>
         </div>
-        <p className="mt-2 text-[10px] text-muted-foreground/70">
+        <p className="mt-2 text-xs text-muted-foreground/70">
           {downsidePct <= 0
             ? `Buying below trust value — ${Math.abs(downsidePct).toFixed(1)}% margin of safety`
             : `Trading ${downsidePct.toFixed(1)}% above trust — premium reflects deal upside`}
@@ -378,7 +378,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
 
       {/* Target description */}
       <div className="mb-3">
-        <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+        <p className="mb-1.5 text-xs font-semibold text-muted-foreground/60">
           Target
         </p>
         <p className="text-xs leading-relaxed text-foreground/80">
@@ -388,7 +388,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
 
       {/* Deal terms */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+        <p className="mb-1.5 text-xs font-semibold text-muted-foreground/60">
           Deal Terms
         </p>
         <p className="text-xs leading-relaxed text-foreground/80">{spac.dealTerms}</p>
@@ -396,7 +396,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
 
       {/* Warrant value */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+        <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
           Warrant Details
         </p>
         <div className="grid grid-cols-2 gap-2 text-xs">
@@ -421,7 +421,7 @@ function SpacDetailPanel({ spac, onClose }: { spac: SPAC; onClose: () => void })
 
       {/* Redemption option */}
       <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-3">
-        <p className="mb-1.5 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-blue-400">
+        <p className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-blue-400">
           <Shield className="h-3 w-3" /> Redemption Right
         </p>
         <p className="text-xs leading-relaxed text-foreground/70">
@@ -467,7 +467,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
             {inTheMoney ? "In-the-Money — Conversion favorable" : "Out-of-the-Money — Bond floor dominant"}
           </span>
         </div>
-        <p className="mt-1.5 text-[10px] text-muted-foreground/70">
+        <p className="mt-1.5 text-xs text-muted-foreground/70">
           Stock at ${bond.currentStockPrice.toFixed(2)} vs. conversion price ${bond.conversionPrice.toFixed(2)}
           ({bond.conversionPremium.toFixed(1)}% premium)
         </p>
@@ -475,7 +475,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
 
       {/* Term sheet */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+        <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
           Term Sheet
         </p>
         <div className="grid grid-cols-2 gap-2 text-xs">
@@ -510,7 +510,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
 
       {/* Provisions */}
       <div className="mb-3 rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+        <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
           Call / Put Provisions
         </p>
         <div className="space-y-2 text-xs">
@@ -527,7 +527,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
 
       {/* Delta gauge */}
       <div className="rounded-lg border border-border/50 bg-background/50 p-3">
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+        <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
           Conversion Delta (Equity Sensitivity)
         </p>
         <div className="mb-1.5 h-2 w-full rounded-full bg-slate-700">
@@ -536,12 +536,12 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
             style={{ width: `${bond.delta * 100}%` }}
           />
         </div>
-        <div className="flex justify-between text-[10px] text-muted-foreground">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span>0 (Pure Bond)</span>
           <span className="font-semibold text-blue-400">{bond.delta.toFixed(2)}</span>
           <span>1 (Equity-like)</span>
         </div>
-        <p className="mt-2 text-[10px] text-muted-foreground/70">
+        <p className="mt-2 text-xs text-muted-foreground/70">
           Delta {bond.delta.toFixed(2)} means the convertible moves ~${(bond.delta * 100).toFixed(0)} for every $100 move in the stock.
         </p>
       </div>
@@ -706,7 +706,7 @@ function SpacTrackerTab({ spacs }: { spacs: SPAC[] }) {
                 >
                   <td className="px-3 py-2.5">
                     <div className="font-medium text-foreground">{spac.name.split(" ").slice(0, 2).join(" ")}</div>
-                    <div className="text-[10px] text-muted-foreground">{spac.ticker}</div>
+                    <div className="text-xs text-muted-foreground">{spac.ticker}</div>
                   </td>
                   <td className="px-3 py-2.5">
                     {spac.target ? (
@@ -817,7 +817,7 @@ function SpacArbCalculatorTab() {
             { label: "Time to Deadline (months)", value: months, set: setMonths, step: "1" },
           ].map(({ label, value, set, step }) => (
             <div key={label}>
-              <label className="mb-1 block text-[10px] font-medium text-muted-foreground/70">{label}</label>
+              <label className="mb-1 block text-xs font-medium text-muted-foreground/70">{label}</label>
               <input
                 type="number"
                 value={value}
@@ -863,7 +863,7 @@ function SpacArbCalculatorTab() {
             <div key={label} className="rounded-md border border-border/40 bg-background/50 p-3">
               <div className="mb-1 flex items-center gap-1.5">
                 <Icon className="h-3 w-3 text-muted-foreground/60" />
-                <p className="text-[10px] text-muted-foreground/70">{label}</p>
+                <p className="text-xs text-muted-foreground/70">{label}</p>
               </div>
               <p className={cn("text-xl font-bold tabular-nums", color)}>{value}</p>
             </div>
@@ -874,14 +874,14 @@ function SpacArbCalculatorTab() {
       {/* Payoff diagram */}
       <div className="rounded-lg border border-border/50 bg-card/60 p-4">
         <h3 className="mb-3 text-sm font-semibold text-foreground">Payoff Diagram</h3>
-        <p className="mb-2 text-[10px] text-muted-foreground/70">
+        <p className="mb-2 text-xs text-muted-foreground/70">
           P&L per share vs. final stock price. Floor is guaranteed by trust redemption.
         </p>
         <ArbPayoffChart
           currentPrice={parseFloat(price) || 10.35}
           trustValue={parseFloat(trust) || 10.20}
         />
-        <div className="mt-2 flex gap-4 text-[10px] text-muted-foreground">
+        <div className="mt-2 flex gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded bg-green-500" /> Payoff</span>
           <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 border-t border-dashed border-blue-400" /> Trust Floor</span>
           <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 border-t border-dashed border-amber-400" /> Entry Price</span>
@@ -930,7 +930,7 @@ function ConvertibleBondsTab({ bonds }: { bonds: ConvertibleBond[] }) {
                   >
                     <td className="px-3 py-2.5">
                       <div className="font-medium text-foreground">{bond.issuer}</div>
-                      <div className="text-[10px] text-muted-foreground">{bond.ticker} · {bond.maturityYears}yr</div>
+                      <div className="text-xs text-muted-foreground">{bond.ticker} · {bond.maturityYears}yr</div>
                     </td>
                     <td className="px-3 py-2.5 text-right font-mono text-foreground">{bond.coupon.toFixed(2)}%</td>
                     <td className="px-3 py-2.5 text-right font-mono text-foreground">${bond.conversionPrice.toFixed(2)}</td>
@@ -970,7 +970,7 @@ function ConvertibleBondsTab({ bonds }: { bonds: ConvertibleBond[] }) {
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-4 border-t border-border/50 px-4 py-2 text-[10px] text-muted-foreground">
+        <div className="flex items-center gap-4 border-t border-border/50 px-4 py-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
             <TrendingUp className="h-3 w-3 text-green-400" /> In-the-money (stock &gt; conv. price)
           </span>
@@ -1072,7 +1072,7 @@ export default function SPACsPage() {
         <div className="flex items-center gap-2">
           <Zap className="h-5 w-5 text-primary" />
           <h1 className="text-lg font-semibold text-foreground">SPACs &amp; Convertible Bonds</h1>
-          <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+          <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
             Simulator
           </span>
         </div>

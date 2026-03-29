@@ -125,7 +125,7 @@ function MarketCard({
           <div className="mb-1 flex items-center gap-1.5 flex-wrap">
             <span
               className={cn(
-                "shrink-0 rounded px-1.5 py-0.5 text-[9px] uppercase tracking-wider font-medium",
+                "shrink-0 rounded px-1.5 py-0.5 text-[11px] font-medium",
                 ACTIVE_CATEGORY_COLORS[market.category],
               )}
             >
@@ -134,7 +134,7 @@ function MarketCard({
             {market.resolution !== "pending" && (
               <span
                 className={cn(
-                  "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase",
+                  "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
                   market.resolution === "yes"
                     ? "bg-green-500/10 text-green-400"
                     : "bg-red-500/10 text-red-400",
@@ -149,7 +149,7 @@ function MarketCard({
               </span>
             )}
             {position && (
-              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase text-primary">
+              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold uppercase text-primary">
                 {position.side.toUpperCase()} {position.shares}sh
               </span>
             )}
@@ -164,7 +164,7 @@ function MarketCard({
       <div className="flex items-center gap-3">
         {/* Yes price bar */}
         <div className="flex-1">
-          <div className="mb-1 flex justify-between text-[10px]">
+          <div className="mb-1 flex justify-between text-xs">
             <span className="text-green-400 font-semibold">
               YES {market.yesPrice}¢
             </span>
@@ -182,14 +182,14 @@ function MarketCard({
 
         {/* Trend + meta */}
         <div className="flex flex-col items-end gap-0.5 shrink-0">
-          <div className={cn("flex items-center gap-0.5 text-[10px] font-medium", trendColor)}>
+          <div className={cn("flex items-center gap-0.5 text-xs font-medium", trendColor)}>
             <TrendIcon className="h-3 w-3" />
             {market.trend}
           </div>
           {unrealizedPnl !== null && (
             <span
               className={cn(
-                "text-[9px] font-semibold",
+                "text-[11px] font-semibold",
                 unrealizedPnl >= 0 ? "text-green-400" : "text-red-400",
               )}
             >
@@ -200,7 +200,7 @@ function MarketCard({
         </div>
       </div>
 
-      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[10px] text-muted-foreground font-mono tabular-nums">
+      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-muted-foreground font-mono tabular-nums">
         <span className="flex items-center gap-0.5">
           <BarChart3 className="h-3 w-3" />
           {formatDollars(market.volume24h)} 24h
@@ -286,7 +286,7 @@ function MarketDetail({
         <div className="mb-2 flex items-center gap-2 flex-wrap">
           <span
             className={cn(
-              "rounded px-1.5 py-0.5 text-[9px] uppercase tracking-wider font-medium",
+              "rounded px-1.5 py-0.5 text-[11px] font-medium",
               ACTIVE_CATEGORY_COLORS[market.category],
             )}
           >
@@ -295,7 +295,7 @@ function MarketDetail({
           {market.resolution !== "pending" && (
             <span
               className={cn(
-                "flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase",
+                "flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
                 market.resolution === "yes"
                   ? "bg-green-500/10 text-green-400"
                   : "bg-red-500/10 text-red-400",
@@ -341,7 +341,7 @@ function MarketDetail({
         </div>
 
         {/* 7-day price history sparkline */}
-        <div className="mb-1 flex items-center justify-between text-[10px] text-muted-foreground">
+        <div className="mb-1 flex items-center justify-between text-xs text-muted-foreground">
           <span>7-day YES price history</span>
           <span className="font-mono tabular-nums">
             {market.priceHistory[0]}¢ → {market.priceHistory[6]}¢
@@ -363,7 +363,7 @@ function MarketDetail({
           },
         ].map(({ label, value }) => (
           <div key={label} className="rounded-lg border border-border bg-card px-3 py-2">
-            <div className="text-[9px] text-muted-foreground">{label}</div>
+            <div className="text-[11px] text-muted-foreground">{label}</div>
             <div className="font-mono tabular-nums text-sm font-semibold text-foreground">
               {value}
             </div>
@@ -386,7 +386,7 @@ function MarketDetail({
 
           {/* Shares input */}
           <div className="mb-3">
-            <div className="mb-1 flex items-center justify-between text-[10px] text-muted-foreground">
+            <div className="mb-1 flex items-center justify-between text-xs text-muted-foreground">
               <span>Shares</span>
               <span className="font-medium text-foreground">{orderShares}</span>
             </div>
@@ -399,7 +399,7 @@ function MarketDetail({
               onChange={(e) => setOrderShares(Number(e.target.value))}
               className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-muted accent-primary"
             />
-            <div className="mt-0.5 flex justify-between text-[9px] text-muted-foreground">
+            <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground">
               <span>1</span>
               <span>{Math.min(200, maxShares)}</span>
             </div>
@@ -408,19 +408,19 @@ function MarketDetail({
           {/* Cost breakdown */}
           <div className="mb-3 grid grid-cols-3 gap-2">
             <div className="rounded bg-muted/50 px-2 py-1.5 text-center">
-              <div className="text-[9px] text-muted-foreground">Cost</div>
+              <div className="text-[11px] text-muted-foreground">Cost</div>
               <div className="text-xs font-semibold text-foreground">
                 ${totalCost.toFixed(2)}
               </div>
             </div>
             <div className="rounded bg-muted/50 px-2 py-1.5 text-center">
-              <div className="text-[9px] text-muted-foreground">Shares</div>
+              <div className="text-[11px] text-muted-foreground">Shares</div>
               <div className="text-xs font-semibold text-foreground">
                 {orderShares}
               </div>
             </div>
             <div className="rounded bg-muted/50 px-2 py-1.5 text-center">
-              <div className="text-[9px] text-muted-foreground">If correct</div>
+              <div className="text-[11px] text-muted-foreground">If correct</div>
               <div
                 className={cn(
                   "text-xs font-semibold",
@@ -433,7 +433,7 @@ function MarketDetail({
           </div>
 
           {!canBuy && balance < totalCost && (
-            <div className="mb-2 flex items-center gap-1 rounded bg-red-500/10 px-2 py-1.5 text-[10px] text-red-400">
+            <div className="mb-2 flex items-center gap-1 rounded bg-red-500/10 px-2 py-1.5 text-xs text-red-400">
               <AlertCircle className="h-3 w-3 shrink-0" />
               Insufficient balance. Need ${totalCost.toFixed(2)}, have ${balance.toFixed(2)}.
             </div>
@@ -452,7 +452,7 @@ function MarketDetail({
       {/* Existing position panel */}
       {position && (
         <div className="mb-4 rounded-lg border border-border bg-muted/20 p-4">
-          <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="mb-2 text-[11px] font-semibold text-muted-foreground">
             Your Position
           </div>
           <div className="grid grid-cols-2 gap-2 mb-3">
@@ -483,7 +483,7 @@ function MarketDetail({
               },
             ].map(({ label, value, color }) => (
               <div key={label} className="rounded bg-muted/40 px-2 py-1.5">
-                <div className="text-[9px] text-muted-foreground">{label}</div>
+                <div className="text-[11px] text-muted-foreground">{label}</div>
                 <div
                   className={cn(
                     "font-mono tabular-nums text-xs font-semibold",
@@ -575,10 +575,10 @@ function PositionsList({
                 {pnl >= 0 ? "+" : ""}${pnl.toFixed(2)}
               </span>
             </div>
-            <div className="flex items-center gap-3 text-[10px] text-muted-foreground font-mono tabular-nums">
+            <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono tabular-nums">
               <span
                 className={cn(
-                  "rounded px-1 py-0.5 text-[9px] font-semibold uppercase",
+                  "rounded px-1 py-0.5 text-[11px] font-semibold uppercase",
                   pos.side === "yes"
                     ? "bg-green-500/10 text-green-400"
                     : "bg-red-500/10 text-red-400",
@@ -592,7 +592,7 @@ function PositionsList({
               {market.resolution !== "pending" && (
                 <span
                   className={cn(
-                    "rounded px-1 py-0.5 text-[9px] font-semibold uppercase",
+                    "rounded px-1 py-0.5 text-[11px] font-semibold uppercase",
                     market.resolution === "yes"
                       ? "bg-green-500/10 text-green-400"
                       : "bg-red-500/10 text-red-400",
@@ -751,7 +751,7 @@ export function LiveMarkets() {
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-1.5 rounded-md bg-muted/50 px-2.5 py-1.5">
             <Wallet className="h-3.5 w-3.5 text-muted-foreground" />
-            <span className="text-[10px] text-muted-foreground">Balance</span>
+            <span className="text-xs text-muted-foreground">Balance</span>
             <span className="font-mono tabular-nums text-xs font-semibold text-foreground">
               ${balance.toFixed(2)}
             </span>
@@ -759,13 +759,13 @@ export function LiveMarkets() {
           {positions.size > 0 && (
             <>
               <div className="flex items-center gap-1.5 rounded-md bg-muted/50 px-2.5 py-1.5">
-                <span className="text-[10px] text-muted-foreground">Invested</span>
+                <span className="text-xs text-muted-foreground">Invested</span>
                 <span className="font-mono tabular-nums text-xs font-semibold text-foreground">
                   ${portfolioStats.invested.toFixed(2)}
                 </span>
               </div>
               <div className="flex items-center gap-1.5 rounded-md bg-muted/50 px-2.5 py-1.5">
-                <span className="text-[10px] text-muted-foreground">P&L</span>
+                <span className="text-xs text-muted-foreground">P&L</span>
                 <span
                   className={cn(
                     "font-mono tabular-nums text-xs font-semibold",
@@ -793,7 +793,7 @@ export function LiveMarkets() {
               >
                 {tab}
                 {tab === "positions" && positions.size > 0 && (
-                  <span className="ml-1 rounded-full bg-primary/20 px-1 text-[9px] font-bold text-primary">
+                  <span className="ml-1 rounded-full bg-primary/20 px-1 text-[11px] font-bold text-primary">
                     {positions.size}
                   </span>
                 )}
@@ -852,7 +852,7 @@ export function LiveMarkets() {
 
         {activeTab === "positions" && (
           <div>
-            <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <h2 className="mb-3 text-xs font-semibold text-muted-foreground">
               My Positions ({positions.size})
             </h2>
             <PositionsList

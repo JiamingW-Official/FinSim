@@ -781,7 +781,7 @@ export default function ScreenerPage() {
         <TabsList className="mx-6 mt-3 mb-0 shrink-0 w-fit h-8">
           <TabsTrigger value="builder" className="text-xs px-3">Screen Builder</TabsTrigger>
           <TabsTrigger value="results" className="text-xs px-3">
-            Results {hasRun && <span className="ml-1.5 rounded-full bg-primary/20 px-1.5 py-0.5 text-[9px] font-semibold text-primary">{filteredStocks.length}</span>}
+            Results {hasRun && <span className="ml-1.5 rounded-full bg-primary/20 px-1.5 py-0.5 text-[11px] font-semibold text-primary">{filteredStocks.length}</span>}
           </TabsTrigger>
           <TabsTrigger value="ai" className="text-xs px-3">AI Recommendations</TabsTrigger>
           <TabsTrigger value="saved" className="text-xs px-3">Saved Screens</TabsTrigger>
@@ -928,7 +928,7 @@ export default function ScreenerPage() {
                       >
                         <Plus className="h-3 w-3 shrink-0 text-primary/60" />
                         {f.label}
-                        <span className="ml-auto text-[10px] text-muted-foreground/50">
+                        <span className="ml-auto text-xs text-muted-foreground/50">
                           {f.operator === "between" ? `${f.value}–${f.value2}` : `${f.operator}${f.value}`}
                         </span>
                       </button>
@@ -1156,7 +1156,7 @@ export default function ScreenerPage() {
                         <div className="flex items-center gap-2">
                           <span className="font-mono font-bold text-primary text-base">{pick.ticker}</span>
                           <span className={cn(
-                            "rounded-full px-2 py-0.5 text-[10px] font-semibold",
+                            "rounded-full px-2 py-0.5 text-xs font-semibold",
                             pick.category === "Value" ? "bg-blue-500/10 text-blue-400" :
                             pick.category === "Growth" ? "bg-emerald-500/10 text-emerald-400" :
                             pick.category === "Income" ? "bg-amber-500/10 text-amber-400" :
@@ -1167,7 +1167,7 @@ export default function ScreenerPage() {
                           </span>
                         </div>
                         <p className="text-xs text-muted-foreground">{pick.company}</p>
-                        <p className="text-[10px] text-muted-foreground/60">{pick.sector}</p>
+                        <p className="text-xs text-muted-foreground/60">{pick.sector}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-base font-semibold">${pick.price.toFixed(2)}</p>
@@ -1180,8 +1180,8 @@ export default function ScreenerPage() {
                     {/* Confidence bar */}
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-[10px] text-muted-foreground">AI Confidence</span>
-                        <span className="text-[10px] font-semibold text-emerald-400">{pick.confidence}%</span>
+                        <span className="text-xs text-muted-foreground">AI Confidence</span>
+                        <span className="text-xs font-semibold text-emerald-400">{pick.confidence}%</span>
                       </div>
                       <div className="h-1.5 rounded-full bg-muted overflow-hidden">
                         <div className="h-full rounded-full bg-emerald-400" style={{ width: `${pick.confidence}%` }} />
@@ -1190,18 +1190,18 @@ export default function ScreenerPage() {
 
                     <div className="space-y-2">
                       <div className="rounded-md bg-muted/30 p-2.5">
-                        <p className="text-[10px] font-medium text-muted-foreground mb-1">Why this stock</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">Why this stock</p>
                         <p className="text-xs leading-relaxed">{pick.rationale}</p>
                       </div>
                       <div className="rounded-md bg-red-500/5 border border-red-500/10 p-2.5">
-                        <p className="text-[10px] font-medium text-red-400 mb-1">Risk factors</p>
+                        <p className="text-xs font-medium text-red-400 mb-1">Risk factors</p>
                         <p className="text-xs text-muted-foreground leading-relaxed">{pick.riskFactors}</p>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between pt-1">
                       <span className={cn("text-xs font-semibold", scoreColor(pick.score))}>Score {pick.score}/100</span>
-                      <button type="button" className="flex items-center gap-1 text-[10px] text-primary hover:underline">
+                      <button type="button" className="flex items-center gap-1 text-xs text-primary hover:underline">
                         <Star className="h-3 w-3" />
                         Watchlist
                       </button>
@@ -1271,19 +1271,19 @@ export default function ScreenerPage() {
                   <div key={s.ticker} className="rounded-xl border border-border bg-card p-3 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="font-mono font-bold text-primary">{s.ticker}</span>
-                      <span className="text-[10px] rounded-full bg-primary/10 text-primary px-2 py-0.5 font-semibold">{marketCapLabel(s.marketCapB)}</span>
+                      <span className="text-xs rounded-full bg-primary/10 text-primary px-2 py-0.5 font-semibold">{marketCapLabel(s.marketCapB)}</span>
                     </div>
-                    <p className="text-[10px] text-muted-foreground truncate">{s.company}</p>
+                    <p className="text-xs text-muted-foreground truncate">{s.company}</p>
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[10px]">
+                      <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Score</span>
                         <span className={cn("font-semibold", scoreColor(s.score))}>{s.score}</span>
                       </div>
-                      <div className="flex justify-between text-[10px]">
+                      <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Rev Grw</span>
                         <span className="text-emerald-400">+{s.revenueGrowth}%</span>
                       </div>
-                      <div className="flex justify-between text-[10px]">
+                      <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Mkt Cap</span>
                         <span>{formatMarketCap(s.marketCapB)}</span>
                       </div>
@@ -1305,19 +1305,19 @@ export default function ScreenerPage() {
                   <div key={s.ticker} className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="font-mono font-bold text-amber-400">{s.ticker}</span>
-                      <span className="text-[10px] text-amber-400/70">Insider +</span>
+                      <span className="text-xs text-amber-400/70">Insider +</span>
                     </div>
-                    <p className="text-[10px] text-muted-foreground truncate">{s.company}</p>
+                    <p className="text-xs text-muted-foreground truncate">{s.company}</p>
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[10px]">
+                      <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">RSI</span>
                         <span className="text-emerald-400">{s.rsi}</span>
                       </div>
-                      <div className="flex justify-between text-[10px]">
+                      <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">1M Ret</span>
                         <span className="text-red-400">{s.return1M}%</span>
                       </div>
-                      <div className="flex justify-between text-[10px]">
+                      <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Score</span>
                         <span className={cn("font-semibold", scoreColor(s.score))}>{s.score}</span>
                       </div>
@@ -1347,7 +1347,7 @@ export default function ScreenerPage() {
                       <div className="flex items-start justify-between">
                         <div>
                           <p className="font-medium text-sm">{screen.name}</p>
-                          <p className="text-[10px] text-muted-foreground mt-0.5">
+                          <p className="text-xs text-muted-foreground mt-0.5">
                             {screen.criteria.length} criteri{screen.criteria.length !== 1 ? "a" : "on"} · Last run {screen.lastRun}
                           </p>
                         </div>
@@ -1357,12 +1357,12 @@ export default function ScreenerPage() {
                       </div>
                       <div className="flex flex-wrap gap-1.5">
                         {screen.criteria.slice(0, 3).map((c) => (
-                          <span key={c.id} className="rounded-full bg-muted/40 px-2 py-0.5 text-[10px] text-muted-foreground">
+                          <span key={c.id} className="rounded-full bg-muted/40 px-2 py-0.5 text-xs text-muted-foreground">
                             {c.label}
                           </span>
                         ))}
                         {screen.criteria.length > 3 && (
-                          <span className="rounded-full bg-muted/40 px-2 py-0.5 text-[10px] text-muted-foreground">
+                          <span className="rounded-full bg-muted/40 px-2 py-0.5 text-xs text-muted-foreground">
                             +{screen.criteria.length - 3} more
                           </span>
                         )}
@@ -1484,7 +1484,7 @@ export default function ScreenerPage() {
                   return (
                     <div key={screen.id} className="rounded-xl border border-border bg-card p-4">
                       <p className="text-xs font-medium mb-1">{screen.name}</p>
-                      <p className="text-[10px] text-muted-foreground mb-3">Top 5 from last month's run</p>
+                      <p className="text-xs text-muted-foreground mb-3">Top 5 from last month's run</p>
                       <div className="flex items-end gap-2">
                         <span className={cn("text-2xl font-bold", isPos ? "text-emerald-400" : "text-red-400")}>
                           {isPos ? "+" : ""}{ret}%
@@ -1495,7 +1495,7 @@ export default function ScreenerPage() {
                           <TrendingDown className="h-4 w-4 text-red-400 mb-1" />
                         )}
                       </div>
-                      <p className="text-[10px] text-muted-foreground mt-1">vs S&P 500 +3.2% same period</p>
+                      <p className="text-xs text-muted-foreground mt-1">vs S&P 500 +3.2% same period</p>
                     </div>
                   );
                 })}
@@ -1518,13 +1518,13 @@ export default function ScreenerPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
                         <p className="text-xs font-medium">{cs.name}</p>
-                        <span className="text-[10px] text-muted-foreground/60">by {cs.author}</span>
+                        <span className="text-xs text-muted-foreground/60">by {cs.author}</span>
                       </div>
-                      <p className="text-[10px] text-muted-foreground truncate">{cs.description}</p>
+                      <p className="text-xs text-muted-foreground truncate">{cs.description}</p>
                     </div>
                     <div className="text-right shrink-0">
                       <p className="text-xs font-medium">{cs.resultCount} stocks</p>
-                      <p className="text-[10px] text-muted-foreground">{cs.runs.toLocaleString()} runs</p>
+                      <p className="text-xs text-muted-foreground">{cs.runs.toLocaleString()} runs</p>
                     </div>
                     <button
                       type="button"

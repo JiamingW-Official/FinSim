@@ -373,7 +373,7 @@ const DISCUSSION_DATA = generateDiscussionThreads();
 // ─── Mini Components ──────────────────────────────────────────────────────────
 
 function Avatar({ initials, color, size = "md" }: { initials: string; color: string; size?: "sm" | "md" | "lg" }) {
-  const sizeClass = size === "sm" ? "h-7 w-7 text-[10px]" : size === "lg" ? "h-11 w-11 text-sm" : "h-9 w-9 text-xs";
+  const sizeClass = size === "sm" ? "h-7 w-7 text-xs" : size === "lg" ? "h-11 w-11 text-sm" : "h-9 w-9 text-xs";
   return (
     <div className={cn("shrink-0 rounded-full flex items-center justify-center font-bold text-white", color, sizeClass)}>
       {initials}
@@ -388,7 +388,7 @@ function BadgePill({ tier }: { tier: BadgeTier }) {
     ? "bg-slate-400/15 text-slate-300 border-slate-400/30"
     : "bg-amber-700/15 text-amber-600 border-amber-700/30";
   return (
-    <span className={cn("inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border text-[9px] font-bold uppercase", cls)}>
+    <span className={cn("inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border text-[11px] font-bold uppercase", cls)}>
       <Star className="h-2.5 w-2.5 fill-current" />
       {tier}
     </span>
@@ -403,7 +403,7 @@ function RiskBadge({ level }: { level: RiskLevel }) {
     : level === "High"
     ? "bg-orange-500/15 text-orange-400"
     : "bg-rose-500/15 text-rose-400";
-  return <span className={cn("text-[9px] font-semibold px-1.5 py-0.5 rounded", cls)}>{level}</span>;
+  return <span className={cn("text-[11px] font-semibold px-1.5 py-0.5 rounded", cls)}>{level}</span>;
 }
 
 function RankIcon({ rank }: { rank: number }) {
@@ -514,7 +514,7 @@ function StrategyCard({ strategy, followed, copied, onFollow, onCopy }: {
         </div>
         <div className="flex flex-col items-end gap-1 shrink-0">
           <RiskBadge level={strategy.risk} />
-          <span className="text-[9px] text-muted-foreground px-1.5 py-0.5 rounded bg-muted/50">
+          <span className="text-[11px] text-muted-foreground px-1.5 py-0.5 rounded bg-muted/50">
             {strategy.type}
           </span>
         </div>
@@ -523,15 +523,15 @@ function StrategyCard({ strategy, followed, copied, onFollow, onCopy }: {
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-2 text-center">
         <div>
-          <p className="text-[10px] text-muted-foreground/70">YTD Return</p>
+          <p className="text-xs text-muted-foreground/70">YTD Return</p>
           <ReturnBadge value={strategy.returnYTD} />
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground/70">Sharpe</p>
+          <p className="text-xs text-muted-foreground/70">Sharpe</p>
           <p className="text-sm font-semibold tabular-nums">{strategy.sharpe}</p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground/70">Max DD</p>
+          <p className="text-xs text-muted-foreground/70">Max DD</p>
           <p className="text-sm font-semibold tabular-nums text-rose-400">{strategy.maxDrawdown}%</p>
         </div>
       </div>
@@ -540,11 +540,11 @@ function StrategyCard({ strategy, followed, copied, onFollow, onCopy }: {
       <div className="flex items-center justify-between">
         <EquityCurveSVG data={strategy.equityCurve} />
         <div className="text-right space-y-0.5">
-          <div className="flex items-center gap-1 text-[10px] text-muted-foreground justify-end">
+          <div className="flex items-center gap-1 text-xs text-muted-foreground justify-end">
             <Users className="h-3 w-3" />
             <span>{strategy.followers.toLocaleString()} followers</span>
           </div>
-          <div className="flex items-center gap-1 text-[10px] text-muted-foreground justify-end">
+          <div className="flex items-center gap-1 text-xs text-muted-foreground justify-end">
             <Copy className="h-3 w-3" />
             <span>{strategy.copiers.toLocaleString()} copiers</span>
           </div>
@@ -696,7 +696,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
               <span className="text-xs font-semibold">{idea.author}</span>
               <BadgePill tier={idea.badge} />
             </div>
-            <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <span>{idea.accuracyRate}% accuracy</span>
               <span>•</span>
               <span>{idea.hoursAgo}h ago</span>
@@ -718,33 +718,33 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
       <div className="flex items-center gap-4">
         <div>
           <p className="text-base font-bold">{idea.ticker}</p>
-          <p className="text-[10px] text-muted-foreground">{idea.company}</p>
+          <p className="text-xs text-muted-foreground">{idea.company}</p>
         </div>
         <div className="flex-1 grid grid-cols-3 gap-2">
           <div className="text-center">
-            <p className="text-[9px] text-muted-foreground/70 uppercase">Entry</p>
+            <p className="text-[11px] text-muted-foreground/70 uppercase">Entry</p>
             <p className="text-xs font-semibold tabular-nums">${idea.entry}</p>
           </div>
           <div className="text-center">
-            <p className="text-[9px] text-muted-foreground/70 uppercase">Stop</p>
+            <p className="text-[11px] text-muted-foreground/70 uppercase">Stop</p>
             <p className="text-xs font-semibold tabular-nums text-rose-400">${idea.stop}</p>
           </div>
           <div className="text-center">
-            <p className="text-[9px] text-muted-foreground/70 uppercase">Target</p>
+            <p className="text-[11px] text-muted-foreground/70 uppercase">Target</p>
             <p className="text-xs font-semibold tabular-nums text-emerald-400">${idea.target}</p>
           </div>
         </div>
         <div className="text-right shrink-0">
-          <p className="text-[9px] text-muted-foreground/70">R:R</p>
+          <p className="text-[11px] text-muted-foreground/70">R:R</p>
           <p className="text-xs font-bold text-amber-400">{rr.toFixed(1)}:1</p>
         </div>
       </div>
 
       {/* Tags */}
       <div className="flex items-center gap-1.5 flex-wrap">
-        <span className="text-[9px] px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground">{idea.sector}</span>
+        <span className="text-[11px] px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground">{idea.sector}</span>
         <span className={cn(
-          "text-[9px] px-1.5 py-0.5 rounded font-semibold",
+          "text-[11px] px-1.5 py-0.5 rounded font-semibold",
           idea.conviction === "High" ? "bg-emerald-500/15 text-emerald-400"
           : idea.conviction === "Medium" ? "bg-amber-500/15 text-amber-400"
           : "bg-muted/60 text-muted-foreground",
@@ -760,7 +760,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
         </p>
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-0.5 text-[10px] text-primary/70 hover:text-primary mt-0.5 transition-colors"
+          className="flex items-center gap-0.5 text-xs text-primary/70 hover:text-primary mt-0.5 transition-colors"
         >
           {expanded ? <><ChevronUp className="h-3 w-3" /> Less</> : <><ChevronDown className="h-3 w-3" /> Read more</>}
         </button>
@@ -782,7 +782,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
           <button
             onClick={() => onAgree(idea.id)}
             className={cn(
-              "flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium border transition-colors",
+              "flex items-center gap-1 px-2 py-1 rounded text-xs font-medium border transition-colors",
               agreed
                 ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
                 : "border-border/50 text-muted-foreground hover:border-emerald-500/40 hover:text-emerald-400",
@@ -794,7 +794,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
           <button
             onClick={() => onDisagree(idea.id)}
             className={cn(
-              "flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium border transition-colors",
+              "flex items-center gap-1 px-2 py-1 rounded text-xs font-medium border transition-colors",
               disagreed
                 ? "border-rose-500/40 bg-rose-500/10 text-rose-400"
                 : "border-border/50 text-muted-foreground hover:border-rose-500/40 hover:text-rose-400",
@@ -965,15 +965,15 @@ function LeaderboardRankingsSection() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/40 bg-muted/20">
-                <th className="text-left px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider w-8">Rank</th>
-                <th className="text-left px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider">Trader</th>
-                <th className="text-right px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider">Return</th>
-                <th className="text-right px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider">Sharpe</th>
-                <th className="text-right px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider">Max DD</th>
-                <th className="text-right px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider">Trades</th>
-                <th className="text-right px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider">Win%</th>
-                <th className="text-left px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider">Style</th>
-                <th className="text-right px-3 py-2.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider"></th>
+                <th className="text-left px-3 py-2.5 text-xs font-semibold text-muted-foreground/70 w-8">Rank</th>
+                <th className="text-left px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Trader</th>
+                <th className="text-right px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Return</th>
+                <th className="text-right px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Sharpe</th>
+                <th className="text-right px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Max DD</th>
+                <th className="text-right px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Trades</th>
+                <th className="text-right px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Win%</th>
+                <th className="text-left px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Style</th>
+                <th className="text-right px-3 py-2.5 text-xs font-semibold text-muted-foreground/70"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/30">
@@ -994,7 +994,7 @@ function LeaderboardRankingsSection() {
                     <div className="flex items-center gap-2">
                       <Avatar initials={entry.initials} color={entry.color} size="sm" />
                       <span className={cn("font-medium", entry.isYou && "text-primary")}>
-                        {entry.username} {entry.isYou && <span className="text-[9px] text-primary/70">(you)</span>}
+                        {entry.username} {entry.isYou && <span className="text-[11px] text-primary/70">(you)</span>}
                       </span>
                     </div>
                   </td>
@@ -1006,11 +1006,11 @@ function LeaderboardRankingsSection() {
                   <td className="px-3 py-2 text-right text-muted-foreground">{entry.trades}</td>
                   <td className="px-3 py-2 text-right text-muted-foreground">{entry.winRate}%</td>
                   <td className="px-3 py-2">
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground">{entry.style}</span>
+                    <span className="text-[11px] px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground">{entry.style}</span>
                   </td>
                   <td className="px-3 py-2 text-right">
                     {!entry.isYou && (
-                      <button className="text-[10px] px-2 py-0.5 rounded border border-border/50 text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors">
+                      <button className="text-xs px-2 py-0.5 rounded border border-border/50 text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors">
                         Challenge
                       </button>
                     )}
@@ -1038,7 +1038,7 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
           <Avatar initials={trader.initials} color={trader.color} size="md" />
           <div>
             <p className="text-sm font-semibold">{trader.username}</p>
-            <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <span>β {trader.beta}</span>
               <span>•</span>
               <span>Conc. {trader.concentration}%</span>
@@ -1069,13 +1069,13 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
 
         {/* Positions table */}
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] font-semibold text-muted-foreground/70 uppercase mb-1">Top Positions</p>
+          <p className="text-xs font-semibold text-muted-foreground/70 uppercase mb-1">Top Positions</p>
           <div className="space-y-1">
             {trader.positions.map((p) => (
               <div key={p.ticker} className="flex items-center justify-between text-[11px]">
                 <span className="font-mono font-semibold w-12">{p.ticker}</span>
                 <span className="text-muted-foreground">{p.weight}%</span>
-                <span className="text-muted-foreground text-[10px]">${p.costBasis}</span>
+                <span className="text-muted-foreground text-xs">${p.costBasis}</span>
                 <span className={cn("font-semibold", p.currentPnlPct >= 0 ? "text-emerald-400" : "text-rose-400")}>
                   {p.currentPnlPct >= 0 ? "+" : ""}{p.currentPnlPct}%
                 </span>
@@ -1087,13 +1087,13 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
 
       {/* Recent trades */}
       <div>
-        <p className="text-[10px] font-semibold text-muted-foreground/70 uppercase mb-1.5">Recent Trades</p>
+        <p className="text-xs font-semibold text-muted-foreground/70 uppercase mb-1.5">Recent Trades</p>
         <div className="flex items-center gap-2 flex-wrap">
           {trader.recentTrades.map((t, i) => (
             <div
               key={i}
               className={cn(
-                "flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-medium",
+                "flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium",
                 t.action === "Buy" ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400",
               )}
             >
@@ -1144,7 +1144,7 @@ function MessageBubble({ msg, reactions, onReact }: {
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-2 mb-0.5">
           <span className="text-xs font-semibold">{msg.author}</span>
-          <span className="text-[10px] text-muted-foreground">{msg.minutesAgo}m ago</span>
+          <span className="text-xs text-muted-foreground">{msg.minutesAgo}m ago</span>
         </div>
         <p className="text-[11px] text-muted-foreground/90 leading-relaxed mb-1.5">{msg.content}</p>
         <div className="flex items-center gap-1 flex-wrap">
@@ -1152,7 +1152,7 @@ function MessageBubble({ msg, reactions, onReact }: {
             <button
               key={type}
               onClick={() => onReact(type)}
-              className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-muted/50 hover:bg-muted text-[10px] transition-colors"
+              className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-muted/50 hover:bg-muted text-xs transition-colors"
             >
               <span>{REACTION_ICONS[type]}</span>
               <span className="text-muted-foreground">{reactions[type]}</span>
@@ -1213,16 +1213,16 @@ function DiscussionSection() {
       <div className="bg-card border border-border/50 rounded-xl p-4">
         <div className="flex items-center gap-2 mb-3">
           <Flame className="h-4 w-4 text-orange-400" />
-          <h3 className="text-xs font-semibold text-muted-foreground/80 uppercase tracking-wider">Today&apos;s Hot Mentions</h3>
+          <h3 className="text-xs font-semibold text-muted-foreground/80">Today&apos;s Hot Mentions</h3>
         </div>
         <div className="flex items-center gap-3">
           {topMentions.map(([ticker, count], i) => (
             <div key={ticker} className="flex items-center gap-2 bg-muted/50 rounded-lg px-3 py-2">
-              <span className={cn("text-[10px] font-bold", i === 0 ? "text-amber-400" : i === 1 ? "text-slate-300" : "text-amber-600")}>
+              <span className={cn("text-xs font-bold", i === 0 ? "text-amber-400" : i === 1 ? "text-slate-300" : "text-amber-600")}>
                 #{i + 1}
               </span>
               <span className="text-sm font-bold">{ticker}</span>
-              <span className="text-[10px] text-muted-foreground">{count} mentions</span>
+              <span className="text-xs text-muted-foreground">{count} mentions</span>
             </div>
           ))}
         </div>
@@ -1243,7 +1243,7 @@ function DiscussionSection() {
           >
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium">{t.topic}</p>
-              <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <MessageSquare className="h-3.5 w-3.5" />
                 <span>{t.messages.length} replies</span>
                 {t.mentions.length > 0 && (

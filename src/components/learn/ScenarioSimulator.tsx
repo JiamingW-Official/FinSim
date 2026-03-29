@@ -218,7 +218,7 @@ export function ScenarioSimulator() {
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold">{s.name}</span>
                 </div>
-                <p className="text-[10px] text-muted-foreground mt-0.5 line-clamp-2">{s.description}</p>
+                <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{s.description}</p>
               </div>
               <ChevronRight className="h-4 w-4 text-muted-foreground/40 shrink-0" />
             </motion.button>
@@ -238,7 +238,7 @@ export function ScenarioSimulator() {
         </div>
         <button
           onClick={() => setSelectedScenario(null)}
-          className="text-[10px] text-muted-foreground hover:text-foreground"
+          className="text-xs text-muted-foreground hover:text-foreground"
         >
           Change Scenario
         </button>
@@ -247,16 +247,16 @@ export function ScenarioSimulator() {
       {/* Portfolio value */}
       <div className="flex items-center gap-4">
         <div>
-          <div className="text-[10px] text-muted-foreground">Portfolio Value</div>
-          <div className="text-lg font-black tabular-nums">{formatCurrency(currentValue)}</div>
+          <div className="text-xs text-muted-foreground">Portfolio Value</div>
+          <div className="text-lg font-bold tabular-nums">{formatCurrency(currentValue)}</div>
         </div>
         <div>
-          <div className="text-[10px] text-muted-foreground">P&L</div>
+          <div className="text-xs text-muted-foreground">P&L</div>
           <div className={cn("text-sm font-bold tabular-nums", pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {pnl >= 0 ? "+" : ""}{formatCurrency(pnl)} ({pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(1)}%)
           </div>
         </div>
-        <div className="text-[10px] text-muted-foreground ml-auto tabular-nums">
+        <div className="text-xs text-muted-foreground ml-auto tabular-nums">
           Day {dayProgress} / {selectedScenario.durationDays}
         </div>
       </div>
@@ -311,13 +311,13 @@ export function ScenarioSimulator() {
               )}
               <span className="text-[11px] font-bold">{currentEvent.label}</span>
               <span className={cn(
-                "text-[10px] font-bold tabular-nums",
+                "text-xs font-bold tabular-nums",
                 currentEvent.marketChange >= 0 ? "text-emerald-400" : "text-red-400"
               )}>
                 {currentEvent.marketChange >= 0 ? "+" : ""}{currentEvent.marketChange}%
               </span>
             </div>
-            <p className="text-[10px] text-muted-foreground">{currentEvent.description}</p>
+            <p className="text-xs text-muted-foreground">{currentEvent.description}</p>
           </motion.div>
         )}
       </AnimatePresence>

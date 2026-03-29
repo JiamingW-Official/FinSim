@@ -629,19 +629,19 @@ function ScenarioCard({
           <p className={cn("text-[11px] font-semibold leading-tight", scenario.color)}>
             {scenario.name}
           </p>
-          <p className="text-[10px] text-muted-foreground">{scenario.period}</p>
+          <p className="text-xs text-muted-foreground">{scenario.period}</p>
         </div>
         {isActive && (
-          <Badge variant="secondary" className="shrink-0 text-[9px] px-1.5 py-0 h-4">
+          <Badge variant="secondary" className="shrink-0 text-[11px] px-1.5 py-0 h-4">
             Active
           </Badge>
         )}
       </div>
-      <p className="mb-2 text-[10px] font-medium text-foreground/80">{scenario.keyStat}</p>
+      <p className="mb-2 text-xs font-medium text-foreground/80">{scenario.keyStat}</p>
       <Button
         size="sm"
         variant={isActive ? "default" : "outline"}
-        className="h-6 w-full text-[10px]"
+        className="h-6 w-full text-xs"
         onClick={() => onApply(scenario)}
       >
         {isActive ? "Applied" : "Apply"}
@@ -666,39 +666,39 @@ function ResultsPanel({ result }: { result: StressResult }) {
       {/* Summary row */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className="rounded-lg border border-border bg-card/50 p-3">
-          <p className="mb-0.5 text-[10px] text-muted-foreground">P&amp;L Impact</p>
+          <p className="mb-0.5 text-xs text-muted-foreground">P&amp;L Impact</p>
           <p className={cn("text-sm font-bold tabular-nums", impactColor)}>
             {result.totalDollarImpact >= 0 ? "+" : ""}
             {formatCurrency(result.totalDollarImpact)}
           </p>
-          <p className={cn("text-[10px] font-semibold tabular-nums", impactColor)}>
+          <p className={cn("text-xs font-semibold tabular-nums", impactColor)}>
             {result.totalPctImpact >= 0 ? "+" : ""}
             {result.totalPctImpact.toFixed(2)}%
           </p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-3">
-          <p className="mb-0.5 text-[10px] text-muted-foreground">Risk Budget</p>
+          <p className="mb-0.5 text-xs text-muted-foreground">Risk Budget</p>
           <p className={cn("text-sm font-bold tabular-nums", riskLevel.color.split(" ")[0])}>
             {result.riskBudgetUsed.toFixed(1)}%
           </p>
-          <span className={cn("inline-flex rounded border px-1.5 py-0.5 text-[9px] font-medium", riskLevel.color)}>
+          <span className={cn("inline-flex rounded border px-1.5 py-0.5 text-[11px] font-medium", riskLevel.color)}>
             {riskLevel.label}
           </span>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-3">
-          <p className="mb-0.5 text-[10px] text-muted-foreground">Recovery Est.</p>
+          <p className="mb-0.5 text-xs text-muted-foreground">Recovery Est.</p>
           <p className="text-sm font-bold tabular-nums">
             {result.recoveryMonths}
-            <span className="ml-1 text-[10px] font-normal text-muted-foreground">mo</span>
+            <span className="ml-1 text-xs font-normal text-muted-foreground">mo</span>
           </p>
-          <p className="text-[10px] text-muted-foreground">historical avg</p>
+          <p className="text-xs text-muted-foreground">historical avg</p>
         </div>
         <div className="rounded-lg border border-border bg-card/50 p-3">
-          <p className="mb-0.5 text-[10px] text-muted-foreground">Worst Position</p>
+          <p className="mb-0.5 text-xs text-muted-foreground">Worst Position</p>
           {result.worstPosition ? (
             <>
               <p className="text-sm font-bold text-red-400">{result.worstPosition.ticker}</p>
-              <p className="text-[10px] tabular-nums text-red-400/70">
+              <p className="text-xs tabular-nums text-red-400/70">
                 {result.worstPosition.percentPnL.toFixed(1)}%
               </p>
             </>
@@ -752,7 +752,7 @@ function ResultsPanel({ result }: { result: StressResult }) {
                   <td className="px-3 py-2">
                     <span
                       className={cn(
-                        "rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase",
+                        "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
                         pos.side === "long"
                           ? "bg-emerald-400/10 text-emerald-400"
                           : "bg-red-400/10 text-red-400",
@@ -796,7 +796,7 @@ function ResultsPanel({ result }: { result: StressResult }) {
         <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-border py-8">
           <Shield className="h-8 w-8 text-muted-foreground/30" />
           <p className="text-xs text-muted-foreground">No open positions to stress test.</p>
-          <p className="text-[10px] text-muted-foreground/60">Open positions in the Trading tab first.</p>
+          <p className="text-xs text-muted-foreground/60">Open positions in the Trading tab first.</p>
         </div>
       )}
     </div>
@@ -849,7 +849,7 @@ function MonteCarloPanel({ portfolioValue }: { portfolioValue: number }) {
           const Icon = item.icon;
           return (
             <div key={item.label} className="rounded-lg border border-border bg-card/50 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[10px] text-muted-foreground">
+              <div className="mb-1 flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Icon className="h-3 w-3" />
                 {item.label}
               </div>
@@ -860,7 +860,7 @@ function MonteCarloPanel({ portfolioValue }: { portfolioValue: number }) {
       </div>
 
       <div className="rounded-lg border border-border bg-card/50 px-3 py-2">
-        <p className="text-[10px] text-muted-foreground leading-relaxed">
+        <p className="text-xs text-muted-foreground leading-relaxed">
           <span className="font-medium text-foreground/80">Legend:</span>{" "}
           <span className="text-violet-400">Purple</span> = Median path.{" "}
           <span className="text-emerald-400">Green</span> = 75th/90th percentile.{" "}
@@ -960,7 +960,7 @@ function CustomBuilder({
               onValueChange={([v]) => onChange({ ...params, [slider.key]: v })}
               className="w-full"
             />
-            <div className="mt-0.5 flex justify-between text-[9px] text-muted-foreground/50">
+            <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground/50">
               <span>{slider.format(slider.min)}</span>
               <span>{slider.format(slider.max)}</span>
             </div>
@@ -1140,7 +1140,7 @@ export function StressTester() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="h-6 text-[10px]"
+                  className="h-6 text-xs"
                   onClick={() => setActiveSection("prebuilt")}
                 >
                   Change Scenario

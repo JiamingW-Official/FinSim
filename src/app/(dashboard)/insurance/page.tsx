@@ -87,7 +87,7 @@ function InfoBox({
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", border)}>
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+      <div className="text-xs font-semibold text-muted-foreground mb-2">
         {title}
       </div>
       <div className="text-sm text-foreground leading-relaxed">{children}</div>
@@ -405,7 +405,7 @@ function FundamentalsTab() {
 
       {/* Law of large numbers chart */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Law of Large Numbers — Loss Ratio Variance vs Pool Size
         </div>
         <LawOfLargeNumbersSVG />
@@ -417,7 +417,7 @@ function FundamentalsTab() {
 
       {/* Combined ratio */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Combined Ratio by Insurer — Combined = Loss + Expense Ratio
         </div>
         <CombinedRatioSVG />
@@ -459,7 +459,7 @@ function FundamentalsTab() {
 
       {/* Insurance types grid */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Major Insurance Sectors
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -511,10 +511,10 @@ function FundamentalsTab() {
               <div className="text-xs font-semibold text-foreground">{sector.name}</div>
               <div className="text-xs text-muted-foreground mt-1">{sector.examples}</div>
               <div className="flex gap-2 mt-2 flex-wrap">
-                <span className="text-[10px] bg-muted px-1.5 py-0.5 rounded">
+                <span className="text-xs bg-muted px-1.5 py-0.5 rounded">
                   CR: {sector.combined}
                 </span>
-                <span className="text-[10px] bg-muted px-1.5 py-0.5 rounded">
+                <span className="text-xs bg-muted px-1.5 py-0.5 rounded">
                   Float: {sector.float}
                 </span>
               </div>
@@ -758,7 +758,7 @@ function LifeTab() {
 
       {/* Premium calculator */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+        <div className="text-xs font-semibold text-muted-foreground mb-4">
           Term Life Premium Estimator
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
@@ -842,7 +842,7 @@ function LifeTab() {
 
       {/* DIME calculator */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           DIME Needs Analysis — Debt + Income + Mortgage + Education
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
@@ -880,7 +880,7 @@ function LifeTab() {
 
       {/* Buy term + invest vs whole */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Buy Term + Invest Difference vs Whole Life — 20-Year Projection
         </div>
         <TermVsWholeComparisonSVG />
@@ -1112,7 +1112,7 @@ function PCTab() {
 
       {/* Premium factors */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Premium Multipliers by Risk Factor (Base = Clean Record / Good Credit)
         </div>
         <PremiumFactorSVG />
@@ -1130,7 +1130,7 @@ function PCTab() {
                 <Shield size={14} className="text-primary" />
                 <span className="text-sm font-medium">{cov.title}</span>
                 {cov.required && (
-                  <Badge className="text-[10px] bg-amber-500/20 text-amber-400 border-amber-500/30">
+                  <Badge className="text-xs bg-amber-500/20 text-amber-400 border-amber-500/30">
                     Lender Required
                   </Badge>
                 )}
@@ -1172,7 +1172,7 @@ function PCTab() {
 
       {/* Claims process */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Claims Process Timeline
         </div>
         <div className="flex flex-wrap gap-2 items-center">
@@ -1187,7 +1187,7 @@ function PCTab() {
           ].map((step, i, arr) => (
             <div key={step} className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <div className="w-5 h-5 rounded-full bg-primary/20 text-primary text-[9px] flex items-center justify-center font-bold">
+                <div className="w-5 h-5 rounded-full bg-primary/20 text-primary text-[11px] flex items-center justify-center font-bold">
                   {i + 1}
                 </div>
                 <span className="text-xs">{step}</span>
@@ -1381,7 +1381,7 @@ function ReinsuranceTab() {
 
       {/* ILS / Cat bonds */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           ILS (Insurance-Linked Securities) — Cat Bond Spread vs Expected Loss
         </div>
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-4">
@@ -1580,7 +1580,7 @@ function InsurTechTab() {
 
       {/* Telematics chart */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Traditional vs Telematics Loss Ratios by Risk Segment
         </div>
         <ClaimsFrequencySVG />
@@ -1820,7 +1820,7 @@ function InvestmentTab() {
 
       {/* Asset allocation table */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Typical Asset Allocation by Insurer Type
         </div>
         <div className="overflow-x-auto">
@@ -1853,7 +1853,7 @@ function InvestmentTab() {
 
       {/* Duration matching */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Duration Matching — Life Insurer Asset vs Liability Duration Profile
         </div>
         <DurationMatchingSVG />
@@ -1866,7 +1866,7 @@ function InvestmentTab() {
 
       {/* Stock performance */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Major Insurer Stock Performance — 5-Year Rebased to 100
         </div>
         <StockPerformanceSVG />
@@ -1878,7 +1878,7 @@ function InvestmentTab() {
 
       {/* NAIC risk-based capital */}
       <div className="rounded-lg border border-border bg-card p-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           NAIC Risk-Based Capital (RBC) Charges by Bond Quality
         </div>
         <div className="space-y-1.5">
@@ -1891,7 +1891,7 @@ function InvestmentTab() {
                   {n.class}
                 </div>
                 <div className="flex-1 flex items-center gap-2">
-                  <div className="h-4 rounded text-[9px] flex items-center px-1.5 font-medium min-w-[2rem]"
+                  <div className="h-4 rounded text-[11px] flex items-center px-1.5 font-medium min-w-[2rem]"
                     style={{
                       width: `${barW}%`,
                       backgroundColor:

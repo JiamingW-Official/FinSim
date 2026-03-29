@@ -448,7 +448,7 @@ function CalendarTab() {
 
               {/* Time label */}
               <div className={cn(
-                "flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold w-fit",
+                "flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold w-fit",
                 e.time === "BMO" ? "bg-blue-500/10 text-blue-400" : "bg-purple-500/10 text-purple-400"
               )}>
                 {e.time === "BMO" ? "Before Market Open" : "After Market Close"}
@@ -556,7 +556,7 @@ function CalendarTab() {
                         <div
                           key={ei}
                           className={cn(
-                            "text-[9px] font-semibold px-1 py-0.5 rounded",
+                            "text-[11px] font-semibold px-1 py-0.5 rounded",
                             ev.category === "large-cap" ? "bg-blue-500/20 text-blue-400" :
                             ev.category === "high-vol" ? "bg-amber-500/20 text-amber-400" :
                             "bg-emerald-500/20 text-emerald-400",
@@ -779,7 +779,7 @@ function EarningsAnalysisTab() {
           <div className="text-xs font-semibold text-foreground">Earnings Quality Score</div>
           <div className="flex items-center gap-3">
             <div className={cn(
-              "text-3xl font-black tabular-nums",
+              "text-3xl font-bold tabular-nums",
               qualityScore >= 70 ? "text-emerald-400" : qualityScore >= 50 ? "text-amber-400" : "text-red-400"
             )}>
               {qualityScore}
@@ -937,7 +937,7 @@ function AnalystRatingsTab() {
                   <span className="font-semibold text-foreground w-12">{r.ticker}</span>
                   <span className="text-red-400">{Math.round((r.sellCount / r.analysts) * 100)}% Sell</span>
                   <span className="text-emerald-400">+{r.upsidePct.toFixed(1)}% upside</span>
-                  <span className="text-muted-foreground text-[10px]">Possible short squeeze / beaten-down value</span>
+                  <span className="text-muted-foreground text-xs">Possible short squeeze / beaten-down value</span>
                 </div>
               ))}
             </div>
@@ -966,8 +966,8 @@ function AnalystRatingsTab() {
                   <span className="text-muted-foreground">→</span>
                   <span className={cn("font-semibold", ratingColor(rc.newRating))}>{rc.newRating}</span>
                 </div>
-                {isUpgrade && <span className="text-emerald-400 text-[10px] font-semibold shrink-0">UPGRADE</span>}
-                {isDowngrade && <span className="text-red-400 text-[10px] font-semibold shrink-0">DOWNGRADE</span>}
+                {isUpgrade && <span className="text-emerald-400 text-xs font-semibold shrink-0">UPGRADE</span>}
+                {isDowngrade && <span className="text-red-400 text-xs font-semibold shrink-0">DOWNGRADE</span>}
                 <span className="text-muted-foreground shrink-0 font-mono">PT: ${rc.oldTarget}→${rc.newTarget}</span>
               </div>
             );
@@ -1139,7 +1139,7 @@ function EarningsStrategiesTab() {
                 "text-center py-4 rounded-lg",
                 rouletteResult.guess === rouletteResult.actual ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-red-500/10 border border-red-500/30"
               )}>
-                <div className="text-2xl font-black mb-1">
+                <div className="text-2xl font-bold mb-1">
                   {rouletteResult.guess === rouletteResult.actual
                     ? <span className="text-emerald-400">You got it right!</span>
                     : <span className="text-red-400">Wrong guess!</span>}
@@ -1157,7 +1157,7 @@ function EarningsStrategiesTab() {
 
               <div className="bg-muted/30 rounded-lg p-3 text-center">
                 <div className="text-xs text-muted-foreground mb-1">Simulated P&amp;L (100 shares)</div>
-                <div className={cn("text-xl font-black font-mono", rouletteResult.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+                <div className={cn("text-xl font-bold font-mono", rouletteResult.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {rouletteResult.pnl >= 0 ? "+" : ""}${rouletteResult.pnl.toLocaleString()}
                 </div>
               </div>

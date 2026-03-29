@@ -158,7 +158,7 @@ const ASSET_CLASS_LOSSES: AssetClassLoss[] = [
 function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-white/40">{title}</p>
+      <p className="mb-2 text-xs font-semibold text-white/40">{title}</p>
       {children}
     </div>
   );

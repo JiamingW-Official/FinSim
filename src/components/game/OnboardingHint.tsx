@@ -44,13 +44,13 @@ export function OnboardingHint({
         <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
         <div className="flex-1">
           <div className="text-xs font-semibold text-foreground">{title}</div>
-          <div className="mt-0.5 text-[10px] leading-relaxed text-muted-foreground">
+          <div className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
             {description}
           </div>
           <button
             type="button"
             onClick={onDismiss}
-            className="mt-1.5 rounded bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary hover:bg-primary/20"
+            className="mt-1.5 rounded bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary hover:bg-primary/20"
           >
             Got it
           </button>

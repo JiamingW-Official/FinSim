@@ -108,7 +108,7 @@ function TargetAllocationSetup({
         <h4 className="text-xs font-semibold">Target Allocation</h4>
         <span
           className={cn(
-            "text-[10px] px-1.5 py-0.5 rounded font-medium",
+            "text-xs px-1.5 py-0.5 rounded font-medium",
             Math.abs(totalRaw - 100) < 0.5
               ? "bg-emerald-500/10 text-emerald-500"
               : "bg-amber-500/10 text-amber-500",
@@ -144,10 +144,10 @@ function TargetAllocationSetup({
               onChange={(e) => updateWeight(i, e.target.value)}
               className="h-7 w-20 rounded border border-border bg-background px-2 text-[11px] tabular-nums text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
             />
-            <span className="text-[10px] text-muted-foreground">%</span>
+            <span className="text-xs text-muted-foreground">%</span>
 
             {/* Normalised preview */}
-            <span className="text-[10px] text-muted-foreground tabular-nums w-16 text-right">
+            <span className="text-xs text-muted-foreground tabular-nums w-16 text-right">
               {totalRaw > 0 ? ((row.weight / totalRaw) * 100).toFixed(1) : "0.0"}% norm.
             </span>
 
@@ -302,18 +302,18 @@ function DriftBadge({ drift }: { drift: number }) {
   const abs = Math.abs(drift);
   if (abs < 1)
     return (
-      <span className="rounded px-1.5 py-0.5 text-[9px] font-semibold bg-emerald-500/10 text-emerald-500">
+      <span className="rounded px-1.5 py-0.5 text-[11px] font-semibold bg-emerald-500/10 text-emerald-500">
         On target
       </span>
     );
   if (drift > 0)
     return (
-      <span className="rounded px-1.5 py-0.5 text-[9px] font-semibold bg-red-500/10 text-red-500">
+      <span className="rounded px-1.5 py-0.5 text-[11px] font-semibold bg-red-500/10 text-red-500">
         +{drift.toFixed(1)}% over
       </span>
     );
   return (
-    <span className="rounded px-1.5 py-0.5 text-[9px] font-semibold bg-blue-500/10 text-blue-400">
+    <span className="rounded px-1.5 py-0.5 text-[11px] font-semibold bg-blue-500/10 text-blue-400">
       {drift.toFixed(1)}% under
     </span>
   );
@@ -472,7 +472,7 @@ function RebalancingOrders({
                   <td className="py-1.5 px-1 text-center">
                     <span
                       className={cn(
-                        "rounded px-1.5 py-0.5 text-[9px] font-semibold",
+                        "rounded px-1.5 py-0.5 text-[11px] font-semibold",
                         o.action === "Buy"
                           ? "bg-emerald-500/10 text-emerald-500"
                           : o.action === "Sell"
@@ -554,21 +554,21 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
     <div className="rounded-lg border border-border bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
         <h4 className="text-xs font-semibold">Tax Loss Harvesting Scanner</h4>
-        <span className="text-[10px] text-muted-foreground">22% short-term rate</span>
+        <span className="text-xs text-muted-foreground">22% short-term rate</span>
       </div>
 
       {/* Summary chips */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-md bg-muted/40 p-2 space-y-0.5">
-          <p className="text-[9px] text-muted-foreground uppercase tracking-wide">Opportunities</p>
+          <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Opportunities</p>
           <p className="text-sm font-semibold tabular-nums">{lossPositions.length}</p>
         </div>
         <div className="rounded-md bg-muted/40 p-2 space-y-0.5">
-          <p className="text-[9px] text-muted-foreground uppercase tracking-wide">Harvestable Losses</p>
+          <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Harvestable Losses</p>
           <p className="text-sm font-semibold tabular-nums text-red-400">-{fmt$(totalLosses)}</p>
         </div>
         <div className="rounded-md bg-muted/40 p-2 space-y-0.5">
-          <p className="text-[9px] text-muted-foreground uppercase tracking-wide">Est. Tax Savings</p>
+          <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Est. Tax Savings</p>
           <p className="text-sm font-semibold tabular-nums text-emerald-400">{fmt$(totalSavings)}</p>
         </div>
       </div>
@@ -587,14 +587,14 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-semibold">{p.ticker}</span>
                     {p.washSaleRisk && (
-                      <span className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-medium bg-amber-500/10 text-amber-500">
+                      <span className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] font-medium bg-amber-500/10 text-amber-500">
                         <AlertTriangle className="h-2.5 w-2.5" />
                         Wash-sale risk
                       </span>
                     )}
                   </div>
 
-                  <div className="grid grid-cols-4 gap-3 text-[10px]">
+                  <div className="grid grid-cols-4 gap-3 text-xs">
                     <div>
                       <p className="text-muted-foreground">Cost Basis</p>
                       <p className="tabular-nums font-medium">{fmt$(p.costBasis)}</p>
@@ -618,7 +618,7 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
                   onClick={() => harvest(p.ticker)}
                   disabled={harvested.has(p.ticker)}
                   className={cn(
-                    "shrink-0 rounded-md px-2.5 py-1.5 text-[10px] font-medium transition-colors",
+                    "shrink-0 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors",
                     harvested.has(p.ticker)
                       ? "bg-muted text-muted-foreground cursor-default"
                       : "bg-red-500/10 text-red-400 hover:bg-red-500/20",
@@ -654,7 +654,7 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
       {lossPositions.some((p) => p.washSaleRisk) && (
         <div className="flex items-start gap-2 rounded-md bg-amber-500/6 border border-amber-500/20 p-2.5">
           <AlertTriangle className="h-3.5 w-3.5 text-amber-500 shrink-0 mt-0.5" />
-          <p className="text-[10px] text-amber-500/90 leading-relaxed">
+          <p className="text-xs text-amber-500/90 leading-relaxed">
             <strong>Wash-sale rule (30-day):</strong> If you repurchase substantially identical
             securities within 30 days before or after the sale, the IRS disallows the loss
             deduction. Consider waiting 31 days or swapping into a similar-but-not-identical ETF.
@@ -662,7 +662,7 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
         </div>
       )}
 
-      <p className="text-[9px] text-muted-foreground leading-relaxed">
+      <p className="text-[11px] text-muted-foreground leading-relaxed">
         Estimates assume a 22% short-term capital gains tax rate. Consult a tax professional before
         taking action. Actual savings depend on your filing status and total income.
       </p>
@@ -716,7 +716,7 @@ function RebalancingHistory() {
       <div className="flex items-center gap-1.5">
         <History className="h-3.5 w-3.5 text-muted-foreground" />
         <h4 className="text-xs font-semibold">Rebalancing History</h4>
-        <span className="ml-auto text-[10px] text-muted-foreground">Last 5 events</span>
+        <span className="ml-auto text-xs text-muted-foreground">Last 5 events</span>
       </div>
 
       <div className="overflow-x-auto">
@@ -744,7 +744,7 @@ function RebalancingHistory() {
         </table>
       </div>
 
-      <p className="text-[9px] text-muted-foreground">
+      <p className="text-[11px] text-muted-foreground">
         Transaction costs estimated at $0.005 per share (demo). Real costs vary by broker.
       </p>
     </div>

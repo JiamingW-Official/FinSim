@@ -127,14 +127,14 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
     <div className="space-y-4">
       {/* Header with param toggle */}
       <div className="flex items-center justify-between">
-        <h3 className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="text-xs font-semibold text-zinc-500">
           Monte Carlo Simulation
           {result && ` (${result.runs.length} runs)`}
           {useCustom && " (Custom)"}
         </h3>
         <button
           onClick={() => setShowParams((v) => !v)}
-          className="flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[10px] text-zinc-400 transition-colors hover:bg-white/10"
+          className="flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-zinc-400 transition-colors hover:bg-white/10"
         >
           <Settings className="h-3 w-3" />
           Adjust Parameters
@@ -144,7 +144,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
       {/* Adjust Parameters Panel */}
       {showParams && (
         <div className="space-y-3 rounded-lg border border-white/5 bg-white/[0.02] p-4">
-          <h4 className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Simulation Parameters</h4>
+          <h4 className="text-xs font-semibold text-zinc-500">Simulation Parameters</h4>
 
           <div className="grid grid-cols-2 gap-3">
             <ParamInput
@@ -200,7 +200,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
           {useCustom && (
             <button
               onClick={() => setUseCustom(false)}
-              className="ml-2 text-[10px] text-zinc-500 hover:text-zinc-300"
+              className="ml-2 text-xs text-zinc-500 hover:text-zinc-300"
             >
               Reset to backtest result
             </button>
@@ -251,7 +251,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
       {/* Percentile Band Chart */}
       {hasData && (
         <div>
-          <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+          <h3 className="mb-2 text-xs font-semibold text-zinc-500">
             Equity Confidence Bands (10th / 25th / 50th / 75th / 90th percentile)
           </h3>
           {customSim ? (
@@ -273,7 +273,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
               startingValue={startingCapital}
             />
           ) : null}
-          <div className="mt-1 flex flex-wrap items-center gap-3 text-[9px] text-zinc-600">
+          <div className="mt-1 flex flex-wrap items-center gap-3 text-[11px] text-zinc-600">
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded-sm bg-blue-500/15" /> 10th-90th</span>
             <span className="flex items-center gap-1"><span className="inline-block h-2 w-4 rounded-sm bg-blue-500/35" /> 25th-75th</span>
             <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 bg-blue-400" /> Median</span>
@@ -284,7 +284,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
       {/* Final Distribution Histogram */}
       {hasData && (
         <div>
-          <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+          <h3 className="mb-2 text-xs font-semibold text-zinc-500">
             Final Value Distribution
           </h3>
           {customSim ? (
@@ -298,7 +298,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
       {/* Max Drawdown Distribution */}
       {hasData && (
         <div>
-          <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+          <h3 className="mb-2 text-xs font-semibold text-zinc-500">
             Max Drawdown Distribution
           </h3>
           {customSim ? (
@@ -311,7 +311,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
                 const val = sorted[idx] ?? 0;
                 return (
                   <div key={pct} className="rounded-lg border border-white/5 bg-white/5 p-2 text-center">
-                    <div className="text-[9px] text-zinc-600">P{pct}</div>
+                    <div className="text-[11px] text-zinc-600">P{pct}</div>
                     <div className="text-xs font-bold text-rose-400">{val.toFixed(1)}%</div>
                   </div>
                 );
@@ -337,8 +337,8 @@ function ParamInput({ label, value, onChange, min, max, step }: {
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
-        <span className="text-[10px] text-zinc-500">{label}</span>
-        <span className="text-[10px] font-semibold text-zinc-300">{value}</span>
+        <span className="text-xs text-zinc-500">{label}</span>
+        <span className="text-xs font-semibold text-zinc-300">{value}</span>
       </div>
       <input
         type="number"
@@ -361,7 +361,7 @@ function ParamInput({ label, value, onChange, min, max, step }: {
 function StatCard({ label, value, good }: { label: string; value: string; good?: boolean }) {
   return (
     <div className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
-      <div className="text-[9px] uppercase tracking-wider text-zinc-600">{label}</div>
+      <div className="text-[11px] text-zinc-600">{label}</div>
       <div className={`text-sm font-bold ${good === undefined ? "text-zinc-200" : good ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>
@@ -546,7 +546,7 @@ function ReturnHistogram({ runs }: { runs: { totalReturnPercent: number }[] }) {
             }}
           >
             {count > 0 && (
-              <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-1.5 py-0.5 text-[9px] text-zinc-300 shadow group-hover:block whitespace-nowrap">
+              <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-1.5 py-0.5 text-[11px] text-zinc-300 shadow group-hover:block whitespace-nowrap">
                 {binCenter.toFixed(1)}% ({count})
               </div>
             )}
@@ -590,7 +590,7 @@ function DrawdownHistogram({ values }: { values: number[] }) {
             }}
           >
             {count > 0 && (
-              <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-1.5 py-0.5 text-[9px] text-zinc-300 shadow group-hover:block whitespace-nowrap">
+              <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-1.5 py-0.5 text-[11px] text-zinc-300 shadow group-hover:block whitespace-nowrap">
                 {(i * binWidth).toFixed(1)}-{((i + 1) * binWidth).toFixed(1)}% ({count})
               </div>
             )}

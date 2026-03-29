@@ -361,7 +361,7 @@ function IncomeDashboard() {
                     title={`${["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][i]}: ${fmtK(v)}`}
                   />
                 </div>
-                <span className="text-[9px] text-muted-foreground">{months[i]}</span>
+                <span className="text-[11px] text-muted-foreground">{months[i]}</span>
               </div>
             );
           })}
@@ -378,8 +378,8 @@ function IncomeDashboard() {
               const maxDay = Math.max(...Array.from(payDays.values()), 1);
               return (
                 <div key={month} className="space-y-1">
-                  <div className="text-[10px] text-muted-foreground font-medium text-center">{month}</div>
-                  <div className="text-[9px] text-green-400 text-center font-mono">{fmtK(total)}</div>
+                  <div className="text-xs text-muted-foreground font-medium text-center">{month}</div>
+                  <div className="text-[11px] text-green-400 text-center font-mono">{fmtK(total)}</div>
                   <div className="grid grid-cols-7 gap-px">
                     {Array.from({ length: days }).map((_, d) => {
                       const inc = payDays.get(d + 1) || 0;
@@ -399,7 +399,7 @@ function IncomeDashboard() {
               );
             })}
           </div>
-          <p className="text-[10px] text-muted-foreground/60 mt-2">Darker green = more dividend income received that day</p>
+          <p className="text-xs text-muted-foreground/60 mt-2">Darker green = more dividend income received that day</p>
         </div>
 
         {/* Sector donut */}
@@ -428,7 +428,7 @@ function IncomeDashboard() {
               const sc = SECTOR_COLORS_CSS[sector] ?? SECTOR_COLORS_CSS["Consumer"];
               return (
                 <div key={sector} className="flex items-center justify-between text-xs">
-                  <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-medium border", sc.bg, sc.text, sc.border)}>{sector}</span>
+                  <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium border", sc.bg, sc.text, sc.border)}>{sector}</span>
                   <span className="text-muted-foreground font-mono">{fmtK(value)}</span>
                 </div>
               );
@@ -568,7 +568,7 @@ function DividendSafetyScoring() {
                   </td>
                   <td className="px-3 py-2.5 text-center">
                     {r.atRisk ? (
-                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-[10px] font-medium">
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-medium">
                         <AlertTriangle className="w-3 h-3" /> At Risk
                       </span>
                     ) : (
@@ -852,7 +852,7 @@ function DripSimulator() {
             </tbody>
           </table>
         </div>
-        <p className="text-[10px] text-muted-foreground/60 mt-2">
+        <p className="text-xs text-muted-foreground/60 mt-2">
           Each year, dividends buy new shares which generate even more dividends — the snowball effect accelerates over time.
         </p>
       </div>
@@ -918,14 +918,14 @@ function ExDivCalendar() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="font-semibold text-foreground text-sm w-10 flex-shrink-0">{e.ticker}</span>
-                      <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-medium border flex-shrink-0", sc.bg, sc.text, sc.border)}>{e.sector}</span>
+                      <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium border flex-shrink-0", sc.bg, sc.text, sc.border)}>{e.sector}</span>
                       <span className="text-xs text-muted-foreground truncate">{e.name}</span>
                     </div>
                     <div className="flex items-center gap-1.5 flex-shrink-0">
                       {e.isQualified ? (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] bg-green-500/10 border border-green-500/30 text-green-400">Qualified</span>
+                        <span className="px-1.5 py-0.5 rounded text-xs bg-green-500/10 border border-green-500/30 text-green-400">Qualified</span>
                       ) : (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] bg-amber-500/10 border border-amber-500/30 text-amber-400">Ordinary</span>
+                        <span className="px-1.5 py-0.5 rounded text-xs bg-amber-500/10 border border-amber-500/30 text-amber-400">Ordinary</span>
                       )}
                     </div>
                   </div>
@@ -949,7 +949,7 @@ function ExDivCalendar() {
                   </div>
                   {/* 5-day price action mini chart */}
                   <div className="mt-2">
-                    <p className="text-[10px] text-muted-foreground mb-1">5-Day Price Action into Ex-Div (Pre-Run → Drop)</p>
+                    <p className="text-xs text-muted-foreground mb-1">5-Day Price Action into Ex-Div (Pre-Run → Drop)</p>
                     <div className="flex items-center gap-0.5">
                       {e.priceAction.map((v, i) => (
                         <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
@@ -957,7 +957,7 @@ function ExDivCalendar() {
                             className={cn("w-full rounded-sm", v >= 0 ? "bg-green-500/60" : "bg-red-500/60")}
                             style={{ height: Math.abs(v) * 12 + 3, minHeight: 3 }}
                           />
-                          <span className={cn("text-[9px]", v >= 0 ? "text-green-400" : "text-red-400")}>
+                          <span className={cn("text-[11px]", v >= 0 ? "text-green-400" : "text-red-400")}>
                             {v >= 0 ? "+" : ""}{fmt(v, 2)}%
                           </span>
                           <span className="text-[8px] text-muted-foreground/50">{i === 4 ? "Ex" : `D-${4 - i}`}</span>
@@ -966,7 +966,7 @@ function ExDivCalendar() {
                     </div>
                   </div>
                   {/* Capture strategy profitability */}
-                  <div className={cn("mt-2 px-2 py-1.5 rounded text-[10px] border", strategyProfitable ? "bg-green-500/5 border-green-500/20 text-green-400" : "bg-red-500/5 border-red-500/20 text-red-400")}>
+                  <div className={cn("mt-2 px-2 py-1.5 rounded text-xs border", strategyProfitable ? "bg-green-500/5 border-green-500/20 text-green-400" : "bg-red-500/5 border-red-500/20 text-red-400")}>
                     Dividend Capture Strategy: {strategyProfitable ? "May be profitable" : "Likely unprofitable"} (pre-runup {preRunup >= 0 ? "+" : ""}{fmt(preRunup, 2)}% vs ex-div drop {fmt(exDivDrop, 2)}% + div yield)
                   </div>
                 </div>
@@ -1008,7 +1008,7 @@ function ExDivCalendar() {
                 </ul>
               </div>
             </div>
-            <p className="text-[10px]">Note: DRIP shares have cost basis = FMV on reinvestment date. Each reinvestment creates a new holding period lot.</p>
+            <p className="text-xs">Note: DRIP shares have cost basis = FMV on reinvestment date. Each reinvestment creates a new holding period lot.</p>
           </div>
         )}
       </div>
@@ -1105,19 +1105,19 @@ function DividendGrowthStrategy() {
           <div className="bg-green-500/10 border border-green-500/30 rounded-lg px-4 py-3 text-center">
             <p className="text-xs text-muted-foreground">YOC after {yocYears} years</p>
             <p className="text-2xl font-bold text-green-400">{fmt(finalYoc.yoc, 1)}%</p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">vs {fmt(yocYield, 1)}% purchase yield</p>
+            <p className="text-xs text-muted-foreground mt-0.5">vs {fmt(yocYield, 1)}% purchase yield</p>
           </div>
           <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3 text-center">
             <p className="text-xs text-muted-foreground">High-yield ({fmt(6.5, 1)}% + 1.5% growth) YOC</p>
             <p className="text-2xl font-bold text-amber-400">{fmt(finalYoc.highYieldYoc, 1)}%</p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">often stagnates over time</p>
+            <p className="text-xs text-muted-foreground mt-0.5">often stagnates over time</p>
           </div>
           <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-3 text-center">
             <p className="text-xs text-muted-foreground">DGI Advantage</p>
             <p className={cn("text-2xl font-bold", finalYoc.yoc > finalYoc.highYieldYoc ? "text-blue-400" : "text-muted-foreground")}>
               {finalYoc.yoc > finalYoc.highYieldYoc ? "+" : ""}{fmt(finalYoc.yoc - finalYoc.highYieldYoc, 1)}%
             </p>
-            <p className="text-[10px] text-muted-foreground mt-0.5">DGI vs high-yield</p>
+            <p className="text-xs text-muted-foreground mt-0.5">DGI vs high-yield</p>
           </div>
         </div>
 
@@ -1140,8 +1140,8 @@ function DividendGrowthStrategy() {
             })}
           </div>
           <div className="flex gap-4 mt-1">
-            <span className="flex items-center gap-1 text-[10px] text-green-400"><span className="w-3 h-2 bg-green-500/60 inline-block rounded" /> DGI ({fmt(yocYield, 1)}% + {fmt(yocGrowth, 1)}% growth)</span>
-            <span className="flex items-center gap-1 text-[10px] text-amber-400"><span className="w-3 h-2 bg-amber-500/40 inline-block rounded" /> High Yield (6.5% + 1.5% growth)</span>
+            <span className="flex items-center gap-1 text-xs text-green-400"><span className="w-3 h-2 bg-green-500/60 inline-block rounded" /> DGI ({fmt(yocYield, 1)}% + {fmt(yocGrowth, 1)}% growth)</span>
+            <span className="flex items-center gap-1 text-xs text-amber-400"><span className="w-3 h-2 bg-amber-500/40 inline-block rounded" /> High Yield (6.5% + 1.5% growth)</span>
           </div>
         </div>
       </div>
@@ -1188,7 +1188,7 @@ function DividendGrowthStrategy() {
             <Shield className="w-4 h-4 text-blue-400" />
             DGI Stock Screen
           </h4>
-          <div className="flex flex-wrap gap-1.5 text-[10px] text-muted-foreground">
+          <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
             <span className="px-1.5 py-0.5 bg-muted/40 rounded border border-border/40">Yield 0.5–5%</span>
             <span className="px-1.5 py-0.5 bg-muted/40 rounded border border-border/40">Growth &gt;5%</span>
             <span className="px-1.5 py-0.5 bg-muted/40 rounded border border-border/40">Payout &lt;70%</span>
@@ -1221,7 +1221,7 @@ function DividendGrowthStrategy() {
                       <td className="px-3 py-2">
                         <div className="font-semibold text-foreground">{s.ticker}</div>
                         <div className="text-muted-foreground/70 truncate max-w-[100px]">{s.name}</div>
-                        <span className={cn("px-1 py-0.5 rounded text-[9px] font-medium border mt-0.5 inline-block", sc.bg, sc.text, sc.border)}>{s.sector}</span>
+                        <span className={cn("px-1 py-0.5 rounded text-[11px] font-medium border mt-0.5 inline-block", sc.bg, sc.text, sc.border)}>{s.sector}</span>
                       </td>
                       <td className="px-3 py-2 text-right font-mono text-green-400">{fmt(s.currentYield, 1)}%</td>
                       <td className={cn("px-3 py-2 text-right font-mono", s.divGrowthRate >= 10 ? "text-blue-400" : "text-cyan-400")}>+{fmt(s.divGrowthRate, 1)}%</td>
@@ -1249,7 +1249,7 @@ function DividendGrowthStrategy() {
             </table>
           </div>
         </div>
-        <p className="text-[10px] text-muted-foreground/60">
+        <p className="text-xs text-muted-foreground/60">
           DGI philosophy: favor consistent dividend GROWTH over high current yield. A 1% yield growing 15%/year becomes 16% YOC after 20 years.
         </p>
       </div>

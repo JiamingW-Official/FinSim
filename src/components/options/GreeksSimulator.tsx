@@ -478,7 +478,7 @@ function PnlAttribution() {
         ].map((c) => (
           <div key={c.label} className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-muted">
             <span className="text-muted-foreground">{c.label}:</span>
-            <span className={`font-mono font-semibold ${c.value >= 0 ? "text-green-400" : "text-red-400"}`}>
+            <span className={`font-mono font-semibold ${c.value >= 0 ? "text-emerald-500" : "text-red-500"}`}>
               {c.fmt(c.value)}
             </span>
           </div>
@@ -754,7 +754,7 @@ function DeltaHedgingSimulator() {
         ].map((c) => (
           <div key={c.label} className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-muted">
             <span className="text-muted-foreground">{c.label}:</span>
-            <span className={`font-mono font-semibold ${c.pos ? "text-green-400" : "text-red-400"}`}>{c.value}</span>
+            <span className={`font-mono font-semibold ${c.pos ? "text-emerald-500" : "text-red-500"}`}>{c.value}</span>
           </div>
         ))}
       </div>
@@ -870,7 +870,7 @@ function VolTradingMechanics() {
           <div key={m.label} className="rounded-lg bg-muted p-2.5">
             <p className="text-xs text-muted-foreground">{m.label}</p>
             <p className={`text-sm font-mono font-semibold mt-0.5 ${
-              m.neutral ? "text-foreground" : m.pos ? "text-green-400" : "text-red-400"
+              m.neutral ? "text-foreground" : m.pos ? "text-emerald-500" : "text-red-500"
             }`}>
               {m.value}
             </p>
@@ -885,7 +885,7 @@ function VolTradingMechanics() {
           {rvCalcs.map((c) => (
             <div key={c.label} className="flex-1 rounded-lg bg-muted p-2 text-center">
               <p className="text-xs text-muted-foreground">{c.label}</p>
-              <p className={`text-sm font-mono font-bold ${c.rv < iv ? "text-green-400" : "text-red-400"}`}>
+              <p className={`text-sm font-mono font-bold ${c.rv < iv ? "text-emerald-500" : "text-red-500"}`}>
                 {(c.rv * 100).toFixed(1)}%
               </p>
               <p className="text-xs text-muted-foreground">{c.rv < iv ? "< IV" : "> IV"}</p>
@@ -1072,7 +1072,7 @@ function SkewTradingPanel() {
         ].map((c) => (
           <div key={c.label} className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-muted">
             <span className="text-muted-foreground">{c.label}:</span>
-            <span className={`font-mono font-semibold ${c.value >= 0 ? "text-green-400" : "text-red-400"}`}>
+            <span className={`font-mono font-semibold ${c.value >= 0 ? "text-emerald-500" : "text-red-500"}`}>
               {c.value >= 0 ? "+" : ""}${c.value.toFixed(3)}
             </span>
           </div>

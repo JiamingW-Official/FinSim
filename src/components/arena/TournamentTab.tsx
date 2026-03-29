@@ -348,10 +348,10 @@ export function TournamentTab() {
       <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
         <div className="flex items-center gap-4">
           <div className={cn("rounded-xl border px-4 py-2 text-center", TIER_BG[tier])}>
-            <div className={cn("text-2xl font-black tabular-nums", TIER_COLORS[tier])}>
+            <div className={cn("text-2xl font-bold tabular-nums", TIER_COLORS[tier])}>
               {eloRating}
             </div>
-            <div className={cn("text-[10px] font-bold uppercase tracking-wider", TIER_COLORS[tier])}>
+            <div className={cn("text-xs font-bold", TIER_COLORS[tier])}>
               {tier}
             </div>
           </div>
@@ -418,7 +418,7 @@ export function TournamentTab() {
 
               return (
                 <div key={round}>
-                  <div className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider mb-2">
+                  <div className="text-[11px] font-bold text-zinc-500 mb-2">
                     {round}
                   </div>
                   <div className={cn(
@@ -453,7 +453,7 @@ export function TournamentTab() {
                     <span className={cn("text-xs font-bold tabular-nums w-10 text-right", prob >= 0.5 ? "text-teal-400" : "text-red-400")}>
                       {(prob * 100).toFixed(0)}%
                     </span>
-                    <span className="text-[10px] text-zinc-600">vs {opp.name} ({opp.elo})</span>
+                    <span className="text-xs text-zinc-600">vs {opp.name} ({opp.elo})</span>
                   </div>
                 </div>
               );
@@ -483,9 +483,9 @@ export function TournamentTab() {
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-bold text-zinc-200">{ev.name}</span>
-                  <span className="text-[10px] text-zinc-500">{ev.date}</span>
+                  <span className="text-xs text-zinc-500">{ev.date}</span>
                 </div>
-                <div className="flex items-center gap-3 text-[10px] text-zinc-500">
+                <div className="flex items-center gap-3 text-xs text-zinc-500">
                   <span className="flex items-center gap-0.5">
                     <Users className="h-2.5 w-2.5" /> Lv.{ev.minLevel}+
                   </span>

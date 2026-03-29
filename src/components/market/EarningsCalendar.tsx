@@ -203,7 +203,7 @@ function IVRankBar({ ivRank }: { ivRank: number }) {
           style={{ width: `${ivRank}%` }}
         />
       </div>
-      <span className="font-mono tabular-nums text-[10px] w-6 text-right">{ivRank}</span>
+      <span className="font-mono tabular-nums text-xs w-6 text-right">{ivRank}</span>
     </div>
   );
 }
@@ -220,7 +220,7 @@ function RatingChip({ rating }: { rating: string }) {
     "N/A": "bg-muted text-muted-foreground",
   };
   return (
-    <span className={cn("text-[10px] px-1.5 py-0.5 rounded font-medium", colors[rating] ?? colors["N/A"])}>
+    <span className={cn("text-xs px-1.5 py-0.5 rounded font-medium", colors[rating] ?? colors["N/A"])}>
       {rating}
     </span>
   );
@@ -257,17 +257,17 @@ function UpcomingStrip({
             <div className="flex items-center justify-between gap-1">
               <span className="font-mono text-xs font-semibold">{ev.ticker}</span>
               {isToday && (
-                <span className="text-[9px] font-bold bg-primary text-primary-foreground px-1.5 py-0.5 rounded">
+                <span className="text-[11px] font-bold bg-primary text-primary-foreground px-1.5 py-0.5 rounded">
                   TODAY
                 </span>
               )}
             </div>
-            <p className="text-[10px] text-muted-foreground truncate">{ev.companyName}</p>
+            <p className="text-xs text-muted-foreground truncate">{ev.companyName}</p>
             <div className="flex items-center justify-between">
-              <span className="text-[10px] text-muted-foreground">{dateLabel}</span>
+              <span className="text-xs text-muted-foreground">{dateLabel}</span>
               <span
                 className={cn(
-                  "text-[9px] font-medium px-1 py-0.5 rounded",
+                  "text-[11px] font-medium px-1 py-0.5 rounded",
                   ev.callTime === "BMO"
                     ? "bg-emerald-500/10 text-emerald-500"
                     : ev.callTime === "AMC"
@@ -278,7 +278,7 @@ function UpcomingStrip({
                 {ev.callTime}
               </span>
             </div>
-            <p className="text-[10px] font-mono tabular-nums">
+            <p className="text-xs font-mono tabular-nums">
               EPS est. <span className="font-semibold">${ev.epsEstimate.toFixed(2)}</span>
             </p>
           </button>
@@ -371,7 +371,7 @@ function CalendarGrid({
       {/* Day-of-week header */}
       <div className="grid grid-cols-7 border-b border-border/30">
         {DOW.map((d) => (
-          <div key={d} className="text-center text-[10px] font-medium text-muted-foreground py-2">
+          <div key={d} className="text-center text-xs font-medium text-muted-foreground py-2">
             {d}
           </div>
         ))}
@@ -412,7 +412,7 @@ function CalendarGrid({
                     key={ev.ticker}
                     onClick={() => onSelectTicker(ev.ticker)}
                     className={cn(
-                      "w-full text-left rounded px-1 py-0.5 text-[9px] font-semibold font-mono transition-colors truncate",
+                      "w-full text-left rounded px-1 py-0.5 text-[11px] font-semibold font-mono transition-colors truncate",
                       ev.callTime === "BMO"
                         ? "bg-emerald-500/15 text-emerald-600 hover:bg-emerald-500/25"
                         : ev.callTime === "AMC"
@@ -432,18 +432,18 @@ function CalendarGrid({
 
       {/* Legend */}
       <div className="flex items-center gap-4 px-3 py-2 border-t border-border/20 bg-muted/10">
-        <span className="text-[9px] text-muted-foreground">Key:</span>
+        <span className="text-[11px] text-muted-foreground">Key:</span>
         <div className="flex items-center gap-1">
           <div className="w-2.5 h-2.5 rounded-sm bg-emerald-500/40" />
-          <span className="text-[9px] text-muted-foreground">BMO</span>
+          <span className="text-[11px] text-muted-foreground">BMO</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="w-2.5 h-2.5 rounded-sm bg-blue-500/40" />
-          <span className="text-[9px] text-muted-foreground">AMC</span>
+          <span className="text-[11px] text-muted-foreground">AMC</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="w-2.5 h-2.5 rounded-sm bg-amber-500/40" />
-          <span className="text-[9px] text-muted-foreground">TBD</span>
+          <span className="text-[11px] text-muted-foreground">TBD</span>
         </div>
       </div>
     </div>
@@ -491,7 +491,7 @@ function EarningsDetailPanel({
               <span className="font-semibold text-sm">{event.ticker}</span>
               <span
                 className={cn(
-                  "text-[10px] font-medium px-1.5 py-0.5 rounded",
+                  "text-xs font-medium px-1.5 py-0.5 rounded",
                   event.callTime === "BMO"
                     ? "bg-emerald-500/10 text-emerald-500"
                     : event.callTime === "AMC"
@@ -502,8 +502,8 @@ function EarningsDetailPanel({
                 {event.callTime === "BMO" ? "Before Open" : event.callTime === "AMC" ? "After Close" : "TBD"}
               </span>
             </div>
-            <p className="text-[10px] text-muted-foreground">{event.companyName}</p>
-            <p className="text-[10px] text-muted-foreground">{dateLabel}</p>
+            <p className="text-xs text-muted-foreground">{event.companyName}</p>
+            <p className="text-xs text-muted-foreground">{dateLabel}</p>
           </div>
         </div>
         <button
@@ -517,21 +517,21 @@ function EarningsDetailPanel({
 
       {/* EPS estimate */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="text-xs font-medium text-muted-foreground mb-2">
           EPS Estimates
         </p>
         <div className="grid grid-cols-2 gap-2">
           <div className="rounded-lg bg-muted/40 p-2.5">
-            <p className="text-[9px] text-muted-foreground">Expected</p>
+            <p className="text-[11px] text-muted-foreground">Expected</p>
             <p className="font-mono tabular-nums text-sm font-bold">${event.epsEstimate.toFixed(2)}</p>
           </div>
           <div className="rounded-lg bg-muted/40 p-2.5">
-            <p className="text-[9px] text-muted-foreground">Previous</p>
+            <p className="text-[11px] text-muted-foreground">Previous</p>
             <div className="flex items-center gap-1.5">
               <p className="font-mono tabular-nums text-sm font-bold">${event.prevEPS.toFixed(2)}</p>
               <span
                 className={cn(
-                  "text-[9px] font-medium",
+                  "text-[11px] font-medium",
                   epsChange >= 0 ? "text-emerald-500" : "text-red-500",
                 )}
               >
@@ -544,21 +544,21 @@ function EarningsDetailPanel({
 
       {/* Revenue estimate */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="text-xs font-medium text-muted-foreground mb-2">
           Revenue Estimates
         </p>
         <div className="grid grid-cols-2 gap-2">
           <div className="rounded-lg bg-muted/40 p-2.5">
-            <p className="text-[9px] text-muted-foreground">Expected</p>
+            <p className="text-[11px] text-muted-foreground">Expected</p>
             <p className="font-mono tabular-nums text-sm font-bold">${event.revenueEstimate.toFixed(1)}B</p>
           </div>
           <div className="rounded-lg bg-muted/40 p-2.5">
-            <p className="text-[9px] text-muted-foreground">Previous</p>
+            <p className="text-[11px] text-muted-foreground">Previous</p>
             <div className="flex items-center gap-1.5">
               <p className="font-mono tabular-nums text-sm font-bold">${event.prevRevenue.toFixed(1)}B</p>
               <span
                 className={cn(
-                  "text-[9px] font-medium",
+                  "text-[11px] font-medium",
                   revChange >= 0 ? "text-emerald-500" : "text-red-500",
                 )}
               >
@@ -572,11 +572,11 @@ function EarningsDetailPanel({
       {/* Beat/Miss history */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
+          <p className="text-xs font-medium text-muted-foreground">
             Beat/Miss History (Last 4Q)
           </p>
           <span className={cn(
-            "text-[10px] font-semibold",
+            "text-xs font-semibold",
             beatRate >= 75 ? "text-emerald-500" : beatRate >= 50 ? "text-amber-500" : "text-red-500",
           )}>
             {beatRate}% beat rate
@@ -584,7 +584,7 @@ function EarningsDetailPanel({
         </div>
         <div className="flex items-center gap-2">
           <BeatSquares history={event.beatHistory} />
-          <div className="flex items-center gap-2 text-[9px] text-muted-foreground">
+          <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
             <span className="flex items-center gap-0.5">
               <span className="w-2 h-2 rounded-sm bg-emerald-500 inline-block" />
               Beat
@@ -599,20 +599,20 @@ function EarningsDetailPanel({
             </span>
           </div>
         </div>
-        <p className="text-[9px] text-muted-foreground mt-1">Newest first (left to right)</p>
+        <p className="text-[11px] text-muted-foreground mt-1">Newest first (left to right)</p>
       </div>
 
       {/* IV Rank + Expected Move */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="text-xs font-medium text-muted-foreground mb-2">
           Options Pricing
         </p>
         <div className="space-y-2">
           <div>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-muted-foreground">IV Rank</span>
+              <span className="text-xs text-muted-foreground">IV Rank</span>
               <span className={cn(
-                "text-[10px] font-medium",
+                "text-xs font-medium",
                 event.ivRank >= 65 ? "text-red-500" : event.ivRank >= 40 ? "text-amber-500" : "text-emerald-500",
               )}>
                 {event.ivRank >= 65 ? "Elevated" : event.ivRank >= 40 ? "Moderate" : "Low"}
@@ -621,7 +621,7 @@ function EarningsDetailPanel({
             <IVRankBar ivRank={event.ivRank} />
           </div>
           <div className="flex items-center justify-between rounded-lg bg-muted/40 px-3 py-2">
-            <span className="text-[10px] text-muted-foreground">Expected Move</span>
+            <span className="text-xs text-muted-foreground">Expected Move</span>
             <span className="font-mono tabular-nums text-sm font-bold">
               ±{event.expectedMove}%
             </span>
@@ -631,14 +631,14 @@ function EarningsDetailPanel({
 
       {/* Analyst consensus */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="text-xs font-medium text-muted-foreground mb-2">
           Analyst Consensus
         </p>
         <div className="flex items-center justify-between rounded-lg bg-muted/40 px-3 py-2">
           <RatingChip rating={event.analystRating} />
           {event.priceTarget > 0 && (
             <div className="text-right">
-              <p className="text-[9px] text-muted-foreground">Price Target</p>
+              <p className="text-[11px] text-muted-foreground">Price Target</p>
               <p className="font-mono tabular-nums text-xs font-semibold">${event.priceTarget}</p>
             </div>
           )}
@@ -647,7 +647,7 @@ function EarningsDetailPanel({
 
       {/* Earnings Play Idea */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="text-xs font-medium text-muted-foreground mb-2">
           Earnings Play Idea
         </p>
         <div className="rounded-lg border bg-card p-3 space-y-2">
@@ -655,12 +655,12 @@ function EarningsDetailPanel({
             <span className={cn("text-xs font-semibold px-2 py-0.5 rounded", strategy.color)}>
               {strategy.name}
             </span>
-            <span className="text-[9px] text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
+            <span className="text-[11px] text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
               {strategy.riskLabel}
             </span>
           </div>
-          <p className="text-[10px] text-muted-foreground leading-relaxed">{strategy.rationale}</p>
-          <p className="text-[9px] text-muted-foreground/60 italic">
+          <p className="text-xs text-muted-foreground leading-relaxed">{strategy.rationale}</p>
+          <p className="text-[11px] text-muted-foreground/60 italic">
             Educational only — not investment advice.
           </p>
         </div>
@@ -678,7 +678,7 @@ function EarningsPlayIdeas({ events }: { events: CalendarEarningsEvent[] }) {
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">Earnings Play Ideas</h3>
-        <span className="text-[10px] text-muted-foreground">Next {next4.length} events</span>
+        <span className="text-xs text-muted-foreground">Next {next4.length} events</span>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
         {next4.map((ev) => {
@@ -690,11 +690,11 @@ function EarningsPlayIdeas({ events }: { events: CalendarEarningsEvent[] }) {
               <div className="flex items-center justify-between">
                 <div>
                   <span className="font-mono text-xs font-semibold">{ev.ticker}</span>
-                  <span className="text-[10px] text-muted-foreground ml-1.5">{dateLabel}</span>
+                  <span className="text-xs text-muted-foreground ml-1.5">{dateLabel}</span>
                 </div>
                 <span
                   className={cn(
-                    "text-[9px] font-medium px-1.5 py-0.5 rounded",
+                    "text-[11px] font-medium px-1.5 py-0.5 rounded",
                     ev.callTime === "BMO"
                       ? "bg-emerald-500/10 text-emerald-500"
                       : ev.callTime === "AMC"
@@ -706,14 +706,14 @@ function EarningsPlayIdeas({ events }: { events: CalendarEarningsEvent[] }) {
                 </span>
               </div>
               <div>
-                <span className={cn("text-[10px] font-semibold px-1.5 py-0.5 rounded", strategy.color)}>
+                <span className={cn("text-xs font-semibold px-1.5 py-0.5 rounded", strategy.color)}>
                   {strategy.name}
                 </span>
               </div>
-              <p className="text-[10px] text-muted-foreground leading-relaxed line-clamp-3">
+              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
                 {strategy.rationale}
               </p>
-              <div className="flex items-center justify-between text-[9px] text-muted-foreground border-t border-border/30 pt-2">
+              <div className="flex items-center justify-between text-[11px] text-muted-foreground border-t border-border/30 pt-2">
                 <span>IV Rank: <span className="font-semibold text-foreground">{ev.ivRank}</span></span>
                 <span>Exp. Move: <span className="font-semibold text-foreground">±{ev.expectedMove}%</span></span>
                 <span className="bg-muted px-1 py-0.5 rounded">{strategy.riskLabel}</span>
@@ -804,7 +804,7 @@ export function EarningsCalendar() {
     <div className="space-y-4">
       {/* Upcoming Strip */}
       <div>
-        <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="text-xs font-medium text-muted-foreground mb-2">
           Upcoming Earnings
         </p>
         <UpcomingStrip

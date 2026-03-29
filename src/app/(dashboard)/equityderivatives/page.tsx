@@ -931,11 +931,11 @@ function StatChip({
 }) {
   return (
     <div className="flex flex-col gap-0.5 bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 min-w-[90px]">
-      <span className="text-[10px] text-zinc-500 uppercase tracking-wide">
+      <span className="text-xs text-zinc-500 uppercase tracking-wide">
         {label}
       </span>
       <span className={cn("text-sm font-bold", color)}>{value}</span>
-      {sub && <span className="text-[10px] text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
     </div>
   );
 }
@@ -1113,7 +1113,7 @@ export default function EquityDerivativesPage() {
                       { label: "Liquidity", sso: "Varies by name", idx: "Deep (SPX, NDX)" },
                     ].map((r) => (
                       <div key={r.label} className="bg-zinc-800/60 rounded p-2">
-                        <div className="text-[10px] text-zinc-500 uppercase mb-1">{r.label}</div>
+                        <div className="text-xs text-zinc-500 uppercase mb-1">{r.label}</div>
                         <div className="text-emerald-400 text-[11px]">SSO: {r.sso}</div>
                         <div className="text-sky-400 text-[11px]">IDX: {r.idx}</div>
                       </div>
@@ -1131,7 +1131,7 @@ export default function EquityDerivativesPage() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <VolSurfaceSVG />
-                  <p className="text-[10px] text-zinc-500 mt-1">
+                  <p className="text-xs text-zinc-500 mt-1">
                     Put skew (OTM puts expensive) reflects demand for downside protection. Term structure typically inverted during stress.
                   </p>
                 </CardContent>
@@ -1429,7 +1429,7 @@ export default function EquityDerivativesPage() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <VixRollSVG />
-                  <p className="text-[10px] text-zinc-500 mt-1">
+                  <p className="text-xs text-zinc-500 mt-1">
                     In contango (front month futures {">"}  VIX spot), daily rolling from front-month to second-month futures creates a persistent negative carry of 4–8% per month. VXX loses ~75% of its value per year on average in low-vol environments.
                   </p>
                 </CardContent>
@@ -1491,7 +1491,7 @@ export default function EquityDerivativesPage() {
                       <div key={s.name} className="bg-zinc-800/60 rounded p-3">
                         <div className={cn("font-semibold mb-1", s.color)}>{s.name}</div>
                         <div className="text-zinc-400 mb-2">{s.desc}</div>
-                        <div className="text-red-400 text-[10px]">Max Loss: {s.risk}</div>
+                        <div className="text-red-400 text-xs">Max Loss: {s.risk}</div>
                       </div>
                     ))}
                   </div>
@@ -1541,7 +1541,7 @@ export default function EquityDerivativesPage() {
                 </CardHeader>
                 <CardContent className="pt-0">
                   <CbPricingSVG />
-                  <div className="grid grid-cols-3 gap-2 mt-2 text-[10px]">
+                  <div className="grid grid-cols-3 gap-2 mt-2 text-xs">
                     {[
                       { label: "Busted CB", desc: "Stock far OTM; trades near bond floor. Bond-like delta ~0.1.", color: "text-red-400" },
                       { label: "Balanced CB", desc: "ATM region. High gamma, optionality premium maximized. Delta 0.4–0.6.", color: "text-amber-400" },
@@ -1576,7 +1576,7 @@ export default function EquityDerivativesPage() {
                         <thead>
                           <tr className="border-b border-zinc-800">
                             {["Issuer", "Coupon", "Mat.", "Conv. Prem.", "Delta", "Rating"].map((h) => (
-                              <th key={h} className="px-1.5 py-1 text-left text-zinc-500 font-medium text-[10px]">{h}</th>
+                              <th key={h} className="px-1.5 py-1 text-left text-zinc-500 font-medium text-xs">{h}</th>
                             ))}
                           </tr>
                         </thead>

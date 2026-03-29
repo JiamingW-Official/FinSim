@@ -322,37 +322,37 @@ export default function TradePage() {
             <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-1 shrink-0">
               <TabsTrigger
                 value="order"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 Order
               </TabsTrigger>
               <TabsTrigger
                 value="positions"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 Positions
               </TabsTrigger>
               <TabsTrigger
                 value="pending"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 Orders{pendingCount > 0 && ` (${pendingCount})`}
               </TabsTrigger>
               <TabsTrigger
                 value="history"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 History
               </TabsTrigger>
               <TabsTrigger
                 value="execution"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 Exec
               </TabsTrigger>
               <TabsTrigger
                 value="margin"
-                className="h-6 rounded-none border-b-2 border-transparent px-2 text-[10px] data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="h-6 rounded-none border-b-2 border-transparent px-2 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
                 Margin
               </TabsTrigger>
@@ -443,6 +443,9 @@ export default function TradePage() {
           </Tabs>
         </div>
         </div>{/* end trade view wrapper */}
+        <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60">
+          For educational purposes only. Not financial advice.
+        </p>
       </div>
 
       {/* ── Mobile layout (< md): vertical stack ── */}
@@ -553,6 +556,9 @@ export default function TradePage() {
           </Tabs>
         </div>
       </div>
+      <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60 md:hidden">
+        For educational purposes only. Not financial advice.
+      </p>
     </>
   );
 }

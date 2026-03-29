@@ -430,7 +430,7 @@ export default function DerivPricingLabPage() {
       >
         <Card className="bg-[#111118] border-[#1e1e2e]">
           <CardContent className="p-4">
-            <p className="text-xs text-slate-500 mb-4 uppercase tracking-wider font-medium">
+            <p className="text-xs text-slate-500 mb-4 font-medium">
               Shared Option Parameters — all tabs update in real time
             </p>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">

@@ -102,14 +102,14 @@ export function AchievementGallery() {
               type="button"
               onClick={() => setActiveTab(tab.key)}
               className={cn(
-                "relative rounded-lg px-2.5 py-1 text-[10px] font-bold transition-colors",
+                "relative rounded-lg px-2.5 py-1 text-xs font-bold transition-colors",
                 activeTab === tab.key
                   ? "bg-primary/10 text-primary"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >
               {tab.label}
-              <span className="ml-1 text-[9px] opacity-60">
+              <span className="ml-1 text-[11px] opacity-60">
                 {unlocked}/{tab.defs.length}
               </span>
               {activeTab === tab.key && (
@@ -155,12 +155,12 @@ export function AchievementGallery() {
                 )}
               </div>
               <p className={cn(
-                "text-[10px] font-bold leading-tight",
+                "text-xs font-bold leading-tight",
                 isUnlocked ? "text-amber-300" : "text-muted-foreground",
               )}>
                 {def.name}
               </p>
-              <p className="text-[9px] leading-tight text-muted-foreground/70 line-clamp-2">
+              <p className="text-[11px] leading-tight text-muted-foreground/70 line-clamp-2">
                 {def.description}
               </p>
               {/* Progress bar for locked trading achievements */}

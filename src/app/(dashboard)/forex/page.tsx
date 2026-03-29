@@ -412,7 +412,7 @@ function MajorPairsTab() {
                       <td className="px-4 py-3 text-right font-mono text-zinc-200">{fmt(pair.bid, decimals)}</td>
                       <td className="px-4 py-3 text-right font-mono text-zinc-200">{fmt(pair.ask, decimals)}</td>
                       <td className="px-4 py-3 text-right">
-                        <Badge variant="outline" className="text-[10px] border-zinc-700 text-zinc-400">
+                        <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-400">
                           {fmt(pair.spreadPips, 1)} pips
                         </Badge>
                       </td>
@@ -421,7 +421,7 @@ function MajorPairsTab() {
                       </td>
                       <td className="px-4 py-3 text-right">
                         <div className="flex flex-col items-end gap-1">
-                          <div className="text-[10px] text-zinc-500">
+                          <div className="text-xs text-zinc-500">
                             {fmt(pair.rangeLow, decimals)} — {fmt(pair.rangeHigh, decimals)}
                           </div>
                           <div className="w-24 h-1.5 bg-zinc-700 rounded-full overflow-hidden">
@@ -474,7 +474,7 @@ function MajorPairsTab() {
                 { label: "Weekly Change", value: pctFmt(selected.weeklyChange) },
               ].map((item) => (
                 <div key={item.label} className="bg-zinc-800 rounded-lg p-3">
-                  <div className="text-[10px] text-zinc-500 mb-1">{item.label}</div>
+                  <div className="text-xs text-zinc-500 mb-1">{item.label}</div>
                   <div className="text-sm font-semibold text-zinc-100">{item.value}</div>
                 </div>
               ))}
@@ -733,7 +733,7 @@ function CarryTradeTab() {
                 <div key={item.label} className="flex items-start justify-between bg-zinc-800/50 rounded p-2">
                   <div>
                     <div className="text-zinc-300 font-medium">{item.label}</div>
-                    <div className="text-zinc-500 text-[10px]">{item.note}</div>
+                    <div className="text-zinc-500 text-xs">{item.note}</div>
                   </div>
                   <span className="text-primary font-semibold ml-2">{item.value}</span>
                 </div>
@@ -820,7 +820,7 @@ function TechnicalAnalysisTab() {
               </CardTitle>
               <Badge
                 className={cn(
-                  "text-[10px]",
+                  "text-xs",
                   tech.trend === "bullish" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
                   tech.trend === "bearish" ? "bg-rose-500/20 text-rose-400 border-rose-500/30" :
                   "bg-zinc-700 text-zinc-400"
@@ -884,7 +884,7 @@ function TechnicalAnalysisTab() {
               })}
             </svg>
             {/* Legend */}
-            <div className="flex gap-4 mt-2 text-[10px] text-zinc-500">
+            <div className="flex gap-4 mt-2 text-xs text-zinc-500">
               <div className="flex items-center gap-1">
                 <div className="w-4 h-px border-b border-dashed border-emerald-400" />
                 <span>Support</span>
@@ -908,12 +908,12 @@ function TechnicalAnalysisTab() {
           <CardContent className="space-y-3">
             {/* Pattern */}
             <div className="bg-zinc-800 rounded-lg p-3">
-              <div className="text-[10px] text-zinc-500 mb-1">Detected Pattern</div>
+              <div className="text-xs text-zinc-500 mb-1">Detected Pattern</div>
               <div className="text-sm font-semibold text-amber-300">{tech.pattern}</div>
             </div>
             {/* RSI */}
             <div className="bg-zinc-800 rounded-lg p-3">
-              <div className="flex justify-between text-[10px] text-zinc-500 mb-1">
+              <div className="flex justify-between text-xs text-zinc-500 mb-1">
                 <span>RSI(14)</span>
                 <span className={cn(tech.rsi > 70 ? "text-rose-400" : tech.rsi < 30 ? "text-emerald-400" : "text-zinc-400")}>
                   {tech.rsi > 70 ? "Overbought" : tech.rsi < 30 ? "Oversold" : "Neutral"}
@@ -924,7 +924,7 @@ function TechnicalAnalysisTab() {
             </div>
             {/* MACD */}
             <div className="bg-zinc-800 rounded-lg p-3">
-              <div className="text-[10px] text-zinc-500 mb-1">MACD Signal</div>
+              <div className="text-xs text-zinc-500 mb-1">MACD Signal</div>
               <Badge
                 className={cn(
                   "text-xs",
@@ -938,7 +938,7 @@ function TechnicalAnalysisTab() {
             </div>
             {/* Support/Resistance levels */}
             <div className="bg-zinc-800 rounded-lg p-3">
-              <div className="text-[10px] text-zinc-500 mb-2">Key S/R Levels</div>
+              <div className="text-xs text-zinc-500 mb-2">Key S/R Levels</div>
               <div className="space-y-1">
                 {tech.srLevels.map((lvl, i) => {
                   const decimals = tech.symbol.includes("JPY") ? 2 : 4;
@@ -986,7 +986,7 @@ function TechnicalAnalysisTab() {
                 )}
               >
                 <div className="text-xs font-semibold text-zinc-200 mb-2">{p.symbol}</div>
-                <div className="space-y-1 text-[10px]">
+                <div className="space-y-1 text-xs">
                   <div className="flex justify-between">
                     <span className="text-zinc-500">Trend</span>
                     <span className={p.trend === "bullish" ? "text-emerald-400" : p.trend === "bearish" ? "text-rose-400" : "text-zinc-400"}>
@@ -1072,7 +1072,7 @@ function MacroDriversTab() {
                       <td className="py-2 text-right">
                         <Badge
                           className={cn(
-                            "text-[10px]",
+                            "text-xs",
                             d.outlook === "overvalued" ? "bg-rose-500/20 text-rose-400 border-rose-500/30" :
                             d.outlook === "undervalued" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
                             "bg-zinc-700 text-zinc-400"
@@ -1140,14 +1140,14 @@ function MacroDriversTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-3">
-              <div className="text-xs text-zinc-500 font-medium uppercase tracking-wider mb-2">CB Policy Stance</div>
+              <div className="text-xs text-zinc-500 font-medium mb-2">CB Policy Stance</div>
               {MACRO_DRIVERS.map((d) => (
                 <div key={d.pair} className="flex items-center justify-between bg-zinc-800 rounded-lg px-3 py-2">
                   <span className="text-xs font-semibold text-zinc-200">{d.pair}</span>
                   <div className="flex items-center gap-2">
                     <Badge
                       className={cn(
-                        "text-[10px]",
+                        "text-xs",
                         d.cbDivergence === "hawkish" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
                         d.cbDivergence === "dovish"  ? "bg-rose-500/20 text-rose-400 border-rose-500/30" :
                         "bg-zinc-700 text-zinc-400"
@@ -1161,7 +1161,7 @@ function MacroDriversTab() {
               ))}
             </div>
             <div className="space-y-3">
-              <div className="text-xs text-zinc-500 font-medium uppercase tracking-wider mb-2">Current Account (% GDP)</div>
+              <div className="text-xs text-zinc-500 font-medium mb-2">Current Account (% GDP)</div>
               {MACRO_DRIVERS.map((d) => {
                 const isPositive = d.currentAccount >= 0;
                 const barPct = Math.abs(d.currentAccount) / 8 * 100;
@@ -1308,7 +1308,7 @@ function RiskManagementTab() {
                 },
               ].map((input) => (
                 <div key={input.label}>
-                  <label className="text-[10px] text-zinc-500 block mb-1">{input.label}</label>
+                  <label className="text-xs text-zinc-500 block mb-1">{input.label}</label>
                   <input
                     type="number"
                     value={input.value}
@@ -1333,7 +1333,7 @@ function RiskManagementTab() {
                 { label: "Stop Distance", value: `${stopPips} pips`, color: "text-rose-400" },
               ].map((r) => (
                 <div key={r.label} className="bg-zinc-800 rounded-lg p-3">
-                  <div className="text-[10px] text-zinc-500">{r.label}</div>
+                  <div className="text-xs text-zinc-500">{r.label}</div>
                   <div className={cn("text-sm font-semibold mt-0.5", r.color)}>{r.value}</div>
                 </div>
               ))}
@@ -1341,7 +1341,7 @@ function RiskManagementTab() {
 
             {/* Risk scale */}
             <div>
-              <div className="flex justify-between text-[10px] text-zinc-500 mb-1">
+              <div className="flex justify-between text-xs text-zinc-500 mb-1">
                 <span>Risk Level</span>
                 <span className={cn(
                   riskPct <= 1 ? "text-emerald-400" : riskPct <= 2 ? "text-amber-400" : "text-rose-400"
@@ -1364,7 +1364,7 @@ function RiskManagementTab() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="text-[10px]">
+              <table className="text-xs">
                 <thead>
                   <tr>
                     <th className="w-16" />
@@ -1385,7 +1385,7 @@ function RiskManagementTab() {
                         <td key={j} className="px-0.5 py-0.5">
                           <div
                             className={cn(
-                              "w-12 h-7 rounded flex items-center justify-center text-[9px] font-semibold",
+                              "w-12 h-7 rounded flex items-center justify-center text-[11px] font-semibold",
                               corrColor(val),
                               Math.abs(val) >= 0.5 ? "text-zinc-100" : "text-zinc-400"
                             )}
@@ -1399,7 +1399,7 @@ function RiskManagementTab() {
                 </tbody>
               </table>
             </div>
-            <div className="flex gap-3 mt-3 text-[10px] flex-wrap">
+            <div className="flex gap-3 mt-3 text-xs flex-wrap">
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-emerald-500/80" /><span className="text-zinc-500">Strong +</span></div>
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-emerald-500/40" /><span className="text-zinc-500">Moderate +</span></div>
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-zinc-600/40" /><span className="text-zinc-500">Neutral</span></div>
@@ -1455,11 +1455,11 @@ function RiskManagementTab() {
                   <div className={cn("text-sm font-semibold", strat.color)}>{strat.name}</div>
                   <p className="text-[11px] text-zinc-400 leading-relaxed">{strat.description}</p>
                   <div className="space-y-1 pt-1">
-                    <div className="flex justify-between text-[10px]">
+                    <div className="flex justify-between text-xs">
                       <span className="text-zinc-500">Cost</span>
                       <span className="text-zinc-300">{strat.cost}</span>
                     </div>
-                    <div className="flex justify-between text-[10px]">
+                    <div className="flex justify-between text-xs">
                       <span className="text-zinc-500">Effectiveness</span>
                       <span className="text-zinc-300">{strat.effectiveness}%</span>
                     </div>

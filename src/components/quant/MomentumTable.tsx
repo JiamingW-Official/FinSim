@@ -34,7 +34,7 @@ function SignalBadge({ signal }: { signal: MomentumRank["signal"] }) {
   };
   const c = config[signal];
   return (
-    <span className={cn("text-[10px] px-1.5 py-0.5 rounded font-medium", c.className)}>
+    <span className={cn("text-xs px-1.5 py-0.5 rounded font-medium", c.className)}>
       {c.text}
     </span>
   );
@@ -57,7 +57,7 @@ function ScoreBar({ score, maxScore }: { score: number; maxScore: number }) {
       </div>
       <span
         className={cn(
-          "font-mono tabular-nums text-[10px] w-12 text-right",
+          "font-mono tabular-nums text-xs w-12 text-right",
           score >= 0 ? "text-emerald-500" : "text-red-500",
         )}
       >
@@ -169,7 +169,7 @@ export function MomentumTable() {
       </div>
 
       {/* Educational footer */}
-      <p className="text-[10px] text-muted-foreground leading-relaxed">
+      <p className="text-xs text-muted-foreground leading-relaxed">
         Composite momentum score weights: 40% 12-month, 40% 6-month, 20%
         1-month returns. Strong momentum tends to persist in the short term
         but can reverse sharply. Use as one factor among many.

@@ -335,10 +335,10 @@ function TrafficLight({ status }: { status: "green" | "yellow" | "red" }) {
             "h-3 w-3 rounded-full transition-all",
             c === status
               ? c === "green"
-                ? "bg-emerald-400 shadow-[0_0_6px_#10b981]"
+                ? "bg-emerald-400"
                 : c === "yellow"
-                ? "bg-amber-400 shadow-[0_0_6px_#f59e0b]"
-                : "bg-red-400 shadow-[0_0_6px_#ef4444]"
+                ? "bg-amber-400"
+                : "bg-red-400"
               : "bg-muted opacity-30"
           )}
         />
@@ -392,7 +392,7 @@ function MetricChip({
 }) {
   return (
     <div className="flex flex-col items-center rounded-lg border border-border bg-background px-3 py-2">
-      <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("mt-0.5 text-sm font-bold tabular-nums", valueClass ?? "text-foreground")}>
         {value}
       </span>
@@ -419,23 +419,23 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
       {/* Totals bar */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className="rounded-lg border border-border bg-background p-3">
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Total Value</div>
+          <div className="text-xs text-muted-foreground">Total Value</div>
           <div className="mt-1 text-lg font-bold text-foreground">
             <AnimatedCounter value={totalValue} formatter={(v) => fmt$(v)} />
           </div>
         </div>
         <div className="rounded-lg border border-border bg-background p-3">
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Total Cost</div>
+          <div className="text-xs text-muted-foreground">Total Cost</div>
           <div className="mt-1 text-lg font-bold text-foreground">{fmt$(totalCost)}</div>
         </div>
         <div className="rounded-lg border border-border bg-background p-3">
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Unrealized P&L</div>
+          <div className="text-xs text-muted-foreground">Unrealized P&L</div>
           <div className={cn("mt-1 text-lg font-bold tabular-nums", pctColor(totalPnL))}>
             <AnimatedCounter value={totalPnL} formatter={(v) => fmt$(v, true)} />
           </div>
         </div>
         <div className="rounded-lg border border-border bg-background p-3">
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Overall Return</div>
+          <div className="text-xs text-muted-foreground">Overall Return</div>
           <div className={cn("mt-1 text-lg font-bold tabular-nums", pctColor(totalReturn))}>
             <AnimatedCounter value={totalReturn} formatter={(v) => fmtPct(v, true)} />
           </div>
@@ -448,7 +448,7 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
           <thead className="border-b border-border bg-muted/30">
             <tr>
               {["Symbol", "Shares", "Cost", "Price", "Value", "P&L $", "P&L %", "Weight"].map((h) => (
-                <th key={h} className="px-3 py-2 text-left text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
                   {h}
                 </th>
               ))}
@@ -547,7 +547,7 @@ function AssetAllocationMonitor({ classes }: { classes: AssetClass[] }) {
         {/* Donut */}
         <div className="flex-shrink-0">
           <DonutChart data={donutActual} overlayData={donutTarget} size={180} />
-          <p className="mt-1 text-center text-[10px] text-muted-foreground">
+          <p className="mt-1 text-center text-xs text-muted-foreground">
             Solid = Actual · Dashed = Target
           </p>
         </div>
@@ -644,7 +644,7 @@ function RiskDashboard({
       </div>
 
       <div>
-        <h4 className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+        <h4 className="mb-2 text-xs font-semibold text-muted-foreground">
           Correlation Clusters (&gt;0.7)
         </h4>
         <div className="space-y-2">
@@ -655,7 +655,7 @@ function RiskDashboard({
                 <span className="text-xs font-semibold text-foreground">{cl.label}</span>
                 <div className="flex gap-1">
                   {cl.symbols.map((sym) => (
-                    <Badge key={sym} variant="outline" className="px-1.5 py-0 text-[10px]">
+                    <Badge key={sym} variant="outline" className="px-1.5 py-0 text-xs">
                       {sym}
                     </Badge>
                   ))}
@@ -727,7 +727,7 @@ function PerformanceAttribution() {
 
       {/* Brinson attribution */}
       <div>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h4 className="mb-2 text-xs font-semibold text-muted-foreground">
           Brinson Attribution
         </h4>
         <div className="space-y-1.5">
@@ -747,13 +747,13 @@ function PerformanceAttribution() {
 
       {/* Factor loadings */}
       <div>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h4 className="mb-2 text-xs font-semibold text-muted-foreground">
           Factor Exposures
         </h4>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {factors.map((f) => (
             <div key={f.name} className="rounded-lg border border-border bg-background px-2 py-1.5">
-              <div className="text-[10px] text-muted-foreground">{f.name}</div>
+              <div className="text-xs text-muted-foreground">{f.name}</div>
               <div className={cn("text-xs font-bold tabular-nums", pctColor(f.loading))}>
                 {f.loading >= 0 ? "+" : ""}{f.loading}
               </div>
@@ -774,7 +774,7 @@ function PerformanceAttribution() {
 
       {/* Sector bar chart */}
       <div>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h4 className="mb-2 text-xs font-semibold text-muted-foreground">
           Sector Contribution
         </h4>
         <BarChart
@@ -928,7 +928,7 @@ function TradeSuggestions({
             <div className="flex items-center gap-2">
               <Badge
                 className={cn(
-                  "text-[10px] font-bold",
+                  "text-xs font-bold",
                   t.action === "BUY"
                     ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30"
                     : "bg-red-500/20 text-red-400 hover:bg-red-500/30"
@@ -939,7 +939,7 @@ function TradeSuggestions({
               <span className="font-bold text-foreground">{t.symbol}</span>
               <span className="text-xs text-muted-foreground">{t.shares} shares</span>
               {t.priority === "tax-loss" && (
-                <Badge variant="outline" className="border-emerald-500/50 text-[10px] text-emerald-400">
+                <Badge variant="outline" className="border-emerald-500/50 text-xs text-emerald-400">
                   Tax-Loss Harvest
                 </Badge>
               )}
@@ -947,7 +947,7 @@ function TradeSuggestions({
             <span className="text-xs font-bold text-foreground">{fmt$(t.value)}</span>
           </div>
           <p className="mt-1.5 text-xs text-muted-foreground">{t.reason}</p>
-          <div className="mt-2 flex flex-wrap gap-3 text-[10px] text-muted-foreground">
+          <div className="mt-2 flex flex-wrap gap-3 text-xs text-muted-foreground">
             {t.taxImpact !== null && (
               <span>
                 Tax savings: <span className="font-semibold text-emerald-400">{fmt$(t.taxImpact)}</span>
@@ -1076,7 +1076,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
             <div className="flex items-center gap-2">
               <span className="text-primary">{g.icon}</span>
               <span className="text-xs font-semibold text-foreground">{g.label}</span>
-              <Badge variant="outline" className="px-1.5 py-0 text-[10px]">
+              <Badge variant="outline" className="px-1.5 py-0 text-xs">
                 {g.alerts.length}
               </Badge>
               {g.alerts.some((a) => a.severity === "red") && (
@@ -1109,7 +1109,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-semibold text-foreground">{a.symbol}</span>
-                          <span className={cn("text-[10px] font-medium", severityColor(a.severity))}>
+                          <span className={cn("text-xs font-medium", severityColor(a.severity))}>
                             {a.severity === "red" ? "HIGH" : a.severity === "yellow" ? "MEDIUM" : "LOW"}
                           </span>
                         </div>
@@ -1172,7 +1172,7 @@ export default function PortfolioMonitor() {
         <div>
           <h1 className="text-xl font-bold text-foreground">Portfolio Monitor</h1>
           <p className="mt-0.5 text-xs text-muted-foreground">
-            Real-time monitoring, rebalancing &amp; risk analytics
+            Simulated monitoring, rebalancing &amp; risk analytics
           </p>
         </div>
         <div className="flex items-center gap-3">

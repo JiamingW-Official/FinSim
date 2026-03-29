@@ -59,11 +59,11 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
                 <span className="text-[11px] font-bold">{pos.ticker}</span>
-                <span className="text-[9px] font-bold text-orange-400">
+                <span className="text-[11px] font-bold text-orange-400">
                   {pos.strategyName}
                 </span>
               </div>
-              <div className="flex items-center gap-2 text-[9px] text-muted-foreground">
+              <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
                 {pos.legs.map((leg, i) => (
                   <span key={i}>
                     {leg.side === "buy" ? "+" : "-"}
@@ -86,9 +86,9 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
 
           <div className="flex items-center gap-3">
             {/* Greeks summary */}
-            <div className="hidden md:flex items-center gap-2 text-[9px] text-muted-foreground">
+            <div className="hidden md:flex items-center gap-2 text-[11px] text-muted-foreground">
               <span>
-                <span className="text-blue-400">D</span>{" "}
+                <span className="text-orange-400">D</span>{" "}
                 {pos.totalGreeks.delta.toFixed(2)}
               </span>
               <span>
@@ -101,7 +101,7 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
             <div className="text-right">
               <div
                 className={cn(
-                  "text-[11px] font-black tabular-nums",
+                  "text-[11px] font-bold tabular-nums",
                   pos.unrealizedPnL >= 0
                     ? "text-emerald-400"
                     : "text-red-400",
@@ -112,7 +112,7 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
               </div>
               <div
                 className={cn(
-                  "text-[9px] font-bold tabular-nums",
+                  "text-[11px] font-bold tabular-nums",
                   pos.unrealizedPnLPercent >= 0
                     ? "text-emerald-400/70"
                     : "text-red-400/70",

@@ -133,7 +133,7 @@ export default function OptionsPage() {
             value="unusual"
             className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
           >
-            Unusual Activity
+            Unusual Activity (Simulated)
           </TabsTrigger>
           <TabsTrigger
             value="greeks-lab"
@@ -262,7 +262,7 @@ export default function OptionsPage() {
                       <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
                         Options Flow Heatmap
                       </h3>
-                      <p className="mb-3 text-[10px] text-muted-foreground">
+                      <p className="mb-3 text-xs text-muted-foreground">
                         Net call/put dollar flow per ticker and expiry. Green = net call buying, Red = net put buying. Cell size proportional to volume.
                       </p>
                       <FlowHeatmap items={unusualActivity} />
@@ -271,9 +271,9 @@ export default function OptionsPage() {
                     {/* Dark Pool Flow section */}
                     <div className="border-t border-border/50 px-3 py-3">
                       <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
-                        Dark Pool Prints
+                        Simulated Institutional Flow
                       </h3>
-                      <p className="mb-3 text-[10px] text-muted-foreground">
+                      <p className="mb-3 text-xs text-muted-foreground">
                         Simulated institutional dark pool executions. Above Ask = aggressive buyer. Below Bid = aggressive seller.
                       </p>
                       <DarkPoolFlow seed={darkPoolSeed} />
@@ -366,8 +366,8 @@ export default function OptionsPage() {
                     <Activity className="h-3.5 w-3.5 text-orange-400" />
                   </motion.div>
                   <div>
-                    <h1 className="text-xs font-black">{currentTicker} Options</h1>
-                    <p className="text-[9px] text-muted-foreground">
+                    <h1 className="text-xs font-bold">{currentTicker} Options <span className="font-normal text-muted-foreground">(Simulated)</span></h1>
+                    <p className="text-[11px] text-muted-foreground">
                       Spot: ${spotPrice.toFixed(2)}
                     </p>
                   </div>
@@ -378,6 +378,9 @@ export default function OptionsPage() {
           </AnimatePresence>
         </div>
       </Tabs>
+      <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60">
+        For educational purposes only. Not financial advice. All data is simulated.
+      </p>
     </div>
   );
 }

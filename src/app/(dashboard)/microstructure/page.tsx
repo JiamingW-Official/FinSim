@@ -845,9 +845,9 @@ export default function MicrostructurePage() {
 
                     {/* Spread row */}
                     <div className="grid grid-cols-3 border-y border-border/60 py-1 my-1">
-                      <span className="text-muted-foreground text-[10px]">SPREAD</span>
+                      <span className="text-muted-foreground text-xs">SPREAD</span>
                       <span className="text-center text-amber-400">${nbboSpread}</span>
-                      <span className="text-right text-muted-foreground text-[10px]">{nbboSpreadBps}bp</span>
+                      <span className="text-right text-muted-foreground text-xs">{nbboSpreadBps}bp</span>
                     </div>
 
                     {/* Bid levels */}
@@ -993,7 +993,7 @@ export default function MicrostructurePage() {
                         >
                           <td className="py-2 pr-3">
                             <span className="font-medium">{o.name}</span>
-                            <Badge variant="outline" className="ml-1.5 text-[10px] px-1 py-0">
+                            <Badge variant="outline" className="ml-1.5 text-xs px-1 py-0">
                               {o.abbr}
                             </Badge>
                           </td>
@@ -1154,7 +1154,7 @@ export default function MicrostructurePage() {
                           style={{ width: `${m.pct}%` }}
                         />
                       </div>
-                      <div className="text-[10px] text-muted-foreground mt-0.5">{m.note}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{m.note}</div>
                     </div>
                   ))}
                 </CardContent>
@@ -1203,7 +1203,7 @@ export default function MicrostructurePage() {
                           {mm.icon}
                           <span className="text-sm font-medium">{mm.abbr}</span>
                         </div>
-                        <Badge variant="outline" className="text-[10px]">{mm.badge}</Badge>
+                        <Badge variant="outline" className="text-xs">{mm.badge}</Badge>
                       </div>
                       <div className="text-xs text-muted-foreground mb-2">{mm.name}</div>
                       <div className="text-xs text-muted-foreground leading-relaxed">{mm.role}</div>

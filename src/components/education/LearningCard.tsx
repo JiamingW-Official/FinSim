@@ -46,7 +46,7 @@ export function LearningCard({
             {concepts.map((c) => (
               <span
                 key={c}
-                className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary"
+                className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
               >
                 {c}
               </span>

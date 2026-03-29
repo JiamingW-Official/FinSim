@@ -66,7 +66,7 @@ function CycleTimeline({ currentCycle }: { currentCycle: BusinessCycle }) {
             >
               <p
                 className={cn(
-                  "text-[10px] font-medium",
+                  "text-xs font-medium",
                   isActive && phase.color,
                 )}
               >
@@ -117,13 +117,13 @@ function SectorList({
 
   return (
     <div className="space-y-1.5">
-      <p className={cn("text-[10px] font-medium", color)}>{title}</p>
+      <p className={cn("text-xs font-medium", color)}>{title}</p>
       <div className="flex flex-wrap gap-1">
         {sectors.map((sector) => (
           <span
             key={sector}
             className={cn(
-              "text-[10px] px-2 py-0.5 rounded font-medium",
+              "text-xs px-2 py-0.5 rounded font-medium",
               bg,
               color,
             )}
@@ -190,20 +190,20 @@ export function SectorRotationPanel() {
       {/* Macro inputs */}
       <div className="grid grid-cols-4 gap-2">
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">GDP</p>
+          <p className="text-xs text-muted-foreground">GDP</p>
           <p className="font-mono tabular-nums text-xs font-medium">
             {gdpGrowth > 0 ? "+" : ""}
             {gdpGrowth.toFixed(1)}%
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">CPI</p>
+          <p className="text-xs text-muted-foreground">CPI</p>
           <p className="font-mono tabular-nums text-xs font-medium">
             {inflationRate.toFixed(1)}%
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Yield Curve</p>
+          <p className="text-xs text-muted-foreground">Yield Curve</p>
           <p
             className={cn(
               "font-mono tabular-nums text-xs font-medium",
@@ -214,7 +214,7 @@ export function SectorRotationPanel() {
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Unemp.</p>
+          <p className="text-xs text-muted-foreground">Unemp.</p>
           <p className="font-mono tabular-nums text-xs font-medium capitalize">
             {unemploymentTrend}
           </p>
@@ -242,7 +242,7 @@ export function SectorRotationPanel() {
 
       {/* Historical accuracy */}
       <div className="px-3 py-2 rounded-lg bg-muted/50 border">
-        <p className="text-[10px] text-muted-foreground mb-1">
+        <p className="text-xs text-muted-foreground mb-1">
           Historical Track Record
         </p>
         <p className="text-xs leading-relaxed">

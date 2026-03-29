@@ -140,13 +140,13 @@ export function DataManager() {
   return (
     <div className="space-y-4">
       {/* Header row */}
-      <div className="flex items-center gap-2 text-sm font-black">
+      <div className="flex items-center gap-2 text-sm font-bold">
         <Database className="h-4 w-4 text-indigo-400" />
         Data and Privacy
       </div>
 
       {/* Stats row */}
-      <div className="flex flex-wrap gap-4 text-[10px] text-muted-foreground">
+      <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
         <span>
           <span className="font-semibold text-foreground">{tradeHistory.length}</span> trade records
         </span>
@@ -169,7 +169,7 @@ export function DataManager() {
 
       {/* Export buttons */}
       <div className="space-y-2">
-        <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wide">Export</p>
+        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Export</p>
         <div className="flex flex-wrap gap-2">
           <Button
             variant="outline"
@@ -205,7 +205,7 @@ export function DataManager() {
 
       {/* Import */}
       <div className="space-y-2">
-        <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wide">Import</p>
+        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Import</p>
         <input
           ref={fileInputRef}
           type="file"
@@ -228,7 +228,7 @@ export function DataManager() {
           )}
           Import Data
         </Button>
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           Accepts .json files exported from FinSim. Current progress will be overwritten.
         </p>
       </div>
@@ -259,7 +259,7 @@ export function DataManager() {
       <div className="flex items-center justify-between">
         <div>
           <div className="text-sm font-medium">Reset All Progress</div>
-          <div className="text-[10px] text-muted-foreground">
+          <div className="text-xs text-muted-foreground">
             Clears XP, achievements, portfolio, and lesson history
           </div>
         </div>

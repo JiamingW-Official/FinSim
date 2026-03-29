@@ -101,10 +101,10 @@ function PriceLadder({
           className="absolute left-2 right-2 flex items-center justify-between"
           style={{ top: `${((max - l.price) / range) * 100}%`, transform: "translateY(-50%)" }}
         >
-          <span className="rounded px-1 text-[9px] font-semibold text-white" style={{ background: l.color }}>
+          <span className="rounded px-1 text-[11px] font-semibold text-white" style={{ background: l.color }}>
             {l.label}
           </span>
-          <span className="text-[10px] tabular-nums font-medium" style={{ color: l.color }}>
+          <span className="text-xs tabular-nums font-medium" style={{ color: l.color }}>
             {formatCurrency(l.price)}
           </span>
         </div>
@@ -177,10 +177,10 @@ function AdvancedOrderTicket({
         className="w-full max-w-xs rounded-xl border border-border/50 bg-background shadow-2xl"
       >
         {/* Header */}
-        <div className="rounded-t-xl bg-[#f59e0b]/10 px-4 py-3">
+        <div className="rounded-t-xl bg-amber-500/10 px-4 py-3">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-bold text-[#f59e0b]">ORDER TICKET</span>
-            <span className="rounded bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground uppercase">
+            <span className="text-sm font-bold text-amber-500">ORDER TICKET</span>
+            <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground uppercase">
               {advancedType.replace("_", " ")}
             </span>
           </div>
@@ -206,7 +206,7 @@ function AdvancedOrderTicket({
               <>
                 <Row label="Buy Stop (A)" value={formatCurrency(summary.ocoA ?? 0)} />
                 <Row label="Buy Limit (B)" value={formatCurrency(summary.ocoB ?? 0)} />
-                <p className="text-[10px] text-muted-foreground mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   If A fills, B is cancelled (and vice versa)
                 </p>
               </>
@@ -251,7 +251,7 @@ function AdvancedOrderTicket({
             <Button
               size="sm"
               onClick={() => { soundEngine.playClick(); onConfirm(); }}
-              className="flex-1 text-xs font-semibold text-white bg-[#f59e0b] hover:bg-[#d97706]"
+              className="flex-1 text-xs font-semibold text-white bg-amber-500 hover:bg-amber-600"
             >
               Place Order
             </Button>
@@ -275,11 +275,11 @@ function Row({
 }) {
   const colorClass =
     colored === "red"
-      ? "text-[#ef4444]"
+      ? "text-red-500"
       : colored === "green"
-        ? "text-[#10b981]"
+        ? "text-emerald-500"
         : colored === "amber"
-          ? "text-[#f59e0b]"
+          ? "text-amber-500"
           : muted
             ? "text-muted-foreground/70"
             : "";
@@ -596,7 +596,7 @@ export function OrderEntry() {
         tradeFlash === "sell" && "trade-flash-sell",
       )}
     >
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="text-xs font-semibold text-muted-foreground">
         Order Entry
       </div>
 
@@ -622,7 +622,7 @@ export function OrderEntry() {
           className={cn(
             "rounded py-1.5 text-xs font-semibold transition-all duration-200",
             tradeMode === "buy"
-              ? "bg-[#10b981] text-white shadow-[0_0_12px_rgba(16,185,129,0.35)]"
+              ? "bg-emerald-500 text-white"
               : "text-muted-foreground hover:text-foreground",
           )}
         >
@@ -637,7 +637,7 @@ export function OrderEntry() {
           className={cn(
             "rounded py-1.5 text-xs font-semibold transition-all duration-200",
             tradeMode === "sell"
-              ? "bg-[#ef4444] text-white shadow-[0_0_12px_rgba(239,68,68,0.35)]"
+              ? "bg-red-500 text-white"
               : "text-muted-foreground hover:text-foreground",
           )}
         >
@@ -652,7 +652,7 @@ export function OrderEntry() {
           className={cn(
             "rounded py-1.5 text-xs font-semibold transition-all duration-200",
             tradeMode === "short"
-              ? "bg-[#a855f7] text-white shadow-[0_0_12px_rgba(168,85,247,0.35)]"
+              ? "bg-orange-500 text-white"
               : "text-muted-foreground hover:text-foreground",
           )}
         >
@@ -673,12 +673,12 @@ export function OrderEntry() {
             transition={{ duration: 0.18 }}
             className="overflow-hidden"
           >
-            <div className="space-y-1.5 rounded-md border border-[#a855f7]/20 bg-[#a855f7]/5 p-2">
-              <div className="flex items-center justify-between text-[10px]">
+            <div className="space-y-1.5 rounded-md border border-orange-500/20 bg-orange-500/5 p-2">
+              <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">Borrow Rate (annual)</span>
-                <span className="font-semibold tabular-nums text-[#a855f7]">{borrowRate.toFixed(2)}%</span>
+                <span className="font-semibold tabular-nums text-orange-500">{borrowRate.toFixed(2)}%</span>
               </div>
-              <div className="flex items-center justify-between text-[10px]">
+              <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">Daily Cost ({qty > 0 && price > 0 ? `${qty} shares` : "—"})</span>
                 <span className="tabular-nums text-muted-foreground">
                   {qty > 0 && price > 0
@@ -687,14 +687,14 @@ export function OrderEntry() {
                 </span>
               </div>
               {shortPosition && (
-                <div className="flex items-center justify-between text-[10px]">
+                <div className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground">Short Interest</span>
-                  <span className="font-medium tabular-nums text-[#a855f7]">
+                  <span className="font-medium tabular-nums text-orange-500">
                     {shortPosition.quantity} shares @ {formatCurrency(shortPosition.avgPrice)}
                   </span>
                 </div>
               )}
-              <div className="flex items-start gap-1.5 rounded bg-[#ef4444]/10 px-2 py-1.5 text-[10px] text-[#ef4444]">
+              <div className="flex items-start gap-1.5 rounded bg-red-500/10 px-2 py-1.5 text-xs text-red-500">
                 <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
                 <span className="font-medium">Maximum loss is unlimited — price can rise indefinitely.</span>
               </div>
@@ -716,7 +716,7 @@ export function OrderEntry() {
               whileTap={{ y: 1, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className={cn(
-                "rounded py-1 text-[10px] font-medium transition-colors duration-150",
+                "rounded py-1 text-xs font-medium transition-colors duration-150",
                 orderType === ot.value
                   ? "bg-background text-foreground shadow-sm"
                   : "text-muted-foreground hover:text-foreground",
@@ -751,7 +751,7 @@ export function OrderEntry() {
       {orderType === "stop_loss" && (
         <div>
           <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
-            <Shield className="h-3 w-3 text-[#ef4444]" />
+            <Shield className="h-3 w-3 text-red-500" />
             Stop Price
           </label>
           <Input
@@ -767,7 +767,7 @@ export function OrderEntry() {
       {orderType === "take_profit" && (
         <div>
           <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
-            <TrendingUp className="h-3 w-3 text-[#10b981]" />
+            <TrendingUp className="h-3 w-3 text-emerald-500" />
             Target Price
           </label>
           <Input
@@ -804,7 +804,7 @@ export function OrderEntry() {
             type="button"
             onClick={() => setQuantity(String(q))}
             className={cn(
-              "flex-1 rounded py-1 text-[10px] font-medium transition-all duration-150",
+              "flex-1 rounded py-1 text-xs font-medium transition-all duration-150",
               parseInt(quantity) === q
                 ? "bg-primary/20 text-primary"
                 : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground",
@@ -829,11 +829,11 @@ export function OrderEntry() {
               className="tabular-nums font-medium"
             />
           </div>
-          <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span>Commission</span>
             <span className="tabular-nums">{formatCurrency(commission)}</span>
           </div>
-          <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
             <span>Est. Slippage</span>
             <span className="tabular-nums">~{formatCurrency(price * qty * 0.00025)}</span>
           </div>
@@ -849,13 +849,13 @@ export function OrderEntry() {
         {position && (
           <div className="mt-1 flex items-center justify-between text-xs">
             <span className="text-muted-foreground">Long Position</span>
-            <span className="tabular-nums font-medium text-[#10b981]">{position.quantity} shares</span>
+            <span className="tabular-nums font-medium text-emerald-500">{position.quantity} shares</span>
           </div>
         )}
         {shortPosition && (
           <div className="mt-1 flex items-center justify-between text-xs">
             <span className="text-muted-foreground">Short Position</span>
-            <span className="tabular-nums font-medium text-[#ef4444]">{shortPosition.quantity} shares</span>
+            <span className="tabular-nums font-medium text-red-500">{shortPosition.quantity} shares</span>
           </div>
         )}
       </div>
@@ -882,12 +882,12 @@ export function OrderEntry() {
           className={cn(
             "w-full font-semibold transition-all duration-200",
             orderType !== "market"
-              ? "bg-[#f59e0b] hover:bg-[#d97706] text-white hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]"
+              ? "bg-amber-500 hover:bg-amber-600 text-white"
               : tradeMode === "buy"
-                ? "bg-[#10b981] hover:bg-[#059669] text-white hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                ? "bg-emerald-500 hover:bg-emerald-600 text-white"
                 : tradeMode === "short"
-                  ? "bg-[#a855f7] hover:bg-[#9333ea] text-white hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
-                  : "bg-[#ef4444] hover:bg-[#dc2626] text-white hover:shadow-[0_0_15px_rgba(239,68,68,0.3)]",
+                  ? "bg-orange-500 hover:bg-orange-600 text-white"
+                  : "bg-red-500 hover:bg-red-600 text-white",
           )}
         >
           {orderType === "market"
@@ -907,7 +907,7 @@ export function OrderEntry() {
         className="flex items-center justify-between rounded-md border border-border/40 bg-muted/30 px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       >
         <span className="inline-flex items-center gap-1.5">
-          <Zap className="h-3 w-3 text-[#f59e0b]" />
+          <Zap className="h-3 w-3 text-amber-500" />
           Advanced Orders
         </span>
         {showAdvanced ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
@@ -935,15 +935,15 @@ export function OrderEntry() {
                       className={cn(
                         "flex flex-col items-start rounded-md border px-2 py-1.5 text-left transition-all",
                         advancedType === at.value
-                          ? "border-[#f59e0b]/60 bg-[#f59e0b]/10 text-[#f59e0b]"
+                          ? "border-amber-500/60 bg-amber-500/10 text-amber-500"
                           : "border-border/30 text-muted-foreground hover:border-border hover:text-foreground",
                       )}
                     >
-                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold">
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold">
                         <Icon className="h-2.5 w-2.5" />
                         {at.label}
                       </span>
-                      <span className="mt-0.5 text-[9px] leading-tight opacity-70">{at.description}</span>
+                      <span className="mt-0.5 text-[11px] leading-tight opacity-70">{at.description}</span>
                     </button>
                   );
                 })}
@@ -953,7 +953,7 @@ export function OrderEntry() {
               {advancedType === "bracket" && (
                 <div className="space-y-2">
                   <div>
-                    <label className="mb-1 flex items-center gap-1 text-[10px] text-muted-foreground">
+                    <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
                       Entry Price
                     </label>
                     <Input
@@ -968,7 +968,7 @@ export function OrderEntry() {
 
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="mb-1 flex items-center gap-1 text-[10px] text-[#ef4444]">
+                      <label className="mb-1 flex items-center gap-1 text-xs text-red-500">
                         <Shield className="h-2.5 w-2.5" /> Stop Loss
                       </label>
                       <div className="flex gap-1">
@@ -983,14 +983,14 @@ export function OrderEntry() {
                         <button
                           type="button"
                           onClick={() => setBracketStop(price > 0 ? (price * 0.95).toFixed(2) : "")}
-                          className="shrink-0 rounded border border-[#ef4444]/30 px-1 text-[9px] text-[#ef4444] hover:bg-[#ef4444]/10"
+                          className="shrink-0 rounded border border-red-500/30 px-1 text-[11px] text-red-500 hover:bg-red-500/10"
                         >
                           -5%
                         </button>
                       </div>
                     </div>
                     <div>
-                      <label className="mb-1 flex items-center gap-1 text-[10px] text-[#10b981]">
+                      <label className="mb-1 flex items-center gap-1 text-xs text-emerald-500">
                         <TrendingUp className="h-2.5 w-2.5" /> Take Profit
                       </label>
                       <div className="flex gap-1">
@@ -1005,7 +1005,7 @@ export function OrderEntry() {
                         <button
                           type="button"
                           onClick={() => setBracketTP(price > 0 ? (price * 1.1).toFixed(2) : "")}
-                          className="shrink-0 rounded border border-[#10b981]/30 px-1 text-[9px] text-[#10b981] hover:bg-[#10b981]/10"
+                          className="shrink-0 rounded border border-emerald-500/30 px-1 text-[11px] text-emerald-500 hover:bg-emerald-500/10"
                         >
                           +10%
                         </button>
@@ -1015,16 +1015,16 @@ export function OrderEntry() {
 
                   {/* R:R display */}
                   {rrRatio !== null && (
-                    <div className="flex items-center justify-between rounded bg-muted/50 px-2 py-1 text-[10px]">
+                    <div className="flex items-center justify-between rounded bg-muted/50 px-2 py-1 text-xs">
                       <span className="text-muted-foreground">Risk : Reward</span>
                       <span
                         className={cn(
                           "font-semibold tabular-nums",
                           rrRatio >= 2
-                            ? "text-[#10b981]"
+                            ? "text-emerald-500"
                             : rrRatio >= 1
-                              ? "text-[#f59e0b]"
-                              : "text-[#ef4444]",
+                              ? "text-amber-500"
+                              : "text-red-500",
                         )}
                       >
                         1 : {rrRatio.toFixed(2)}
@@ -1042,11 +1042,11 @@ export function OrderEntry() {
               {/* ── OCO ── */}
               {advancedType === "oco" && (
                 <div className="space-y-2">
-                  <p className="text-[10px] text-muted-foreground leading-snug">
+                  <p className="text-xs text-muted-foreground leading-snug">
                     Set two levels. Price hits A → B is cancelled (breakout above resistance or bounce off support).
                   </p>
                   <div>
-                    <label className="mb-1 block text-[10px] text-muted-foreground">
+                    <label className="mb-1 block text-xs text-muted-foreground">
                       Level A — Buy Stop (above resistance)
                     </label>
                     <Input
@@ -1064,7 +1064,7 @@ export function OrderEntry() {
                     <div className="h-px flex-1 bg-border/30" />
                   </div>
                   <div>
-                    <label className="mb-1 block text-[10px] text-muted-foreground">
+                    <label className="mb-1 block text-xs text-muted-foreground">
                       Level B — Buy Limit (below support)
                     </label>
                     <Input
@@ -1088,7 +1088,7 @@ export function OrderEntry() {
                       type="button"
                       onClick={() => setTrailUsePercent(false)}
                       className={cn(
-                        "flex-1 rounded py-1 text-[10px] font-medium transition-colors",
+                        "flex-1 rounded py-1 text-xs font-medium transition-colors",
                         !trailUsePercent ? "bg-background text-foreground shadow-sm" : "text-muted-foreground",
                       )}
                     >
@@ -1098,7 +1098,7 @@ export function OrderEntry() {
                       type="button"
                       onClick={() => setTrailUsePercent(true)}
                       className={cn(
-                        "flex-1 rounded py-1 text-[10px] font-medium transition-colors",
+                        "flex-1 rounded py-1 text-xs font-medium transition-colors",
                         trailUsePercent ? "bg-background text-foreground shadow-sm" : "text-muted-foreground",
                       )}
                     >
@@ -1108,7 +1108,7 @@ export function OrderEntry() {
 
                   {trailUsePercent ? (
                     <div>
-                      <label className="mb-1 block text-[10px] text-muted-foreground">
+                      <label className="mb-1 block text-xs text-muted-foreground">
                         Trail Percent (%)
                       </label>
                       <Input
@@ -1123,7 +1123,7 @@ export function OrderEntry() {
                     </div>
                   ) : (
                     <div>
-                      <label className="mb-1 block text-[10px] text-muted-foreground">
+                      <label className="mb-1 block text-xs text-muted-foreground">
                         Trail Amount ($)
                       </label>
                       <Input
@@ -1140,14 +1140,14 @@ export function OrderEntry() {
 
                   {/* Real-time preview */}
                   {price > 0 && (trailAmt > 0 || trailPct > 0) && (
-                    <div className="rounded-md bg-muted/50 p-2 text-[10px]">
+                    <div className="rounded-md bg-muted/50 p-2 text-xs">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">If price = {formatCurrency(price)}</span>
                         <span className="text-muted-foreground">stop = </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">If price rises 5% → {formatCurrency(price * 1.05)}</span>
-                        <span className="font-medium text-[#10b981]">
+                        <span className="font-medium text-emerald-500">
                           stop = {formatCurrency(
                             trailUsePercent && trailPct > 0
                               ? price * 1.05 * (1 - trailPct / 100)
@@ -1157,7 +1157,7 @@ export function OrderEntry() {
                       </div>
                       <div className="mt-1 flex justify-between border-t border-border/30 pt-1">
                         <span className="text-muted-foreground">Current stop</span>
-                        <span className="font-semibold text-[#ef4444]">{formatCurrency(currentTrailStop)}</span>
+                        <span className="font-semibold text-red-500">{formatCurrency(currentTrailStop)}</span>
                       </div>
                     </div>
                   )}
@@ -1167,13 +1167,13 @@ export function OrderEntry() {
               {/* ── Conditional (GTC) ── */}
               {advancedType === "conditional" && (
                 <div className="space-y-2">
-                  <p className="text-[10px] text-muted-foreground leading-snug">
+                  <p className="text-xs text-muted-foreground leading-snug">
                     Order executes only when the market condition is met (Good-till-Cancelled).
                   </p>
 
                   {/* Condition type */}
                   <div>
-                    <label className="mb-1 block text-[10px] text-muted-foreground">Condition</label>
+                    <label className="mb-1 block text-xs text-muted-foreground">Condition</label>
                     <div className="grid grid-cols-3 gap-0.5 rounded-md bg-muted p-0.5">
                       {CONDITIONAL_TYPES.map((ct) => (
                         <button
@@ -1181,7 +1181,7 @@ export function OrderEntry() {
                           type="button"
                           onClick={() => setCondType(ct.value)}
                           className={cn(
-                            "rounded py-1 text-[9px] font-medium transition-colors",
+                            "rounded py-1 text-[11px] font-medium transition-colors",
                             condType === ct.value
                               ? "bg-background text-foreground shadow-sm"
                               : "text-muted-foreground",
@@ -1194,7 +1194,7 @@ export function OrderEntry() {
                   </div>
 
                   <div>
-                    <label className="mb-1 block text-[10px] text-muted-foreground">
+                    <label className="mb-1 block text-xs text-muted-foreground">
                       {condType === "volume_spike" ? "Min Volume" : "Trigger Price / Value"}
                     </label>
                     <Input
@@ -1208,7 +1208,7 @@ export function OrderEntry() {
                   </div>
 
                   <div>
-                    <label className="mb-1 block text-[10px] text-muted-foreground">
+                    <label className="mb-1 block text-xs text-muted-foreground">
                       Order Limit Price (when triggered)
                     </label>
                     <Input
@@ -1229,11 +1229,11 @@ export function OrderEntry() {
                         type="button"
                         onClick={() => setCondSide(s)}
                         className={cn(
-                          "rounded py-1 text-[10px] font-medium capitalize transition-colors",
+                          "rounded py-1 text-xs font-medium capitalize transition-colors",
                           condSide === s
                             ? s === "buy"
-                              ? "bg-[#10b981] text-white"
-                              : "bg-[#ef4444] text-white"
+                              ? "bg-emerald-500 text-white"
+                              : "bg-red-500 text-white"
                             : "text-muted-foreground",
                         )}
                       >
@@ -1243,8 +1243,8 @@ export function OrderEntry() {
                   </div>
 
                   {parseFloat(condValue) > 0 && (
-                    <div className="flex items-start gap-1.5 rounded-md bg-muted/50 p-2 text-[10px] text-muted-foreground">
-                      <AlertCircle className="mt-0.5 h-3 w-3 shrink-0 text-[#f59e0b]" />
+                    <div className="flex items-start gap-1.5 rounded-md bg-muted/50 p-2 text-xs text-muted-foreground">
+                      <AlertCircle className="mt-0.5 h-3 w-3 shrink-0 text-amber-500" />
                       <span>
                         Will {condSide} {qty} {currentTicker} @ market when{" "}
                         {condType.replace("_", " ")} {formatCurrency(parseFloat(condValue))}
@@ -1258,7 +1258,7 @@ export function OrderEntry() {
               <Button
                 onClick={handleAdvancedSubmit}
                 disabled={!currentBar || qty <= 0 || price <= 0}
-                className="w-full bg-[#f59e0b] text-xs font-semibold text-white hover:bg-[#d97706]"
+                className="w-full bg-amber-500 text-xs font-semibold text-white hover:bg-amber-600"
                 size="sm"
               >
                 Preview &amp; Place {ADVANCED_ORDER_TYPES.find((a) => a.value === advancedType)?.label} Order
@@ -1308,7 +1308,7 @@ export function OrderEntry() {
       />
 
       {/* Keyboard hint */}
-      <div className="flex justify-center gap-2 text-[10px] text-muted-foreground/50">
+      <div className="flex justify-center gap-2 text-xs text-muted-foreground/50">
         <span>Space: Play/Pause</span>
         <span>→: Step</span>
         <span>1-4: Speed</span>

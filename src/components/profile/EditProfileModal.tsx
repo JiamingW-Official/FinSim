@@ -38,13 +38,13 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="max-w-sm">
         <DialogHeader>
-          <DialogTitle className="text-base font-black">Edit Profile</DialogTitle>
+          <DialogTitle className="text-base font-bold">Edit Profile</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
           {/* Name */}
           <div>
-            <label className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <label className="mb-1 block text-xs font-bold text-muted-foreground">
               Display Name
             </label>
             <input
@@ -54,12 +54,12 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
               className="w-full rounded-lg border border-border bg-background px-3 py-1.5 text-sm outline-none focus:ring-1 focus:ring-primary"
               placeholder="Trader"
             />
-            <p className="mt-0.5 text-right text-[9px] text-muted-foreground">{name.length}/20</p>
+            <p className="mt-0.5 text-right text-[11px] text-muted-foreground">{name.length}/20</p>
           </div>
 
           {/* Avatar Emoji */}
           <div>
-            <label className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <label className="mb-1 block text-xs font-bold text-muted-foreground">
               Avatar
             </label>
             <div className="grid grid-cols-10 gap-1">
@@ -83,7 +83,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
 
           {/* Avatar Color */}
           <div>
-            <label className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <label className="mb-1 block text-xs font-bold text-muted-foreground">
               Color
             </label>
             <div className="flex gap-2">
@@ -104,7 +104,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
 
           {/* Bio */}
           <div>
-            <label className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            <label className="mb-1 block text-xs font-bold text-muted-foreground">
               Bio
             </label>
             <textarea
@@ -114,7 +114,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
               className="w-full resize-none rounded-lg border border-border bg-background px-3 py-1.5 text-xs outline-none placeholder:text-muted-foreground/50 focus:ring-1 focus:ring-primary"
               placeholder="Tell the market about yourself..."
             />
-            <p className="mt-0.5 text-right text-[9px] text-muted-foreground">{bio.length}/140</p>
+            <p className="mt-0.5 text-right text-[11px] text-muted-foreground">{bio.length}/140</p>
           </div>
 
           {/* Actions */}

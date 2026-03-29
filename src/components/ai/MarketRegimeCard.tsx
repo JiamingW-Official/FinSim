@@ -84,7 +84,7 @@ export function MarketRegimeCard() {
 
   if (!result) {
     return (
-      <div className="border-b border-border px-3 py-2 text-[10px] text-muted-foreground">
+      <div className="border-b border-border px-3 py-2 text-xs text-muted-foreground">
         Advance the chart to detect market regime.
       </div>
     );
@@ -108,10 +108,10 @@ export function MarketRegimeCard() {
       {/* Header row */}
       <div className="flex items-center gap-2">
         <div className={cn("h-2 w-2 rounded-full shrink-0", dotCls)} />
-        <span className={cn("text-[11px] font-black tracking-wide", labelCls)}>
+        <span className={cn("text-[11px] font-bold tracking-wide", labelCls)}>
           {regime.label}
         </span>
-        <span className="text-[9px] text-muted-foreground font-medium ml-auto">
+        <span className="text-[11px] text-muted-foreground font-medium ml-auto">
           {currentTicker} regime
         </span>
       </div>
@@ -120,7 +120,7 @@ export function MarketRegimeCard() {
       <div className="flex items-center gap-1.5 flex-wrap">
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[8px] font-black leading-none",
+            "rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none",
             bias === "bullish"
               ? "bg-green-500/10 border-green-500/25"
               : bias === "bearish"
@@ -133,7 +133,7 @@ export function MarketRegimeCard() {
         </span>
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[8px] font-black leading-none",
+            "rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none",
             conviction === "high"
               ? "bg-primary/10 border-primary/25"
               : conviction === "medium"
@@ -154,7 +154,7 @@ export function MarketRegimeCard() {
       </div>
 
       {/* Why explanation */}
-      <p className="text-[9px] text-muted-foreground leading-snug">{why}</p>
+      <p className="text-[11px] text-muted-foreground leading-snug">{why}</p>
 
     </div>
   );

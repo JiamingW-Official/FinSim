@@ -84,7 +84,7 @@ function MarketStatusPill() {
   return (
     <div className="flex items-center gap-1">
       <span className={cn("h-1.5 w-1.5 rounded-full", cfg.dot)} />
-      <span className="text-[10px] text-muted-foreground">{cfg.label}</span>
+      <span className="text-xs text-muted-foreground">{cfg.label}</span>
     </div>
   );
 }
@@ -179,7 +179,7 @@ function XPProgressBar() {
 
   return (
     <div className="flex items-center gap-1.5" data-tutorial="xp-level">
-      <span className="text-xs font-black tabular-nums text-primary">
+      <span className="text-xs font-bold tabular-nums text-primary">
         Lv.{level}
       </span>
       <div
@@ -191,7 +191,7 @@ function XPProgressBar() {
           style={{ width: `${xpPercent}%` }}
         />
       </div>
-      <span className="text-[10px] tabular-nums text-muted-foreground">
+      <span className="text-xs tabular-nums text-muted-foreground">
         {xpInLevel}/{xpNeeded}
       </span>
     </div>
@@ -302,7 +302,7 @@ function LearnStreakBadge() {
   return (
     <div className="flex items-center gap-0.5 rounded-full bg-violet-500/10 px-1.5 py-0.5">
       <BookOpen className="h-3 w-3 text-violet-400" />
-      <span className="text-[10px] font-bold tabular-nums text-violet-400">
+      <span className="text-xs font-bold tabular-nums text-violet-400">
         {learningStreak}
       </span>
     </div>
@@ -347,12 +347,12 @@ export function TopBar() {
   const [tickerQuery, setTickerQuery] = useState("");
 
   return (
-    <div className="relative glass flex h-10 items-center justify-between px-4 border-b border-border/30 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-primary/20 after:to-transparent">
+    <div className="relative glass flex h-10 items-center justify-between px-4 border-b border-border">
       {/* ── Left ── */}
       <div className="flex items-center gap-4">
         {/* Logo */}
         <span className="inline-flex items-center gap-1.5 select-none">
-          <span className="text-sm font-black tracking-tight text-primary">FS</span>
+          <span className="text-sm font-bold tracking-tight text-primary">FS</span>
           <span className="text-sm font-semibold tracking-wide text-foreground/80">FinSim</span>
         </span>
 
@@ -453,7 +453,7 @@ export function TopBar() {
           </span>
           <span
             className={cn(
-              "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-medium tabular-nums",
+              "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-medium tabular-nums",
               totalPnL >= 0
                 ? "bg-emerald-500/10 text-emerald-500"
                 : "bg-red-500/10 text-red-500",

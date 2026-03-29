@@ -1424,7 +1424,7 @@ function FIRoadmapTab() {
               <span>{fmtK(currentSavings)} / {fmtK(fiNumber)}</span>
             </div>
             <div className="relative h-4 bg-gray-700 rounded-full overflow-hidden">
-              <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-600 to-green-500 rounded-full transition-all duration-500"
+              <div className="absolute inset-y-0 left-0 bg-blue-600 rounded-full transition-all duration-500"
                 style={{ width: `${progressPct}%` }} />
               <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white">
                 {fmtPct(progressPct)}
@@ -1561,7 +1561,7 @@ export default function WealthBuilderPage() {
         <div className="max-w-screen-2xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-green-500 to-emerald-700 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
                 <TrendingUp size={18} className="text-white" />
               </div>
               <div>

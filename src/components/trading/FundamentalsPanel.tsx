@@ -40,7 +40,7 @@ function earningsColor(r: string): string {
 function Row({ label, metric, value, valueClass }: { label: string; metric?: string; value: string; valueClass?: string }) {
   return (
     <div className="flex items-center justify-between py-1 border-b border-border/30 last:border-0">
-      <span className="text-[10px] text-muted-foreground">
+      <span className="text-xs text-muted-foreground">
         {metric ? <MetricTooltip metric={metric}>{label}</MetricTooltip> : label}
       </span>
       <span className={cn("text-[11px] font-semibold tabular-nums", valueClass)}>{value}</span>
@@ -54,7 +54,7 @@ function MarginBar({ label, value, max = 100 }: { label: string; value: number; 
   const barColor = value > 50 ? "bg-emerald-500" : value > 20 ? "bg-amber-500" : "bg-red-500";
   return (
     <div className="space-y-0.5">
-      <div className="flex justify-between text-[9px]">
+      <div className="flex justify-between text-[11px]">
         <span className="text-muted-foreground">{label}</span>
         <span className={cn("font-bold tabular-nums", value > 50 ? "text-emerald-400" : value > 20 ? "text-amber-400" : "text-red-400")}>
           {fmt(value)}%
@@ -82,15 +82,15 @@ function PriceBar({
   const pos = range > 0 ? ((current - low) / range) * 100 : 50;
   return (
     <div className="space-y-1.5">
-      <div className="text-[9px] font-bold uppercase tracking-wider text-foreground/50">{label}</div>
+      <div className="text-[11px] font-bold text-foreground/50">{label}</div>
       <div className="relative h-1.5 rounded-full bg-muted/40">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500/40 via-amber-500/40 to-emerald-500/40" />
+        <div className="absolute inset-0 rounded-full bg-muted/60" />
         <div
           className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-background bg-foreground shadow"
           style={{ left: `${pos}%` }}
         />
       </div>
-      <div className="flex justify-between text-[9px] text-muted-foreground">
+      <div className="flex justify-between text-[11px] text-muted-foreground">
         <span>${fmt(low, 0)}</span>
         <span className="font-bold text-foreground">${fmt(current, 2)} ({fmt(pos, 0)}% of range)</span>
         <span>${fmt(high, 0)}</span>
@@ -151,7 +151,7 @@ export function FundamentalsPanel() {
           <TabsTrigger
             key={tab}
             value={tab}
-            className="h-5 rounded-none border-b-2 border-transparent px-2 text-[10px] capitalize data-[state=active]:border-primary data-[state=active]:bg-transparent"
+            className="h-5 rounded-none border-b-2 border-transparent px-2 text-xs capitalize data-[state=active]:border-primary data-[state=active]:bg-transparent"
           >
             {tab}
           </TabsTrigger>
@@ -164,11 +164,11 @@ export function FundamentalsPanel() {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-sm font-bold text-foreground">{currentTicker}</div>
-            <div className="text-[10px] text-muted-foreground">{data.industry}</div>
+            <div className="text-xs text-muted-foreground">{data.industry}</div>
           </div>
           <div className="text-right">
-            <div className="text-[10px] text-muted-foreground">{data.sector}</div>
-            <div className="text-[10px] font-semibold text-foreground">{data.marketCap}</div>
+            <div className="text-xs text-muted-foreground">{data.sector}</div>
+            <div className="text-xs font-semibold text-foreground">{data.marketCap}</div>
           </div>
         </div>
 
@@ -180,7 +180,7 @@ export function FundamentalsPanel() {
             { label: "Short", value: `${fmt(data.shortFloat, 1)}%` },
             { label: "Div", value: data.dividendYield > 0 ? `${fmt(data.dividendYield, 2)}%` : "N/A" },
           ].map(({ label, value }) => (
-            <span key={label} className="rounded border border-border/50 bg-muted/20 px-1.5 py-0.5 text-[9px]">
+            <span key={label} className="rounded border border-border/50 bg-muted/20 px-1.5 py-0.5 text-[11px]">
               <span className="text-muted-foreground">{label} </span>
               <span className="font-bold text-foreground">{value}</span>
             </span>
@@ -201,10 +201,10 @@ export function FundamentalsPanel() {
         {!isETF && (
           <div className="rounded-md border border-border/50 bg-background/50 p-2 space-y-1.5">
             <div className="flex items-center justify-between">
-              <span className={cn("rounded border px-2 py-0.5 text-[10px] font-bold", ratingColor(data.analystRating))}>
+              <span className={cn("rounded border px-2 py-0.5 text-xs font-bold", ratingColor(data.analystRating))}>
                 {data.analystRating}
               </span>
-              <span className="text-[10px] text-muted-foreground">{data.analystCount} analysts</span>
+              <span className="text-xs text-muted-foreground">{data.analystCount} analysts</span>
             </div>
             {/* Price target bar */}
             {currentPrice > 0 && data.priceTargetLow > 0 && (
@@ -216,7 +216,7 @@ export function FundamentalsPanel() {
                   label="Analyst Price Target Range"
                 />
                 {targetUpside != null && (
-                  <div className={cn("text-right text-[9px] font-bold", pctColor(targetUpside))}>
+                  <div className={cn("text-right text-[11px] font-bold", pctColor(targetUpside))}>
                     Consensus PT ${data.priceTarget} → {targetUpside > 0 ? "+" : ""}{targetUpside}% upside
                   </div>
                 )}
@@ -228,16 +228,16 @@ export function FundamentalsPanel() {
         {/* AlphaBot insight */}
         <div className="flex items-start gap-2 rounded-md border border-primary/20 bg-primary/5 px-2 py-2">
           <span className="shrink-0 text-xs">🤖</span>
-          <p className="text-[10px] leading-relaxed text-muted-foreground">{fundamentalInsight}</p>
+          <p className="text-xs leading-relaxed text-muted-foreground">{fundamentalInsight}</p>
         </div>
 
         {/* Description */}
-        <p className="text-[10px] leading-relaxed text-muted-foreground">{data.description}</p>
+        <p className="text-xs leading-relaxed text-muted-foreground">{data.description}</p>
       </TabsContent>
 
       {/* ── VALUATION TAB ── */}
       <TabsContent value="valuation" className="flex-1 overflow-auto mt-0 p-3 space-y-1.5">
-        <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40 mb-2">Valuation Multiples</div>
+        <div className="text-[11px] font-bold text-foreground/40 mb-2">Valuation Multiples</div>
         <Row label="P/E Ratio" metric="peRatio" value={data.peRatio > 0 ? `${fmt(data.peRatio)}×` : "N/A"} />
         <Row label="Forward P/E" metric="forwardPE" value={data.forwardPE > 0 ? `${fmt(data.forwardPE)}×` : "N/A"} />
         <Row label="Price / Book" metric="pbRatio" value={data.pbRatio > 0 ? `${fmt(data.pbRatio)}×` : "N/A"} />
@@ -247,10 +247,10 @@ export function FundamentalsPanel() {
         {/* Vs-sector comparison */}
         {!isETF && data.sectorAvgPE > 0 && (
           <div className="rounded-md border border-border/40 bg-muted/20 p-2 space-y-1 mt-2">
-            <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Vs Sector Avg P/E</div>
+            <div className="text-[11px] font-bold text-foreground/40">Vs Sector Avg P/E</div>
             <div className="flex items-center gap-2">
               <div className="flex-1">
-                <div className="flex justify-between text-[9px] mb-0.5">
+                <div className="flex justify-between text-[11px] mb-0.5">
                   <span className="text-muted-foreground">Sector avg</span>
                   <span className="text-foreground font-bold">{fmt(data.sectorAvgPE)}×</span>
                 </div>
@@ -261,7 +261,7 @@ export function FundamentalsPanel() {
             </div>
             <div className="flex items-center gap-2">
               <div className="flex-1">
-                <div className="flex justify-between text-[9px] mb-0.5">
+                <div className="flex justify-between text-[11px] mb-0.5">
                   <span className="text-muted-foreground">{currentTicker}</span>
                   <span className={cn("font-bold", pePremium > 10 ? "text-red-400" : pePremium < -10 ? "text-emerald-400" : "text-amber-400")}>
                     {fmt(data.peRatio)}×
@@ -275,7 +275,7 @@ export function FundamentalsPanel() {
                 </div>
               </div>
             </div>
-            <div className={cn("text-[9px] font-bold pt-0.5", pePremium > 25 ? "text-red-400" : pePremium < -15 ? "text-emerald-400" : "text-amber-400")}>
+            <div className={cn("text-[11px] font-bold pt-0.5", pePremium > 25 ? "text-red-400" : pePremium < -15 ? "text-emerald-400" : "text-amber-400")}>
               {pePremium > 25
                 ? `Premium: ${pePremium}% above sector avg — needs consistent earnings beats`
                 : pePremium < -15
@@ -291,7 +291,7 @@ export function FundamentalsPanel() {
         {/* Growth */}
         {!isETF && (
           <div className="space-y-1">
-            <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Growth</div>
+            <div className="text-[11px] font-bold text-foreground/40">Growth</div>
             <Row
               label="Revenue"
               value={data.revenue}
@@ -318,9 +318,9 @@ export function FundamentalsPanel() {
         {/* Margins */}
         {!isETF && (
           <div className="space-y-2">
-            <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Margins</div>
+            <div className="text-[11px] font-bold text-foreground/40">Margins</div>
             <MetricTooltip metric="grossMargin">
-              <span className="text-[9px] text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Gross Margin</span>
+              <span className="text-[11px] text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Gross Margin</span>
             </MetricTooltip>
             <MarginBar label="Gross Margin" value={data.grossMargin} />
             <MarginBar label="Operating Margin" value={data.operatingMargin} />
@@ -331,7 +331,7 @@ export function FundamentalsPanel() {
         {/* Balance Sheet */}
         {!isETF && (
           <div className="space-y-1">
-            <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Balance Sheet</div>
+            <div className="text-[11px] font-bold text-foreground/40">Balance Sheet</div>
             <Row label="ROE" metric="roe" value={`${fmt(data.roe)}%`} valueClass={data.roe > 20 ? "text-emerald-400" : data.roe > 10 ? "text-amber-400" : "text-red-400"} />
             <Row label="Debt / Equity" metric="debtToEquity" value={data.debtToEquity > 0 ? fmt(data.debtToEquity, 2) : "N/A"} valueClass={data.debtToEquity > 2 ? "text-red-400" : data.debtToEquity < 0.5 ? "text-emerald-400" : "text-amber-400"} />
             <Row label="Current Ratio" metric="currentRatio" value={data.currentRatio > 0 ? fmt(data.currentRatio, 2) : "N/A"} valueClass={data.currentRatio < 1 ? "text-red-400" : data.currentRatio > 1.5 ? "text-emerald-400" : "text-amber-400"} />
@@ -341,7 +341,7 @@ export function FundamentalsPanel() {
 
         {/* Income */}
         <div className="space-y-1">
-          <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Income</div>
+          <div className="text-[11px] font-bold text-foreground/40">Income</div>
           <Row label="Dividend Yield" metric="dividendYield" value={data.dividendYield > 0 ? `${fmt(data.dividendYield, 2)}%` : "N/A"} />
           {!isETF && (
             <Row label="Payout Ratio" metric="dividendPayoutRatio" value={data.dividendPayoutRatio > 0 ? `${fmt(data.dividendPayoutRatio)}%` : "N/A"} />
@@ -354,16 +354,16 @@ export function FundamentalsPanel() {
         {/* Earnings */}
         {!isETF && (
           <div className="rounded-md border border-border/50 bg-background/50 p-2 space-y-1.5">
-            <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Earnings</div>
+            <div className="text-[11px] font-bold text-foreground/40">Earnings</div>
             <div className="flex items-center justify-between">
-              <span className="text-[10px] text-muted-foreground">Next earnings</span>
-              <span className="rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-[10px] font-bold text-primary">
+              <span className="text-xs text-muted-foreground">Next earnings</span>
+              <span className="rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-xs font-bold text-primary">
                 {data.nextEarningsDate}
               </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-[10px] text-muted-foreground">Last result</span>
-              <span className={cn("flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-bold", earningsColor(data.lastEarningsResult))}>
+              <span className="text-xs text-muted-foreground">Last result</span>
+              <span className={cn("flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-bold", earningsColor(data.lastEarningsResult))}>
                 {data.lastEarningsResult === "beat" ? (
                   <TrendingUp className="h-2.5 w-2.5" />
                 ) : data.lastEarningsResult === "miss" ? (
@@ -384,16 +384,16 @@ export function FundamentalsPanel() {
         {/* Short interest */}
         {!isETF && (
           <div className="rounded-md border border-border/50 bg-background/50 p-2 space-y-1">
-            <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Short Interest</div>
+            <div className="text-[11px] font-bold text-foreground/40">Short Interest</div>
             <div className="flex items-center justify-between">
               <MetricTooltip metric="shortFloat">
-                <span className="text-[10px] text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Short Float</span>
+                <span className="text-xs text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Short Float</span>
               </MetricTooltip>
               <span className={cn("text-[11px] font-bold", data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-emerald-400")}>
                 {fmt(data.shortFloat, 1)}%
               </span>
             </div>
-            <div className="text-[9px] text-muted-foreground">
+            <div className="text-[11px] text-muted-foreground">
               {data.shortFloat > 15
                 ? "High short interest — potential for short squeeze on positive catalyst"
                 : data.shortFloat > 5
@@ -406,11 +406,11 @@ export function FundamentalsPanel() {
         {/* Risks */}
         {!isETF && data.risks.length > 0 && (
           <div className="space-y-1.5">
-            <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Key Risks</div>
+            <div className="text-[11px] font-bold text-foreground/40">Key Risks</div>
             {data.risks.map((risk, i) => (
               <div key={i} className="flex items-start gap-1.5">
                 <AlertTriangle className="mt-0.5 h-2.5 w-2.5 shrink-0 text-amber-400" />
-                <span className="text-[10px] leading-relaxed text-muted-foreground">{risk}</span>
+                <span className="text-xs leading-relaxed text-muted-foreground">{risk}</span>
               </div>
             ))}
           </div>
@@ -419,11 +419,11 @@ export function FundamentalsPanel() {
         {/* Catalysts */}
         {!isETF && data.catalysts.length > 0 && (
           <div className="space-y-1.5">
-            <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">Key Catalysts</div>
+            <div className="text-[11px] font-bold text-foreground/40">Key Catalysts</div>
             {data.catalysts.map((catalyst, i) => (
               <div key={i} className="flex items-start gap-1.5">
                 <Zap className="mt-0.5 h-2.5 w-2.5 shrink-0 text-emerald-400" />
-                <span className="text-[10px] leading-relaxed text-muted-foreground">{catalyst}</span>
+                <span className="text-xs leading-relaxed text-muted-foreground">{catalyst}</span>
               </div>
             ))}
           </div>

@@ -109,8 +109,8 @@ export function DailyRewardsPopup() {
             <div className={cn(
               "relative flex flex-col items-center gap-2 px-6 pt-6 pb-4",
               isDay7
-                ? "bg-gradient-to-b from-amber-500/15 to-transparent"
-                : "bg-gradient-to-b from-primary/10 to-transparent",
+                ? "bg-amber-500/10"
+                : "bg-primary/8",
             )}>
               {/* Animated icon */}
               <motion.div
@@ -128,7 +128,7 @@ export function DailyRewardsPopup() {
               </motion.div>
 
               <div className="text-center">
-                <h2 className="text-xl font-black tracking-tight">Daily Check-In</h2>
+                <h2 className="text-xl font-bold tracking-tight">Daily Check-In</h2>
                 {streakCount > 0 ? (
                   <div className="flex items-center justify-center gap-1.5 mt-1">
                     <Flame className="h-3.5 w-3.5 text-orange-400" />
@@ -162,8 +162,8 @@ export function DailyRewardsPopup() {
                           ? "border-emerald-500/40 bg-emerald-500/8"
                           : isCurrent
                             ? isLastDay
-                              ? "border-amber-400/60 bg-amber-500/12 shadow-[0_0_12px_rgba(251,191,36,0.2)]"
-                              : "border-primary/50 bg-primary/10 shadow-[0_0_10px_rgba(16,185,129,0.15)]"
+                              ? "border-amber-400/60 bg-amber-500/12"
+                              : "border-primary/50 bg-primary/10"
                             : "border-border/30 bg-muted/5 opacity-50",
                         isLastDay && !isClaimed && !isFuture && "border-amber-400/50",
                       )}
@@ -173,7 +173,7 @@ export function DailyRewardsPopup() {
                     >
                       {/* Day label */}
                       <span className={cn(
-                        "text-[8px] font-bold uppercase tracking-wider",
+                        "text-[8px] font-bold",
                         isCurrent ? (isLastDay ? "text-amber-400" : "text-primary") : "text-muted-foreground/60",
                       )}>
                         D{i + 1}
@@ -204,7 +204,7 @@ export function DailyRewardsPopup() {
 
                       {/* XP label */}
                       <span className={cn(
-                        "text-[9px] font-black tabular-nums leading-tight",
+                        "text-[11px] font-bold tabular-nums leading-tight",
                         isClaimed
                           ? "text-emerald-400"
                           : isCurrent
@@ -250,11 +250,11 @@ export function DailyRewardsPopup() {
                   transition={{ delay: 0.45 }}
                 >
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/70">
+                    <p className="text-xs font-bold text-muted-foreground/70">
                       Today's Reward
                     </p>
                     <p className={cn(
-                      "text-2xl font-black tabular-nums mt-0.5",
+                      "text-2xl font-bold tabular-nums mt-0.5",
                       isDay7 ? "text-amber-400" : "text-primary",
                     )}>
                       +{todayXP} <span className="text-sm font-bold">XP</span>
@@ -278,7 +278,7 @@ export function DailyRewardsPopup() {
                     transition={{ type: "spring", stiffness: 400, damping: 14 }}
                   >
                     <span className="text-xl">✨</span>
-                    <span className="text-base font-black text-emerald-400">
+                    <span className="text-base font-bold text-emerald-400">
                       +{earnedXP} XP Claimed!
                     </span>
                     <span className="text-xl">✨</span>
@@ -290,10 +290,10 @@ export function DailyRewardsPopup() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.96 }}
                     className={cn(
-                      "w-full rounded-xl py-3 text-sm font-black text-white transition-all",
+                      "w-full rounded-xl py-3 text-sm font-bold text-white transition-all",
                       isDay7
-                        ? "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
-                        : "bg-primary hover:brightness-110 shadow-[0_0_16px_rgba(16,185,129,0.25)]",
+                        ? "bg-amber-500 hover:bg-amber-400"
+                        : "bg-primary hover:brightness-110",
                     )}
                   >
                     {isDay7 ? "👑 Claim Day 7 Bonus!" : `Claim Day ${dayIndex + 1} Reward`}

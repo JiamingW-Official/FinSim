@@ -403,7 +403,7 @@ function LobbyScreen({
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-xl border border-amber-500/40 bg-gradient-to-r from-amber-500/10 to-orange-500/10 p-4"
+        className="rounded-xl border border-amber-500/40 bg-amber-500/10 p-4"
       >
         <div className="flex items-center gap-2 mb-2">
           <Flame className="h-4 w-4 text-amber-400" />
@@ -1104,7 +1104,7 @@ function ResultsSummary({
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, type: "spring" }}
-          className={cn("text-6xl font-black mt-3", gradeColor)}
+          className={cn("text-6xl font-bold mt-3", gradeColor)}
         >
           {grade}
         </motion.p>
@@ -1185,7 +1185,7 @@ export default function TradingChallenge() {
             <Trophy className="h-6 w-6 text-amber-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-black text-white">Trading Challenge</h1>
+            <h1 className="text-2xl font-bold text-white">Trading Challenge</h1>
             <p className="text-sm text-zinc-500">Arena — Compete &amp; Improve</p>
           </div>
           {screen !== "lobby" && (

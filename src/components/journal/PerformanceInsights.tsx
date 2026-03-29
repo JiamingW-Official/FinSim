@@ -217,7 +217,7 @@ export function PerformanceInsights({ rows }: Props) {
         <InsightCard key={insight.id} insight={insight} />
       ))}
       {rows.length > 0 && (
-        <p className="text-[9px] text-muted-foreground/50 text-right">
+        <p className="text-[11px] text-muted-foreground/50 text-right">
           Based on {rows.length} closed trade{rows.length !== 1 ? "s" : ""}. Tag trades in the Log tab for behavioral insights.
         </p>
       )}
@@ -260,7 +260,7 @@ function InsightCard({ insight }: { insight: Insight }) {
         <div className={cn("mt-0.5 shrink-0", iconColor)}>{insight.icon}</div>
         <div className="min-w-0 flex-1">
           <div className="flex items-baseline gap-2 flex-wrap">
-            <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+            <span className="text-xs font-medium text-muted-foreground">
               {insight.label}
             </span>
             <span className={cn("text-xs font-semibold tabular-nums", valueColor)}>

@@ -455,7 +455,7 @@ function IVCrushBar({ pre, post, ticker }: { pre: number; post: number; ticker: 
   const preW = Math.round((pre / 130) * maxW);
   const postW = Math.round((post / 130) * maxW);
   return (
-    <div className="flex items-center gap-2 text-[10px]">
+    <div className="flex items-center gap-2 text-xs">
       <span className="w-10 text-right font-mono text-slate-300">{ticker}</span>
       <div className="flex flex-col gap-[2px]">
         <div className="flex items-center gap-1">
@@ -552,9 +552,9 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
             animate={{ opacity: 1, y: 0 }}
             className="rounded-lg border border-border/40 bg-card/60 p-3"
           >
-            <p className="text-[10px] text-muted-foreground mb-1">{stat.label}</p>
+            <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
             <p className={cn("text-xl font-bold tabular-nums", stat.color)}>{stat.value}</p>
-            <p className="text-[9px] text-muted-foreground mt-0.5">{stat.sublabel}</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">{stat.sublabel}</p>
           </motion.div>
         ))}
       </div>
@@ -581,7 +581,7 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
           ].map((g) => (
             <div key={g.label} className="text-center">
               <p className={cn("text-base font-bold", g.color)}>{g.value}%</p>
-              <p className="text-[9px] text-muted-foreground">{g.label}</p>
+              <p className="text-[11px] text-muted-foreground">{g.label}</p>
             </div>
           ))}
         </div>
@@ -589,7 +589,7 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
 
       {/* 5-quarter comparison */}
       <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-3">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">5-Quarter Comparison</p>
+        <p className="text-xs font-semibold text-muted-foreground">5-Quarter Comparison</p>
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
             <thead>
@@ -650,11 +650,11 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Heatmap */}
         <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Beat Rate Heatmap</p>
+          <p className="text-xs font-semibold text-muted-foreground">Beat Rate Heatmap</p>
           <div className="overflow-x-auto">
             <SectorHeatmap sectors={sectors} />
           </div>
-          <div className="flex gap-3 text-[9px] text-muted-foreground pt-1">
+          <div className="flex gap-3 text-[11px] text-muted-foreground pt-1">
             {[
               { color: "#059669", label: "≥75% beat" },
               { color: "#0d9488", label: "65–74%" },
@@ -671,25 +671,25 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
 
         {/* Revision trend */}
         <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Estimate Revision Trend</p>
+          <p className="text-xs font-semibold text-muted-foreground">Estimate Revision Trend</p>
           <div className="space-y-1.5">
             {sectors.map((sec) => (
               <div key={sec.name} className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sec.color }} />
-                  <span className="text-[10px] text-slate-300">{sec.name}</span>
+                  <span className="text-xs text-slate-300">{sec.name}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   {sec.revisionTrend === "upgrade" ? (
-                    <span className="flex items-center gap-0.5 text-[10px] text-emerald-400">
+                    <span className="flex items-center gap-0.5 text-xs text-emerald-400">
                       <ChevronUp className="w-3 h-3" /> Upgrade
                     </span>
                   ) : sec.revisionTrend === "downgrade" ? (
-                    <span className="flex items-center gap-0.5 text-[10px] text-red-400">
+                    <span className="flex items-center gap-0.5 text-xs text-red-400">
                       <ChevronDown className="w-3 h-3" /> Downgrade
                     </span>
                   ) : (
-                    <span className="flex items-center gap-0.5 text-[10px] text-slate-400">
+                    <span className="flex items-center gap-0.5 text-xs text-slate-400">
                       <Minus className="w-3 h-3" /> Flat
                     </span>
                   )}
@@ -703,14 +703,14 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
       {/* Table */}
       <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Sector Scorecard</p>
+          <p className="text-xs font-semibold text-muted-foreground">Sector Scorecard</p>
           <div className="flex gap-1">
             {(["beatRate", "avgEpsSurprise", "guidanceScore"] as const).map((k) => (
               <button
                 key={k}
                 onClick={() => setSortKey(k)}
                 className={cn(
-                  "text-[9px] px-2 py-0.5 rounded transition-colors",
+                  "text-[11px] px-2 py-0.5 rounded transition-colors",
                   sortKey === k
                     ? "bg-indigo-500/30 text-indigo-300"
                     : "text-muted-foreground hover:text-slate-300"
@@ -753,7 +753,7 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
                     {sec.avgRevSurprise > 0 ? "+" : ""}{sec.avgRevSurprise}%
                   </td>
                   <td className="py-1 text-center">
-                    <span className={cn("px-1.5 py-0.5 rounded text-[9px] font-semibold", sec.guidanceScore > 0 ? "bg-emerald-500/15 text-emerald-400" : sec.guidanceScore < 0 ? "bg-red-500/15 text-red-400" : "bg-slate-500/15 text-slate-400")}>
+                    <span className={cn("px-1.5 py-0.5 rounded text-[11px] font-semibold", sec.guidanceScore > 0 ? "bg-emerald-500/15 text-emerald-400" : sec.guidanceScore < 0 ? "bg-red-500/15 text-red-400" : "bg-slate-500/15 text-slate-400")}>
                       {sec.guidanceScore > 0 ? "+" : ""}{sec.guidanceScore}
                     </span>
                   </td>
@@ -818,12 +818,12 @@ function EarningsFeedSection({
                         <td className="px-3 py-1.5">
                           <div>
                             <span className="font-semibold text-slate-200">{row.ticker}</span>
-                            <span className="block text-[9px] text-muted-foreground">{row.company}</span>
+                            <span className="block text-[11px] text-muted-foreground">{row.company}</span>
                           </div>
                         </td>
                         <td className="px-3 py-1.5 text-center text-slate-300">{row.date}</td>
                         <td className="px-3 py-1.5 text-center">
-                          <span className={cn("px-1.5 py-0.5 rounded text-[9px] font-medium", row.time === "BMO" ? "bg-blue-500/15 text-blue-300" : "bg-purple-500/15 text-purple-300")}>
+                          <span className={cn("px-1.5 py-0.5 rounded text-[11px] font-medium", row.time === "BMO" ? "bg-blue-500/15 text-blue-300" : "bg-purple-500/15 text-purple-300")}>
                             {row.time}
                           </span>
                         </td>
@@ -866,7 +866,7 @@ function EarningsFeedSection({
                         <td className="px-3 py-1.5">
                           <div>
                             <span className="font-semibold text-slate-200">{row.ticker}</span>
-                            <span className="block text-[9px] text-muted-foreground">{row.company}</span>
+                            <span className="block text-[11px] text-muted-foreground">{row.company}</span>
                           </div>
                         </td>
                         <td className="px-2 py-1.5 text-center font-mono">
@@ -883,7 +883,7 @@ function EarningsFeedSection({
                           {row.reaction > 0 ? "+" : ""}{row.reaction}%
                         </td>
                         <td className="px-2 py-1.5 text-center">
-                          <span className={cn("px-1 py-0.5 rounded text-[9px] font-medium", guidanceColor(row.guidanceAction))}>
+                          <span className={cn("px-1 py-0.5 rounded text-[11px] font-medium", guidanceColor(row.guidanceAction))}>
                             {guidanceBadge(row.guidanceAction)}
                           </span>
                         </td>
@@ -893,7 +893,7 @@ function EarningsFeedSection({
                               <rect x={0} y={0} width={28} height={8} rx={4} fill="#1e293b" />
                               <rect x={0} y={0} width={Math.round((row.qualityScore / 100) * 28)} height={8} rx={4} fill={qualityColor(row.qualityScore)} opacity={0.8} />
                             </svg>
-                            <span className="text-[9px] font-mono" style={{ color: qualityColor(row.qualityScore) }}>
+                            <span className="text-[11px] font-mono" style={{ color: qualityColor(row.qualityScore) }}>
                               {row.qualityScore}
                             </span>
                           </div>
@@ -936,12 +936,12 @@ function RevisionMomentumSection({
               <div key={t.ticker} className="flex items-center justify-between">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="text-[11px] font-semibold text-slate-200 w-12 flex-shrink-0">{t.ticker}</span>
-                  <span className="text-[10px] text-muted-foreground truncate">{t.sector}</span>
+                  <span className="text-xs text-muted-foreground truncate">{t.sector}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-muted-foreground">{t.analystCount} analysts</span>
+                  <span className="text-xs text-muted-foreground">{t.analystCount} analysts</span>
                   {t.whisperVsConsensus !== 0 && (
-                    <span className={cn("text-[9px] px-1 py-0.5 rounded", pctBg(t.whisperVsConsensus))}>
+                    <span className={cn("text-[11px] px-1 py-0.5 rounded", pctBg(t.whisperVsConsensus))}>
                       whisper {t.whisperVsConsensus > 0 ? "+" : ""}{t.whisperVsConsensus}%
                     </span>
                   )}
@@ -963,12 +963,12 @@ function RevisionMomentumSection({
               <div key={t.ticker} className="flex items-center justify-between">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="text-[11px] font-semibold text-slate-200 w-12 flex-shrink-0">{t.ticker}</span>
-                  <span className="text-[10px] text-muted-foreground truncate">{t.sector}</span>
+                  <span className="text-xs text-muted-foreground truncate">{t.sector}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-muted-foreground">{t.analystCount} analysts</span>
+                  <span className="text-xs text-muted-foreground">{t.analystCount} analysts</span>
                   {t.whisperVsConsensus < -0.5 && (
-                    <span className="text-[9px] px-1 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+                    <span className="text-[11px] px-1 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
                       whisper {t.whisperVsConsensus.toFixed(1)}%
                     </span>
                   )}
@@ -986,7 +986,7 @@ function RevisionMomentumSection({
           <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-xs font-semibold text-amber-400">Whisper Number vs. Consensus</p>
-            <p className="text-[10px] text-muted-foreground mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               The <span className="text-amber-300 font-medium">whisper number</span> is the unofficial EPS expectation circulating among buy-side traders — often above consensus.
               When whisper exceeds consensus by &gt;3%, the stock is more likely to disappoint even on a technical beat. Watch for negative surprises in high-revision names.
             </p>
@@ -996,11 +996,11 @@ function RevisionMomentumSection({
 
       {/* Revision breadth by sector */}
       <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-3">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Revision Breadth by Sector (% analysts raising)</p>
+        <p className="text-xs font-semibold text-muted-foreground">Revision Breadth by Sector (% analysts raising)</p>
         <div className="overflow-x-auto">
           <RevisionBreadthChart data={revisionBreadth} />
         </div>
-        <div className="flex gap-4 text-[9px] text-muted-foreground">
+        <div className="flex gap-4 text-[11px] text-muted-foreground">
           <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm bg-emerald-500/75" /> Raising estimates</div>
           <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm bg-red-500/45" /> Lowering estimates</div>
         </div>
@@ -1021,11 +1021,11 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
             <BarChart2 className="w-3.5 h-3.5 text-indigo-400" />
             <p className="text-xs font-semibold">Implied vs Historical Move</p>
           </div>
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Top bar = implied ±move (options pricing), bottom bar = historical avg realized move. Purple = realized exceeded implied.
           </p>
           <ImpliedVsHistoricalChart data={data} />
-          <div className="flex gap-4 text-[9px] text-muted-foreground">
+          <div className="flex gap-4 text-[11px] text-muted-foreground">
             <div className="flex items-center gap-1"><div className="w-2.5 h-1.5 rounded-sm bg-amber-400/70" />Implied</div>
             <div className="flex items-center gap-1"><div className="w-2.5 h-1.5 rounded-sm bg-indigo-500/70" />Historical</div>
           </div>
@@ -1037,7 +1037,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
             <Zap className="w-3.5 h-3.5 text-amber-400" />
             <p className="text-xs font-semibold">Post-Earnings IV Crush</p>
           </div>
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Amber = pre-earnings IV, gray = post-earnings IV. Shorter bar = IV crush.
           </p>
           <div className="space-y-2.5">
@@ -1045,7 +1045,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
               <IVCrushBar key={d.ticker} pre={d.ivPreEarnings} post={d.ivPostEarnings} ticker={d.ticker} />
             ))}
           </div>
-          <p className="text-[9px] text-muted-foreground italic">Avg IV crush: {Math.round(data.reduce((s, d) => s + d.ivCrush, 0) / data.length)}% decline post-earnings</p>
+          <p className="text-[11px] text-muted-foreground italic">Avg IV crush: {Math.round(data.reduce((s, d) => s + d.ivCrush, 0) / data.length)}% decline post-earnings</p>
         </div>
       </div>
 
@@ -1079,7 +1079,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
                     <td className={cn("px-2 py-1.5 text-center", row.exceedRate > 55 ? "text-red-400" : "text-slate-300")}>
                       {row.exceedRate}%
                     </td>
-                    <td className={cn("px-2 py-1.5 text-center text-[10px] font-medium", skewColor)}>
+                    <td className={cn("px-2 py-1.5 text-center text-xs font-medium", skewColor)}>
                       {skewLabel}
                     </td>
                     <td className="px-2 py-1.5 text-center text-slate-300">
@@ -1106,7 +1106,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
           <Target className="w-4 h-4 text-indigo-400" />
           <p className="text-xs font-semibold text-indigo-300">Implied Move Calculator</p>
         </div>
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           <span className="text-indigo-300 font-medium">Implied move = Straddle price ÷ Stock price.</span>{" "}
           Buy the ATM call + ATM put expiring right after earnings. If the straddle costs $8 on a $100 stock, the implied move is ±8%.
           Profitable if the stock moves more than ±8% in either direction. IV crush destroys time value after results.
@@ -1119,7 +1119,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
           ].map((stat) => (
             <div key={stat.label} className="bg-slate-900/40 rounded p-2 text-center">
               <p className={cn("text-base font-bold", stat.color)}>{stat.value}</p>
-              <p className="text-[9px] text-muted-foreground mt-0.5">{stat.label}</p>
+              <p className="text-[11px] text-muted-foreground mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -1137,7 +1137,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
             { range: "Neutral (40–60)", desc: "Balanced positioning. No strong directional bias from the options market. Two-sided earnings risk.", color: "text-slate-300", bg: "bg-slate-500/5 border-slate-500/20" },
             { range: "Call Heavy (>60)", desc: "Upside calls dominate — bullish positioning or buywrite programs. Stock may face 'buy the rumor, sell the news' after results.", color: "text-emerald-400", bg: "bg-emerald-500/5 border-emerald-500/20" },
           ].map((item) => (
-            <div key={item.range} className={cn("rounded p-2 border text-[10px] space-y-1", item.bg)}>
+            <div key={item.range} className={cn("rounded p-2 border text-xs space-y-1", item.bg)}>
               <p className={cn("font-semibold text-[11px]", item.color)}>{item.range}</p>
               <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
             </div>
@@ -1166,18 +1166,18 @@ export default function EarningsSeasonDashboard() {
             <Activity className="w-5 h-5 text-indigo-400" />
             Earnings Season Dashboard
           </h2>
-          <p className="text-xs text-muted-foreground mt-0.5">Q1 2025 · Real-time estimates and reporting analytics</p>
+          <p className="text-xs text-muted-foreground mt-0.5">Q1 2025 · Simulated estimates and reporting analytics</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1 text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-1 rounded-full">
+          <span className="flex items-center gap-1 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-1 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Season Active
           </span>
-          <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+          <span className="text-xs text-muted-foreground flex items-center gap-1">
             <Calendar className="w-3 h-3" />
             Q1 2025
           </span>
-          <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+          <span className="text-xs text-muted-foreground flex items-center gap-1">
             <Clock className="w-3 h-3" />
             67% reported
           </span>

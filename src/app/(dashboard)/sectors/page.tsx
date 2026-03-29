@@ -454,7 +454,7 @@ function PerformanceTable({
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: p.color }} />
                   <span className="text-xs font-medium">{p.name}</span>
-                  <span className="text-[10px] text-muted-foreground">{p.etf}</span>
+                  <span className="text-xs text-muted-foreground">{p.etf}</span>
                 </div>
               </td>
               {COLS.map((c) => (
@@ -495,8 +495,8 @@ function SectorHeatmap({
   return (
     <div className="rounded-lg border border-border/40 bg-card p-3">
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Sector Heatmap (1D, sized by Market Cap)</span>
-        <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
+        <span className="text-xs font-semibold text-muted-foreground">Sector Heatmap (1D, sized by Market Cap)</span>
+        <div className="flex items-center gap-1 text-xs text-muted-foreground">
           <span className="h-2 w-4 rounded-sm bg-red-500/60" />
           <span>Neg</span>
           <span className="ml-2 h-2 w-4 rounded-sm bg-emerald-500/60" />
@@ -558,7 +558,7 @@ function RelativeStrengthChart({ perfs }: { perfs: SectorPerf[] }) {
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-3">
-      <div className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Relative Strength vs S&P 500 (1Y Alpha)</div>
+      <div className="mb-2 text-xs font-semibold text-muted-foreground">Relative Strength vs S&P 500 (1Y Alpha)</div>
       <svg viewBox={`0 0 ${W} ${sorted.length * BAR_H + 10}`} className="w-full" style={{ height: sorted.length * BAR_H + 10 }}>
         {/* Zero line */}
         <line x1={MID} y1={0} x2={MID} y2={sorted.length * BAR_H + 10} stroke="#ffffff20" strokeWidth={1} />
@@ -620,7 +620,7 @@ function TopStocksPanel({ sectorName, perfs }: { sectorName: string; perfs: Sect
   return (
     <div className="rounded-lg border border-border/40 bg-card p-3">
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Top Holdings — {sectorName}</span>
+        <span className="text-xs font-semibold text-muted-foreground">Top Holdings — {sectorName}</span>
         {perf && (
           <span className={cn("text-xs font-medium tabular-nums", retColor(perf.ret1d))}>
             {fmt(perf.ret1d)} today
@@ -630,10 +630,10 @@ function TopStocksPanel({ sectorName, perfs }: { sectorName: string; perfs: Sect
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border/30">
-            <th className="pb-1 text-left text-[10px] font-medium text-muted-foreground">Ticker</th>
-            <th className="pb-1 text-left text-[10px] font-medium text-muted-foreground">Name</th>
-            <th className="pb-1 text-right text-[10px] font-medium text-muted-foreground">1D Chg</th>
-            <th className="pb-1 text-right text-[10px] font-medium text-muted-foreground">Mkt Cap ($B)</th>
+            <th className="pb-1 text-left text-xs font-medium text-muted-foreground">Ticker</th>
+            <th className="pb-1 text-left text-xs font-medium text-muted-foreground">Name</th>
+            <th className="pb-1 text-right text-xs font-medium text-muted-foreground">1D Chg</th>
+            <th className="pb-1 text-right text-xs font-medium text-muted-foreground">Mkt Cap ($B)</th>
           </tr>
         </thead>
         <tbody>
@@ -672,7 +672,7 @@ function CycleWheel() {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="mb-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Economic Cycle Wheel</div>
+      <div className="mb-1 text-xs font-semibold text-muted-foreground">Economic Cycle Wheel</div>
       <svg viewBox="0 0 500 500" width={440} height={440}>
         {/* Phase arcs — 4 quadrants */}
         {CYCLE_PHASES.map((phase, i) => {
@@ -790,7 +790,7 @@ function CycleWheel() {
       </svg>
 
       {/* Legend */}
-      <div className="flex gap-4 text-[10px] text-muted-foreground">
+      <div className="flex gap-4 text-xs text-muted-foreground">
         <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-emerald-400" />Early Recovery (now)</span>
         <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-indigo-400" />Late Recovery</span>
         <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-amber-400" />Early Slowdown</span>
@@ -809,7 +809,7 @@ function FactorBarChart({ factorRets }: { factorRets: Record<Factor, number> }) 
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-3">
-      <div className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Factor Returns This Quarter</div>
+      <div className="mb-2 text-xs font-semibold text-muted-foreground">Factor Returns This Quarter</div>
       <svg viewBox={`0 0 ${W} ${entries.length * BAR_H + 16}`} className="w-full" style={{ height: entries.length * BAR_H + 16 }}>
         <line x1={MID} y1={0} x2={MID} y2={entries.length * BAR_H + 16} stroke="#ffffff18" strokeWidth={1} />
         {entries.map(([factor, val], i) => {
@@ -854,9 +854,9 @@ function FactorLoadingsTable({ factorData }: { factorData: SectorFactorData[] })
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border/40 bg-muted/20">
-            <th className="py-2 pl-3 pr-4 text-left text-[10px] font-semibold text-muted-foreground">Sector</th>
+            <th className="py-2 pl-3 pr-4 text-left text-xs font-semibold text-muted-foreground">Sector</th>
             {FACTORS.map((f) => (
-              <th key={f} className="px-2 py-2 text-center text-[10px] font-semibold text-muted-foreground">{f}</th>
+              <th key={f} className="px-2 py-2 text-center text-xs font-semibold text-muted-foreground">{f}</th>
             ))}
           </tr>
         </thead>
@@ -868,7 +868,7 @@ function FactorLoadingsTable({ factorData }: { factorData: SectorFactorData[] })
                 const v = row.loadings[f];
                 return (
                   <td key={f} className="px-2 py-1.5 text-center">
-                    <span className={cn("rounded px-1.5 py-0.5 text-[10px] tabular-nums font-mono", loadingColor(v))}>
+                    <span className={cn("rounded px-1.5 py-0.5 text-xs tabular-nums font-mono", loadingColor(v))}>
                       {v >= 0 ? "+" : ""}{v.toFixed(1)}
                     </span>
                   </td>
@@ -899,7 +899,7 @@ function StyleBox() {
 
   return (
     <div className="rounded-lg border border-border/40 bg-card p-3">
-      <div className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Style Box (Value/Growth × Size)</div>
+      <div className="mb-2 text-xs font-semibold text-muted-foreground">Style Box (Value/Growth × Size)</div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxWidth: W }}>
         {/* 3×3 grid */}
         {[0, 1, 2].map((ci) =>
@@ -954,7 +954,7 @@ function CorrelationMatrix({ mat }: { mat: number[][] }) {
 
   return (
     <div className="overflow-x-auto rounded-lg border border-border/40 bg-card p-3">
-      <div className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Sector Correlation Matrix</div>
+      <div className="mb-2 text-xs font-semibold text-muted-foreground">Sector Correlation Matrix</div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: W, height: H }}>
         {/* Column headers */}
         {SECTORS.map((s, ci) => (
@@ -1030,9 +1030,9 @@ function PortfolioWeightsTable({
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border/40 bg-muted/20">
-            <th className="py-2 pl-3 pr-4 text-left text-[10px] font-semibold text-muted-foreground">Sector ETF</th>
+            <th className="py-2 pl-3 pr-4 text-left text-xs font-semibold text-muted-foreground">Sector ETF</th>
             {cols.map((c) => (
-              <th key={c.key} className="px-3 py-2 text-right text-[10px] font-semibold text-muted-foreground" title={c.desc}>
+              <th key={c.key} className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground" title={c.desc}>
                 {c.label}
               </th>
             ))}
@@ -1043,7 +1043,7 @@ function PortfolioWeightsTable({
             <tr key={w.etf} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
               <td className="py-1.5 pl-3 pr-4">
                 <span className="font-mono text-xs font-semibold text-primary">{w.etf}</span>
-                <span className="ml-1 text-[10px] text-muted-foreground">{w.name}</span>
+                <span className="ml-1 text-xs text-muted-foreground">{w.name}</span>
               </td>
               {cols.map((c) => (
                 <td key={c.key} className="px-3 py-1.5 text-right tabular-nums text-xs text-muted-foreground">
@@ -1074,15 +1074,15 @@ function EtfComparisonTable({
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border/40 bg-muted/20">
-            <th className="py-2 pl-3 pr-4 text-left text-[10px] font-semibold text-muted-foreground">ETF</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">AUM ($B)</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">Exp Ratio</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">Div Yield</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">P/E</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">Beta</th>
-            <th className="px-2 py-2 text-right text-[10px] font-semibold text-muted-foreground">52W Ret</th>
-            <th className="px-2 py-2 text-left  text-[10px] font-semibold text-muted-foreground">Top Holding</th>
-            <th className="px-2 py-2 text-center text-[10px] font-semibold text-muted-foreground">Watch</th>
+            <th className="py-2 pl-3 pr-4 text-left text-xs font-semibold text-muted-foreground">ETF</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">AUM ($B)</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">Exp Ratio</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">Div Yield</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">P/E</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">Beta</th>
+            <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">52W Ret</th>
+            <th className="px-2 py-2 text-left  text-xs font-semibold text-muted-foreground">Top Holding</th>
+            <th className="px-2 py-2 text-center text-xs font-semibold text-muted-foreground">Watch</th>
           </tr>
         </thead>
         <tbody>
@@ -1092,7 +1092,7 @@ function EtfComparisonTable({
                 <div className="flex items-center gap-1.5">
                   <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: e.color }} />
                   <span className="font-mono font-semibold text-primary">{e.etf}</span>
-                  <span className="text-[10px] text-muted-foreground hidden sm:inline">{e.name}</span>
+                  <span className="text-xs text-muted-foreground hidden sm:inline">{e.name}</span>
                 </div>
               </td>
               <td className="px-2 py-1.5 text-right tabular-nums">{e.aumB.toFixed(1)}</td>
@@ -1103,7 +1103,7 @@ function EtfComparisonTable({
               <td className="px-2 py-1.5 text-right">
                 <RetCell v={e.ret52w} />
               </td>
-              <td className="px-2 py-1.5 font-mono text-[10px] text-muted-foreground">{e.topHolding}</td>
+              <td className="px-2 py-1.5 font-mono text-xs text-muted-foreground">{e.topHolding}</td>
               <td className="px-2 py-1.5 text-center">
                 <button
                   type="button"
@@ -1169,10 +1169,10 @@ export default function SectorsPage() {
           <p className="mt-0.5 text-xs text-muted-foreground">11 GICS Sectors — Performance, Rotation, Factors & ETFs</p>
         </div>
         <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
-          <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+          <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-400">
             EARLY RECOVERY
           </span>
-          <span className="text-[10px]">Current Cycle Phase</span>
+          <span className="text-xs">Current Cycle Phase</span>
         </div>
       </div>
 
@@ -1226,7 +1226,7 @@ export default function SectorsPage() {
               <div className="space-y-4">
                 {/* Current leaders */}
                 <div className="rounded-lg border border-border/40 bg-card p-4">
-                  <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Current Phase Leaders</div>
+                  <div className="mb-3 text-xs font-semibold text-muted-foreground">Current Phase Leaders</div>
                   <div className="flex flex-wrap gap-2">
                     {CURRENT_LEADERS.map((l) => {
                       const s = SECTORS.find((x) => x.name === l)!;
@@ -1245,7 +1245,7 @@ export default function SectorsPage() {
 
                 {/* Rotation scores */}
                 <div className="rounded-lg border border-border/40 bg-card p-4">
-                  <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Rotation Score Ranking</div>
+                  <div className="mb-3 text-xs font-semibold text-muted-foreground">Rotation Score Ranking</div>
                   <div className="space-y-1.5">
                     {rotScores.map((r, i) => {
                       const s = SECTORS.find((x) => x.name === r.name)!;
@@ -1253,12 +1253,12 @@ export default function SectorsPage() {
                       const pct = Math.round(((r.score + maxScore) / (maxScore * 2)) * 100);
                       return (
                         <div key={r.name} className="flex items-center gap-2">
-                          <span className="w-4 text-[10px] text-muted-foreground tabular-nums">{i + 1}.</span>
-                          <span className="w-10 text-[10px] font-mono font-semibold" style={{ color: s.color }}>{s.etf}</span>
+                          <span className="w-4 text-xs text-muted-foreground tabular-nums">{i + 1}.</span>
+                          <span className="w-10 text-xs font-mono font-semibold" style={{ color: s.color }}>{s.etf}</span>
                           <div className="flex-1 h-1.5 bg-muted/30 rounded-full overflow-hidden">
                             <div className="h-full rounded-full" style={{ width: `${pct}%`, background: s.color, opacity: 0.7 }} />
                           </div>
-                          <span className={cn("w-12 text-right text-[10px] tabular-nums font-mono", r.score >= 0 ? "text-emerald-400" : "text-red-400")}>
+                          <span className={cn("w-12 text-right text-xs tabular-nums font-mono", r.score >= 0 ? "text-emerald-400" : "text-red-400")}>
                             {r.score >= 0 ? "+" : ""}{r.score.toFixed(1)}
                           </span>
                         </div>
@@ -1271,11 +1271,11 @@ export default function SectorsPage() {
 
             {/* Historical cycles */}
             <div className="rounded-lg border border-border/40 bg-card p-4">
-              <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Historical Rotation — Past 3 Cycles</div>
+              <div className="mb-3 text-xs font-semibold text-muted-foreground">Historical Rotation — Past 3 Cycles</div>
               <div className="grid gap-3 sm:grid-cols-3">
                 {HISTORICAL_CYCLES.map((cyc) => (
                   <div key={cyc.name} className="rounded border border-border/30 bg-muted/10 p-3">
-                    <div className="mb-2 text-[10px] font-semibold text-muted-foreground">{cyc.name}</div>
+                    <div className="mb-2 text-xs font-semibold text-muted-foreground">{cyc.name}</div>
                     <div className="flex flex-col gap-1">
                       {cyc.leaders.map((l, li) => {
                         const s = SECTORS.find((x) => x.name === l)!;
@@ -1283,7 +1283,7 @@ export default function SectorsPage() {
                           <span key={l} className="flex items-center gap-1.5 text-[11px]" style={{ color: s.color }}>
                             <span className="text-muted-foreground">#{li + 1}</span>
                             <span className="font-mono font-semibold">{s.etf}</span>
-                            <span className="text-muted-foreground text-[10px]">{l}</span>
+                            <span className="text-muted-foreground text-xs">{l}</span>
                           </span>
                         );
                       })}
@@ -1306,7 +1306,7 @@ export default function SectorsPage() {
 
             {/* Factor winners badges + tilt recommendations */}
             <div className="rounded-lg border border-border/40 bg-card p-4">
-              <div className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Current Factor Winners</div>
+              <div className="mb-3 text-xs font-semibold text-muted-foreground">Current Factor Winners</div>
               <div className="mb-3 flex flex-wrap gap-2">
                 {winnerFactors.length === 0 ? (
                   <span className="text-xs text-muted-foreground">No dominant factor this quarter</span>
@@ -1330,8 +1330,8 @@ export default function SectorsPage() {
 
             {/* Sector factor loadings table */}
             <div>
-              <div className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Sector Factor Loadings</div>
-              <div className="mb-1 flex gap-4 text-[10px] text-muted-foreground">
+              <div className="mb-2 text-xs font-semibold text-muted-foreground">Sector Factor Loadings</div>
+              <div className="mb-1 flex gap-4 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded bg-emerald-500/30" /> Strong positive loading</span>
                 <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded bg-red-500/30" /> Strong negative loading</span>
                 <span className="flex items-center gap-1"><span className="inline-block h-2 w-3 rounded bg-muted/40" /> Neutral</span>
@@ -1346,7 +1346,7 @@ export default function SectorsPage() {
           <div className="mx-auto max-w-6xl space-y-4">
             {/* ETF comparison */}
             <div>
-              <div className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Sector ETF Comparison</div>
+              <div className="mb-2 text-xs font-semibold text-muted-foreground">Sector ETF Comparison</div>
               <EtfComparisonTable etfs={etfs} watchlist={watchlist} onToggleWatch={toggleWatch} />
             </div>
 
@@ -1356,11 +1356,11 @@ export default function SectorsPage() {
 
               <div className="space-y-3">
                 <div>
-                  <div className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Optimal Sector Portfolio</div>
+                  <div className="mb-2 text-xs font-semibold text-muted-foreground">Optimal Sector Portfolio</div>
                   <PortfolioWeightsTable weights={portWeights} />
                 </div>
                 {/* Methodology note */}
-                <div className="rounded-lg border border-border/30 bg-muted/10 p-3 text-[10px] text-muted-foreground space-y-1">
+                <div className="rounded-lg border border-border/30 bg-muted/10 p-3 text-xs text-muted-foreground space-y-1">
                   <div className="flex items-center gap-1.5 font-semibold text-xs text-foreground/60"><Info className="h-3 w-3" /> Portfolio Construction Methods</div>
                   <div><span className="font-medium text-foreground/50">Equal Weight:</span> 1/N allocation — simple, fully diversified across all 11 sectors.</div>
                   <div><span className="font-medium text-foreground/50">Momentum Weight:</span> Higher allocation to sectors with stronger recent performance.</div>

@@ -105,7 +105,7 @@ function StatCard({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -386,7 +386,7 @@ function YieldDashboard() {
       <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 text-xs text-zinc-500 uppercase tracking-wider">
+            <tr className="border-b border-white/10 text-xs text-zinc-500">
               <th className="text-left p-3">Protocol</th>
               <th className="text-left p-3">Pair</th>
               <th className="text-left p-3">Type</th>

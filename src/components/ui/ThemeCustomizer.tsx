@@ -22,7 +22,7 @@ import {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-2.5 text-[9px] font-semibold uppercase tracking-widest text-muted-foreground/50 select-none">
+    <p className="mb-2.5 text-[11px] font-semibold text-muted-foreground/50 select-none">
       {children}
     </p>
   );
@@ -128,7 +128,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
             <div className="flex items-center justify-between border-b border-border/50 px-4 py-3.5">
               <div>
                 <h2 className="text-sm font-semibold text-foreground">Theme</h2>
-                <p className="text-[10px] text-muted-foreground/60 mt-0.5">
+                <p className="text-xs text-muted-foreground/60 mt-0.5">
                   Customize your workspace
                 </p>
               </div>
@@ -181,7 +181,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                         {/* Label */}
                         <span
                           className={cn(
-                            "text-[10px] font-medium leading-none",
+                            "text-xs font-medium leading-none",
                             isActive ? "text-primary" : "text-muted-foreground",
                           )}
                         >
@@ -232,7 +232,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                   })}
                 </div>
                 {/* Selected hex */}
-                <p className="mt-2 text-[10px] font-mono text-muted-foreground/50">
+                <p className="mt-2 text-xs font-mono text-muted-foreground/50">
                   {config.accent}
                 </p>
               </div>
@@ -291,7 +291,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                     <span
                       key={value}
                       className={cn(
-                        "text-[10px] transition-colors duration-150",
+                        "text-xs transition-colors duration-150",
                         config.fontScale === value
                           ? "text-primary font-semibold"
                           : "text-muted-foreground/50",

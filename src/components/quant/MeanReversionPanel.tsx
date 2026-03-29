@@ -38,7 +38,7 @@ function SignalBadge({ signal }: { signal: MeanReversionSignal["signal"] }) {
   };
   const c = config[signal];
   return (
-    <span className={cn("text-[10px] px-1.5 py-0.5 rounded font-medium", c.className)}>
+    <span className={cn("text-xs px-1.5 py-0.5 rounded font-medium", c.className)}>
       {c.text}
     </span>
   );
@@ -72,7 +72,7 @@ function ZScoreIndicator({ zScore }: { zScore: number }) {
       </div>
       <span
         className={cn(
-          "font-mono tabular-nums text-[10px] w-8 text-right shrink-0",
+          "font-mono tabular-nums text-xs w-8 text-right shrink-0",
           zScore < -1 ? "text-emerald-500" : zScore > 1 ? "text-red-500" : "text-muted-foreground",
         )}
       >
@@ -109,7 +109,7 @@ function BollingerBar({ position }: { position: number }) {
           style={{ width: `${pct}%` }}
         />
       </div>
-      <span className={cn("font-mono tabular-nums text-[10px] w-8 text-right shrink-0", color)}>
+      <span className={cn("font-mono tabular-nums text-xs w-8 text-right shrink-0", color)}>
         {pct.toFixed(0)}%
       </span>
     </div>
@@ -152,11 +152,11 @@ function SignalCard({ data }: { data: MeanReversionSignal }) {
 
       <div className="grid grid-cols-3 gap-3">
         <div className="space-y-1">
-          <p className="text-[10px] text-muted-foreground">Z-Score</p>
+          <p className="text-xs text-muted-foreground">Z-Score</p>
           <ZScoreIndicator zScore={data.zScore} />
         </div>
         <div className="space-y-1">
-          <p className="text-[10px] text-muted-foreground">RSI</p>
+          <p className="text-xs text-muted-foreground">RSI</p>
           <p
             className={cn(
               "font-mono tabular-nums text-xs font-medium",
@@ -171,7 +171,7 @@ function SignalCard({ data }: { data: MeanReversionSignal }) {
           </p>
         </div>
         <div className="space-y-1">
-          <p className="text-[10px] text-muted-foreground">BB Position</p>
+          <p className="text-xs text-muted-foreground">BB Position</p>
           <BollingerBar position={data.bollingerPosition} />
         </div>
       </div>
@@ -200,7 +200,7 @@ export function MeanReversionPanel() {
     <div className="rounded-lg border bg-card p-4 space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">Mean Reversion Scanner</h3>
-        <div className="flex items-center gap-2 text-[10px]">
+        <div className="flex items-center gap-2 text-xs">
           {oversold.length > 0 && (
             <span className="text-emerald-500 font-medium">
               {oversold.length} oversold
@@ -222,7 +222,7 @@ export function MeanReversionPanel() {
       </div>
 
       {/* Educational footer */}
-      <p className="text-[10px] text-muted-foreground leading-relaxed">
+      <p className="text-xs text-muted-foreground leading-relaxed">
         Mean reversion scores combine Z-score (40%), RSI (35%), and
         Bollinger position (25%). Negative scores indicate oversold
         conditions (potential buy), positive scores indicate overbought

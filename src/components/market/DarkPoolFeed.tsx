@@ -37,7 +37,7 @@ function SignificanceBadge({
     massive: "bg-red-500/10 text-red-500",
   };
   return (
-    <span className={cn("text-[10px] px-1.5 py-0.5 rounded font-medium", styles[significance])}>
+    <span className={cn("text-xs px-1.5 py-0.5 rounded font-medium", styles[significance])}>
       {significance}
     </span>
   );
@@ -72,26 +72,26 @@ export function DarkPoolFeed({ ticker, currentPrice, dailyVolume }: DarkPoolFeed
   return (
     <div className="rounded-lg border bg-card p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold">Dark Pool Activity: {ticker}</h3>
+        <h3 className="text-sm font-semibold">Simulated Institutional Flow: {ticker}</h3>
         <span className="text-xs text-muted-foreground">Simulated</span>
       </div>
 
       {/* Summary stats */}
       <div className="grid grid-cols-3 gap-3">
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Dark Pool %</p>
+          <p className="text-xs text-muted-foreground">Dark Pool %</p>
           <p className="font-mono tabular-nums text-sm font-medium">
             {summary.darkPoolPercent.toFixed(1)}%
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Total Volume</p>
+          <p className="text-xs text-muted-foreground">Total Volume</p>
           <p className="font-mono tabular-nums text-sm font-medium">
             {formatShares(summary.totalVolume)}
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Net Flow</p>
+          <p className="text-xs text-muted-foreground">Net Flow</p>
           <p className={cn("font-mono tabular-nums text-sm font-medium", netFlowColor)}>
             {summary.netFlow >= 0 ? "+" : ""}
             {formatNotional(summary.netFlow)}
@@ -172,7 +172,7 @@ export function DarkPoolFeed({ ticker, currentPrice, dailyVolume }: DarkPoolFeed
 
       {/* Largest trade highlight */}
       <div className="px-3 py-2 rounded-lg bg-muted/50 border">
-        <p className="text-[10px] text-muted-foreground mb-1">Largest Block Trade</p>
+        <p className="text-xs text-muted-foreground mb-1">Largest Block Trade</p>
         <div className="flex items-center gap-2 text-xs">
           <span
             className={cn(

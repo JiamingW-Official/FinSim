@@ -108,7 +108,7 @@ function FeedbackContent({
         <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
         <div className="flex-1 space-y-1">
           <p className="text-[11px] font-medium text-foreground">{summary}</p>
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Tip: {tip}
           </p>
         </div>

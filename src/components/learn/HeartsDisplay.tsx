@@ -75,9 +75,9 @@ export function HeartsDisplay({ compact }: HeartsDisplayProps) {
         </motion.div>
         <span className="text-xs font-bold tabular-nums">{effectiveHearts}</span>
         {effectiveHearts >= 5 ? (
-          <span className="text-[9px] font-bold text-emerald-400">Full ✓</span>
+          <span className="text-[11px] font-bold text-emerald-400">Full ✓</span>
         ) : regenTimer ? (
-          <span className="text-[9px] tabular-nums text-muted-foreground">{regenTimer}</span>
+          <span className="text-[11px] tabular-nums text-muted-foreground">{regenTimer}</span>
         ) : null}
       </div>
     );
@@ -123,7 +123,7 @@ export function HeartsDisplay({ compact }: HeartsDisplayProps) {
       })}
       {regenTimer && (
         <motion.span
-          className="ml-1 text-[10px] tabular-nums text-muted-foreground"
+          className="ml-1 text-xs tabular-nums text-muted-foreground"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >

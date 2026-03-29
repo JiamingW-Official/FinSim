@@ -543,12 +543,12 @@ function GradeEngineSection({
       {/* Scatter plot */}
       <div className="rounded-lg border border-border bg-card p-4">
         <p className="mb-1 text-xs font-semibold">Process vs Outcome Scatter</p>
-        <p className="mb-3 text-[10px] text-muted-foreground">
+        <p className="mb-3 text-xs text-muted-foreground">
           Ideal trades: top-right. Lucky: top-left. Unlucky: bottom-right.
         </p>
         <ProcessOutcomeScatter trades={trades} />
         {/* Quadrant legend */}
-        <div className="mt-3 grid grid-cols-2 gap-1 text-[10px]">
+        <div className="mt-3 grid grid-cols-2 gap-1 text-xs">
           <div className="flex items-center gap-1">
             <div className="h-2 w-2 rounded-full bg-green-400" />
             <span className="text-muted-foreground">Good Process + Good Outcome</span>
@@ -575,11 +575,11 @@ function GradeEngineSection({
             <AlertTriangle className="h-3.5 w-3.5" />
             Lucky Trades ({lucky.length})
           </div>
-          <p className="text-[10px] text-amber-200/70">
+          <p className="text-xs text-amber-200/70">
             Good outcome from bad process. Don&apos;t repeat these — luck runs out.
           </p>
           {lucky.slice(0, 3).map((t) => (
-            <div key={t.id} className="text-[10px] text-amber-300 font-medium">
+            <div key={t.id} className="text-xs text-amber-300 font-medium">
               {t.ticker} +{t.pnlPct.toFixed(1)}% (process: {t.processScore})
             </div>
           ))}
@@ -589,11 +589,11 @@ function GradeEngineSection({
             <CheckCircle2 className="h-3.5 w-3.5" />
             Unlucky Trades ({unlucky.length})
           </div>
-          <p className="text-[10px] text-blue-200/70">
+          <p className="text-xs text-blue-200/70">
             Good process, bad outcome. Stay the course — edge shows over time.
           </p>
           {unlucky.slice(0, 3).map((t) => (
-            <div key={t.id} className="text-[10px] text-blue-300 font-medium">
+            <div key={t.id} className="text-xs text-blue-300 font-medium">
               {t.ticker} {t.pnlPct.toFixed(1)}% (process: {t.processScore})
             </div>
           ))}
@@ -608,7 +608,7 @@ function GradeEngineSection({
             <div key={t.id} className="flex items-center gap-2 text-[11px]">
               <span className="w-4 text-right tabular-nums text-muted-foreground/50">{i + 1}</span>
               <span className="w-10 font-semibold text-foreground/80">{t.ticker}</span>
-              <span className={cn("w-6 rounded px-1 text-center font-bold text-[10px]", GRADE_COLORS[t.grade], GRADE_BG[t.grade])}>
+              <span className={cn("w-6 rounded px-1 text-center font-bold text-xs", GRADE_COLORS[t.grade], GRADE_BG[t.grade])}>
                 {t.grade}
               </span>
               <div className="flex-1">
@@ -625,7 +625,7 @@ function GradeEngineSection({
             </div>
           ))}
         </div>
-        <div className="mt-2 flex gap-3 text-[9px] text-muted-foreground/50">
+        <div className="mt-2 flex gap-3 text-[11px] text-muted-foreground/50">
           <div className="flex items-center gap-1"><div className="h-1.5 w-4 rounded-full bg-blue-400/40" /> Process</div>
           <div className="flex items-center gap-1"><div className="h-1.5 w-4 rounded-full bg-green-400/60" /> Outcome</div>
         </div>
@@ -722,7 +722,7 @@ function ReconstructionSection({
               key={t.id}
               onClick={() => onSelect(i)}
               className={cn(
-                "rounded px-2 py-1 text-[10px] font-medium border transition-colors",
+                "rounded px-2 py-1 text-xs font-medium border transition-colors",
                 i === selectedIdx
                   ? "border-primary bg-primary/20 text-primary"
                   : "border-border bg-card text-muted-foreground hover:text-foreground",
@@ -739,37 +739,37 @@ function ReconstructionSection({
         <p className="mb-1 text-xs font-semibold">
           {selectedTrade.ticker} — Trade Timeline
         </p>
-        <p className="mb-3 text-[10px] text-muted-foreground">
+        <p className="mb-3 text-xs text-muted-foreground">
           Entry {formatCurrency(selectedTrade.entryPrice)} → Exit {formatCurrency(selectedTrade.exitPrice)}
         </p>
         <TradeTimelineSVG trade={selectedTrade} />
         {/* Excursion stats */}
         <div className="mt-3 grid grid-cols-3 gap-2 text-center">
           <div>
-            <p className="text-[9px] uppercase tracking-wider text-muted-foreground">MAE</p>
+            <p className="text-[11px] text-muted-foreground">MAE</p>
             <p className="text-sm font-bold text-red-400">{selectedTrade.mae.toFixed(2)}%</p>
-            <p className="text-[9px] text-muted-foreground">Worst unrealized</p>
+            <p className="text-[11px] text-muted-foreground">Worst unrealized</p>
           </div>
           <div>
-            <p className="text-[9px] uppercase tracking-wider text-muted-foreground">MFE</p>
+            <p className="text-[11px] text-muted-foreground">MFE</p>
             <p className="text-sm font-bold text-green-400">+{selectedTrade.mfe.toFixed(2)}%</p>
-            <p className="text-[9px] text-muted-foreground">Best unrealized</p>
+            <p className="text-[11px] text-muted-foreground">Best unrealized</p>
           </div>
           <div>
-            <p className="text-[9px] uppercase tracking-wider text-muted-foreground">Efficiency</p>
+            <p className="text-[11px] text-muted-foreground">Efficiency</p>
             <p className={cn("text-sm font-bold", selectedTrade.efficiency >= 70 ? "text-green-400" : selectedTrade.efficiency >= 40 ? "text-amber-400" : "text-red-400")}>
               {selectedTrade.efficiency.toFixed(0)}%
             </p>
-            <p className="text-[9px] text-muted-foreground">Profit captured</p>
+            <p className="text-[11px] text-muted-foreground">Profit captured</p>
           </div>
         </div>
         {selectedTrade.efficiency < 50 && selectedTrade.realizedPnL > 0 && (
-          <p className="mt-2 text-[10px] text-amber-400">
+          <p className="mt-2 text-xs text-amber-400">
             You captured only {selectedTrade.efficiency.toFixed(0)}% of available profit — consider trailing stops.
           </p>
         )}
         {selectedTrade.realizedPnL < 0 && Math.abs(selectedTrade.pnlPct) > Math.abs(selectedTrade.mae) * 0.7 && (
-          <p className="mt-2 text-[10px] text-red-400">
+          <p className="mt-2 text-xs text-red-400">
             Loss exceeded your typical MAE — this position could have been cut earlier.
           </p>
         )}
@@ -778,7 +778,7 @@ function ReconstructionSection({
       {/* MFE/MAE Scatter */}
       <div className="rounded-lg border border-border bg-card p-4">
         <p className="mb-1 text-xs font-semibold">MFE vs MAE Scatter (All Trades)</p>
-        <p className="mb-3 text-[10px] text-muted-foreground">
+        <p className="mb-3 text-xs text-muted-foreground">
           Dots near top-left: exiting too early. Dots near bottom-right: holding losers too long.
         </p>
         <MfeMaeScatter trades={trades} selectedId={selectedTrade.id} />
@@ -1038,7 +1038,7 @@ function PatternSection({ trades }: { trades: GradedTrade[] }) {
             const wr = b.count > 0 ? (b.winCount / b.count) * 100 : 0;
             return (
               <div key={b.label} className="flex flex-1 flex-col items-center gap-1 h-full justify-end">
-                <span className="text-[9px] text-muted-foreground tabular-nums">{b.count}</span>
+                <span className="text-[11px] text-muted-foreground tabular-nums">{b.count}</span>
                 <div
                   className="w-full rounded-sm transition-all"
                   style={{
@@ -1046,12 +1046,12 @@ function PatternSection({ trades }: { trades: GradedTrade[] }) {
                     background: `linear-gradient(to top, rgba(74,222,128,${wr / 100}), rgba(96,165,250,0.3))`,
                   }}
                 />
-                <span className="text-[9px] text-muted-foreground">{b.label}</span>
+                <span className="text-[11px] text-muted-foreground">{b.label}</span>
               </div>
             );
           })}
         </div>
-        <p className="mt-1 text-[9px] text-muted-foreground/50">Bar height = trade count. Color = win rate.</p>
+        <p className="mt-1 text-[11px] text-muted-foreground/50">Bar height = trade count. Color = win rate.</p>
       </div>
 
       {/* Market condition performance */}
@@ -1067,10 +1067,10 @@ function PatternSection({ trades }: { trades: GradedTrade[] }) {
                   style={{ width: `${Math.min(100, Math.abs(c.avg) / 5 * 100)}%` }}
                 />
               </div>
-              <span className={cn("w-14 text-right text-[10px] font-medium tabular-nums", c.avg >= 0 ? "text-green-400" : "text-red-400")}>
+              <span className={cn("w-14 text-right text-xs font-medium tabular-nums", c.avg >= 0 ? "text-green-400" : "text-red-400")}>
                 {c.avg >= 0 ? "+" : ""}{c.avg.toFixed(2)}%
               </span>
-              <span className="w-10 text-right text-[10px] text-muted-foreground tabular-nums">{c.winRate.toFixed(0)}%W</span>
+              <span className="w-10 text-right text-xs text-muted-foreground tabular-nums">{c.winRate.toFixed(0)}%W</span>
             </div>
           ))}
         </div>
@@ -1223,7 +1223,7 @@ function EmotionalSection({
         onChange={(e) => onVal(Number(e.target.value))}
         className="w-full accent-primary h-1.5"
       />
-      <div className="flex justify-between text-[9px] text-muted-foreground/50 mt-0.5">
+      <div className="flex justify-between text-[11px] text-muted-foreground/50 mt-0.5">
         <span>Low</span><span>High</span>
       </div>
     </div>
@@ -1261,7 +1261,7 @@ function EmotionalSection({
                 key={e}
                 onClick={() => onChange({ ...entry, emotion: e })}
                 className={cn(
-                  "rounded-full px-2.5 py-1 text-[10px] font-medium border capitalize transition-colors",
+                  "rounded-full px-2.5 py-1 text-xs font-medium border capitalize transition-colors",
                   entry.emotion === e
                     ? "border-primary bg-primary/20 text-primary"
                     : "border-border text-muted-foreground hover:text-foreground",
@@ -1309,7 +1309,7 @@ function EmotionalSection({
                 key={e}
                 onClick={() => onChange({ ...entry, emotionAfter: e })}
                 className={cn(
-                  "rounded-full px-2.5 py-1 text-[10px] font-medium border capitalize transition-colors",
+                  "rounded-full px-2.5 py-1 text-xs font-medium border capitalize transition-colors",
                   entry.emotionAfter === e
                     ? "border-primary bg-primary/20 text-primary"
                     : "border-border text-muted-foreground hover:text-foreground",
@@ -1347,10 +1347,10 @@ function EmotionalSection({
                   style={{ width: `${Math.min(100, Math.abs(s.avg) * 15 + 5)}%` }}
                 />
               </div>
-              <span className={cn("w-14 text-right text-[10px] font-medium tabular-nums", s.avg >= 0 ? "text-green-400" : "text-red-400")}>
+              <span className={cn("w-14 text-right text-xs font-medium tabular-nums", s.avg >= 0 ? "text-green-400" : "text-red-400")}>
                 {s.avg >= 0 ? "+" : ""}{s.avg.toFixed(2)}%
               </span>
-              <span className="w-8 text-right text-[10px] text-muted-foreground tabular-nums">{s.count}</span>
+              <span className="w-8 text-right text-xs text-muted-foreground tabular-nums">{s.count}</span>
             </div>
           ))}
         </div>
@@ -1372,7 +1372,7 @@ function EmotionalSection({
         </div>
         <div className="mt-2 flex flex-wrap gap-2">
           {EMOTIONS.map((e) => (
-            <div key={e} className="flex items-center gap-1 text-[9px] text-muted-foreground">
+            <div key={e} className="flex items-center gap-1 text-[11px] text-muted-foreground">
               <div className={cn("h-2 w-2 rounded-sm", MOOD_BG[e])} />
               {e}
             </div>
@@ -1408,7 +1408,7 @@ function TargetsSection({
       {/* Rolling win rate chart */}
       <div className="rounded-lg border border-border bg-card p-4">
         <p className="mb-1 text-xs font-semibold">Rolling Win Rate (Trade-by-Trade)</p>
-        <p className="mb-3 text-[10px] text-muted-foreground">
+        <p className="mb-3 text-xs text-muted-foreground">
           Trend shows if your consistency is improving over last {trades.length} trades.
         </p>
         <RollingWinRateChart rates={rollingWinRate} />
@@ -1430,7 +1430,7 @@ function TargetsSection({
           <CheckCircle2 className="h-3.5 w-3.5 text-green-400" />
           Weekly Commitment
         </p>
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           Write one specific rule you will follow in every trade next week:
         </p>
         <textarea
@@ -1448,7 +1448,7 @@ function TargetsSection({
             Commit
           </button>
           {savedCommitment && (
-            <p className="text-[10px] text-green-400">
+            <p className="text-xs text-green-400">
               Committed: &quot;{savedCommitment}&quot;
             </p>
           )}
@@ -1469,7 +1469,7 @@ function RollingWinRateChart({ rates }: { rates: number[] }) {
 
   if (rates.length < 2) {
     return (
-      <div className="flex h-20 items-center justify-center text-[10px] text-muted-foreground">
+      <div className="flex h-20 items-center justify-center text-xs text-muted-foreground">
         Not enough data
       </div>
     );
@@ -1528,7 +1528,7 @@ function RollingWinRateChart({ rates }: { rates: number[] }) {
           Trades →
         </text>
       </svg>
-      <div className="flex items-center justify-between text-[10px]">
+      <div className="flex items-center justify-between text-xs">
         <span className={cn("font-semibold", lastRate >= 50 ? "text-green-400" : "text-red-400")}>
           Current: {lastRate.toFixed(0)}%
         </span>
@@ -1575,8 +1575,8 @@ function ImprovementCard({
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-xs font-semibold text-foreground">{target.title}</p>
-          <p className="text-[10px] text-muted-foreground mt-0.5">{target.description}</p>
-          <div className="flex items-center gap-3 mt-2 text-[10px]">
+          <p className="text-xs text-muted-foreground mt-0.5">{target.description}</p>
+          <div className="flex items-center gap-3 mt-2 text-xs">
             <span className="text-muted-foreground">Now: <span className={cn("font-medium", target.color)}>{target.currentMetric}</span></span>
             <span className="text-muted-foreground">Goal: <span className="font-medium text-green-400">{target.goalMetric}</span></span>
           </div>
@@ -1590,7 +1590,7 @@ function ImprovementCard({
         <div className="border-t border-border px-4 pb-4 pt-3 space-y-3">
           {/* 30-day progress chart */}
           <div>
-            <p className="mb-1.5 text-[10px] text-muted-foreground">30-Day Progress</p>
+            <p className="mb-1.5 text-xs text-muted-foreground">30-Day Progress</p>
             <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: H }}>
               <polyline points={pts.join(" ")} fill="none" stroke="rgba(99,102,241,0.8)" strokeWidth={1.5} />
               {target.progress.map((v, i) => (
@@ -1622,10 +1622,10 @@ function ImprovementCard({
 
           {/* Action items */}
           <div>
-            <p className="mb-1.5 text-[10px] font-medium text-foreground/80">Action Items</p>
+            <p className="mb-1.5 text-xs font-medium text-foreground/80">Action Items</p>
             <ul className="space-y-1">
               {target.actionItems.map((a, i) => (
-                <li key={i} className="flex items-start gap-1.5 text-[10px] text-muted-foreground">
+                <li key={i} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                   <span className="mt-0.5 text-primary">•</span>
                   {a}
                 </li>
@@ -1644,7 +1644,7 @@ function ScoreChip({ label, value, max, color }: { label: string; value: string;
   const pct = (parseFloat(value) / max) * 100;
   return (
     <div className="rounded-lg border border-border bg-card p-3 space-y-1.5">
-      <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">{label}</p>
+      <p className="text-xs text-muted-foreground font-medium">{label}</p>
       <p className={cn("text-xl font-bold tabular-nums", color)}>{value}</p>
       <div className="h-1 w-full rounded-full bg-muted/30">
         <div className={cn("h-1 rounded-full transition-all", color.replace("text-", "bg-"))} style={{ width: `${pct}%` }} />

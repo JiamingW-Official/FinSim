@@ -96,7 +96,7 @@ export function WinLossDistribution() {
   return (
     <div className="space-y-3">
       {/* Stat chips */}
-      <div className="flex flex-wrap gap-2 text-[10px]">
+      <div className="flex flex-wrap gap-2 text-xs">
         <span className="rounded border border-border bg-card/60 px-2 py-0.5">
           Skewness <span className="font-mono text-foreground">{fmtStat(stats.skewness)}</span>
         </span>
@@ -256,7 +256,7 @@ export function WinLossDistribution() {
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-4 text-[10px] text-muted-foreground">
+      <div className="flex items-center gap-4 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
           <span className="inline-block h-2 w-3 rounded-sm bg-green-600/80" />
           Wins

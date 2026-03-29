@@ -164,7 +164,7 @@ function ScoreGauge({ score, bias }: { score: number; bias: string }) {
 
       {/* Label + context */}
       <div className="flex-1 min-w-0 space-y-0.5">
-        <div className={cn("text-[11px] font-black leading-none", textColor)}>{label}</div>
+        <div className={cn("text-[11px] font-bold leading-none", textColor)}>{label}</div>
         <div className="text-[8.5px] text-muted-foreground">Signal score: {score > 0 ? "+" : ""}{score} / 100</div>
       </div>
     </div>
@@ -225,7 +225,7 @@ function SignalChips({
           >
             <div
               className={cn(
-                "rounded border px-2 py-1.5 text-[9px]",
+                "rounded border px-2 py-1.5 text-[11px]",
                 selectedSig.direction === "bullish"
                   ? "bg-emerald-500/10 border-emerald-500/25"
                   : "bg-red-500/10 border-red-500/25",
@@ -233,7 +233,7 @@ function SignalChips({
             >
               <div className="flex items-center justify-between mb-0.5">
                 <span className="font-bold text-foreground/80">{selectedSig.shortLabel}</span>
-                <span className="text-amber-400 text-[10px]">
+                <span className="text-amber-400 text-xs">
                   {"★".repeat(selectedSig.strength)}{"☆".repeat(3 - selectedSig.strength)}
                 </span>
               </div>
@@ -271,19 +271,19 @@ function LevelLadder({
   return (
     <div className="rounded-md bg-background/40 border border-border/40 px-2 py-1.5 space-y-0.5">
       {nearestRes && (
-        <div className="flex items-center justify-between text-[9px]">
+        <div className="flex items-center justify-between text-[11px]">
           <span className="text-red-400 font-bold">${nearestRes.price.toFixed(2)}</span>
           <span className="text-muted-foreground/70">{nearestRes.label}</span>
           <span className="text-red-400/60 text-[8px]">▲ R</span>
         </div>
       )}
-      <div className="flex items-center justify-between text-[9px] py-0.5 border-y border-border/30">
-        <span className="text-foreground font-black">● ${currentPrice.toFixed(2)}</span>
+      <div className="flex items-center justify-between text-[11px] py-0.5 border-y border-border/30">
+        <span className="text-foreground font-bold">● ${currentPrice.toFixed(2)}</span>
         <span className="text-muted-foreground/50 text-[8px]">current</span>
         {rr && <span className="text-amber-400 font-bold text-[8px]">R/R {rr}</span>}
       </div>
       {nearestSup && (
-        <div className="flex items-center justify-between text-[9px]">
+        <div className="flex items-center justify-between text-[11px]">
           <span className="text-emerald-400 font-bold">${nearestSup.price.toFixed(2)}</span>
           <span className="text-muted-foreground/70">{nearestSup.label}</span>
           <span className="text-emerald-400/60 text-[8px]">▼ S</span>
@@ -303,23 +303,23 @@ function DivergenceAlert({ divergences }: { divergences: AnalysisResult["diverge
       className={cn(
         "flex items-center gap-1.5 rounded border px-2 py-1.5",
         isBull
-          ? "bg-purple-500/10 border-purple-500/30"
-          : "bg-orange-500/10 border-orange-500/30",
+          ? "bg-emerald-500/10 border-emerald-500/30"
+          : "bg-red-500/10 border-red-500/30",
       )}
     >
       <div
         className={cn(
           "w-0.5 h-5 rounded-full shrink-0 animate-pulse",
-          isBull ? "bg-purple-400" : "bg-orange-400",
+          isBull ? "bg-emerald-500" : "bg-red-500",
         )}
       />
       <Zap
-        className={cn("h-3 w-3 shrink-0", isBull ? "text-purple-400" : "text-orange-400")}
+        className={cn("h-3 w-3 shrink-0", isBull ? "text-emerald-500" : "text-red-500")}
       />
       <span
         className={cn(
-          "text-[9px] font-bold leading-tight",
-          isBull ? "text-purple-300" : "text-orange-300",
+          "text-[11px] font-bold leading-tight",
+          isBull ? "text-emerald-500" : "text-red-500",
         )}
       >
         {d.description.length > 65 ? d.description.slice(0, 65) + "…" : d.description}
@@ -335,8 +335,8 @@ function ProfileCard({ profile }: { profile: AnalysisResult["traderProfile"] }) 
 
   return (
     <div className="rounded bg-background/40 border border-border/50 px-2 py-1.5 space-y-0.5">
-      <div className="flex items-center gap-1.5 text-[9px]">
-        <span className="text-[10px]">📊</span>
+      <div className="flex items-center gap-1.5 text-[11px]">
+        <span className="text-xs">📊</span>
         <span className="font-bold text-foreground/80">{styleLabel}</span>
         <span className="text-muted-foreground">
           {(profile.winRate * 100).toFixed(0)}% WR
@@ -355,15 +355,15 @@ function ProfileCard({ profile }: { profile: AnalysisResult["traderProfile"] }) 
 
 function GradeBadge({ grade }: { grade: string }) {
   const cls =
-    grade === "A" ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
-    : grade === "B" ? "bg-green-500/15 text-green-400 border-green-500/30"
-    : grade === "C" ? "bg-amber-500/15 text-amber-400 border-amber-500/30"
+    grade === "A" ? "bg-emerald-500/15 text-emerald-500 border-emerald-500/30"
+    : grade === "B" ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+    : grade === "C" ? "bg-amber-500/15 text-amber-500 border-amber-500/30"
     : grade === "D" ? "bg-orange-500/15 text-orange-400 border-orange-500/30"
-    : "bg-red-500/15 text-red-400 border-red-500/30";
+    : "bg-red-500/15 text-red-500 border-red-500/30";
 
   return (
     <div className={cn("rounded border px-3 py-2 text-center", cls)}>
-      <div className="text-2xl font-black leading-none">{grade}</div>
+      <div className="text-2xl font-bold leading-none">{grade}</div>
       <div className="text-[8px] font-bold mt-0.5 opacity-80">TRADE GRADE</div>
     </div>
   );
@@ -377,11 +377,11 @@ function ReviewDisplay({ result }: { result: AnalysisResult }) {
       <div className="flex items-center gap-2">
         <GradeBadge grade={result.grade} />
         <div className="flex-1 space-y-1">
-          <div className="text-[9px] text-emerald-400 leading-tight">
+          <div className="text-[11px] text-emerald-400 leading-tight">
             <span className="font-bold">✓ Worked: </span>
             {result.wentWell}
           </div>
-          <div className="text-[9px] text-amber-400 leading-tight">
+          <div className="text-[11px] text-amber-400 leading-tight">
             <span className="font-bold">↑ Improve: </span>
             {result.improve}
           </div>
@@ -395,7 +395,7 @@ function SmallBadge({ label, cls }: { label: string; cls: { bg: string; text: st
   return (
     <span
       className={cn(
-        "rounded border px-1 py-0.5 text-[9px] font-black leading-none",
+        "rounded border px-1 py-0.5 text-[11px] font-bold leading-none",
         cls.bg, cls.text, cls.border,
       )}
     >
@@ -405,11 +405,11 @@ function SmallBadge({ label, cls }: { label: string; cls: { bg: string; text: st
 }
 
 const REGIME_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
-  strong_bull: { bg: "bg-emerald-500/15", text: "text-emerald-400", border: "border-emerald-500/30" },
-  bull:        { bg: "bg-green-500/15",   text: "text-green-400",   border: "border-green-500/30" },
-  ranging:     { bg: "bg-amber-500/15",   text: "text-amber-400",   border: "border-amber-500/30" },
-  bear:        { bg: "bg-red-500/15",     text: "text-red-400",     border: "border-red-500/30" },
-  strong_bear: { bg: "bg-rose-500/15",    text: "text-rose-400",    border: "border-rose-500/30" },
+  strong_bull: { bg: "bg-emerald-500/15", text: "text-emerald-500", border: "border-emerald-500/30" },
+  bull:        { bg: "bg-emerald-500/10", text: "text-emerald-500", border: "border-emerald-500/20" },
+  ranging:     { bg: "bg-amber-500/15",   text: "text-amber-500",   border: "border-amber-500/30" },
+  bear:        { bg: "bg-red-500/15",     text: "text-red-500",     border: "border-red-500/30" },
+  strong_bear: { bg: "bg-red-500/20",     text: "text-red-500",     border: "border-red-500/40" },
 };
 
 const CONVICTION_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
@@ -483,17 +483,14 @@ function MultiTimeframePanel({ barIndex, bias }: { barIndex: number; bias: strin
   const confluenceColor = agreeing === 3 ? "text-emerald-400" : agreeing === 2 ? "text-amber-400" : "text-red-400";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
+    <div
       className="rounded-md border border-border/40 bg-background/30 px-2 py-2 space-y-1.5"
     >
       <div className="flex items-center justify-between">
-        <div className="text-[9px] font-black uppercase tracking-wider text-foreground/50">
+        <div className="text-[11px] font-bold text-foreground/50">
           Multi-TF Confluence
         </div>
-        <span className={cn("text-[9px] font-black", confluenceColor)}>
+        <span className={cn("text-[11px] font-bold", confluenceColor)}>
           {agreeing}/3 aligned
         </span>
       </div>
@@ -515,15 +512,15 @@ function MultiTimeframePanel({ barIndex, bias }: { barIndex: number; bias: strin
           row.direction === "bullish" ? "↑" : row.direction === "bearish" ? "↓" : "→";
 
         return (
-          <div key={row.label} className="flex items-center gap-2 text-[9px]">
+          <div key={row.label} className="flex items-center gap-2 text-[11px]">
             <span className="w-9 text-muted-foreground font-bold shrink-0">{row.label}</span>
-            <span className={cn("w-3 font-black shrink-0", dirColor)}>{arrow}</span>
+            <span className={cn("w-3 font-bold shrink-0", dirColor)}>{arrow}</span>
             <StrengthBars value={row.strength} color={barColor} />
             <span className="text-muted-foreground/70 truncate min-w-0">{row.topSignal}</span>
           </div>
         );
       })}
-    </motion.div>
+    </div>
   );
 }
 
@@ -584,16 +581,14 @@ function StrategyConfidenceMeter({ result, currentPrice }: { result: AnalysisRes
     metCount >= 4 ? "HIGH" : metCount >= 3 ? "MED" : "LOW";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
+    <div
       className="rounded-md border border-border/40 bg-background/30 px-2 py-2 space-y-1"
     >
       <div className="flex items-center justify-between">
-        <div className="text-[9px] font-black uppercase tracking-wider text-foreground/50">
+        <div className="text-[11px] font-bold text-foreground/50">
           Confidence Check
         </div>
-        <span className={cn("rounded border px-1.5 py-0.5 text-[8px] font-black leading-none", badgeColor)}>
+        <span className={cn("rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none", badgeColor)}>
           {metCount}/5 {badgeLabel}
         </span>
       </div>
@@ -609,7 +604,7 @@ function StrategyConfidenceMeter({ result, currentPrice }: { result: AnalysisRes
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -642,47 +637,44 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
   const aggressiveVal = aggressiveSize * entry;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
+    <div
       className="rounded-md border border-border/40 bg-muted/30 px-2 py-2 space-y-1"
     >
-      <div className="text-[9px] font-black uppercase tracking-wider text-foreground/50">
+      <div className="text-[11px] font-bold text-foreground/50">
         Trade Plan
       </div>
-      <div className="flex justify-between text-[9px]">
+      <div className="flex justify-between text-[11px]">
         <span className="text-muted-foreground">Entry Zone</span>
         <span className="font-mono text-foreground">
           ${plan.entryZone[0].toFixed(2)}–${plan.entryZone[1].toFixed(2)}
         </span>
       </div>
-      <div className="flex justify-between text-[9px]">
+      <div className="flex justify-between text-[11px]">
         <span className="text-red-400/80">Stop Loss</span>
         <span className="font-mono text-red-400">${plan.stopLoss.toFixed(2)}</span>
       </div>
-      <div className="flex justify-between text-[9px]">
+      <div className="flex justify-between text-[11px]">
         <span className="text-emerald-400/80">Target 1</span>
         <span className="font-mono text-emerald-400">${plan.target1.toFixed(2)}</span>
       </div>
-      <div className="flex justify-between text-[9px]">
+      <div className="flex justify-between text-[11px]">
         <span className="text-emerald-400/50">Target 2</span>
         <span className="font-mono text-emerald-400/60">${plan.target2.toFixed(2)}</span>
       </div>
 
       {/* R:R Calculator */}
       <div className="border-t border-border/30 pt-1 space-y-0.5">
-        <div className="flex items-center justify-between text-[9px]">
+        <div className="flex items-center justify-between text-[11px]">
           <span className="text-muted-foreground">R:R Ratio</span>
-          <span className={cn("rounded border px-1.5 py-0.5 text-[8px] font-black leading-none", rrColor)}>
+          <span className={cn("rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none", rrColor)}>
             {rrRatio.toFixed(1)}:1
           </span>
         </div>
-        <div className="flex justify-between text-[9px]">
+        <div className="flex justify-between text-[11px]">
           <span className="text-muted-foreground">Win prob</span>
           <span className="font-mono text-foreground/70">{(winProb * 100).toFixed(0)}%</span>
         </div>
-        <div className="flex justify-between text-[9px]">
+        <div className="flex justify-between text-[11px]">
           <span className="text-muted-foreground">Expected value</span>
           <span className={cn("font-mono", expectedValue >= 0 ? "text-emerald-400" : "text-red-400")}>
             {expectedValue >= 0 ? "+" : ""}${expectedValue.toFixed(2)}/sh
@@ -692,18 +684,18 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
 
       {/* Position Sizing */}
       <div className="border-t border-border/30 pt-1 space-y-0.5">
-        <div className="text-[8px] font-black uppercase tracking-wider text-foreground/40">
+        <div className="text-[8px] font-bold text-foreground/40">
           AlphaBot Sizing (2% risk)
         </div>
-        <div className="flex justify-between text-[9px]">
+        <div className="flex justify-between text-[11px]">
           <span className="text-muted-foreground/70">Conservative (1%)</span>
           <span className="font-mono text-foreground/60">{conservativeSize} sh · ${conservativeVal.toFixed(0)}</span>
         </div>
-        <div className="flex justify-between text-[9px]">
+        <div className="flex justify-between text-[11px]">
           <span className="text-foreground/70 font-bold">Standard (2%)</span>
           <span className="font-mono text-primary font-bold">{plan.positionSize} sh · ${(plan.positionSize * entry).toFixed(0)}</span>
         </div>
-        <div className="flex justify-between text-[9px]">
+        <div className="flex justify-between text-[11px]">
           <span className="text-muted-foreground/70">Aggressive (3%)</span>
           <span className="font-mono text-foreground/60">{aggressiveSize} sh · ${aggressiveVal.toFixed(0)}</span>
         </div>
@@ -712,7 +704,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
       <p className="text-[8.5px] text-muted-foreground/60 leading-tight border-t border-border/30 pt-1">
         {plan.rationale}
       </p>
-    </motion.div>
+    </div>
   );
 }
 
@@ -729,11 +721,7 @@ function AlphaBotFace({
   const isSad = !loading && bias === "bearish" && conviction === "high";
 
   return (
-    <motion.div
-      whileHover={{ rotate: [-5, 5, -3, 0] }}
-      transition={{ duration: 0.4 }}
-      className="shrink-0"
-      style={{ originX: "50%", originY: "50%" }}
+    <div className="shrink-0"
     >
       <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
         {/* Face */}
@@ -778,7 +766,7 @@ function AlphaBotFace({
           </g>
         )}
       </svg>
-    </motion.div>
+    </div>
   );
 }
 
@@ -795,21 +783,19 @@ function LivePositionCoach({
 }) {
   const isProfit = unrealizedPnL >= 0;
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+    <div
       className={cn(
         "rounded-md border px-2 py-2 space-y-1",
         isProfit ? "border-emerald-500/30 bg-emerald-500/5" : "border-red-500/30 bg-red-500/5",
       )}
     >
       <div className="flex items-center justify-between">
-        <span className="text-[9px] font-black uppercase tracking-wider text-foreground/50">
+        <span className="text-[11px] font-bold text-foreground/50">
           Live Position
         </span>
         <span
           className={cn(
-            "text-[10px] font-bold font-mono",
+            "text-xs font-bold font-mono",
             isProfit ? "text-emerald-400" : "text-red-400",
           )}
         >
@@ -818,13 +804,13 @@ function LivePositionCoach({
         </span>
       </div>
       {atrTrailingStop !== null && (
-        <div className="flex justify-between text-[9px]">
+        <div className="flex justify-between text-[11px]">
           <span className="text-muted-foreground">ATR Trail Stop</span>
           <span className="font-mono text-amber-400">${atrTrailingStop.toFixed(2)}</span>
         </div>
       )}
       <p className="text-[8.5px] text-muted-foreground/80 leading-tight">{alignmentMsg}</p>
-    </motion.div>
+    </div>
   );
 }
 
@@ -1032,7 +1018,7 @@ export function AICoachPanel() {
     const msg = messages[revealedCount % messages.length];
     toast.custom(
       () => (
-        <div className="flex items-center gap-2 rounded-lg border border-border/40 bg-zinc-900 px-3 py-1.5 shadow text-[10px] max-w-56">
+        <div className="flex items-center gap-2 rounded-lg border border-border/40 bg-zinc-900 px-3 py-1.5 shadow text-xs max-w-56">
           <span className="shrink-0">📊</span>
           <span className="text-zinc-400">{msg}</span>
         </div>
@@ -1202,7 +1188,7 @@ export function AICoachPanel() {
                       <ReviewDisplay result={result} />
                       {/* Typed summary */}
                       {(summaryText || loading) && (
-                        <div className="rounded-md bg-background/60 px-2 py-1.5 text-[10px] leading-relaxed text-foreground/80">
+                        <div className="rounded-md bg-background/60 px-2 py-1.5 text-xs leading-relaxed text-foreground/80">
                           {summaryText}
                           {loading && (
                             <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary" />
@@ -1222,7 +1208,7 @@ export function AICoachPanel() {
                       {/* Setup name hero badge */}
                       {result.setupName && (
                         <div className={cn("rounded-md border px-2 py-2 text-center", regimeCls.bg, regimeCls.border)}>
-                          <div className={cn("text-[10px] font-black tracking-wider uppercase", regimeCls.text)}>
+                          <div className={cn("text-xs font-bold tracking-wider uppercase", regimeCls.text)}>
                             {moodEmoji} {result.setupName}
                           </div>
                         </div>
@@ -1259,7 +1245,7 @@ export function AICoachPanel() {
 
                       {/* Typed summary */}
                       {(summaryText || loading) && (
-                        <div ref={textScrollRef} className="rounded-md bg-background/60 px-2 py-1.5 text-[10px] leading-relaxed text-foreground/80 italic max-h-24 overflow-y-auto scrollbar-hide">
+                        <div ref={textScrollRef} className="rounded-md bg-background/60 px-2 py-1.5 text-xs leading-relaxed text-foreground/80 italic max-h-24 overflow-y-auto scrollbar-hide">
                           {summaryText}
                           {loading && (
                             <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary" />
@@ -1294,12 +1280,9 @@ export function AICoachPanel() {
                               lower.includes("downward") ||
                               lower.includes("weak");
                             return (
-                              <motion.div
+                              <div
                                 key={i}
-                                initial={{ opacity: 0, x: -6 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.3 + i * 0.12 }}
-                                className="flex gap-1.5 text-[9px] leading-tight"
+                                className="flex gap-1.5 text-[11px] leading-tight"
                               >
                                 {isBullish ? (
                                   <TrendingUp className="h-3 w-3 text-emerald-400 shrink-0 mt-0.5" />
@@ -1309,7 +1292,7 @@ export function AICoachPanel() {
                                   <Info className="h-3 w-3 text-primary/70 shrink-0 mt-0.5" />
                                 )}
                                 <span className="text-muted-foreground">{insight}</span>
-                              </motion.div>
+                              </div>
                             );
                           })}
                         </div>
@@ -1356,7 +1339,7 @@ export function AICoachPanel() {
               {/* ── Ideas tab ─────────────────────────────────────────────── */}
               {mode === "ideas" && (
                 <div className="space-y-1.5">
-                  <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">
+                  <div className="text-[11px] font-bold text-foreground/40">
                     Trade Ideas — All Tickers
                   </div>
                   <TradeIdeaFeed compact />
@@ -1366,7 +1349,7 @@ export function AICoachPanel() {
               {/* ── Scan tab ──────────────────────────────────────────────── */}
               {mode === "scan" && (
                 <div className="space-y-1.5">
-                  <div className="text-[9px] font-black uppercase tracking-wider text-foreground/40">
+                  <div className="text-[11px] font-bold text-foreground/40">
                     Opportunity Scanner
                   </div>
                   <OpportunityScanner
@@ -1386,14 +1369,14 @@ export function AICoachPanel() {
 
               {/* Loading state (before result) */}
               {loading && !result && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
-                <div className="text-[10px] text-muted-foreground animate-pulse text-center py-2">
+                <div className="text-xs text-muted-foreground animate-pulse text-center py-2">
                   AlphaBot is analyzing…
                 </div>
               )}
 
               {/* Error state */}
               {error && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
-                <div className="flex items-start gap-1.5 text-[10px] text-red-400 rounded bg-red-500/10 border border-red-500/20 px-2 py-1.5">
+                <div className="flex items-start gap-1.5 text-xs text-red-400 rounded bg-red-500/10 border border-red-500/20 px-2 py-1.5">
                   <AlertCircle className="h-3 w-3 mt-0.5 shrink-0" />
                   <span>{error}</span>
                 </div>
@@ -1407,7 +1390,7 @@ export function AICoachPanel() {
                   onClick={handleAnalyze}
                   disabled={loading}
                   className={cn(
-                    "flex-1 rounded-md py-1.5 text-[10px] font-black transition-colors",
+                    "flex-1 rounded-md py-1.5 text-xs font-bold transition-colors",
                     loading
                       ? "cursor-not-allowed bg-primary/30 text-primary/50"
                       : "bg-primary text-white hover:bg-primary/90 active:bg-primary/80",
@@ -1419,7 +1402,7 @@ export function AICoachPanel() {
                   <button
                     type="button"
                     onClick={handleAnalyze}
-                    className="rounded-md border border-border px-2 py-1.5 text-[10px] text-muted-foreground hover:bg-accent transition-colors"
+                    className="rounded-md border border-border px-2 py-1.5 text-xs text-muted-foreground hover:bg-accent transition-colors"
                     title="Retry"
                   >
                     <RotateCcw className="h-3 w-3" />

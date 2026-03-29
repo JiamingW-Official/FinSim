@@ -17,7 +17,7 @@ export function ExpirySelector({
 }: ExpirySelectorProps) {
   return (
     <div className="flex items-center gap-1.5 px-3 py-2">
-      <span className="text-[10px] font-bold text-muted-foreground mr-1">
+      <span className="text-xs font-bold text-muted-foreground mr-1">
         Expiry
       </span>
       {chain.map((c) => {
@@ -31,7 +31,7 @@ export function ExpirySelector({
             key={c.expiry}
             onClick={() => onSelectExpiry(c.expiry)}
             className={cn(
-              "relative rounded-md px-2.5 py-1 text-[10px] font-bold transition-colors",
+              "relative rounded-md px-2.5 py-1 text-xs font-bold transition-colors",
               isActive
                 ? "bg-orange-500/15 text-orange-400"
                 : "text-muted-foreground hover:bg-accent hover:text-foreground",
@@ -40,7 +40,7 @@ export function ExpirySelector({
             whileTap={{ scale: 0.95 }}
           >
             <span>{label}</span>
-            <span className="ml-1 text-[9px] opacity-60">
+            <span className="ml-1 text-[11px] opacity-60">
               {c.daysToExpiry}d
             </span>
             {isActive && (

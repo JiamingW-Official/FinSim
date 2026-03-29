@@ -177,7 +177,7 @@ export default function TradeDistributionChart({ trades }: Props) {
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 px-1 text-[9px] text-zinc-500">
+      <div className="flex flex-wrap items-center gap-3 px-1 text-[11px] text-zinc-500">
         <span className="flex items-center gap-1"><span className="inline-block h-1.5 w-4 bg-amber-400/80 rounded-full" />Mean {mean.toFixed(2)}%</span>
         <span className="flex items-center gap-1"><span className="inline-block h-0.5 w-4 border-t border-dashed border-sky-400" />Median {median.toFixed(2)}%</span>
         <span className="flex items-center gap-1"><span className="inline-block h-1 w-4 bg-violet-500/80 rounded-sm" />Normal dist.</span>
@@ -187,7 +187,7 @@ export default function TradeDistributionChart({ trades }: Props) {
       {/* Skewness / Kurtosis */}
       <div className="grid grid-cols-2 gap-2">
         <div className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
-          <div className="text-[9px] uppercase tracking-wider text-zinc-600">Skewness</div>
+          <div className="text-[11px] text-zinc-600">Skewness</div>
           <div className={`text-sm font-bold ${skewness > 0 ? "text-emerald-400" : "text-rose-400"}`}>
             {skewness.toFixed(3)}
           </div>
@@ -196,7 +196,7 @@ export default function TradeDistributionChart({ trades }: Props) {
           </div>
         </div>
         <div className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
-          <div className="text-[9px] uppercase tracking-wider text-zinc-600">Excess Kurtosis</div>
+          <div className="text-[11px] text-zinc-600">Excess Kurtosis</div>
           <div className={`text-sm font-bold ${kurtosis > 0 ? "text-amber-400" : "text-zinc-200"}`}>
             {kurtosis.toFixed(3)}
           </div>

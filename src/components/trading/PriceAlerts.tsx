@@ -134,7 +134,7 @@ function AlertRow({ alert, onToggle, onRemove }: AlertRowProps) {
           <span className="text-xs font-semibold text-foreground">{ticker}</span>
           <span
             className={cn(
-              "flex items-center gap-0.5 text-[10px] font-medium",
+              "flex items-center gap-0.5 text-xs font-medium",
               direction === "above" ? "text-green-500" : "text-red-500",
             )}
           >
@@ -146,12 +146,12 @@ function AlertRow({ alert, onToggle, onRemove }: AlertRowProps) {
             {direction === "above" ? "Above" : "Below"}
           </span>
           {isClose && enabled && (
-            <span className="text-[9px] font-medium text-amber-500 border border-amber-500/30 rounded px-1 py-0.5 leading-none">
+            <span className="text-[11px] font-medium text-amber-500 border border-amber-500/30 rounded px-1 py-0.5 leading-none">
               NEAR
             </span>
           )}
           {crossed && enabled && (
-            <span className="text-[9px] font-medium text-primary border border-primary/30 rounded px-1 py-0.5 leading-none">
+            <span className="text-[11px] font-medium text-primary border border-primary/30 rounded px-1 py-0.5 leading-none">
               PASSED
             </span>
           )}
@@ -179,7 +179,7 @@ function AlertRow({ alert, onToggle, onRemove }: AlertRowProps) {
       </div>
 
       {/* Description */}
-      <div className="text-[10px] text-muted-foreground mb-1.5 leading-relaxed">
+      <div className="text-xs text-muted-foreground mb-1.5 leading-relaxed">
         Alert fires when{" "}
         <span className="font-semibold text-foreground">{ticker}</span>{" "}
         {direction === "above" ? "rises above" : "drops below"}{" "}
@@ -241,11 +241,11 @@ export function PriceAlerts() {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border px-3 py-2 shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+          <span className="text-xs font-medium text-muted-foreground">
             Price Alerts
           </span>
           {activeCount > 0 && (
-            <span className="rounded-full bg-primary/15 px-1.5 py-0.5 text-[9px] font-medium text-primary">
+            <span className="rounded-full bg-primary/15 px-1.5 py-0.5 text-[11px] font-medium text-primary">
               {activeCount} active
             </span>
           )}
@@ -253,7 +253,7 @@ export function PriceAlerts() {
         {alerts.length > 0 && (
           <button
             onClick={handleClearAll}
-            className="flex items-center gap-1 text-[10px] text-muted-foreground hover:text-red-500 transition-colors"
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-red-500 transition-colors"
             title="Clear all alerts"
           >
             <Trash2 className="h-3 w-3" />
@@ -268,7 +268,7 @@ export function PriceAlerts() {
           <div className="flex flex-col items-center justify-center gap-2 px-4 py-10 text-center">
             <BellOff className="h-7 w-7 text-muted-foreground/30" />
             <p className="text-xs text-muted-foreground">No price alerts set.</p>
-            <p className="text-[10px] text-muted-foreground/60">
+            <p className="text-xs text-muted-foreground/60">
               Add tickers to your watchlist, then tap the bell icon to set alerts.
             </p>
           </div>

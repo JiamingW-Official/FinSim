@@ -178,8 +178,8 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
               transition={{ type: "spring", stiffness: 500, damping: 12 }}
               className="flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 shrink-0"
             >
-              <span className="text-[10px]">🔥</span>
-              <span className="text-[10px] font-black text-amber-400">x{currentCombo}</span>
+              <span className="text-xs">🔥</span>
+              <span className="text-xs font-bold text-amber-400">x{currentCombo}</span>
             </motion.div>
           )}
 
@@ -208,7 +208,7 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
               </div>
             );
           })}
-          <span className="ml-2 text-[10px] font-bold tabular-nums text-muted-foreground/50 shrink-0">
+          <span className="ml-2 text-xs font-bold tabular-nums text-muted-foreground/50 shrink-0">
             {currentStepIndex + 1}/{steps.length}
           </span>
         </div>
@@ -219,7 +219,7 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
         <div className="w-full max-w-lg">
           {!showComplete && (
             <StepTransition stepKey={`step-${currentStepIndex}`}>
-              <div className="glass rounded-2xl border border-border/50 p-5">
+              <div className="glass rounded-lg border border-border/50 p-5">
                 {/* Step type badge */}
                 <div className="mb-3">
                   <span className={cn(

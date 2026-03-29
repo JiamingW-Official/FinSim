@@ -85,7 +85,7 @@ export function NewsTicker() {
             <span
               key={`${item.id}-${i}`}
               className={cn(
-                "text-[10px] font-medium inline-flex items-center",
+                "text-xs font-medium inline-flex items-center",
                 item.sentiment === "bullish" && "text-emerald-400/80",
                 item.sentiment === "bearish" && "text-red-400/80",
                 item.sentiment === "neutral" && "text-muted-foreground/60"

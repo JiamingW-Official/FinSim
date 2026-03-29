@@ -333,7 +333,7 @@ function RRGChart({ sectors }: { sectors: SectorData[] }) {
     <div className="rounded-lg border bg-card p-4 space-y-2">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">Relative Rotation Graph (RRG)</h3>
-        <span className="text-[10px] text-muted-foreground">4-week trail | vs SPY</span>
+        <span className="text-xs text-muted-foreground">4-week trail | vs SPY</span>
       </div>
       <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
         {/* Quadrant backgrounds */}
@@ -487,11 +487,11 @@ function PerformanceTable({ sectors }: { sectors: SectorData[] }) {
     <div className="rounded-lg border bg-card overflow-x-auto">
       <div className="px-4 py-3 border-b border-border/40 flex items-center justify-between">
         <h3 className="text-sm font-semibold">Sector Performance Matrix</h3>
-        <span className="text-[10px] text-muted-foreground">Click column to sort | Green/Red = best/worst</span>
+        <span className="text-xs text-muted-foreground">Click column to sort | Green/Red = best/worst</span>
       </div>
       <table className="w-full text-xs min-w-[500px]">
         <thead>
-          <tr className="border-b border-border/40 text-[10px] text-muted-foreground uppercase tracking-wider">
+          <tr className="border-b border-border/40 text-xs text-muted-foreground">
             {cols.map((col) => (
               <th
                 key={col.id}
@@ -599,7 +599,7 @@ function EconomicCyclePanel({
                   />
                   <span
                     className={cn(
-                      "text-[9px] mt-1 text-center leading-tight font-medium",
+                      "text-[11px] mt-1 text-center leading-tight font-medium",
                       isActive ? "text-foreground" : "text-muted-foreground",
                     )}
                   >
@@ -629,7 +629,7 @@ function EconomicCyclePanel({
 
         {/* Macro signals */}
         <div className="space-y-2">
-          <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Macro Signals</p>
+          <p className="text-xs font-semibold text-muted-foreground">Macro Signals</p>
           {macroSignals.map((signal) => {
             const isGood = signal.higherBetter
               ? signal.value > signal.threshold
@@ -660,7 +660,7 @@ function EconomicCyclePanel({
         <h3 className="text-sm font-semibold">Cycle Positioning</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <p className="text-[10px] font-semibold text-emerald-500 uppercase tracking-wider">Overweight</p>
+            <p className="text-xs font-semibold text-emerald-500">Overweight</p>
             {over.map((id) => {
               const s = getSector(id);
               return (
@@ -669,7 +669,7 @@ function EconomicCyclePanel({
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                     <span className="text-[11px] font-medium">{s.name}</span>
                   </div>
-                  <span className={cn("text-[10px] font-mono font-semibold", s.perf1M >= 0 ? "text-emerald-500" : "text-red-500")}>
+                  <span className={cn("text-xs font-mono font-semibold", s.perf1M >= 0 ? "text-emerald-500" : "text-red-500")}>
                     {s.perf1M >= 0 ? "+" : ""}{s.perf1M.toFixed(1)}%
                   </span>
                 </div>
@@ -677,7 +677,7 @@ function EconomicCyclePanel({
             })}
           </div>
           <div className="space-y-2">
-            <p className="text-[10px] font-semibold text-red-500 uppercase tracking-wider">Underweight</p>
+            <p className="text-xs font-semibold text-red-500">Underweight</p>
             {under.map((id) => {
               const s = getSector(id);
               return (
@@ -686,7 +686,7 @@ function EconomicCyclePanel({
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                     <span className="text-[11px] font-medium">{s.name}</span>
                   </div>
-                  <span className={cn("text-[10px] font-mono font-semibold", s.perf1M >= 0 ? "text-emerald-500" : "text-red-500")}>
+                  <span className={cn("text-xs font-mono font-semibold", s.perf1M >= 0 ? "text-emerald-500" : "text-red-500")}>
                     {s.perf1M >= 0 ? "+" : ""}{s.perf1M.toFixed(1)}%
                   </span>
                 </div>
@@ -736,7 +736,7 @@ function SectorDetailPanel({ sector, onClose }: { sector: SectorData; onClose: (
           const val = sector[col];
           return (
             <div key={col} className="text-center rounded-md bg-muted/30 p-2">
-              <p className="text-[9px] text-muted-foreground">{labels[i]}</p>
+              <p className="text-[11px] text-muted-foreground">{labels[i]}</p>
               <p className={cn("text-[11px] font-mono font-semibold mt-0.5", val >= 0 ? "text-emerald-500" : "text-red-500")}>
                 {val >= 0 ? "+" : ""}{val.toFixed(1)}%
               </p>
@@ -747,7 +747,7 @@ function SectorDetailPanel({ sector, onClose }: { sector: SectorData; onClose: (
 
       {/* Top tickers */}
       <div className="space-y-1.5">
-        <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Top Holdings</p>
+        <p className="text-xs text-muted-foreground font-semibold">Top Holdings</p>
         {tickerData.map(({ ticker, perf1M, price }) => (
           <div key={ticker} className="flex items-center justify-between">
             <span className="font-mono text-xs font-semibold">{ticker}</span>
@@ -828,7 +828,7 @@ export function SectorRotation() {
                   <span className="text-[11px] text-muted-foreground">Inner ring: RS vs SPY</span>
                 </div>
               </div>
-              <p className="text-[10px] text-muted-foreground">Click any sector to expand details</p>
+              <p className="text-xs text-muted-foreground">Click any sector to expand details</p>
             </div>
 
             {/* Sector list */}
@@ -901,7 +901,7 @@ export function SectorRotation() {
               return (
                 <div key={q} className={cn("rounded-lg border p-3 space-y-1", colors[q])}>
                   <p className="text-[11px] font-bold">{q}</p>
-                  <p className="text-[10px] opacity-80 leading-relaxed">{descs[q]}</p>
+                  <p className="text-xs opacity-80 leading-relaxed">{descs[q]}</p>
                 </div>
               );
             })}

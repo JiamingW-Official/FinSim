@@ -826,7 +826,7 @@ export default function GreenBondsPage() {
                 <CardContent className="p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <chip.icon size={13} className={chip.color} />
-                    <span className="text-[10px] text-zinc-500">{chip.label}</span>
+                    <span className="text-xs text-zinc-500">{chip.label}</span>
                   </div>
                   <p className={`text-base font-bold ${chip.color}`}>{chip.value}</p>
                 </CardContent>
@@ -891,7 +891,7 @@ export default function GreenBondsPage() {
                         <td className="py-1.5 font-medium text-zinc-200">{iss.name}</td>
                         <td className="py-1.5 text-center">
                           <span
-                            className={`px-1.5 py-0.5 rounded text-[10px] border ${
+                            className={`px-1.5 py-0.5 rounded text-xs border ${
                               iss.type === "Sovereign"
                                 ? "bg-amber-900/40 text-amber-300 border-amber-800"
                                 : iss.type === "Corporate"
@@ -1117,7 +1117,7 @@ export default function GreenBondsPage() {
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-medium text-zinc-200">{obj.title}</span>
                         <span
-                          className={`text-[10px] px-1.5 py-0.5 rounded border ${
+                          className={`text-xs px-1.5 py-0.5 rounded border ${
                             obj.aligned
                               ? "bg-green-900/40 text-green-300 border-green-800"
                               : "bg-zinc-800 text-zinc-500 border-zinc-700"
@@ -1126,7 +1126,7 @@ export default function GreenBondsPage() {
                           {obj.aligned ? "TSC finalised" : "TSC pending"}
                         </span>
                       </div>
-                      <p className="text-[10px] text-zinc-500 mt-0.5">{obj.desc}</p>
+                      <p className="text-xs text-zinc-500 mt-0.5">{obj.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -1136,7 +1136,7 @@ export default function GreenBondsPage() {
                     <Award size={12} className="text-blue-400" />
                     <span className="text-xs font-semibold text-blue-300">CBI Certification</span>
                   </div>
-                  <p className="text-[10px] text-zinc-400">
+                  <p className="text-xs text-zinc-400">
                     Climate Bonds Initiative certification provides assurance that assets are
                     consistent with a 1.5°C economy. Sector-specific criteria cover buildings, energy,
                     transport, water, land use and ICT under the Climate Bonds Standard v4.
@@ -1189,7 +1189,7 @@ export default function GreenBondsPage() {
                     >
                       <td className="py-2 font-medium text-zinc-200">{bond.issuer}</td>
                       <td className="py-2 text-center">
-                        <span className={`px-1.5 py-0.5 rounded text-[10px] border ${typeColor(bond.type)}`}>
+                        <span className={`px-1.5 py-0.5 rounded text-xs border ${typeColor(bond.type)}`}>
                           {bond.type}
                         </span>
                       </td>
@@ -1207,7 +1207,7 @@ export default function GreenBondsPage() {
                         {bond.rating}
                       </td>
                       <td className="py-2">
-                        <span className="text-[10px] font-medium" style={{ color: bond.spoColor }}>
+                        <span className="text-xs font-medium" style={{ color: bond.spoColor }}>
                           {bond.spo}
                         </span>
                       </td>
@@ -1391,7 +1391,7 @@ export default function GreenBondsPage() {
                         <span className="text-xs font-semibold text-zinc-200">{spo.name}</span>
                         <span className="text-xs text-zinc-400 font-mono">{spo.market}</span>
                       </div>
-                      <p className="text-[10px] text-zinc-500">{spo.strength}</p>
+                      <p className="text-xs text-zinc-500">{spo.strength}</p>
                     </div>
                   </div>
                 ))}
@@ -1535,7 +1535,7 @@ export default function GreenBondsPage() {
                             {row.sdgs.map((sdg) => (
                               <span
                                 key={sdg}
-                                className="text-[10px] px-1.5 py-0.5 rounded bg-blue-900/40 text-blue-300 border border-blue-800"
+                                className="text-xs px-1.5 py-0.5 rounded bg-blue-900/40 text-blue-300 border border-blue-800"
                               >
                                 {sdg}
                               </span>
@@ -1586,7 +1586,7 @@ export default function GreenBondsPage() {
                     </div>
                   </div>
                 ))}
-                <p className="text-[10px] text-zinc-600 mt-2">
+                <p className="text-xs text-zinc-600 mt-2">
                   % of active GSS bond proceeds mapped to each SDG (CBI 2024 estimate)
                 </p>
               </CardContent>

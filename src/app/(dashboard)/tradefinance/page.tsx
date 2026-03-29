@@ -35,7 +35,7 @@ function resetSeed() {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-white/60 uppercase tracking-widest mb-3">
+    <h3 className="text-sm font-semibold text-white/60 mb-3">
       {children}
     </h3>
   );
@@ -1629,7 +1629,7 @@ function DocumentaryCollectionsTab() {
       <div>
         <SectionTitle>INCOTERMS 2020 — 11 Terms</SectionTitle>
         <div className="bg-white/5 rounded-xl overflow-hidden">
-          <div className="grid grid-cols-6 gap-1 px-3 py-2 text-[10px] text-white/40 uppercase tracking-wide border-b border-white/5">
+          <div className="grid grid-cols-6 gap-1 px-3 py-2 text-xs text-white/40 uppercase tracking-wide border-b border-white/5">
             <span>Code</span>
             <span>Name</span>
             <span>Seller</span>
@@ -2178,7 +2178,7 @@ function FintechDigitalTab() {
       <div>
         <SectionTitle>Electronic Bills of Lading (e-BoL) Providers</SectionTitle>
         <div className="bg-white/5 rounded-xl overflow-hidden">
-          <div className="grid grid-cols-5 gap-2 px-4 py-2 text-[10px] text-white/40 uppercase tracking-wide border-b border-white/5">
+          <div className="grid grid-cols-5 gap-2 px-4 py-2 text-xs text-white/40 uppercase tracking-wide border-b border-white/5">
             <span>Platform</span>
             <span>Founded</span>
             <span>Status</span>

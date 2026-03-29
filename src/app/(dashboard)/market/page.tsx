@@ -126,7 +126,7 @@ function IndexCard({ ticker, name, seed }: { ticker: string; name: string; seed:
         <span className="text-xs font-semibold font-mono">{ticker}</span>
         <span
           className={cn(
-            "text-[10px] font-medium px-1.5 py-0.5 rounded",
+            "text-xs font-medium px-1.5 py-0.5 rounded",
             isPos ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500",
           )}
         >
@@ -137,7 +137,7 @@ function IndexCard({ ticker, name, seed }: { ticker: string; name: string; seed:
       <p className="font-mono tabular-nums text-base font-semibold">
         ${price.toFixed(2)}
       </p>
-      <p className="text-[10px] text-muted-foreground truncate">{name}</p>
+      <p className="text-xs text-muted-foreground truncate">{name}</p>
     </div>
   );
 }
@@ -173,7 +173,7 @@ function SectorHeatmap() {
                   : `rgba(239,68,68,${0.05 + intensity * 0.25})`,
               }}
             >
-              <p className="text-[9px] text-muted-foreground truncate leading-tight">
+              <p className="text-[11px] text-muted-foreground truncate leading-tight">
                 {s.name}
               </p>
               <p
@@ -250,7 +250,7 @@ function VixIndicator() {
         <h3 className="text-sm font-semibold">VIX — Volatility Index</h3>
         <span
           className={cn(
-            "text-[10px] font-medium px-1.5 py-0.5 rounded",
+            "text-xs font-medium px-1.5 py-0.5 rounded",
             isRising ? "bg-red-500/10 text-red-500" : "bg-emerald-500/10 text-emerald-500",
           )}
         >
@@ -277,7 +277,7 @@ function VixIndicator() {
             style={{ left: `${Math.min(((vix - 10) / 40) * 100, 95)}%` }}
           />
         </div>
-        <div className="flex justify-between text-[9px] text-muted-foreground">
+        <div className="flex justify-between text-[11px] text-muted-foreground">
           <span>10 (Low)</span>
           <span>25</span>
           <span>50+ (Fear)</span>
@@ -309,7 +309,7 @@ function OverviewTab() {
           <h3 className="text-sm font-semibold text-emerald-500">Top Gainers</h3>
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-[10px] text-muted-foreground uppercase tracking-wider border-b">
+              <tr className="text-xs text-muted-foreground border-b">
                 <th className="text-left py-1 font-medium">Ticker</th>
                 <th className="text-right py-1 font-medium">Price</th>
                 <th className="text-right py-1 font-medium">% Chg</th>
@@ -336,7 +336,7 @@ function OverviewTab() {
           <h3 className="text-sm font-semibold text-red-500">Top Losers</h3>
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-[10px] text-muted-foreground uppercase tracking-wider border-b">
+              <tr className="text-xs text-muted-foreground border-b">
                 <th className="text-left py-1 font-medium">Ticker</th>
                 <th className="text-right py-1 font-medium">Price</th>
                 <th className="text-right py-1 font-medium">% Chg</th>
@@ -523,7 +523,7 @@ function CalendarTab() {
             key={level}
             onClick={() => setImpactFilter(level)}
             className={cn(
-              "text-[10px] font-medium px-2.5 py-1 rounded-lg transition-colors",
+              "text-xs font-medium px-2.5 py-1 rounded-lg transition-colors",
               impactFilter === level
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted/50 text-muted-foreground hover:text-foreground",
@@ -545,7 +545,7 @@ function CalendarTab() {
           });
           return (
             <div key={date} className="space-y-2">
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              <h3 className="text-xs font-semibold text-muted-foreground">
                 {label}
               </h3>
               <div className="rounded-lg border bg-card overflow-hidden">
@@ -565,7 +565,7 @@ function CalendarTab() {
                         <td className="px-3 py-2.5">
                           <span
                             className={cn(
-                              "text-[10px] px-1.5 py-0.5 rounded font-medium",
+                              "text-xs px-1.5 py-0.5 rounded font-medium",
                               TYPE_STYLES[ev.type],
                             )}
                           >
@@ -575,18 +575,18 @@ function CalendarTab() {
                         <td className="px-3 py-2.5">
                           <span
                             className={cn(
-                              "text-[10px] px-1.5 py-0.5 rounded font-medium",
+                              "text-xs px-1.5 py-0.5 rounded font-medium",
                               IMPACT_STYLES[ev.impact],
                             )}
                           >
                             {ev.impact}
                           </span>
                         </td>
-                        <td className="px-3 py-2.5 text-muted-foreground text-[10px]">
+                        <td className="px-3 py-2.5 text-muted-foreground text-xs">
                           <span className="text-foreground font-mono">{ev.expected}</span>
                           <span className="ml-1 text-muted-foreground/60">est.</span>
                         </td>
-                        <td className="px-3 py-2.5 text-muted-foreground text-[10px]">
+                        <td className="px-3 py-2.5 text-muted-foreground text-xs">
                           <span className="font-mono">{ev.previous}</span>
                           <span className="ml-1 text-muted-foreground/60">prev.</span>
                         </td>
@@ -631,7 +631,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
       {/* Summary cards */}
       <div className="grid grid-cols-3 gap-3">
         <div className="rounded-lg border bg-card p-3">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Net Activity</p>
+          <p className="text-xs text-muted-foreground">Net Activity</p>
           <p
             className={cn(
               "text-lg font-semibold font-mono tabular-nums mt-1",
@@ -643,13 +643,13 @@ function InsiderTab({ ticker }: { ticker: string }) {
           </p>
         </div>
         <div className="rounded-lg border bg-card p-3">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Total Buying</p>
+          <p className="text-xs text-muted-foreground">Total Buying</p>
           <p className="text-lg font-semibold font-mono tabular-nums mt-1 text-emerald-500">
             {formatValue(data.totalBuyValue)}
           </p>
         </div>
         <div className="rounded-lg border bg-card p-3">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Total Selling</p>
+          <p className="text-xs text-muted-foreground">Total Selling</p>
           <p className="text-lg font-semibold font-mono tabular-nums mt-1 text-red-500">
             {formatValue(data.totalSellValue)}
           </p>
@@ -663,7 +663,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
             key={f}
             onClick={() => setFilter(f)}
             className={cn(
-              "text-[10px] font-medium px-2.5 py-1 rounded-lg capitalize transition-colors",
+              "text-xs font-medium px-2.5 py-1 rounded-lg capitalize transition-colors",
               filter === f
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted/50 text-muted-foreground hover:text-foreground",
@@ -678,7 +678,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
       <div className="rounded-lg border bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[560px]">
           <thead>
-            <tr className="border-b border-border/40 text-[10px] text-muted-foreground uppercase tracking-wider">
+            <tr className="border-b border-border/40 text-xs text-muted-foreground">
               <th className="text-left p-3 font-medium">Company</th>
               <th className="text-left p-3 font-medium">Insider</th>
               <th className="text-left p-3 font-medium">Title</th>
@@ -704,7 +704,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
                   <td className="p-3">
                     <div className="flex items-center gap-1.5">
                       {isLarge && (
-                        <span className="text-[9px] font-bold text-amber-500 bg-amber-500/10 px-1 py-0.5 rounded">
+                        <span className="text-[11px] font-bold text-amber-500 bg-amber-500/10 px-1 py-0.5 rounded">
                           LARGE
                         </span>
                       )}
@@ -715,7 +715,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
                   <td className="p-3 text-center">
                     <span
                       className={cn(
-                        "text-[10px] font-medium px-1.5 py-0.5 rounded",
+                        "text-xs font-medium px-1.5 py-0.5 rounded",
                         trade.type === "buy"
                           ? "bg-emerald-500/10 text-emerald-500"
                           : "bg-red-500/10 text-red-500",
@@ -785,19 +785,19 @@ function InstitutionalTab({ ticker }: { ticker: string }) {
         </div>
         <div className="grid grid-cols-3 gap-3 text-center">
           <div>
-            <p className="text-[10px] text-muted-foreground">Increased</p>
+            <p className="text-xs text-muted-foreground">Increased</p>
             <p className="text-sm font-semibold text-emerald-500">
               {data.holders.filter((h) => h.quarterlyChange > 0).length}
             </p>
           </div>
           <div>
-            <p className="text-[10px] text-muted-foreground">Decreased</p>
+            <p className="text-xs text-muted-foreground">Decreased</p>
             <p className="text-sm font-semibold text-red-500">
               {data.holders.filter((h) => h.quarterlyChange < 0).length}
             </p>
           </div>
           <div>
-            <p className="text-[10px] text-muted-foreground">Unchanged</p>
+            <p className="text-xs text-muted-foreground">Unchanged</p>
             <p className="text-sm font-semibold text-muted-foreground">
               {data.holders.filter((h) => h.quarterlyChange === 0).length}
             </p>
@@ -809,7 +809,7 @@ function InstitutionalTab({ ticker }: { ticker: string }) {
       <div className="rounded-lg border bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[560px]">
           <thead>
-            <tr className="border-b border-border/40 text-[10px] text-muted-foreground uppercase tracking-wider">
+            <tr className="border-b border-border/40 text-xs text-muted-foreground">
               <th className="text-left p-3 font-medium">Institution</th>
               <th className="text-right p-3 font-medium">Shares</th>
               <th className="text-right p-3 font-medium">Value</th>
@@ -847,7 +847,7 @@ function InstitutionalTab({ ticker }: { ticker: string }) {
                     {holder.quarterlyChange}%
                   </td>
                   <td className="p-3 text-center">
-                    <span className={cn("text-[10px] px-1.5 py-0.5 rounded font-medium", action.cls)}>
+                    <span className={cn("text-xs px-1.5 py-0.5 rounded font-medium", action.cls)}>
                       {action.label}
                     </span>
                   </td>
@@ -893,13 +893,13 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-1.5">
-          <span className="text-[10px] text-muted-foreground">Type:</span>
+          <span className="text-xs text-muted-foreground">Type:</span>
           {(["all", "call", "put"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setTypeFilter(f)}
               className={cn(
-                "text-[10px] font-medium px-2 py-0.5 rounded capitalize transition-colors",
+                "text-xs font-medium px-2 py-0.5 rounded capitalize transition-colors",
                 typeFilter === f
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted/50 text-muted-foreground hover:text-foreground",
@@ -910,13 +910,13 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
           ))}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-[10px] text-muted-foreground">Sentiment:</span>
+          <span className="text-xs text-muted-foreground">Sentiment:</span>
           {(["all", "bullish", "bearish"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setSentFilter(f)}
               className={cn(
-                "text-[10px] font-medium px-2 py-0.5 rounded capitalize transition-colors",
+                "text-xs font-medium px-2 py-0.5 rounded capitalize transition-colors",
                 sentFilter === f
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted/50 text-muted-foreground hover:text-foreground",
@@ -926,7 +926,7 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
             </button>
           ))}
         </div>
-        <span className="text-[10px] text-muted-foreground ml-auto">
+        <span className="text-xs text-muted-foreground ml-auto">
           {filtered.length} trades
         </span>
       </div>
@@ -934,7 +934,7 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
       <div className="rounded-lg border bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[680px]">
           <thead>
-            <tr className="border-b border-border/40 text-[10px] text-muted-foreground uppercase tracking-wider">
+            <tr className="border-b border-border/40 text-xs text-muted-foreground">
               <th className="text-left p-3 font-medium">Ticker</th>
               <th className="text-left p-3 font-medium">Expiry</th>
               <th className="text-right p-3 font-medium">Strike</th>
@@ -961,7 +961,7 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
                   <td className="p-3 font-mono font-semibold">
                     <div className="flex items-center gap-1.5">
                       {isWhale && (
-                        <span className="text-[9px] font-bold text-amber-500 bg-amber-500/10 px-1 py-0.5 rounded">
+                        <span className="text-[11px] font-bold text-amber-500 bg-amber-500/10 px-1 py-0.5 rounded">
                           WHALE
                         </span>
                       )}
@@ -975,7 +975,7 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
                   <td className="p-3 text-center">
                     <span
                       className={cn(
-                        "text-[10px] font-bold px-1.5 py-0.5 rounded",
+                        "text-xs font-bold px-1.5 py-0.5 rounded",
                         flow.type === "call"
                           ? "text-emerald-500 bg-emerald-500/10"
                           : "text-red-500 bg-red-500/10",
@@ -999,7 +999,7 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
                   <td className="p-3 text-center">
                     <span
                       className={cn(
-                        "text-[10px] px-1.5 py-0.5 rounded font-medium capitalize",
+                        "text-xs px-1.5 py-0.5 rounded font-medium capitalize",
                         flow.sentiment === "bullish"
                           ? "bg-emerald-500/10 text-emerald-500"
                           : flow.sentiment === "bearish"
@@ -1182,7 +1182,7 @@ function CryptoTab() {
               style={{ width: `${btcDominance}%` }}
             />
           </div>
-          <div className="flex justify-between text-[10px] text-muted-foreground">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>0%</span>
             <span>50%</span>
             <span>100%</span>
@@ -1194,7 +1194,7 @@ function CryptoTab() {
       <div className="rounded-lg border bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[520px]">
           <thead>
-            <tr className="border-b border-border/40 text-[10px] text-muted-foreground uppercase tracking-wider">
+            <tr className="border-b border-border/40 text-xs text-muted-foreground">
               <th className="text-left p-3 font-medium">#</th>
               <th className="text-left p-3 font-medium">Asset</th>
               <th className="text-right p-3 font-medium">Price</th>
@@ -1210,7 +1210,7 @@ function CryptoTab() {
                 <td className="p-3">
                   <div className="flex items-center gap-2">
                     <span className="font-mono font-bold text-foreground w-14">{asset.symbol}</span>
-                    <span className="text-muted-foreground text-[10px]">{asset.name}</span>
+                    <span className="text-muted-foreground text-xs">{asset.name}</span>
                   </div>
                 </td>
                 <td className="p-3 text-right font-mono tabular-nums font-medium">

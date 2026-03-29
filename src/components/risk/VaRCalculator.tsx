@@ -477,7 +477,7 @@ export default function VaRCalculator({ portfolioValue }: VaRCalculatorProps) {
                     <p className="text-sm font-semibold leading-tight">{m.name}</p>
                     <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">{m.sub}</p>
                   </div>
-                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${m.tagCls}`}>{m.tag}</span>
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${m.tagCls}`}>{m.tag}</span>
                 </div>
                 <div className="border-t border-border/40 pt-2 space-y-1.5 text-xs">
                   <div className="flex justify-between">
@@ -543,7 +543,7 @@ export default function VaRCalculator({ portfolioValue }: VaRCalculatorProps) {
                 <div key={s.scenario} className={`rounded-lg border p-2 text-[11px] space-y-0.5 ${isWorst ? "border-red-500/40 bg-red-500/5" : "border-border/50"}`}>
                   <div className="flex items-center gap-1 flex-wrap">
                     <span className="font-medium text-foreground">{s.scenario}</span>
-                    {isWorst && <Badge variant="destructive" className="text-[9px] px-1 py-0">Worst</Badge>}
+                    {isWorst && <Badge variant="destructive" className="text-[11px] px-1 py-0">Worst</Badge>}
                   </div>
                   <p className="text-muted-foreground">{s.description}</p>
                   <p className="font-semibold text-red-500">

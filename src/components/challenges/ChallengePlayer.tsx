@@ -176,11 +176,11 @@ export function ChallengePlayer({
             >
               <X className="h-5 w-5" />
             </button>
-            <span className="text-sm font-black truncate flex-1">{name}</span>
+            <span className="text-sm font-bold truncate flex-1">{name}</span>
 
             {/* Mode badge */}
             <span className={cn(
-              "rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest",
+              "rounded-full px-2 py-0.5 text-[11px] font-bold",
               mode === "scenario"
                 ? "bg-amber-500/10 text-amber-400"
                 : "bg-primary/10 text-primary",
@@ -216,7 +216,7 @@ export function ChallengePlayer({
               <span className="tabular-nums">
                 {totalPnl >= 0 ? "+" : ""}{totalPnl.toFixed(2)}
               </span>
-              <span className="text-[9px] opacity-70">
+              <span className="text-[11px] opacity-70">
                 ({pnlPercent >= 0 ? "+" : ""}{pnlPercent.toFixed(1)}%)
               </span>
             </motion.div>

@@ -397,7 +397,7 @@ function DigitalTwinTab() {
                   </span>
                   <Badge
                     variant={goalAchievable ? "default" : "secondary"}
-                    className="text-[10px] h-4"
+                    className="text-xs h-4"
                   >
                     {goalAchievable ? "Achievable" : "Needs Adjustment"}
                   </Badge>
@@ -930,7 +930,7 @@ function ScenarioSimulatorTab() {
                 }`}
               >
                 <p className="text-xs font-medium leading-tight">{s.label}</p>
-                <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{s.description}</p>
+                <p className="text-xs text-muted-foreground mt-1 leading-tight">{s.description}</p>
               </button>
             ))}
           </div>
@@ -2006,7 +2006,7 @@ function MacroSimulatorTab() {
                 className="rounded-lg border border-border/60 bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
               >
                 <p className="text-xs font-medium leading-tight">{s.label}</p>
-                <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{s.desc}</p>
+                <p className="text-xs text-muted-foreground mt-1 leading-tight">{s.desc}</p>
               </button>
             ))}
             <button
@@ -2014,7 +2014,7 @@ function MacroSimulatorTab() {
               className="rounded-lg border border-border/60 bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
             >
               <p className="text-xs font-medium leading-tight">Reset to Default</p>
-              <p className="text-[10px] text-muted-foreground mt-1 leading-tight">Current macro baseline</p>
+              <p className="text-xs text-muted-foreground mt-1 leading-tight">Current macro baseline</p>
             </button>
           </div>
         </CardContent>
@@ -2143,24 +2143,24 @@ function MacroSimulatorTab() {
                   <p className={`text-base font-semibold font-mono ${totalImpact >= 0 ? "text-green-500" : "text-red-400"}`}>
                     {totalImpact >= 0 ? "+" : ""}{fmtK(totalImpact)}
                   </p>
-                  <p className="text-[10px] text-muted-foreground">{totalImpactPct >= 0 ? "+" : ""}{totalImpactPct.toFixed(1)}%</p>
+                  <p className="text-xs text-muted-foreground">{totalImpactPct >= 0 ? "+" : ""}{totalImpactPct.toFixed(1)}%</p>
                 </div>
                 <div className="rounded-lg border border-green-500/30 bg-green-500/5 p-3 space-y-0.5">
                   <p className="text-xs text-muted-foreground">Best Case</p>
                   <p className="text-base font-semibold font-mono text-green-500">
                     +{fmtK(PORTFOLIO_VALUE * (bestCase / 100))}
                   </p>
-                  <p className="text-[10px] text-muted-foreground">+{bestCase.toFixed(1)}%</p>
+                  <p className="text-xs text-muted-foreground">+{bestCase.toFixed(1)}%</p>
                 </div>
                 <div className="rounded-lg border border-red-500/30 bg-red-500/5 p-3 space-y-0.5">
                   <p className="text-xs text-muted-foreground">Worst Case</p>
                   <p className="text-base font-semibold font-mono text-red-400">
                     {fmtK(PORTFOLIO_VALUE * (worstCase / 100))}
                   </p>
-                  <p className="text-[10px] text-muted-foreground">{worstCase.toFixed(1)}%</p>
+                  <p className="text-xs text-muted-foreground">{worstCase.toFixed(1)}%</p>
                 </div>
               </div>
-              <p className="text-[10px] text-muted-foreground mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Best/worst case adds VIX-scaled volatility band ({(vars.vix / 20).toFixed(1)}x) to base estimate.
               </p>
             </div>

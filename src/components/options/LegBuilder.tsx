@@ -33,25 +33,25 @@ export function LegBuilder({ leg, index, onRemove }: LegBuilderProps) {
         <div className="flex items-center gap-1.5">
           <span
             className={cn(
-              "text-[9px] font-bold uppercase",
+              "text-[11px] font-bold uppercase",
               isLong ? "text-emerald-400" : "text-red-400",
             )}
           >
             {leg.side}
           </span>
-          <span className="text-[10px] font-bold">
+          <span className="text-xs font-bold">
             {leg.quantity}x
           </span>
           <span
             className={cn(
-              "text-[10px] font-semibold",
+              "text-xs font-semibold",
               leg.type === "call" ? "text-emerald-400" : "text-red-400",
             )}
           >
             ${leg.strike} {leg.type.toUpperCase()}
           </span>
         </div>
-        <div className="flex items-center gap-2 text-[9px] text-muted-foreground">
+        <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
           <span>
             {new Date(leg.expiry + "T12:00:00").toLocaleDateString("en-US", {
               month: "short",

@@ -168,7 +168,7 @@ function IndicatorCard({
               </span>
               <span
                 className={cn(
-                  "text-[10px] font-mono tabular-nums font-medium",
+                  "text-xs font-mono tabular-nums font-medium",
                   changeColor,
                 )}
               >
@@ -183,7 +183,7 @@ function IndicatorCard({
             />
             <span
               className={cn(
-                "text-[9px] font-medium px-1.5 py-0.5 rounded",
+                "text-[11px] font-medium px-1.5 py-0.5 rounded",
                 trendBadgeClass,
               )}
             >
@@ -195,18 +195,18 @@ function IndicatorCard({
 
       {expanded && (
         <div className="px-3 pb-3 border-t border-border/30 space-y-2 pt-2">
-          <p className="text-[10px] text-muted-foreground leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             {indicator.description}
           </p>
           <div className="bg-primary/5 border border-primary/10 rounded px-2 py-1.5">
-            <span className="text-[9px] font-medium text-primary block mb-0.5">
+            <span className="text-[11px] font-medium text-primary block mb-0.5">
               Market Impact
             </span>
-            <p className="text-[10px] text-muted-foreground leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               {indicator.marketImpact}
             </p>
           </div>
-          <div className="flex items-center gap-3 text-[9px] text-muted-foreground">
+          <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
             <span>
               Prev:{" "}
               <span className="font-mono tabular-nums font-medium text-foreground">
@@ -243,7 +243,7 @@ export function MacroDashboard() {
       <div className="flex items-center gap-2">
         <Globe className="h-4 w-4 text-muted-foreground" />
         <span className="text-sm font-semibold">Macro Indicators</span>
-        <span className="text-[10px] font-mono tabular-nums bg-muted/50 px-1.5 py-0.5 rounded">
+        <span className="text-xs font-mono tabular-nums bg-muted/50 px-1.5 py-0.5 rounded">
           {filtered.length}
         </span>
       </div>
@@ -255,7 +255,7 @@ export function MacroDashboard() {
             key={cat.value}
             onClick={() => setCategory(cat.value)}
             className={cn(
-              "text-[10px] font-medium px-2.5 py-1 rounded transition-colors",
+              "text-xs font-medium px-2.5 py-1 rounded transition-colors",
               category === cat.value
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted/30 text-muted-foreground hover:text-foreground hover:bg-muted/50",

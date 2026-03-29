@@ -44,7 +44,7 @@ function RatioBar({
           {rightValue}
         </span>
       </div>
-      <div className="flex justify-between text-[10px] text-muted-foreground">
+      <div className="flex justify-between text-xs text-muted-foreground">
         <span>{leftLabel}</span>
         <span>{rightLabel}</span>
       </div>
@@ -155,7 +155,7 @@ export function MarketBreadthPanel({ breadth }: MarketBreadthPanelProps) {
             {breadth.mcclellanOscillator.toFixed(2)}
           </span>
         </div>
-        <p className="text-[10px] text-muted-foreground mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           {breadth.mcclellanOscillator > 50
             ? "Strong positive momentum in market breadth"
             : breadth.mcclellanOscillator > 0
@@ -170,7 +170,7 @@ export function MarketBreadthPanel({ breadth }: MarketBreadthPanelProps) {
       {breadth.breadthThrust && (
         <div className="px-3 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
           <p className="text-xs font-medium text-emerald-500">Breadth Thrust Detected</p>
-          <p className="text-[10px] text-emerald-400 mt-0.5">
+          <p className="text-xs text-emerald-400 mt-0.5">
             Rare bullish signal: advancing issues exceed 61.5% threshold
           </p>
         </div>

@@ -36,7 +36,7 @@ function SentimentBadge({ sentiment }: { sentiment: OptionsFlowItem["sentiment"]
   return (
     <span
       className={cn(
-        "text-[10px] px-1.5 py-0.5 rounded font-medium",
+        "text-xs px-1.5 py-0.5 rounded font-medium",
         styles[sentiment],
       )}
     >
@@ -59,7 +59,7 @@ function SignificanceBadge({
   return (
     <span
       className={cn(
-        "text-[10px] px-1.5 py-0.5 rounded font-medium",
+        "text-xs px-1.5 py-0.5 rounded font-medium",
         styles[significance],
       )}
     >
@@ -87,7 +87,7 @@ function NetSentimentMeter({ flows }: { flows: OptionsFlowItem[] }) {
 
   return (
     <div className="space-y-1.5">
-      <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
         <span>Net Sentiment</span>
         <span>
           {bullishPct >= 55
@@ -107,7 +107,7 @@ function NetSentimentMeter({ flows }: { flows: OptionsFlowItem[] }) {
           style={{ width: `${100 - bullishPct}%` }}
         />
       </div>
-      <div className="flex items-center justify-between text-[10px] font-mono tabular-nums">
+      <div className="flex items-center justify-between text-xs font-mono tabular-nums">
         <span className="text-emerald-500">{formatPremium(bullish)}</span>
         <span className="text-red-500">{formatPremium(bearish)}</span>
       </div>
@@ -149,19 +149,19 @@ export function OptionsFlowPanel({ ticker, currentPrice }: OptionsFlowPanelProps
       {/* Summary stats */}
       <div className="grid grid-cols-3 gap-3">
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Total Trades</p>
+          <p className="text-xs text-muted-foreground">Total Trades</p>
           <p className="font-mono tabular-nums text-sm font-medium">
             {flows.length}
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Sweeps</p>
+          <p className="text-xs text-muted-foreground">Sweeps</p>
           <p className="font-mono tabular-nums text-sm font-medium text-amber-500">
             {flows.filter((f) => f.significance === "sweep").length}
           </p>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] text-muted-foreground">Blocks</p>
+          <p className="text-xs text-muted-foreground">Blocks</p>
           <p className="font-mono tabular-nums text-sm font-medium text-blue-500">
             {flows.filter((f) => f.significance === "block").length}
           </p>
@@ -270,7 +270,7 @@ export function OptionsFlowPanel({ ticker, currentPrice }: OptionsFlowPanelProps
       {/* Selected flow educational note */}
       {selectedFlow && (
         <div className="px-3 py-2 rounded-lg bg-muted/50 border">
-          <p className="text-[10px] text-muted-foreground mb-1">
+          <p className="text-xs text-muted-foreground mb-1">
             Trade Insight
           </p>
           <p className="text-xs leading-relaxed">

@@ -238,7 +238,7 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
             <p className="text-sm text-muted-foreground">Total Net Worth</p>
             <p
               className={cn(
-                "text-4xl font-black tracking-tight",
+                "text-4xl font-bold tracking-tight",
                 netWorth >= 0 ? "text-foreground" : "text-red-500",
               )}
             >
@@ -375,7 +375,7 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
                         </span>
                       </div>
                       {achieved && (
-                        <Badge variant="outline" className="h-4 border-emerald-500/40 text-[9px] text-emerald-500">
+                        <Badge variant="outline" className="h-4 border-emerald-500/40 text-[11px] text-emerald-500">
                           Achieved
                         </Badge>
                       )}
@@ -746,7 +746,7 @@ function GoalsTab() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[9px]",
+                        "text-[11px]",
                         status === "ahead"
                           ? "border-emerald-500/40 text-emerald-500"
                           : status === "on-track"
@@ -767,7 +767,7 @@ function GoalsTab() {
                     style={{ width: `${pct}%` }}
                   />
                 </div>
-                <p className="mt-1 text-right text-[10px] text-muted-foreground">{pct.toFixed(1)}%</p>
+                <p className="mt-1 text-right text-xs text-muted-foreground">{pct.toFixed(1)}%</p>
               </div>
             );
           })}
@@ -794,7 +794,7 @@ function GoalsTab() {
             <NumInput label="Current Emergency Fund" value={efCurrent} onChange={setEfCurrent} />
           </div>
           <div className="rounded-lg bg-muted/30 p-3 text-center">
-            <p className="text-3xl font-black">{efMonths.toFixed(1)}x</p>
+            <p className="text-3xl font-bold">{efMonths.toFixed(1)}x</p>
             <p className="text-xs text-muted-foreground">months of expenses covered</p>
           </div>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-muted">
@@ -806,7 +806,7 @@ function GoalsTab() {
               style={{ width: `${Math.min(100, (efMonths / 6) * 100)}%` }}
             />
           </div>
-          <div className="mt-2 flex justify-between text-[10px] text-muted-foreground">
+          <div className="mt-2 flex justify-between text-xs text-muted-foreground">
             <span>0 mo</span>
             <span className={efMonths >= 3 ? "text-emerald-500" : "text-red-500"}>3 mo min</span>
             <span className={efMonths >= 6 ? "text-emerald-500" : "text-muted-foreground"}>6 mo goal</span>
@@ -824,7 +824,7 @@ function GoalsTab() {
           <div className="mb-3 flex items-center gap-2">
             <Flame className="h-4 w-4 text-orange-500" />
             <h3 className="text-sm font-semibold">FIRE Calculator</h3>
-            <span className="rounded bg-orange-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-orange-500">
+            <span className="rounded bg-orange-500/10 px-1.5 py-0.5 text-[11px] font-semibold text-orange-500">
               4% Rule
             </span>
           </div>
@@ -1156,7 +1156,7 @@ function TaxTab() {
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-medium">HSA Contribution</label>
-                <Badge variant="outline" className="text-[9px] text-emerald-500 border-emerald-500/40">Triple Tax Benefit</Badge>
+                <Badge variant="outline" className="text-[11px] text-emerald-500 border-emerald-500/40">Triple Tax Benefit</Badge>
               </div>
               <div className="flex items-center gap-2">
                 <input
@@ -1186,7 +1186,7 @@ function TaxTab() {
                 <span className="font-medium">Long-term cap gains rate</span>
                 <span className="font-bold text-emerald-500">{ltcgRate}%</span>
               </div>
-              <p className="mt-1.5 text-[10px] text-muted-foreground">
+              <p className="mt-1.5 text-xs text-muted-foreground">
                 Hold positions &gt;1 year to qualify for LTCG rates — saves{" "}
                 {marginalRate - ltcgRate}% on gains.
               </p>
@@ -1255,7 +1255,7 @@ function TaxTab() {
                     {item.label}
                   </span>
                   {!item.achieved && (
-                    <span className="ml-auto text-[9px] text-muted-foreground/60">{item.tip}</span>
+                    <span className="ml-auto text-[11px] text-muted-foreground/60">{item.tip}</span>
                   )}
                 </div>
               ))}
@@ -1494,17 +1494,17 @@ function RoadmapTab() {
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-xl border border-border bg-card p-4 text-center">
           <p className="text-xs text-muted-foreground">Monthly Savings</p>
-          <p className="text-2xl font-black text-primary">{fmt(monthlySavings)}</p>
+          <p className="text-2xl font-bold text-primary">{fmt(monthlySavings)}</p>
           <p className="text-xs text-muted-foreground">{annualSavingsRate}% of income</p>
         </div>
         <div className="rounded-xl border border-border bg-card p-4 text-center">
           <p className="text-xs text-muted-foreground">Projected at Retirement (65)</p>
-          <p className="text-2xl font-black text-emerald-500">{fmtK(retirementProjection)}</p>
+          <p className="text-2xl font-bold text-emerald-500">{fmtK(retirementProjection)}</p>
           <p className="text-xs text-muted-foreground">{Math.max(0, 65 - currentAge)} years at {expectedReturn}%</p>
         </div>
         <div className="rounded-xl border border-border bg-card p-4 text-center">
           <p className="text-xs text-muted-foreground">Annual Retirement Income (4%)</p>
-          <p className="text-2xl font-black text-amber-500">{fmtK(retirementProjection * 0.04)}</p>
+          <p className="text-2xl font-bold text-amber-500">{fmtK(retirementProjection * 0.04)}</p>
           <p className="text-xs text-muted-foreground">Safe withdrawal rate</p>
         </div>
       </div>
@@ -1611,10 +1611,10 @@ function RoadmapTab() {
                   <div className="h-full bg-amber-500 transition-all" style={{ width: `${rec.bonds}%` }} />
                   <div className="flex-1 bg-emerald-500/40" />
                 </div>
-                {rec.note && <p className="text-[10px] text-emerald-500">{rec.note}</p>}
+                {rec.note && <p className="text-xs text-emerald-500">{rec.note}</p>}
               </div>
             ))}
-            <div className="flex gap-3 text-[10px] text-muted-foreground">
+            <div className="flex gap-3 text-xs text-muted-foreground">
               <div className="flex items-center gap-1"><div className="h-2 w-2 rounded-sm bg-blue-500" /> Stocks</div>
               <div className="flex items-center gap-1"><div className="h-2 w-2 rounded-sm bg-amber-500" /> Bonds</div>
               <div className="flex items-center gap-1"><div className="h-2 w-2 rounded-sm bg-emerald-500/40" /> Other/Cash</div>

@@ -1105,7 +1105,7 @@ function FinalScoreScreen({
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-          className={cn("text-7xl font-black mb-2", color)}
+          className={cn("text-7xl font-bold mb-2", color)}
         >
           {grade}
         </motion.div>
@@ -1382,7 +1382,7 @@ function WeeklyLeagueTab() {
             <div>
               <div className="text-xs text-slate-500 mb-0.5">Your Standing</div>
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-black text-white">#{userPlayer.rank}</span>
+                <span className="text-2xl font-bold text-white">#{userPlayer.rank}</span>
                 <span className={cn("text-sm font-semibold", TIER_COLOR[userPlayer.tier])}>
                   {userPlayer.tier}
                 </span>
@@ -1414,7 +1414,7 @@ function WeeklyLeagueTab() {
 
       {/* Weekly schedule */}
       <div>
-        <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">This Week's Schedule</div>
+        <div className="text-xs font-semibold text-slate-500 mb-2">This Week's Schedule</div>
         <div className="flex gap-2 overflow-x-auto pb-1">
           {schedule.map((s) => (
             <div
@@ -1427,7 +1427,7 @@ function WeeklyLeagueTab() {
               )}
             >
               <span className="text-xs font-bold text-slate-300">{s.day}</span>
-              <span className={cn("text-[10px]",
+              <span className={cn("text-xs",
                 s.status === "done" ? "text-green-400" :
                 s.status === "today" ? "text-blue-400" : "text-slate-500"
               )}>
@@ -1486,7 +1486,7 @@ function WeeklyLeagueTab() {
                 <span className={cn("text-sm font-semibold", player.isUser ? "text-blue-300" : "text-slate-200")}>
                   {player.username}
                 </span>
-                <span className={cn("text-[10px] font-medium", TIER_COLOR[player.tier])}>
+                <span className={cn("text-xs font-medium", TIER_COLOR[player.tier])}>
                   {player.tier}
                 </span>
               </div>
@@ -1504,13 +1504,13 @@ function WeeklyLeagueTab() {
 
       {/* Prize structure */}
       <div>
-        <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Weekly Prizes</div>
+        <div className="text-xs font-semibold text-slate-500 mb-2">Weekly Prizes</div>
         <div className="grid grid-cols-5 gap-2">
           {prizes.map((p) => (
             <div key={p.rank} className="bg-slate-800/50 border border-slate-700/40 rounded-lg p-2 text-center">
               <div className="text-xs font-bold text-slate-300">{p.rank}</div>
               <div className="text-sm font-bold text-blue-400">+{p.xp}</div>
-              <div className="text-[10px] text-slate-500">XP</div>
+              <div className="text-xs text-slate-500">XP</div>
             </div>
           ))}
         </div>
@@ -1651,7 +1651,7 @@ function SpeedRoundTab() {
             {[1, 2, 3, 5].map((m) => (
               <div key={m} className="flex-1 text-center p-2 rounded bg-slate-700/50 border border-slate-600/40">
                 <div className="text-sm font-bold text-yellow-400">{m}×</div>
-                <div className="text-[10px] text-slate-500">{m === 1 ? "Start" : m === 2 ? "2-in-a-row" : m === 3 ? "4-in-a-row" : "8+"}</div>
+                <div className="text-xs text-slate-500">{m === 1 ? "Start" : m === 2 ? "2-in-a-row" : m === 3 ? "4-in-a-row" : "8+"}</div>
               </div>
             ))}
           </div>
@@ -1669,7 +1669,7 @@ function SpeedRoundTab() {
     return (
       <div className="space-y-4">
         <div className="text-center py-4">
-          <div className="text-5xl font-black text-yellow-400 mb-1">{totalPoints}</div>
+          <div className="text-5xl font-bold text-yellow-400 mb-1">{totalPoints}</div>
           <div className="text-slate-400 text-sm">Points Scored</div>
           {totalPoints >= personalBest && personalBest > 0 && (
             <div className="mt-2 text-xs text-yellow-400 flex items-center justify-center gap-1">
@@ -1700,7 +1700,7 @@ function SpeedRoundTab() {
 
         {/* Post-round replay */}
         <div>
-          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Question Replay</div>
+          <div className="text-xs font-semibold text-slate-500 mb-2">Question Replay</div>
           <div className="space-y-1.5 max-h-56 overflow-y-auto">
             {answers.map((ans, i) => {
               const q = questions[i];
@@ -1711,7 +1711,7 @@ function SpeedRoundTab() {
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-slate-300 line-clamp-1">{q?.question}</p>
                       {!ans.correct && q && (
-                        <p className="text-[10px] text-green-400 mt-0.5">
+                        <p className="text-xs text-green-400 mt-0.5">
                           Correct: {q.options[q.correctIndex]}
                         </p>
                       )}
@@ -1795,7 +1795,7 @@ function SpeedRoundTab() {
                 onClick={() => handleSpeedAnswer(idx)}
                 className="w-full text-left p-3 rounded-lg border border-slate-700/50 bg-slate-900/60 hover:border-yellow-500/50 hover:bg-yellow-500/5 transition-all text-sm text-slate-200 flex items-center gap-2"
               >
-                <span className="w-5 h-5 rounded bg-slate-800 border border-slate-600 text-[10px] flex items-center justify-center font-bold text-slate-400 flex-shrink-0">
+                <span className="w-5 h-5 rounded bg-slate-800 border border-slate-600 text-xs flex items-center justify-center font-bold text-slate-400 flex-shrink-0">
                   {["A", "B", "C", "D"][idx]}
                 </span>
                 {opt}
@@ -2062,8 +2062,8 @@ function BossChallengesTab() {
                 </div>
                 <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">{boss.description}</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-[10px] text-slate-500">{boss.category}</span>
-                  <span className="text-[10px] text-yellow-400">
+                  <span className="text-xs text-slate-500">{boss.category}</span>
+                  <span className="text-xs text-yellow-400">
                     {defeatedBosses.has(boss.id) ? `Badge: ${boss.badge}` : `Win reward: ${boss.badge}`}
                   </span>
                 </div>
@@ -2283,13 +2283,13 @@ function QuestionBuilderTab() {
               <div className="flex items-start gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className={cn("text-[10px] border rounded px-1.5 py-0.5", CATEGORY_COLORS[cq.category])}>
+                    <span className={cn("text-xs border rounded px-1.5 py-0.5", CATEGORY_COLORS[cq.category])}>
                       {cq.category}
                     </span>
-                    <span className={cn("text-[10px] font-medium", DIFFICULTY_COLOR[cq.difficulty])}>
+                    <span className={cn("text-xs font-medium", DIFFICULTY_COLOR[cq.difficulty])}>
                       {DIFFICULTY_LABEL[cq.difficulty]}
                     </span>
-                    <span className="text-[10px] text-slate-600">by {cq.author}</span>
+                    <span className="text-xs text-slate-600">by {cq.author}</span>
                   </div>
                   <p className="text-xs text-slate-200 leading-relaxed">{cq.question}</p>
                 </div>
@@ -2363,7 +2363,7 @@ export default function QuizTournamentPage() {
             <Card key={stat.label} className="bg-slate-900/60 border-slate-800/50 p-3 text-center">
               <div className="flex justify-center mb-1">{stat.icon}</div>
               <div className={cn("text-base font-bold", stat.color)}>{stat.value}</div>
-              <div className="text-[10px] text-slate-600">{stat.label}</div>
+              <div className="text-xs text-slate-600">{stat.label}</div>
             </Card>
           ))}
         </div>

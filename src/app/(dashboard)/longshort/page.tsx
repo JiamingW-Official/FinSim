@@ -184,7 +184,7 @@ function StatChip({ label, value, variant = "default" }: { label: string; value:
       variant === "amber" && "border-amber-500/30 bg-amber-500/10",
       variant === "default" && "border-border bg-muted/30",
     )}>
-      <span className="text-[10px] text-muted-foreground uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span className={cn(
         "text-sm font-semibold mt-0.5",
         variant === "green" && "text-emerald-400",
@@ -566,7 +566,7 @@ export default function LongShortPage() {
                   <CardTitle className="text-sm flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-emerald-400" />
                     Long Book
-                    <Badge variant="outline" className="ml-auto text-emerald-400 border-emerald-500/30 text-[10px]">{metrics.longGross.toFixed(0)}% gross</Badge>
+                    <Badge variant="outline" className="ml-auto text-emerald-400 border-emerald-500/30 text-xs">{metrics.longGross.toFixed(0)}% gross</Badge>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -615,7 +615,7 @@ export default function LongShortPage() {
                   <CardTitle className="text-sm flex items-center gap-2">
                     <TrendingDown className="w-4 h-4 text-red-400" />
                     Short Book
-                    <Badge variant="outline" className="ml-auto text-red-400 border-red-500/30 text-[10px]">{metrics.shortGross.toFixed(0)}% gross</Badge>
+                    <Badge variant="outline" className="ml-auto text-red-400 border-red-500/30 text-xs">{metrics.shortGross.toFixed(0)}% gross</Badge>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -701,7 +701,7 @@ export default function LongShortPage() {
                 </CardHeader>
                 <CardContent>
                   <FactorBarChart factors={factorExposures} />
-                  <p className="text-[10px] text-muted-foreground mt-2">Blue = portfolio, gray = benchmark (S&P 500 factors)</p>
+                  <p className="text-xs text-muted-foreground mt-2">Blue = portfolio, gray = benchmark (S&P 500 factors)</p>
                 </CardContent>
               </Card>
             </div>
@@ -721,7 +721,7 @@ export default function LongShortPage() {
                       <TrafficLight status={f.neutral ? "ok" : Math.abs(f.portfolio) < 0.5 ? "warn" : "fail"} />
                     </div>
                   ))}
-                  <div className="mt-3 pt-3 border-t border-border/50 text-[10px] text-muted-foreground space-y-1">
+                  <div className="mt-3 pt-3 border-t border-border/50 text-xs text-muted-foreground space-y-1">
                     <div className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-emerald-400" />Pass: |β| &lt; 0.3</div>
                     <div className="flex items-center gap-1.5"><AlertTriangle className="w-3 h-3 text-amber-400" />Warn: 0.3 ≤ |β| &lt; 0.5</div>
                     <div className="flex items-center gap-1.5"><XCircle className="w-3 h-3 text-red-400" />Fail: |β| ≥ 0.5</div>
@@ -736,7 +736,7 @@ export default function LongShortPage() {
                     Factor Interpretation
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-[10px] text-muted-foreground space-y-1.5">
+                <CardContent className="text-xs text-muted-foreground space-y-1.5">
                   <p><span className="text-foreground font-medium">Market:</span> Net beta exposure to market moves.</p>
                   <p><span className="text-foreground font-medium">Size:</span> Tilt toward small (+) or large (-) caps.</p>
                   <p><span className="text-foreground font-medium">Value:</span> Cheap (+) vs expensive (-) stocks.</p>
@@ -767,7 +767,7 @@ export default function LongShortPage() {
                         "text-center px-2 py-1.5 rounded-lg border text-xs",
                         it.value >= 0 ? "border-emerald-500/20 bg-emerald-500/5" : "border-red-500/20 bg-red-500/5",
                       )}>
-                        <div className="text-muted-foreground text-[10px]">{it.label}</div>
+                        <div className="text-muted-foreground text-xs">{it.label}</div>
                         <div className={cn("font-semibold", it.value >= 0 ? "text-emerald-400" : "text-red-400")}>
                           {it.value >= 0 ? "+" : ""}${(it.value / 1000).toFixed(1)}k
                         </div>
@@ -852,7 +852,7 @@ export default function LongShortPage() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-[10px]",
+                          "text-xs",
                           pair.pnl >= 0 ? "text-emerald-400 border-emerald-500/30" : "text-red-400 border-red-500/30",
                         )}
                       >
@@ -862,7 +862,7 @@ export default function LongShortPage() {
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <SpreadChart data={pair.spreadHistory} pairLabel={`${pair.longTicker}/${pair.shortTicker}`} />
-                    <div className="grid grid-cols-2 gap-x-4 text-[10px] text-muted-foreground">
+                    <div className="grid grid-cols-2 gap-x-4 text-xs text-muted-foreground">
                       <div>Correlation: <span className="text-foreground">{pair.correlation.toFixed(2)}</span></div>
                       <div>Long sector: <span className="text-foreground">{pair.longSector}</span></div>
                       <div>Short sector: <span className="text-foreground">{pair.shortSector}</span></div>
@@ -954,7 +954,7 @@ export default function LongShortPage() {
                   .sort((a, b) => b[1] - a[1])
                   .map(([sector, weight]) => (
                     <div key={sector} className="space-y-0.5">
-                      <div className="flex justify-between text-[10px]">
+                      <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground truncate max-w-[120px]">{sector}</span>
                         <span className={cn("font-medium", weight > 35 ? "text-red-400" : weight > 25 ? "text-amber-400" : "text-foreground")}>
                           {weight.toFixed(1)}%
@@ -1015,7 +1015,7 @@ export default function LongShortPage() {
                   <div key={label} className="flex items-center justify-between gap-2">
                     <div>
                       <div className="font-medium text-foreground">{label}</div>
-                      <div className="text-[10px] text-muted-foreground">{detail}</div>
+                      <div className="text-xs text-muted-foreground">{detail}</div>
                     </div>
                     <TrafficLight status={status} />
                   </div>
@@ -1090,7 +1090,7 @@ export default function LongShortPage() {
                     const betaContrib = (p.weight / 100) * p.beta * (p.side === "long" ? 1 : -1);
                     const barPct = Math.abs(betaContrib) / 0.3 * 100;
                     return (
-                      <div key={`${p.ticker}-${p.side}`} className="flex items-center gap-2 text-[10px]">
+                      <div key={`${p.ticker}-${p.side}`} className="flex items-center gap-2 text-xs">
                         <span className={cn("w-12 font-medium", p.side === "long" ? "text-emerald-400" : "text-red-400")}>{p.ticker}</span>
                         <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                           <div
@@ -1115,7 +1115,7 @@ export default function LongShortPage() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-[10px] text-muted-foreground text-center pt-2 border-t border-border/30"
+          className="text-xs text-muted-foreground text-center pt-2 border-t border-border/30"
         >
           Simulated portfolio — seed 752001. All prices, P&L, and risk metrics are synthetic for educational purposes only.
         </motion.p>

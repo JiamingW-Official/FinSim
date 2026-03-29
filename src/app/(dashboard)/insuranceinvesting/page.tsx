@@ -501,14 +501,14 @@ function AnnuitiesTab() {
                       <td className="py-2 pr-3 font-semibold text-zinc-200">{row.type}</td>
                       <td className="py-2 pr-3 text-zinc-300">{row.returnType}</td>
                       <td className="py-2 pr-3">
-                        <Badge variant="outline" className={cn("text-[10px]",
+                        <Badge variant="outline" className={cn("text-xs",
                           row.risk === "Low" || row.risk.includes("Low") ? "border-emerald-500/40 text-emerald-400" :
                           row.risk === "High" ? "border-red-500/40 text-red-400" :
                           "border-amber-500/40 text-amber-400"
                         )}>{row.risk}</Badge>
                       </td>
                       <td className="py-2 pr-3">
-                        <Badge variant="outline" className="border-red-500/30 text-red-400 text-[10px]">{row.liquidityRisk}</Badge>
+                        <Badge variant="outline" className="border-red-500/30 text-red-400 text-xs">{row.liquidityRisk}</Badge>
                       </td>
                       <td className="py-2 pr-3 text-zinc-400">{row.taxTreatment}</td>
                       <td className="py-2 pr-3 text-zinc-400">{row.bestFor}</td>
@@ -729,7 +729,7 @@ function SettlementsILSTab() {
               <div key={i} className="bg-zinc-800/50 rounded-xl p-3 border border-zinc-700/30">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs font-semibold text-zinc-200">{p.type}</span>
-                  <Badge variant="outline" className="border-indigo-500/30 text-indigo-400 text-[10px]">{p.badge}</Badge>
+                  <Badge variant="outline" className="border-indigo-500/30 text-indigo-400 text-xs">{p.badge}</Badge>
                 </div>
                 <div className="text-xs text-zinc-400">{p.desc}</div>
               </div>
@@ -793,7 +793,7 @@ function StockAnalysisTab() {
                     </td>
                     <td className="py-2 pr-4 text-zinc-300">{stock.pb.toFixed(1)}×</td>
                     <td className="py-2 pr-4">
-                      <Badge variant="outline" className={cn("text-[10px]",
+                      <Badge variant="outline" className={cn("text-xs",
                         stock.rating === "Buy" ? "border-emerald-500/40 text-emerald-400" :
                         stock.rating === "Watch" ? "border-amber-500/40 text-amber-400" :
                         "border-zinc-500/40 text-zinc-400"

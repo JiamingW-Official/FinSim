@@ -194,11 +194,11 @@ export function TagStatsChart({ tradeTags }: { tradeTags: Record<string, string[
 
   return (
     <div className="space-y-3">
-      <p className="text-[10px] text-muted-foreground">
+      <p className="text-xs text-muted-foreground">
         Most common tag:{" "}
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[9px] font-semibold",
+            "rounded border px-1.5 py-0.5 text-[11px] font-semibold",
             tagColorClass(mostCommon),
           )}
         >
@@ -211,7 +211,7 @@ export function TagStatsChart({ tradeTags }: { tradeTags: Record<string, string[
           <div key={tag} className="flex items-center gap-2">
             <span
               className={cn(
-                "w-28 shrink-0 rounded border px-1.5 py-0.5 text-center text-[9px] font-semibold truncate",
+                "w-28 shrink-0 rounded border px-1.5 py-0.5 text-center text-[11px] font-semibold truncate",
                 tagColorClass(tag),
               )}
             >
@@ -223,7 +223,7 @@ export function TagStatsChart({ tradeTags }: { tradeTags: Record<string, string[
                 style={{ width: `${(count / maxCount) * 100}%` }}
               />
             </div>
-            <span className="w-5 shrink-0 text-right text-[10px] tabular-nums text-muted-foreground">
+            <span className="w-5 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
               {count}
             </span>
           </div>
@@ -437,7 +437,7 @@ export function TradeLogTable({ rows }: Props) {
           <Filter className="h-3 w-3" />
           Filters
           {activeFilterCount > 0 && (
-            <span className="ml-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[9px] font-bold text-primary-foreground">
+            <span className="ml-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
               {activeFilterCount}
             </span>
           )}
@@ -450,7 +450,7 @@ export function TradeLogTable({ rows }: Props) {
             <X className="h-3 w-3" /> Clear all
           </button>
         )}
-        <span className="ml-auto text-[10px] text-muted-foreground">
+        <span className="ml-auto text-xs text-muted-foreground">
           {sortedRows.length} of {rows.length} rows
         </span>
       </div>
@@ -604,7 +604,7 @@ export function TradeLogTable({ rows }: Props) {
                       <td className="px-3 py-1.5">
                         <span
                           className={cn(
-                            "rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase",
+                            "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
                             row.direction === "long"
                               ? "bg-green-500/12 text-green-400"
                               : "bg-red-500/12 text-red-400",
@@ -669,7 +669,7 @@ export function TradeLogTable({ rows }: Props) {
                               key={tag}
                               onClick={(e) => toggleTag(row.id, tag, e)}
                               className={cn(
-                                "rounded border px-1.5 py-0.5 text-[9px] font-semibold transition-opacity hover:opacity-70",
+                                "rounded border px-1.5 py-0.5 text-[11px] font-semibold transition-opacity hover:opacity-70",
                                 tagColorClass(tag),
                               )}
                             >
@@ -710,7 +710,7 @@ export function TradeLogTable({ rows }: Props) {
                           <div className="flex flex-col gap-2">
                             {/* Tag section in expanded row */}
                             <div>
-                              <label className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                              <label className="text-xs font-medium text-muted-foreground">
                                 Tags
                               </label>
                               <div className="mt-1.5 flex flex-wrap gap-1.5">
@@ -721,7 +721,7 @@ export function TradeLogTable({ rows }: Props) {
                                       key={tag}
                                       onClick={(e) => toggleTag(row.id, tag, e)}
                                       className={cn(
-                                        "rounded border px-2 py-0.5 text-[10px] font-medium transition-colors",
+                                        "rounded border px-2 py-0.5 text-xs font-medium transition-colors",
                                         active
                                           ? tagColorClass(tag)
                                           : "border-border text-muted-foreground hover:text-foreground",
@@ -747,7 +747,7 @@ export function TradeLogTable({ rows }: Props) {
                               tags={tradeTags[row.id] ?? t.tags ?? []}
                             />
 
-                            <label className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                            <label className="text-xs font-medium text-muted-foreground">
                               Trade Notes
                             </label>
                             <textarea
@@ -833,7 +833,7 @@ function TagPicker({
       </button>
       {open && (
         <div className="absolute left-0 top-5 z-50 w-40 rounded-lg border border-border bg-card p-2 shadow-lg">
-          <p className="mb-1.5 text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
+          <p className="mb-1.5 text-[11px] font-medium text-muted-foreground">
             Add / remove tag
           </p>
           <div className="flex flex-col gap-1">
@@ -846,7 +846,7 @@ function TagPicker({
                     onToggle(tradeId, tag, e);
                   }}
                   className={cn(
-                    "flex items-center justify-between rounded px-2 py-1 text-[10px] font-medium transition-colors text-left",
+                    "flex items-center justify-between rounded px-2 py-1 text-xs font-medium transition-colors text-left",
                     active
                       ? tagColorClass(tag) + " border"
                       : "text-muted-foreground hover:bg-accent/30 hover:text-foreground",
@@ -875,7 +875,7 @@ function FilterField({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+      <label className="text-xs font-medium text-muted-foreground">
         {label}
       </label>
       {children}

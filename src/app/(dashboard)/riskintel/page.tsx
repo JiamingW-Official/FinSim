@@ -947,7 +947,7 @@ export default function RiskIntelPage() {
                           >
                             {d.val}
                           </div>
-                          <div className="text-[10px] text-slate-500">{d.label}</div>
+                          <div className="text-xs text-slate-500">{d.label}</div>
                         </div>
                       ))}
                     </div>
@@ -1170,7 +1170,7 @@ export default function RiskIntelPage() {
                           />
                         </div>
                         <span className="text-slate-400 w-8 text-right font-mono">{p.weight}%</span>
-                        <span className="text-slate-600 w-6 text-right font-mono text-[10px]">β{p.beta.toFixed(1)}</span>
+                        <span className="text-slate-600 w-6 text-right font-mono text-xs">β{p.beta.toFixed(1)}</span>
                       </div>
                     ))}
                   </div>
@@ -1223,7 +1223,7 @@ export default function RiskIntelPage() {
                 </CardHeader>
                 <CardContent className="px-4 pb-4">
                   <div className="overflow-x-auto">
-                    <table className="text-[10px] border-collapse mx-auto">
+                    <table className="text-xs border-collapse mx-auto">
                       <thead>
                         <tr>
                           <th className="w-10 h-10" />
@@ -1252,7 +1252,7 @@ export default function RiskIntelPage() {
                                   style={{ backgroundColor: corrColor(v) }}
                                   title={`${row.ticker} / ${POSITIONS[j].ticker}: ${v.toFixed(2)}`}
                                 >
-                                  <span className="text-[9px] font-bold" style={{ color: Math.abs(v) > 0.4 ? "#fff" : "#000" }}>
+                                  <span className="text-[11px] font-bold" style={{ color: Math.abs(v) > 0.4 ? "#fff" : "#000" }}>
                                     {isDiag ? "1" : v.toFixed(2)}
                                   </span>
                                 </td>
@@ -1600,7 +1600,7 @@ export default function RiskIntelPage() {
                 <ScenarioBarChart impacts={scenarioImpacts} />
                 <div className="flex flex-wrap gap-1 mt-2 justify-center">
                   {SCENARIOS.map((s, i) => (
-                    <span key={i} className="text-[9px] text-slate-500 w-[10%] text-center truncate" title={s.name}>
+                    <span key={i} className="text-[11px] text-slate-500 w-[10%] text-center truncate" title={s.name}>
                       {s.year}
                     </span>
                   ))}
@@ -1627,7 +1627,7 @@ export default function RiskIntelPage() {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
                               <span className="font-semibold text-sm text-slate-200 truncate">{s.name}</span>
-                              <Badge className="text-[10px] bg-slate-800 text-slate-400 border-slate-700">
+                              <Badge className="text-xs bg-slate-800 text-slate-400 border-slate-700">
                                 {s.year}
                               </Badge>
                             </div>
@@ -1637,7 +1637,7 @@ export default function RiskIntelPage() {
                             <div className="text-lg font-bold font-mono" style={{ color }}>
                               {impact.toFixed(1)}%
                             </div>
-                            <div className="text-[10px] text-slate-500">portfolio P&amp;L</div>
+                            <div className="text-xs text-slate-500">portfolio P&amp;L</div>
                           </div>
                         </div>
                         <AnimatePresence>
@@ -1884,7 +1884,7 @@ export default function RiskIntelPage() {
                         >
                           {(kelly.raw * 100).toFixed(1)}%
                         </div>
-                        <div className="text-[10px] text-slate-600">of capital per trade</div>
+                        <div className="text-xs text-slate-600">of capital per trade</div>
                       </div>
                       <div>
                         <div className="text-xs text-slate-500 mb-1">
@@ -1896,7 +1896,7 @@ export default function RiskIntelPage() {
                         >
                           {(kelly.adjusted * 100).toFixed(1)}%
                         </div>
-                        <div className="text-[10px] text-slate-600">recommended size</div>
+                        <div className="text-xs text-slate-600">recommended size</div>
                       </div>
                     </div>
                     <div className="text-xs text-slate-500 border-t border-slate-700 pt-3">
@@ -1950,7 +1950,7 @@ export default function RiskIntelPage() {
                             <span className="text-slate-600 ml-1">→ {(cappedSize * 100).toFixed(0)}%</span>
                           </span>
                           <Badge
-                            className={`text-[9px] justify-center ${
+                            className={`text-[11px] justify-center ${
                               currentOk
                                 ? "bg-green-500/10 text-green-400 border-green-500/20"
                                 : p.weight / 100 > cappedSize
@@ -2138,7 +2138,7 @@ export default function RiskIntelPage() {
                           },
                         ].map((m) => (
                           <div key={m.label} className="space-y-1">
-                            <div className="text-[10px] text-slate-500">{m.label}</div>
+                            <div className="text-xs text-slate-500">{m.label}</div>
                             <div className="flex items-center gap-1.5">
                               <span className="text-slate-400 text-xs font-mono">{m.before}</span>
                               <ChevronRight className="w-3 h-3 text-slate-600" />
@@ -2148,7 +2148,7 @@ export default function RiskIntelPage() {
                               >
                                 {m.after}
                               </span>
-                              <span className="text-[10px]" style={{ color: m.improved ? "#22c55e" : "#f97316" }}>
+                              <span className="text-xs" style={{ color: m.improved ? "#22c55e" : "#f97316" }}>
                                 {m.improved ? "↓ Better" : "↑ Worse"}
                               </span>
                             </div>

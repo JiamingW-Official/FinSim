@@ -60,7 +60,7 @@ export function CorrelationHeatmap({ correlations }: CorrelationHeatmapProps) {
   return (
     <div className="rounded-lg border border-border bg-card overflow-hidden">
       <div className="px-3 py-2 border-b border-border">
-        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-semibold text-muted-foreground">
           Correlation Matrix
         </span>
       </div>
@@ -149,7 +149,7 @@ export function CorrelationHeatmap({ correlations }: CorrelationHeatmapProps) {
 
         {/* Tooltip */}
         {hoveredCell !== null && (
-          <div className="mt-1 text-center text-[10px] font-mono tabular-nums text-muted-foreground">
+          <div className="mt-1 text-center text-xs font-mono tabular-nums text-muted-foreground">
             {tickers[hoveredCell.row]} / {tickers[hoveredCell.col]}:{" "}
             <span className="font-semibold text-foreground">
               {matrix[hoveredCell.row][hoveredCell.col].toFixed(4)}

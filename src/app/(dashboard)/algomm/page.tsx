@@ -194,7 +194,7 @@ function InfoCard({
   };
   return (
     <div className={cn("rounded-lg border p-4", colors[accent])}>
-      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+      <p className="text-xs font-semibold text-muted-foreground mb-2">
         {title}
       </p>
       {children}
@@ -207,7 +207,7 @@ function InfoCard({
 function StatChip({ label, value, up }: { label: string; value: string; up?: boolean }) {
   return (
     <div className="flex flex-col gap-0.5 rounded-md bg-muted/40 px-3 py-2">
-      <span className="text-[10px] text-muted-foreground uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span
         className={cn(
           "text-sm font-semibold tabular-nums",
@@ -245,7 +245,7 @@ function OrderBookSVG({
   const labelX = W / 2;
 
   return (
-    <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="font-mono text-[10px]">
+    <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="font-mono text-xs">
       {/* Mid price line */}
       <line
         x1={0}
@@ -752,7 +752,7 @@ function Tab1MarketMaking101() {
         <div className="space-y-4">
           <div className="rounded-lg border border-border/50 bg-background/60 p-4">
             <div className="flex items-center justify-between mb-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <p className="text-xs font-semibold text-muted-foreground">
                 Live Order Book (simulated)
               </p>
               <Badge variant="outline" className="text-xs">
@@ -831,7 +831,7 @@ function Tab2SpreadModeling() {
                   value={[gamma]}
                   onValueChange={([v]) => setGamma(v)}
                 />
-                <p className="text-[10px] text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   Higher γ → wider spread, stronger inventory skew
                 </p>
               </div>
@@ -847,7 +847,7 @@ function Tab2SpreadModeling() {
                   value={[sigma]}
                   onValueChange={([v]) => setSigma(v)}
                 />
-                <p className="text-[10px] text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   Higher σ → wider spread to compensate for price uncertainty
                 </p>
               </div>
@@ -861,7 +861,7 @@ function Tab2SpreadModeling() {
 
         <div className="space-y-4">
           <div className="rounded-lg border border-border/50 bg-background/60 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+            <p className="text-xs font-semibold text-muted-foreground mb-3">
               Quote Displacement by Inventory (A-S Model)
             </p>
             <SpreadModelSVG gamma={gamma} sigma={sigma} />
@@ -1155,7 +1155,7 @@ function Tab4PnlAttribution() {
           },
         ].map((item) => (
           <div key={item.label} className="rounded-lg border border-border/50 bg-background/60 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+            <p className="text-xs font-semibold text-muted-foreground mb-2">
               {item.label}
             </p>
             <p className={cn("text-xl font-bold tabular-nums mb-1", item.textColor)}>
@@ -1189,7 +1189,7 @@ function Tab4PnlAttribution() {
 
       {/* P&L chart */}
       <div className="rounded-lg border border-border/50 bg-background/60 p-4">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+        <p className="text-xs font-semibold text-muted-foreground mb-4">
           Cumulative P&L — 30 Days
         </p>
         <PnlChartSVG data={data} />
@@ -1197,7 +1197,7 @@ function Tab4PnlAttribution() {
 
       {/* Per-day breakdown table */}
       <div className="rounded-lg border border-border/50 overflow-hidden">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground p-3 border-b border-border/50">
+        <p className="text-xs font-semibold text-muted-foreground p-3 border-b border-border/50">
           Daily Breakdown
         </p>
         <div className="overflow-x-auto max-h-48 overflow-y-auto">
@@ -1293,7 +1293,7 @@ function Tab5RegulationRisk() {
 
       {/* Circuit Breakers */}
       <div className="rounded-lg border border-border/50 overflow-hidden">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground p-3 border-b border-border/50">
+        <p className="text-xs font-semibold text-muted-foreground p-3 border-b border-border/50">
           US Market Circuit Breakers
         </p>
         <table className="w-full text-xs">
@@ -1316,7 +1316,7 @@ function Tab5RegulationRisk() {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "text-[10px]",
+                      "text-xs",
                       cb.type === "Level 3"
                         ? "border-red-500/40 text-red-400"
                         : cb.type === "Level 2"

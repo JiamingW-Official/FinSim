@@ -34,7 +34,7 @@ export default function InsiderTradingPanel({ ticker }: InsiderTradingPanelProps
       <div className="border border-border/60 rounded-lg bg-card p-3">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Net Activity</p>
+            <p className="text-xs text-muted-foreground">Net Activity</p>
             <p
               className={cn(
                 "text-sm font-semibold mt-0.5",
@@ -46,11 +46,11 @@ export default function InsiderTradingPanel({ ticker }: InsiderTradingPanelProps
             </p>
           </div>
           <div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Total Buying</p>
+            <p className="text-xs text-muted-foreground">Total Buying</p>
             <p className="text-sm font-semibold text-green-500 mt-0.5">{formatValue(data.totalBuyValue)}</p>
           </div>
           <div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Total Selling</p>
+            <p className="text-xs text-muted-foreground">Total Selling</p>
             <p className="text-sm font-semibold text-red-500 mt-0.5">{formatValue(data.totalSellValue)}</p>
           </div>
         </div>
@@ -60,7 +60,7 @@ export default function InsiderTradingPanel({ ticker }: InsiderTradingPanelProps
       <div className="border border-border/60 rounded-lg bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[400px]">
           <thead>
-            <tr className="border-b border-border/40 text-[10px] text-muted-foreground uppercase tracking-wider">
+            <tr className="border-b border-border/40 text-xs text-muted-foreground">
               <th className="text-left p-2.5 font-medium">Insider</th>
               <th className="text-left p-2.5 font-medium">Type</th>
               <th className="text-right p-2.5 font-medium">Shares</th>
@@ -80,13 +80,13 @@ export default function InsiderTradingPanel({ ticker }: InsiderTradingPanelProps
                 <td className="p-2.5">
                   <div>
                     <p className="font-medium text-foreground">{trade.name}</p>
-                    <p className="text-[10px] text-muted-foreground">{trade.title}</p>
+                    <p className="text-xs text-muted-foreground">{trade.title}</p>
                   </div>
                 </td>
                 <td className="p-2.5">
                   <span
                     className={cn(
-                      "text-[10px] font-medium px-1.5 py-0.5 rounded",
+                      "text-xs font-medium px-1.5 py-0.5 rounded",
                       trade.type === "buy" ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"
                     )}
                   >

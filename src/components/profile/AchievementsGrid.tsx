@@ -83,7 +83,7 @@ function AchievementCard({
         <p className={cn("text-[11px] font-bold leading-tight", !unlocked && "text-muted-foreground")}>
           {name}
         </p>
-        <p className="text-[9px] leading-snug text-muted-foreground line-clamp-2">
+        <p className="text-[11px] leading-snug text-muted-foreground line-clamp-2">
           {description}
         </p>
       </div>
@@ -92,7 +92,7 @@ function AchievementCard({
       {xpReward && (
         <div className="flex items-center gap-1">
           <Zap className="h-2.5 w-2.5 text-amber-400/70" />
-          <span className="text-[9px] font-bold text-amber-400/70">
+          <span className="text-[11px] font-bold text-amber-400/70">
             {xpReward} XP
           </span>
         </div>
@@ -107,7 +107,7 @@ function AchievementCard({
               style={{ width: `${pct}%` }}
             />
           </div>
-          <p className="text-[9px] text-muted-foreground/70">
+          <p className="text-[11px] text-muted-foreground/70">
             {progress} / {progressMax}
           </p>
         </div>
@@ -180,7 +180,7 @@ export function AchievementsGrid() {
             style={{ width: `${(unlockedCount / totalCount) * 100}%` }}
           />
         </div>
-        <p className="text-[10px] text-muted-foreground text-right">
+        <p className="text-xs text-muted-foreground text-right">
           {Math.round((unlockedCount / totalCount) * 100)}% complete
         </p>
       </div>
@@ -192,10 +192,10 @@ export function AchievementsGrid() {
         return (
           <div key={cat} className="space-y-2">
             <div className="flex items-center justify-between">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+              <p className="text-xs font-bold text-muted-foreground">
                 {CATEGORY_LABELS[cat] ?? cat}
               </p>
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 {catUnlocked}/{defs.length}
               </span>
             </div>

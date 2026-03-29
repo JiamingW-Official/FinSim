@@ -324,8 +324,8 @@ function LoanStructureTab() {
             ].map((pt, i) => (
               <div key={i} className="flex flex-col items-center max-w-[90px]">
                 <div className={cn("w-3 h-3 rounded-full border-2 border-zinc-900", pt.color)} />
-                <div className="text-[10px] text-zinc-400 mt-1 font-medium text-center">{pt.year}</div>
-                <div className="text-[10px] text-zinc-500 text-center mt-0.5 leading-tight">{pt.event}</div>
+                <div className="text-xs text-zinc-400 mt-1 font-medium text-center">{pt.year}</div>
+                <div className="text-xs text-zinc-500 text-center mt-0.5 leading-tight">{pt.event}</div>
               </div>
             ))}
           </div>

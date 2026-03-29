@@ -852,7 +852,7 @@ export default function CreditRiskModelPage() {
                     onValueChange={([v]) => setFirmValue(v)}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>$50M</span><span>$500M</span>
                   </div>
                 </div>
@@ -870,7 +870,7 @@ export default function CreditRiskModelPage() {
                     onValueChange={([v]) => setDebtFace(v)}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>$20M</span><span>$450M</span>
                   </div>
                 </div>
@@ -888,7 +888,7 @@ export default function CreditRiskModelPage() {
                     onValueChange={([v]) => setFirmVol(v)}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>5%</span><span>80%</span>
                   </div>
                 </div>
@@ -906,14 +906,14 @@ export default function CreditRiskModelPage() {
                     onValueChange={([v]) => setMaturity(v)}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>3m</span><span>5y</span>
                   </div>
                 </div>
 
                 {/* Formula display */}
                 <div className="bg-zinc-800/80 rounded-lg p-3 space-y-1.5 text-xs font-mono">
-                  <div className="text-zinc-400 text-[10px] uppercase tracking-wider mb-1">Merton Formula</div>
+                  <div className="text-zinc-400 text-xs mb-1">Merton Formula</div>
                   <div className="text-zinc-300">
                     d₂ = [ln(V/D) + (r - ½σ²)T] / σ√T
                   </div>
@@ -1025,12 +1025,12 @@ export default function CreditRiskModelPage() {
                     <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
                       <div className="text-emerald-400 font-semibold">Equity Value</div>
                       <div className="text-white font-bold">{fmtM(merton.eqValue)}</div>
-                      <div className="text-zinc-500 text-[10px]">= V·N(d₁) - D·e^(-rT)·N(d₂)</div>
+                      <div className="text-zinc-500 text-xs">= V·N(d₁) - D·e^(-rT)·N(d₂)</div>
                     </div>
                     <div className="bg-rose-500/10 border border-rose-500/20 rounded p-2">
                       <div className="text-rose-400 font-semibold">Risky Debt Value</div>
                       <div className="text-white font-bold">{fmtM(merton.debtValue)}</div>
-                      <div className="text-zinc-500 text-[10px]">= V - Equity</div>
+                      <div className="text-zinc-500 text-xs">= V - Equity</div>
                     </div>
                   </div>
                 </CardContent>
@@ -1058,7 +1058,7 @@ export default function CreditRiskModelPage() {
                   {RATINGS.map((r2) => (
                     <div key={r2} className="flex items-center gap-1">
                       <div className="w-2.5 h-2.5 rounded-sm" style={{ background: RATING_COLORS[r2] }} />
-                      <span className="text-[10px] text-zinc-400">{r2}</span>
+                      <span className="text-xs text-zinc-400">{r2}</span>
                     </div>
                   ))}
                 </div>
@@ -1245,7 +1245,7 @@ export default function CreditRiskModelPage() {
                     step={0.1}
                     onValueChange={([v]) => setLdPd(v)}
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>0.1%</span><span>30%</span>
                   </div>
                 </div>
@@ -1262,7 +1262,7 @@ export default function CreditRiskModelPage() {
                     step={1}
                     onValueChange={([v]) => setLdLgd(v)}
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>5%</span><span>95%</span>
                   </div>
                 </div>
@@ -1279,7 +1279,7 @@ export default function CreditRiskModelPage() {
                     step={10}
                     onValueChange={([v]) => setLdEad(v)}
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>$50M</span><span>$2B</span>
                   </div>
                 </div>
@@ -1296,14 +1296,14 @@ export default function CreditRiskModelPage() {
                     step={0.1}
                     onValueChange={([v]) => setConfidence(v)}
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>90%</span><span>99.9%</span>
                   </div>
                 </div>
 
                 {/* Formula box */}
                 <div className="bg-zinc-800/80 rounded-lg p-3 space-y-2 text-xs font-mono">
-                  <div className="text-zinc-400 text-[10px] uppercase tracking-wider mb-1">Credit Loss Formulas</div>
+                  <div className="text-zinc-400 text-xs mb-1">Credit Loss Formulas</div>
                   <div className="space-y-1 text-zinc-300">
                     <div>EL = PD × LGD × EAD</div>
                     <div className="text-emerald-300">
@@ -1315,11 +1315,11 @@ export default function CreditRiskModelPage() {
                   </div>
                   <div className="border-t border-zinc-700 pt-2 space-y-1 text-zinc-300">
                     <div>UL = VaR - EL</div>
-                    <div className="text-amber-300 text-[10px]">Unexpected loss is capital buffer needed</div>
+                    <div className="text-amber-300 text-xs">Unexpected loss is capital buffer needed</div>
                   </div>
                   <div className="border-t border-zinc-700 pt-2 space-y-1 text-zinc-300">
                     <div>Econ Capital ≈ VaR({confidence}%) - EL</div>
-                    <div className="text-blue-300 text-[10px]">Capital to absorb tail losses at {confidence}% confidence</div>
+                    <div className="text-blue-300 text-xs">Capital to absorb tail losses at {confidence}% confidence</div>
                   </div>
                 </div>
 
@@ -1331,7 +1331,7 @@ export default function CreditRiskModelPage() {
                   <div className="text-zinc-400">
                     Recovery Rate = 1 − LGD = <span className="text-white font-medium">{(100 - ldLgd).toFixed(0)}%</span>
                   </div>
-                  <div className="text-zinc-500 text-[10px] mt-1">
+                  <div className="text-zinc-500 text-xs mt-1">
                     Senior secured: ~65–75% recovery · Subordinated: ~20–35%
                   </div>
                 </div>
@@ -1456,7 +1456,7 @@ export default function CreditRiskModelPage() {
                           <td className="py-1.5 text-zinc-400">{loan.sector}</td>
                           <td className="py-1.5 text-center">
                             <span
-                              className="px-1.5 py-0.5 rounded text-[10px] font-bold"
+                              className="px-1.5 py-0.5 rounded text-xs font-bold"
                               style={{
                                 background: RATING_COLORS[loan.rating] + "33",
                                 color: RATING_COLORS[loan.rating],
@@ -1502,7 +1502,7 @@ export default function CreditRiskModelPage() {
                     step={1}
                     onValueChange={([v]) => setPortCorr(v / 100)}
                   />
-                  <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                  <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                     <span>0% — fully idiosyncratic</span>
                     <span>60% — highly correlated</span>
                   </div>
@@ -1532,7 +1532,7 @@ export default function CreditRiskModelPage() {
                         <span className="text-zinc-400">{m.label}</span>
                         <span className={`font-bold ${m.color}`}>{m.val}</span>
                       </div>
-                      <div className="text-zinc-600 text-[10px]">{m.sub}</div>
+                      <div className="text-zinc-600 text-xs">{m.sub}</div>
                     </div>
                   ))}
 
@@ -1549,7 +1549,7 @@ export default function CreditRiskModelPage() {
                       )
                         .sort(([, a], [, b]) => b - a)
                         .map(([sector, ead]) => (
-                          <div key={sector} className="flex items-center gap-1.5 text-[10px]">
+                          <div key={sector} className="flex items-center gap-1.5 text-xs">
                             <span className="text-zinc-500 w-20 truncate">{sector}</span>
                             <div className="flex-1 h-1.5 bg-zinc-800 rounded overflow-hidden">
                               <div
@@ -1591,7 +1591,7 @@ export default function CreditRiskModelPage() {
                           {portCorr < 0.1 ? "strong" : portCorr < 0.3 ? "moderate" : "limited"}
                         </span>
                       </div>
-                      <div className="text-zinc-500 text-[10px] mt-1">
+                      <div className="text-zinc-500 text-xs mt-1">
                         In a crisis, correlations spike toward 1.0, causing portfolio losses to converge — this is the key systemic risk in credit portfolios.
                       </div>
                     </div>

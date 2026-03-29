@@ -266,20 +266,20 @@ function SmileChart({
       {/* Stat chips */}
       <div className="flex items-center gap-3 px-3">
         <div className="flex items-center gap-1.5 rounded bg-muted/40 px-2 py-1">
-          <span className="text-[9px] text-muted-foreground">Risk Reversal</span>
-          <span className={cn("text-[10px] font-bold", riskReversal >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <span className="text-[11px] text-muted-foreground">Risk Reversal</span>
+          <span className={cn("text-xs font-bold", riskReversal >= 0 ? "text-emerald-400" : "text-red-400")}>
             {riskReversal >= 0 ? "+" : ""}{riskReversal.toFixed(1)}pp
           </span>
         </div>
         <div className="flex items-center gap-1.5 rounded bg-muted/40 px-2 py-1">
-          <span className="text-[9px] text-muted-foreground">Butterfly</span>
-          <span className="text-[10px] font-bold text-amber-400">
+          <span className="text-[11px] text-muted-foreground">Butterfly</span>
+          <span className="text-xs font-bold text-amber-400">
             {butterfly.toFixed(1)}pp
           </span>
         </div>
         <div className="flex items-center gap-1.5 rounded bg-muted/40 px-2 py-1">
-          <span className="text-[9px] text-muted-foreground">ATM IV</span>
-          <span className="text-[10px] font-bold text-foreground">
+          <span className="text-[11px] text-muted-foreground">ATM IV</span>
+          <span className="text-xs font-bold text-foreground">
             {(ivAtm * 100).toFixed(1)}%
           </span>
         </div>
@@ -427,15 +427,15 @@ function TermStructurePanel({ cells }: { cells: SurfaceCell[][] }) {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-3 px-3">
         <div className={cn(
-          "flex items-center gap-1.5 rounded px-2 py-1 text-[9px]",
+          "flex items-center gap-1.5 rounded px-2 py-1 text-[11px]",
           isBackwardation ? "bg-amber-500/20 text-amber-400" : "bg-muted/40 text-muted-foreground",
         )}>
           {slopeLabel}
         </div>
         {isBackwardation && (
           <div className="flex items-center gap-1.5 rounded bg-amber-500/20 px-2 py-1">
-            <span className="text-[9px] text-amber-300">Calendar opp: front–back</span>
-            <span className="text-[10px] font-bold text-amber-400">
+            <span className="text-[11px] text-amber-300">Calendar opp: front–back</span>
+            <span className="text-xs font-bold text-amber-400">
               +{spread.toFixed(1)}pp
             </span>
           </div>
@@ -498,7 +498,7 @@ function ColorLegend({ minIV, maxIV }: { minIV: number; maxIV: number }) {
   const stops = [0, 0.25, 0.5, 0.75, 1];
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[9px] text-muted-foreground">IV</span>
+      <span className="text-[11px] text-muted-foreground">IV</span>
       <div className="relative h-3 w-40 overflow-hidden rounded-full">
         <svg width={160} height={12} className="block">
           <defs>
@@ -511,7 +511,7 @@ function ColorLegend({ minIV, maxIV }: { minIV: number; maxIV: number }) {
           <rect x={0} y={0} width={160} height={12} fill="url(#ivLegendGrad)" rx={6} />
         </svg>
       </div>
-      <span className="text-[9px] text-muted-foreground">
+      <span className="text-[11px] text-muted-foreground">
         {(minIV * 100).toFixed(0)}% → {(maxIV * 100).toFixed(0)}%
       </span>
     </div>
@@ -724,20 +724,20 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
       <div className="flex shrink-0 flex-wrap items-center gap-3 border-b border-border/50 bg-card px-3 py-2">
         {/* Spot + IV Rank */}
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-muted-foreground">Spot</span>
+          <span className="text-xs text-muted-foreground">Spot</span>
           <span className="text-xs font-bold">${spotPrice.toFixed(2)}</span>
         </div>
         <div className="flex items-center gap-1.5 rounded bg-amber-500/20 px-2 py-0.5">
-          <span className="text-[9px] text-amber-300">IV Rank</span>
-          <span className="text-[10px] font-bold text-amber-400">{ivRank.toFixed(0)}</span>
+          <span className="text-[11px] text-amber-300">IV Rank</span>
+          <span className="text-xs font-bold text-amber-400">{ivRank.toFixed(0)}</span>
         </div>
         <div className="flex items-center gap-1.5 rounded bg-muted/40 px-2 py-0.5">
-          <span className="text-[9px] text-muted-foreground">ATM IV (1M)</span>
-          <span className="text-[10px] font-bold">{(atmIV * 100).toFixed(1)}%</span>
+          <span className="text-[11px] text-muted-foreground">ATM IV (1M)</span>
+          <span className="text-xs font-bold">{(atmIV * 100).toFixed(1)}%</span>
         </div>
         <div className="flex items-center gap-1.5 rounded bg-muted/40 px-2 py-0.5">
-          <span className="text-[9px] text-muted-foreground">HV</span>
-          <span className="text-[10px] font-bold">{(hv * 100).toFixed(1)}%</span>
+          <span className="text-[11px] text-muted-foreground">HV</span>
+          <span className="text-xs font-bold">{(hv * 100).toFixed(1)}%</span>
         </div>
 
         <div className="ml-auto">
@@ -751,12 +751,12 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
           {/* 3D Grid */}
           <div className="relative min-w-0 flex-1">
             <div className="flex items-center justify-between px-3 py-1.5 border-b border-border/30">
-              <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+              <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
                 Volatility Surface — {viewAngle === "front-left" ? "Front Left" : viewAngle === "front-right" ? "Front Right" : "Top Down"}
               </span>
               <button
                 onClick={cycleView}
-                className="rounded border border-border px-2 py-0.5 text-[9px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="rounded border border-border px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 Rotate View
               </button>
@@ -780,15 +780,15 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
                     maxWidth: 140,
                   }}
                 >
-                  <div className="text-[9px] text-muted-foreground">Strike</div>
-                  <div className="text-[10px] font-bold">
+                  <div className="text-[11px] text-muted-foreground">Strike</div>
+                  <div className="text-xs font-bold">
                     ${tooltip.cell.strike.toFixed(2)} ({((tooltip.cell.strike / spotPrice - 1) * 100).toFixed(1)}%)
                   </div>
-                  <div className="text-[9px] text-muted-foreground">Expiry</div>
-                  <div className="text-[10px] font-bold">{tooltip.cell.expiry}</div>
-                  <div className="text-[9px] text-muted-foreground">IV</div>
+                  <div className="text-[11px] text-muted-foreground">Expiry</div>
+                  <div className="text-xs font-bold">{tooltip.cell.expiry}</div>
+                  <div className="text-[11px] text-muted-foreground">IV</div>
                   <div
-                    className="text-[11px] font-black"
+                    className="text-[11px] font-bold"
                     style={{ color: ivToColor(tooltip.cell.iv, minIV, maxIV) }}
                   >
                     {(tooltip.cell.iv * 100).toFixed(1)}%
@@ -801,7 +801,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
           {/* Controls panel */}
           <div className="w-56 shrink-0 border-l border-border/50 bg-card">
             <div className="border-b border-border/30 px-3 py-1.5">
-              <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+              <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
                 Surface Controls
               </span>
             </div>
@@ -810,8 +810,8 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
               {/* Skew slider */}
               <div>
                 <div className="mb-1 flex items-center justify-between">
-                  <label className="text-[9px] text-muted-foreground">Skew (put/call)</label>
-                  <span className="text-[9px] font-bold text-foreground">
+                  <label className="text-[11px] text-muted-foreground">Skew (put/call)</label>
+                  <span className="text-[11px] font-bold text-foreground">
                     {skew >= 0 ? "+" : ""}{skew}
                   </span>
                 </div>
@@ -831,14 +831,14 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
 
               {/* Term structure */}
               <div>
-                <label className="mb-1 block text-[9px] text-muted-foreground">Term Structure</label>
+                <label className="mb-1 block text-[11px] text-muted-foreground">Term Structure</label>
                 <div className="flex flex-col gap-1">
                   {(["normal", "inverted", "flat"] as const).map((s) => (
                     <button
                       key={s}
                       onClick={() => setTermSlope(s)}
                       className={cn(
-                        "rounded px-2 py-1 text-left text-[9px] transition-colors",
+                        "rounded px-2 py-1 text-left text-[11px] transition-colors",
                         termSlope === s
                           ? "bg-orange-400/20 text-orange-400"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground",
@@ -853,8 +853,8 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
               {/* Vol shift */}
               <div>
                 <div className="mb-1 flex items-center justify-between">
-                  <label className="text-[9px] text-muted-foreground">Vol Level Shift</label>
-                  <span className="text-[9px] font-bold text-foreground">
+                  <label className="text-[11px] text-muted-foreground">Vol Level Shift</label>
+                  <span className="text-[11px] font-bold text-foreground">
                     {volShift >= 0 ? "+" : ""}{volShift}%
                   </span>
                 </div>
@@ -875,7 +875,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
               {/* Reset button */}
               <button
                 onClick={resetToMarket}
-                className="mt-1 w-full rounded border border-border py-1.5 text-[9px] text-muted-foreground transition-colors hover:border-orange-400/50 hover:bg-orange-400/10 hover:text-orange-400"
+                className="mt-1 w-full rounded border border-border py-1.5 text-[11px] text-muted-foreground transition-colors hover:border-orange-400/50 hover:bg-orange-400/10 hover:text-orange-400"
               >
                 Reset to Market
               </button>
@@ -889,7 +889,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
         {/* Vol Smile Cross-Section */}
         <div className="shrink-0">
           <div className="flex items-center justify-between border-b border-border/30 px-3 py-1.5">
-            <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+            <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
               Vol Smile Cross-Section
             </span>
             <div className="flex gap-1">
@@ -924,7 +924,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
         {/* Term Structure Panel */}
         <div className="shrink-0">
           <div className="border-b border-border/30 px-3 py-1.5">
-            <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+            <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
               ATM Term Structure
             </span>
           </div>

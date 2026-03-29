@@ -15,7 +15,7 @@ export function TradeHistory() {
         <span className="text-xs font-medium text-muted-foreground">
           No trades yet
         </span>
-        <span className="text-[10px] text-muted-foreground/60">
+        <span className="text-xs text-muted-foreground/60">
           Your completed trades will appear here
         </span>
       </div>
@@ -57,7 +57,7 @@ export function TradeHistory() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "text-[10px] px-1.5 py-0",
+                    "text-xs px-1.5 py-0",
                     trade.side === "buy"
                       ? "border-[#10b981]/30 text-[#10b981]"
                       : "border-[#ef4444]/30 text-[#ef4444]",

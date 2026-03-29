@@ -79,7 +79,7 @@ export function MobileNav() {
               )}
             >
               <item.icon className="h-4 w-4" aria-hidden="true" />
-              <span className="text-[10px] font-medium">{item.label}</span>
+              <span className="text-xs font-medium">{item.label}</span>
               {isActive && (
                 <span className="h-1 w-1 rounded-full bg-primary" aria-hidden="true" />
               )}
@@ -96,7 +96,7 @@ export function MobileNav() {
           )}
         >
           <Menu className="h-4 w-4" aria-hidden="true" />
-          <span className="text-[10px] font-medium">More</span>
+          <span className="text-xs font-medium">More</span>
         </button>
       </nav>
     </>

@@ -43,7 +43,7 @@ import {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground pb-1">
+    <div className="text-xs font-bold text-muted-foreground pb-1">
       {children}
     </div>
   );
@@ -63,7 +63,7 @@ function SettingRow({
       <div className="min-w-0 flex-1">
         <div className="text-sm font-medium">{label}</div>
         {description && (
-          <div className="text-[10px] text-muted-foreground leading-relaxed">
+          <div className="text-xs text-muted-foreground leading-relaxed">
             {description}
           </div>
         )}
@@ -158,7 +158,7 @@ function RadioCards<T extends string>({
         >
           <span className="font-medium">{opt.label}</span>
           {opt.description && (
-            <span className="text-[10px] opacity-70 mt-0.5">
+            <span className="text-xs opacity-70 mt-0.5">
               {opt.description}
             </span>
           )}
@@ -236,7 +236,7 @@ function CheckboxItem({
       <div>
         <div className="font-medium text-foreground">{label}</div>
         {description && (
-          <div className="text-[10px] text-muted-foreground mt-0.5">
+          <div className="text-xs text-muted-foreground mt-0.5">
             {description}
           </div>
         )}
@@ -893,7 +893,7 @@ const KEYBOARD_SHORTCUTS: { key: string; description: string; context: string }[
 ];
 
 const APP_FEATURES: string[] = [
-  "Real-time simulated market data with intraday 5m/15m/1h/1D/1W timeframes",
+  "Simulated market data with intraday 5m/15m/1h/1D/1W timeframes",
   "Options chain with full Greeks, strategy builder, and unusual activity feed",
   "AI coach (AlphaBot) with 50+ technical signals and named trade setups",
   "Prediction markets with live scoring and leaderboard",
@@ -909,7 +909,7 @@ function DataTab() {
   return (
     <div className="space-y-4">
       <Card>
-        <div className="mb-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+        <div className="mb-2 text-xs font-bold text-muted-foreground">
           Import / Export
         </div>
         <DataManager />
@@ -945,7 +945,7 @@ function DataTab() {
                   )}
                 >
                   <td className="px-3 py-2">
-                    <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium">
+                    <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs font-medium">
                       {s.key}
                     </kbd>
                   </td>
@@ -980,7 +980,7 @@ function DataTab() {
           </span>
         </div>
         <Separator className="opacity-30 mb-4" />
-        <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
+        <div className="text-xs font-bold text-muted-foreground mb-2">
           Features
         </div>
         <ul className="space-y-1.5">
@@ -1012,14 +1012,14 @@ export default function SettingsPage() {
           </div>
           <div>
             <h1 className="text-lg font-bold">Settings</h1>
-            <p className="text-[10px] text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Customize your trading experience
             </p>
           </div>
           <div className="flex-1" />
           <div className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5">
             <Shield className="h-3 w-3 text-primary" />
-            <span className="text-[10px] font-semibold text-primary">
+            <span className="text-xs font-semibold text-primary">
               Lv.{level} {title}
             </span>
           </div>

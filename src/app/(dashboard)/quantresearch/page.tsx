@@ -570,7 +570,7 @@ export default function QuantResearchPage() {
                     <tr key={sig.id} className="group hover:bg-zinc-800/30 transition-colors">
                       <td className="py-2 pr-3 font-medium text-zinc-200">{sig.name}</td>
                       <td className="py-2 pr-3">
-                        <span className={cn("px-2 py-0.5 rounded text-[10px] border font-medium capitalize", CATEGORY_COLORS[sig.category])}>
+                        <span className={cn("px-2 py-0.5 rounded text-xs border font-medium capitalize", CATEGORY_COLORS[sig.category])}>
                           {sig.category}
                         </span>
                       </td>
@@ -605,7 +605,7 @@ export default function QuantResearchPage() {
                 <CardContent className="p-3 space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <span className="text-xs font-medium text-zinc-200 leading-tight">{sig.name}</span>
-                    <span className={cn("px-1.5 py-0.5 rounded text-[9px] border font-medium capitalize shrink-0", CATEGORY_COLORS[sig.category])}>
+                    <span className={cn("px-1.5 py-0.5 rounded text-[11px] border font-medium capitalize shrink-0", CATEGORY_COLORS[sig.category])}>
                       {sig.category}
                     </span>
                   </div>
@@ -775,13 +775,13 @@ export default function QuantResearchPage() {
                   <div className="flex items-center gap-2 mb-1">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: f.color }} />
                     <span className="text-xs font-medium text-zinc-200">{f.label}</span>
-                    {i === 0 && <Badge className="text-[9px] px-1 py-0 bg-emerald-500/20 text-emerald-300 border-emerald-500/30">Momentum Buy</Badge>}
-                    {i === lastReturns.length - 1 && <Badge className="text-[9px] px-1 py-0 bg-red-500/20 text-red-300 border-red-500/30">Momentum Sell</Badge>}
+                    {i === 0 && <Badge className="text-[11px] px-1 py-0 bg-emerald-500/20 text-emerald-300 border-emerald-500/30">Momentum Buy</Badge>}
+                    {i === lastReturns.length - 1 && <Badge className="text-[11px] px-1 py-0 bg-red-500/20 text-red-300 border-red-500/30">Momentum Sell</Badge>}
                   </div>
                   <p className={cn("text-xl font-semibold tabular-nums", f.ret >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {f.ret >= 0 ? "+" : ""}{f.ret.toFixed(1)}%
                   </p>
-                  <p className="text-[10px] text-zinc-500 mt-0.5">12M cumulative return</p>
+                  <p className="text-xs text-zinc-500 mt-0.5">12M cumulative return</p>
                 </CardContent>
               </Card>
             ))}
@@ -822,7 +822,7 @@ export default function QuantResearchPage() {
                   </div>
                   <p className="text-[11px] text-zinc-500 leading-relaxed">{src.description}</p>
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-[10px] text-zinc-500">
+                    <div className="flex items-center justify-between text-xs text-zinc-500">
                       <span>Predictive accuracy</span>
                       <span className="font-mono text-zinc-300">{(src.accuracy * 100).toFixed(0)}%</span>
                     </div>
@@ -832,7 +832,7 @@ export default function QuantResearchPage() {
                         style={{ width: `${src.accuracy * 100}%` }}
                       />
                     </div>
-                    <div className="flex items-center justify-between text-[10px] text-zinc-500">
+                    <div className="flex items-center justify-between text-xs text-zinc-500">
                       <span>Lead time: {src.leadTime}</span>
                       <span>{src.coverage}</span>
                     </div>
@@ -891,28 +891,28 @@ export default function QuantResearchPage() {
                     </div>
                     <div className="grid grid-cols-3 gap-2 text-xs">
                       <div>
-                        <p className="text-zinc-500 text-[10px]">In-Sample R²</p>
+                        <p className="text-zinc-500 text-xs">In-Sample R²</p>
                         <p className="text-blue-400 font-mono font-semibold">{m.r2InSample.toFixed(2)}</p>
                       </div>
                       <div>
-                        <p className="text-zinc-500 text-[10px]">OOS R²</p>
+                        <p className="text-zinc-500 text-xs">OOS R²</p>
                         <p className="text-emerald-400 font-mono font-semibold">{m.r2OutOfSample.toFixed(2)}</p>
                       </div>
                       <div>
-                        <p className="text-zinc-500 text-[10px]">Degradation</p>
+                        <p className="text-zinc-500 text-xs">Degradation</p>
                         <p className="text-red-400 font-mono font-semibold">-{degradation}%</p>
                       </div>
                     </div>
                     {/* R² bar comparison */}
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] text-zinc-500 w-20">In-sample</span>
+                        <span className="text-xs text-zinc-500 w-20">In-sample</span>
                         <div className="flex-1 bg-zinc-700 rounded-full h-1.5 overflow-hidden">
                           <div className="h-full rounded-full bg-blue-500" style={{ width: `${m.r2InSample * 100}%` }} />
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] text-zinc-500 w-20">Out-of-sample</span>
+                        <span className="text-xs text-zinc-500 w-20">Out-of-sample</span>
                         <div className="flex-1 bg-zinc-700 rounded-full h-1.5 overflow-hidden">
                           <div className="h-full rounded-full bg-emerald-500" style={{ width: `${m.r2OutOfSample * 100}%` }} />
                         </div>
@@ -920,7 +920,7 @@ export default function QuantResearchPage() {
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {m.features.map((f) => (
-                        <span key={f} className="text-[10px] bg-zinc-700/50 border border-zinc-600/50 text-zinc-400 rounded px-1.5 py-0.5">{f}</span>
+                        <span key={f} className="text-xs bg-zinc-700/50 border border-zinc-600/50 text-zinc-400 rounded px-1.5 py-0.5">{f}</span>
                       ))}
                     </div>
                     <p className="text-[11px] text-zinc-500 flex items-start gap-1">

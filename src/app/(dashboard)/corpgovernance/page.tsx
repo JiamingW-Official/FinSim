@@ -547,17 +547,17 @@ function ProxyVoteSimulator() {
             <div className="flex items-start justify-between gap-3 mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <Badge className={cn("text-[10px] px-1.5 py-0", res.type === "Management" ? "bg-blue-500/20 text-blue-400" : "bg-violet-500/20 text-violet-400")}>
+                  <Badge className={cn("text-xs px-1.5 py-0", res.type === "Management" ? "bg-blue-500/20 text-blue-400" : "bg-violet-500/20 text-violet-400")}>
                     {res.type}
                   </Badge>
                   <span className="text-xs font-semibold text-white">{res.title}</span>
                 </div>
                 <p className="text-xs text-zinc-400">{res.description}</p>
                 <div className="flex items-center gap-3 mt-1.5">
-                  <span className="text-[10px] text-zinc-500">
+                  <span className="text-xs text-zinc-500">
                     Board: <span className={res.boardRec === "For" ? "text-emerald-400" : "text-rose-400"}>{res.boardRec}</span>
                   </span>
-                  <span className="text-[10px] text-zinc-500">
+                  <span className="text-xs text-zinc-500">
                     ISS: <span className={res.issScore === "For" ? "text-emerald-400" : "text-rose-400"}>{res.issScore}</span>
                   </span>
                 </div>
@@ -568,7 +568,7 @@ function ProxyVoteSimulator() {
                     key={v}
                     onClick={() => cast(res.id, v)}
                     className={cn(
-                      "text-[10px] px-2 py-1 rounded-md border font-medium transition-all",
+                      "text-xs px-2 py-1 rounded-md border font-medium transition-all",
                       voted === v
                         ? v === "For"
                           ? "bg-emerald-500 border-emerald-500 text-white"
@@ -773,7 +773,7 @@ export default function CorpGovernancePage() {
                         <td className={cn("text-center py-2", c.avgTenure > 10 ? "text-rose-400" : "text-emerald-400")}>{c.avgTenure}y</td>
                         <td className="text-center py-2">{c.ceoChairSplit ? <CheckCircle className="w-3.5 h-3.5 text-emerald-400 inline" /> : <XCircle className="w-3.5 h-3.5 text-rose-400 inline" />}</td>
                         <td className="text-center py-2">{c.staggeredBoard ? <AlertTriangle className="w-3.5 h-3.5 text-amber-400 inline" /> : <CheckCircle className="w-3.5 h-3.5 text-emerald-400 inline" />}</td>
-                        <td className="text-center py-2"><Badge className={cn("text-[10px]", scoreBg(c.govScore))}>{c.govScore}</Badge></td>
+                        <td className="text-center py-2"><Badge className={cn("text-xs", scoreBg(c.govScore))}>{c.govScore}</Badge></td>
                       </tr>
                     ))}
                   </tbody>
@@ -799,7 +799,7 @@ export default function CorpGovernancePage() {
                         <span className="text-sm font-semibold text-white">{c.fund}</span>
                         <span className="text-xs text-zinc-500">→</span>
                         <span className="text-sm font-medium text-indigo-300">{c.target}</span>
-                        <Badge className="text-[10px] bg-zinc-700/50 text-zinc-300">{c.ticker}</Badge>
+                        <Badge className="text-xs bg-zinc-700/50 text-zinc-300">{c.ticker}</Badge>
                       </div>
                       <div className="flex items-center gap-3 text-xs text-zinc-400">
                         <span>Stake: <span className="text-white font-medium">{c.stakePct}%</span></span>
@@ -812,7 +812,7 @@ export default function CorpGovernancePage() {
                     <p className="text-xs text-zinc-500 mb-1.5">Key Demands:</p>
                     <div className="flex flex-wrap gap-1.5">
                       {c.demands.map((d) => (
-                        <span key={d} className="text-[10px] bg-white/5 border border-white/10 rounded-md px-2 py-0.5 text-zinc-300">{d}</span>
+                        <span key={d} className="text-xs bg-white/5 border border-white/10 rounded-md px-2 py-0.5 text-zinc-300">{d}</span>
                       ))}
                     </div>
                   </div>
@@ -842,7 +842,7 @@ export default function CorpGovernancePage() {
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <p className="text-xs font-semibold text-white">{e.company}</p>
-                        <p className="text-[10px] text-zinc-500">{e.ticker}</p>
+                        <p className="text-xs text-zinc-500">{e.ticker}</p>
                       </div>
                       <EsgRadarMini score={e} />
                     </div>
@@ -854,7 +854,7 @@ export default function CorpGovernancePage() {
                         { label: "Transparency", value: e.transparency },
                       ].map((m) => (
                         <div key={m.label}>
-                          <div className="flex justify-between text-[10px] mb-0.5">
+                          <div className="flex justify-between text-xs mb-0.5">
                             <span className="text-zinc-500">{m.label}</span>
                             <span className={cn("font-medium", scoreColor(m.value))}>{m.value}</span>
                           </div>
@@ -863,7 +863,7 @@ export default function CorpGovernancePage() {
                       ))}
                     </div>
                     <div className="mt-3 flex justify-between items-center">
-                      <span className="text-[10px] text-zinc-500">Overall Score</span>
+                      <span className="text-xs text-zinc-500">Overall Score</span>
                       <Badge className={cn("text-xs font-bold", scoreBg(e.overall))}>{e.overall}</Badge>
                     </div>
                   </div>
@@ -899,7 +899,7 @@ export default function CorpGovernancePage() {
                       <p className="text-xs text-zinc-400 mt-0.5">{def.mechanism}</p>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0 ml-3">
-                      <Badge className="text-[10px] bg-zinc-700/50 text-zinc-300 hidden sm:block">{def.prevalence}</Badge>
+                      <Badge className="text-xs bg-zinc-700/50 text-zinc-300 hidden sm:block">{def.prevalence}</Badge>
                       <TrendingUp className={cn("w-4 h-4 transition-transform", expandedDefense === def.name ? "rotate-90 text-indigo-400" : "text-zinc-500")} />
                     </div>
                   </button>
@@ -932,7 +932,7 @@ export default function CorpGovernancePage() {
                           </ul>
                         </div>
                       </div>
-                      <p className="text-[10px] text-zinc-500 mt-3">Prevalence: {def.prevalence}</p>
+                      <p className="text-xs text-zinc-500 mt-3">Prevalence: {def.prevalence}</p>
                     </motion.div>
                   )}
                 </div>
@@ -992,7 +992,7 @@ export default function CorpGovernancePage() {
                                 style={{ width: `${(sh.pct / 9) * 100}%` }}
                               />
                             </div>
-                            <Badge className={cn("text-[9px] px-1", typeColor[sh.type])}>{sh.type}</Badge>
+                            <Badge className={cn("text-[11px] px-1", typeColor[sh.type])}>{sh.type}</Badge>
                           </div>
                         </div>
                       </div>

@@ -491,7 +491,7 @@ function RegimeDashboard() {
                       <div className="flex items-center justify-between mb-1">
                         <span className={cn("text-sm font-semibold", r.color)}>{r.name}</span>
                         {active && (
-                          <Badge className="text-[10px] px-1.5 py-0 bg-white/10 text-white border-white/20">
+                          <Badge className="text-xs px-1.5 py-0 bg-white/10 text-white border-white/20">
                             Current
                           </Badge>
                         )}
@@ -840,7 +840,7 @@ function RateCyclePlaybook() {
                       {phase}
                     </span>
                     {phase === CURRENT_PHASE && (
-                      <Badge className="text-[10px] px-1.5 bg-white/10 text-white border-white/20">
+                      <Badge className="text-xs px-1.5 bg-white/10 text-white border-white/20">
                         Now
                       </Badge>
                     )}
@@ -1062,7 +1062,7 @@ function CrossAssetSignals() {
                     </div>
                   );
                 })}
-                <div className="flex justify-between text-[10px] text-slate-500 mt-1 px-24">
+                <div className="flex justify-between text-xs text-slate-500 mt-1 px-24">
                   <span>-1.0 (inverse)</span>
                   <span>+1.0 (direct)</span>
                 </div>
@@ -1156,15 +1156,15 @@ function TradeIdeas() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                           <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/30">
-                            <div className="text-[10px] text-slate-500 uppercase mb-1">Entry</div>
+                            <div className="text-xs text-slate-500 uppercase mb-1">Entry</div>
                             <div className="text-xs text-slate-200 font-medium">{idea.entry}</div>
                           </div>
                           <div className="bg-emerald-950/30 rounded-lg p-3 border border-emerald-700/30">
-                            <div className="text-[10px] text-emerald-500 uppercase mb-1">Target</div>
+                            <div className="text-xs text-emerald-500 uppercase mb-1">Target</div>
                             <div className="text-xs text-emerald-300 font-medium">{idea.target}</div>
                           </div>
                           <div className="bg-red-950/30 rounded-lg p-3 border border-red-700/30">
-                            <div className="text-[10px] text-red-500 uppercase mb-1">Stop Loss</div>
+                            <div className="text-xs text-red-500 uppercase mb-1">Stop Loss</div>
                             <div className="text-xs text-red-300 font-medium">{idea.stop}</div>
                           </div>
                         </div>

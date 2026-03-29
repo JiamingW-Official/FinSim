@@ -146,7 +146,7 @@ export function ObjectiveTracker({
                 <span className="text-xs font-semibold text-amber-400">
                   All candles revealed
                 </span>
-                <span className="text-[10px] text-muted-foreground">
+                <span className="text-xs text-muted-foreground">
                   {completedObjectives.filter(Boolean).length}/{objectives.length} objectives done
                 </span>
               </div>

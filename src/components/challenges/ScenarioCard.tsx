@@ -14,8 +14,8 @@ interface ScenarioCardProps {
 }
 
 const GRADE_CONFIG = {
-  S: { bg: "bg-amber-400/15", text: "text-amber-400", border: "border-amber-400/30", glow: "shadow-[0_0_12px_rgba(251,191,36,0.2)]" },
-  A: { bg: "bg-emerald-400/15", text: "text-emerald-400", border: "border-emerald-400/30", glow: "shadow-[0_0_10px_rgba(52,211,153,0.15)]" },
+  S: { bg: "bg-amber-400/15", text: "text-amber-400", border: "border-amber-400/30", glow: "" },
+  A: { bg: "bg-emerald-400/15", text: "text-emerald-400", border: "border-emerald-400/30", glow: "" },
   B: { bg: "bg-blue-400/15", text: "text-blue-400", border: "border-blue-400/30", glow: "" },
   C: { bg: "bg-muted/30", text: "text-muted-foreground", border: "border-border", glow: "" },
 };
@@ -65,7 +65,7 @@ export function ScenarioCard({
             >
               <Lock className="h-6 w-6 text-muted-foreground" />
             </motion.div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+            <span className="text-xs font-bold text-muted-foreground">
               Level {scenario.unlockLevel}
             </span>
           </div>
@@ -74,8 +74,8 @@ export function ScenarioCard({
 
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1 flex-1 min-w-0">
-          <h3 className="text-sm font-black truncate">{scenario.name}</h3>
-          <p className="text-[10px] font-medium text-muted-foreground/70 uppercase tracking-wider">
+          <h3 className="text-sm font-bold truncate">{scenario.name}</h3>
+          <p className="text-xs font-medium text-muted-foreground/70">
             {scenario.subtitle}
           </p>
 
@@ -97,18 +97,18 @@ export function ScenarioCard({
                 </motion.span>
               ))}
             </div>
-            <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">
+            <span className="text-[11px] font-bold text-muted-foreground">
               {DIFFICULTY_LABEL[scenario.difficulty]}
             </span>
           </div>
 
           <div className="flex items-center gap-2 mt-1">
-            <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-bold text-primary">
+            <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-bold text-primary">
               +{scenario.xpReward} XP
             </span>
             {bestResult && (
               <span className={cn(
-                "rounded-full px-2 py-0.5 text-[9px] font-bold tabular-nums",
+                "rounded-full px-2 py-0.5 text-[11px] font-bold tabular-nums",
                 bestResult.pnl >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400",
               )}>
                 Best: {bestResult.pnl >= 0 ? "+" : ""}{bestResult.pnl.toFixed(0)}
@@ -122,7 +122,7 @@ export function ScenarioCard({
           {bestResult ? (
             <motion.div
               className={cn(
-                "flex h-11 w-11 items-center justify-center rounded-xl border-2 text-xl font-black",
+                "flex h-11 w-11 items-center justify-center rounded-xl border-2 text-xl font-bold",
                 gradeConfig?.border,
                 gradeConfig?.bg,
                 gradeConfig?.text,

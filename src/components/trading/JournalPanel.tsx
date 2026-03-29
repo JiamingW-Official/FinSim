@@ -84,14 +84,14 @@ export function JournalPanel() {
         <div className="flex items-center gap-2">
           <BookOpen className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm font-semibold">Trade Journal</span>
-          <span className="text-[10px] font-mono tabular-nums bg-muted/50 px-1.5 py-0.5 rounded">
+          <span className="text-xs font-mono tabular-nums bg-muted/50 px-1.5 py-0.5 rounded">
             {filteredEntries.length}
           </span>
         </div>
         <button
           onClick={() => setShowFilters(!showFilters)}
           className={cn(
-            "flex items-center gap-1 text-[10px] font-medium transition-colors",
+            "flex items-center gap-1 text-xs font-medium transition-colors",
             filterTag
               ? "text-primary"
               : "text-muted-foreground hover:text-foreground",
@@ -108,7 +108,7 @@ export function JournalPanel() {
           <button
             onClick={() => setFilterTag(null)}
             className={cn(
-              "text-[10px] font-medium px-2 py-0.5 rounded transition-colors",
+              "text-xs font-medium px-2 py-0.5 rounded transition-colors",
               filterTag === null
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted/50 text-muted-foreground hover:text-foreground",
@@ -121,7 +121,7 @@ export function JournalPanel() {
               key={tag}
               onClick={() => setFilterTag(filterTag === tag ? null : tag)}
               className={cn(
-                "text-[10px] font-medium px-2 py-0.5 rounded transition-colors",
+                "text-xs font-medium px-2 py-0.5 rounded transition-colors",
                 filterTag === tag
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted/50 text-muted-foreground hover:text-foreground",
@@ -131,7 +131,7 @@ export function JournalPanel() {
             </button>
           ))}
           {usedTags.length === 0 && (
-            <span className="text-[10px] text-muted-foreground">
+            <span className="text-xs text-muted-foreground">
               No tags yet
             </span>
           )}
@@ -202,7 +202,7 @@ export function JournalPanel() {
                 {/* Emotion badge */}
                 <span
                   className={cn(
-                    "text-[9px] font-medium px-1.5 py-0.5 rounded shrink-0",
+                    "text-[11px] font-medium px-1.5 py-0.5 rounded shrink-0",
                     emotionStyle.className,
                   )}
                 >
@@ -213,7 +213,7 @@ export function JournalPanel() {
                 <span className="flex-1" />
 
                 {/* Date */}
-                <span className="text-[9px] text-muted-foreground font-mono tabular-nums shrink-0">
+                <span className="text-[11px] text-muted-foreground font-mono tabular-nums shrink-0">
                   {formatDate(entry.createdAt)}
                 </span>
 
@@ -231,7 +231,7 @@ export function JournalPanel() {
                   {/* Price Info */}
                   <div className="flex items-center gap-4 pt-2">
                     <div>
-                      <span className="text-[9px] text-muted-foreground block">
+                      <span className="text-[11px] text-muted-foreground block">
                         Entry
                       </span>
                       <span className="text-[11px] font-mono tabular-nums font-medium">
@@ -240,7 +240,7 @@ export function JournalPanel() {
                     </div>
                     {entry.exitPrice !== undefined && (
                       <div>
-                        <span className="text-[9px] text-muted-foreground block">
+                        <span className="text-[11px] text-muted-foreground block">
                           Exit
                         </span>
                         <span className="text-[11px] font-mono tabular-nums font-medium">
@@ -248,7 +248,7 @@ export function JournalPanel() {
                         </span>
                       </div>
                     )}
-                    <div className="ml-auto text-[9px] text-muted-foreground">
+                    <div className="ml-auto text-[11px] text-muted-foreground">
                       {formatTime(entry.createdAt)}
                     </div>
                   </div>
@@ -263,10 +263,10 @@ export function JournalPanel() {
                   {/* Lesson Learned */}
                   {entry.lessonLearned && (
                     <div className="bg-primary/5 border border-primary/10 rounded px-2 py-1.5">
-                      <span className="text-[9px] font-medium text-primary block mb-0.5">
+                      <span className="text-[11px] font-medium text-primary block mb-0.5">
                         Lesson Learned
                       </span>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      <p className="text-xs text-muted-foreground leading-relaxed">
                         {entry.lessonLearned}
                       </p>
                     </div>
@@ -279,7 +279,7 @@ export function JournalPanel() {
                       {entry.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[9px] font-medium px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground"
+                          className="text-[11px] font-medium px-1.5 py-0.5 rounded bg-muted/50 text-muted-foreground"
                         >
                           {tag}
                         </span>
@@ -291,7 +291,7 @@ export function JournalPanel() {
                   <div className="flex justify-end pt-1">
                     <button
                       onClick={() => deleteEntry(entry.id)}
-                      className="flex items-center gap-1 text-[10px] text-muted-foreground hover:text-red-400 transition-colors"
+                      className="flex items-center gap-1 text-xs text-muted-foreground hover:text-red-400 transition-colors"
                     >
                       <Trash2 className="h-3 w-3" />
                       Remove

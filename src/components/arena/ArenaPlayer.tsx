@@ -250,8 +250,8 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           <div className={cn(
             "absolute inset-0 rounded-none",
             isCritical
-              ? "bg-gradient-to-b from-red-900/15 via-transparent to-red-900/15 animate-pulse"
-              : "bg-gradient-to-b from-red-900/8 via-transparent to-red-900/8",
+              ? "bg-red-900/10"
+              : "bg-red-900/5",
           )} />
         </div>
       )}
@@ -265,7 +265,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
             animate={isCritical ? { scale: [1, 1.05, 1] } : {}}
             transition={isCritical ? { duration: 0.5, repeat: Infinity, type: "tween" } : {}}
             className={cn(
-              "arena-timer flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-lg font-black tabular-nums",
+              "arena-timer flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-lg font-bold tabular-nums",
               isUrgent ? "bg-red-500/20 text-red-400"
                 : isWarning ? "bg-amber-500/10 text-amber-400"
                 : "bg-white/5 text-zinc-200",
@@ -277,7 +277,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
 
           <div className="flex items-center gap-1.5 rounded-lg border border-white/5 bg-white/[0.02] px-2 py-1">
             <Zap className={cn("h-3 w-3", config.color)} />
-            <span className={cn("text-[10px] font-bold", config.color)}>{config.name}</span>
+            <span className={cn("text-xs font-bold", config.color)}>{config.name}</span>
           </div>
 
           <div className="flex-1" />
@@ -292,7 +292,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
             >
               {totalPnl >= 0 ? "+" : ""}${totalPnl.toFixed(2)}
             </motion.div>
-            <div className="text-[10px] text-zinc-600 tabular-nums">{pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(2)}%</div>
+            <div className="text-xs text-zinc-600 tabular-nums">{pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(2)}%</div>
           </div>
 
           {/* Position badge */}
@@ -302,19 +302,19 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
                 {sim.position.side === "long"
                   ? <ArrowUpRight className="h-3 w-3 text-emerald-400" />
                   : <ArrowDownRight className="h-3 w-3 text-red-400" />}
-                <span className={cn("text-[10px] font-bold", sim.position.side === "long" ? "text-emerald-400" : "text-red-400")}>
+                <span className={cn("text-xs font-bold", sim.position.side === "long" ? "text-emerald-400" : "text-red-400")}>
                   {sim.position.side === "long" ? "LONG" : "SHORT"} {sim.position.quantity}
                 </span>
               </>
             ) : (
-              <><Minus className="h-3 w-3 text-zinc-600" /><span className="text-[10px] text-zinc-600">FLAT</span></>
+              <><Minus className="h-3 w-3 text-zinc-600" /><span className="text-xs text-zinc-600">FLAT</span></>
             )}
           </div>
 
           {/* Trades count */}
           <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-1 text-center">
             <div className="text-xs font-bold tabular-nums text-zinc-300">{sim.trades.length}</div>
-            <div className="text-[9px] text-zinc-600">trades</div>
+            <div className="text-[11px] text-zinc-600">trades</div>
           </div>
 
           {/* Finish */}
@@ -329,7 +329,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
         {/* Row 2: P&L Comparison Bar + Opponent */}
         <div className="flex items-center gap-2 px-3 py-1 border-t border-white/[0.03]">
           {/* Player label */}
-          <span className="text-[9px] font-bold text-zinc-500 w-8">YOU</span>
+          <span className="text-[11px] font-bold text-zinc-500 w-8">YOU</span>
 
           {/* P&L comparison bar */}
           <div className="flex-1 flex items-center h-4 rounded-full bg-white/[0.03] overflow-hidden relative">
@@ -363,7 +363,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
             {/* Diff indicator */}
             <div className="absolute inset-0 flex items-center justify-center">
               <span className={cn(
-                "text-[8px] font-black tabular-nums px-1 rounded",
+                "text-[8px] font-bold tabular-nums px-1 rounded",
                 playerAhead ? "text-emerald-400" : pnlDiff === 0 ? "text-zinc-500" : "text-red-400",
               )}>
                 {pnlDiff >= 0 ? "+" : ""}{pnlDiff.toFixed(0)}
@@ -374,11 +374,11 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           {/* Opponent info */}
           <div className="flex items-center gap-1.5">
             <ArenaRankBadge rank={opponent.rank} size="xs" showLabel={false} />
-            <span className="text-[9px] font-bold text-zinc-500">{opponent.name}</span>
+            <span className="text-[11px] font-bold text-zinc-500">{opponent.name}</span>
           </div>
 
           {/* Opponent P&L */}
-          <div className={cn("text-[10px] font-bold tabular-nums min-w-[50px] text-right", oppState.pnl >= 0 ? "text-emerald-400/60" : "text-red-400/60")}>
+          <div className={cn("text-xs font-bold tabular-nums min-w-[50px] text-right", oppState.pnl >= 0 ? "text-emerald-400/60" : "text-red-400/60")}>
             {oppState.pnl >= 0 ? "+" : ""}${oppState.pnl.toFixed(0)}
           </div>
 

@@ -730,13 +730,13 @@ export default function CrisisHistoryPage() {
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-bold text-slate-300">{c.year}</span>
-                  <Badge className={`text-[10px] px-1.5 py-0 border ${severityColor(c.severity)}`}>
+                  <Badge className={`text-xs px-1.5 py-0 border ${severityColor(c.severity)}`}>
                     {c.severity}
                   </Badge>
                 </div>
                 <p className="text-xs font-semibold text-slate-200 leading-tight mb-1">{c.shortName !== String(c.year) ? c.name : c.name}</p>
-                <p className="text-[10px] text-red-400 font-bold">{c.peak_loss}</p>
-                <p className="text-[10px] text-slate-500">{c.duration}</p>
+                <p className="text-xs text-red-400 font-bold">{c.peak_loss}</p>
+                <p className="text-xs text-slate-500">{c.duration}</p>
               </button>
             ))}
           </div>
@@ -953,7 +953,7 @@ export default function CrisisHistoryPage() {
                 <p className="text-xs text-slate-300 leading-relaxed mb-2">{p.desc}</p>
                 <div className="space-y-1">
                   {p.examples.map((ex, i) => (
-                    <p key={i} className="text-[10px] text-slate-500">• {ex}</p>
+                    <p key={i} className="text-xs text-slate-500">• {ex}</p>
                   ))}
                 </div>
               </div>
@@ -1042,7 +1042,7 @@ export default function CrisisHistoryPage() {
                 ].map((l) => (
                   <div key={l.label} className="flex items-center gap-1.5">
                     <div className="w-3 h-3 rounded-sm" style={{ background: l.color, opacity: 0.6 }} />
-                    <span className="text-[10px] text-slate-500">{l.label}</span>
+                    <span className="text-xs text-slate-500">{l.label}</span>
                   </div>
                 ))}
               </div>
@@ -1087,11 +1087,11 @@ export default function CrisisHistoryPage() {
                 <CardContent className="space-y-2">
                   <p className="text-xs text-slate-300">{a.summary}</p>
                   <div className="bg-amber-500/10 border border-amber-500/20 rounded p-2">
-                    <p className="text-[10px] text-amber-400 font-semibold mb-0.5">Notable Exception</p>
+                    <p className="text-xs text-amber-400 font-semibold mb-0.5">Notable Exception</p>
                     <p className="text-xs text-slate-400">{a.exception}</p>
                   </div>
                   <div className="bg-blue-500/10 border border-blue-500/20 rounded p-2">
-                    <p className="text-[10px] text-blue-400 font-semibold mb-0.5">Investor Rule</p>
+                    <p className="text-xs text-blue-400 font-semibold mb-0.5">Investor Rule</p>
                     <p className="text-xs text-slate-400">{a.rule}</p>
                   </div>
                 </CardContent>
@@ -1118,8 +1118,8 @@ export default function CrisisHistoryPage() {
                     <p className="text-xs font-bold text-slate-200 mb-1">{s.strategy}</p>
                     <p className="text-xs text-slate-400 mb-2 leading-relaxed">{s.desc}</p>
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[10px] text-slate-500">2008 drawdown:</span>
-                      <Badge className="text-[10px] bg-emerald-500/20 text-emerald-400 border-emerald-500/30 px-1.5 py-0 border">{s.drawdown}</Badge>
+                      <span className="text-xs text-slate-500">2008 drawdown:</span>
+                      <Badge className="text-xs bg-emerald-500/20 text-emerald-400 border-emerald-500/30 px-1.5 py-0 border">{s.drawdown}</Badge>
                     </div>
                   </div>
                 ))}
@@ -1200,7 +1200,7 @@ export default function CrisisHistoryPage() {
                     <div key={row.crisis} className="bg-slate-800 rounded-lg p-3">
                       <div className="flex items-center justify-between mb-1">
                         <p className="text-xs font-bold text-slate-300">{row.crisis}</p>
-                        <Badge className={`text-[10px] px-1.5 py-0 border border-slate-600 bg-slate-700/50 ${row.color}`}>{row.outcome}</Badge>
+                        <Badge className={`text-xs px-1.5 py-0 border border-slate-600 bg-slate-700/50 ${row.color}`}>{row.outcome}</Badge>
                       </div>
                       <p className="text-xs text-slate-400 leading-relaxed">{row.response}</p>
                     </div>
@@ -1285,7 +1285,7 @@ export default function CrisisHistoryPage() {
                         style={{ backgroundColor: row.color, opacity: 0.7 }}
                       />
                     </div>
-                    <p className="text-[10px] text-slate-500 mt-0.5">{row.ratio}× expansion</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{row.ratio}× expansion</p>
                   </div>
                 ))}
               </div>

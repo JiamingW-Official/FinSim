@@ -318,7 +318,7 @@ function GreekCard({
   return (
     <div className="rounded-xl border border-border bg-card p-4 flex flex-col gap-1">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-medium text-muted-foreground">
           {label}
         </span>
         {delta && (
@@ -867,7 +867,7 @@ function GreeksExplorer() {
       <div className="flex flex-col gap-4">
         {/* Option type toggle */}
         <div className="rounded-xl border border-border bg-card p-4">
-          <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">Option Type</p>
+          <p className="text-xs font-medium text-muted-foreground mb-3">Option Type</p>
           <div className="flex gap-2">
             <button
               onClick={() => setParam("isCall", true)}
@@ -896,7 +896,7 @@ function GreeksExplorer() {
         {sliders.map((s) => (
           <div key={s.key} className="rounded-xl border border-border bg-card p-4">
             <div className="flex justify-between items-center mb-3">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{s.label}</p>
+              <p className="text-xs font-medium text-muted-foreground">{s.label}</p>
               <span className="text-sm font-mono font-semibold text-foreground">{s.fmt(s.value)}</span>
             </div>
             <Slider
@@ -911,7 +911,7 @@ function GreeksExplorer() {
 
         {/* BSM Formula display */}
         <div className="rounded-xl border border-border bg-card p-4">
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Black-Scholes Formulas</p>
+          <p className="text-xs font-medium text-muted-foreground mb-3">Black-Scholes Formulas</p>
           <div className="font-mono text-xs space-y-1.5 text-foreground/80">
             <p className="text-[11px]">d₁ = [ln(S/K) + (r + σ²/2)T] / (σ√T)</p>
             <p className="text-[11px]">d₂ = d₁ - σ√T</p>
@@ -931,7 +931,7 @@ function GreeksExplorer() {
       <div className="flex flex-col gap-4">
         {/* Price */}
         <div className="rounded-xl border border-primary/30 bg-primary/5 p-4">
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
+          <p className="text-xs font-medium text-muted-foreground mb-1">
             {params.isCall ? "Call" : "Put"} Price
           </p>
           <motion.p
@@ -993,7 +993,7 @@ function GreeksExplorer() {
               exit={{ opacity: 0, y: -8 }}
               className="rounded-xl border border-border bg-card p-3"
             >
-              <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">What Changed</p>
+              <p className="text-xs font-medium text-muted-foreground mb-2">What Changed</p>
               <div className="flex flex-wrap gap-2">
                 {deltas.map((d) => (
                   <span
@@ -1344,7 +1344,7 @@ function GreeksQuiz() {
           onClick={() => setShowFlashAnswer(!showFlashAnswer)}
         >
           <div>
-            <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wider">Scenario</p>
+            <p className="text-xs text-muted-foreground mb-3">Scenario</p>
             <p className="text-sm text-foreground">{fq.scenario}</p>
             <p className="text-sm font-semibold text-foreground mt-3">{fq.question}</p>
           </div>
@@ -1439,7 +1439,7 @@ function GreeksQuiz() {
           className="space-y-4"
         >
           <div className="rounded-xl border border-border bg-card p-5">
-            <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Scenario</p>
+            <p className="text-xs text-muted-foreground mb-2">Scenario</p>
             <p className="text-sm text-foreground mb-4">{q.scenario}</p>
             <p className="text-sm font-semibold text-foreground">{q.question}</p>
           </div>

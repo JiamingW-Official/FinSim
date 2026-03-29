@@ -35,7 +35,7 @@ export function XPBar() {
 
   return (
     <div className="relative flex items-center gap-2">
-      <span className="text-[10px] tabular-nums text-muted-foreground">
+      <span className="text-xs tabular-nums text-muted-foreground">
         Lv.{level}
       </span>
       <div
@@ -47,12 +47,12 @@ export function XPBar() {
         <div
           className={cn(
             "absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out",
-            "bg-gradient-to-r from-primary to-emerald-400",
+            "bg-primary",
           )}
           style={{ width: `${percent}%` }}
         />
       </div>
-      <span className="text-[10px] tabular-nums text-muted-foreground">
+      <span className="text-xs tabular-nums text-muted-foreground">
         {progressXP}/{neededXP} XP
       </span>
       {floatXP !== null && (

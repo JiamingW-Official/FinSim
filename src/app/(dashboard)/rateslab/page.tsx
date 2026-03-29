@@ -243,7 +243,7 @@ function StatChip({
 }) {
   return (
     <div className="bg-white/5 rounded-lg px-3 py-2 flex flex-col gap-0.5">
-      <span className="text-[10px] text-white/40 uppercase tracking-wide">
+      <span className="text-xs text-white/40 uppercase tracking-wide">
         {label}
       </span>
       <span
@@ -517,9 +517,9 @@ function SwapPricerTab() {
                       : "bg-red-500/10 border border-red-500/20"
                   }`}
                 >
-                  <div className="text-[9px] text-white/40">{`Q${i + 1}`}</div>
+                  <div className="text-[11px] text-white/40">{`Q${i + 1}`}</div>
                   <div
-                    className={`text-[10px] font-mono font-semibold ${
+                    className={`text-xs font-mono font-semibold ${
                       net >= 0 ? "text-emerald-400" : "text-red-400"
                     }`}
                   >
@@ -1193,10 +1193,10 @@ function CrossCurrencyTab() {
                       : "bg-red-500/10 border border-red-500/20"
                   }`}
                 >
-                  <div className="text-[9px] text-white/40">{`Y${t.toFixed(1)}`}</div>
-                  <div className="text-[9px] text-blue-300">{fmtK(usdFlow)}</div>
-                  <div className="text-[9px] text-emerald-300">{fmtK(eurFlow)}</div>
-                  <div className={`text-[10px] font-mono font-semibold ${net >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  <div className="text-[11px] text-white/40">{`Y${t.toFixed(1)}`}</div>
+                  <div className="text-[11px] text-blue-300">{fmtK(usdFlow)}</div>
+                  <div className="text-[11px] text-emerald-300">{fmtK(eurFlow)}</div>
+                  <div className={`text-xs font-mono font-semibold ${net >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                     {fmtK(net)}
                   </div>
                 </div>
@@ -1502,7 +1502,7 @@ export default function RatesLabPage() {
                 <BarChart3 className="w-4 h-4 text-blue-400" />
               </div>
               <h1 className="text-xl font-bold text-white">Rates Lab</h1>
-              <Badge variant="outline" className="text-[10px] border-blue-500/30 text-blue-300">
+              <Badge variant="outline" className="text-xs border-blue-500/30 text-blue-300">
                 Interest Rate Derivatives
               </Badge>
             </div>

@@ -269,7 +269,7 @@ function Num({ v, decimals = 1, suffix = "", prefix = "", colorize = false }: {
 
 function Badge({ label, color }: { label: string; color: string }) {
   return (
-    <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-medium", color)}>
+    <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", color)}>
       {label}
     </span>
   );

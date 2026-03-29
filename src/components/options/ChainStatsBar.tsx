@@ -81,10 +81,10 @@ export function ChainStatsBar({ analytics, spotPrice, isLoading }: ChainStatsBar
     <div className="flex shrink-0 items-center gap-4 overflow-x-auto border-b border-border bg-card px-4 py-1.5">
       {/* Ticker + spot price */}
       <div className="flex shrink-0 items-center gap-2">
-        <span className="text-[10px] font-bold text-muted-foreground">
+        <span className="text-xs font-bold text-muted-foreground">
           Spot
         </span>
-        <span className="text-[11px] font-black tabular-nums">
+        <span className="text-[11px] font-bold tabular-nums">
           ${spotPrice.toFixed(2)}
         </span>
         {isLoading && (

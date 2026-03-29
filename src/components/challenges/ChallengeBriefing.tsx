@@ -66,7 +66,7 @@ function difficultyDisplay(difficulty: string | number) {
   };
   return (
     <span className={cn(
-      "rounded-full border px-3 py-1 text-[10px] font-black uppercase tracking-widest",
+      "rounded-full border px-3 py-1 text-xs font-bold",
       colors[difficulty as keyof typeof colors] ?? "bg-muted text-muted-foreground border-border",
     )}>
       {difficulty}
@@ -96,7 +96,7 @@ export function ChallengeBriefing({
 
       {/* Title */}
       <motion.h1
-        className="text-2xl font-black text-center"
+        className="text-2xl font-bold text-center"
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
@@ -130,7 +130,7 @@ export function ChallengeBriefing({
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
       >
-        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
+        <p className="text-xs font-bold text-muted-foreground mb-2">
           Mission Briefing
         </p>
         <p className="text-sm text-foreground/90 leading-relaxed">
@@ -145,7 +145,7 @@ export function ChallengeBriefing({
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.45 }}
       >
-        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
+        <p className="text-xs font-bold text-muted-foreground mb-3">
           Objectives
         </p>
         <div className="flex flex-col gap-2.5">
@@ -172,7 +172,7 @@ export function ChallengeBriefing({
         transition={{ delay: 0.55 }}
       >
         <span className="text-xs mt-0.5">💡</span>
-        <p className="text-[10px] text-muted-foreground/80 leading-relaxed">
+        <p className="text-xs text-muted-foreground/80 leading-relaxed">
           Use the play/pause controls to advance time. Buy low, sell high — watch for patterns!
         </p>
       </motion.div>
@@ -186,7 +186,7 @@ export function ChallengeBriefing({
         transition={{ delay: 0.6 }}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
-        className="relative w-full max-w-xs rounded-xl bg-primary py-3.5 text-sm font-black uppercase tracking-wider text-primary-foreground transition-all hover:brightness-110 shadow-[0_4px_20px_rgba(16,185,129,0.3)]"
+        className="relative w-full max-w-xs rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
       >
         {/* Pulse ring */}
         <motion.span

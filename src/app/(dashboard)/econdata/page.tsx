@@ -689,7 +689,7 @@ function SectionCard({ title, children, className }: { title: string; children: 
       transition={{ duration: 0.35 }}
       className={cn("bg-white/[0.03] border border-white/10 rounded-xl p-4", className)}
     >
-      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{title}</h3>
+      <h3 className="text-xs font-semibold text-gray-400 mb-3">{title}</h3>
       {children}
     </motion.div>
   );

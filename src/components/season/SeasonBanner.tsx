@@ -42,7 +42,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.005 }}
       whileTap={{ scale: 0.995 }}
-      className="w-full rounded-xl border border-amber-500/20 bg-gradient-to-r from-amber-500/5 via-transparent to-amber-500/5 p-3 text-left transition-colors hover:bg-amber-500/[0.07]"
+      className="w-full rounded-xl border border-amber-500/20 bg-card p-3 text-left transition-colors hover:bg-muted/50"
     >
       <div className="flex items-center gap-3">
         {/* Season icon */}
@@ -55,7 +55,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
           <div className="flex items-center gap-2">
             <h3 className="text-xs font-bold text-amber-300 truncate">{season.name}</h3>
             <span className={cn(
-              "text-[10px] font-bold",
+              "text-xs font-bold",
               currentTier >= 20 ? "text-amber-400" : "text-zinc-600",
             )}>
               Tier {currentTier}/20
@@ -65,14 +65,14 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
           {/* Progress bar */}
           <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-white/5">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-amber-500 to-amber-400"
+              className="h-full rounded-full bg-amber-500"
               initial={{ width: 0 }}
               animate={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             />
           </div>
 
-          <div className="mt-1 flex items-center gap-2 text-[10px]">
+          <div className="mt-1 flex items-center gap-2 text-xs">
             <span className="text-amber-400/70 tabular-nums">{progress.seasonXP} XP</span>
             {nextTier && (
               <span className="text-zinc-600">/ {nextTier.required} for Tier {nextTier.tierNumber}</span>
@@ -86,7 +86,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
         {/* Days left + toggle */}
         <div className="flex flex-col items-end gap-1">
           <div className={cn(
-            "flex items-center gap-1 text-[10px]",
+            "flex items-center gap-1 text-xs",
             daysUrgent ? "text-red-400 font-bold" : "text-zinc-500",
           )}>
             <Calendar className="h-3 w-3" />

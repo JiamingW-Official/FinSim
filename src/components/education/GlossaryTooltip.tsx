@@ -69,7 +69,7 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
         <div className="flex items-center gap-2">
           <span className="font-semibold text-xs">{entry.term}</span>
           <span
-            className={`rounded-full px-1.5 py-0.5 text-[9px] font-medium ${categoryColors[entry.category] ?? ""}`}
+            className={`rounded-full px-1.5 py-0.5 text-[11px] font-medium ${categoryColors[entry.category] ?? ""}`}
           >
             {entry.category}
           </span>
@@ -82,14 +82,14 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
 
         {/* Formula (if present) */}
         {entry.formula && (
-          <code className="block rounded bg-muted/40 border border-border/40 px-2 py-1 text-[10px] leading-relaxed font-mono text-foreground/80 whitespace-pre-wrap">
+          <code className="block rounded bg-muted/40 border border-border/40 px-2 py-1 text-xs leading-relaxed font-mono text-foreground/80 whitespace-pre-wrap">
             {entry.formula}
           </code>
         )}
 
         {/* Example (if present) */}
         {entry.example && (
-          <p className="text-[10px] italic text-muted-foreground/70">
+          <p className="text-xs italic text-muted-foreground/70">
             {entry.example}
           </p>
         )}
@@ -98,7 +98,7 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
         <button
           type="button"
           onClick={handleLearnMore}
-          className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline mt-0.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded"
+          className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-0.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded"
         >
           <ExternalLink className="h-2.5 w-2.5" />
           Learn more in Glossary

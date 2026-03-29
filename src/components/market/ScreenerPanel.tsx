@@ -123,20 +123,20 @@ function Sparkline({ data }: { data: number[] }) {
 function AISignalChip({ signal }: { signal: "bullish" | "bearish" | "neutral" }) {
   if (signal === "bullish") {
     return (
-      <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-medium whitespace-nowrap">
+      <span className="inline-flex items-center gap-0.5 text-xs px-1.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-medium whitespace-nowrap">
         Bull
       </span>
     );
   }
   if (signal === "bearish") {
     return (
-      <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full bg-red-500/15 text-red-600 dark:text-red-400 font-medium whitespace-nowrap">
+      <span className="inline-flex items-center gap-0.5 text-xs px-1.5 py-0.5 rounded-full bg-red-500/15 text-red-600 dark:text-red-400 font-medium whitespace-nowrap">
         Bear
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground font-medium whitespace-nowrap">
+    <span className="inline-flex items-center gap-0.5 text-xs px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground font-medium whitespace-nowrap">
       Neutral
     </span>
   );
@@ -157,7 +157,7 @@ function ScreenerStatsBar({ results }: { results: ScreenerResult[] }) {
   const losers = results.filter((r) => r.aiSignal === "bearish").length;
 
   return (
-    <div className="flex flex-wrap gap-3 py-2 px-1 text-[10px] text-muted-foreground border-b mb-2">
+    <div className="flex flex-wrap gap-3 py-2 px-1 text-xs text-muted-foreground border-b mb-2">
       <span>
         <span className="font-semibold text-foreground">{results.length}</span> matches
       </span>
@@ -332,7 +332,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
           {sortedResults.length > 0 && (
             <button
               onClick={handleExportCSV}
-              className="text-[10px] px-2 py-0.5 rounded border border-dashed border-muted-foreground/40 text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+              className="text-xs px-2 py-0.5 rounded border border-dashed border-muted-foreground/40 text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
               title="Export results as CSV"
             >
               Export CSV
@@ -347,7 +347,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
       {/* Saved screens pills (if any) */}
       {savedScreens.length > 0 && (
         <div className="space-y-1.5">
-          <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Saved Screens</p>
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Saved Screens</p>
           <div className="flex flex-wrap gap-1.5">
             {savedScreens.map((screen, idx) => {
               const presetIndex = builtInCount + idx;
@@ -369,7 +369,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
                   </button>
                   <button
                     onClick={() => handleDeleteSavedScreen(idx)}
-                    className="text-[10px] px-1 py-1 rounded-r-lg border border-l-0 border-transparent bg-muted/50 text-muted-foreground hover:text-destructive hover:bg-muted transition-colors"
+                    className="text-xs px-1 py-1 rounded-r-lg border border-l-0 border-transparent bg-muted/50 text-muted-foreground hover:text-destructive hover:bg-muted transition-colors"
                     title="Delete saved screen"
                   >
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -406,7 +406,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
           ))}
         </div>
         {activePreset !== null && !showCustom && activePreset < allPresets.length && (
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             {allPresets[activePreset].description}
           </p>
         )}
@@ -422,7 +422,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
               setActivePreset(null);
             }}
             className={cn(
-              "text-[10px] px-2 py-0.5 rounded border transition-colors",
+              "text-xs px-2 py-0.5 rounded border transition-colors",
               showCustom
                 ? "bg-primary/10 text-primary border-primary/30"
                 : "text-muted-foreground hover:text-foreground border-transparent",
@@ -461,7 +461,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
               <button
                 key={opt.label}
                 onClick={() => addCriteria(opt.build())}
-                className="text-[10px] px-1.5 py-0.5 rounded border border-dashed border-muted-foreground/30 text-muted-foreground hover:border-foreground hover:text-foreground transition-colors"
+                className="text-xs px-1.5 py-0.5 rounded border border-dashed border-muted-foreground/30 text-muted-foreground hover:border-foreground hover:text-foreground transition-colors"
               >
                 + {opt.label}
               </button>
@@ -488,13 +488,13 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
                 />
                 <button
                   onClick={handleSaveScreen}
-                  className="text-[10px] px-2 py-1 rounded bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                  className="text-xs px-2 py-1 rounded bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
                   Save
                 </button>
                 <button
                   onClick={() => setShowSaveInput(false)}
-                  className="text-[10px] px-2 py-1 rounded border border-muted-foreground/30 text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-xs px-2 py-1 rounded border border-muted-foreground/30 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Cancel
                 </button>
@@ -502,7 +502,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
             ) : (
               <button
                 onClick={() => setShowSaveInput(true)}
-                className="text-[10px] px-2 py-1 rounded border border-dashed border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                className="text-xs px-2 py-1 rounded border border-dashed border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
               >
                 + Save as screen
               </button>
@@ -555,7 +555,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
                     <td className="py-1.5 px-1 font-mono font-medium">
                       <div className="flex flex-col">
                         <span>{r.ticker}</span>
-                        <span className="text-[10px] text-muted-foreground font-sans font-normal truncate max-w-[72px]">
+                        <span className="text-xs text-muted-foreground font-sans font-normal truncate max-w-[72px]">
                           {r.name}
                         </span>
                       </div>
@@ -574,7 +574,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
                         {r.matchedCriteria.map((mc) => (
                           <span
                             key={mc}
-                            className="text-[10px] px-1 py-0 rounded bg-muted text-muted-foreground"
+                            className="text-xs px-1 py-0 rounded bg-muted text-muted-foreground"
                           >
                             {mc}
                           </span>
@@ -592,7 +592,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
                     <td className="py-1.5 px-1">
                       <button
                         onClick={(e) => handleTrade(r.ticker, e)}
-                        className="text-[10px] px-2 py-0.5 rounded bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium whitespace-nowrap"
+                        className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium whitespace-nowrap"
                       >
                         Trade
                       </button>

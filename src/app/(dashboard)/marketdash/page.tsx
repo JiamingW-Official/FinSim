@@ -51,15 +51,6 @@ function rngSign() {
 
 // ── Animation variants ────────────────────────────────────────────────────────
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.22, ease: "easeOut" as const } },
-};
-
-const stagger = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.05 } },
-};
 
 // ── Market status helper ──────────────────────────────────────────────────────
 
@@ -450,10 +441,7 @@ export default function MarketDashPage() {
       <div className="max-w-[1400px] mx-auto p-4 space-y-6">
 
         {/* ── Header ────────────────────────────────────────────────────── */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
+        <div
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
@@ -478,14 +466,14 @@ export default function MarketDashPage() {
           </div>
           <div className="text-xs text-zinc-500 flex items-center gap-1.5">
             <Clock className="h-3.5 w-3.5" />
-            Live · updates every 2s
+            Simulated data
           </div>
-        </motion.div>
+        </div>
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 1 — Market Overview Strip
         ════════════════════════════════════════════════════════════════ */}
-        <motion.section variants={fadeUp} initial="hidden" animate="show">
+        <section>
           {/* Ticker tape */}
           <div className="relative overflow-hidden h-9 bg-zinc-900 border border-zinc-800 rounded-xl mb-4 flex items-center">
             <div className="flex gap-0 animate-[marquee_45s_linear_infinite] whitespace-nowrap">
@@ -506,14 +494,11 @@ export default function MarketDashPage() {
           </div>
 
           {/* Index cards */}
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
+          <div
             className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
           >
             {indices.map((idx) => (
-              <motion.div key={idx.name} variants={fadeUp}>
+              <div key={idx.name}>
                 <Card className="bg-zinc-900 border-zinc-800 p-3 hover:border-zinc-700 transition-colors">
                   <div className="text-xs text-zinc-500 mb-1 truncate">{idx.name}</div>
                   <div className="text-base font-semibold tabular-nums">
@@ -530,15 +515,15 @@ export default function MarketDashPage() {
                     <SparklineSVG data={idx.sparkData} positive={idx.pct >= 0} w={80} h={24} />
                   </div>
                 </Card>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
-        </motion.section>
+          </div>
+        </section>
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 2 — Sector Heatmap
         ════════════════════════════════════════════════════════════════ */}
-        <motion.section variants={fadeUp} initial="hidden" animate="show">
+        <section>
           <div className="flex items-center gap-2 mb-3">
             <Layers className="h-4 w-4 text-zinc-400" />
             <h2 className="text-sm font-semibold text-zinc-200">Sector Heatmap</h2>
@@ -671,12 +656,12 @@ export default function MarketDashPage() {
               </AnimatePresence>
             </Card>
           </div>
-        </motion.section>
+        </section>
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 3 — Most Active / Gainers / Losers
         ════════════════════════════════════════════════════════════════ */}
-        <motion.section variants={fadeUp} initial="hidden" animate="show">
+        <section>
           <div className="flex items-center gap-2 mb-3">
             <Activity className="h-4 w-4 text-zinc-400" />
             <h2 className="text-sm font-semibold text-zinc-200">Most Active Stocks</h2>
@@ -700,7 +685,7 @@ export default function MarketDashPage() {
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between text-[10px] text-zinc-600 mt-2">
+              <div className="flex justify-between text-xs text-zinc-600 mt-2">
                 <span>Ticker</span><span>Volume</span><span>Avg Vol</span><span>Ratio</span>
               </div>
             </Card>
@@ -718,7 +703,7 @@ export default function MarketDashPage() {
                     <span className="text-zinc-400 tabular-nums flex-1">${s.price.toFixed(2)}</span>
                     <div className="flex items-center gap-1">
                       {s.spike && (
-                        <span className="bg-amber-500/20 text-amber-400 text-[9px] px-1 rounded font-medium">Vol</span>
+                        <span className="bg-amber-500/20 text-amber-400 text-[11px] px-1 rounded font-medium">Vol</span>
                       )}
                       <span className="text-emerald-400 font-semibold tabular-nums w-12 text-right">
                         +{s.pct}%
@@ -742,7 +727,7 @@ export default function MarketDashPage() {
                     <span className="text-zinc-400 tabular-nums flex-1">${s.price.toFixed(2)}</span>
                     <div className="flex items-center gap-1">
                       <span className={cn(
-                        "text-[9px] px-1 rounded font-medium",
+                        "text-[11px] px-1 rounded font-medium",
                         s.reason === "earnings" ? "bg-red-500/20 text-red-400" :
                         s.reason === "downgrade" ? "bg-orange-500/20 text-orange-400" :
                         s.reason === "sector" ? "bg-purple-500/20 text-purple-400" :
@@ -759,12 +744,12 @@ export default function MarketDashPage() {
               </div>
             </Card>
           </div>
-        </motion.section>
+        </section>
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 4 — Options Flow
         ════════════════════════════════════════════════════════════════ */}
-        <motion.section variants={fadeUp} initial="hidden" animate="show">
+        <section>
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <Zap className="h-4 w-4 text-zinc-400" />
@@ -831,7 +816,7 @@ export default function MarketDashPage() {
                         <td className="py-1.5 pr-3 tabular-nums">${row.strike}</td>
                         <td className="py-1.5 pr-3">
                           <span className={cn(
-                            "px-1.5 py-0.5 rounded text-[10px] font-semibold",
+                            "px-1.5 py-0.5 rounded text-xs font-semibold",
                             row.isCall
                               ? "bg-emerald-500/20 text-emerald-400"
                               : "bg-red-500/20 text-red-400"
@@ -844,7 +829,7 @@ export default function MarketDashPage() {
                         <td className="py-1.5 pr-3 tabular-nums font-medium text-zinc-200">${row.premium}M</td>
                         <td className="py-1.5 pr-3">
                           <span className={cn(
-                            "px-1.5 py-0.5 rounded text-[10px] font-medium",
+                            "px-1.5 py-0.5 rounded text-xs font-medium",
                             row.flowType === "Sweep"
                               ? "bg-sky-500/20 text-sky-400"
                               : row.flowType === "Block"
@@ -856,7 +841,7 @@ export default function MarketDashPage() {
                         </td>
                         <td className="py-1.5">
                           <span className={cn(
-                            "px-1.5 py-0.5 rounded text-[10px] font-semibold",
+                            "px-1.5 py-0.5 rounded text-xs font-semibold",
                             row.bullish
                               ? "bg-emerald-500/20 text-emerald-400"
                               : "bg-red-500/20 text-red-400"
@@ -864,7 +849,7 @@ export default function MarketDashPage() {
                             {row.bullish ? "Bullish" : "Bearish"}
                           </span>
                           {row.unusual && (
-                            <span className="ml-1 text-[9px] text-amber-400 font-medium">Unusual</span>
+                            <span className="ml-1 text-[11px] text-amber-400 font-medium">Unusual</span>
                           )}
                         </td>
                       </motion.tr>
@@ -874,12 +859,12 @@ export default function MarketDashPage() {
               </table>
             </div>
           </Card>
-        </motion.section>
+        </section>
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 5 — Earnings & Events Calendar
         ════════════════════════════════════════════════════════════════ */}
-        <motion.section variants={fadeUp} initial="hidden" animate="show">
+        <section>
           <div className="flex items-center gap-2 mb-3">
             <Calendar className="h-4 w-4 text-zinc-400" />
             <h2 className="text-sm font-semibold text-zinc-200">Earnings & Events Calendar</h2>
@@ -920,7 +905,7 @@ export default function MarketDashPage() {
                 </svg>
                 <div className="flex gap-3 mt-1 justify-center">
                   {[["beat", "#10b981"], ["miss", "#ef4444"], ["inline", "#a1a1aa"]].map(([label, color]) => (
-                    <div key={label} className="flex items-center gap-1 text-[10px] text-zinc-500">
+                    <div key={label} className="flex items-center gap-1 text-xs text-zinc-500">
                       <div className="w-2 h-2 rounded-full" style={{ background: color }} />
                       {label}
                     </div>
@@ -937,7 +922,7 @@ export default function MarketDashPage() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-[9px] px-1 h-4 shrink-0",
+                          "text-[11px] px-1 h-4 shrink-0",
                           e.time === "pre"
                             ? "border-amber-500/40 text-amber-400"
                             : "border-sky-500/40 text-sky-400"
@@ -974,7 +959,7 @@ export default function MarketDashPage() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-[10px] px-1.5 h-5",
+                          "text-xs px-1.5 h-5",
                           ev.impact === "high"
                             ? "border-red-500/40 text-red-400 bg-red-500/10"
                             : "border-amber-500/40 text-amber-400 bg-amber-500/10"
@@ -1004,7 +989,7 @@ export default function MarketDashPage() {
                         s === "miss" ? "bg-red-500/10 text-red-400" : "bg-zinc-800 text-zinc-400"
                       )}>
                         <div className="text-lg font-bold">{count}</div>
-                        <div className="text-[10px] capitalize">{s === "inline" ? "In-line" : s}</div>
+                        <div className="text-xs capitalize">{s === "inline" ? "In-line" : s}</div>
                       </div>
                     );
                   })}
@@ -1012,12 +997,12 @@ export default function MarketDashPage() {
               </div>
             </Card>
           </div>
-        </motion.section>
+        </section>
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 6 — Market Breadth
         ════════════════════════════════════════════════════════════════ */}
-        <motion.section variants={fadeUp} initial="hidden" animate="show" className="pb-6">
+        <section className="pb-6">
           <div className="flex items-center gap-2 mb-3">
             <Gauge className="h-4 w-4 text-zinc-400" />
             <h2 className="text-sm font-semibold text-zinc-200">Market Breadth</h2>
@@ -1030,11 +1015,9 @@ export default function MarketDashPage() {
                 <div className="flex-1">
                   <div className="text-xs text-emerald-400 mb-1">Advancing · {BREADTH.advancing.toLocaleString()}</div>
                   <div className="h-3 bg-zinc-800 rounded-full overflow-hidden">
-                    <motion.div
-                      className="h-full bg-emerald-500 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${(BREADTH.advancing / (BREADTH.advancing + BREADTH.declining)) * 100}%` }}
-                      transition={{ duration: 0.8, delay: 0.3 }}
+                    <div
+                      className="h-full bg-emerald-500 rounded-full transition-all duration-200"
+                      style={{ width: `${(BREADTH.advancing / (BREADTH.advancing + BREADTH.declining)) * 100}%` }}
                     />
                   </div>
                 </div>
@@ -1042,11 +1025,9 @@ export default function MarketDashPage() {
               <div className="flex-1">
                 <div className="text-xs text-red-400 mb-1">Declining · {BREADTH.declining.toLocaleString()}</div>
                 <div className="h-3 bg-zinc-800 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-red-500 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${(BREADTH.declining / (BREADTH.advancing + BREADTH.declining)) * 100}%` }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                  <div
+                    className="h-full bg-red-500 rounded-full transition-all duration-200"
+                    style={{ width: `${(BREADTH.declining / (BREADTH.advancing + BREADTH.declining)) * 100}%` }}
                   />
                 </div>
               </div>
@@ -1068,27 +1049,17 @@ export default function MarketDashPage() {
               <div className="text-xs font-semibold text-zinc-400 mb-3">52-Week Highs / Lows</div>
               <div className="flex items-center justify-around py-4">
                 <div className="text-center">
-                  <motion.div
-                    className="text-3xl font-bold text-emerald-400"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.2 }}
-                  >
+                  <div className="text-3xl font-bold text-emerald-400">
                     {BREADTH.newHighs}
-                  </motion.div>
+                  </div>
                   <div className="text-xs text-zinc-500 mt-1">New Highs</div>
                   <ArrowUpRight className="h-4 w-4 text-emerald-400 mx-auto mt-1" />
                 </div>
                 <div className="w-px h-16 bg-zinc-800" />
                 <div className="text-center">
-                  <motion.div
-                    className="text-3xl font-bold text-red-400"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.3 }}
-                  >
+                  <div className="text-3xl font-bold text-red-400">
                     {BREADTH.newLows}
-                  </motion.div>
+                  </div>
                   <div className="text-xs text-zinc-500 mt-1">New Lows</div>
                   <ArrowDownRight className="h-4 w-4 text-red-400 mx-auto mt-1" />
                 </div>
@@ -1096,14 +1067,12 @@ export default function MarketDashPage() {
               <div className="mt-2">
                 <div className="text-[11px] text-zinc-500 mb-1">High/Low ratio</div>
                 <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${(BREADTH.newHighs / (BREADTH.newHighs + BREADTH.newLows)) * 100}%` }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                  <div
+                    className="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full transition-all duration-200"
+                    style={{ width: `${(BREADTH.newHighs / (BREADTH.newHighs + BREADTH.newLows)) * 100}%` }}
                   />
                 </div>
-                <div className="flex justify-between text-[10px] text-zinc-600 mt-0.5">
+                <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
                   <span>Highs {Math.round((BREADTH.newHighs / (BREADTH.newHighs + BREADTH.newLows)) * 100)}%</span>
                   <span>Lows {Math.round((BREADTH.newLows / (BREADTH.newHighs + BREADTH.newLows)) * 100)}%</span>
                 </div>
@@ -1122,31 +1091,26 @@ export default function MarketDashPage() {
                 />
               </div>
               <div className="text-center mt-2">
-                <motion.div
+                <div
                   className={cn(
                     "text-3xl font-bold",
                     BREADTH.pctAbove200 >= 60 ? "text-emerald-400" : BREADTH.pctAbove200 >= 40 ? "text-amber-400" : "text-red-400"
                   )}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
                 >
                   {BREADTH.pctAbove200}%
-                </motion.div>
+                </div>
                 <div className="text-[11px] text-zinc-500 mt-1">
                   {BREADTH.pctAbove200 >= 60 ? "Bullish breadth" : BREADTH.pctAbove200 >= 40 ? "Mixed signals" : "Bearish breadth"}
                 </div>
               </div>
               <div className="mt-3">
                 <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <motion.div
+                  <div
                     className={cn(
-                      "h-full rounded-full",
+                      "h-full rounded-full transition-all duration-200",
                       BREADTH.pctAbove200 >= 60 ? "bg-emerald-500" : BREADTH.pctAbove200 >= 40 ? "bg-amber-500" : "bg-red-500"
                     )}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${BREADTH.pctAbove200}%` }}
-                    transition={{ duration: 0.9, delay: 0.2 }}
+                    style={{ width: `${BREADTH.pctAbove200}%` }}
                   />
                 </div>
               </div>
@@ -1164,21 +1128,18 @@ export default function MarketDashPage() {
                 />
               </div>
               <div className="text-center mt-2">
-                <motion.div
+                <div
                   className={cn("text-3xl font-bold", BREADTH.mcclellan > 0 ? "text-emerald-400" : "text-red-400")}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
                 >
                   {BREADTH.mcclellan > 0 ? "+" : ""}{BREADTH.mcclellan}
-                </motion.div>
+                </div>
                 <div className="text-[11px] text-zinc-500 mt-1">
                   {BREADTH.mcclellan > 50 ? "Overbought territory" :
                    BREADTH.mcclellan > 0 ? "Bullish momentum" :
                    BREADTH.mcclellan > -50 ? "Bearish momentum" : "Oversold territory"}
                 </div>
               </div>
-              <div className="mt-3 grid grid-cols-3 text-center text-[10px] gap-1">
+              <div className="mt-3 grid grid-cols-3 text-center text-xs gap-1">
                 {[{ label: "Oversold", range: "< -50", color: "text-red-400" },
                   { label: "Neutral", range: "-50 to 50", color: "text-zinc-400" },
                   { label: "Overbought", range: "> 50", color: "text-amber-400" }].map((z) => (
@@ -1190,7 +1151,7 @@ export default function MarketDashPage() {
               </div>
             </Card>
           </div>
-        </motion.section>
+        </section>
       </div>
 
       {/* Ticker tape CSS animation */}

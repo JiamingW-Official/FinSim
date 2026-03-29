@@ -367,7 +367,7 @@ function TabSpread() {
       {/* Controls */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-3">
-          <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Market Parameters</div>
+          <div className="text-xs font-semibold text-zinc-400">Market Parameters</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-zinc-300">Annual Volatility</span>
@@ -427,7 +427,7 @@ function TabSpread() {
         </div>
 
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-3">
-          <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Optimal Quotes</div>
+          <div className="text-xs font-semibold text-zinc-400">Optimal Quotes</div>
           <div className="space-y-2">
             {[
               {
@@ -478,7 +478,7 @@ function TabSpread() {
 
       {/* Info panel */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Key Insight</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">Key Insight</div>
         <div className="grid grid-cols-3 gap-3 text-xs text-zinc-300">
           <div className="bg-zinc-800 rounded p-3">
             <div className="text-amber-400 font-semibold mb-1">Quoted vs Realized</div>
@@ -591,7 +591,7 @@ function TabInventory() {
 
       {/* Inventory Chart */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Inventory Position</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">Inventory Position</div>
         <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
           {/* Grid lines */}
           {[-1000, -500, 0, 500, 1000].map((v) => {
@@ -637,7 +637,7 @@ function TabInventory() {
 
       {/* P&L Chart */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Cumulative P&L</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">Cumulative P&L</div>
         <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
           {[0, 0.5, 1].map((frac) => {
             const v = -maxPnl + frac * 2 * maxPnl;
@@ -695,7 +695,7 @@ function TabInventory() {
 
       {/* Quote skewing info */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Quote Skewing Logic</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">Quote Skewing Logic</div>
         <div className="grid grid-cols-3 gap-3 text-xs">
           <div className="bg-zinc-800 rounded p-3">
             <div className="text-emerald-400 font-semibold mb-1">Long Inventory → Skew Down</div>
@@ -775,7 +775,7 @@ function TabAMM() {
     <div className="space-y-4">
       {/* Comparison table */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">AMM vs CLOB Comparison</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">AMM vs CLOB Comparison</div>
         <div className="space-y-1">
           <div className="grid grid-cols-3 gap-2 text-xs font-semibold text-zinc-400 pb-1 border-b border-zinc-800">
             <span>Metric</span>
@@ -814,7 +814,7 @@ function TabAMM() {
       {/* IL Calculator */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-3">
-          <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Impermanent Loss Calculator</div>
+          <div className="text-xs font-semibold text-zinc-400">Impermanent Loss Calculator</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-zinc-300">Price Move</span>
@@ -870,7 +870,7 @@ function TabAMM() {
 
         {/* IL Curve SVG */}
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-          <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">IL Curve (x×y=k)</div>
+          <div className="text-xs font-semibold text-zinc-400 mb-3">IL Curve (x×y=k)</div>
           <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
             {[0, 0.1, 0.2, 0.3].map((v) => {
               const y = pad.t + ih - (v / maxIL) * ih;
@@ -1007,7 +1007,7 @@ function TabHFT() {
       {/* Latency edge calculator */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-3">
-          <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Latency Edge Calculator</div>
+          <div className="text-xs font-semibold text-zinc-400">Latency Edge Calculator</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span className="text-zinc-300">Trades Per Day</span>
@@ -1050,7 +1050,7 @@ function TabHFT() {
         </div>
 
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-          <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Latency Comparison</div>
+          <div className="text-xs font-semibold text-zinc-400 mb-3">Latency Comparison</div>
           <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
             {[
               { label: "Co-located HFT", micros: 0.5, color: "#22c55e" },
@@ -1081,7 +1081,7 @@ function TabHFT() {
 
       {/* Order types */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">HFT Order Types</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">HFT Order Types</div>
         <div className="grid grid-cols-2 gap-3">
           {orderTypes.map((ot) => (
             <div key={ot.name} className="bg-zinc-800 rounded-lg p-3">
@@ -1097,7 +1097,7 @@ function TabHFT() {
 
       {/* HFT vs Stat Arb */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Market Making vs Statistical Arbitrage</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">Market Making vs Statistical Arbitrage</div>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-zinc-800 rounded-lg p-3">
             <div className="text-blue-400 font-semibold text-sm mb-2">HFT Market Making</div>
@@ -1124,7 +1124,7 @@ function TabHFT() {
 
       {/* Regulatory landscape */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Regulatory Landscape</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">Regulatory Landscape</div>
         <div className="space-y-2">
           {regulatoryRules.map((r) => (
             <div key={r.rule} className="flex gap-3 bg-zinc-800 rounded-lg p-3">
@@ -1144,7 +1144,7 @@ function TabHFT() {
 
       {/* Market impact */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">HFT Market Impact: Debate</div>
+        <div className="text-xs font-semibold text-zinc-400 mb-3">HFT Market Impact: Debate</div>
         <div className="grid grid-cols-2 gap-3 text-xs">
           <div>
             <div className="text-emerald-400 font-semibold mb-2">Positive Contributions</div>

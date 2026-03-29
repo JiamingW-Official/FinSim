@@ -732,7 +732,7 @@ export default function NeobanksPage() {
                               <td className="py-2.5 px-3">
                                 <Badge
                                   variant="outline"
-                                  className={nb.profitable ? "border-emerald-500/40 text-emerald-400 text-[10px]" : "border-red-500/40 text-red-400 text-[10px]"}
+                                  className={nb.profitable ? "border-emerald-500/40 text-emerald-400 text-xs" : "border-red-500/40 text-red-400 text-xs"}
                                 >
                                   {nb.profitable ? "Yes" : "No"}
                                 </Badge>
@@ -784,7 +784,7 @@ export default function NeobanksPage() {
                           <div key={stage.year} className="flex gap-3">
                             <div className="flex flex-col items-center">
                               <div
-                                className="w-7 h-7 rounded-full flex items-center justify-center text-[9px] font-bold flex-shrink-0"
+                                className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0"
                                 style={{ background: `hsl(${220 + i * 20}, 70%, 55%)` }}
                               >
                                 {i + 1}
@@ -800,7 +800,7 @@ export default function NeobanksPage() {
                                   <Badge
                                     key={f}
                                     variant="outline"
-                                    className="text-[10px] border-slate-700 text-slate-400 py-0"
+                                    className="text-xs border-slate-700 text-slate-400 py-0"
                                   >
                                     {f}
                                   </Badge>
@@ -844,7 +844,7 @@ export default function NeobanksPage() {
                           onValueChange={handleCACChange}
                           className="w-full"
                         />
-                        <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+                        <div className="flex justify-between text-xs text-slate-600 mt-1">
                           <span>$5 (Nubank)</span>
                           <span>$150 (legacy neobank)</span>
                         </div>
@@ -862,7 +862,7 @@ export default function NeobanksPage() {
                           onValueChange={handleRevChange}
                           className="w-full"
                         />
-                        <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+                        <div className="flex justify-between text-xs text-slate-600 mt-1">
                           <span>$1 (early stage)</span>
                           <span>$25 (mature)</span>
                         </div>
@@ -956,7 +956,7 @@ export default function NeobanksPage() {
                             <p className="text-sm font-semibold text-slate-200">{item.lever}</p>
                             <Badge
                               variant="outline"
-                              className={`text-[10px] border-${item.color}-500/40 text-${item.color}-400`}
+                              className={`text-xs border-${item.color}-500/40 text-${item.color}-400`}
                             >
                               {item.impact} Impact
                             </Badge>
@@ -1011,7 +1011,7 @@ export default function NeobanksPage() {
                               </span>
                               <div className="flex-1 bg-slate-800 rounded-full h-5 overflow-hidden">
                                 <div
-                                  className="h-full rounded-full flex items-center justify-end pr-2 text-[10px] text-white font-medium"
+                                  className="h-full rounded-full flex items-center justify-end pr-2 text-xs text-white font-medium"
                                   style={{
                                     width: `${(b.nim / maxNIM) * 100}%`,
                                     background: b.color,
@@ -1023,7 +1023,7 @@ export default function NeobanksPage() {
                               </div>
                               <Badge
                                 variant="outline"
-                                className={`text-[10px] flex-shrink-0 ${isNeo ? "border-indigo-500/40 text-indigo-400" : "border-slate-600 text-slate-500"}`}
+                                className={`text-xs flex-shrink-0 ${isNeo ? "border-indigo-500/40 text-indigo-400" : "border-slate-600 text-slate-500"}`}
                               >
                                 {isNeo ? "Neo" : "Trad"}
                               </Badge>
@@ -1212,7 +1212,7 @@ export default function NeobanksPage() {
                               <span className="text-xs text-slate-400 w-16 flex-shrink-0">{p.name}</span>
                               <div className="flex-1 flex items-center gap-2">
                                 <div
-                                  className="h-7 rounded-lg flex items-center justify-center text-[10px] font-semibold text-white px-3"
+                                  className="h-7 rounded-lg flex items-center justify-center text-xs font-semibold text-white px-3"
                                   style={{
                                     background: isFuture ? "#334155" : p.color,
                                     minWidth: 80,
@@ -1223,7 +1223,7 @@ export default function NeobanksPage() {
                                   {isFuture ? `Est. ${p.year}` : `Profitable ${p.year}`}
                                 </div>
                                 {isFuture && (
-                                  <span className="text-[10px] text-slate-500 italic">forecast</span>
+                                  <span className="text-xs text-slate-500 italic">forecast</span>
                                 )}
                               </div>
                             </div>

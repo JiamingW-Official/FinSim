@@ -40,7 +40,7 @@ const rand = () => {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3">
+    <h3 className="text-sm font-semibold text-zinc-300 mb-3">
       {children}
     </h3>
   );

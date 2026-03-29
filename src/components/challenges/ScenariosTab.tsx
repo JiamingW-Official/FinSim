@@ -31,7 +31,7 @@ export function ScenariosTab({ onSelectScenario }: ScenariosTabProps) {
         <BookOpen className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
         <div>
           <p className="text-[11px] font-bold text-amber-400">Historical Missions</p>
-          <p className="text-[10px] text-amber-400/70 leading-relaxed">
+          <p className="text-xs text-amber-400/70 leading-relaxed">
             Replay iconic market events. Learn how professionals navigated crashes, squeezes, and rallies.
           </p>
         </div>
@@ -54,7 +54,7 @@ export function ScenariosTab({ onSelectScenario }: ScenariosTabProps) {
         </div>
         {sRankCount > 0 && (
           <motion.div
-            className="flex items-center gap-1 text-[10px] font-bold text-amber-400"
+            className="flex items-center gap-1 text-xs font-bold text-amber-400"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}

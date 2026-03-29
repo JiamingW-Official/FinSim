@@ -250,7 +250,7 @@ function ToggleButton({
     <button
       onClick={onClick}
       className={cn(
-        "rounded px-2 py-1 text-[10px] font-medium transition-colors",
+        "rounded px-2 py-1 text-xs font-medium transition-colors",
         active
           ? "border border-orange-500/30 bg-orange-500/15 text-orange-400"
           : "text-muted-foreground hover:text-foreground",
@@ -329,7 +329,7 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
             </ToggleButton>
           ))}
         </div>
-        <span className="ml-auto text-[10px] text-muted-foreground">
+        <span className="ml-auto text-xs text-muted-foreground">
           {filtered.length} orders · auto-refreshes
         </span>
       </div>
@@ -343,7 +343,7 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
                 (col, i) => (
                   <th
                     key={`${col}-${i}`}
-                    className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70"
+                    className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70"
                   >
                     {col}
                   </th>
@@ -367,15 +367,15 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
                       : "border-l-red-500/40 hover:bg-red-500/5",
                   )}
                 >
-                  <td className="px-2 py-1 text-[10px] text-muted-foreground">{relTime(order.timestamp)}</td>
-                  <td className="px-2 py-1 text-[10px] font-semibold">{order.ticker}</td>
-                  <td className={cn("px-2 py-1 text-[10px] font-semibold", isCall ? "text-emerald-400" : "text-red-400")}>
+                  <td className="px-2 py-1 text-xs text-muted-foreground">{relTime(order.timestamp)}</td>
+                  <td className="px-2 py-1 text-xs font-semibold">{order.ticker}</td>
+                  <td className={cn("px-2 py-1 text-xs font-semibold", isCall ? "text-emerald-400" : "text-red-400")}>
                     {order.type}
                   </td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums">${order.strike}</td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums text-muted-foreground">{fmtExpiry(order.expiry)}</td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums">{order.size.toLocaleString()}</td>
-                  <td className="px-2 py-1 text-[10px] font-medium tabular-nums text-orange-400">
+                  <td className="px-2 py-1 text-xs tabular-nums">${order.strike}</td>
+                  <td className="px-2 py-1 text-xs tabular-nums text-muted-foreground">{fmtExpiry(order.expiry)}</td>
+                  <td className="px-2 py-1 text-xs tabular-nums">{order.size.toLocaleString()}</td>
+                  <td className="px-2 py-1 text-xs font-medium tabular-nums text-orange-400">
                     {fmtPremium(order.premium)}
                     {order.isUnusual && (
                       <span className="ml-1 rounded bg-amber-500/20 px-1 py-0.5 text-[8px] font-semibold text-amber-400">
@@ -383,11 +383,11 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
                       </span>
                     )}
                   </td>
-                  <td className={cn("px-2 py-1 text-[10px] font-medium", order.side === "Buy" ? "text-emerald-400" : "text-red-400")}>
+                  <td className={cn("px-2 py-1 text-xs font-medium", order.side === "Buy" ? "text-emerald-400" : "text-red-400")}>
                     {order.side}
                   </td>
-                  <td className="px-2 py-1 text-[10px] text-muted-foreground">{order.exchange}</td>
-                  <td className="px-2 py-1 text-[10px]">
+                  <td className="px-2 py-1 text-xs text-muted-foreground">{order.exchange}</td>
+                  <td className="px-2 py-1 text-xs">
                     <span
                       className={cn(
                         "font-medium",
@@ -547,9 +547,9 @@ function TickerHeatmap({ orders, onFilter }: TickerHeatmapProps) {
         >
           <div className="mb-1 flex justify-between gap-3">
             <span className="text-[11px] font-semibold">{tooltip.ticker}</span>
-            <span className="text-[10px] text-muted-foreground">{fmtExpiry(tooltip.expiry)}</span>
+            <span className="text-xs text-muted-foreground">{fmtExpiry(tooltip.expiry)}</span>
           </div>
-          <div className="space-y-0.5 text-[10px]">
+          <div className="space-y-0.5 text-xs">
             <div className="flex justify-between gap-4">
               <span className="text-muted-foreground">Call flow</span>
               <span className={tooltip.callFlow >= 0 ? "text-emerald-400" : "text-red-400"}>
@@ -609,7 +609,7 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
           {alertTickers.map((t) => (
             <div
               key={t}
-              className="flex items-center gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 text-[10px]"
+              className="flex items-center gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 text-xs"
             >
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-400" />
               <span className="font-semibold text-amber-400">{t}</span>
@@ -623,12 +623,12 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
 
       {/* Educational tooltip */}
       <details className="group rounded-md border border-border/40 bg-card/30 px-3 py-2">
-        <summary className="cursor-pointer list-none text-[10px] font-medium text-muted-foreground hover:text-foreground">
-          <span className="mr-1 text-[9px] group-open:hidden">▶</span>
-          <span className="mr-1 hidden text-[9px] group-open:inline">▼</span>
+        <summary className="cursor-pointer list-none text-xs font-medium text-muted-foreground hover:text-foreground">
+          <span className="mr-1 text-[11px] group-open:hidden">▶</span>
+          <span className="mr-1 hidden text-[11px] group-open:inline">▼</span>
           What is dark pool trading?
         </summary>
-        <p className="mt-1.5 text-[10px] leading-relaxed text-muted-foreground">
+        <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
           Dark pools are private exchanges where institutional investors trade large blocks of shares away from public markets.
           They avoid price impact — a 2M share buy order on a public exchange would move the price sharply before the trade completes.
           Prints <span className="text-emerald-400">above the ask</span> signal aggressive institutional buying;
@@ -643,7 +643,7 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b border-border/50">
               {["Time", "Ticker", "Size", "Price", "Bid", "Ask", "vs Mkt", "Notional", "Dark Vol%"].map((col) => (
-                <th key={col} className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70">
+                <th key={col} className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70">
                   {col}
                 </th>
               ))}
@@ -668,16 +668,16 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
                       : "border-l-transparent hover:bg-accent/10",
                   )}
                 >
-                  <td className="px-2 py-1 text-[10px] text-muted-foreground">{relTime(p.timestamp)}</td>
-                  <td className="px-2 py-1 text-[10px] font-semibold">{p.ticker}</td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums font-medium">{fmtShares(p.size)}</td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums">${p.price.toFixed(2)}</td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums text-muted-foreground">${p.bid.toFixed(2)}</td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums text-muted-foreground">${p.ask.toFixed(2)}</td>
-                  <td className="px-2 py-1 text-[10px]">
+                  <td className="px-2 py-1 text-xs text-muted-foreground">{relTime(p.timestamp)}</td>
+                  <td className="px-2 py-1 text-xs font-semibold">{p.ticker}</td>
+                  <td className="px-2 py-1 text-xs tabular-nums font-medium">{fmtShares(p.size)}</td>
+                  <td className="px-2 py-1 text-xs tabular-nums">${p.price.toFixed(2)}</td>
+                  <td className="px-2 py-1 text-xs tabular-nums text-muted-foreground">${p.bid.toFixed(2)}</td>
+                  <td className="px-2 py-1 text-xs tabular-nums text-muted-foreground">${p.ask.toFixed(2)}</td>
+                  <td className="px-2 py-1 text-xs">
                     <span
                       className={cn(
-                        "rounded px-1 py-0.5 text-[9px] font-semibold",
+                        "rounded px-1 py-0.5 text-[11px] font-semibold",
                         isAbove ? "bg-emerald-500/15 text-emerald-400"
                           : isBelow ? "bg-red-500/15 text-red-400"
                           : "bg-muted/30 text-muted-foreground",
@@ -687,10 +687,10 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
                       {p.diffPct !== 0 && ` ${p.diffPct > 0 ? "+" : ""}${p.diffPct.toFixed(2)}%`}
                     </span>
                   </td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums font-medium text-orange-400">
+                  <td className="px-2 py-1 text-xs tabular-nums font-medium text-orange-400">
                     {fmtNotional(p.notional)}
                   </td>
-                  <td className="px-2 py-1 text-[10px] tabular-nums text-muted-foreground">
+                  <td className="px-2 py-1 text-xs tabular-nums text-muted-foreground">
                     {darkVolPct}%
                   </td>
                 </tr>
@@ -881,12 +881,12 @@ function PcDashboard({ seed }: PcDashboardProps) {
       {/* Overall gauge + chart */}
       <div className="flex flex-wrap items-start gap-6">
         <div className="flex flex-col items-center gap-1">
-          <p className="text-[10px] font-semibold text-muted-foreground">Market P/C Ratio</p>
+          <p className="text-xs font-semibold text-muted-foreground">Market P/C Ratio</p>
           <PcGauge value={currentPc} />
-          <p className="text-[9px] text-muted-foreground">Extreme Greed = 0.5 · Extreme Fear = 2.0</p>
+          <p className="text-[11px] text-muted-foreground">Extreme Greed = 0.5 · Extreme Fear = 2.0</p>
         </div>
         <div className="min-w-[280px] flex-1">
-          <p className="mb-1 text-[10px] font-semibold text-muted-foreground">30-Day P/C History</p>
+          <p className="mb-1 text-xs font-semibold text-muted-foreground">30-Day P/C History</p>
           <PcLineChart history={pcHistory} />
         </div>
       </div>
@@ -894,29 +894,29 @@ function PcDashboard({ seed }: PcDashboardProps) {
       {/* Smart money vs retail explanation */}
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         <div className="rounded-md border border-border/40 bg-card/30 p-2">
-          <p className="text-[9px] text-muted-foreground">Smart $ Bullish</p>
-          <p className="text-[9px] text-muted-foreground/60">(orders &gt;$250K calls)</p>
+          <p className="text-[11px] text-muted-foreground">Smart $ Bullish</p>
+          <p className="text-[11px] text-muted-foreground/60">(orders &gt;$250K calls)</p>
           <p className="mt-1 text-base font-bold text-emerald-400">
             {tickerRatios.reduce((s, r) => s + r.largeBullish, 0)}
           </p>
         </div>
         <div className="rounded-md border border-border/40 bg-card/30 p-2">
-          <p className="text-[9px] text-muted-foreground">Smart $ Bearish</p>
-          <p className="text-[9px] text-muted-foreground/60">(orders &gt;$250K puts)</p>
+          <p className="text-[11px] text-muted-foreground">Smart $ Bearish</p>
+          <p className="text-[11px] text-muted-foreground/60">(orders &gt;$250K puts)</p>
           <p className="mt-1 text-base font-bold text-red-400">
             {tickerRatios.reduce((s, r) => s + r.largeBearish, 0)}
           </p>
         </div>
         <div className="rounded-md border border-border/40 bg-card/30 p-2">
-          <p className="text-[9px] text-muted-foreground">Retail Bullish</p>
-          <p className="text-[9px] text-muted-foreground/60">(orders &lt;$50K calls)</p>
+          <p className="text-[11px] text-muted-foreground">Retail Bullish</p>
+          <p className="text-[11px] text-muted-foreground/60">(orders &lt;$50K calls)</p>
           <p className="mt-1 text-base font-bold text-emerald-400/70">
             {tickerRatios.reduce((s, r) => s + r.retailBullish, 0)}
           </p>
         </div>
         <div className="rounded-md border border-border/40 bg-card/30 p-2">
-          <p className="text-[9px] text-muted-foreground">Retail Bearish</p>
-          <p className="text-[9px] text-muted-foreground/60">(orders &lt;$50K puts)</p>
+          <p className="text-[11px] text-muted-foreground">Retail Bearish</p>
+          <p className="text-[11px] text-muted-foreground/60">(orders &lt;$50K puts)</p>
           <p className="mt-1 text-base font-bold text-red-400/70">
             {tickerRatios.reduce((s, r) => s + r.retailBearish, 0)}
           </p>
@@ -925,14 +925,14 @@ function PcDashboard({ seed }: PcDashboardProps) {
 
       {/* Per-ticker P/C table */}
       <div>
-        <p className="mb-1.5 text-[10px] font-semibold text-muted-foreground">P/C Ratio by Ticker</p>
+        <p className="mb-1.5 text-xs font-semibold text-muted-foreground">P/C Ratio by Ticker</p>
         <div className="overflow-auto">
           <table className="w-full border-collapse">
             <thead className="sticky top-0 z-10 bg-card">
               <tr className="border-b border-border/50">
                 {["Ticker", "P/C Ratio", "Call Vol", "Put Vol", "Smart $ Bull", "Smart $ Bear", "Retail Bull", "Retail Bear"].map(
                   (col, i) => (
-                    <th key={`${col}-${i}`} className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70">
+                    <th key={`${col}-${i}`} className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70">
                       {col}
                     </th>
                   ),
@@ -945,23 +945,23 @@ function PcDashboard({ seed }: PcDashboardProps) {
                 const isHighGreed = r.ratio < 0.65;
                 return (
                   <tr key={r.ticker} className="border-l-2 border-l-transparent hover:bg-accent/10 transition-colors">
-                    <td className="px-2 py-1 text-[10px] font-semibold">{r.ticker}</td>
-                    <td className={cn("px-2 py-1 text-[10px] tabular-nums font-semibold",
+                    <td className="px-2 py-1 text-xs font-semibold">{r.ticker}</td>
+                    <td className={cn("px-2 py-1 text-xs tabular-nums font-semibold",
                       isHighFear ? "text-red-400" : isHighGreed ? "text-emerald-400" : "text-foreground")}>
                       {r.ratio.toFixed(2)}
                       {isHighFear && <span className="ml-1 text-[8px]">🔴</span>}
                       {isHighGreed && <span className="ml-1 text-[8px]">🟢</span>}
                     </td>
-                    <td className="px-2 py-1 text-[10px] tabular-nums text-emerald-400/80">
+                    <td className="px-2 py-1 text-xs tabular-nums text-emerald-400/80">
                       {r.callVol.toLocaleString()}
                     </td>
-                    <td className="px-2 py-1 text-[10px] tabular-nums text-red-400/80">
+                    <td className="px-2 py-1 text-xs tabular-nums text-red-400/80">
                       {r.putVol.toLocaleString()}
                     </td>
-                    <td className="px-2 py-1 text-[10px] tabular-nums text-emerald-400">{r.largeBullish}</td>
-                    <td className="px-2 py-1 text-[10px] tabular-nums text-red-400">{r.largeBearish}</td>
-                    <td className="px-2 py-1 text-[10px] tabular-nums text-emerald-400/60">{r.retailBullish}</td>
-                    <td className="px-2 py-1 text-[10px] tabular-nums text-red-400/60">{r.retailBearish}</td>
+                    <td className="px-2 py-1 text-xs tabular-nums text-emerald-400">{r.largeBullish}</td>
+                    <td className="px-2 py-1 text-xs tabular-nums text-red-400">{r.largeBearish}</td>
+                    <td className="px-2 py-1 text-xs tabular-nums text-emerald-400/60">{r.retailBullish}</td>
+                    <td className="px-2 py-1 text-xs tabular-nums text-red-400/60">{r.retailBearish}</td>
                   </tr>
                 );
               })}
@@ -998,9 +998,9 @@ export function FlowAnalysis() {
   }, []);
 
   const sectionTabs: { key: SectionTab; label: string }[] = [
-    { key: "flow", label: "Live Flow Feed" },
+    { key: "flow", label: "Simulated Flow Feed" },
     { key: "heatmap", label: "Ticker Heatmap" },
-    { key: "darkpool", label: "Dark Pool Prints" },
+    { key: "darkpool", label: "Simulated Institutional Flow" },
     { key: "pcratio", label: "P/C Ratio" },
   ];
 
@@ -1018,7 +1018,7 @@ export function FlowAnalysis() {
             key={key}
             onClick={() => setSection(key)}
             className={cn(
-              "border-b-2 px-3 py-2 text-[10px] font-medium transition-colors",
+              "border-b-2 px-3 py-2 text-xs font-medium transition-colors",
               section === key
                 ? "border-orange-400 text-orange-400"
                 : "border-transparent text-muted-foreground hover:text-foreground",
@@ -1030,10 +1030,10 @@ export function FlowAnalysis() {
         {heatmapFilter && (
           <button
             onClick={() => setHeatmapFilter(null)}
-            className="ml-auto flex items-center gap-1 rounded px-2 py-1 text-[9px] text-amber-400 hover:bg-amber-500/10"
+            className="ml-auto flex items-center gap-1 rounded px-2 py-1 text-[11px] text-amber-400 hover:bg-amber-500/10"
           >
             <span>Filtered: {heatmapFilter.ticker} / {fmtExpiry(heatmapFilter.expiry)}</span>
-            <span className="text-[10px]">×</span>
+            <span className="text-xs">×</span>
           </button>
         )}
       </div>
@@ -1052,7 +1052,7 @@ export function FlowAnalysis() {
       {/* Section: Ticker Heatmap */}
       {section === "heatmap" && (
         <div className="p-3">
-          <p className="mb-2 text-[10px] text-muted-foreground">
+          <p className="mb-2 text-xs text-muted-foreground">
             Net options flow per ticker and expiry. Cell size proportional to volume. Click a cell to filter the flow feed.
           </p>
           <TickerHeatmap orders={baseOrders} onFilter={handleHeatmapFilter} />

@@ -69,7 +69,7 @@ export function PlayerStatsCard() {
         {/* Avatar */}
         <motion.div
           className={cn(
-            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl font-black text-white bg-primary",
+            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl font-bold text-white bg-primary",
             (league === "alpha" || league === "diamond") && "rotating-border",
           )}
           initial={{ scale: 0, rotate: -15 }}
@@ -81,7 +81,7 @@ export function PlayerStatsCard() {
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-black">You</span>
+            <span className="text-sm font-bold">You</span>
             <LeagueBadge tier={league} size="sm" />
           </div>
           <div className="text-[11px] text-muted-foreground">
@@ -97,7 +97,7 @@ export function PlayerStatsCard() {
                 transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
               />
             </div>
-            <span className="text-[9px] font-bold tabular-nums text-muted-foreground">
+            <span className="text-[11px] font-bold tabular-nums text-muted-foreground">
               {xp.toLocaleString()} XP
             </span>
           </div>
@@ -115,10 +115,10 @@ export function PlayerStatsCard() {
             transition={{ delay: 0.2 + i * 0.06 }}
           >
             <item.icon className="h-3.5 w-3.5 text-muted-foreground/50" />
-            <span className={cn("text-sm font-black tabular-nums", item.color)}>
+            <span className={cn("text-sm font-bold tabular-nums", item.color)}>
               {item.value}
             </span>
-            <span className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground/60">
+            <span className="text-[8px] font-bold text-muted-foreground/60">
               {item.label}
             </span>
           </motion.div>

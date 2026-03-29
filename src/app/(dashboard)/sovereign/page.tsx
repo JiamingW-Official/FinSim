@@ -566,7 +566,7 @@ function SWFOverviewTab() {
                   <td className="py-2 px-2 text-white font-semibold">${fund.aum.toLocaleString()}B</td>
                   <td className="py-2 px-2 text-zinc-400">{fund.founded}</td>
                   <td className="py-2 px-2">
-                    <span className={`px-1.5 py-0.5 rounded border text-[10px] ${mandateColor[fund.mandate]}`}>{fund.mandate}</span>
+                    <span className={`px-1.5 py-0.5 rounded border text-xs ${mandateColor[fund.mandate]}`}>{fund.mandate}</span>
                   </td>
                   <td className="py-2 px-2 text-indigo-300">{fund.allocation.equities}%</td>
                   <td className="py-2 px-2 text-cyan-300">{fund.allocation.fixedIncome}%</td>
@@ -719,7 +719,7 @@ function AssetAllocationTab() {
                       </div>
                       <span className="text-xs font-semibold text-white">{d.pct}%</span>
                     </div>
-                    <p className="text-[10px] text-zinc-500 pl-4">{d.description}</p>
+                    <p className="text-xs text-zinc-500 pl-4">{d.description}</p>
                   </div>
                 ))}
               </div>
@@ -737,7 +737,7 @@ function AssetAllocationTab() {
               <div key={m.type} className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
                 <div className="flex items-start justify-between mb-2">
                   <p className="text-sm font-semibold text-white">{m.type}</p>
-                  <Badge variant="outline" className="text-[10px] border-zinc-600 text-zinc-400">{m.examples}</Badge>
+                  <Badge variant="outline" className="text-xs border-zinc-600 text-zinc-400">{m.examples}</Badge>
                 </div>
                 <p className="text-xs text-zinc-400 mb-3">{m.focus}</p>
                 {/* Mini stacked bar */}
@@ -755,7 +755,7 @@ function AssetAllocationTab() {
                     { label: "Alt", val: m.alts, color: "#a78bfa" },
                     { label: "Real", val: m.realAssets, color: "#34d399" },
                   ].map((a) => (
-                    <span key={a.label} className="text-[10px] text-zinc-400">
+                    <span key={a.label} className="text-xs text-zinc-400">
                       <span style={{ color: a.color }}>{a.label}</span> {a.val}%
                     </span>
                   ))}
@@ -912,14 +912,14 @@ function NorwayModelTab() {
               <div key={ex.sector} className="flex items-center justify-between p-2 bg-zinc-800/50 rounded-lg">
                 <div>
                   <p className="text-xs font-medium text-white">{ex.sector}</p>
-                  <p className="text-[10px] text-zinc-500">{ex.reason}</p>
+                  <p className="text-xs text-zinc-500">{ex.reason}</p>
                 </div>
-                <Badge variant="outline" className="text-red-400 border-red-500/30 text-[10px]">
+                <Badge variant="outline" className="text-red-400 border-red-500/30 text-xs">
                   {ex.count} cos.
                 </Badge>
               </div>
             ))}
-            <p className="text-[10px] text-zinc-500 pt-1">72+ companies excluded, 300+ under observation (2024)</p>
+            <p className="text-xs text-zinc-500 pt-1">72+ companies excluded, 300+ under observation (2024)</p>
           </CardContent>
         </Card>
 
@@ -941,13 +941,13 @@ function NorwayModelTab() {
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-xs font-medium text-white">{item.title}</p>
-                  <p className="text-[10px] text-zinc-400">{item.desc}</p>
+                  <p className="text-xs text-zinc-400">{item.desc}</p>
                 </div>
               </div>
             ))}
             <div className="mt-3 p-3 bg-emerald-900/20 rounded-lg border border-emerald-700/30">
               <p className="text-xs text-emerald-300 font-medium">The Rule of 70</p>
-              <p className="text-[10px] text-zinc-400 mt-1">
+              <p className="text-xs text-zinc-400 mt-1">
                 GPFG holds on average 1.5% of all listed companies globally — owning roughly 1 in every 70 shares on earth.
                 This scale makes active ownership the only viable alpha source.
               </p>
@@ -1110,7 +1110,7 @@ function EndowmentModelTab() {
                 <item.icon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${item.color}`} />
                 <div>
                   <p className="text-xs font-semibold text-white">{item.title}</p>
-                  <p className="text-[10px] text-zinc-400">{item.desc}</p>
+                  <p className="text-xs text-zinc-400">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -1127,10 +1127,10 @@ function EndowmentModelTab() {
           <CardContent className="space-y-3">
             <div className="p-3 bg-zinc-800/60 rounded-lg space-y-2">
               <p className="text-xs font-semibold text-white">Yale Spending Formula</p>
-              <p className="text-[10px] text-zinc-300 font-mono bg-zinc-900 p-2 rounded">
+              <p className="text-xs text-zinc-300 font-mono bg-zinc-900 p-2 rounded">
                 Spend = 0.8 × Prior_Spend × (1 + CPI) + 0.2 × 5.25% × AUM
               </p>
-              <p className="text-[10px] text-zinc-500">Smooths out market volatility — prevents boom/bust in university budgets</p>
+              <p className="text-xs text-zinc-500">Smooths out market volatility — prevents boom/bust in university budgets</p>
             </div>
             {[
               { rule: "Simple Percentage", desc: "Spend fixed % of year-end AUM. Simple but volatile for beneficiaries.", risk: "High" },
@@ -1141,11 +1141,11 @@ function EndowmentModelTab() {
               <div key={r.rule} className="flex items-start justify-between p-2 bg-zinc-800/50 rounded-lg">
                 <div>
                   <p className="text-xs font-medium text-white">{r.rule}</p>
-                  <p className="text-[10px] text-zinc-400">{r.desc}</p>
+                  <p className="text-xs text-zinc-400">{r.desc}</p>
                 </div>
                 <Badge
                   variant="outline"
-                  className={`text-[10px] ml-2 flex-shrink-0 ${r.risk === "Low" ? "text-emerald-400 border-emerald-500/30" : r.risk === "Medium" ? "text-amber-400 border-amber-500/30" : "text-red-400 border-red-500/30"}`}
+                  className={`text-xs ml-2 flex-shrink-0 ${r.risk === "Low" ? "text-emerald-400 border-emerald-500/30" : r.risk === "Medium" ? "text-amber-400 border-amber-500/30" : "text-red-400 border-red-500/30"}`}
                 >
                   {r.risk} vol.
                 </Badge>
@@ -1272,14 +1272,14 @@ function FactorInvestingTab() {
                     </div>
                   ))}
                   <div className="pt-1">
-                    <p className="text-[10px] text-zinc-500 mb-1">Capacity</p>
+                    <p className="text-xs text-zinc-500 mb-1">Capacity</p>
                     <Badge variant="outline" className={`text-xs ${capacityColor[selected.capacity]}`}>
                       {selected.capacity} Capacity
                     </Badge>
                   </div>
                   <div className="p-2.5 bg-indigo-900/20 rounded-lg border border-indigo-700/30 mt-2">
-                    <p className="text-[10px] text-indigo-300 font-medium mb-1">At-Scale Consideration</p>
-                    <p className="text-[10px] text-zinc-400">
+                    <p className="text-xs text-indigo-300 font-medium mb-1">At-Scale Consideration</p>
+                    <p className="text-xs text-zinc-400">
                       {selected.capacity === "Low"
                         ? `${selected.factor} has severe capacity constraints. A $10B fund trading this factor can move prices enough to erode 40–60% of the theoretical premium.`
                         : selected.capacity === "Medium"
@@ -1324,7 +1324,7 @@ function FactorInvestingTab() {
                   <td className="py-2 px-2 text-emerald-300">{f.expectedPremium}%</td>
                   <td className="py-2 px-2 text-indigo-300">{f.sharpe.toFixed(2)}</td>
                   <td className="py-2 px-2">
-                    <Badge variant="outline" className={`text-[10px] ${capacityColor[f.capacity]}`}>{f.capacity}</Badge>
+                    <Badge variant="outline" className={`text-xs ${capacityColor[f.capacity]}`}>{f.capacity}</Badge>
                   </td>
                   <td className="py-2 px-2 text-red-300">{f.implementationCost}</td>
                   <td className="py-2 px-2 font-medium text-white">{(f.expectedPremium - f.implementationCost / 100).toFixed(2)}%</td>
@@ -1389,7 +1389,7 @@ function FactorInvestingTab() {
                   <item.icon className={`w-4 h-4 ${item.iconColor}`} />
                   <p className="text-xs font-semibold text-white">{item.title}</p>
                 </div>
-                <p className="text-[10px] text-zinc-400">{item.desc}</p>
+                <p className="text-xs text-zinc-400">{item.desc}</p>
               </div>
             ))}
           </div>

@@ -327,8 +327,8 @@ function StylePie({ slices }: { slices: StyleSlice[] }) {
         {slices.map((sl) => (
           <div key={sl.label} className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: sl.color }} />
-            <span className="text-[10px] text-muted-foreground w-14">{sl.label}</span>
-            <span className="text-[10px] font-mono font-semibold">{sl.pct.toFixed(1)}%</span>
+            <span className="text-xs text-muted-foreground w-14">{sl.label}</span>
+            <span className="text-xs font-mono font-semibold">{sl.pct.toFixed(1)}%</span>
           </div>
         ))}
       </div>
@@ -361,7 +361,7 @@ function ContribBar({ value, max }: { value: number; max: number }) {
           <div className="absolute h-full bg-red-500 rounded-l-full" style={{ right: "50%", width: `${pct / 2}%` }} />
         )}
       </div>
-      <span className={cn("font-mono tabular-nums text-[10px] w-11 text-right", isPos ? "text-emerald-400" : "text-red-400")}>
+      <span className={cn("font-mono tabular-nums text-xs w-11 text-right", isPos ? "text-emerald-400" : "text-red-400")}>
         {isPos ? "+" : ""}{value.toFixed(2)}%
       </span>
     </div>
@@ -372,7 +372,7 @@ function ContribBar({ value, max }: { value: number; max: number }) {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">{children}</p>
+    <p className="text-xs font-semibold text-muted-foreground mb-2">{children}</p>
   );
 }
 
@@ -580,9 +580,9 @@ export function PortfolioAttribution() {
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold">Attribution Analysis</h3>
-          <p className="text-[10px] text-muted-foreground">Brinson-Hood-Beebower decomposition</p>
+          <p className="text-xs text-muted-foreground">Brinson-Hood-Beebower decomposition</p>
         </div>
-        <span className="text-[10px] text-muted-foreground">{positions.length} positions</span>
+        <span className="text-xs text-muted-foreground">{positions.length} positions</span>
       </div>
 
       {/* Sub-tabs */}
@@ -593,7 +593,7 @@ export function PortfolioAttribution() {
             type="button"
             onClick={() => setActiveTab(id)}
             className={cn(
-              "flex-1 rounded px-1.5 py-1 text-[10px] font-medium transition-colors",
+              "flex-1 rounded px-1.5 py-1 text-xs font-medium transition-colors",
               activeTab === id
                 ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
@@ -618,7 +618,7 @@ export function PortfolioAttribution() {
               { label: "Total Active",val: bhbData.totalActive,color: bhbData.totalActive >= 0 ? "#34d399" : "#f87171" },
             ].map(({ label, val, color }) => (
               <div key={label} className="rounded-md border border-border/60 bg-background/50 p-2 text-center">
-                <p className="text-[9px] text-muted-foreground">{label}</p>
+                <p className="text-[11px] text-muted-foreground">{label}</p>
                 <p className="text-[11px] font-semibold font-mono" style={{ color }}>
                   {val >= 0 ? "+" : ""}{val.toFixed(2)}%
                 </p>
@@ -633,7 +633,7 @@ export function PortfolioAttribution() {
 
           {/* Table */}
           <div>
-            <div className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 text-[9px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
+            <div className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 text-[11px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
               <span>Sector</span>
               <span className="text-right">Alloc</span>
               <span className="text-right">Select</span>
@@ -641,8 +641,8 @@ export function PortfolioAttribution() {
               <span className="text-right">Total</span>
             </div>
             {bhbData.rows.map((r) => (
-              <div key={r.sector} className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 items-center py-1 border-b border-muted/20 text-[10px]">
-                <span className="text-muted-foreground truncate text-[9px]">{r.sector}</span>
+              <div key={r.sector} className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 items-center py-1 border-b border-muted/20 text-xs">
+                <span className="text-muted-foreground truncate text-[11px]">{r.sector}</span>
                 <span className={cn("text-right font-mono", r.allocation >= 0 ? "text-blue-400" : "text-red-400")}>
                   {r.allocation >= 0 ? "+" : ""}{r.allocation.toFixed(2)}
                 </span>
@@ -658,8 +658,8 @@ export function PortfolioAttribution() {
               </div>
             ))}
             {/* Total row */}
-            <div className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 items-center pt-1.5 text-[10px]">
-              <span className="text-muted-foreground text-[9px] font-semibold">TOTAL</span>
+            <div className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 items-center pt-1.5 text-xs">
+              <span className="text-muted-foreground text-[11px] font-semibold">TOTAL</span>
               <span className={cn("text-right font-mono font-semibold", bhbData.totalAlloc >= 0 ? "text-blue-400" : "text-red-400")}>
                 {bhbData.totalAlloc >= 0 ? "+" : ""}{bhbData.totalAlloc.toFixed(2)}
               </span>
@@ -675,7 +675,7 @@ export function PortfolioAttribution() {
             </div>
           </div>
 
-          <p className="text-[9px] text-muted-foreground/60">
+          <p className="text-[11px] text-muted-foreground/60">
             Formula: Allocation = (w−W)×(B_i−B) · Selection = W×(R_i−B_i) · Interaction = (w−W)×(R_i−B_i). Benchmark: SPY.
           </p>
         </div>
@@ -694,7 +694,7 @@ export function PortfolioAttribution() {
             {factorData.map((f) => (
               <div key={f.label} className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: f.color }} />
-                <span className="text-[10px] text-muted-foreground w-18">{f.label}</span>
+                <span className="text-xs text-muted-foreground w-18">{f.label}</span>
                 <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
                   <div
                     className="h-full rounded-full"
@@ -705,14 +705,14 @@ export function PortfolioAttribution() {
                     }}
                   />
                 </div>
-                <span className={cn("text-[10px] font-mono w-12 text-right", f.bps >= 0 ? "text-emerald-400" : "text-red-400")}>
+                <span className={cn("text-xs font-mono w-12 text-right", f.bps >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {f.bps >= 0 ? "+" : ""}{f.bps.toFixed(0)} bps
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="rounded-md bg-muted/30 p-2 text-[10px] text-muted-foreground space-y-0.5">
+          <div className="rounded-md bg-muted/30 p-2 text-xs text-muted-foreground space-y-0.5">
             <p className="font-medium text-foreground/70">Factor Decomposition</p>
             <p>Total return = Σ (factor exposure × factor return) + idiosyncratic return</p>
             <p>Positive bps = factor added to returns vs. benchmark</p>
@@ -730,7 +730,7 @@ export function PortfolioAttribution() {
           </div>
 
           <div>
-            <div className="grid grid-cols-[80px_48px_56px_56px_56px] gap-1 text-[9px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
+            <div className="grid grid-cols-[80px_48px_56px_56px_56px] gap-1 text-[11px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
               <span>Sector</span>
               <span className="text-right">Port%</span>
               <span className="text-right">Bench%</span>
@@ -738,8 +738,8 @@ export function PortfolioAttribution() {
               <span className="text-right">Contrib%</span>
             </div>
             {sectorRows.map((r) => (
-              <div key={r.sector} className="grid grid-cols-[80px_48px_56px_56px_56px] gap-1 items-center py-1 border-b border-muted/20 text-[10px]">
-                <span className="text-[9px] text-muted-foreground truncate">{r.sector}</span>
+              <div key={r.sector} className="grid grid-cols-[80px_48px_56px_56px_56px] gap-1 items-center py-1 border-b border-muted/20 text-xs">
+                <span className="text-[11px] text-muted-foreground truncate">{r.sector}</span>
                 <span className="text-right font-mono text-blue-400">{r.portWeight.toFixed(1)}</span>
                 <span className="text-right font-mono text-muted-foreground">{r.benchWeight.toFixed(1)}</span>
                 <span className={cn("text-right font-mono", r.activeWeight >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -754,7 +754,7 @@ export function PortfolioAttribution() {
 
           {/* Sector exposure stacked bar */}
           <div className="space-y-2">
-            <p className="text-[9px] text-muted-foreground font-medium">Portfolio Sector Exposure</p>
+            <p className="text-[11px] text-muted-foreground font-medium">Portfolio Sector Exposure</p>
             {sectorRows.length > 0 && (
               <>
                 <div className="flex h-5 rounded-md overflow-hidden gap-px">
@@ -770,7 +770,7 @@ export function PortfolioAttribution() {
                   {sectorRows.map((r) => (
                     <div key={r.sector} className="flex items-center gap-1">
                       <div className="w-2 h-2 rounded-sm flex-shrink-0" style={{ backgroundColor: SECTOR_COLORS[r.sector] ?? "#6b7280" }} />
-                      <span className="text-[9px] text-muted-foreground">{r.sector} {r.portWeight.toFixed(0)}%</span>
+                      <span className="text-[11px] text-muted-foreground">{r.sector} {r.portWeight.toFixed(0)}%</span>
                     </div>
                   ))}
                 </div>
@@ -786,7 +786,7 @@ export function PortfolioAttribution() {
           <SectionHeader>Risk Attribution — Contribution to Portfolio Variance</SectionHeader>
 
           <div>
-            <div className="grid grid-cols-[52px_1fr_52px_52px_52px] gap-1 text-[9px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
+            <div className="grid grid-cols-[52px_1fr_52px_52px_52px] gap-1 text-[11px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
               <span>Ticker</span>
               <span>Var Contrib</span>
               <span className="text-right">Wt%</span>
@@ -795,23 +795,23 @@ export function PortfolioAttribution() {
             </div>
             {riskData.map((r) => (
               <div key={r.ticker} className="grid grid-cols-[52px_1fr_52px_52px_52px] gap-1 items-center py-1 border-b border-muted/20">
-                <span className="text-[10px] font-semibold">{r.ticker}</span>
+                <span className="text-xs font-semibold">{r.ticker}</span>
                 <div className="space-y-0.5">
                   <RiskBar pct={r.varContrib} color="#f97316" />
-                  <span className="text-[9px] text-orange-400 font-mono">{r.varContrib.toFixed(1)}%</span>
+                  <span className="text-[11px] text-orange-400 font-mono">{r.varContrib.toFixed(1)}%</span>
                 </div>
-                <span className="text-right text-[10px] font-mono text-muted-foreground">{r.weight.toFixed(1)}</span>
-                <span className={cn("text-right text-[10px] font-mono", r.mctr >= 0 ? "text-blue-400" : "text-red-400")}>
+                <span className="text-right text-xs font-mono text-muted-foreground">{r.weight.toFixed(1)}</span>
+                <span className={cn("text-right text-xs font-mono", r.mctr >= 0 ? "text-blue-400" : "text-red-400")}>
                   {r.mctr.toFixed(2)}
                 </span>
-                <span className={cn("text-right text-[10px] font-mono", r.riskAdjReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
+                <span className={cn("text-right text-xs font-mono", r.riskAdjReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {r.riskAdjReturn >= 0 ? "+" : ""}{r.riskAdjReturn.toFixed(1)}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="rounded-md bg-muted/30 p-2 text-[10px] text-muted-foreground space-y-1">
+          <div className="rounded-md bg-muted/30 p-2 text-xs text-muted-foreground space-y-1">
             <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
               <p><span className="text-foreground/70 font-medium">Var Contrib</span> — % of portfolio variance from position</p>
               <p><span className="text-foreground/70 font-medium">MCTR</span> — Marginal contribution to risk (β × σ × w)</p>
@@ -830,7 +830,7 @@ export function PortfolioAttribution() {
           <StylePie slices={styleSlices} />
 
           <div>
-            <div className="grid grid-cols-[80px_1fr_60px] gap-2 text-[9px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
+            <div className="grid grid-cols-[80px_1fr_60px] gap-2 text-[11px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
               <span>Style</span>
               <span>Exposure</span>
               <span className="text-right">Weight</span>
@@ -839,19 +839,19 @@ export function PortfolioAttribution() {
               <div key={sl.label} className="grid grid-cols-[80px_1fr_60px] gap-2 items-center py-1 border-b border-muted/20">
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-sm flex-shrink-0" style={{ backgroundColor: sl.color }} />
-                  <span className="text-[10px]">{sl.label}</span>
+                  <span className="text-xs">{sl.label}</span>
                 </div>
                 <div className="h-1.5 rounded-full bg-muted overflow-hidden">
                   <div className="h-full rounded-full" style={{ width: `${sl.pct}%`, backgroundColor: sl.color, opacity: 0.8 }} />
                 </div>
-                <span className="text-right text-[10px] font-mono font-semibold" style={{ color: sl.color }}>
+                <span className="text-right text-xs font-mono font-semibold" style={{ color: sl.color }}>
                   {sl.pct.toFixed(1)}%
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="rounded-md bg-muted/30 p-2 text-[10px] text-muted-foreground">
+          <div className="rounded-md bg-muted/30 p-2 text-xs text-muted-foreground">
             <p className="font-medium text-foreground/70 mb-1">Sharpe Returns-Based Style Analysis</p>
             <p>Portfolio returns regressed on 4 style indices: Growth, Value, Large Cap, Small Cap.</p>
             <p className="mt-0.5">Exposures show % of return variation explained by each style factor.</p>
@@ -869,7 +869,7 @@ export function PortfolioAttribution() {
                 { label: "Quality",       port: posData.reduce((s, p) => s + p.weight * p.meta.qualityTilt, 0) * 100, bench: 72 },
               ].map(({ label, port, bench }) => (
                 <div key={label} className="space-y-0.5">
-                  <div className="flex items-center justify-between text-[9px] text-muted-foreground">
+                  <div className="flex items-center justify-between text-[11px] text-muted-foreground">
                     <span>{label}</span>
                     <span>
                       Port <span className="text-blue-400 font-mono">{port.toFixed(0)}</span>

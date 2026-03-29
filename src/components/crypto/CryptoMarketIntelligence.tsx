@@ -538,7 +538,7 @@ export default function CryptoMarketIntelligence() {
 
           {/* Sub-indicators */}
           <div className="space-y-3">
-            <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mb-3">Component Breakdown</p>
+            <p className="text-xs text-slate-500 font-medium mb-3">Component Breakdown</p>
             {subIndicators.map((ind) => {
               const c = fgColor(ind.value);
               return (
@@ -576,7 +576,7 @@ export default function CryptoMarketIntelligence() {
 
           {/* Rainbow bands */}
           <div className="space-y-2">
-            <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">Rainbow Chart Bands</p>
+            <p className="text-xs text-slate-500 mb-3">Rainbow Chart Bands</p>
             {rainbowBands.map((band, i) => (
               <div
                 key={band.label}
@@ -599,7 +599,7 @@ export default function CryptoMarketIntelligence() {
 
           {/* BTC cycle price chart */}
           <div className="space-y-3">
-            <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">90-Day BTC Price</p>
+            <p className="text-xs text-slate-500 mb-1">90-Day BTC Price</p>
             <div className="relative w-full">
               <LineChart data={btcCycleData} width={320} height={100} color="#f59e0b" showArea showGrid />
               {/* Halving markers */}
@@ -625,7 +625,7 @@ export default function CryptoMarketIntelligence() {
           {/* Altcoin season + total market cap */}
           <div className="space-y-4">
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Altcoin Season Index</p>
+              <p className="text-xs text-slate-500 mb-2">Altcoin Season Index</p>
               <div className="relative h-6 bg-slate-700 rounded-full overflow-hidden">
                 <div className="absolute inset-0 flex">
                   <div className="h-full" style={{ width: "50%", background: "linear-gradient(to right, #f59e0b, #eab308)" }} />
@@ -643,7 +643,7 @@ export default function CryptoMarketIntelligence() {
             </div>
 
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Total Crypto Market Cap (90d)</p>
+              <p className="text-xs text-slate-500 mb-1">Total Crypto Market Cap (90d)</p>
               <LineChart data={totalMarketData} width={280} height={70} color="#818cf8" showArea />
               <div className="flex justify-between text-xs mt-1">
                 <span className="text-slate-600">90d ago</span>
@@ -660,7 +660,7 @@ export default function CryptoMarketIntelligence() {
 
           {/* Whale transactions table */}
           <div className="lg:col-span-2 overflow-x-auto">
-            <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">Large Transactions — Last 24h</p>
+            <p className="text-xs text-slate-500 mb-3">Large Transactions — Last 24h</p>
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-slate-700/50">
@@ -704,7 +704,7 @@ export default function CryptoMarketIntelligence() {
           <div className="space-y-4">
             {/* Exchange reserves */}
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Exchange BTC Reserves</p>
+              <p className="text-xs text-slate-500 mb-2">Exchange BTC Reserves</p>
               <div className="space-y-2">
                 {exchangeReserves.map((ex) => (
                   <div key={ex.name} className="flex items-center justify-between text-xs">
@@ -749,7 +749,7 @@ export default function CryptoMarketIntelligence() {
 
           {/* TVL by Chain */}
           <div>
-            <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">TVL by Chain</p>
+            <p className="text-xs text-slate-500 mb-3">TVL by Chain</p>
             <div className="space-y-2">
               {tvlByChain.map((chain) => (
                 <HBar
@@ -769,7 +769,7 @@ export default function CryptoMarketIntelligence() {
 
           {/* DEX Volume pie */}
           <div>
-            <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">DEX Volume (24h)</p>
+            <p className="text-xs text-slate-500 mb-3">DEX Volume (24h)</p>
             <div className="flex items-center gap-4">
               {/* Simple pie SVG */}
               <svg width={100} height={100} viewBox="0 0 100 100">
@@ -804,7 +804,7 @@ export default function CryptoMarketIntelligence() {
             </div>
 
             {/* Stablecoin market caps */}
-            <p className="text-xs text-slate-500 uppercase tracking-wider mt-4 mb-2">Stablecoin Supply</p>
+            <p className="text-xs text-slate-500 mt-4 mb-2">Stablecoin Supply</p>
             <div className="space-y-1.5">
               {stablecoins.map((sc) => (
                 <HBar
@@ -822,7 +822,7 @@ export default function CryptoMarketIntelligence() {
           {/* Top DeFi protocols + Gas */}
           <div className="space-y-4">
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Top DeFi Protocols</p>
+              <p className="text-xs text-slate-500 mb-2">Top DeFi Protocols</p>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
@@ -851,7 +851,7 @@ export default function CryptoMarketIntelligence() {
 
             {/* Gas tracker */}
             <div className="p-3 bg-slate-700/30 rounded-lg border border-slate-600/30">
-              <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">ETH Gas Tracker</p>
+              <p className="text-xs text-slate-500 mb-2">ETH Gas Tracker</p>
               <div className="flex gap-3 mb-2">
                 {[
                   { label: "Slow", gwei: 18, color: "#22c55e" },
@@ -927,7 +927,7 @@ export default function CryptoMarketIntelligence() {
         {/* Realized cap vs market cap */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
           <div className="lg:col-span-2">
-            <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">
+            <p className="text-xs text-slate-500 mb-2">
               BTC Market Cap vs Realized Cap (60 days, $B)
             </p>
             <div className="relative">
@@ -982,7 +982,7 @@ export default function CryptoMarketIntelligence() {
           {/* Holder distribution + SSR */}
           <div className="space-y-3">
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">LTH vs STH Supply</p>
+              <p className="text-xs text-slate-500 mb-2">LTH vs STH Supply</p>
               {/* Stacked horizontal bar */}
               <div className="h-6 w-full rounded-full overflow-hidden flex">
                 <div className="h-full bg-emerald-500" style={{ width: `${lthSupplyPct}%` }} />

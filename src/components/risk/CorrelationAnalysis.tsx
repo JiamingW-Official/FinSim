@@ -301,7 +301,7 @@ function RollingCorrChart({
 
   return (
     <div>
-      <p className="text-[10px] font-medium text-muted-foreground mb-1">{pairLabel}</p>
+      <p className="text-xs font-medium text-muted-foreground mb-1">{pairLabel}</p>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" preserveAspectRatio="xMidYMid meet">
         {ticks.map((v) => (
           <g key={`tick-${v}`}>
@@ -529,7 +529,7 @@ export default function CorrelationAnalysis({ positions, portfolioValue }: Corre
                     pairLabel={`${pairs[idx]} — 30-day rolling`}
                     normalAvg={avgCorr}
                   />
-                  <div className="flex justify-between mt-1.5 text-[10px] text-muted-foreground">
+                  <div className="flex justify-between mt-1.5 text-xs text-muted-foreground">
                     <span>Avg: <span className="font-medium text-foreground">{avgCorr.toFixed(2)}</span></span>
                     <span>Stability: <span className={`font-medium ${stabilityScores[idx] >= 70 ? "text-green-500" : stabilityScores[idx] >= 45 ? "text-amber-500" : "text-red-500"}`}>{stabilityScores[idx]}/100</span></span>
                   </div>
@@ -608,21 +608,21 @@ export default function CorrelationAnalysis({ positions, portfolioValue }: Corre
               <p className="mt-1 text-lg font-bold text-red-500">
                 ${sumIndividualVaR.toLocaleString("en-US", { maximumFractionDigits: 0 })}
               </p>
-              <p className="text-[10px] text-muted-foreground">(no diversification)</p>
+              <p className="text-xs text-muted-foreground">(no diversification)</p>
             </div>
             <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Portfolio VaR</p>
               <p className="mt-1 text-lg font-bold text-primary">
                 ${portfolioVaR.toLocaleString("en-US", { maximumFractionDigits: 0 })}
               </p>
-              <p className="text-[10px] text-muted-foreground">(with diversification)</p>
+              <p className="text-xs text-muted-foreground">(with diversification)</p>
             </div>
             <div className="rounded-lg border border-green-500/20 bg-green-500/5 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Benefit</p>
               <p className="mt-1 text-lg font-bold text-green-500">
                 ${diversificationBenefit.toLocaleString("en-US", { maximumFractionDigits: 0 })}
               </p>
-              <p className="text-[10px] text-muted-foreground">
+              <p className="text-xs text-muted-foreground">
                 {((diversificationBenefit / sumIndividualVaR) * 100).toFixed(1)}% saved
               </p>
             </div>

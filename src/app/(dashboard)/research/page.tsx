@@ -749,13 +749,13 @@ function ResearchDashboard() {
                     <div className="border-t border-slate-800 pt-3 space-y-4">
                       {/* Thesis */}
                       <div>
-                        <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Thesis</p>
+                        <p className="text-xs font-semibold text-slate-400 mb-1.5">Thesis</p>
                         <p className="text-sm text-slate-300 leading-relaxed">{theme.thesis}</p>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {/* Data Points */}
                         <div>
-                          <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                          <p className="text-xs font-semibold text-emerald-400 mb-1.5 flex items-center gap-1">
                             <TrendingUp className="w-3 h-3" /> Supporting Data
                           </p>
                           <ul className="space-y-1">
@@ -769,7 +769,7 @@ function ResearchDashboard() {
                         </div>
                         {/* Risks */}
                         <div>
-                          <p className="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                          <p className="text-xs font-semibold text-rose-400 mb-1.5 flex items-center gap-1">
                             <AlertTriangle className="w-3 h-3" /> Risk Factors
                           </p>
                           <ul className="space-y-1">
@@ -1260,12 +1260,12 @@ function ThematicResearch() {
                     <div className="border-t border-slate-800 pt-4 space-y-5">
                       {/* Abstract */}
                       <div>
-                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Abstract</p>
+                        <p className="text-xs font-semibold text-slate-500 mb-2">Abstract</p>
                         <p className="text-sm text-slate-300 leading-relaxed">{note.abstract}</p>
                       </div>
                       {/* Key Findings */}
                       <div>
-                        <p className="text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                        <p className="text-xs font-semibold text-indigo-400 mb-2 flex items-center gap-1">
                           <BookOpen className="w-3 h-3" /> Key Findings
                         </p>
                         <ul className="space-y-2">
@@ -1279,7 +1279,7 @@ function ThematicResearch() {
                       </div>
                       {/* Risks */}
                       <div>
-                        <p className="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                        <p className="text-xs font-semibold text-rose-400 mb-2 flex items-center gap-1">
                           <AlertTriangle className="w-3 h-3" /> Risks
                         </p>
                         <ul className="space-y-1.5">
@@ -1293,7 +1293,7 @@ function ThematicResearch() {
                       </div>
                       {/* Investment Implications */}
                       <div>
-                        <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                        <p className="text-xs font-semibold text-emerald-400 mb-2 flex items-center gap-1">
                           <Target className="w-3 h-3" /> Investment Implications
                         </p>
                         <ul className="space-y-1.5">

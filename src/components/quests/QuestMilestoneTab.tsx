@@ -79,7 +79,7 @@ export function QuestMilestoneTab() {
                 </div>
               </div>
               <span className={cn(
-                "text-[10px] font-bold tabular-nums",
+                "text-xs font-bold tabular-nums",
                 isChainComplete ? "text-emerald-400" : "text-zinc-600",
               )}>
                 {claimedCount}/{chainQuests.length}
@@ -130,7 +130,7 @@ export function QuestMilestoneTab() {
                           isClaimed
                             ? "border-emerald-500 bg-emerald-500/20 text-emerald-400"
                             : isComplete
-                              ? "border-violet-500 bg-violet-500/20 text-violet-300 shadow-lg shadow-violet-500/20 animate-pulse"
+                              ? "border-violet-500 bg-violet-500/20 text-violet-300"
                               : isLocked
                                 ? "border-zinc-800 bg-zinc-900 text-zinc-700 cursor-not-allowed"
                                 : "border-zinc-700 bg-zinc-900 text-zinc-500",
@@ -149,13 +149,13 @@ export function QuestMilestoneTab() {
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-10 pointer-events-none">
                         <div className="rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 shadow-xl whitespace-nowrap">
                           <p className="text-xs font-bold text-zinc-200">{quest.name}</p>
-                          <p className="text-[10px] text-zinc-500 mt-0.5">{quest.description}</p>
+                          <p className="text-xs text-zinc-500 mt-0.5">{quest.description}</p>
                           <div className="flex items-center gap-1 mt-1">
                             <Star className="h-2.5 w-2.5 text-amber-400" />
-                            <span className="text-[10px] font-bold text-amber-400">+{quest.xpReward} XP</span>
+                            <span className="text-xs font-bold text-amber-400">+{quest.xpReward} XP</span>
                           </div>
                           {isClaimed && (
-                            <span className="text-[9px] text-emerald-400 mt-0.5 block">Claimed</span>
+                            <span className="text-[11px] text-emerald-400 mt-0.5 block">Claimed</span>
                           )}
                         </div>
                       </div>

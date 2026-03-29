@@ -1254,7 +1254,7 @@ export default function WealthPlatformPage() {
                       }
                       className="h-1.5"
                     />
-                    <div className="flex justify-between text-[10px] text-slate-600">
+                    <div className="flex justify-between text-xs text-slate-600">
                       <span>Low</span>
                       <span>High</span>
                     </div>
@@ -1301,7 +1301,7 @@ export default function WealthPlatformPage() {
                         <span className="text-sm font-medium text-slate-200">{goal.name}</span>
                         <Badge
                           variant="outline"
-                          className={cn("text-[10px] ml-auto px-1.5 py-0", priorityColor)}
+                          className={cn("text-xs ml-auto px-1.5 py-0", priorityColor)}
                         >
                           {goal.priority}
                         </Badge>
@@ -1311,7 +1311,7 @@ export default function WealthPlatformPage() {
                         <span>{fmtK(goal.target)} by {goal.targetYear}</span>
                       </div>
                       <Progress value={pct} className="h-1.5" />
-                      <div className="flex justify-between text-[10px] text-slate-500 mt-1">
+                      <div className="flex justify-between text-xs text-slate-500 mt-1">
                         <span>{pct.toFixed(0)}% funded</span>
                         <span>{fmtK(goal.target - goal.current)} remaining</span>
                       </div>
@@ -1487,14 +1487,14 @@ export default function WealthPlatformPage() {
                           {selected && <CheckCircle className="w-3 h-3 text-white" />}
                         </div>
                         <span className="text-sm font-semibold text-slate-200 w-12">{pos.ticker}</span>
-                        <Badge variant="outline" className="text-[10px] border-slate-700 text-slate-500 px-1.5">
+                        <Badge variant="outline" className="text-xs border-slate-700 text-slate-500 px-1.5">
                           {pos.sector}
                         </Badge>
                         <div className="ml-auto text-right">
                           <div className="text-xs text-red-400">
                             {fmtK(pos.unrealizedLoss)}
                           </div>
-                          <div className="text-[10px] text-slate-500">
+                          <div className="text-xs text-slate-500">
                             saves {fmtK(pos.taxSaving)}
                           </div>
                         </div>
@@ -1534,30 +1534,30 @@ export default function WealthPlatformPage() {
                       onValueChange={setRothAmount}
                       className="h-1.5"
                     />
-                    <div className="flex justify-between text-[10px] text-slate-600">
+                    <div className="flex justify-between text-xs text-slate-600">
                       <span>$10K</span>
                       <span>$200K</span>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="p-2 rounded-lg bg-slate-800/60 text-center">
-                      <div className="text-[10px] text-slate-500">Tax Due Now</div>
+                      <div className="text-xs text-slate-500">Tax Due Now</div>
                       <div className="text-sm font-bold text-red-400">
                         {fmtK(rothConversionTax.currentTax)}
                       </div>
-                      <div className="text-[10px] text-slate-500">24% marginal</div>
+                      <div className="text-xs text-slate-500">24% marginal</div>
                     </div>
                     <div className="p-2 rounded-lg bg-slate-800/60 text-center">
-                      <div className="text-[10px] text-slate-500">Est. Lifetime Saving</div>
+                      <div className="text-xs text-slate-500">Est. Lifetime Saving</div>
                       <div className="text-sm font-bold text-emerald-400">
                         {fmtK(rothConversionTax.projectedSaving)}
                       </div>
-                      <div className="text-[10px] text-slate-500">vs 35% future rate</div>
+                      <div className="text-xs text-slate-500">vs 35% future rate</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-1.5 p-2 rounded bg-amber-500/10 border border-amber-500/20">
                     <Info className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-                    <p className="text-[10px] text-amber-300">
+                    <p className="text-xs text-amber-300">
                       Consider converting up to top of 24% bracket to avoid future RMDs and higher taxation.
                     </p>
                   </div>
@@ -1573,7 +1573,7 @@ export default function WealthPlatformPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-1.5">
-                    <div className="grid grid-cols-4 gap-1 text-[10px] text-slate-500 pb-1 border-b border-slate-800">
+                    <div className="grid grid-cols-4 gap-1 text-xs text-slate-500 pb-1 border-b border-slate-800">
                       <span>Asset</span>
                       <span className="text-center">Taxable</span>
                       <span className="text-center">Traditional</span>
@@ -1605,7 +1605,7 @@ export default function WealthPlatformPage() {
                             )}
                           </div>
                         </div>
-                        <div className="text-[10px] text-slate-500 px-0 pb-1 col-span-4 hidden group-hover:block">
+                        <div className="text-xs text-slate-500 px-0 pb-1 col-span-4 hidden group-hover:block">
                           {row.reason}
                         </div>
                       </div>
@@ -1672,7 +1672,7 @@ export default function WealthPlatformPage() {
                         <tr key={h.ticker} className="hover:bg-slate-800/30 transition-colors">
                           <td className="py-1.5">
                             <div className="font-semibold text-slate-200">{h.ticker}</div>
-                            <div className="text-[10px] text-slate-500 truncate max-w-[100px]">{h.name}</div>
+                            <div className="text-xs text-slate-500 truncate max-w-[100px]">{h.name}</div>
                           </td>
                           <td className="text-right text-slate-300 py-1.5">{fmtK(h.value)}</td>
                           <td className="text-right text-slate-400 py-1.5">{h.weight.toFixed(1)}%</td>
@@ -1750,7 +1750,7 @@ export default function WealthPlatformPage() {
                       >
                         <div className="text-xs text-slate-500 mb-0.5">{m.label}</div>
                         <div className={cn("text-xl font-bold", m.color)}>{m.value}</div>
-                        <div className="text-[10px] text-slate-600 mb-1.5">{m.desc}</div>
+                        <div className="text-xs text-slate-600 mb-1.5">{m.desc}</div>
                         <Progress value={m.bar} className="h-1" />
                       </div>
                     ))}
@@ -1759,7 +1759,7 @@ export default function WealthPlatformPage() {
               </Card>
 
               {/* PDF-style Summary Card */}
-              <Card className="bg-gradient-to-br from-slate-900 via-indigo-950/30 to-slate-900 border border-indigo-500/20">
+              <Card className="bg-card border border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
                     <FileText className="w-4 h-4 text-indigo-400" />

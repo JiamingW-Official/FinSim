@@ -1118,7 +1118,7 @@ function VCEconomics() {
       </div>
       <div className="grid grid-cols-2 gap-3 text-xs">
         <div className="rounded-lg bg-muted/20 p-3 space-y-1.5">
-          <div className="font-semibold text-muted-foreground uppercase tracking-wide text-[10px] mb-2">
+          <div className="font-semibold text-muted-foreground uppercase tracking-wide text-xs mb-2">
             LP Waterfall
           </div>
           <div className="flex justify-between">
@@ -1139,7 +1139,7 @@ function VCEconomics() {
           </div>
         </div>
         <div className="rounded-lg bg-muted/20 p-3 space-y-1.5">
-          <div className="font-semibold text-muted-foreground uppercase tracking-wide text-[10px] mb-2">
+          <div className="font-semibold text-muted-foreground uppercase tracking-wide text-xs mb-2">
             GP Economics
           </div>
           <div className="flex justify-between">
@@ -1835,7 +1835,7 @@ function PortfolioOptimizer() {
             <motion.div
               key={a.name}
               layout
-              className="flex items-center justify-center text-[10px] font-semibold text-white/80 overflow-hidden"
+              className="flex items-center justify-center text-xs font-semibold text-white/80 overflow-hidden"
               style={{
                 width: `${a.pct}%`,
                 backgroundColor: a.color,
@@ -1963,7 +1963,7 @@ function DDAccordion() {
             <div className="flex items-center gap-2.5">
               <span className="text-primary">{iconMap[cat.icon]}</span>
               <span className="text-sm font-medium text-foreground">{cat.category}</span>
-              <Badge variant="outline" className="text-[10px] text-muted-foreground border-border">
+              <Badge variant="outline" className="text-xs text-muted-foreground border-border">
                 {(showRedFlags ? cat.redFlags : cat.items).length} items
               </Badge>
             </div>
@@ -2048,7 +2048,7 @@ function FundDocChecklist() {
             )}
             <span className={doc.received ? "text-foreground" : "text-muted-foreground"}>{doc.name}</span>
             {!doc.received && (
-              <Badge variant="outline" className="text-[10px] border-red-500/30 text-red-400 ml-auto">
+              <Badge variant="outline" className="text-xs border-red-500/30 text-red-400 ml-auto">
                 Pending
               </Badge>
             )}
@@ -2102,7 +2102,7 @@ function GPLPAlignment() {
                 {m.value}
               </span>
             </div>
-            <div className="text-[10px] text-muted-foreground/60 mt-0.5">{m.note}</div>
+            <div className="text-xs text-muted-foreground/60 mt-0.5">{m.note}</div>
           </div>
         ))}
       </div>
@@ -2384,7 +2384,7 @@ export default function PrivateMarketsPage() {
                 <div key={item.asset} className="rounded-lg bg-muted/20 p-3">
                   <div className="text-xs font-semibold text-foreground mb-1">{item.asset}</div>
                   <div className="text-sm font-bold text-primary mb-1">CPI Link: {item.cpi}</div>
-                  <div className="text-[10px] text-muted-foreground">{item.mechanism}</div>
+                  <div className="text-xs text-muted-foreground">{item.mechanism}</div>
                 </div>
               ))}
             </div>

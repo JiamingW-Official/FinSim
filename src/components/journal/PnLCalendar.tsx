@@ -128,7 +128,7 @@ export function PnLCalendar({ trades }: Props) {
       {/* Weekday headers */}
       <div className="grid grid-cols-7 gap-1">
         {WEEK_DAYS.map((d) => (
-          <div key={d} className="text-center text-[9px] font-medium uppercase tracking-wider text-muted-foreground py-0.5">
+          <div key={d} className="text-center text-[11px] font-medium text-muted-foreground py-0.5">
             {d}
           </div>
         ))}
@@ -153,7 +153,7 @@ export function PnLCalendar({ trades }: Props) {
               onMouseEnter={() => setHoverDay(key)}
               onMouseLeave={() => setHoverDay(null)}
               className={cn(
-                "relative flex aspect-square flex-col items-center justify-center rounded border text-[10px] font-medium transition-all cursor-default select-none",
+                "relative flex aspect-square flex-col items-center justify-center rounded border text-xs font-medium transition-all cursor-default select-none",
                 getCellStyle(summary),
                 isToday && "ring-1 ring-primary/60",
                 hoverDay === key && "ring-1 ring-white/20",
@@ -184,27 +184,27 @@ export function PnLCalendar({ trades }: Props) {
               {hoveredSummary.pnl >= 0 ? "+" : ""}{formatCurrency(hoveredSummary.pnl)}
             </span>
           </div>
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             {hoveredSummary.tradeCount} trade{hoveredSummary.tradeCount !== 1 ? "s" : ""} — {hoveredSummary.trades.map(t => t.ticker).join(", ")}
           </p>
         </div>
       ) : (
-        <div className="rounded-lg border border-border/40 bg-card/30 px-2.5 py-2 text-[10px] text-muted-foreground/50 text-center">
+        <div className="rounded-lg border border-border/40 bg-card/30 px-2.5 py-2 text-xs text-muted-foreground/50 text-center">
           Hover a day to see details
         </div>
       )}
 
       {/* Legend */}
       <div className="flex items-center gap-3 justify-end">
-        <div className="flex items-center gap-1 text-[9px] text-muted-foreground">
+        <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
           <div className="h-2 w-2 rounded-sm bg-red-500/35" />
           Loss
         </div>
-        <div className="flex items-center gap-1 text-[9px] text-muted-foreground">
+        <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
           <div className="h-2 w-2 rounded-sm bg-card border border-border/40" />
           No trades
         </div>
-        <div className="flex items-center gap-1 text-[9px] text-muted-foreground">
+        <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
           <div className="h-2 w-2 rounded-sm bg-green-500/35" />
           Win
         </div>

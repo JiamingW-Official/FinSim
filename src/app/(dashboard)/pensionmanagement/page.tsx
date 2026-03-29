@@ -1008,7 +1008,7 @@ export default function PensionManagementPage() {
                     <div key={item.title} className="p-2 bg-slate-800/50 rounded-lg">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-medium text-slate-200">{item.title}</span>
-                        <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${item.badgeColor}`}>
+                        <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${item.badgeColor}`}>
                           {item.badge}
                         </span>
                       </div>
@@ -1354,7 +1354,7 @@ export default function PensionManagementPage() {
                     </div>
                     {/* Hedge progress bar */}
                     <div className="mt-2">
-                      <div className="flex justify-between text-[10px] text-slate-500 mb-1">
+                      <div className="flex justify-between text-xs text-slate-500 mb-1">
                         <span>Hedge coverage</span>
                         <span>{rf.hedgeRatio}%</span>
                       </div>
@@ -1571,7 +1571,7 @@ export default function PensionManagementPage() {
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-medium text-slate-200">{init.fund}</span>
                             <span
-                              className={`text-[10px] px-1.5 py-0.5 rounded border font-medium ${catColors[init.category] ?? ""}`}
+                              className={`text-xs px-1.5 py-0.5 rounded border font-medium ${catColors[init.category] ?? ""}`}
                             >
                               {init.category}
                             </span>
@@ -1718,7 +1718,7 @@ export default function PensionManagementPage() {
                     <div key={item.metric} className="bg-slate-800 rounded-lg p-3 text-center">
                       <div className={`text-base font-bold ${item.color}`}>{item.value}</div>
                       <div className="font-medium text-slate-200 mt-1">{item.metric}</div>
-                      <div className="text-slate-500 mt-0.5 text-[10px]">{item.desc}</div>
+                      <div className="text-slate-500 mt-0.5 text-xs">{item.desc}</div>
                     </div>
                   ))}
                 </div>

@@ -1,19 +1,15 @@
 "use client";
 
-import { useMemo, useState, useEffect, useRef, useCallback } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useGameStore } from "@/stores/game-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useLearnStore } from "@/stores/learn-store";
 import { useQuestStore } from "@/stores/quest-store";
-import { useChartStore } from "@/stores/chart-store";
-import { useMarketDataStore } from "@/stores/market-data-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
 import { formatCurrency, cn } from "@/lib/utils";
 import { UNITS } from "@/data/lessons";
-import { generateMarketBrief } from "@/services/ai/engine";
 import {
   TrendingUp,
   TrendingDown,
@@ -27,17 +23,13 @@ import {
   Swords,
   ChevronRight,
   CheckCircle2,
-  Clock,
   ArrowRight,
   Shield,
   Zap,
-  RefreshCw,
   Star,
   Award,
   PlayCircle,
-  TestTube2,
   PieChart,
-  Layers,
   MessageSquare,
   Newspaper,
   ScanSearch,
@@ -48,23 +40,6 @@ import {
   Globe,
   CircleDot,
 } from "lucide-react";
-
-/* ─────────────────────────────────────────────
-   Animation variants
-───────────────────────────────────────────── */
-const stagger = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.04 } },
-} as const;
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 8 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.22, ease: "easeOut" as const },
-  },
-};
 
 /* ─────────────────────────────────────────────
    Seeded PRNG (mulberry32)
@@ -120,56 +95,6 @@ function simulateTickerPrice(ticker: string, timeSeed: number): { price: number;
   const changePct = (rand() - 0.5) * volatility; // ±volatility/2 %
   const price = base * (1 + changePct / 100);
   return { price: Math.max(price, 0.01), changePct };
-}
-
-/* ─────────────────────────────────────────────
-   Market status helpers (ET timezone)
-───────────────────────────────────────────── */
-interface MarketStatus {
-  isOpen: boolean;
-  countdownLabel: string;
-  timeStr: string;
-}
-
-function getMarketStatus(): MarketStatus {
-  const now = new Date();
-  const etFormatter = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/New_York",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: false,
-    weekday: "long",
-  });
-  const parts = etFormatter.formatToParts(now);
-  const hour = parseInt(parts.find((p) => p.type === "hour")?.value ?? "0", 10);
-  const minute = parseInt(parts.find((p) => p.type === "minute")?.value ?? "0", 10);
-  const weekday = parts.find((p) => p.type === "weekday")?.value ?? "";
-
-  const isWeekend = weekday === "Saturday" || weekday === "Sunday";
-  const minutesFromMidnight = hour * 60 + minute;
-  const marketOpen = 9 * 60 + 30;
-  const marketClose = 16 * 60;
-
-  const isOpen = !isWeekend && minutesFromMidnight >= marketOpen && minutesFromMidnight < marketClose;
-
-  let countdownLabel = "";
-  if (!isOpen) {
-    if (isWeekend) {
-      countdownLabel = "Opens Monday 9:30 AM ET";
-    } else if (minutesFromMidnight < marketOpen) {
-      const minsLeft = marketOpen - minutesFromMidnight;
-      countdownLabel = `Opens in ${Math.floor(minsLeft / 60)}h ${minsLeft % 60}m`;
-    } else {
-      countdownLabel = "Opens tomorrow 9:30 AM ET";
-    }
-  } else {
-    const minsLeft = marketClose - minutesFromMidnight;
-    countdownLabel = `Closes in ${Math.floor(minsLeft / 60)}h ${minsLeft % 60}m`;
-  }
-
-  const timeStr = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")} ET`;
-
-  return { isOpen, countdownLabel, timeStr };
 }
 
 /* ─────────────────────────────────────────────
@@ -312,40 +237,31 @@ const TOP_OPPORTUNITIES: { ticker: string; direction: "long" | "short"; confiden
   { ticker: "GOOG", direction: "short", confidence: 60, reason: "Ad revenue headwinds, AI capex drag on margins" },
 ];
 
-const RISK_TIPS = [
-  "Position sizing tip: never risk more than 2% of portfolio on a single trade.",
-  "Diversification: spread exposure across at least 3-5 uncorrelated assets.",
-  "Use stop-loss orders to define your maximum loss before entering a position.",
-  "Volatility clusters — wider stops are needed during high-VIX environments.",
-  "The Kelly Criterion suggests betting a fraction proportional to your edge over the odds.",
-  "Drawdown management: reduce position size after losing 10% from peak equity.",
-  "Correlation risk: multiple 'diversified' positions can move together in a crisis.",
-];
 
 /* ─────────────────────────────────────────────
    Quick Nav shortcuts
 ───────────────────────────────────────────── */
 const NAV_SHORTCUTS = [
-  { label: "Trade", href: "/trade", Icon: BarChart3, color: "text-blue-400" },
-  { label: "Learn", href: "/learn", Icon: BookOpen, color: "text-emerald-400" },
-  { label: "Backtest", href: "/backtest", Icon: Activity, color: "text-violet-400" },
-  { label: "Options", href: "/options", Icon: Zap, color: "text-amber-400" },
-  { label: "Arena", href: "/arena", Icon: Swords, color: "text-red-400" },
-  { label: "Portfolio", href: "/portfolio", Icon: Shield, color: "text-cyan-400" },
+  { label: "Trade", href: "/trade", Icon: BarChart3, color: "text-orange-400" },
+  { label: "Learn", href: "/learn", Icon: BookOpen, color: "text-orange-400" },
+  { label: "Backtest", href: "/backtest", Icon: Activity, color: "text-orange-400" },
+  { label: "Options", href: "/options", Icon: Zap, color: "text-orange-400" },
+  { label: "Arena", href: "/arena", Icon: Swords, color: "text-orange-400" },
+  { label: "Portfolio", href: "/portfolio", Icon: Shield, color: "text-orange-400" },
 ];
 
 /* ─────────────────────────────────────────────
    Quick Actions Grid (8 buttons, 4×2)
 ───────────────────────────────────────────── */
 const QUICK_ACTIONS = [
-  { label: "New Trade", href: "/trade", Icon: PlayCircle, color: "text-blue-400", bg: "bg-blue-500/10", hover: "hover:border-blue-500/40 hover:bg-blue-500/5" },
-  { label: "Portfolio", href: "/portfolio", Icon: PieChart, color: "text-cyan-400", bg: "bg-cyan-500/10", hover: "hover:border-cyan-500/40 hover:bg-cyan-500/5" },
-  { label: "Today's Quiz", href: "/quiz", Icon: Star, color: "text-amber-400", bg: "bg-amber-500/10", hover: "hover:border-amber-500/40 hover:bg-amber-500/5" },
+  { label: "New Trade", href: "/trade", Icon: PlayCircle, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
+  { label: "Portfolio", href: "/portfolio", Icon: PieChart, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
+  { label: "Today's Quiz", href: "/quiz", Icon: Star, color: "text-amber-500", bg: "bg-amber-500/10", hover: "hover:border-amber-500/40 hover:bg-amber-500/5" },
   { label: "Earnings", href: "/learn", Icon: Newspaper, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
-  { label: "Scan Markets", href: "/backtest", Icon: ScanSearch, color: "text-violet-400", bg: "bg-violet-500/10", hover: "hover:border-violet-500/40 hover:bg-violet-500/5" },
-  { label: "Journal", href: "/journal", Icon: NotebookPen, color: "text-emerald-400", bg: "bg-emerald-500/10", hover: "hover:border-emerald-500/40 hover:bg-emerald-500/5" },
-  { label: "Options Flow", href: "/options", Icon: Zap, color: "text-yellow-400", bg: "bg-yellow-500/10", hover: "hover:border-yellow-500/40 hover:bg-yellow-500/5" },
-  { label: "Macro Update", href: "/learn", Icon: Globe, color: "text-sky-400", bg: "bg-sky-500/10", hover: "hover:border-sky-500/40 hover:bg-sky-500/5" },
+  { label: "Scan Markets", href: "/backtest", Icon: ScanSearch, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
+  { label: "Journal", href: "/journal", Icon: NotebookPen, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
+  { label: "Options Flow", href: "/options", Icon: Zap, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
+  { label: "Macro Update", href: "/learn", Icon: Globe, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
 ] as const;
 
 /* ─────────────────────────────────────────────
@@ -393,9 +309,6 @@ export default function HomePage() {
   const completedLessons = useLearnStore((s) => s.completedLessons);
   const lessonScores = useLearnStore((s) => s.lessonScores);
   const dailyStreakCount = useQuestStore((s) => s.dailyStreakCount);
-  const currentTicker = useChartStore((s) => s.currentTicker);
-  const getVisibleBars = useMarketDataStore((s) => s.getVisibleData);
-
   /* ── Single daySeed for all simulated prices (consistent across entire page) ── */
   const daySeed = Math.floor(Date.now() / 86400000);
 
@@ -486,35 +399,6 @@ export default function HomePage() {
     });
   }, [equityHistory]);
 
-  /* ── Market prices (all tickers) ── */
-  const marketPrices = useMemo(() => {
-    return ALL_TICKERS.map((ticker) => ({
-      ticker,
-      ...simulateTickerPrice(ticker, daySeed),
-    }));
-  }, [daySeed]);
-
-  /* ── Market Movers: top 5 gainers + losers ── */
-  const marketMovers = useMemo(() => {
-    const sorted = [...marketPrices].sort((a, b) => b.changePct - a.changePct);
-    return {
-      gainers: sorted.slice(0, 5),
-      losers: sorted.slice(-5).reverse(),
-    };
-  }, [marketPrices]);
-
-  /* ── Sparklines for movers (seeded per ticker) ── */
-  const moverSparklines = useMemo(() => {
-    const result: Record<string, number[]> = {};
-    for (const ticker of ALL_TICKERS) {
-      const seed = tickerHash(ticker) ^ daySeed;
-      const rand = mulberry32(seed ^ 0x1234abcd);
-      const base = BASE_PRICES[ticker] ?? 100;
-      result[ticker] = Array.from({ length: 12 }, () => base * (1 + (rand() - 0.5) * 0.04));
-    }
-    return result;
-  }, [daySeed]);
-
   /* ── Options volume (seeded daily) ── */
   const optionsVolume = useMemo(() => {
     const rand = mulberry32(daySeed ^ 0xf00dface);
@@ -526,14 +410,10 @@ export default function HomePage() {
     })).sort((a, b) => b.volume - a.volume).slice(0, 5);
   }, [daySeed]);
 
-  /* ── Market status ── */
-  const marketStatus = useMemo(() => getMarketStatus(), []);
-
   /* ── AI brief (day of week) ── */
   const dayIndex = new Date().getDay(); // 0=Sun
   const marketBrief = MARKET_BRIEFS[dayIndex % MARKET_BRIEFS.length];
   const topOpportunity = TOP_OPPORTUNITIES[dayIndex % TOP_OPPORTUNITIES.length];
-  const riskTip = RISK_TIPS[dayIndex % RISK_TIPS.length];
 
   /* ── Today's focus insight ── */
   const todayFocus = useMemo(() => {
@@ -666,12 +546,6 @@ export default function HomePage() {
       .slice(0, 12);
   }, [tradeHistory, achievements, completedLessons]);
 
-  /* ── AI Daily Brief — typing animation ── */
-  const [aiText, setAiText] = useState("");
-  const [aiLoading, setAiLoading] = useState(false);
-  const [aiRefreshKey, setAiRefreshKey] = useState(0);
-  const typingRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
   /* ── Morning AI brief bullets ── */
   const morningBullets = useMemo(() => {
     const bullets = [
@@ -682,67 +556,6 @@ export default function HomePage() {
     ];
     return bullets;
   }, [marketPulse, topOpportunity, marketBrief, todayFocus]);
-
-  const generateBrief = useCallback(() => {
-    if (typingRef.current) clearInterval(typingRef.current);
-    setAiText("");
-    setAiLoading(true);
-
-    // Small delay to simulate "thinking"
-    setTimeout(() => {
-      const visibleBars = getVisibleBars();
-      let fullText: string;
-
-      if (visibleBars.length >= 10) {
-        try {
-          const result = generateMarketBrief({
-            ticker: currentTicker,
-            visibleData: visibleBars,
-            activeIndicators: [],
-            tradeHistory: tradeHistory,
-          });
-          fullText = result.insights.join(" ").slice(0, 400);
-        } catch {
-          fullText = marketBrief;
-        }
-      } else {
-        fullText = marketBrief;
-      }
-
-      setAiLoading(false);
-      let idx = 0;
-      typingRef.current = setInterval(() => {
-        idx++;
-        setAiText(fullText.slice(0, idx));
-        if (idx >= fullText.length) {
-          if (typingRef.current) clearInterval(typingRef.current);
-        }
-      }, 12);
-    }, 300);
-  }, [currentTicker, getVisibleBars, tradeHistory, marketBrief]);
-
-  useEffect(() => {
-    generateBrief();
-    return () => {
-      if (typingRef.current) clearInterval(typingRef.current);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [aiRefreshKey]);
-
-  /* ── Stats Snapshot ── */
-  const statsSnapshot = useMemo(() => {
-    // Simulated daily P&L percentage
-    const dailyPct = portfolioValue > 0 ? (dailyPnL / portfolioValue) * 100 : 0;
-    // Current streak from game store stats
-    const streak = stats.consecutiveWins;
-    return {
-      dailyPnL,
-      dailyPct,
-      winRate,
-      streak,
-      lessonsCompleted: completedLessons.length,
-    };
-  }, [dailyPnL, portfolioValue, winRate, stats.consecutiveWins, completedLessons]);
 
   /* ── Today's trades summary for morning brief ── */
   const yesterdaySummary = useMemo(() => {
@@ -762,39 +575,23 @@ export default function HomePage() {
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <motion.div
+      <div
         className="mx-auto w-full max-w-6xl space-y-5 p-6"
-        variants={stagger}
-        initial="hidden"
-        animate="show"
       >
         {/* ═══════════════════════════════════════
             Section 0 — Market Overview Strip
         ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp}>
+        <div>
           <div className="mb-2 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              <p className="text-xs font-semibold text-muted-foreground">
                 Market Overview
               </p>
-              <span
-                className={cn(
-                  "inline-flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[9px] font-semibold",
-                  marketStatus.isOpen
-                    ? "bg-emerald-500/10 text-emerald-400"
-                    : "bg-red-500/10 text-red-400",
-                )}
-              >
-                <span
-                  className={cn(
-                    "h-1.5 w-1.5 rounded-full",
-                    marketStatus.isOpen ? "bg-emerald-400" : "bg-red-400",
-                  )}
-                />
-                {marketStatus.isOpen ? "Live" : "Closed"}
+              <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+                Simulated
               </span>
             </div>
-            <span className="text-[10px] text-muted-foreground">Daily snapshot</span>
+            <span className="text-xs text-muted-foreground">Daily snapshot</span>
           </div>
           {/* Scrollable row */}
           <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-none">
@@ -809,7 +606,7 @@ export default function HomePage() {
                     <span className="text-[11px] font-bold text-foreground">{ticker}</span>
                     <span
                       className={cn(
-                        "text-[9px] font-semibold",
+                        "text-[11px] font-semibold",
                         isUp ? "text-emerald-400" : "text-red-400",
                       )}
                     >
@@ -825,7 +622,7 @@ export default function HomePage() {
                   </p>
                   <span
                     className={cn(
-                      "text-[10px] font-semibold tabular-nums",
+                      "text-xs font-semibold tabular-nums",
                       isUp ? "text-emerald-400" : "text-red-400",
                     )}
                   >
@@ -840,14 +637,14 @@ export default function HomePage() {
             <div className="flex min-w-[140px] shrink-0 flex-col gap-1 rounded-lg border border-border bg-card px-3 py-2.5">
               <div className="flex items-center gap-1.5">
                 <Gauge className="h-3 w-3 text-primary" />
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <span className="text-xs font-semibold text-muted-foreground">
                   Market Pulse
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <span
                   className={cn(
-                    "rounded px-1.5 py-0.5 text-[10px] font-bold",
+                    "rounded px-1.5 py-0.5 text-xs font-bold",
                     marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" :
                     marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" :
                     "bg-amber-500/15 text-amber-400",
@@ -855,11 +652,11 @@ export default function HomePage() {
                 >
                   {marketPulse.regime}
                 </span>
-                <span className="text-[10px] text-muted-foreground">VIX {marketPulse.vix}</span>
+                <span className="text-xs text-muted-foreground">VIX {marketPulse.vix}</span>
               </div>
               <span
                 className={cn(
-                  "text-[10px] font-medium",
+                  "text-xs font-medium",
                   marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400",
                 )}
               >
@@ -867,13 +664,13 @@ export default function HomePage() {
               </span>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* ═══════════════════════════════════════
             NEW Section A — AI Morning Brief Card
         ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp}>
-          <div className="rounded-xl border border-border bg-card overflow-hidden">
+        <div>
+          <div className="rounded-lg border border-border bg-card overflow-hidden">
             {/* Header bar */}
             <div className="border-b border-border/50 bg-muted/10 px-5 py-3.5 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -884,22 +681,12 @@ export default function HomePage() {
                   <p className="text-sm font-semibold">
                     {greeting}, Trader
                   </p>
-                  <p className="text-[10px] text-muted-foreground">AlphaBot Morning Brief · {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}</p>
+                  <p className="text-xs text-muted-foreground">AlphaBot Morning Brief · {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                {/* Regime badge */}
-                <span
-                  className={cn(
-                    "rounded-full px-2.5 py-1 text-[11px] font-semibold border",
-                    marketPulse.regime === "Bull"
-                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-                      : marketPulse.regime === "Bear"
-                      ? "border-red-500/30 bg-red-500/10 text-red-400"
-                      : "border-amber-500/30 bg-amber-500/10 text-amber-400",
-                  )}
-                >
-                  {marketPulse.regime === "Bull" ? "Early Bull" : marketPulse.regime === "Bear" ? "Late Bear" : "Sideways"} Market
+                <span className="rounded-full px-2.5 py-1 text-[11px] font-semibold border border-primary/30 bg-primary/10 text-primary">
+                  AI Brief
                 </span>
               </div>
             </div>
@@ -907,10 +694,10 @@ export default function HomePage() {
             <div className="grid grid-cols-1 gap-0 lg:grid-cols-3">
               {/* Left: AI bullets */}
               <div className="border-b border-border/40 p-5 lg:border-b-0 lg:border-r lg:col-span-2">
-                <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                <p className="mb-3 text-xs font-semibold text-muted-foreground flex items-center gap-1.5">
                   <MessageSquare className="h-3 w-3 text-primary" />
                   Key Insights
-                  <span className="rounded bg-primary/10 px-1 py-0.5 text-[9px] font-semibold text-primary">AI</span>
+                  <span className="rounded bg-primary/10 px-1 py-0.5 text-[11px] font-semibold text-primary">AI</span>
                 </p>
                 <ul className="space-y-2">
                   {morningBullets.map((bullet, i) => (
@@ -923,7 +710,7 @@ export default function HomePage() {
 
                 {/* Today's focus */}
                 <div className="mt-4 rounded-lg border border-primary/20 bg-primary/5 px-3.5 py-2.5">
-                  <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-primary/70">
+                  <p className="mb-1 text-xs font-semibold text-primary/70">
                     Today&apos;s Focus
                   </p>
                   <p className="text-xs font-medium text-foreground">{todayFocus}</p>
@@ -932,7 +719,7 @@ export default function HomePage() {
 
               {/* Right: Yesterday summary + streak */}
               <div className="p-5">
-                <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <p className="mb-3 text-xs font-semibold text-muted-foreground">
                   Yesterday&apos;s Summary
                 </p>
                 <div className="space-y-3">
@@ -967,8 +754,8 @@ export default function HomePage() {
                 {/* XP bar */}
                 <div className="mt-4 border-t border-border/40 pt-3">
                   <div className="mb-1.5 flex items-center justify-between">
-                    <span className="text-[10px] text-muted-foreground">Level {level}</span>
-                    <span className="text-[10px] text-muted-foreground">
+                    <span className="text-xs text-muted-foreground">Level {level}</span>
+                    <span className="text-xs text-muted-foreground">
                       {xpToNext > 0 ? `${xpToNext} XP to next` : "Max"}
                     </span>
                   </div>
@@ -982,12 +769,60 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* ═══════════════════════════════════════
+            Your Next Step — contextual CTA card
+        ═══════════════════════════════════════ */}
+        <div>
+          {completedLessons.length === 0 ? (
+            <Link href="/learn">
+              <div className="group flex items-center gap-4 rounded-xl border-2 border-primary/30 bg-primary/5 px-5 py-4 transition-colors hover:border-primary/50 hover:bg-primary/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15">
+                  <BookOpen className="h-5 w-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold">Start your first lesson</p>
+                  <p className="text-xs text-muted-foreground">Learn the basics of trading with interactive lessons and quizzes.</p>
+                </div>
+                <ArrowRight className="h-5 w-5 shrink-0 text-primary opacity-60 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          ) : stats.totalTrades === 0 ? (
+            <Link href="/trade">
+              <div className="group flex items-center gap-4 rounded-xl border-2 border-orange-500/30 bg-orange-500/5 px-5 py-4 transition-colors hover:border-orange-500/50 hover:bg-orange-500/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-500/15">
+                  <BarChart3 className="h-5 w-5 text-orange-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold">Place your first practice trade</p>
+                  <p className="text-xs text-muted-foreground">Apply what you learned with simulated trading. No real money at risk.</p>
+                </div>
+                <ArrowRight className="h-5 w-5 shrink-0 text-orange-400 opacity-60 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          ) : (
+            <Link href="/portfolio">
+              <div className="group flex items-center gap-4 rounded-xl border-2 border-emerald-500/30 bg-emerald-500/5 px-5 py-4 transition-colors hover:border-emerald-500/50 hover:bg-emerald-500/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/15">
+                  <PieChart className="h-5 w-5 text-emerald-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold">Review your performance</p>
+                  <p className="text-xs text-muted-foreground">
+                    {stats.totalTrades} trade{stats.totalTrades !== 1 ? "s" : ""} completed — check your portfolio analytics and trade journal.
+                  </p>
+                </div>
+                <ArrowRight className="h-5 w-5 shrink-0 text-emerald-400 opacity-60 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          )}
+        </div>
 
         {/* ═══════════════════════════════════════
             Section 1 — Hero Stats Row (4 cards)
         ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp}>
+        <div>
           <div className="mb-3">
             <h1 className="text-base font-semibold">Dashboard</h1>
             <p className="text-xs text-muted-foreground">
@@ -997,15 +832,15 @@ export default function HomePage() {
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {/* Portfolio Value */}
             <div className="rounded-lg border border-border bg-card p-4">
-              <div className="mb-1 flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
-                <Wallet className="h-3 w-3 text-blue-400" />
+              <div className="mb-1 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <Wallet className="h-3 w-3 text-orange-400" />
                 Portfolio Value
               </div>
               <p className="text-lg font-bold tabular-nums">{formatCurrency(portfolioValue)}</p>
               <div className="mt-1 flex items-center justify-between">
                 <span
                   className={cn(
-                    "text-[10px] font-semibold tabular-nums",
+                    "text-xs font-semibold tabular-nums",
                     totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400",
                   )}
                 >
@@ -1021,7 +856,7 @@ export default function HomePage() {
 
             {/* Daily P&L */}
             <div className="rounded-lg border border-border bg-card p-4">
-              <div className="mb-1 flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
+              <div className="mb-1 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                 {dailyPnL >= 0 ? (
                   <TrendingUp className="h-3 w-3 text-emerald-400" />
                 ) : (
@@ -1040,7 +875,7 @@ export default function HomePage() {
               </p>
               <span
                 className={cn(
-                  "inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-semibold mt-1",
+                  "inline-flex items-center rounded px-1.5 py-0.5 text-xs font-semibold mt-1",
                   dailyPnL >= 0
                     ? "bg-emerald-500/10 text-emerald-400"
                     : "bg-red-500/10 text-red-400",
@@ -1052,13 +887,13 @@ export default function HomePage() {
 
             {/* Level & XP */}
             <div className="rounded-lg border border-border bg-card p-4">
-              <div className="mb-1 flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
+              <div className="mb-1 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                 <Trophy className="h-3 w-3 text-amber-400" />
                 Level &amp; XP
               </div>
               <p className="text-lg font-bold tabular-nums">Level {level}</p>
               <div className="mt-2 space-y-1">
-                <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span>{xp.toLocaleString()} XP</span>
                   <span>{xpToNext > 0 ? `${xpToNext} to next` : "Max level"}</span>
                 </div>
@@ -1073,19 +908,19 @@ export default function HomePage() {
 
             {/* Win Rate */}
             <div className="rounded-lg border border-border bg-card p-4">
-              <div className="mb-1 flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
-                <Target className="h-3 w-3 text-cyan-400" />
+              <div className="mb-1 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <Target className="h-3 w-3 text-orange-400" />
                 Win Rate
               </div>
               <div className="flex items-baseline gap-1">
                 <p className="text-lg font-bold tabular-nums">{winRate.toFixed(1)}%</p>
                 {weeklyStats && (
-                  <span className="text-[10px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     ({weeklyStats.rate.toFixed(0)}% this week)
                   </span>
                 )}
               </div>
-              <div className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
+              <div className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
                 {winRate >= 50 ? (
                   <TrendingUp className="h-3 w-3 text-emerald-400" />
                 ) : (
@@ -1095,13 +930,13 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* ═══════════════════════════════════════
             NEW Section B — Quick Actions Grid (4×2)
         ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp}>
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div>
+          <p className="mb-3 text-xs font-semibold text-muted-foreground">
             Quick Actions
           </p>
           <div className="grid grid-cols-4 gap-2.5 sm:grid-cols-8">
@@ -1116,18 +951,18 @@ export default function HomePage() {
                   <div className={cn("flex h-8 w-8 items-center justify-center rounded-lg", bg)}>
                     <Icon className={cn("h-4 w-4", color)} />
                   </div>
-                  <span className="text-[10px] font-medium leading-tight">{label}</span>
+                  <span className="text-xs font-medium leading-tight">{label}</span>
                 </div>
               </Link>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* ═══════════════════════════════════════
             NEW Section C — Market Intelligence Strip
         ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp}>
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div>
+          <p className="mb-3 text-xs font-semibold text-muted-foreground">
             Market Intelligence
           </p>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -1135,7 +970,7 @@ export default function HomePage() {
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-3 flex items-center gap-1.5">
                 <Gauge className="h-3.5 w-3.5 text-primary" />
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <p className="text-xs font-semibold text-muted-foreground">
                   Market Pulse
                 </p>
               </div>
@@ -1181,7 +1016,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative h-2 overflow-hidden rounded-full bg-muted/30">
                     {/* gradient track: red → amber → green */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 via-amber-500 to-emerald-500 opacity-30" />
+                    <div className="absolute inset-0 rounded-full bg-muted/40" />
                     <div
                       className={cn(
                         "absolute left-0 top-0 h-full rounded-full transition-all duration-700",
@@ -1197,8 +1032,8 @@ export default function HomePage() {
             {/* Economic Calendar */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-3 flex items-center gap-1.5">
-                <CalendarClock className="h-3.5 w-3.5 text-violet-400" />
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <CalendarClock className="h-3.5 w-3.5 text-muted-foreground" />
+                <p className="text-xs font-semibold text-muted-foreground">
                   Economic Calendar
                 </p>
               </div>
@@ -1208,7 +1043,7 @@ export default function HomePage() {
                     <div className="flex items-start gap-2 min-w-0">
                       <span
                         className={cn(
-                          "mt-0.5 shrink-0 rounded px-1 py-0.5 text-[9px] font-bold",
+                          "mt-0.5 shrink-0 rounded px-1 py-0.5 text-[11px] font-bold",
                           ev.impact === "HIGH" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400",
                         )}
                       >
@@ -1216,10 +1051,10 @@ export default function HomePage() {
                       </span>
                       <div className="min-w-0">
                         <p className="truncate text-xs font-medium">{ev.name}</p>
-                        <p className="text-[10px] text-muted-foreground">{ev.time}</p>
+                        <p className="text-xs text-muted-foreground">{ev.time}</p>
                       </div>
                     </div>
-                    <span className="shrink-0 text-[10px] text-muted-foreground whitespace-nowrap">
+                    <span className="shrink-0 text-xs text-muted-foreground whitespace-nowrap">
                       {ev.daysFromNow === 1 ? "Tomorrow" : `In ${ev.daysFromNow}d`}
                     </span>
                   </div>
@@ -1231,7 +1066,7 @@ export default function HomePage() {
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-3 flex items-center gap-1.5">
                 <Zap className="h-3.5 w-3.5 text-amber-400" />
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <p className="text-xs font-semibold text-muted-foreground">
                   Most Active Options
                 </p>
               </div>
@@ -1247,12 +1082,12 @@ export default function HomePage() {
                         />
                       </div>
                     </div>
-                    <span className="w-16 text-right text-[10px] font-mono text-muted-foreground tabular-nums">
+                    <span className="w-16 text-right text-xs font-mono text-muted-foreground tabular-nums">
                       {(item.volume / 1000).toFixed(0)}K
                     </span>
                     <span
                       className={cn(
-                        "w-10 text-right text-[10px] font-semibold tabular-nums",
+                        "w-10 text-right text-xs font-semibold tabular-nums",
                         item.callPutRatio > 1 ? "text-emerald-400" : "text-red-400",
                       )}
                     >
@@ -1261,202 +1096,34 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <Link href="/options" className="mt-3 flex items-center gap-1 text-[10px] font-medium text-primary hover:underline">
+              <Link href="/options" className="mt-3 flex items-center gap-1 text-xs font-medium text-primary hover:underline">
                 View options flow
                 <ChevronRight className="h-3 w-3" />
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* ═══════════════════════════════════════
-            Section 1b — Original Quick Actions (repurposed)
-            Now replaced by the 4×2 grid above.
-            We keep the 4 main action cards but as a 4-col row.
-        ═══════════════════════════════════════ */}
+        {/* Section 1b and Section 2 (Market Prices/Status) removed — redundant with overview strip */}
 
-        {/* ═══════════════════════════════════════
-            Section 2 — Market Overview (2-col)
-        ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp} className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          {/* Left: Mini market ticker strip */}
-          <div className="rounded-lg border border-border bg-card">
-            <div className="border-b border-border px-4 py-2.5">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                Market Prices
-              </p>
-            </div>
-            <div className="divide-y divide-border/40">
-              {marketPrices.map(({ ticker, price, changePct }) => (
-                <div key={ticker} className="flex items-center justify-between px-4 py-1.5">
-                  <span className="w-12 text-xs font-semibold text-foreground">{ticker}</span>
-                  <span className="flex-1 text-right text-xs font-mono tabular-nums text-foreground">
-                    ${price.toFixed(2)}
-                  </span>
-                  <span
-                    className={cn(
-                      "ml-4 w-16 text-right text-[11px] font-semibold tabular-nums",
-                      changePct >= 0 ? "text-emerald-400" : "text-red-400",
-                    )}
-                  >
-                    {changePct >= 0 ? "+" : ""}
-                    {changePct.toFixed(2)}%
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Market status card */}
-          <div className="rounded-lg border border-border bg-card p-5">
-            <p className="mb-4 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              Market Status
-            </p>
-            <div className="flex items-center gap-3">
-              <div
-                className={cn(
-                  "h-3 w-3 rounded-full",
-                  marketStatus.isOpen ? "bg-emerald-400" : "bg-red-400",
-                )}
-              />
-              <p className="text-base font-semibold">
-                US Markets: {marketStatus.isOpen ? "Open" : "Closed"}
-              </p>
-            </div>
-            <div className="mt-4 space-y-2">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Clock className="h-3.5 w-3.5" />
-                <span className="font-mono tabular-nums">{marketStatus.timeStr}</span>
-              </div>
-              <p className="text-xs text-muted-foreground">{marketStatus.countdownLabel}</p>
-            </div>
-
-            <div className="mt-5 grid grid-cols-3 gap-3 border-t border-border/50 pt-4">
-              <div>
-                <p className="text-[10px] text-muted-foreground">Open</p>
-                <p className="text-xs font-semibold tabular-nums">9:30 AM</p>
-              </div>
-              <div>
-                <p className="text-[10px] text-muted-foreground">Close</p>
-                <p className="text-xs font-semibold tabular-nums">4:00 PM</p>
-              </div>
-              <div>
-                <p className="text-[10px] text-muted-foreground">Timezone</p>
-                <p className="text-xs font-semibold">ET</p>
-              </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {["Pre-market 4AM–9:30AM", "After-hours 4PM–8PM"].map((label) => (
-                <span
-                  key={label}
-                  className="rounded bg-muted/30 px-2 py-0.5 text-[10px] text-muted-foreground"
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* ═══════════════════════════════════════
-            NEW Section D — Market Movers Widget
-        ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp}>
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            Market Movers
-          </p>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            {/* Top Gainers */}
-            <div className="rounded-lg border border-border bg-card">
-              <div className="border-b border-border px-4 py-2.5 flex items-center gap-1.5">
-                <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  Top Gainers
-                </p>
-              </div>
-              <div className="divide-y divide-border/30">
-                {marketMovers.gainers.map(({ ticker, price, changePct }) => {
-                  const sparkData = moverSparklines[ticker] ?? [];
-                  return (
-                    <div key={ticker} className="flex items-center gap-3 px-4 py-2">
-                      <div className="w-10">
-                        <p className="text-xs font-bold">{ticker}</p>
-                        <p className="text-[10px] text-muted-foreground font-mono tabular-nums">${price.toFixed(2)}</p>
-                      </div>
-                      <div className="flex-1">
-                        {/* volume bar */}
-                        <div className="mb-1 h-1 overflow-hidden rounded-full bg-muted/30">
-                          <div
-                            className="h-full rounded-full bg-emerald-500/50"
-                            style={{ width: `${40 + (tickerHash(ticker) % 50)}%` }}
-                          />
-                        </div>
-                        <MiniSparkline data={sparkData} color="#10b981" width={80} height={18} />
-                      </div>
-                      <span className="w-12 text-right text-xs font-bold text-emerald-400 tabular-nums">
-                        +{changePct.toFixed(2)}%
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Top Losers */}
-            <div className="rounded-lg border border-border bg-card">
-              <div className="border-b border-border px-4 py-2.5 flex items-center gap-1.5">
-                <TrendingDown className="h-3.5 w-3.5 text-red-400" />
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  Top Losers
-                </p>
-              </div>
-              <div className="divide-y divide-border/30">
-                {marketMovers.losers.map(({ ticker, price, changePct }) => {
-                  const sparkData = moverSparklines[ticker] ?? [];
-                  return (
-                    <div key={ticker} className="flex items-center gap-3 px-4 py-2">
-                      <div className="w-10">
-                        <p className="text-xs font-bold">{ticker}</p>
-                        <p className="text-[10px] text-muted-foreground font-mono tabular-nums">${price.toFixed(2)}</p>
-                      </div>
-                      <div className="flex-1">
-                        {/* volume bar */}
-                        <div className="mb-1 h-1 overflow-hidden rounded-full bg-muted/30">
-                          <div
-                            className="h-full rounded-full bg-red-500/50"
-                            style={{ width: `${40 + (tickerHash(ticker) % 50)}%` }}
-                          />
-                        </div>
-                        <MiniSparkline data={sparkData} color="#ef4444" width={80} height={18} />
-                      </div>
-                      <span className="w-12 text-right text-xs font-bold text-red-400 tabular-nums">
-                        {changePct.toFixed(2)}%
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        {/* Market Movers section removed — filler below the fold */}
 
         {/* ═══════════════════════════════════════
             Section 3 — Main Content + Activity Feed (3+1 grid)
         ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp} className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
           {/* Left 3 cols: Portfolio chart + Recent Trades + Daily Goals */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-3">
             {/* Portfolio mini-chart */}
             <div className="rounded-lg border border-border bg-card">
               <div className="border-b border-border px-4 py-2.5">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  <p className="text-xs font-semibold text-muted-foreground">
                     Portfolio Equity
                   </p>
                   <Link
                     href="/portfolio"
-                    className="flex items-center gap-0.5 text-[10px] font-medium text-primary hover:underline"
+                    className="flex items-center gap-0.5 text-xs font-medium text-primary hover:underline"
                   >
                     View
                     <ChevronRight className="h-3 w-3" />
@@ -1477,7 +1144,7 @@ export default function HomePage() {
                   </span>
                 </div>
                 <PortfolioEquityChart equityHistory={equityHistory} currentValue={portfolioValue} />
-                <p className="mt-2 text-[10px] text-muted-foreground">Last 30 trading days</p>
+                <p className="mt-2 text-xs text-muted-foreground">Last 30 trading days</p>
 
                 {/* Open positions summary */}
                 {positions.length > 0 && (
@@ -1506,7 +1173,7 @@ export default function HomePage() {
                       </div>
                     ))}
                     {positions.length > 3 && (
-                      <p className="text-[10px] text-muted-foreground">+{positions.length - 3} more</p>
+                      <p className="text-xs text-muted-foreground">+{positions.length - 3} more</p>
                     )}
                   </div>
                 )}
@@ -1517,13 +1184,13 @@ export default function HomePage() {
             <div className="rounded-lg border border-border bg-card">
               <div className="border-b border-border px-4 py-2.5">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  <p className="text-xs font-semibold text-muted-foreground">
                     Recent Trades
                   </p>
                   {tradeHistory.length > 0 && (
                     <Link
                       href="/portfolio"
-                      className="text-[10px] font-medium text-primary hover:underline"
+                      className="text-xs font-medium text-primary hover:underline"
                     >
                       View All
                     </Link>
@@ -1555,7 +1222,7 @@ export default function HomePage() {
                           />
                           <div>
                             <p className="text-xs font-semibold">{trade.ticker}</p>
-                            <p className="text-[10px] uppercase text-muted-foreground">
+                            <p className="text-xs uppercase text-muted-foreground">
                               {trade.side} &times; {trade.quantity}
                             </p>
                           </div>
@@ -1582,10 +1249,10 @@ export default function HomePage() {
             <div className="rounded-lg border border-border bg-card">
               <div className="border-b border-border px-4 py-2.5">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  <p className="text-xs font-semibold text-muted-foreground">
                     Daily Goals
                   </p>
-                  <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <Flame className="h-3 w-3 text-orange-400" />
                     <span>{dailyStreakCount}d streak</span>
                   </div>
@@ -1605,7 +1272,7 @@ export default function HomePage() {
                           )}
                           <span className="text-xs text-foreground">{goal.label}</span>
                         </div>
-                        <span className="text-[10px] font-semibold tabular-nums text-muted-foreground">
+                        <span className="text-xs font-semibold tabular-nums text-muted-foreground">
                           {goal.current}{"suffix" in goal ? (goal as { suffix?: string }).suffix ?? "" : ""}/{goal.target}{"suffix" in goal ? (goal as { suffix?: string }).suffix ?? "" : ""}
                         </span>
                       </div>
@@ -1628,7 +1295,7 @@ export default function HomePage() {
           {/* Right col: Activity Feed — enhanced with quest/timeline */}
           <div className="rounded-lg border border-border bg-card lg:col-span-1">
             <div className="border-b border-border px-4 py-2.5">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              <p className="text-xs font-semibold text-muted-foreground">
                 Activity Timeline
               </p>
             </div>
@@ -1637,7 +1304,7 @@ export default function HomePage() {
                 <div className="flex flex-col items-center gap-2 py-10 text-center">
                   <Activity className="h-6 w-6 text-muted-foreground/20" />
                   <p className="text-xs text-muted-foreground">No recent activity</p>
-                  <p className="text-[10px] text-muted-foreground/60">
+                  <p className="text-xs text-muted-foreground/60">
                     Trades, lessons, and achievements<br />will appear here.
                   </p>
                 </div>
@@ -1648,20 +1315,20 @@ export default function HomePage() {
                   <div className="space-y-3">
                     {activityFeed.map((item) => {
                       const dotColor =
-                        item.type === "trade" ? "border-blue-500/50 bg-blue-500/10" :
+                        item.type === "trade" ? "border-orange-500/50 bg-orange-500/10" :
                         item.type === "achievement" ? "border-amber-500/50 bg-amber-500/10" :
-                        item.type === "quest" ? "border-violet-500/50 bg-violet-500/10" :
+                        item.type === "quest" ? "border-orange-500/50 bg-orange-500/10" :
                         "border-emerald-500/50 bg-emerald-500/10";
 
                       const iconEl =
                         item.type === "trade" ? (
-                          <BarChart3 className="h-3 w-3 text-blue-400" />
+                          <BarChart3 className="h-3 w-3 text-orange-400" />
                         ) : item.type === "achievement" ? (
-                          <Award className="h-3 w-3 text-amber-400" />
+                          <Award className="h-3 w-3 text-amber-500" />
                         ) : item.type === "quest" ? (
-                          <CircleDot className="h-3 w-3 text-violet-400" />
+                          <CircleDot className="h-3 w-3 text-orange-400" />
                         ) : item.type === "levelup" ? (
-                          <Star className="h-3 w-3 text-violet-400" />
+                          <Star className="h-3 w-3 text-orange-400" />
                         ) : (
                           <BookOpen className="h-3 w-3 text-emerald-400" />
                         );
@@ -1679,15 +1346,15 @@ export default function HomePage() {
                           <div className="min-w-0 flex-1 pt-0.5">
                             <div className="flex items-baseline justify-between gap-1">
                               <p className="truncate text-[11px] font-medium">{item.label}</p>
-                              <span className="shrink-0 text-[9px] text-muted-foreground">
+                              <span className="shrink-0 text-[11px] text-muted-foreground">
                                 {relativeTime(item.ts)}
                               </span>
                             </div>
-                            <p className="truncate text-[10px] text-muted-foreground">{item.sub}</p>
+                            <p className="truncate text-xs text-muted-foreground">{item.sub}</p>
                             {item.pnl !== undefined && item.pnl !== 0 && (
                               <span
                                 className={cn(
-                                  "text-[10px] font-semibold tabular-nums",
+                                  "text-xs font-semibold tabular-nums",
                                   item.pnl >= 0 ? "text-emerald-400" : "text-red-400",
                                 )}
                               >
@@ -1704,229 +1371,24 @@ export default function HomePage() {
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Sections 3b (duplicate AI brief) and 4 (AI Insights) removed — consolidated in morning brief above */}
 
         {/* ═══════════════════════════════════════
-            Section 3b — AI Daily Brief + Stats Snapshot
+            Learning Progress Widget + Quick Navigation
         ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp} className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          {/* AI Daily Brief — spans 2 cols */}
-          <div className="rounded-lg border border-border bg-card p-5 lg:col-span-2">
-            <div className="mb-3 flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <MessageSquare className="h-3.5 w-3.5 text-primary" />
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  Today&apos;s Market Insight
-                </p>
-                <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold text-primary">
-                  AI
-                </span>
-              </div>
-              <button
-                onClick={() => setAiRefreshKey((k) => k + 1)}
-                disabled={aiLoading}
-                className="flex items-center gap-1 rounded px-2 py-1 text-[10px] font-medium text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground disabled:opacity-40"
-              >
-                <RefreshCw className={cn("h-3 w-3", aiLoading && "animate-spin")} />
-                Refresh
-              </button>
-            </div>
-
-            <div className="min-h-[72px]">
-              {aiLoading ? (
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <div className="flex gap-0.5">
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/60 [animation-delay:0ms]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/60 [animation-delay:150ms]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-primary/60 [animation-delay:300ms]" />
-                  </div>
-                  <span>Analyzing market conditions…</span>
-                </div>
-              ) : (
-                <p className="text-xs leading-relaxed text-foreground">
-                  {aiText}
-                  {aiText.length > 0 && (
-                    <span className="ml-0.5 inline-block h-3 w-px animate-pulse bg-primary" />
-                  )}
-                </p>
-              )}
-            </div>
-
-            <div className="mt-3 flex items-center gap-1.5 border-t border-border/40 pt-2.5">
-              <span className="text-[9px] text-muted-foreground/60">Powered by AlphaBot AI</span>
-              <span className="text-[9px] text-muted-foreground/40">·</span>
-              <span className="text-[9px] text-muted-foreground/60">
-                Analyzing: <span className="font-semibold text-muted-foreground">{currentTicker}</span>
-              </span>
-            </div>
-          </div>
-
-          {/* Stats Snapshot — 4 chips in a 2x2 grid */}
-          <div className="rounded-lg border border-border bg-card p-5">
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              Stats Snapshot
-            </p>
-            <div className="grid grid-cols-2 gap-3">
-              {/* Portfolio P&L Today */}
-              <div className="rounded-md border border-border/50 bg-muted/10 p-3">
-                <p className="mb-0.5 text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
-                  Today P&amp;L
-                </p>
-                <p
-                  className={cn(
-                    "text-sm font-bold tabular-nums",
-                    statsSnapshot.dailyPnL >= 0 ? "text-emerald-400" : "text-red-400",
-                  )}
-                >
-                  {statsSnapshot.dailyPnL >= 0 ? "+" : ""}
-                  {formatCurrency(statsSnapshot.dailyPnL)}
-                </p>
-                <p
-                  className={cn(
-                    "text-[10px] tabular-nums",
-                    statsSnapshot.dailyPct >= 0 ? "text-emerald-400/70" : "text-red-400/70",
-                  )}
-                >
-                  {statsSnapshot.dailyPct >= 0 ? "+" : ""}
-                  {statsSnapshot.dailyPct.toFixed(2)}%
-                </p>
-              </div>
-
-              {/* Win Rate */}
-              <div className="rounded-md border border-border/50 bg-muted/10 p-3">
-                <p className="mb-0.5 text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
-                  Win Rate
-                </p>
-                <p className="text-sm font-bold tabular-nums">{statsSnapshot.winRate.toFixed(1)}%</p>
-                <p className="text-[10px] text-muted-foreground">
-                  {stats.profitableTrades}/{stats.totalTrades} trades
-                </p>
-              </div>
-
-              {/* Streak */}
-              <div className="rounded-md border border-border/50 bg-muted/10 p-3">
-                <p className="mb-0.5 text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
-                  Win Streak
-                </p>
-                <div className="flex items-baseline gap-1">
-                  <p className="text-sm font-bold tabular-nums">{statsSnapshot.streak}</p>
-                  {statsSnapshot.streak > 0 && (
-                    <Flame className="h-3.5 w-3.5 text-orange-400" />
-                  )}
-                </div>
-                <p className="text-[10px] text-muted-foreground">consecutive wins</p>
-              </div>
-
-              {/* Lessons Completed */}
-              <div className="rounded-md border border-border/50 bg-muted/10 p-3">
-                <p className="mb-0.5 text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
-                  Lessons Done
-                </p>
-                <p className="text-sm font-bold tabular-nums">{statsSnapshot.lessonsCompleted}</p>
-                <p className="text-[10px] text-muted-foreground">
-                  of {learnProgress.total} total
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* ═══════════════════════════════════════
-            Section 4 — AI Insights Row (3 cards)
-        ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp}>
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            AI Insights
-          </p>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {/* Market Brief */}
-            <div className="rounded-lg border border-border bg-card p-4">
-              <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                <Activity className="h-3 w-3 text-primary" />
-                Market Brief
-              </div>
-              <p className="text-xs leading-relaxed text-foreground">{marketBrief}</p>
-            </div>
-
-            {/* Top Opportunity */}
-            <div className="rounded-lg border border-border bg-card p-4">
-              <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                <TrendingUp className="h-3 w-3 text-emerald-400" />
-                Top Opportunity
-              </div>
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="text-sm font-bold">{topOpportunity.ticker}</p>
-                  <span
-                    className={cn(
-                      "inline-flex rounded px-1.5 py-0.5 text-[10px] font-semibold",
-                      topOpportunity.direction === "long"
-                        ? "bg-emerald-500/10 text-emerald-400"
-                        : "bg-red-500/10 text-red-400",
-                    )}
-                  >
-                    {topOpportunity.direction.toUpperCase()}
-                  </span>
-                </div>
-                <div className="text-right">
-                  <p className="text-[10px] text-muted-foreground">Confidence</p>
-                  <p className="text-sm font-bold text-primary">{topOpportunity.confidence}%</p>
-                </div>
-              </div>
-              <p className="mt-2 text-[10px] leading-relaxed text-muted-foreground">
-                {topOpportunity.reason}
-              </p>
-            </div>
-
-            {/* Risk Alert / Tip */}
-            <div className="rounded-lg border border-border bg-card p-4">
-              <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                <Shield className="h-3 w-3 text-amber-400" />
-                {positions.length > 0 ? "Portfolio Risk" : "Risk Education"}
-              </div>
-              {positions.length > 0 ? (
-                <div className="space-y-2">
-                  <p className="text-xs font-medium">
-                    {positions.length} open position{positions.length !== 1 ? "s" : ""}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Unrealized P&amp;L:{" "}
-                    <span
-                      className={cn(
-                        "font-semibold tabular-nums",
-                        positions.reduce((s, p) => s + p.unrealizedPnL, 0) >= 0
-                          ? "text-emerald-400"
-                          : "text-red-400",
-                      )}
-                    >
-                      {positions.reduce((s, p) => s + p.unrealizedPnL, 0) >= 0 ? "+" : ""}
-                      {formatCurrency(positions.reduce((s, p) => s + p.unrealizedPnL, 0))}
-                    </span>
-                  </p>
-                  <p className="text-[10px] leading-relaxed text-muted-foreground">{riskTip}</p>
-                </div>
-              ) : (
-                <p className="text-xs leading-relaxed text-muted-foreground">{riskTip}</p>
-              )}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* ═══════════════════════════════════════
-            NEW Section E — Learning Progress Widget (enhanced)
-            + Section 5 original (merged)
-        ═══════════════════════════════════════ */}
-        <motion.div variants={fadeUp} className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {/* Learning Progress — enhanced with ring */}
           <div className="rounded-lg border border-border bg-card p-5 lg:col-span-2">
             <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
                 <BookOpen className="h-3 w-3" />
                 Learning Progress
               </div>
               <Link
                 href="/learn"
-                className="flex items-center gap-0.5 text-[10px] font-medium text-primary hover:underline"
+                className="flex items-center gap-0.5 text-xs font-medium text-primary hover:underline"
               >
                 Continue
                 <ArrowRight className="h-3 w-3" />
@@ -1949,9 +1411,9 @@ export default function HomePage() {
                 </p>
                 {nextLesson ? (
                   <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2">
-                    <p className="text-[10px] text-muted-foreground mb-0.5">Next recommended</p>
+                    <p className="text-xs text-muted-foreground mb-0.5">Next recommended</p>
                     <p className="text-xs font-medium truncate">{nextLesson.lesson.title}</p>
-                    <p className="text-[10px] text-muted-foreground">{nextLesson.unit.title}</p>
+                    <p className="text-xs text-muted-foreground">{nextLesson.unit.title}</p>
                   </div>
                 ) : (
                   <p className="text-xs text-emerald-400 font-medium">All lessons complete!</p>
@@ -1963,28 +1425,28 @@ export default function HomePage() {
             <div className="grid grid-cols-4 gap-3">
               <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2 text-center">
                 <p className="text-sm font-bold tabular-nums">{learnProgress.sRankCount}</p>
-                <p className="text-[10px] text-muted-foreground">A/S Ranks</p>
+                <p className="text-xs text-muted-foreground">A/S Ranks</p>
               </div>
               <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2 text-center">
                 <p className="text-sm font-bold tabular-nums">
                   {learningStreak > 0 ? `${learningStreak}d` : "--"}
                 </p>
-                <p className="text-[10px] text-muted-foreground">Streak</p>
+                <p className="text-xs text-muted-foreground">Streak</p>
               </div>
               <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2 text-center">
                 <p className="text-sm font-bold tabular-nums">{learnProgress.xpEarnedThisWeek}</p>
-                <p className="text-[10px] text-muted-foreground">XP this week</p>
+                <p className="text-xs text-muted-foreground">XP this week</p>
               </div>
               <div className="rounded-md border border-border/50 bg-muted/10 px-3 py-2 text-center">
                 <p className="text-sm font-bold tabular-nums">{level}</p>
-                <p className="text-[10px] text-muted-foreground">Level</p>
+                <p className="text-xs text-muted-foreground">Level</p>
               </div>
             </div>
           </div>
 
           {/* Right: Quick Navigation */}
           <div className="rounded-lg border border-border bg-card p-5">
-            <p className="mb-4 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <p className="mb-4 text-xs font-semibold text-muted-foreground">
               Quick Navigation
             </p>
             <div className="grid grid-cols-3 gap-2">
@@ -1998,8 +1460,17 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+
+        {/* ═══════════════════════════════════════
+            Educational Disclaimer
+        ═══════════════════════════════════════ */}
+        <div className="border-t border-border/30 pt-4 pb-2 text-center">
+          <p className="text-xs text-muted-foreground/60">
+            All market data is simulated for educational purposes. Not financial advice.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

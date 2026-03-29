@@ -21,7 +21,7 @@ const GRADE_CONFIG = {
     border: "border-amber-400/40",
     label: "Outstanding! 🏆",
     sublabel: "You're a natural trader!",
-    glow: "shadow-[0_0_50px_rgba(251,191,36,0.3)]",
+    glow: "",
     emoji: "🌟",
   },
   A: {
@@ -30,7 +30,7 @@ const GRADE_CONFIG = {
     border: "border-emerald-400/30",
     label: "Excellent! ⭐",
     sublabel: "Great work, keep it up!",
-    glow: "shadow-[0_0_30px_rgba(52,211,153,0.2)]",
+    glow: "",
     emoji: "🎉",
   },
   B: {
@@ -126,7 +126,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
         {/* Grade letter with bounce */}
         <motion.div
           className={cn(
-            "relative flex h-24 w-24 items-center justify-center rounded-2xl border-2 text-5xl font-black",
+            "relative flex h-24 w-24 items-center justify-center rounded-2xl border-2 text-5xl font-bold",
             config.border,
             config.bg,
             config.color,
@@ -155,7 +155,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45 }}
         >
-          <h2 className="text-xl font-black">{config.label}</h2>
+          <h2 className="text-xl font-bold">{config.label}</h2>
           <p className="text-xs text-muted-foreground mt-0.5">{config.sublabel}</p>
         </motion.div>
 
@@ -206,10 +206,10 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           <AnimatedNumber
             value={adjustedXP}
             format={xpFormat}
-            className={cn("text-lg font-black", config.color)}
+            className={cn("text-lg font-bold", config.color)}
           />
           {gradeMultiplier > 1 && (
-            <span className={cn("text-[10px] font-bold rounded-full px-1.5 py-0.5 border", config.bg, config.color, config.border)}>
+            <span className={cn("text-xs font-bold rounded-full px-1.5 py-0.5 border", config.bg, config.color, config.border)}>
               {gradeMultiplier === 1.5 ? "×1.5 BONUS 🎁" : "×1.2 BONUS 🎁"}
             </span>
           )}
@@ -224,7 +224,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           transition={{ delay: 0.9 }}
-          className="w-full rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110 shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+          className="w-full rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
         >
           Continue 🚀
         </motion.button>

@@ -957,7 +957,7 @@ export function CandlestickChart() {
             </span>
           </span>
           {chartType === "heikin_ashi" && (
-            <span className="rounded bg-amber-500/20 px-1 text-[9px] text-amber-400">HA</span>
+            <span className="rounded bg-amber-500/20 px-1 text-[11px] text-amber-400">HA</span>
           )}
         </div>
       )}

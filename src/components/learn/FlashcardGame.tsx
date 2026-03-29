@@ -105,7 +105,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
         </motion.div>
 
         <div className="text-center">
-          <h3 className="text-lg font-black">Session Complete!</h3>
+          <h3 className="text-lg font-bold">Session Complete!</h3>
           <p className="text-[11px] text-muted-foreground mt-1">Great practice session</p>
         </div>
 
@@ -159,7 +159,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Brain className="h-4 w-4 text-purple-400" />
-          <span className="text-sm font-black">Flashcards</span>
+          <span className="text-sm font-bold">Flashcards</span>
         </div>
         <div className="flex items-center gap-3">
           {streak > 0 && (
@@ -170,7 +170,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
               key={streak}
             >
               <Flame className="h-3.5 w-3.5 text-amber-400 streak-fire" />
-              <span className="text-xs font-black tabular-nums text-amber-400">{streak}</span>
+              <span className="text-xs font-bold tabular-nums text-amber-400">{streak}</span>
             </motion.div>
           )}
           <button type="button" onClick={onClose} className="rounded-lg p-1 hover:bg-accent/30">
@@ -188,7 +188,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             transition={{ duration: 0.3 }}
           />
         </div>
-        <span className="text-[10px] font-bold tabular-nums text-muted-foreground">
+        <span className="text-xs font-bold tabular-nums text-muted-foreground">
           {cardIndex + 1}/{cards.length}
         </span>
       </div>
@@ -210,11 +210,11 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             {/* Front */}
             <div className="card-flip-front rounded-2xl border border-border bg-card p-6 min-h-[220px] flex flex-col items-center justify-center gap-3">
               {cat && (
-                <span className={cn("text-[9px] font-bold uppercase tracking-widest", cat.color)}>
+                <span className={cn("text-[11px] font-bold", cat.color)}>
                   {cat.label}
                 </span>
               )}
-              <p className="text-center text-lg font-black whitespace-pre-line">
+              <p className="text-center text-lg font-bold whitespace-pre-line">
                 {currentCard.front}
               </p>
               {!flipped && (
@@ -224,7 +224,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
                   transition={{ duration: 2, repeat: Infinity, type: "tween" }}
                 >
                   <RotateCcw className="h-3 w-3 text-muted-foreground" />
-                  <span className="text-[10px] text-muted-foreground">Tap to reveal</span>
+                  <span className="text-xs text-muted-foreground">Tap to reveal</span>
                 </motion.div>
               )}
             </div>
@@ -232,7 +232,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             {/* Back */}
             <div className="card-flip-back rounded-2xl border border-primary/20 bg-card p-6 min-h-[220px] flex flex-col justify-center gap-3">
               {cat && (
-                <span className={cn("text-[9px] font-bold uppercase tracking-widest", cat.color)}>
+                <span className={cn("text-[11px] font-bold", cat.color)}>
                   {cat.label}
                 </span>
               )}
@@ -240,7 +240,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
                 {currentCard.back}
               </p>
               {currentCard.hint && (
-                <p className="text-[10px] text-muted-foreground italic mt-1">
+                <p className="text-xs text-muted-foreground italic mt-1">
                   💡 {currentCard.hint}
                 </p>
               )}
@@ -281,7 +281,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
 
       {/* Daily progress */}
       <div className="flex items-center justify-center gap-2 mt-1">
-        <span className="text-[10px] text-muted-foreground">
+        <span className="text-xs text-muted-foreground">
           Today: {todayReviewed + sessionTotal} / {DAILY_GOAL} cards
         </span>
         {todayReviewed + sessionTotal >= DAILY_GOAL && (
@@ -300,8 +300,8 @@ function StatBox({ label, value, color }: { label: string; value: string; color:
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1 }}
     >
-      <span className={cn("text-lg font-black tabular-nums", color)}>{value}</span>
-      <span className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground/60">
+      <span className={cn("text-lg font-bold tabular-nums", color)}>{value}</span>
+      <span className="text-[8px] font-bold text-muted-foreground/60">
         {label}
       </span>
     </motion.div>

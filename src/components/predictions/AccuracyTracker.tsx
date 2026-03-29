@@ -108,7 +108,7 @@ function BrierTrendChart({ bets }: { bets: PredictionBet[] }) {
   return (
     <div className="rounded-lg border border-border bg-card p-3">
       <div className="mb-1.5 flex items-center justify-between">
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <span className="text-xs font-semibold text-muted-foreground">
           Brier Score Trend (last 10 predictions)
         </span>
         <span
@@ -235,7 +235,7 @@ function BrierTrendChart({ bets }: { bets: PredictionBet[] }) {
         ))}
       </svg>
 
-      <p className="mt-1 text-[9px] text-muted-foreground">
+      <p className="mt-1 text-[11px] text-muted-foreground">
         Lower is better. 0 = perfect calibration. 0.25 = no skill (random guessing).
       </p>
     </div>
@@ -275,7 +275,7 @@ function CalibrationSection({ bets }: { bets: PredictionBet[] }) {
 
   return (
     <div className="rounded-lg border border-border bg-card p-4">
-      <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+      <h3 className="mb-3 text-xs font-semibold text-muted-foreground">
         Calibration by Confidence
       </h3>
       <div className="space-y-2">
@@ -283,11 +283,11 @@ function CalibrationSection({ bets }: { bets: PredictionBet[] }) {
           const pct = Math.round((correct / count) * 100);
           return (
             <div key={label} className="flex items-center gap-3">
-              <div className="w-16 shrink-0 text-[10px] font-mono text-muted-foreground">
+              <div className="w-16 shrink-0 text-xs font-mono text-muted-foreground">
                 {label}
               </div>
               <div className="flex-1">
-                <div className="mb-0.5 flex items-center justify-between text-[10px]">
+                <div className="mb-0.5 flex items-center justify-between text-xs">
                   <span className="text-muted-foreground">
                     {correct}/{count} correct
                   </span>
@@ -313,7 +313,7 @@ function CalibrationSection({ bets }: { bets: PredictionBet[] }) {
           );
         })}
       </div>
-      <p className="mt-3 text-[10px] text-muted-foreground">
+      <p className="mt-3 text-xs text-muted-foreground">
         Well-calibrated: when you say 80% confident, you should be right ~80% of the time.
       </p>
     </div>
@@ -371,7 +371,7 @@ export function AccuracyTracker() {
           <div className="font-mono text-2xl font-bold tabular-nums text-foreground">
             {stats.accuracy}%
           </div>
-          <div className="text-[10px] text-muted-foreground">
+          <div className="text-xs text-muted-foreground">
             {stats.correctPredictions}/{stats.totalResolved} correct
           </div>
         </div>
@@ -408,7 +408,7 @@ export function AccuracyTracker() {
             }}
           />
         </div>
-        <div className="mt-1.5 flex justify-between text-[9px] text-muted-foreground">
+        <div className="mt-1.5 flex justify-between text-[11px] text-muted-foreground">
           <span>0 = perfect</span>
           <span>0.25 = no skill</span>
           <span>1.0 = worst</span>

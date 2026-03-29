@@ -1568,7 +1568,7 @@ export default function TradingPsychPage() {
               </CardHeader>
               <CardContent className="flex flex-col items-center gap-3">
                 <div
-                  className="text-6xl font-black"
+                  className="text-6xl font-bold"
                   style={{ color: reviewGrade.color }}
                 >
                   {overallReviewScore > 0 ? reviewGrade.grade : "—"}

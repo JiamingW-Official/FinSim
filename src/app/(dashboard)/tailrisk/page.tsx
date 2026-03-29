@@ -312,7 +312,7 @@ function BlackSwanTab() {
                   <td className="px-3 py-2 text-slate-200 font-medium">{ev.name}</td>
                   <td className="px-3 py-2">
                     <span
-                      className="px-1.5 py-0.5 rounded text-[10px] font-medium"
+                      className="px-1.5 py-0.5 rounded text-xs font-medium"
                       style={{ backgroundColor: CATEGORY_COLORS[ev.category] + "30", color: CATEGORY_COLORS[ev.category] }}
                     >
                       {ev.category}
@@ -339,7 +339,7 @@ function BlackSwanTab() {
         <h3 className="text-sm font-semibold text-slate-300 mb-1">Fat Tail vs Normal Distribution</h3>
         <p className="text-xs text-slate-500 mb-3">Real returns have heavier tails — extreme events occur far more often than a Gaussian model predicts.</p>
         <FatTailSVG />
-        <div className="mt-2 flex gap-4 text-[10px] text-slate-500">
+        <div className="mt-2 flex gap-4 text-xs text-slate-500">
           <span><span className="text-blue-400 font-semibold">Blue:</span> Normal (Gaussian) — underestimates tail events</span>
           <span><span className="text-red-400 font-semibold">Red dashed:</span> Fat tail (Student-t df=3) — closer to reality</span>
         </div>
@@ -580,15 +580,15 @@ function HedgingInstrumentsTab() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <span className="text-sm font-semibold text-slate-200">{inst.name}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">{inst.annualCost}/yr</span>
+                  <span className="text-xs px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">{inst.annualCost}/yr</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="text-right hidden sm:block">
-                    <p className="text-[10px] text-slate-500">Liquidity</p>
+                    <p className="text-xs text-slate-500">Liquidity</p>
                     <RatingDots value={inst.liquidity} color="#3b82f6" />
                   </div>
                   <div className="text-right hidden sm:block">
-                    <p className="text-[10px] text-slate-500">Complexity</p>
+                    <p className="text-xs text-slate-500">Complexity</p>
                     <RatingDots value={inst.complexity} color="#f59e0b" />
                   </div>
                   <span className="text-xs text-green-400 font-mono font-semibold">{inst.crisisPayoff}</span>
@@ -1173,7 +1173,7 @@ function PortfolioConstructionTab() {
           <p className="text-xs text-slate-400 leading-relaxed">
             Traditional risk parity equalizes volatility contributions. Tail-risk parity equalizes the <span className="text-purple-300">Expected Tail Loss (CVaR)</span> contribution of each asset. This results in larger allocations to crisis-resilient assets (Treasuries, gold) and smaller equity exposure than standard risk parity.
           </p>
-          <div className="mt-3 flex gap-2 text-[10px]">
+          <div className="mt-3 flex gap-2 text-xs">
             <div className="px-2 py-1 rounded bg-purple-950/40 border border-purple-900/30 text-purple-300">Equities: 25%</div>
             <div className="px-2 py-1 rounded bg-blue-950/40 border border-blue-900/30 text-blue-300">Bonds: 45%</div>
             <div className="px-2 py-1 rounded bg-yellow-950/40 border border-yellow-900/30 text-yellow-300">Gold: 20%</div>
@@ -1208,14 +1208,14 @@ function PortfolioConstructionTab() {
               "border-red-900/40 bg-red-950/10": r.color === "red",
             })}>
               <div className="min-w-[120px]">
-                <p className={cn("text-[10px] font-semibold", {
+                <p className={cn("text-xs font-semibold", {
                   "text-green-400": r.color === "green",
                   "text-blue-400": r.color === "blue",
                   "text-yellow-400": r.color === "yellow",
                   "text-orange-400": r.color === "orange",
                   "text-red-400": r.color === "red",
                 })}>{r.regime}</p>
-                <span className={cn("text-[9px] px-1 py-0.5 rounded mt-0.5 inline-block font-medium", {
+                <span className={cn("text-[11px] px-1 py-0.5 rounded mt-0.5 inline-block font-medium", {
                   "bg-green-900/40 text-green-300": r.color === "green",
                   "bg-blue-900/40 text-blue-300": r.color === "blue",
                   "bg-yellow-900/40 text-yellow-300": r.color === "yellow",
@@ -1236,7 +1236,7 @@ function PortfolioConstructionTab() {
         <div className="overflow-x-auto">
           <TailScenarioHeatmapSVG />
         </div>
-        <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-[10px]">
+        <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-xs">
           {HEDGE_OVERLAYS.map((ov) => (
             <div key={ov.name} className="rounded-lg bg-slate-800/60 p-1.5">
               <div className="w-2 h-2 rounded-full mx-auto mb-1" style={{ backgroundColor: ov.color }} />
@@ -1297,10 +1297,10 @@ export default function TailRiskPage() {
             <div key={label} className="rounded-xl border border-slate-800 bg-slate-900/40 p-3">
               <div className="flex items-center gap-2 mb-1">
                 <Icon className={cn("h-3.5 w-3.5", color)} />
-                <span className="text-[10px] text-slate-500 uppercase tracking-wider">{label}</span>
+                <span className="text-xs text-slate-500">{label}</span>
               </div>
               <p className={cn("text-lg font-bold font-mono", color)}>{value}</p>
-              <p className="text-[10px] text-slate-500">{sub}</p>
+              <p className="text-xs text-slate-500">{sub}</p>
             </div>
           ))}
         </div>

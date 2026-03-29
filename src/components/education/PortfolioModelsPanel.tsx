@@ -93,7 +93,7 @@ function ModelCard({ model }: { model: PortfolioModel }) {
         <div>
           <h3 className="text-sm font-semibold text-foreground">{model.name}</h3>
           <div className="flex items-center gap-2 mt-1">
-            <span className="text-[10px] text-muted-foreground">Risk</span>
+            <span className="text-xs text-muted-foreground">Risk</span>
             <RiskBars level={model.riskLevel} />
           </div>
         </div>
@@ -116,22 +116,22 @@ function ModelCard({ model }: { model: PortfolioModel }) {
       {/* Metrics */}
       <div className="grid grid-cols-3 gap-2 bg-muted/30 rounded-md p-2.5">
         <div className="text-center">
-          <p className="text-[10px] text-muted-foreground">Exp. Return</p>
+          <p className="text-xs text-muted-foreground">Exp. Return</p>
           <p className="text-xs font-semibold text-green-500">{model.expectedReturn}%</p>
         </div>
         <div className="text-center">
-          <p className="text-[10px] text-muted-foreground">Volatility</p>
+          <p className="text-xs text-muted-foreground">Volatility</p>
           <p className="text-xs font-semibold text-foreground">{model.volatility}%</p>
         </div>
         <div className="text-center">
-          <p className="text-[10px] text-muted-foreground">Max DD</p>
+          <p className="text-xs text-muted-foreground">Max DD</p>
           <p className="text-xs font-semibold text-red-500">{model.maxDrawdown}%</p>
         </div>
       </div>
 
       {/* Sparkline */}
       <div>
-        <p className="text-[10px] text-muted-foreground mb-1">10-Year Growth of $100</p>
+        <p className="text-xs text-muted-foreground mb-1">10-Year Growth of $100</p>
         <Sparkline data={model.sparkline} />
       </div>
 

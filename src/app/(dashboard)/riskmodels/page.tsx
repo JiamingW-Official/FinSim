@@ -735,7 +735,7 @@ function FormulaBlock({ children }: { children: React.ReactNode }) {
 function Chip({ label, value, color = "text-zinc-200" }: { label: string; value: string; color?: string }) {
   return (
     <div className="bg-zinc-800/60 rounded-lg px-3 py-2 flex flex-col gap-0.5">
-      <span className="text-[10px] text-zinc-500 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-zinc-500 uppercase tracking-wide">{label}</span>
       <span className={cn("text-sm font-bold font-mono", color)}>{value}</span>
     </div>
   );

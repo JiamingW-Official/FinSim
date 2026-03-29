@@ -349,7 +349,7 @@ function ProviderComparisonTable() {
           <thead>
             <tr className="border-b border-white/10 bg-white/5">
               {["Provider", "Methodology", "Scale", "Coverage", "Update Freq", "E%", "S%", "G%"].map((h) => (
-                <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+                <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-zinc-400">
                   {h}
                 </th>
               ))}
@@ -566,16 +566,16 @@ function ESGWeightBarChart() {
             <div key={p.abbr} className="space-y-1">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-zinc-400 w-10 font-mono">{p.abbr}</span>
-                <span className="text-zinc-600 text-[10px]">E·S·G</span>
+                <span className="text-zinc-600 text-xs">E·S·G</span>
               </div>
               <div className="flex h-5 rounded overflow-hidden">
-                <div style={{ width: `${p.eWeight}%`, background: "#10b981" }} className="flex items-center justify-center text-[9px] text-white font-bold">
+                <div style={{ width: `${p.eWeight}%`, background: "#10b981" }} className="flex items-center justify-center text-[11px] text-white font-bold">
                   {p.eWeight}
                 </div>
-                <div style={{ width: `${p.sWeight}%`, background: "#3b82f6" }} className="flex items-center justify-center text-[9px] text-white font-bold">
+                <div style={{ width: `${p.sWeight}%`, background: "#3b82f6" }} className="flex items-center justify-center text-[11px] text-white font-bold">
                   {p.sWeight}
                 </div>
-                <div style={{ width: `${p.gWeight}%`, background: "#f59e0b" }} className="flex items-center justify-center text-[9px] text-white font-bold">
+                <div style={{ width: `${p.gWeight}%`, background: "#f59e0b" }} className="flex items-center justify-center text-[11px] text-white font-bold">
                   {p.gWeight}
                 </div>
               </div>
@@ -601,7 +601,7 @@ function FrameworkMatrix() {
         <thead>
           <tr className="border-b border-white/10 bg-white/5">
             {["Framework", "Focus", "Mandatory?", "Geography", "Key Topics"].map((h) => (
-              <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+              <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-zinc-400">
                 {h}
               </th>
             ))}
@@ -631,7 +631,7 @@ function FrameworkMatrix() {
               <td className="px-4 py-3">
                 <div className="flex flex-wrap gap-1">
                   {f.topics.map((t) => (
-                    <span key={t} className="text-[9px] bg-white/5 text-zinc-400 rounded px-1.5 py-0.5 border border-white/10">
+                    <span key={t} className="text-[11px] bg-white/5 text-zinc-400 rounded px-1.5 py-0.5 border border-white/10">
                       {t}
                     </span>
                   ))}
@@ -736,7 +736,7 @@ function DoubleMaterialityCard() {
           ].map((item) => (
             <div key={item.label} className={`rounded p-2 ${item.color} border border-white/10`}>
               <div className="font-bold">{item.label}</div>
-              <div className="text-[10px] opacity-80 mt-0.5">{item.desc}</div>
+              <div className="text-xs opacity-80 mt-0.5">{item.desc}</div>
             </div>
           ))}
         </div>
@@ -829,7 +829,7 @@ function GreenwashTaxonomyCard() {
               </div>
               <ul className="space-y-1">
                 {t.examples.map((e) => (
-                  <li key={e} className="text-[10px] text-zinc-400 flex gap-1">
+                  <li key={e} className="text-xs text-zinc-400 flex gap-1">
                     <span style={{ color: t.color }}>•</span>
                     {e}
                   </li>
@@ -858,7 +858,7 @@ function GreenwashCasesTable() {
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
                 {["Company", "Year", "Regulator", "Allegation", "Fine/Outcome", "Severity"].map((h) => (
-                  <th key={h} className="px-3 py-2 text-left text-zinc-500 uppercase tracking-wider font-semibold">
+                  <th key={h} className="px-3 py-2 text-left text-zinc-500 font-semibold">
                     {h}
                   </th>
                 ))}
@@ -875,7 +875,7 @@ function GreenwashCasesTable() {
                     <span className="font-semibold text-red-400">{c.fine}</span>
                   </td>
                   <td className="px-3 py-2">
-                    <Badge className={`text-[10px] ${sevColor(c.severity)}`}>{c.severity}</Badge>
+                    <Badge className={`text-xs ${sevColor(c.severity)}`}>{c.severity}</Badge>
                   </td>
                 </tr>
               ))}
@@ -916,7 +916,7 @@ function GreenwashSignalChecklist() {
                 className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${sig.risk === "High" ? "text-red-400" : "text-amber-400"}`}
               />
               <span className="text-zinc-300 flex-1">{sig.signal}</span>
-              <Badge className={`text-[9px] shrink-0 ${sig.risk === "High" ? "bg-red-500/20 text-red-300" : "bg-yellow-500/20 text-yellow-300"}`}>
+              <Badge className={`text-[11px] shrink-0 ${sig.risk === "High" ? "bg-red-500/20 text-red-300" : "bg-yellow-500/20 text-yellow-300"}`}>
                 {sig.risk}
               </Badge>
             </div>
@@ -940,24 +940,24 @@ function ImpactVsESGWashing() {
             <p className="text-xs text-zinc-400 mb-2">
               Overstating the integration of E/S/G factors in investment process or company operations.
             </p>
-            <div className="text-[10px] text-zinc-500">Examples: DWS, Goldman ESG fund allegations</div>
+            <div className="text-xs text-zinc-500">Examples: DWS, Goldman ESG fund allegations</div>
           </div>
           <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
             <div className="text-xs font-bold text-emerald-300 mb-2">Impact Washing</div>
             <p className="text-xs text-zinc-400 mb-2">
               Claiming measurable positive real-world outcomes (additionality) that cannot be evidenced or attributed.
             </p>
-            <div className="text-[10px] text-zinc-500">Examples: Green bonds without use-of-proceeds tracking</div>
+            <div className="text-xs text-zinc-500">Examples: Green bonds without use-of-proceeds tracking</div>
           </div>
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
           <div className="rounded bg-white/5 p-2 border border-white/10">
             <div className="text-zinc-300 font-semibold mb-1">Science-Based vs Aspiration</div>
-            <p className="text-zinc-500 text-[10px]">SBTi validates targets consistent with 1.5°C or well-below 2°C scenarios. Aspirational targets lack this rigor.</p>
+            <p className="text-zinc-500 text-xs">SBTi validates targets consistent with 1.5°C or well-below 2°C scenarios. Aspirational targets lack this rigor.</p>
           </div>
           <div className="rounded bg-white/5 p-2 border border-white/10">
             <div className="text-zinc-300 font-semibold mb-1">AI Greenwashing Detection</div>
-            <p className="text-zinc-500 text-[10px]">NLP tools (ESG Book, Clarity AI) scan filings and news for greenwashing signals via sentiment and consistency analysis.</p>
+            <p className="text-zinc-500 text-xs">NLP tools (ESG Book, Clarity AI) scan filings and news for greenwashing signals via sentiment and consistency analysis.</p>
           </div>
         </div>
       </CardContent>
@@ -990,7 +990,7 @@ function IntegrationSpectrum() {
             {steps.map((step, i) => (
               <div key={step.label} className="flex-1 flex flex-col items-center gap-1">
                 <div
-                  className="w-full h-8 rounded flex items-center justify-center text-[9px] font-bold text-white text-center leading-tight px-1"
+                  className="w-full h-8 rounded flex items-center justify-center text-[11px] font-bold text-white text-center leading-tight px-1"
                   style={{ background: step.color + "44", border: `1px solid ${step.color}66` }}
                 >
                   {step.label}
@@ -1003,7 +1003,7 @@ function IntegrationSpectrum() {
               </div>
             ))}
           </div>
-          <div className="flex items-center justify-between text-[9px] text-zinc-600 mt-1">
+          <div className="flex items-center justify-between text-[11px] text-zinc-600 mt-1">
             <span>← Pure exclusion</span>
             <span>Deeper integration →</span>
             <span>Impact focus →</span>
@@ -1147,7 +1147,7 @@ function ActiveOwnershipCard() {
                 {st.value}
               </div>
               <div className="text-xs font-semibold text-white mt-0.5">{st.label}</div>
-              <div className="text-[10px] text-zinc-500">{st.sub}</div>
+              <div className="text-xs text-zinc-500">{st.sub}</div>
             </div>
           ))}
         </div>
@@ -1270,7 +1270,7 @@ export default function ESGDataPage() {
                   <div key={r.provider} className="flex gap-2 border-b border-white/5 pb-1 last:border-0">
                     <span className="text-zinc-300 font-semibold w-24 shrink-0">{r.provider}</span>
                     <span className="text-zinc-500 flex-1">{r.freq}</span>
-                    <span className="text-zinc-600 shrink-0 text-[10px]">{r.lag}</span>
+                    <span className="text-zinc-600 shrink-0 text-xs">{r.lag}</span>
                   </div>
                 ))}
               </CardContent>
@@ -1293,10 +1293,10 @@ export default function ESGDataPage() {
                 ].map((r) => (
                   <div key={r.sector} className="flex gap-2 border-b border-white/5 pb-1 last:border-0">
                     <span className="text-red-300 font-semibold w-20 shrink-0">{r.sector}</span>
-                    <span className="text-zinc-500 flex-1 text-[10px]">{r.msci} | {r.sus} | {r.sp}</span>
+                    <span className="text-zinc-500 flex-1 text-xs">{r.msci} | {r.sus} | {r.sp}</span>
                   </div>
                 ))}
-                <p className="text-zinc-600 text-[10px]">Columns: MSCI | Sustainalytics | S&P</p>
+                <p className="text-zinc-600 text-xs">Columns: MSCI | Sustainalytics | S&P</p>
               </CardContent>
             </Card>
           </div>
@@ -1346,7 +1346,7 @@ export default function ESGDataPage() {
                           : "bg-zinc-700 border-zinc-600"
                       }`}
                     />
-                    <div className="text-[10px] text-zinc-500 mb-0.5">{item.date}</div>
+                    <div className="text-xs text-zinc-500 mb-0.5">{item.date}</div>
                     <div className="text-xs text-zinc-300">{item.event}</div>
                   </div>
                 ))}
@@ -1370,14 +1370,14 @@ export default function ESGDataPage() {
                     "Protection and restoration of biodiversity",
                   ].map((obj, i) => (
                     <div key={obj} className="flex items-center gap-2 text-xs">
-                      <span className="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold shrink-0">
+                      <span className="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0">
                         {i + 1}
                       </span>
                       <span className="text-zinc-300">{obj}</span>
                     </div>
                   ))}
                 </div>
-                <p className="text-[10px] text-zinc-600 mt-3">
+                <p className="text-xs text-zinc-600 mt-3">
                   Activities must substantially contribute to ≥1 objective and do no significant harm (DNSH) to the others.
                 </p>
               </CardContent>
@@ -1396,7 +1396,7 @@ export default function ESGDataPage() {
                   <div className="font-bold text-emerald-300 mb-1">Reasonable Assurance</div>
                   <p className="text-zinc-400">Positive assurance — auditor concludes information is free from material misstatement. Equivalent to financial audit standard. Required under CSRD by 2028.</p>
                 </div>
-                <p className="text-zinc-600 text-[10px]">
+                <p className="text-zinc-600 text-xs">
                   Third-party verifiers: Big 4 accounting firms, Bureau Veritas, SGS, ERM Group
                 </p>
               </CardContent>
@@ -1470,9 +1470,9 @@ export default function ESGDataPage() {
                   <div key={v.org} className="flex gap-2 border-b border-white/5 pb-1.5 last:border-0">
                     <div className="flex-1">
                       <div className="font-semibold text-white">{v.org}</div>
-                      <div className="text-zinc-500 text-[10px]">{v.role}</div>
+                      <div className="text-zinc-500 text-xs">{v.role}</div>
                     </div>
-                    <span className="text-emerald-400 text-[10px] shrink-0">{v.cost}</span>
+                    <span className="text-emerald-400 text-xs shrink-0">{v.cost}</span>
                   </div>
                 ))}
               </CardContent>
@@ -1566,7 +1566,7 @@ export default function ESGDataPage() {
                           }}
                         />
                       </div>
-                      <div className="text-zinc-600 text-[9px]">{f.explanation}</div>
+                      <div className="text-zinc-600 text-[11px]">{f.explanation}</div>
                     </div>
                   ))}
                 </div>

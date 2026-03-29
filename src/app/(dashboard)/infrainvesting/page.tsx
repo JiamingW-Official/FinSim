@@ -86,7 +86,7 @@ function StatCard({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -403,7 +403,7 @@ function AssetClassesTab() {
                 <span className="text-xs text-emerald-400 font-medium">{sec.yieldTarget}</span>
                 <Badge
                   variant="outline"
-                  className="text-[10px] py-0 px-1.5"
+                  className="text-xs py-0 px-1.5"
                   style={{ borderColor: sec.color + "80", color: sec.color }}
                 >
                   {sec.risk}
@@ -427,7 +427,7 @@ function AssetClassesTab() {
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-semibold text-white">{selected.name}</span>
-                    <Badge variant="outline" className="text-[10px]">{selected.segment}</Badge>
+                    <Badge variant="outline" className="text-xs">{selected.segment}</Badge>
                   </div>
                   <p className="text-sm text-zinc-300 leading-relaxed">{selected.desc}</p>
                   <div className="mt-2 flex flex-wrap gap-3 text-xs">
@@ -578,7 +578,7 @@ function AssetClassesTab() {
               <div className="flex-1 text-sm text-zinc-400">{tier.desc}</div>
               <div className="flex flex-col gap-1 text-xs text-right">
                 <span className="text-zinc-500">Leverage: <span className="text-zinc-300">{tier.leverage}</span></span>
-                <span className="text-zinc-500 text-[10px]">{tier.examples}</span>
+                <span className="text-zinc-500 text-xs">{tier.examples}</span>
               </div>
             </div>
           ))}
@@ -802,8 +802,8 @@ function ProjectFinanceTab() {
                 { level: "< 1.10x", status: "Potential event of default; lender step-in rights", color: "#f43f5e" },
               ].map((row) => (
                 <div key={row.level} className="flex gap-2 items-start">
-                  <span className="font-mono text-[10px] min-w-[70px]" style={{ color: row.color }}>{row.level}</span>
-                  <span className="text-[10px] text-zinc-300">{row.status}</span>
+                  <span className="font-mono text-xs min-w-[70px]" style={{ color: row.color }}>{row.level}</span>
+                  <span className="text-xs text-zinc-300">{row.status}</span>
                 </div>
               ))}
             </div>
@@ -1163,7 +1163,7 @@ function EnergyTransitionTab() {
                 <span className="text-sm font-semibold text-white">{policy.name}</span>
                 <Badge
                   variant="outline"
-                  className="text-[10px]"
+                  className="text-xs"
                   style={{ borderColor: policy.color + "80", color: policy.color }}
                 >
                   {policy.type}
@@ -1347,14 +1347,14 @@ function InstitutionalTab() {
                       style={{ left: `${targetW}%` }}
                     />
                   </div>
-                  <div className="flex justify-between text-[10px] mt-0.5">
+                  <div className="flex justify-between text-xs mt-0.5">
                     <span className="text-blue-400">Current: {fmtPct(pf.allocation)}</span>
                     <span className="text-emerald-400">Target: {fmtPct(pf.target)}</span>
                   </div>
                 </div>
               );
             })}
-            <div className="text-[10px] text-zinc-600 text-right pt-1">
+            <div className="text-xs text-zinc-600 text-right pt-1">
               Dashed line = target allocation. Most funds under-allocated vs. target.
             </div>
           </div>
@@ -1556,7 +1556,7 @@ function InstitutionalTab() {
               >
                 <Badge
                   variant="outline"
-                  className={cn("text-[10px] flex-shrink-0 mt-0.5", idx.type === "Listed" ? "text-blue-400 border-blue-400/50" : "text-emerald-400 border-emerald-400/50")}
+                  className={cn("text-xs flex-shrink-0 mt-0.5", idx.type === "Listed" ? "text-blue-400 border-blue-400/50" : "text-emerald-400 border-emerald-400/50")}
                 >
                   {idx.type}
                 </Badge>

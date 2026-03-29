@@ -327,8 +327,8 @@ function SpotRateCard({ rate }: { rate: SpotRate }) {
               variant="outline"
               className={
                 up
-                  ? "border-emerald-500/40 text-emerald-400 text-[10px]"
-                  : "border-red-500/40 text-red-400 text-[10px]"
+                  ? "border-emerald-500/40 text-emerald-400 text-xs"
+                  : "border-red-500/40 text-red-400 text-xs"
               }
             >
               {up ? "+" : ""}
@@ -417,7 +417,7 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
                 >
                   {row.strike.toFixed(4)}
                   {isAtm && (
-                    <span className="ml-1 text-[9px] text-amber-400">ATM</span>
+                    <span className="ml-1 text-[11px] text-amber-400">ATM</span>
                   )}
                 </td>
                 <td className="py-1.5 text-right text-violet-400">{row.putGamma.toFixed(4)}</td>
@@ -745,7 +745,7 @@ function GKCalculator() {
         </div>
         {/* Formula display */}
         <div className="bg-[#0a0f1e] border border-[#1e293b] rounded-lg p-3">
-          <p className="text-[10px] text-slate-500 leading-5 font-mono">
+          <p className="text-xs text-slate-500 leading-5 font-mono">
             <span className="text-slate-400 font-semibold">Garman-Kohlhagen (1983):</span>
             <br />
             C = S·e<sup>-rf·T</sup>·N(d₁) − K·e<sup>-rd·T</sup>·N(d₂)
@@ -790,7 +790,7 @@ function CarryTradeTable() {
                 <td className="py-2">
                   <Badge
                     variant="outline"
-                    className="border-emerald-500/30 text-emerald-400 text-[10px]"
+                    className="border-emerald-500/30 text-emerald-400 text-xs"
                   >
                     {ct.longCcy}
                   </Badge>
@@ -901,7 +901,7 @@ export default function FXOptionsPage() {
 
       {/* Spot Rates Strip */}
       <div>
-        <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+        <h2 className="text-xs font-semibold text-slate-500 mb-3 flex items-center gap-1.5">
           <Activity size={12} /> Live Spot Rates
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -984,7 +984,7 @@ export default function FXOptionsPage() {
             </CardHeader>
             <CardContent className="pt-0">
               {/* Greeks legend */}
-              <div className="flex gap-4 mb-3 text-[10px] flex-wrap">
+              <div className="flex gap-4 mb-3 text-xs flex-wrap">
                 {[
                   { label: "Δ Delta", color: "text-sky-400" },
                   { label: "Γ Gamma", color: "text-violet-400" },

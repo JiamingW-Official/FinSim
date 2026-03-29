@@ -837,7 +837,7 @@ export default function QuantRiskPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
             {/* Scenario list */}
             <div className="space-y-2 lg:col-span-2">
-              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Historical Scenarios</h3>
+              <h3 className="text-xs font-semibold text-muted-foreground">Historical Scenarios</h3>
               {stressScenarios.map((sc, i) => (
                 <motion.div
                   key={sc.name}
@@ -893,7 +893,7 @@ export default function QuantRiskPage() {
               <CardContent>
                 <StressBarChart scenarios={stressScenarios} />
                 <div className="mt-4 space-y-2">
-                  <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">FRTB Capital Requirements</h4>
+                  <h4 className="text-xs font-semibold text-muted-foreground">FRTB Capital Requirements</h4>
                   {stressScenarios.map((sc) => (
                     <div key={sc.name} className="flex items-center gap-2">
                       <span className="text-xs text-muted-foreground w-28 shrink-0">{sc.name}</span>

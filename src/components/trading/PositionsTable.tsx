@@ -105,7 +105,7 @@ export function PositionsTable() {
         <span className="text-xs font-medium text-muted-foreground">
           No open positions
         </span>
-        <span className="text-[10px] text-muted-foreground/60">
+        <span className="text-xs text-muted-foreground/60">
           Place a buy order to open your first position
         </span>
       </div>
@@ -206,7 +206,7 @@ export function PositionsTable() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "mt-0.5 px-1 py-0 text-[9px] inline-flex items-center gap-0.5",
+                        "mt-0.5 px-1 py-0 text-[11px] inline-flex items-center gap-0.5",
                         pos.side === "long"
                           ? "border-[#10b981]/30 text-[#10b981]"
                           : "border-[#a855f7]/30 text-[#a855f7]",
@@ -231,7 +231,7 @@ export function PositionsTable() {
                       />
                       <PnLMilestoneBadge pct={pos.unrealizedPnLPercent} />
                     </div>
-                    <div className="text-[9px]">
+                    <div className="text-[11px]">
                       {formatPercent(pos.unrealizedPnLPercent)}
                     </div>
                   </td>
@@ -241,7 +241,7 @@ export function PositionsTable() {
                     {atrStop !== null ? (
                       <span
                         className={cn(
-                          "text-[10px]",
+                          "text-xs",
                           distToStop !== null && distToStop <= 1
                             ? "text-[#ef4444] font-semibold"
                             : distToStop !== null && distToStop <= 3
@@ -252,7 +252,7 @@ export function PositionsTable() {
                         {formatCurrency(atrStop)}
                       </span>
                     ) : (
-                      <span className="text-[10px] text-muted-foreground/40">—</span>
+                      <span className="text-xs text-muted-foreground/40">—</span>
                     )}
                   </td>
 
@@ -261,7 +261,7 @@ export function PositionsTable() {
                     {distToStop !== null ? (
                       <span
                         className={cn(
-                          "text-[10px]",
+                          "text-xs",
                           distToStop <= 1
                             ? "text-[#ef4444] font-semibold"
                             : distToStop <= 3
@@ -272,7 +272,7 @@ export function PositionsTable() {
                         {distToStop.toFixed(1)}%
                       </span>
                     ) : (
-                      <span className="text-[10px] text-muted-foreground/40">—</span>
+                      <span className="text-xs text-muted-foreground/40">—</span>
                     )}
                   </td>
 
@@ -280,7 +280,7 @@ export function PositionsTable() {
                   <td className="px-2 py-1.5 text-right tabular-nums">
                     <span
                       className={cn(
-                        "text-[10px]",
+                        "text-xs",
                         barsHeld > 20 ? "text-purple-400 font-semibold" : "text-muted-foreground",
                       )}
                     >
@@ -291,11 +291,11 @@ export function PositionsTable() {
                   {/* Borrow cost (shorts only) */}
                   <td className="px-2 py-1.5 text-right tabular-nums">
                     {pos.side === "short" ? (
-                      <span className="text-[10px] text-amber-500" title={`${rate.toFixed(2)}%/yr borrow rate`}>
+                      <span className="text-xs text-amber-500" title={`${rate.toFixed(2)}%/yr borrow rate`}>
                         {formatCurrency(dailyBorrowCost)}/d
                       </span>
                     ) : (
-                      <span className="text-[10px] text-muted-foreground/40">—</span>
+                      <span className="text-xs text-muted-foreground/40">—</span>
                     )}
                   </td>
 
@@ -332,7 +332,7 @@ export function PositionsTable() {
                       transition={{ duration: 0.15 }}
                     >
                       <td colSpan={8} className="px-3 pb-2 pt-0">
-                        <div className="rounded border border-border/40 bg-accent/10 p-2 text-[10px] space-y-1">
+                        <div className="rounded border border-border/40 bg-accent/10 p-2 text-xs space-y-1">
                           {/* Entry + current price */}
                           <div className="flex gap-4 flex-wrap">
                             <div>

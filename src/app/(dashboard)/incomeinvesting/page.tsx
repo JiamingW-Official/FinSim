@@ -392,11 +392,11 @@ function DividendUniverseTab() {
                       <span className="font-bold text-white">{d.ticker}</span>
                       {d.isAristocrat && <AristocratBadge />}
                     </div>
-                    <div className="text-zinc-500 text-[10px]">{d.name}</div>
+                    <div className="text-zinc-500 text-xs">{d.name}</div>
                   </td>
                   <td className="px-3 py-2.5">
                     <span
-                      className="px-2 py-0.5 rounded-full text-[10px]"
+                      className="px-2 py-0.5 rounded-full text-xs"
                       style={{ backgroundColor: `${SECTOR_COLORS[d.sector]}22`, color: SECTOR_COLORS[d.sector] }}
                     >
                       {d.sector}
@@ -598,7 +598,7 @@ function ExDivCalendar() {
               <td className="px-3 py-2 text-right font-mono text-green-400">${e.quarterly.toFixed(4)}</td>
               <td className="px-3 py-2 text-right font-mono text-zinc-300">{e.yield.toFixed(2)}%</td>
               <td className="px-3 py-2 text-right">
-                <Badge variant="outline" className="text-[10px]">{e.daysOut}d</Badge>
+                <Badge variant="outline" className="text-xs">{e.daysOut}d</Badge>
               </td>
             </tr>
           ))}
@@ -904,7 +904,7 @@ function FixedIncomeTab() {
                 />
               </div>
               <span className="font-mono text-sm text-white w-12 text-right">{t.yield.toFixed(2)}%</span>
-              <Badge variant="outline" className="text-[10px] w-10 text-center">
+              <Badge variant="outline" className="text-xs w-10 text-center">
                 {t.type === "bill" ? "Bill" : t.type === "note" ? "Note" : "Bond"}
               </Badge>
             </div>
@@ -930,9 +930,9 @@ function FixedIncomeTab() {
             { label: "Early Redemption", value: "3-mo penalty", note: "Forfeit last 3 months interest if < 5 years" },
           ].map((item) => (
             <div key={item.label} className="bg-zinc-800 rounded-lg p-3">
-              <div className="text-zinc-400 text-[10px] mb-1">{item.label}</div>
+              <div className="text-zinc-400 text-xs mb-1">{item.label}</div>
               <div className="font-bold text-white text-sm mb-1">{item.value}</div>
-              <div className="text-zinc-500 text-[10px]">{item.note}</div>
+              <div className="text-zinc-500 text-xs">{item.note}</div>
             </div>
           ))}
         </div>
@@ -959,7 +959,7 @@ function FixedIncomeTab() {
           <div className="bg-zinc-800 rounded-lg p-3 text-center">
             <div className="text-zinc-400 text-xs mb-1">Tax-Equivalent Yield</div>
             <div className="text-2xl font-bold text-green-400">{taxEquivYield.toFixed(2)}%</div>
-            <div className="text-zinc-500 text-[10px]">= {muniYield.toFixed(1)}% / (1 - {taxRate}%)</div>
+            <div className="text-zinc-500 text-xs">= {muniYield.toFixed(1)}% / (1 - {taxRate}%)</div>
           </div>
         </div>
         <p className="text-xs text-zinc-500">
@@ -981,7 +981,7 @@ function FixedIncomeTab() {
           ].map((bond) => (
             <div key={bond.label} className="flex items-center gap-3 text-xs">
               <span className="text-zinc-300 w-44">{bond.label}</span>
-              <Badge variant="outline" className="text-[10px] w-12 text-center" style={{ borderColor: bond.color, color: bond.color }}>{bond.rating}</Badge>
+              <Badge variant="outline" className="text-xs w-12 text-center" style={{ borderColor: bond.color, color: bond.color }}>{bond.rating}</Badge>
               <span className="font-mono text-white w-12">{bond.yield.toFixed(1)}%</span>
               <span className="text-zinc-500 w-28">+{bond.spread.toFixed(2)}% over T-bills</span>
               <span className="text-red-400 w-28">Default: ~{bond.defaultRate.toFixed(1)}%/yr</span>
@@ -1044,7 +1044,7 @@ function AltIncomeTab() {
               <div className="flex justify-between items-start mb-1">
                 <div>
                   <span className="font-semibold text-white text-sm">{item.name}</span>
-                  <Badge variant="outline" className="text-[10px] ml-2">{item.type}</Badge>
+                  <Badge variant="outline" className="text-xs ml-2">{item.type}</Badge>
                 </div>
                 <span className={cn(
                   "text-lg font-bold",
@@ -1054,7 +1054,7 @@ function AltIncomeTab() {
                 </span>
               </div>
               <p className="text-xs text-zinc-400 mb-2">{item.desc}</p>
-              <div className="flex gap-2 text-[10px]">
+              <div className="flex gap-2 text-xs">
                 <span className={cn(
                   "px-2 py-0.5 rounded-full",
                   item.risk === "Very High" ? "bg-red-900 text-red-300" :
@@ -1255,8 +1255,8 @@ function IncomePortfolioTab() {
                   <span className="text-zinc-300">{s.label}</span>
                   <div className="flex items-center gap-3">
                     <span className="text-zinc-400">Yield: <span className="text-green-400">{s.yield.toFixed(1)}%</span></span>
-                    <span className={cn("text-[10px]", rateRiskColors[s.rateRisk])}>Rate Risk: {s.rateRisk}</span>
-                    <span className={cn("text-[10px]", taxColors[s.taxEfficiency])}>Tax: {s.taxEfficiency}</span>
+                    <span className={cn("text-xs", rateRiskColors[s.rateRisk])}>Rate Risk: {s.rateRisk}</span>
+                    <span className={cn("text-xs", taxColors[s.taxEfficiency])}>Tax: {s.taxEfficiency}</span>
                     <span className="text-white font-mono w-8 text-right">{allocs[i]}%</span>
                   </div>
                 </div>
@@ -1626,11 +1626,11 @@ function IncomeLadderingTab() {
             </div>
           </div>
           <div className="bg-zinc-800 rounded-lg p-2 text-center">
-            <div className="text-zinc-400 text-[10px]">Withdrawal Rate</div>
+            <div className="text-zinc-400 text-xs">Withdrawal Rate</div>
             <div className={cn("text-xl font-bold", withdrawalRate <= 4 ? "text-green-400" : withdrawalRate <= 5 ? "text-yellow-400" : "text-red-400")}>
               {withdrawalRate.toFixed(2)}%
             </div>
-            <div className={cn("text-[10px]", withdrawalRate <= 4 ? "text-green-400" : withdrawalRate <= 5 ? "text-yellow-400" : "text-red-400")}>
+            <div className={cn("text-xs", withdrawalRate <= 4 ? "text-green-400" : withdrawalRate <= 5 ? "text-yellow-400" : "text-red-400")}>
               {withdrawalRate <= 4 ? "Sustainable" : withdrawalRate <= 5 ? "Borderline" : "Risky"}
             </div>
           </div>
@@ -1681,7 +1681,7 @@ export default function IncomeInvestingPage() {
               { label: "Aristocrats", value: `${DIVIDEND_STOCKS.filter((d) => d.isAristocrat).length}`, color: "text-yellow-400" },
             ].map((stat) => (
               <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2">
-                <div className="text-zinc-500 text-[10px]">{stat.label}</div>
+                <div className="text-zinc-500 text-xs">{stat.label}</div>
                 <div className={cn("text-lg font-bold", stat.color)}>{stat.value}</div>
               </div>
             ))}

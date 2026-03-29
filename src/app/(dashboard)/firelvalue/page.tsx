@@ -283,9 +283,9 @@ interface StatChipProps {
 function StatChip({ label, value, color = "text-white", sub }: StatChipProps) {
   return (
     <div className="flex flex-col items-center bg-white/5 rounded-lg px-3 py-2 min-w-[80px]">
-      <span className="text-[10px] text-zinc-400 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-zinc-400 uppercase tracking-wide">{label}</span>
       <span className={cn("text-sm font-semibold", color)}>{value}</span>
-      {sub && <span className="text-[10px] text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
     </div>
   );
 }
@@ -521,23 +521,23 @@ function YieldCurveTab() {
               className="mt-2 bg-blue-950/40 border border-blue-800/40 rounded-lg p-3 grid grid-cols-4 gap-3"
             >
               <div>
-                <p className="text-[10px] text-zinc-400">Tenor</p>
+                <p className="text-xs text-zinc-400">Tenor</p>
                 <p className="text-sm font-semibold text-white">{curve[selectedNode].tenor}</p>
               </div>
               <div>
-                <p className="text-[10px] text-zinc-400">Yield</p>
+                <p className="text-xs text-zinc-400">Yield</p>
                 <p className="text-sm font-semibold text-blue-300">
                   {curve[selectedNode].yield.toFixed(3)}%
                 </p>
               </div>
               <div>
-                <p className="text-[10px] text-zinc-400">DV01 / $1M</p>
+                <p className="text-xs text-zinc-400">DV01 / $1M</p>
                 <p className="text-sm font-semibold text-white">
                   ${curve[selectedNode].dv01.toFixed(2)}
                 </p>
               </div>
               <div>
-                <p className="text-[10px] text-zinc-400">Duration</p>
+                <p className="text-xs text-zinc-400">Duration</p>
                 <p className="text-sm font-semibold text-white">
                   {curve[selectedNode].years.toFixed(1)}y
                 </p>
@@ -632,15 +632,15 @@ function YieldCurveTab() {
 
           <div className="grid grid-cols-3 gap-3 bg-zinc-800/60 rounded-lg p-3">
             <div>
-              <p className="text-[10px] text-zinc-400">Spread</p>
+              <p className="text-xs text-zinc-400">Spread</p>
               <p className="text-sm font-semibold text-amber-300">{spreadBps.toFixed(1)} bps</p>
             </div>
             <div>
-              <p className="text-[10px] text-zinc-400">Hedge Ratio</p>
+              <p className="text-xs text-zinc-400">Hedge Ratio</p>
               <p className="text-sm font-semibold text-white">{hedgeRatio.toFixed(3)}x</p>
             </div>
             <div>
-              <p className="text-[10px] text-zinc-400">DV01 Neutral</p>
+              <p className="text-xs text-zinc-400">DV01 Neutral</p>
               <p className="text-sm font-semibold text-emerald-400">
                 ${(curve[longLeg]?.dv01 ?? 0).toFixed(2)}
               </p>
@@ -678,7 +678,7 @@ function YieldCurveTab() {
                       >
                         <div>
                           <p className="text-xs text-zinc-300">{sc.label}</p>
-                          <p className="text-[10px] text-zinc-500">
+                          <p className="text-xs text-zinc-500">
                             {sc.parallelBps !== 0 && `${sc.parallelBps > 0 ? "+" : ""}${sc.parallelBps}bps parallel`}
                             {sc.twistBps !== 0 && ` ${sc.twistBps > 0 ? "+" : ""}${sc.twistBps}bps twist`}
                             {sc.butterflyBps !== 0 && ` ${sc.butterflyBps > 0 ? "+" : ""}${sc.butterflyBps}bps fly`}
@@ -821,12 +821,12 @@ function SpreadTradesTab() {
             <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-medium text-blue-300">ON-THE-RUN</span>
-                <Badge className="bg-blue-900/50 text-blue-300 border-blue-800 text-[10px]">
+                <Badge className="bg-blue-900/50 text-blue-300 border-blue-800 text-xs">
                   Benchmark
                 </Badge>
               </div>
               <p className="text-sm font-semibold text-white">{activePair.otr.label}</p>
-              <p className="text-[10px] text-zinc-500 mb-2">{activePair.otr.cusip}</p>
+              <p className="text-xs text-zinc-500 mb-2">{activePair.otr.cusip}</p>
               <div className="grid grid-cols-3 gap-2 text-xs">
                 <div>
                   <p className="text-zinc-400">Yield</p>
@@ -859,12 +859,12 @@ function SpreadTradesTab() {
             <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-medium text-amber-300">OFF-THE-RUN</span>
-                <Badge className="bg-amber-900/50 text-amber-300 border-amber-800 text-[10px]">
+                <Badge className="bg-amber-900/50 text-amber-300 border-amber-800 text-xs">
                   Cheaper
                 </Badge>
               </div>
               <p className="text-sm font-semibold text-white">{activePair.ofr.label}</p>
-              <p className="text-[10px] text-zinc-500 mb-2">{activePair.ofr.cusip}</p>
+              <p className="text-xs text-zinc-500 mb-2">{activePair.ofr.cusip}</p>
               <div className="grid grid-cols-3 gap-2 text-xs">
                 <div>
                   <p className="text-zinc-400">Yield</p>
@@ -897,19 +897,19 @@ function SpreadTradesTab() {
           {/* Spread metrics */}
           <div className="mt-3 grid grid-cols-3 gap-3 bg-zinc-800/40 rounded-lg p-3">
             <div>
-              <p className="text-[10px] text-zinc-400">OFR Spread</p>
+              <p className="text-xs text-zinc-400">OFR Spread</p>
               <p className="text-base font-bold text-amber-300">
                 {activePair.spreadBps.toFixed(1)} bps
               </p>
             </div>
             <div>
-              <p className="text-[10px] text-zinc-400">Hedge Ratio</p>
+              <p className="text-xs text-zinc-400">Hedge Ratio</p>
               <p className="text-base font-bold text-white">
                 {activePair.hr.toFixed(3)}x
               </p>
             </div>
             <div>
-              <p className="text-[10px] text-zinc-400">Repo Carry</p>
+              <p className="text-xs text-zinc-400">Repo Carry</p>
               <p className="text-base font-bold text-emerald-400">
                 +{(activePair.spreadBps * 0.35).toFixed(1)} bps/yr
               </p>
@@ -1023,7 +1023,7 @@ function SpreadTradesTab() {
 
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-zinc-800/50 rounded-lg p-3">
-              <p className="text-[10px] text-zinc-400 mb-1">Long OFR</p>
+              <p className="text-xs text-zinc-400 mb-1">Long OFR</p>
               <p className="text-sm font-semibold text-amber-300">{activePair.ofr.label}</p>
               <p className="text-xs text-zinc-400">
                 ${tradeNotionalMM}M face
@@ -1033,7 +1033,7 @@ function SpreadTradesTab() {
               </p>
             </div>
             <div className="bg-zinc-800/50 rounded-lg p-3">
-              <p className="text-[10px] text-zinc-400 mb-1">Short OTR (hedge)</p>
+              <p className="text-xs text-zinc-400 mb-1">Short OTR (hedge)</p>
               <p className="text-sm font-semibold text-blue-300">{activePair.otr.label}</p>
               <p className="text-xs text-zinc-400">
                 ${(tradeNotionalMM * activePair.hr).toFixed(1)}M face
@@ -1046,19 +1046,19 @@ function SpreadTradesTab() {
 
           <div className="bg-zinc-800/40 rounded-lg p-3 grid grid-cols-3 gap-3">
             <div>
-              <p className="text-[10px] text-zinc-400">Net DV01</p>
+              <p className="text-xs text-zinc-400">Net DV01</p>
               <p className="text-sm font-semibold text-emerald-400">
                 ${Math.abs(activePair.ofr.dv01 * tradeNotionalMM - activePair.otr.dv01 * tradeNotionalMM * activePair.hr).toFixed(1)}
               </p>
             </div>
             <div>
-              <p className="text-[10px] text-zinc-400">P&L / bps tightening</p>
+              <p className="text-xs text-zinc-400">P&L / bps tightening</p>
               <p className="text-sm font-semibold text-white">
                 ${(activePair.ofr.dv01 * tradeNotionalMM).toFixed(1)}k
               </p>
             </div>
             <div>
-              <p className="text-[10px] text-zinc-400">Break-even (bid/ask)</p>
+              <p className="text-xs text-zinc-400">Break-even (bid/ask)</p>
               <p className="text-sm font-semibold text-amber-300">
                 {(activePair.ofr.bidAsk + activePair.otr.bidAsk).toFixed(1)} cts
               </p>
@@ -1240,19 +1240,19 @@ function ButterflyTab() {
           {fly && (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-zinc-800/40 rounded-lg p-3">
               <div>
-                <p className="text-[10px] text-zinc-400">Fly Spread</p>
+                <p className="text-xs text-zinc-400">Fly Spread</p>
                 <p className="text-base font-bold text-violet-300">
                   {fly.spreadBps.toFixed(1)} bps
                 </p>
               </div>
               <div>
-                <p className="text-[10px] text-zinc-400">Body Weight</p>
+                <p className="text-xs text-zinc-400">Body Weight</p>
                 <p className="text-base font-bold text-white">
                   {fly.bodyWeight.toFixed(3)}x
                 </p>
               </div>
               <div>
-                <p className="text-[10px] text-zinc-400">Net DV01</p>
+                <p className="text-xs text-zinc-400">Net DV01</p>
                 <p
                   className={cn(
                     "text-base font-bold",
@@ -1263,7 +1263,7 @@ function ButterflyTab() {
                 </p>
               </div>
               <div>
-                <p className="text-[10px] text-zinc-400">Net Convexity</p>
+                <p className="text-xs text-zinc-400">Net Convexity</p>
                 <p
                   className={cn(
                     "text-base font-bold",
@@ -1301,15 +1301,15 @@ function ButterflyTab() {
                   </div>
                   <div className="flex items-center gap-4 text-right">
                     <div>
-                      <p className="text-[10px] text-zinc-400">Weight</p>
+                      <p className="text-xs text-zinc-400">Weight</p>
                       <p className="text-xs text-white">{weight.toFixed(3)}x</p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-zinc-400">DV01</p>
+                      <p className="text-xs text-zinc-400">DV01</p>
                       <p className="text-xs text-white">${(bond.dv01 * weight * notionalMM).toFixed(0)}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-zinc-400">Convexity</p>
+                      <p className="text-xs text-zinc-400">Convexity</p>
                       <p className="text-xs text-white">{((bond.convexity ?? 0) * weight).toFixed(4)}</p>
                     </div>
                   </div>
@@ -1624,43 +1624,43 @@ function SwapSpreadsTab() {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-[10px] text-zinc-400">Treasury Yield</p>
+                  <p className="text-xs text-zinc-400">Treasury Yield</p>
                   <p className="text-base font-bold text-blue-300">
                     {selected.treasuryYield.toFixed(3)}%
                   </p>
                 </div>
                 <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-[10px] text-zinc-400">Swap Rate</p>
+                  <p className="text-xs text-zinc-400">Swap Rate</p>
                   <p className="text-base font-bold text-amber-300">
                     {selected.swapRate.toFixed(3)}%
                   </p>
                 </div>
                 <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-[10px] text-zinc-400">Asset Swap Spread</p>
+                  <p className="text-xs text-zinc-400">Asset Swap Spread</p>
                   <p className="text-base font-bold text-violet-300">
                     {selected.assetSwapSpread.toFixed(1)} bps
                   </p>
                 </div>
                 <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-[10px] text-zinc-400">Z-Spread</p>
+                  <p className="text-xs text-zinc-400">Z-Spread</p>
                   <p className="text-base font-bold text-white">
                     {selected.zSpread.toFixed(1)} bps
                   </p>
                 </div>
                 <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-[10px] text-zinc-400">LIBOR Spread</p>
+                  <p className="text-xs text-zinc-400">LIBOR Spread</p>
                   <p className="text-base font-bold text-cyan-300">
                     {selected.libSpread.toFixed(1)} bps
                   </p>
                 </div>
                 <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-[10px] text-zinc-400">Carry (bps/yr)</p>
+                  <p className="text-xs text-zinc-400">Carry (bps/yr)</p>
                   <p className="text-base font-bold text-emerald-400">
                     +{selected.carryBps.toFixed(1)} bps
                   </p>
                 </div>
                 <div className="bg-zinc-800/50 rounded-lg p-3 col-span-2">
-                  <p className="text-[10px] text-zinc-400 mb-1">ASW vs Z-Spread differential</p>
+                  <p className="text-xs text-zinc-400 mb-1">ASW vs Z-Spread differential</p>
                   <div className="flex items-center gap-2">
                     <div
                       className="h-2 rounded-full bg-violet-600"
@@ -1672,7 +1672,7 @@ function SwapSpreadsTab() {
                       {(selected.assetSwapSpread - selected.zSpread).toFixed(1)} bps differential
                     </span>
                   </div>
-                  <p className="text-[10px] text-zinc-500 mt-1">
+                  <p className="text-xs text-zinc-500 mt-1">
                     {selected.assetSwapSpread > selected.zSpread
                       ? "ASW wider: bond trading cheap vs swap curve"
                       : "Z-spread wider: discount factor divergence"}
@@ -1705,7 +1705,7 @@ function SwapSpreadsTab() {
                   className="flex flex-col items-center flex-1 cursor-pointer"
                   onClick={() => setSelectedTenor(i)}
                 >
-                  <span className="text-[9px] text-zinc-400 mb-1">{d.val.toFixed(1)}</span>
+                  <span className="text-[11px] text-zinc-400 mb-1">{d.val.toFixed(1)}</span>
                   <div
                     className={cn(
                       "w-full rounded-t-sm transition-all",
@@ -1715,7 +1715,7 @@ function SwapSpreadsTab() {
                     )}
                     style={{ height: `${pct}%` }}
                   />
-                  <span className="text-[9px] text-zinc-500 mt-1">{spreads[i].tenor}</span>
+                  <span className="text-[11px] text-zinc-500 mt-1">{spreads[i].tenor}</span>
                 </div>
               );
             })}
@@ -1740,7 +1740,7 @@ function SwapSpreadsTab() {
                     (h) => (
                       <th
                         key={h}
-                        className="text-left py-2 px-2 text-[10px] text-zinc-500 font-medium uppercase tracking-wide"
+                        className="text-left py-2 px-2 text-xs text-zinc-500 font-medium uppercase tracking-wide"
                       >
                         {h}
                       </th>
@@ -1776,7 +1776,7 @@ function SwapSpreadsTab() {
                       <td className="py-2 px-2">
                         <Badge
                           className={cn(
-                            "text-[10px]",
+                            "text-xs",
                             signal === "BUY ASW"
                               ? "bg-emerald-900/50 text-emerald-300 border-emerald-800"
                               : signal === "SELL ASW"

@@ -141,7 +141,7 @@ function TAChip({ signal }: { signal: TASignal }) {
   return (
     <span
       className={cn(
-        "rounded px-1 py-0.5 text-[9px] font-semibold uppercase tracking-wide shrink-0",
+        "rounded px-1 py-0.5 text-[11px] font-semibold uppercase tracking-wide shrink-0",
         signal === "bull" && "bg-green-500/15 text-green-500",
         signal === "bear" && "bg-red-500/15 text-red-500",
         signal === "neutral" && "bg-muted text-muted-foreground",
@@ -244,7 +244,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
         </button>
       </div>
 
-      <div className="text-[10px] text-muted-foreground">
+      <div className="text-xs text-muted-foreground">
         Current:{" "}
         <span className="font-mono tabular-nums text-foreground">${price.toFixed(2)}</span>
       </div>
@@ -253,7 +253,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
       {alerts.length > 0 && (
         <div className="space-y-1">
           {alerts.map((alert) => (
-            <div key={alert.id} className="flex items-center gap-2 text-[10px]">
+            <div key={alert.id} className="flex items-center gap-2 text-xs">
               <button
                 onClick={() => toggleAlert(item.ticker, alert.id, !alert.enabled)}
                 className={cn(
@@ -285,7 +285,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
         <select
           value={type}
           onChange={(e) => setType(e.target.value as AlertType)}
-          className="w-full rounded border border-border bg-background px-2 py-1 text-[10px] text-foreground focus:outline-none focus:border-primary"
+          className="w-full rounded border border-border bg-background px-2 py-1 text-xs text-foreground focus:outline-none focus:border-primary"
         >
           <option value="above">Price Above</option>
           <option value="below">Price Below</option>
@@ -304,12 +304,12 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
                   ? `e.g. ${(price * 0.95).toFixed(2)}`
                   : "e.g. 5"
             }
-            className="flex-1 rounded border border-border bg-background px-2 py-1 text-[10px] font-mono focus:outline-none focus:border-primary"
+            className="flex-1 rounded border border-border bg-background px-2 py-1 text-xs font-mono focus:outline-none focus:border-primary"
           />
           <button
             onClick={handleAdd}
             disabled={!value.trim()}
-            className="flex items-center gap-1 rounded bg-primary px-2 py-1 text-[10px] font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-1 rounded bg-primary px-2 py-1 text-xs font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             <Plus className="h-2.5 w-2.5" />
             Add
@@ -322,7 +322,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
         <div>
           <button
             onClick={() => setShowHistory((p) => !p)}
-            className="flex items-center gap-1 text-[9px] uppercase tracking-wider text-muted-foreground/60 hover:text-muted-foreground transition-colors"
+            className="flex items-center gap-1 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors"
           >
             <Clock className="h-2.5 w-2.5" />
             History ({tickerHistory.length})
@@ -330,7 +330,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
           {showHistory && (
             <div className="mt-1 space-y-0.5">
               {tickerHistory.map((h, i) => (
-                <div key={i} className="flex items-center gap-1.5 text-[9px] text-muted-foreground">
+                <div key={i} className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
                   <span className="shrink-0">{ALERT_TYPE_LABELS[h.type]}</span>
                   <span className="font-mono tabular-nums">
                     {h.type === "pct_move" ? `${h.value}%` : `$${h.value.toFixed(2)}`}
@@ -383,7 +383,7 @@ function InlineNote({ ticker, note, onClose }: InlineNoteProps) {
         }}
         onBlur={handleSave}
         placeholder="Add note..."
-        className="w-full rounded border border-border bg-background px-2 py-1 text-[10px] focus:outline-none focus:border-primary"
+        className="w-full rounded border border-border bg-background px-2 py-1 text-xs focus:outline-none focus:border-primary"
       />
     </div>
   );
@@ -499,7 +499,7 @@ function WatchlistRow({
 
             {/* Note display */}
             {item.notes && !isNoteEditorOpen && (
-              <p className="text-[9px] italic text-muted-foreground/70 mt-0.5 truncate">
+              <p className="text-[11px] italic text-muted-foreground/70 mt-0.5 truncate">
                 {item.notes}
               </p>
             )}
@@ -507,7 +507,7 @@ function WatchlistRow({
             {!showPerformance && (
               <div
                 className={cn(
-                  "text-[10px] font-mono tabular-nums mt-0.5",
+                  "text-xs font-mono tabular-nums mt-0.5",
                   changePct > 0
                     ? "text-green-500"
                     : changePct < 0
@@ -522,10 +522,10 @@ function WatchlistRow({
 
             {showPerformance && perf && (
               <div className="flex items-center gap-1.5 mt-0.5">
-                <span className={cn("text-[9px] font-mono tabular-nums", perf.w1 >= 0 ? "text-green-500" : "text-red-500")}>
+                <span className={cn("text-[11px] font-mono tabular-nums", perf.w1 >= 0 ? "text-green-500" : "text-red-500")}>
                   1W {perf.w1 >= 0 ? "+" : ""}{perf.w1.toFixed(1)}%
                 </span>
-                <span className={cn("text-[9px] font-mono tabular-nums", perf.m1 >= 0 ? "text-green-500" : "text-red-500")}>
+                <span className={cn("text-[11px] font-mono tabular-nums", perf.m1 >= 0 ? "text-green-500" : "text-red-500")}>
                   1M {perf.m1 >= 0 ? "+" : ""}{perf.m1.toFixed(1)}%
                 </span>
               </div>
@@ -535,16 +535,16 @@ function WatchlistRow({
           <div className="flex flex-col items-end gap-0.5 shrink-0">
             {!showPerformance && <MiniSparkline values={sparkValues} />}
             {!showPerformance && (
-              <div className="text-[10px] font-mono tabular-nums text-foreground">
+              <div className="text-xs font-mono tabular-nums text-foreground">
                 ${price.toFixed(2)}
               </div>
             )}
             {showPerformance && perf && (
               <div className="flex flex-col items-end gap-0.5">
-                <span className={cn("text-[9px] font-mono tabular-nums", perf.ytd >= 0 ? "text-green-500" : "text-red-500")}>
+                <span className={cn("text-[11px] font-mono tabular-nums", perf.ytd >= 0 ? "text-green-500" : "text-red-500")}>
                   YTD {perf.ytd >= 0 ? "+" : ""}{perf.ytd.toFixed(1)}%
                 </span>
-                <span className={cn("text-[9px] font-mono tabular-nums", perf.sharpe >= 1 ? "text-green-500" : perf.sharpe >= 0 ? "text-muted-foreground" : "text-red-500")}>
+                <span className={cn("text-[11px] font-mono tabular-nums", perf.sharpe >= 1 ? "text-green-500" : perf.sharpe >= 0 ? "text-muted-foreground" : "text-red-500")}>
                   SR {perf.sharpe.toFixed(2)}
                 </span>
               </div>
@@ -855,11 +855,11 @@ export function WatchlistPanel() {
     <div className="flex flex-col bg-card overflow-hidden" style={{ height: "100%" }}>
       {/* Header row 1: label + count + mode toggles */}
       <div className="flex items-center justify-between border-b border-border px-3 py-2 shrink-0">
-        <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+        <span className="text-xs font-medium text-muted-foreground">
           Watchlist
         </span>
         <div className="flex items-center gap-1">
-          <span className="text-[10px] text-muted-foreground/60">
+          <span className="text-xs text-muted-foreground/60">
             {activeWatchlist.length}
           </span>
           {/* Performance mode toggle */}
@@ -880,7 +880,7 @@ export function WatchlistPanel() {
             <select
               value={groupBy}
               onChange={(e) => setGroupBy(e.target.value as GroupBy)}
-              className="appearance-none rounded border border-border bg-background pl-1 pr-4 py-0.5 text-[10px] text-muted-foreground focus:outline-none focus:border-primary cursor-pointer"
+              className="appearance-none rounded border border-border bg-background pl-1 pr-4 py-0.5 text-xs text-muted-foreground focus:outline-none focus:border-primary cursor-pointer"
               title="Group by"
             >
               <option value="none">None</option>
@@ -982,7 +982,7 @@ export function WatchlistPanel() {
             <button
               onClick={handleCreateList}
               disabled={!newListName.trim()}
-              className="rounded bg-primary px-1.5 py-0.5 text-[10px] font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="rounded bg-primary px-1.5 py-0.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               Create
             </button>
@@ -1000,7 +1000,7 @@ export function WatchlistPanel() {
         ) : groupedSections ? (
           groupedSections.map((section) => (
             <div key={section.label}>
-              <div className="px-3 py-1 text-[9px] uppercase tracking-wider text-muted-foreground/50 bg-muted/30 border-b border-border/40">
+              <div className="px-3 py-1 text-[11px] text-muted-foreground/50 bg-muted/30 border-b border-border/40">
                 {section.label}
               </div>
               {section.items.map((item) => {
@@ -1016,7 +1016,7 @@ export function WatchlistPanel() {
         {/* Quick-add suggestions */}
         {suggestions.length > 0 && activeWatchlist.length > 0 && (
           <div className="border-t border-border/50 px-3 pt-2 pb-1">
-            <div className="text-[9px] uppercase tracking-wider text-muted-foreground/50 mb-1.5">
+            <div className="text-[11px] text-muted-foreground/50 mb-1.5">
               Quick add
             </div>
             <div className="flex flex-wrap gap-1">
@@ -1024,7 +1024,7 @@ export function WatchlistPanel() {
                 <button
                   key={s.ticker}
                   onClick={() => addToWatchlist(s.ticker)}
-                  className="rounded border border-border px-1.5 py-0.5 text-[10px] text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+                  className="rounded border border-border px-1.5 py-0.5 text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
                 >
                   +{s.ticker}
                 </button>
@@ -1060,14 +1060,14 @@ export function WatchlistPanel() {
           <button
             onClick={handleAdd}
             disabled={!addInput.trim()}
-            className="flex items-center gap-1 rounded bg-primary px-2 py-1 text-[10px] font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-1 rounded bg-primary px-2 py-1 text-xs font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             <Plus className="h-3 w-3" />
             Add
           </button>
         </div>
         {addError && (
-          <p className="mt-1 text-[10px] text-red-500">{addError}</p>
+          <p className="mt-1 text-xs text-red-500">{addError}</p>
         )}
       </div>
     </div>

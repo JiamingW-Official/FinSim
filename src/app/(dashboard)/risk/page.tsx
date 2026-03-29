@@ -793,7 +793,7 @@ function PositionSizingTab() {
               <p className="text-[11px] text-muted-foreground">Half Kelly</p>
               <p className="text-lg font-bold text-primary">{(kellyFraction * 50).toFixed(1)}%</p>
               <p className="text-xs text-muted-foreground">${halfKellyDollar.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">{halfKellyShares} shares @ ${pricePerShare}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{halfKellyShares} shares @ ${pricePerShare}</p>
             </div>
             <div className="rounded-lg border border-border/50 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Quarter Kelly</p>
@@ -1065,7 +1065,7 @@ function StressTestsTab() {
               <CardContent className="p-4 space-y-2">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-semibold leading-tight">{s.name}</p>
-                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${rl.cls}`}>{rl.label}</span>
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${rl.cls}`}>{rl.label}</span>
                 </div>
                 <p className="text-[11px] text-muted-foreground leading-relaxed">{s.context}</p>
                 <div className="border-t border-border/40 pt-2 space-y-1">

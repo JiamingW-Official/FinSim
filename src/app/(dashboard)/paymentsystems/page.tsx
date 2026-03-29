@@ -1367,7 +1367,7 @@ export default function PaymentSystemsPage() {
                     <ul className="space-y-1 text-zinc-400">
                       {sec.points.map((p) => (
                         <li key={p} className="flex items-start gap-1">
-                          <span className={cn("mt-0.5 text-[10px]", sec.color)}>•</span>
+                          <span className={cn("mt-0.5 text-xs", sec.color)}>•</span>
                           {p}
                         </li>
                       ))}

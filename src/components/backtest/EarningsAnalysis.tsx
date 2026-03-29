@@ -119,7 +119,7 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
 
       {/* Bar chart of post-earnings moves */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
           Post-Earnings Day Moves
         </h3>
         <PostMoveChart rows={data} />
@@ -127,11 +127,11 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
 
       {/* Full table */}
       <div>
-        <h3 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
           Earnings History
         </h3>
         <div className="overflow-x-auto rounded-lg border border-white/5">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/5 bg-white/[0.02]">
                 <th className="px-3 py-2 text-left text-zinc-500 font-medium">Date</th>
@@ -175,7 +175,7 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
                   </td>
                   <td className="px-3 py-2 text-center">
                     {row.buyRumorSellNews ? (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-0.5 text-[9px] font-medium text-amber-400">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-0.5 text-[11px] font-medium text-amber-400">
                         BRSN
                       </span>
                     ) : (
@@ -207,7 +207,7 @@ function SummaryChip({ label, value, positive, neutral }: {
     : "text-rose-400";
   return (
     <div className="rounded-lg border border-white/5 bg-white/[0.03] px-3 py-2">
-      <div className="text-[9px] uppercase tracking-wider text-zinc-600">{label}</div>
+      <div className="text-[11px] text-zinc-600">{label}</div>
       <div className={`mt-0.5 text-xs font-bold ${color}`}>{value}</div>
     </div>
   );

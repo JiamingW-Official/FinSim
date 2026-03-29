@@ -20,8 +20,8 @@ interface ChallengeResultsProps {
 }
 
 const GRADE_CONFIG = {
-  S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", label: "Outstanding!", glow: "shadow-[0_0_40px_rgba(251,191,36,0.3)]", emoji: "🏆" },
-  A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", label: "Excellent!", glow: "shadow-[0_0_30px_rgba(52,211,153,0.2)]", emoji: "⭐" },
+  S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", label: "Outstanding!", glow: "", emoji: "🏆" },
+  A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", label: "Excellent!", glow: "", emoji: "⭐" },
   B: { color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/30", label: "Good job!", glow: "", emoji: "👍" },
   C: { color: "text-muted-foreground", bg: "bg-muted/10", border: "border-border", label: "Keep practicing!", glow: "", emoji: "💪" },
 } as const;
@@ -78,7 +78,7 @@ export function ChallengeResults({
         {/* Grade letter — big dramatic reveal */}
         <motion.div
           className={cn(
-            "flex h-24 w-24 items-center justify-center rounded-2xl border-2 text-5xl font-black",
+            "flex h-24 w-24 items-center justify-center rounded-2xl border-2 text-5xl font-bold",
             config.border,
             config.bg,
             config.color,
@@ -106,7 +106,7 @@ export function ChallengeResults({
           >
             {config.emoji}
           </motion.span>
-          <h2 className="text-xl font-black">{config.label}</h2>
+          <h2 className="text-xl font-bold">{config.label}</h2>
         </motion.div>
 
         {/* Stats — card style */}
@@ -162,11 +162,11 @@ export function ChallengeResults({
           <AnimatedNumber
             value={xpEarned}
             format={xpFormat}
-            className="text-xl font-black text-primary"
+            className="text-xl font-bold text-primary"
           />
           {grade === "S" && (
             <motion.span
-              className={cn("text-[10px] font-bold rounded-full px-2 py-0.5", config.bg, config.color)}
+              className={cn("text-xs font-bold rounded-full px-2 py-0.5", config.bg, config.color)}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.9, type: "spring", stiffness: 400 }}
@@ -176,7 +176,7 @@ export function ChallengeResults({
           )}
           {grade === "A" && (
             <motion.span
-              className={cn("text-[10px] font-bold rounded-full px-2 py-0.5", config.bg, config.color)}
+              className={cn("text-xs font-bold rounded-full px-2 py-0.5", config.bg, config.color)}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.9, type: "spring", stiffness: 400 }}
@@ -193,7 +193,7 @@ export function ChallengeResults({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
         >
-          <p className="text-[10px] text-muted-foreground leading-relaxed text-center">
+          <p className="text-xs text-muted-foreground leading-relaxed text-center">
             {grade === "S" || grade === "A"
               ? "Great execution! Your timing and risk management were on point."
               : pnl < 0
@@ -212,7 +212,7 @@ export function ChallengeResults({
           transition={{ delay: 1.0 }}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="w-full rounded-xl bg-primary py-3.5 text-sm font-black uppercase tracking-wider text-primary-foreground transition-all hover:brightness-110 shadow-[0_4px_16px_rgba(16,185,129,0.25)]"
+          className="w-full rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
         >
           Continue
         </motion.button>

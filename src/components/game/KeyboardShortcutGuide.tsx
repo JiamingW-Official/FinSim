@@ -111,7 +111,7 @@ export function KeyboardShortcutGuide() {
                       {shortcut.keys.map((key) => (
                         <kbd
                           key={key}
-                          className="inline-flex min-w-[24px] items-center justify-center rounded border border-border bg-muted/50 px-1.5 py-0.5 text-[10px] font-mono font-medium text-foreground"
+                          className="inline-flex min-w-[24px] items-center justify-center rounded border border-border bg-muted/50 px-1.5 py-0.5 text-xs font-mono font-medium text-foreground"
                         >
                           {key}
                         </kbd>
@@ -124,8 +124,8 @@ export function KeyboardShortcutGuide() {
           ))}
 
           <div className="border-t border-border/50 pt-2">
-            <p className="text-center text-[10px] text-muted-foreground">
-              Press <kbd className="mx-0.5 rounded border border-border bg-muted/50 px-1 py-0.5 text-[9px] font-mono">?</kbd> to toggle this guide
+            <p className="text-center text-xs text-muted-foreground">
+              Press <kbd className="mx-0.5 rounded border border-border bg-muted/50 px-1 py-0.5 text-[11px] font-mono">?</kbd> to toggle this guide
             </p>
           </div>
         </div>

@@ -319,13 +319,13 @@ function Podium({ entries }: PodiumProps) {
           <div key={i} className="flex flex-col items-center">
             <span
               className={cn(
-                "text-[10px] font-bold truncate w-full text-center",
+                "text-xs font-bold truncate w-full text-center",
                 p.entry?.isPlayer ? "text-teal-300" : "text-zinc-300",
               )}
             >
               {p.entry?.name ?? "—"}
             </span>
-            <span className="text-[9px] tabular-nums" style={{ color: p.color }}>
+            <span className="text-[11px] tabular-nums" style={{ color: p.color }}>
               {p.entry ? `+${p.entry.returnPct.toFixed(1)}%` : ""}
             </span>
           </div>
@@ -350,7 +350,7 @@ function TimeBar({ daysRemaining, totalDays }: { daysRemaining: number; totalDay
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
       </div>
-      <span className="text-[10px] tabular-nums text-zinc-500 shrink-0">{daysRemaining}d left</span>
+      <span className="text-xs tabular-nums text-zinc-500 shrink-0">{daysRemaining}d left</span>
     </div>
   );
 }
@@ -367,7 +367,7 @@ interface TournamentLobbyProps {
 function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: TournamentLobbyProps) {
   return (
     <div className="space-y-4">
-      <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Active Tournaments</div>
+      <div className="text-xs font-bold text-zinc-400">Active Tournaments</div>
       <div className="grid gap-3">
         {TOURNAMENTS.map((t) => {
           const joined = joinedIds.has(t.id);
@@ -403,13 +403,13 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                         <CheckCircle className="h-3.5 w-3.5 text-teal-400" />
                       )}
                     </div>
-                    <span className="text-[10px] text-zinc-500">{t.duration} · {t.scoring}</span>
+                    <span className="text-xs text-zinc-500">{t.duration} · {t.scoring}</span>
                   </div>
                 </div>
                 {/* Prize pool */}
                 <div className="text-right shrink-0">
                   <div className={cn("text-xs font-bold", t.color)}>{t.prizes[0].toLocaleString()} XP</div>
-                  <div className="text-[10px] text-zinc-600">1st prize</div>
+                  <div className="text-xs text-zinc-600">1st prize</div>
                 </div>
               </div>
 
@@ -420,7 +420,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                 {["🥇", "🥈", "🥉"].map((medal, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="text-xs">{medal}</span>
-                    <span className={cn("text-[10px] font-bold tabular-nums", t.color)}>
+                    <span className={cn("text-xs font-bold tabular-nums", t.color)}>
                       {t.prizes[i].toLocaleString()} XP
                     </span>
                   </div>
@@ -428,7 +428,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
               </div>
 
               {/* Stats row */}
-              <div className="flex items-center gap-4 mb-3 text-[10px] text-zinc-500">
+              <div className="flex items-center gap-4 mb-3 text-xs text-zinc-500">
                 <span className="flex items-center gap-1">
                   <Users className="h-2.5 w-2.5" />
                   {participants.toLocaleString()} traders
@@ -490,7 +490,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
       {/* My Tournaments */}
       {joinedIds.size > 0 && (
         <div>
-          <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">My Tournaments</div>
+          <div className="text-xs font-bold text-zinc-400 mb-2">My Tournaments</div>
           <div className="space-y-2">
             {[...joinedIds].map((id) => {
               const def = TOURNAMENTS.find((t) => t.id === id)!;
@@ -507,12 +507,12 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                   <span className={def.color}>{def.icon}</span>
                   <div className="flex-1 min-w-0">
                     <div className="text-xs font-bold text-zinc-200 truncate">{def.name}</div>
-                    <div className="text-[10px] text-zinc-500">{daysLeft}d remaining · Active</div>
+                    <div className="text-xs text-zinc-500">{daysLeft}d remaining · Active</div>
                   </div>
                   <button
                     type="button"
                     onClick={() => onViewLeaderboard(id)}
-                    className={cn("text-[10px] font-bold", def.color)}
+                    className={cn("text-xs font-bold", def.color)}
                   >
                     View →
                   </button>
@@ -551,7 +551,7 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
         <button
           type="button"
           onClick={onBack}
-          className="text-[10px] text-zinc-500 hover:text-zinc-300 transition-colors"
+          className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
         >
           ← Back
         </button>
@@ -563,7 +563,7 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
 
       {/* Podium */}
       <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-        <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-3">Top Traders</div>
+        <div className="text-xs font-bold text-zinc-500 mb-3">Top Traders</div>
         <Podium entries={entries} />
       </div>
 
@@ -577,10 +577,10 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
         "rounded-lg border px-4 py-3 flex items-center gap-3",
         def.borderColor, def.bgColor,
       )}>
-        <div className={cn("text-2xl font-black tabular-nums", def.color)}>#{playerEntry.rank}</div>
+        <div className={cn("text-2xl font-bold tabular-nums", def.color)}>#{playerEntry.rank}</div>
         <div>
           <div className="text-xs font-bold text-zinc-100">Your Ranking</div>
-          <div className="text-[10px] text-zinc-500">
+          <div className="text-xs text-zinc-500">
             {playerEntry.returnPct >= 0 ? "+" : ""}{playerEntry.returnPct.toFixed(1)}% return ·{" "}
             Sharpe {playerEntry.sharpe.toFixed(2)} ·{" "}
             {(playerEntry.winRate * 100).toFixed(0)}% win rate
@@ -666,7 +666,7 @@ function EloChangeBadge({ change, small }: { change: number; small?: boolean }) 
   return (
     <span className={cn(
       "inline-flex items-center gap-0.5 font-bold tabular-nums",
-      small ? "text-[10px]" : "text-xs",
+      small ? "text-xs" : "text-xs",
       change >= 0 ? "text-teal-400" : "text-red-400",
     )}>
       {change >= 0 ? <TrendingUp className="h-2.5 w-2.5" /> : <TrendingDown className="h-2.5 w-2.5" />}
@@ -737,8 +737,8 @@ function H2HSection({ playerElo }: H2HProps) {
           { label: "Win Rate", value: `${Math.round((winCount / Math.max(1, matchHistory.length)) * 100)}%`, color: "text-blue-400" },
         ].map((s) => (
           <div key={s.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3 text-center">
-            <div className={cn("text-sm font-black tabular-nums", s.color)}>{s.value}</div>
-            <div className="text-[10px] text-zinc-500 mt-0.5">{s.label}</div>
+            <div className={cn("text-sm font-bold tabular-nums", s.color)}>{s.value}</div>
+            <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
           </div>
         ))}
       </div>
@@ -793,7 +793,7 @@ function H2HSection({ playerElo }: H2HProps) {
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-teal-400">Active Match · 24h Duel</span>
-              <span className="text-[10px] text-zinc-500">vs {currentMatch.opponent} ({currentMatch.opponentElo} ELO)</span>
+              <span className="text-xs text-zinc-500">vs {currentMatch.opponent} ({currentMatch.opponentElo} ELO)</span>
             </div>
 
             {/* Live P&L bar */}
@@ -801,14 +801,14 @@ function H2HSection({ playerElo }: H2HProps) {
 
             <div className="grid grid-cols-2 gap-2 text-center">
               <div className="rounded-lg bg-white/[0.03] px-3 py-2">
-                <div className="text-[10px] text-zinc-500">Your Return</div>
-                <div className={cn("text-sm font-black tabular-nums", currentMatch.yourReturn >= 0 ? "text-teal-400" : "text-red-400")}>
+                <div className="text-xs text-zinc-500">Your Return</div>
+                <div className={cn("text-sm font-bold tabular-nums", currentMatch.yourReturn >= 0 ? "text-teal-400" : "text-red-400")}>
                   {currentMatch.yourReturn >= 0 ? "+" : ""}{currentMatch.yourReturn.toFixed(2)}%
                 </div>
               </div>
               <div className="rounded-lg bg-white/[0.03] px-3 py-2">
-                <div className="text-[10px] text-zinc-500">{currentMatch.opponent}</div>
-                <div className={cn("text-sm font-black tabular-nums", currentMatch.oppReturn >= 0 ? "text-red-400" : "text-teal-400")}>
+                <div className="text-xs text-zinc-500">{currentMatch.opponent}</div>
+                <div className={cn("text-sm font-bold tabular-nums", currentMatch.oppReturn >= 0 ? "text-red-400" : "text-teal-400")}>
                   {currentMatch.oppReturn >= 0 ? "+" : ""}{currentMatch.oppReturn.toFixed(2)}%
                 </div>
               </div>
@@ -845,7 +845,7 @@ function H2HSection({ playerElo }: H2HProps) {
                   <td className="px-3 py-2">
                     <div className="flex flex-col">
                       <span className="text-zinc-200 font-medium">{m.opponent}</span>
-                      <span className="text-[9px] text-zinc-600">{m.date} · {m.opponentElo} ELO</span>
+                      <span className="text-[11px] text-zinc-600">{m.date} · {m.opponentElo} ELO</span>
                     </div>
                   </td>
                   <td className={cn("px-3 py-2 text-right tabular-nums font-bold", m.yourReturn >= 0 ? "text-teal-400" : "text-red-400")}>
@@ -882,7 +882,7 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[9px] font-bold text-zinc-500 w-5 text-right">YOU</span>
+      <span className="text-[11px] font-bold text-zinc-500 w-5 text-right">YOU</span>
       <div className="flex-1 relative h-4 rounded-full bg-white/[0.04] overflow-hidden flex">
         <div className="w-1/2 flex justify-end">
           <motion.div
@@ -900,12 +900,12 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={cn("text-[8px] font-black tabular-nums", youLeading ? "text-teal-400" : "text-zinc-500")}>
+          <span className={cn("text-[8px] font-bold tabular-nums", youLeading ? "text-teal-400" : "text-zinc-500")}>
             {(yourReturn - oppReturn) >= 0 ? "+" : ""}{(yourReturn - oppReturn).toFixed(1)}%
           </span>
         </div>
       </div>
-      <span className="text-[9px] font-bold text-zinc-500 w-5">OPP</span>
+      <span className="text-[11px] font-bold text-zinc-500 w-5">OPP</span>
     </div>
   );
 }
@@ -986,9 +986,9 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
             { label: "Most Consistent", winner: "QuantKing", detail: "Sharpe 4.21 over 30d" },
           ].map((award) => (
             <div key={award.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
-              <div className="text-[10px] font-bold text-zinc-500 mb-1">{award.label}</div>
+              <div className="text-xs font-bold text-zinc-500 mb-1">{award.label}</div>
               <div className="text-xs font-bold text-zinc-100">{award.winner}</div>
-              <div className="text-[9px] text-zinc-600 mt-0.5">{award.detail}</div>
+              <div className="text-[11px] text-zinc-600 mt-0.5">{award.detail}</div>
             </div>
           ))}
         </div>
@@ -1015,7 +1015,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
                 )}
               >
                 <span className={cn(
-                  "w-5 text-center text-xs font-black tabular-nums",
+                  "w-5 text-center text-xs font-bold tabular-nums",
                   e.rank === 1 ? "text-yellow-400"
                   : e.rank === 2 ? "text-zinc-400"
                   : e.rank === 3 ? "text-amber-600"
@@ -1044,8 +1044,8 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
         <div className="grid grid-cols-2 gap-2">
           {careerStats.map((s) => (
             <div key={s.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
-              <div className="text-sm font-black tabular-nums text-zinc-100">{s.value}</div>
-              <div className="text-[10px] text-zinc-500 mt-0.5">{s.label}</div>
+              <div className="text-sm font-bold tabular-nums text-zinc-100">{s.value}</div>
+              <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
             </div>
           ))}
         </div>
@@ -1075,7 +1075,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
                 </span>
                 {badge.earned && <CheckCircle className="h-3 w-3 text-teal-400 ml-auto" />}
               </div>
-              <p className="text-[10px] text-zinc-500">{badge.description}</p>
+              <p className="text-xs text-zinc-500">{badge.description}</p>
             </div>
           ))}
         </div>

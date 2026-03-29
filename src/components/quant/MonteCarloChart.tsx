@@ -155,7 +155,7 @@ export default function MonteCarloChart({ result, years }: MonteCarloChartProps)
             y={yScale(v)}
             textAnchor="end"
             dominantBaseline="middle"
-            className="fill-muted-foreground text-[10px] font-mono"
+            className="fill-muted-foreground text-xs font-mono"
           >
             {formatCurrency(v)}
           </text>
@@ -168,7 +168,7 @@ export default function MonteCarloChart({ result, years }: MonteCarloChartProps)
             x={xScale(t.idx)}
             y={CHART_H - PAD.bottom + 18}
             textAnchor="middle"
-            className="fill-muted-foreground text-[10px] font-mono"
+            className="fill-muted-foreground text-xs font-mono"
           >
             {t.label}
           </text>
@@ -195,11 +195,11 @@ export default function MonteCarloChart({ result, years }: MonteCarloChartProps)
         {/* Legend */}
         <rect x={CHART_W - PAD.right - 130} y={PAD.top} width={120} height={52} rx={4} fill="currentColor" className="text-background/80" />
         <line x1={CHART_W - PAD.right - 120} x2={CHART_W - PAD.right - 100} y1={PAD.top + 14} y2={PAD.top + 14} stroke="currentColor" className="text-blue-600 dark:text-blue-400" strokeWidth={2} />
-        <text x={CHART_W - PAD.right - 94} y={PAD.top + 18} className="fill-foreground text-[9px]">Median (P50)</text>
+        <text x={CHART_W - PAD.right - 94} y={PAD.top + 18} className="fill-foreground text-[11px]">Median (P50)</text>
         <rect x={CHART_W - PAD.right - 120} y={PAD.top + 24} width={20} height={8} rx={1} fill="currentColor" className="text-blue-500/20 dark:text-blue-400/20" />
-        <text x={CHART_W - PAD.right - 94} y={PAD.top + 33} className="fill-foreground text-[9px]">P25-P75</text>
+        <text x={CHART_W - PAD.right - 94} y={PAD.top + 33} className="fill-foreground text-[11px]">P25-P75</text>
         <rect x={CHART_W - PAD.right - 120} y={PAD.top + 38} width={20} height={8} rx={1} fill="currentColor" className="text-blue-500/10 dark:text-blue-400/10" />
-        <text x={CHART_W - PAD.right - 94} y={PAD.top + 47} className="fill-foreground text-[9px]">P5-P95</text>
+        <text x={CHART_W - PAD.right - 94} y={PAD.top + 47} className="fill-foreground text-[11px]">P5-P95</text>
       </svg>
 
       {/* Stats row */}

@@ -47,18 +47,18 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-xl border border-white/5 bg-gradient-to-r from-red-500/5 via-transparent to-red-500/5 p-4"
+        className="rounded-xl border border-white/5 bg-card p-4"
       >
         <div className="flex items-center gap-4">
           <ArenaRankBadge rank={rank} size="lg" />
 
           <div className="flex-1">
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-black tabular-nums text-zinc-100">{elo}</span>
+              <span className="text-2xl font-bold tabular-nums text-zinc-100">{elo}</span>
               <span className="text-xs text-zinc-500">ELO</span>
             </div>
             {totalMatches === 0 && (
-              <p className="text-[10px] text-zinc-600 mt-0.5">Play your first match to start ranking!</p>
+              <p className="text-xs text-zinc-600 mt-0.5">Play your first match to start ranking!</p>
             )}
           </div>
 
@@ -125,7 +125,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
                 </div>
                 <div>
                   <h3 className={cn("text-sm font-bold", config.color)}>{config.name}</h3>
-                  <span className="text-[10px] text-zinc-600">{config.timeLimitSeconds}s</span>
+                  <span className="text-xs text-zinc-600">{config.timeLimitSeconds}s</span>
                 </div>
               </div>
 
@@ -135,7 +135,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
               <div className="space-y-1">
                 {Object.entries(config.scoringWeights).map(([key, weight]) => (
                   <div key={key} className="flex items-center gap-2">
-                    <span className="text-[9px] w-12 text-zinc-600 capitalize">{key === "riskControl" ? "Risk" : key}</span>
+                    <span className="text-[11px] w-12 text-zinc-600 capitalize">{key === "riskControl" ? "Risk" : key}</span>
                     <div className="flex-1 h-1 rounded-full bg-white/5">
                       <motion.div
                         className={cn("h-full rounded-full", WEIGHT_COLORS[key] ?? "bg-zinc-600")}
@@ -150,7 +150,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
 
               {/* Stats if played */}
               {stats && stats.matches > 0 && (
-                <div className="mt-3 pt-2 border-t border-white/5 flex items-center gap-3 text-[10px] text-zinc-500">
+                <div className="mt-3 pt-2 border-t border-white/5 flex items-center gap-3 text-xs text-zinc-500">
                   <span>{stats.wins}/{stats.matches} W</span>
                   <span className="text-zinc-600">|</span>
                   <span>Best: {stats.bestScore}</span>
@@ -202,7 +202,7 @@ function RecentMatches() {
             className="flex items-center gap-3 rounded-lg border border-white/[0.03] bg-white/[0.01] px-3 py-1.5 text-xs"
           >
             <span className={cn(
-              "flex h-5 w-5 items-center justify-center rounded text-[10px] font-black",
+              "flex h-5 w-5 items-center justify-center rounded text-xs font-bold",
               m.playerWon ? "bg-emerald-500/15 text-emerald-400" : "bg-red-500/15 text-red-400",
             )}>
               {m.playerWon ? "W" : "L"}

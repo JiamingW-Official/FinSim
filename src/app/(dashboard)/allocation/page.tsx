@@ -293,7 +293,7 @@ function AssetClassOverview() {
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: asset.color }} />
                       <span className="text-neutral-200">{asset.name}</span>
-                      <Badge className="text-[10px] px-1 py-0 capitalize" style={{ background: asset.color + "22", color: asset.color, borderColor: asset.color + "44" }}>
+                      <Badge className="text-xs px-1 py-0 capitalize" style={{ background: asset.color + "22", color: asset.color, borderColor: asset.color + "44" }}>
                         {asset.category}
                       </Badge>
                     </div>

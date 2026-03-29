@@ -383,7 +383,7 @@ function DonutChart({ weights, labels }: { weights: number[]; labels: string[] }
           Cap Wts
         </text>
       </svg>
-      <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-[10px]">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs">
         {slices.map((s, i) => (
           <div key={i} className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full flex-shrink-0" style={{ background: s.color }} />
@@ -424,7 +424,7 @@ function BarChartSVG({
 
   return (
     <div>
-      {title && <p className="text-[10px] text-muted-foreground mb-1 font-medium">{title}</p>}
+      {title && <p className="text-xs text-muted-foreground mb-1 font-medium">{title}</p>}
       <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
         {/* Grid lines */}
         {yTicks.map((tick, i) => {
@@ -502,7 +502,7 @@ function DualBarChart({
   return (
     <div>
       {/* Legend */}
-      <div className="flex gap-4 mb-2 text-[10px]">
+      <div className="flex gap-4 mb-2 text-xs">
         <span className="flex items-center gap-1"><span className="h-2 w-3 rounded inline-block" style={{ background: colorA }} />{labelA}</span>
         <span className="flex items-center gap-1"><span className="h-2 w-3 rounded inline-block" style={{ background: colorB }} />{labelB}</span>
       </div>
@@ -562,7 +562,7 @@ function StackedBarChart({
 
   return (
     <div>
-      <div className="flex gap-4 mb-2 text-[10px]">
+      <div className="flex gap-4 mb-2 text-xs">
         <span className="flex items-center gap-1"><span className="h-2 w-3 rounded inline-block bg-indigo-500/80" />Before Views</span>
         <span className="flex items-center gap-1"><span className="h-2 w-3 rounded inline-block bg-cyan-400/80" />After Views</span>
       </div>
@@ -698,7 +698,7 @@ export function BlackLitterman() {
       <div className="rounded-lg border border-border bg-card p-4 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-semibold text-foreground">Section 1: Market Equilibrium (CAPM Prior)</h3>
-          <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
             <label className="flex items-center gap-1.5">
               <span>δ (risk aversion)</span>
               <input
@@ -728,7 +728,7 @@ export function BlackLitterman() {
           </div>
         </div>
 
-        <div className="text-[10px] text-muted-foreground bg-muted/30 rounded px-3 py-2 font-mono">
+        <div className="text-xs text-muted-foreground bg-muted/30 rounded px-3 py-2 font-mono">
           Π = δ × Σ × w<sub>mkt</sub> &nbsp;|&nbsp; δ = {delta.toFixed(1)}, τ = {tau.toFixed(2)}
         </div>
 
@@ -751,7 +751,7 @@ export function BlackLitterman() {
             <button
               type="button"
               onClick={loadExamples}
-              className="flex items-center gap-1 rounded-md border border-border bg-background px-2 py-1 text-[10px] hover:bg-muted transition-colors"
+              className="flex items-center gap-1 rounded-md border border-border bg-background px-2 py-1 text-xs hover:bg-muted transition-colors"
             >
               <Lightbulb className="h-3 w-3 text-amber-400" />
               Example Views
@@ -759,7 +759,7 @@ export function BlackLitterman() {
             <button
               type="button"
               onClick={() => setViews([])}
-              className="flex items-center gap-1 rounded-md border border-border bg-background px-2 py-1 text-[10px] hover:bg-muted transition-colors"
+              className="flex items-center gap-1 rounded-md border border-border bg-background px-2 py-1 text-xs hover:bg-muted transition-colors"
             >
               <X className="h-3 w-3 text-muted-foreground" />
               Clear All
@@ -769,7 +769,7 @@ export function BlackLitterman() {
               onClick={addView}
               disabled={views.length >= 5}
               className={cn(
-                "flex items-center gap-1 rounded-md px-2 py-1 text-[10px] transition-colors",
+                "flex items-center gap-1 rounded-md px-2 py-1 text-xs transition-colors",
                 views.length >= 5
                   ? "bg-muted text-muted-foreground cursor-not-allowed"
                   : "bg-indigo-600 text-white hover:bg-indigo-500",
@@ -791,14 +791,14 @@ export function BlackLitterman() {
           {views.map((view, vi) => (
             <div key={view.id} className="rounded-md border border-border bg-background/60 p-3 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-semibold text-muted-foreground">View {vi + 1}</span>
+                <span className="text-xs font-semibold text-muted-foreground">View {vi + 1}</span>
                 <button type="button" onClick={() => removeView(view.id)} className="text-muted-foreground/50 hover:text-red-400 transition-colors">
                   <Trash2 className="h-3 w-3" />
                 </button>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 {/* Type toggle */}
-                <div className="flex rounded-md overflow-hidden border border-border text-[10px]">
+                <div className="flex rounded-md overflow-hidden border border-border text-xs">
                   {(["absolute", "relative"] as ViewType[]).map((t) => (
                     <button
                       key={t}
@@ -818,7 +818,7 @@ export function BlackLitterman() {
                 <select
                   value={view.asset1}
                   onChange={(e) => updateView(view.id, { asset1: e.target.value as Asset })}
-                  className="rounded border border-border bg-background px-1.5 py-1 text-[10px] text-foreground"
+                  className="rounded border border-border bg-background px-1.5 py-1 text-xs text-foreground"
                 >
                   {ASSETS.map((a) => (
                     <option key={a} value={a}>{a}</option>
@@ -827,22 +827,22 @@ export function BlackLitterman() {
 
                 {view.type === "relative" && (
                   <>
-                    <span className="text-muted-foreground text-[10px]">outperforms</span>
+                    <span className="text-muted-foreground text-xs">outperforms</span>
                     <select
                       value={view.asset2}
                       onChange={(e) => updateView(view.id, { asset2: e.target.value as Asset })}
-                      className="rounded border border-border bg-background px-1.5 py-1 text-[10px] text-foreground"
+                      className="rounded border border-border bg-background px-1.5 py-1 text-xs text-foreground"
                     >
                       {ASSETS.filter((a) => a !== view.asset1).map((a) => (
                         <option key={a} value={a}>{a}</option>
                       ))}
                     </select>
-                    <span className="text-muted-foreground text-[10px]">by</span>
+                    <span className="text-muted-foreground text-xs">by</span>
                   </>
                 )}
 
                 {view.type === "absolute" && (
-                  <span className="text-muted-foreground text-[10px]">returns</span>
+                  <span className="text-muted-foreground text-xs">returns</span>
                 )}
 
                 {/* Return expectation */}
@@ -854,14 +854,14 @@ export function BlackLitterman() {
                     step={0.5}
                     value={view.expectedReturn}
                     onChange={(e) => updateView(view.id, { expectedReturn: parseFloat(e.target.value) || 0 })}
-                    className="w-14 rounded border border-border bg-background px-1.5 py-1 text-[10px] text-foreground text-right tabular-nums"
+                    className="w-14 rounded border border-border bg-background px-1.5 py-1 text-xs text-foreground text-right tabular-nums"
                   />
-                  <span className="text-muted-foreground text-[10px]">%</span>
+                  <span className="text-muted-foreground text-xs">%</span>
                 </div>
 
                 {/* Confidence */}
                 <div className="flex items-center gap-1.5 ml-auto">
-                  <span className="text-muted-foreground text-[10px]">Confidence</span>
+                  <span className="text-muted-foreground text-xs">Confidence</span>
                   <input
                     type="range"
                     min={1}
@@ -870,12 +870,12 @@ export function BlackLitterman() {
                     onChange={(e) => updateView(view.id, { confidence: parseInt(e.target.value) })}
                     className="w-16 accent-indigo-500"
                   />
-                  <span className="tabular-nums font-semibold text-foreground text-[10px] w-7">{view.confidence}%</span>
+                  <span className="tabular-nums font-semibold text-foreground text-xs w-7">{view.confidence}%</span>
                 </div>
               </div>
 
               {/* Inline summary */}
-              <p className="text-[9px] text-muted-foreground/70 italic">
+              <p className="text-[11px] text-muted-foreground/70 italic">
                 {view.type === "absolute"
                   ? `${view.asset1} will return ${view.expectedReturn}% annually — Ω uncertainty: ${(1 - view.confidence / 100).toFixed(2)}`
                   : `${view.asset1} outperforms ${view.asset2} by ${view.expectedReturn}% — Ω uncertainty: ${(1 - view.confidence / 100).toFixed(2)}`}
@@ -889,7 +889,7 @@ export function BlackLitterman() {
       <div className="rounded-lg border border-border bg-card p-4 space-y-4">
         <h3 className="text-xs font-semibold text-foreground">Section 3: Black-Litterman Combined Returns</h3>
 
-        <div className="text-[10px] text-muted-foreground bg-muted/30 rounded px-3 py-2 font-mono space-y-0.5">
+        <div className="text-xs text-muted-foreground bg-muted/30 rounded px-3 py-2 font-mono space-y-0.5">
           <div>μ<sub>BL</sub> = [(τΣ)⁻¹ + PᵀΩ⁻¹P]⁻¹ × [(τΣ)⁻¹Π + PᵀΩ⁻¹Q]</div>
           {views.length === 0 && <div className="text-amber-400/70 mt-1">No views → μ_BL = Π (equilibrium)</div>}
         </div>
@@ -906,7 +906,7 @@ export function BlackLitterman() {
 
         {/* Tilt table */}
         <div>
-          <p className="text-[10px] font-medium text-muted-foreground mb-2">Return Tilt: BL Posterior − Prior Equilibrium</p>
+          <p className="text-xs font-medium text-muted-foreground mb-2">Return Tilt: BL Posterior − Prior Equilibrium</p>
           <div className="grid grid-cols-5 gap-1">
             {ASSETS.map((a, i) => {
               const tilt = tilts[i];
@@ -914,10 +914,10 @@ export function BlackLitterman() {
               const isNeg = tilt < -0.0001;
               return (
                 <div key={a} className="rounded border border-border bg-background/50 px-2 py-1.5 text-center">
-                  <div className="text-[9px] text-muted-foreground font-medium">{a}</div>
+                  <div className="text-[11px] text-muted-foreground font-medium">{a}</div>
                   <div
                     className={cn(
-                      "text-[10px] font-bold tabular-nums",
+                      "text-xs font-bold tabular-nums",
                       isPos ? "text-emerald-400" : isNeg ? "text-red-400" : "text-muted-foreground",
                     )}
                   >
@@ -934,7 +934,7 @@ export function BlackLitterman() {
       {/* ── Section 4: Optimal Portfolio Weights ─────────────────────────── */}
       <div className="rounded-lg border border-border bg-card p-4 space-y-4">
         <h3 className="text-xs font-semibold text-foreground">Section 4: Optimal Portfolio Weights</h3>
-        <div className="text-[10px] text-muted-foreground bg-muted/30 rounded px-3 py-2 font-mono">
+        <div className="text-xs text-muted-foreground bg-muted/30 rounded px-3 py-2 font-mono">
           w* ∝ Σ⁻¹ × μ_BL &nbsp;|&nbsp; constraints: long-only, max 30% per asset
         </div>
 
@@ -946,7 +946,7 @@ export function BlackLitterman() {
 
         {/* Weight table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-1.5 pr-3 text-muted-foreground font-medium">Asset</th>
@@ -992,7 +992,7 @@ export function BlackLitterman() {
 
         {/* Stats table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-1.5 pr-3 text-muted-foreground font-medium">Portfolio</th>
@@ -1038,7 +1038,7 @@ export function BlackLitterman() {
 
         {/* Efficient frontier scatter */}
         <div>
-          <p className="text-[10px] font-medium text-muted-foreground mb-2">Portfolio Placement (Return vs Volatility)</p>
+          <p className="text-xs font-medium text-muted-foreground mb-2">Portfolio Placement (Return vs Volatility)</p>
           <EfficientFrontierDot stats={result.stats} />
         </div>
       </div>

@@ -26,7 +26,7 @@ function MetricCell({
 }) {
   return (
     <div className="rounded-lg border border-border bg-card p-3" title={tooltip}>
-      <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+      <div className="text-xs font-medium text-muted-foreground">
         {label}
       </div>
       <div
@@ -247,7 +247,7 @@ export function QuantDashboard() {
     <div className="space-y-4">
       {/* ── Performance Metrics ──────────────────────────────────────── */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Performance
         </h3>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
@@ -286,7 +286,7 @@ export function QuantDashboard() {
 
       {/* ── Risk Metrics ─────────────────────────────────────────────── */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Risk
         </h3>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -318,7 +318,7 @@ export function QuantDashboard() {
 
       {/* ── Trade Statistics ──────────────────────────────────────────── */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Trade Statistics
         </h3>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -351,7 +351,7 @@ export function QuantDashboard() {
 
       {/* ── Distribution ─────────────────────────────────────────────── */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Return Distribution
         </h3>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -384,7 +384,7 @@ export function QuantDashboard() {
       {/* ── Portfolio Breakdown ───────────────────────────────────────── */}
       {positions.length > 0 && (
         <div>
-          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
             Portfolio
           </h3>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -423,7 +423,7 @@ export function QuantDashboard() {
           {/* Sector weights */}
           {Object.keys(portfolio.sectorWeights).length > 0 && (
             <div className="mt-3 rounded-lg border border-border bg-card p-3">
-              <div className="mb-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              <div className="mb-2 text-xs font-medium text-muted-foreground">
                 Sector Allocation
               </div>
               <div className="space-y-1.5">
@@ -452,7 +452,7 @@ export function QuantDashboard() {
           {/* Risk contributions */}
           {portfolio.riskContributions.length > 0 && (
             <div className="mt-3 rounded-lg border border-border bg-card p-3">
-              <div className="mb-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              <div className="mb-2 text-xs font-medium text-muted-foreground">
                 Risk Contribution
               </div>
               <div className="space-y-1.5">
@@ -484,7 +484,7 @@ export function QuantDashboard() {
 
       {/* ── Drawdown Chart ────────────────────────────────────────────── */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Drawdown
         </h3>
         <div className="rounded-lg border border-border bg-card p-3">

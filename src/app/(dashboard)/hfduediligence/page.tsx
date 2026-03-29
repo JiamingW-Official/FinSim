@@ -206,16 +206,16 @@ function StatusIcon({ status }: { status: DdItem["status"] }) {
 }
 
 function StatusBadge({ status }: { status: DdItem["status"] }) {
-  if (status === "pass") return <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/30 text-[10px]">PASS</Badge>;
-  if (status === "warn") return <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/30 text-[10px]">WARN</Badge>;
-  if (status === "fail") return <Badge className="bg-rose-500/15 text-rose-400 border-rose-500/30 text-[10px]">FAIL</Badge>;
-  return <Badge className="bg-muted text-muted-foreground text-[10px]">PENDING</Badge>;
+  if (status === "pass") return <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/30 text-xs">PASS</Badge>;
+  if (status === "warn") return <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/30 text-xs">WARN</Badge>;
+  if (status === "fail") return <Badge className="bg-rose-500/15 text-rose-400 border-rose-500/30 text-xs">FAIL</Badge>;
+  return <Badge className="bg-muted text-muted-foreground text-xs">PENDING</Badge>;
 }
 
 function SeverityBadge({ severity }: { severity: RedFlag["severity"] }) {
-  if (severity === "critical") return <Badge className="bg-rose-500/20 text-rose-400 border-rose-500/30 text-[10px]">CRITICAL</Badge>;
-  if (severity === "high") return <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 text-[10px]">HIGH</Badge>;
-  return <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 text-[10px]">MEDIUM</Badge>;
+  if (severity === "critical") return <Badge className="bg-rose-500/20 text-rose-400 border-rose-500/30 text-xs">CRITICAL</Badge>;
+  if (severity === "high") return <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 text-xs">HIGH</Badge>;
+  return <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 text-xs">MEDIUM</Badge>;
 }
 
 // ── SVG: Performance Attribution Chart ───────────────────────────────────────
@@ -502,7 +502,7 @@ export default function HFDueDiligencePage() {
                     <div key={m.label} className="p-3 rounded-lg bg-muted/30 border border-border">
                       <p className="text-xs text-muted-foreground mb-1">{m.label}</p>
                       <p className="text-base font-bold text-foreground">{m.value}</p>
-                      <p className={cn("text-[10px] mt-0.5", m.pos ? "text-emerald-400" : "text-rose-400")}>{m.diff}</p>
+                      <p className={cn("text-xs mt-0.5", m.pos ? "text-emerald-400" : "text-rose-400")}>{m.diff}</p>
                     </div>
                   ))}
                 </div>
@@ -541,7 +541,7 @@ export default function HFDueDiligencePage() {
                           <div className="flex items-center gap-2 flex-wrap">
                             <p className="text-sm font-medium">{item.label}</p>
                             <StatusBadge status={item.status} />
-                            <Badge variant="outline" className="text-[10px] gap-1 border-border">
+                            <Badge variant="outline" className="text-xs gap-1 border-border">
                               <CatIcon className="h-2.5 w-2.5" />
                               {categoryLabels[item.category]}
                             </Badge>
@@ -639,10 +639,10 @@ export default function HFDueDiligencePage() {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-0.5">
                           <span className="text-sm font-medium">{dd.period}</span>
-                          <Badge className="bg-rose-500/15 text-rose-400 border-rose-500/30 text-[10px]">{dd.depth}%</Badge>
+                          <Badge className="bg-rose-500/15 text-rose-400 border-rose-500/30 text-xs">{dd.depth}%</Badge>
                         </div>
                         <p className="text-xs text-muted-foreground">{dd.cause}</p>
-                        <p className="text-[10px] text-muted-foreground/70 mt-0.5">Duration: {dd.duration} · Recovery: {dd.recovery}</p>
+                        <p className="text-xs text-muted-foreground/70 mt-0.5">Duration: {dd.duration} · Recovery: {dd.recovery}</p>
                       </div>
                     </div>
                   ))}
@@ -687,7 +687,7 @@ export default function HFDueDiligencePage() {
                       <div className="flex gap-1.5 shrink-0">
                         <SeverityBadge severity={flag.severity} />
                         {flag.detected && (
-                          <Badge className="bg-rose-500/20 text-rose-300 border-rose-500/30 text-[10px]">DETECTED</Badge>
+                          <Badge className="bg-rose-500/20 text-rose-300 border-rose-500/30 text-xs">DETECTED</Badge>
                         )}
                       </div>
                     </div>

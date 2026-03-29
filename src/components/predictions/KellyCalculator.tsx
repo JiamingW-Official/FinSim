@@ -33,7 +33,7 @@ function BankrollBar({
   const pct = Math.max(0, Math.min(100, fraction * 100));
   return (
     <div>
-      <div className="mb-1 flex items-center justify-between text-[10px]">
+      <div className="mb-1 flex items-center justify-between text-xs">
         <span className="text-muted-foreground">{label}</span>
         <span
           className={cn(
@@ -95,7 +95,7 @@ export function KellyCalculator() {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {/* Win Rate */}
         <div>
-          <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <label className="mb-1.5 block text-xs font-semibold text-muted-foreground">
             Win Rate (%)
           </label>
           <input
@@ -108,14 +108,14 @@ export function KellyCalculator() {
             placeholder="55"
             className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 font-mono text-sm text-foreground placeholder-muted-foreground/50 outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
           />
-          <div className="mt-0.5 text-[9px] text-muted-foreground">
+          <div className="mt-0.5 text-[11px] text-muted-foreground">
             Probability of winning (1–99)
           </div>
         </div>
 
         {/* Decimal Odds */}
         <div>
-          <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <label className="mb-1.5 block text-xs font-semibold text-muted-foreground">
             Decimal Odds
           </label>
           <input
@@ -127,14 +127,14 @@ export function KellyCalculator() {
             placeholder="2.0"
             className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 font-mono text-sm text-foreground placeholder-muted-foreground/50 outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
           />
-          <div className="mt-0.5 text-[9px] text-muted-foreground">
+          <div className="mt-0.5 text-[11px] text-muted-foreground">
             2.0 = even money, 3.0 = 2:1
           </div>
         </div>
 
         {/* Edge (optional display) */}
         <div>
-          <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <label className="mb-1.5 block text-xs font-semibold text-muted-foreground">
             Edge (%)
           </label>
           <input
@@ -147,7 +147,7 @@ export function KellyCalculator() {
             placeholder="10"
             className="w-full rounded-lg border border-border bg-muted/30 px-3 py-2 font-mono text-sm text-foreground placeholder-muted-foreground/50 outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
           />
-          <div className="mt-0.5 text-[9px] text-muted-foreground">
+          <div className="mt-0.5 text-[11px] text-muted-foreground">
             Your estimated advantage
           </div>
         </div>
@@ -155,7 +155,7 @@ export function KellyCalculator() {
 
       {/* Formula reminder */}
       <div className="rounded-lg border border-border bg-muted/20 px-3 py-2">
-        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <Info className="h-3 w-3 shrink-0" />
           <span className="font-mono">
             K = (b&times;p &minus; q) / b &nbsp;|&nbsp; b = odds&minus;1,
@@ -195,7 +195,7 @@ export function KellyCalculator() {
 
           {/* Kelly recommendations */}
           <div className="rounded-lg border border-border bg-card p-4">
-            <div className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <div className="mb-3 text-xs font-semibold text-muted-foreground">
               Recommended Bet Size
             </div>
             <div className="space-y-3">
@@ -304,7 +304,7 @@ function MetricChip({
           : "border-border bg-card",
       )}
     >
-      <div className="text-[9px] text-muted-foreground">{label}</div>
+      <div className="text-[11px] text-muted-foreground">{label}</div>
       <div
         className={cn(
           "font-mono tabular-nums text-sm font-semibold",

@@ -65,7 +65,7 @@ function ScorePill({ score }: { score: number }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded border px-1.5 py-0.5 text-[9px] font-black font-mono leading-none",
+        "inline-flex items-center rounded border px-1.5 py-0.5 text-[11px] font-bold font-mono leading-none",
         cls,
       )}
     >
@@ -224,7 +224,7 @@ export function OpportunityScanner({
 
   if (rows.length === 0) {
     return (
-      <p className="text-[9px] text-muted-foreground text-center py-2">
+      <p className="text-[11px] text-muted-foreground text-center py-2">
         Advance the chart to scan for opportunities.
       </p>
     );
@@ -308,7 +308,7 @@ export function OpportunityScanner({
                 : "border-border/30 bg-background/30 hover:bg-accent/40",
             )}
           >
-            <span className="text-[10px] font-black text-foreground leading-none">
+            <span className="text-xs font-bold text-foreground leading-none">
               {row.ticker}
             </span>
             <ScorePill score={row.score} />
@@ -324,7 +324,7 @@ export function OpportunityScanner({
       </AnimatePresence>
 
       {filtered.length === 0 && (
-        <p className="text-[9px] text-muted-foreground text-center py-1.5">
+        <p className="text-[11px] text-muted-foreground text-center py-1.5">
           No results for current filter.
         </p>
       )}

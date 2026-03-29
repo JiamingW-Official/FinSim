@@ -79,7 +79,7 @@ export function TutorialOverlay() {
           <div className="w-72 rounded-lg border border-primary/30 bg-card p-4 shadow-xl">
             {/* Header */}
             <div className="mb-2 flex items-center justify-between">
-              <span className="text-[10px] font-medium uppercase tracking-wider text-primary">
+              <span className="text-xs font-medium text-primary">
                 Step {stepIndex + 1} of {totalSteps}
               </span>
               <button

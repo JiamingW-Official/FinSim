@@ -86,7 +86,7 @@ function InfoBox({
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", cls)}>
-      <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">{title}</div>
+      <div className="text-xs font-semibold text-muted-foreground mb-2">{title}</div>
       <div className="text-sm text-foreground">{children}</div>
     </div>
   );
@@ -131,7 +131,7 @@ function SliderInput({
           className="absolute inset-0 w-full opacity-0 cursor-pointer h-2"
         />
       </div>
-      <div className="flex justify-between text-[10px] text-muted-foreground">
+      <div className="flex justify-between text-xs text-muted-foreground">
         <span>{format(min)}</span>
         <span>{format(max)}</span>
       </div>
@@ -419,7 +419,7 @@ function InsuranceNeedsTab() {
 
           {/* Chart */}
           <div className="rounded-xl border border-border bg-card p-4">
-            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Coverage Gap Chart</div>
+            <div className="text-xs font-semibold text-muted-foreground mb-3">Coverage Gap Chart</div>
             <CoverageGapChart
               lifeCoverage={recommendations.lifeCoverage}
               lifeNeed={recommendations.lifeNeed}

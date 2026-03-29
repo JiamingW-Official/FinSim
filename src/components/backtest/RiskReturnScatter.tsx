@@ -242,7 +242,7 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 px-1 text-[9px] text-zinc-500">
+      <div className="flex flex-wrap items-center gap-3 px-1 text-[11px] text-zinc-500">
         <span className="flex items-center gap-1">
           <span className="inline-block h-2.5 w-2.5 rounded-full bg-emerald-500/70" />High Sharpe
         </span>
@@ -260,15 +260,15 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
 
       {/* Top Sharpe table */}
       <div>
-        <h4 className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Top Strategies by Sharpe</h4>
+        <h4 className="mb-1 text-xs font-semibold text-zinc-500">Top Strategies by Sharpe</h4>
         <div className="overflow-hidden rounded-lg border border-white/5 bg-black/20">
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/5">
-                <th className="py-1.5 pl-3 text-left text-[9px] font-medium text-zinc-600">Strategy</th>
-                <th className="py-1.5 text-center text-[9px] font-medium text-zinc-600">Vol %</th>
-                <th className="py-1.5 text-center text-[9px] font-medium text-zinc-600">Return %</th>
-                <th className="py-1.5 pr-3 text-center text-[9px] font-medium text-zinc-600">Sharpe</th>
+                <th className="py-1.5 pl-3 text-left text-[11px] font-medium text-zinc-600">Strategy</th>
+                <th className="py-1.5 text-center text-[11px] font-medium text-zinc-600">Vol %</th>
+                <th className="py-1.5 text-center text-[11px] font-medium text-zinc-600">Return %</th>
+                <th className="py-1.5 pr-3 text-center text-[11px] font-medium text-zinc-600">Sharpe</th>
               </tr>
             </thead>
             <tbody>
@@ -277,12 +277,12 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
                 .slice(0, 4)
                 .map((p, i) => (
                   <tr key={i} className={`border-b border-white/5 ${i === 0 ? "bg-emerald-500/5" : ""}`}>
-                    <td className="py-1.5 pl-3 text-[10px] text-zinc-300">{p.label}</td>
-                    <td className="py-1.5 text-center font-mono text-[10px] text-zinc-400">{p.volatility.toFixed(1)}</td>
-                    <td className={`py-1.5 text-center font-mono text-[10px] font-semibold ${p.returnPct >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
+                    <td className="py-1.5 pl-3 text-xs text-zinc-300">{p.label}</td>
+                    <td className="py-1.5 text-center font-mono text-xs text-zinc-400">{p.volatility.toFixed(1)}</td>
+                    <td className={`py-1.5 text-center font-mono text-xs font-semibold ${p.returnPct >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
                       {p.returnPct > 0 ? "+" : ""}{p.returnPct.toFixed(1)}
                     </td>
-                    <td className="py-1.5 pr-3 text-center font-mono text-[10px] font-semibold text-violet-400">
+                    <td className="py-1.5 pr-3 text-center font-mono text-xs font-semibold text-violet-400">
                       {p.sharpe.toFixed(2)}
                       {i === 0 && <span className="ml-1 text-[8px] text-emerald-400">best</span>}
                     </td>

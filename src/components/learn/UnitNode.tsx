@@ -119,8 +119,8 @@ export function UnitNode({
             "flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 text-lg transition-all",
             isUnitUnlocked
               ? mastery !== "none"
-                ? "border-[var(--mastery-color)] shadow-[0_0_12px_var(--mastery-color)]"
-                : "border-[var(--unit-color)] shadow-[0_0_12px_var(--unit-color)]"
+                ? "border-[var(--mastery-color)]"
+                : "border-[var(--unit-color)]"
               : "border-muted bg-muted/30",
           )}
           style={{
@@ -148,7 +148,7 @@ export function UnitNode({
             </h3>
             {mastery !== "none" && (
               <span
-                className="rounded-full px-2 py-0.5 text-[9px] font-bold uppercase"
+                className="rounded-full px-2 py-0.5 text-[11px] font-bold uppercase"
                 style={{
                   color: MASTERY_COLORS[mastery],
                   background: `${MASTERY_COLORS[mastery]}20`,
@@ -158,7 +158,7 @@ export function UnitNode({
               </span>
             )}
           </div>
-          <p className="text-[10px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             {unit.description}
           </p>
           {/* Progress bar */}
@@ -172,7 +172,7 @@ export function UnitNode({
                 transition={{ duration: 0.6, delay: delay + 0.2 }}
               />
             </div>
-            <span className="text-[9px] tabular-nums text-muted-foreground">
+            <span className="text-[11px] tabular-nums text-muted-foreground">
               {completedCount}/{unit.lessons.length}
             </span>
           </div>

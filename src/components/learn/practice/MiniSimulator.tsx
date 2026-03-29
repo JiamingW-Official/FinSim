@@ -25,7 +25,7 @@ export function MiniSimulator({
     <div className="flex flex-col gap-3">
       {/* Header */}
       <div className="flex items-center gap-2">
-        <span className="rounded-md bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-500">
+        <span className="rounded-md bg-amber-500/15 px-2 py-0.5 text-xs font-bold text-amber-500">
           Practice
         </span>
         <span className="text-xs text-muted-foreground">{instruction}</span>

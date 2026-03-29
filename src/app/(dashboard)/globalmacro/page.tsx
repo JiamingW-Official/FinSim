@@ -688,10 +688,10 @@ function PolicyDivergenceHeatmap() {
           className="flex flex-col items-center gap-1 p-1.5 rounded-lg bg-zinc-800/60 border border-zinc-700"
         >
           <span className="text-lg">{bank.flag}</span>
-          <span className="text-[10px] font-bold text-zinc-300">{bank.abbr}</span>
-          <span className="text-[10px] text-zinc-400">{bank.rate}%</span>
+          <span className="text-xs font-bold text-zinc-300">{bank.abbr}</span>
+          <span className="text-xs text-zinc-400">{bank.rate}%</span>
           <Badge
-            className="text-[9px] px-1 py-0"
+            className="text-[11px] px-1 py-0"
             style={{
               backgroundColor: DECISION_COLOR[bank.marketExpectation] + "22",
               color: DECISION_COLOR[bank.marketExpectation],
@@ -790,13 +790,13 @@ function IndicatorRow({ ind }: { ind: MacroIndicator }) {
         <div className="flex items-center gap-2 mb-0.5">
           <span className="text-xs font-medium text-zinc-200 truncate">{ind.name}</span>
           <Badge
-            className="text-[9px] px-1 py-0 shrink-0"
+            className="text-[11px] px-1 py-0 shrink-0"
             style={{ backgroundColor: CLASS_COLOR[ind.classification] + "22", color: CLASS_COLOR[ind.classification], border: `1px solid ${CLASS_COLOR[ind.classification]}44` }}
           >
             {ind.classification}
           </Badge>
         </div>
-        <div className="flex items-center gap-2 text-[10px] text-zinc-500">
+        <div className="flex items-center gap-2 text-xs text-zinc-500">
           <span>Prev: {ind.prev}{ind.unit}</span>
           <span>|</span>
           <span>Cons: {ind.consensus}{ind.unit}</span>
@@ -810,7 +810,7 @@ function IndicatorRow({ ind }: { ind: MacroIndicator }) {
       <Sparkline seed={ind.sparkSeed} expanding={ind.expanding} />
       <div className="text-right shrink-0 w-16">
         <div className="text-sm font-bold text-white">{ind.value}{ind.unit}</div>
-        <div className={cn("text-[10px]", ind.expanding ? "text-green-400" : "text-red-400")}>
+        <div className={cn("text-xs", ind.expanding ? "text-green-400" : "text-red-400")}>
           {ind.expanding ? "Expanding" : "Contracting"}
         </div>
       </div>
@@ -988,11 +988,11 @@ function PppChart() {
             <div className={cn("w-14 text-xs font-mono text-right", overvalued ? "text-green-400" : "text-red-400")}>
               {c.overUnder > 0 ? "+" : ""}{c.overUnder.toFixed(1)}%
             </div>
-            <div className="text-[10px] text-zinc-500 w-20">{overvalued ? "Overvalued" : "Undervalued"}</div>
+            <div className="text-xs text-zinc-500 w-20">{overvalued ? "Overvalued" : "Undervalued"}</div>
           </div>
         );
       })}
-      <div className="flex justify-center mt-2 gap-6 text-[10px] text-zinc-500">
+      <div className="flex justify-center mt-2 gap-6 text-xs text-zinc-500">
         <span className="text-red-400">◀ Undervalued vs USD</span>
         <span className="text-green-400">Overvalued vs USD ▶</span>
       </div>
@@ -1278,7 +1278,7 @@ export default function GlobalMacroPage() {
                             </div>
                             {/* Mini rate history sparkline */}
                             <div className="mt-3">
-                              <div className="text-[10px] text-zinc-600 mb-1">Rate history (3Y)</div>
+                              <div className="text-xs text-zinc-600 mb-1">Rate history (3Y)</div>
                               <svg viewBox="0 0 280 36" className="w-full" style={{ maxHeight: 36 }}>
                                 {(() => {
                                   const data = bank.rateHistory;

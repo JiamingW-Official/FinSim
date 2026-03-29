@@ -991,7 +991,7 @@ function DrawdownAnalysis() {
                       return (
                         <td key={mi} className="p-0.5" title={`${(ret * 100).toFixed(1)}%`}>
                           <div
-                            className="w-7 h-7 rounded flex items-center justify-center text-[9px] font-medium"
+                            className="w-7 h-7 rounded flex items-center justify-center text-[11px] font-medium"
                             style={{ backgroundColor: heatColor(ret), color: "#fff" }}
                           >
                             {(ret * 100).toFixed(0)}

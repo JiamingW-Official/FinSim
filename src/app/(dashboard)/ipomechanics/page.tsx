@@ -466,7 +466,7 @@ function IPOTimelineTab() {
                   : {}
               }
             >
-              <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold"
+              <span className="w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
                 style={{ backgroundColor: step.color + "40", color: step.color }}>
                 {step.id}
               </span>
@@ -510,7 +510,7 @@ function IPOTimelineTab() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Key Activities</div>
+                  <div className="text-xs font-semibold text-white/50 mb-2">Key Activities</div>
                   <ul className="space-y-1">
                     {selectedStep.keyActivities.map((a, i) => (
                       <li key={i} className="flex items-start gap-2 text-xs text-white/70">
@@ -522,7 +522,7 @@ function IPOTimelineTab() {
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Key Players</div>
+                    <div className="text-xs font-semibold text-white/50 mb-2">Key Players</div>
                     <div className="flex flex-wrap gap-1">
                       {selectedStep.keyPlayers.map((p, i) => (
                         <span key={i} className="px-2 py-0.5 rounded-full text-xs border border-white/10 text-white/60">
@@ -532,7 +532,7 @@ function IPOTimelineTab() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">SEC Requirements</div>
+                    <div className="text-xs font-semibold text-white/50 mb-2">SEC Requirements</div>
                     <p className="text-xs text-white/60 leading-relaxed">{selectedStep.secRequirements}</p>
                   </div>
                   <div className="flex items-start gap-2 bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
@@ -1037,7 +1037,7 @@ function BookBuildingTab() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">Spread Economics Example ($500M IPO)</div>
+                    <div className="text-xs font-semibold text-white/60 mb-2">Spread Economics Example ($500M IPO)</div>
                     <div className="space-y-2">
                       {[
                         { item: "Total Proceeds", value: "$500M", highlight: false },
@@ -1055,7 +1055,7 @@ function BookBuildingTab() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">Syndicate Structure</div>
+                    <div className="text-xs font-semibold text-white/60 mb-2">Syndicate Structure</div>
                     <div className="space-y-2">
                       {[
                         { role: "Book-Running Lead Manager", share: "40–60%", desc: "Builds the book, sets price, manages allocation" },
@@ -1409,7 +1409,7 @@ function AlternativesTab() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">Direct Listing Steps</div>
+            <div className="text-xs font-semibold text-white/50 mb-3">Direct Listing Steps</div>
             <div className="space-y-3">
               {[
                 { step: "File S-1 Registration", desc: "Standard SEC registration. Existing shareholders register shares for resale. No new share issuance — no dilution." },
@@ -1429,7 +1429,7 @@ function AlternativesTab() {
             </div>
           </div>
           <div>
-            <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">Notable Direct Listings</div>
+            <div className="text-xs font-semibold text-white/50 mb-3">Notable Direct Listings</div>
             <div className="space-y-2">
               {[
                 { company: "Spotify", ticker: "SPOT", year: 2018, ref: 132, open: 165.9, note: "First major direct listing. Reference $132, opened $165.90 — fully market-driven." },
@@ -1463,7 +1463,7 @@ function AlternativesTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* SPAC SVG */}
           <div>
-            <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">SPAC Lifecycle</div>
+            <div className="text-xs font-semibold text-white/50 mb-3">SPAC Lifecycle</div>
             <svg width={340} height={320} className="max-w-full">
               {/* Stage 1: SPAC IPO */}
               <text x={170} y={18} textAnchor="middle" fill="#a855f7" fontSize={10} fontWeight="bold">Stage 1: SPAC IPO</text>
@@ -1520,7 +1520,7 @@ function AlternativesTab() {
           {/* De-SPAC steps + warrant mechanics */}
           <div className="space-y-4">
             <div>
-              <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">De-SPAC Transaction Steps</div>
+              <div className="text-xs font-semibold text-white/50 mb-3">De-SPAC Transaction Steps</div>
               <div className="space-y-2">
                 {[
                   { step: "Target LOI", desc: "SPAC signs non-binding Letter of Intent with target company. Exclusive negotiation period begins." },

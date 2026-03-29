@@ -469,7 +469,7 @@ export default function OptionsFlowPage() {
                 Options Flow &amp; Dark Pool Tracker
               </h1>
               <p className="text-sm text-muted-foreground">
-                Real-time smart money signals — unusual options activity, dark pool prints, and sweep orders
+                Simulated smart money signals — unusual options activity, institutional flow, and sweep orders
               </p>
             </div>
           </div>
@@ -502,7 +502,7 @@ export default function OptionsFlowPage() {
               sub: parseFloat(cpRatio) > 1 ? "bullish skew" : "bearish skew",
             },
             {
-              label: "Unusual Activity",
+              label: "Unusual Activity (Simulated)",
               value: `${unusualCount} trades`,
               icon: <AlertTriangle className="w-4 h-4" />,
               color: "text-amber-400",
@@ -511,7 +511,7 @@ export default function OptionsFlowPage() {
               sub: "flagged as unusual",
             },
             {
-              label: "Dark Pool Volume",
+              label: "Simulated Institutional Vol.",
               value: `${darkPoolVolPct}%`,
               icon: <Shield className="w-4 h-4" />,
               color: "text-sky-400",
@@ -671,7 +671,7 @@ export default function OptionsFlowPage() {
               <div className="flex items-start gap-2 p-3 rounded-lg bg-sky-500/5 border border-sky-500/20 text-xs text-muted-foreground mb-2">
                 <Layers className="w-3.5 h-3.5 text-sky-400 mt-0.5 flex-shrink-0" />
                 <span>
-                  <strong className="text-sky-400">Dark pool prints</strong> are large block trades executed off-exchange. They are reported post-trade but their direction (buy/sell) must be inferred from price relative to the bid/ask spread. Trades above the ask suggest institutional buying; below the bid suggests selling.
+                  <strong className="text-sky-400">Simulated dark pool prints</strong> are modeled after real large block trades executed off-exchange. In real markets, they are reported post-trade but their direction (buy/sell) must be inferred from price relative to the bid/ask spread. Trades above the ask suggest institutional buying; below the bid suggests selling.
                 </span>
               </div>
 

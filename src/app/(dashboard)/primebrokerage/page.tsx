@@ -766,7 +766,7 @@ export default function PrimeBrokeragePage() {
                                 <td className="px-3 py-2 text-slate-400 hidden md:table-cell truncate max-w-[100px]">{sec.sector}</td>
                                 <td className="px-3 py-2 text-right font-mono text-amber-300">{sec.borrowRate.toLocaleString()}</td>
                                 <td className="px-3 py-2 text-center">
-                                  <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-semibold", availabilityBg(sec.availability))}>
+                                  <span className={cn("px-1.5 py-0.5 rounded text-xs font-semibold", availabilityBg(sec.availability))}>
                                     {sec.availability}
                                   </span>
                                 </td>
@@ -774,7 +774,7 @@ export default function PrimeBrokeragePage() {
                                   {sec.utilizationPct.toFixed(1)}%
                                 </td>
                                 <td className="px-3 py-2 text-center hidden md:table-cell">
-                                  <Badge className={cn("text-[10px] px-1.5", sec.collateralType === "GC" ? "bg-emerald-400/10 text-emerald-400 border-emerald-400/20" : "bg-rose-400/10 text-rose-400 border-rose-400/20")}>
+                                  <Badge className={cn("text-xs px-1.5", sec.collateralType === "GC" ? "bg-emerald-400/10 text-emerald-400 border-emerald-400/20" : "bg-rose-400/10 text-rose-400 border-rose-400/20")}>
                                     {sec.collateralType}
                                   </Badge>
                                 </td>
@@ -798,7 +798,7 @@ export default function PrimeBrokeragePage() {
                       <BorrowCostBarChart securities={securities} />
                       <div className="flex gap-4 mt-2 justify-center">
                         {[["#f43f5e", "Scarce (HTB)"], ["#f59e0b", "Hard (HTB)"], ["#22d3ee", "Easy (GC)"]].map(([color, label]) => (
-                          <div key={label} className="flex items-center gap-1.5 text-[10px] text-slate-400">
+                          <div key={label} className="flex items-center gap-1.5 text-xs text-slate-400">
                             <div className="w-2 h-2 rounded-sm" style={{ background: color }} />
                             {label}
                           </div>
@@ -894,7 +894,7 @@ export default function PrimeBrokeragePage() {
                           onValueChange={([v]) => setLeverage(v)}
                           className="cursor-pointer"
                         />
-                        <div className="flex justify-between text-[10px] text-slate-600 mt-1">
+                        <div className="flex justify-between text-xs text-slate-600 mt-1">
                           <span>1x (No leverage)</span>
                           <span>10x (Max)</span>
                         </div>
@@ -1026,7 +1026,7 @@ export default function PrimeBrokeragePage() {
                       ].map((s) => (
                         <div key={s.step} className={cn("rounded-lg border p-3 space-y-1", s.color)}>
                           <div className="flex items-center gap-2">
-                            <span className="w-5 h-5 rounded-full bg-slate-700 text-slate-300 text-[10px] font-bold flex items-center justify-center shrink-0">{s.step}</span>
+                            <span className="w-5 h-5 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center shrink-0">{s.step}</span>
                             <span className="font-semibold text-slate-200">{s.title}</span>
                           </div>
                           <p className="text-slate-400 pl-7">{s.desc}</p>
@@ -1073,10 +1073,10 @@ export default function PrimeBrokeragePage() {
                                         style={{ width: `${row.liquidityScore}%`, background: row.liquidityScore > 80 ? "#10b981" : row.liquidityScore > 60 ? "#f59e0b" : "#f43f5e" }}
                                       />
                                     </div>
-                                    <span className="text-slate-400 font-mono text-[10px]">{row.liquidityScore}</span>
+                                    <span className="text-slate-400 font-mono text-xs">{row.liquidityScore}</span>
                                   </div>
                                 </td>
-                                <td className="px-3 py-2 text-center text-slate-500 hidden md:table-cell font-mono text-[10px]">{row.typicalTenor}</td>
+                                <td className="px-3 py-2 text-center text-slate-500 hidden md:table-cell font-mono text-xs">{row.typicalTenor}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -1096,7 +1096,7 @@ export default function PrimeBrokeragePage() {
                       </CardHeader>
                       <CardContent>
                         <CollateralWaterfallSVG />
-                        <p className="text-[10px] text-slate-500 mt-1 text-center">Starting from 100 units of posted collateral</p>
+                        <p className="text-xs text-slate-500 mt-1 text-center">Starting from 100 units of posted collateral</p>
                       </CardContent>
                     </Card>
 

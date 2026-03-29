@@ -170,8 +170,8 @@ export function JournalNotes() {
         <div className="flex items-center gap-2">
           <div>
             <p className="text-sm font-semibold">Journal Notes</p>
-            <p className="text-[10px] text-muted-foreground">
-              <span className="inline-flex items-center justify-center rounded-full bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold text-primary">
+            <p className="text-xs text-muted-foreground">
+              <span className="inline-flex items-center justify-center rounded-full bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold text-primary">
                 {notes.length}
               </span>{" "}
               {notes.length === 1 ? "note" : "notes"}
@@ -219,13 +219,13 @@ export function JournalNotes() {
         {/* Mood + date range filters */}
         <div className="flex flex-wrap items-center gap-1.5">
           {/* Mood chips */}
-          <span className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground/60">
+          <span className="text-[11px] font-medium text-muted-foreground/60">
             Mood:
           </span>
           <button
             onClick={() => setMoodFilter("all")}
             className={cn(
-              "rounded-md border px-2 py-0.5 text-[10px] font-medium transition-colors",
+              "rounded-md border px-2 py-0.5 text-xs font-medium transition-colors",
               moodFilter === "all"
                 ? "border-primary/50 bg-primary/10 text-primary"
                 : "border-border text-muted-foreground hover:text-foreground",
@@ -238,7 +238,7 @@ export function JournalNotes() {
               key={m.value}
               onClick={() => setMoodFilter(moodFilter === m.value ? "all" : m.value)}
               className={cn(
-                "rounded-md border px-2 py-0.5 text-[10px] font-medium transition-colors",
+                "rounded-md border px-2 py-0.5 text-xs font-medium transition-colors",
                 moodFilter === m.value ? m.activeClass : "border-border text-muted-foreground hover:text-foreground",
               )}
             >
@@ -247,7 +247,7 @@ export function JournalNotes() {
           ))}
 
           {/* Date range */}
-          <span className="ml-2 text-[9px] font-medium uppercase tracking-wider text-muted-foreground/60">
+          <span className="ml-2 text-[11px] font-medium text-muted-foreground/60">
             Period:
           </span>
           {(["all", "week", "month"] as const).map((r) => (
@@ -255,7 +255,7 @@ export function JournalNotes() {
               key={r}
               onClick={() => setDateRange(r)}
               className={cn(
-                "rounded-md border px-2 py-0.5 text-[10px] font-medium transition-colors",
+                "rounded-md border px-2 py-0.5 text-xs font-medium transition-colors",
                 dateRange === r
                   ? "border-primary/50 bg-primary/10 text-primary"
                   : "border-border text-muted-foreground hover:text-foreground",
@@ -273,7 +273,7 @@ export function JournalNotes() {
                 setMoodFilter("all");
                 setDateRange("all");
               }}
-              className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground"
+              className="ml-auto flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
             >
               <X className="h-3 w-3" /> Clear filters
             </button>
@@ -284,13 +284,13 @@ export function JournalNotes() {
       {/* Inline add form */}
       {showForm && (
         <div className="rounded-lg border border-border bg-card p-4 space-y-3">
-          <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+          <p className="text-xs font-medium text-muted-foreground">
             New Entry
           </p>
 
           {/* Mood selector */}
           <div className="space-y-1.5">
-            <label className="text-[10px] text-muted-foreground">Mood</label>
+            <label className="text-xs text-muted-foreground">Mood</label>
             <div className="flex flex-wrap gap-2">
               {MOODS.map((m) => (
                 <button
@@ -311,7 +311,7 @@ export function JournalNotes() {
 
           {/* Text area */}
           <div className="space-y-1.5">
-            <label className="text-[10px] text-muted-foreground">
+            <label className="text-xs text-muted-foreground">
               Thoughts &amp; observations
             </label>
             <textarea
@@ -327,7 +327,7 @@ export function JournalNotes() {
                 }
               }}
             />
-            <p className="text-[9px] text-muted-foreground/50">
+            <p className="text-[11px] text-muted-foreground/50">
               Cmd+Enter to save
             </p>
           </div>
@@ -395,7 +395,7 @@ export function JournalNotes() {
                   {/* Mood badge */}
                   <span
                     className={cn(
-                      "mt-0.5 shrink-0 rounded border px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider",
+                      "mt-0.5 shrink-0 rounded border px-1.5 py-0.5 text-[11px] font-semibold",
                       mood.badgeClass,
                     )}
                   >
@@ -404,7 +404,7 @@ export function JournalNotes() {
 
                   {/* Content */}
                   <div className="min-w-0 flex-1">
-                    <p className="mb-1 text-[10px] text-muted-foreground">
+                    <p className="mb-1 text-xs text-muted-foreground">
                       {formatNoteDate(note.date)}
                     </p>
                     <p className="text-xs text-foreground/90 leading-relaxed whitespace-pre-wrap">
@@ -418,7 +418,7 @@ export function JournalNotes() {
                         onClick={() =>
                           setExpandedId(isExpanded ? null : note.id)
                         }
-                        className="mt-1.5 flex items-center gap-0.5 text-[10px] text-primary/70 transition-colors hover:text-primary"
+                        className="mt-1.5 flex items-center gap-0.5 text-xs text-primary/70 transition-colors hover:text-primary"
                       >
                         {isExpanded ? (
                           <>

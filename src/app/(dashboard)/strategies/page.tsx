@@ -462,7 +462,7 @@ function StrategyCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-sm font-semibold text-zinc-100 truncate">{strategy.name}</h3>
-            <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${meta.bg} ${meta.color}`}>
+            <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${meta.bg} ${meta.color}`}>
               {meta.label}
             </span>
           </div>
@@ -475,7 +475,7 @@ function StrategyCard({
       {/* Parameters */}
       <ul className="space-y-0.5">
         {strategy.parameters.map((p, i) => (
-          <li key={i} className="text-[10px] text-zinc-600 flex items-start gap-1.5">
+          <li key={i} className="text-xs text-zinc-600 flex items-start gap-1.5">
             <span className="mt-0.5 h-1 w-1 shrink-0 rounded-full bg-zinc-700" />
             {p}
           </li>
@@ -485,21 +485,21 @@ function StrategyCard({
       {/* Stats row */}
       <div className="grid grid-cols-4 gap-2 rounded-lg border border-white/5 bg-black/20 px-3 py-2">
         <div className="flex flex-col items-center gap-0.5">
-          <span className="text-[9px] uppercase tracking-wider text-zinc-600">Sharpe</span>
+          <span className="text-[11px] text-zinc-600">Sharpe</span>
           <span className={`text-xs font-bold tabular-nums ${sharpeColor}`}>
             {resultSharpe ?? strategy.sharpe}
           </span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
-          <span className="text-[9px] uppercase tracking-wider text-zinc-600">Win%</span>
+          <span className="text-[11px] text-zinc-600">Win%</span>
           <span className="text-xs font-bold tabular-nums text-zinc-300">{strategy.winRate}%</span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
-          <span className="text-[9px] uppercase tracking-wider text-zinc-600">Best Yr</span>
+          <span className="text-[11px] text-zinc-600">Best Yr</span>
           <span className="text-xs font-bold tabular-nums text-emerald-400">+{strategy.bestYear}%</span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
-          <span className="text-[9px] uppercase tracking-wider text-zinc-600">Worst Yr</span>
+          <span className="text-[11px] text-zinc-600">Worst Yr</span>
           <span className="text-xs font-bold tabular-nums text-rose-400">{strategy.worstYear}%</span>
         </div>
       </div>
@@ -507,7 +507,7 @@ function StrategyCard({
       {/* Quick Backtest progress */}
       {backtestState === "running" && (
         <div className="space-y-1">
-          <div className="flex items-center justify-between text-[10px]">
+          <div className="flex items-center justify-between text-xs">
             <span className="text-zinc-500">Running backtest...</span>
             <span className="text-zinc-400 tabular-nums">{progress}%</span>
           </div>
@@ -520,7 +520,7 @@ function StrategyCard({
         </div>
       )}
       {backtestState === "done" && (
-        <div className="flex items-center gap-1.5 text-[10px] text-emerald-400">
+        <div className="flex items-center gap-1.5 text-xs text-emerald-400">
           <CheckCircle2 className="h-3 w-3 shrink-0" />
           Backtest complete — Sharpe {resultSharpe}
         </div>
@@ -595,7 +595,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium text-zinc-200 truncate">{strategy.name}</span>
         </div>
-        <div className="flex items-center gap-3 mt-0.5 text-[10px] text-zinc-600">
+        <div className="flex items-center gap-3 mt-0.5 text-xs text-zinc-600">
           <span>Modified {timeAgo(strategy.savedAt)}</span>
           <span>{strategy.entryConditions.length} entry / {strategy.exitConditions.length} exit rules</span>
           {strategy.stopLossPercent !== null && <span>SL {strategy.stopLossPercent}%</span>}
@@ -606,7 +606,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
       <div className="flex items-center gap-4 shrink-0">
         {strategy.lastBacktestSharpe != null && (
           <div className="text-center">
-            <div className="text-[9px] uppercase tracking-wider text-zinc-600">Sharpe</div>
+            <div className="text-[11px] text-zinc-600">Sharpe</div>
             <div className={`text-xs font-bold tabular-nums ${strategy.lastBacktestSharpe >= 1 ? "text-blue-400" : "text-amber-400"}`}>
               {strategy.lastBacktestSharpe.toFixed(2)}
             </div>
@@ -614,7 +614,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         )}
         {strategy.lastBacktestReturn != null && (
           <div className="text-center">
-            <div className="text-[9px] uppercase tracking-wider text-zinc-600">Return</div>
+            <div className="text-[11px] text-zinc-600">Return</div>
             <div className={`text-xs font-bold tabular-nums ${strategy.lastBacktestReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
               {strategy.lastBacktestReturn >= 0 ? "+" : ""}{strategy.lastBacktestReturn.toFixed(1)}%
             </div>
@@ -705,7 +705,7 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
           return (
             <div key={row.label} className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-1 border-b border-white/[0.04] last:border-0">
               <div className={`text-right text-xs tabular-nums font-medium ${aWins ? "text-emerald-400" : "text-zinc-400"}`}>{row.aVal}</div>
-              <div className="text-center text-[10px] text-zinc-600 w-24">{row.label}</div>
+              <div className="text-center text-xs text-zinc-600 w-24">{row.label}</div>
               <div className={`text-left text-xs tabular-nums font-medium ${bWins ? "text-emerald-400" : "text-zinc-400"}`}>{row.bVal}</div>
             </div>
           );
@@ -853,7 +853,7 @@ export default function StrategiesPage() {
             <tab.icon className="h-3.5 w-3.5" />
             {tab.label}
             {tab.id === "my-strategies" && savedStrategies.length > 0 && (
-              <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[9px] text-zinc-400">
+              <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px] text-zinc-400">
                 {savedStrategies.length}
               </span>
             )}
@@ -876,14 +876,14 @@ export default function StrategiesPage() {
           <div className="flex h-full flex-col overflow-hidden">
             {/* Category filter bar */}
             <div className="flex items-center gap-2 border-b border-white/5 bg-black/10 px-6 py-2.5">
-              <span className="text-[10px] text-zinc-600 uppercase tracking-wider mr-1">Filter:</span>
+              <span className="text-xs text-zinc-600 mr-1">Filter:</span>
               {(["all", "trend", "mean-reversion", "momentum", "breakout"] as const).map((cat) => {
                 const meta = cat === "all" ? null : CATEGORY_META[cat];
                 return (
                   <button
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
-                    className={`rounded-full px-3 py-1 text-[10px] font-medium transition-colors ${
+                    className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                       categoryFilter === cat
                         ? cat === "all"
                           ? "bg-zinc-700 text-zinc-100"
@@ -895,7 +895,7 @@ export default function StrategiesPage() {
                   </button>
                 );
               })}
-              <span className="ml-auto text-[10px] text-zinc-600">{filteredStrategies.length} strategies</span>
+              <span className="ml-auto text-xs text-zinc-600">{filteredStrategies.length} strategies</span>
             </div>
 
             {/* Cards grid */}

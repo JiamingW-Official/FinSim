@@ -457,7 +457,7 @@ function AccountCard({ account }: { account: Account }) {
             <span className="font-semibold text-sm text-foreground">
               {account.name}
             </span>
-            <Badge className={cn("text-[10px] py-0 px-1.5", meta.bg)}>
+            <Badge className={cn("text-xs py-0 px-1.5", meta.bg)}>
               {meta.label}
             </Badge>
           </div>
@@ -468,7 +468,7 @@ function AccountCard({ account }: { account: Account }) {
 
       {/* Balance */}
       <div>
-        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
+        <p className="text-xs text-muted-foreground mb-0.5">
           Balance
         </p>
         <p className="text-2xl font-bold tabular-nums text-foreground">
@@ -479,13 +479,13 @@ function AccountCard({ account }: { account: Account }) {
       {/* P&L row */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <p className="text-[10px] text-muted-foreground mb-0.5">Day P&L</p>
+          <p className="text-xs text-muted-foreground mb-0.5">Day P&L</p>
           <p className={cn("text-sm font-semibold tabular-nums", pnlColor(account.dayPnl))}>
             {account.dayPnl >= 0 ? "+" : ""}{fmt(account.dayPnl)}
           </p>
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground mb-0.5">Total P&L</p>
+          <p className="text-xs text-muted-foreground mb-0.5">Total P&L</p>
           <p className={cn("text-sm font-semibold tabular-nums", pnlColor(account.totalPnl))}>
             {fmtPct(account.totalPnlPct)}
           </p>
@@ -495,8 +495,8 @@ function AccountCard({ account }: { account: Account }) {
       {/* Buying power bar */}
       <div>
         <div className="flex justify-between items-center mb-1">
-          <p className="text-[10px] text-muted-foreground">Buying Power</p>
-          <p className="text-[10px] text-muted-foreground tabular-nums">
+          <p className="text-xs text-muted-foreground">Buying Power</p>
+          <p className="text-xs text-muted-foreground tabular-nums">
             {account.type === "paper" ? "Unlimited" : fmtCompact(account.buyingPower)}
           </p>
         </div>
@@ -512,8 +512,8 @@ function AccountCard({ account }: { account: Account }) {
       {account.type !== "paper" && (
         <div>
           <div className="flex justify-between items-center mb-1">
-            <p className="text-[10px] text-muted-foreground">Tax Efficiency</p>
-            <p className="text-[10px] text-muted-foreground">{account.taxEfficiency}%</p>
+            <p className="text-xs text-muted-foreground">Tax Efficiency</p>
+            <p className="text-xs text-muted-foreground">{account.taxEfficiency}%</p>
           </div>
           <div className="h-1.5 bg-muted/40 rounded-full overflow-hidden">
             <div
@@ -823,10 +823,10 @@ function AccountSettingsRow({
               />
             </div>
             <div className="flex justify-between mt-0.5">
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 {fmtPct(account.totalPnlPct)} actual
               </span>
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 Goal: {s.annualReturnGoal}%
               </span>
             </div>
@@ -1091,37 +1091,37 @@ export default function AccountsPage() {
       <div className="shrink-0 px-6 py-3 border-b border-border/40 bg-card/30">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">Total Portfolio</p>
+            <p className="text-xs text-muted-foreground mb-0.5">Total Portfolio</p>
             <p className="text-xl font-bold tabular-nums text-foreground">
               {fmtCompact(aggregate.totalBalance)}
             </p>
           </div>
           <div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">Day P&L</p>
+            <p className="text-xs text-muted-foreground mb-0.5">Day P&L</p>
             <p className={cn("text-xl font-bold tabular-nums", pnlColor(aggregate.totalDayPnl))}>
               {aggregate.totalDayPnl >= 0 ? "+" : ""}{fmt(aggregate.totalDayPnl)}
             </p>
           </div>
           <div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">Best Account</p>
+            <p className="text-xs text-muted-foreground mb-0.5">Best Account</p>
             <div className="flex items-center gap-1.5">
               <Trophy className="h-3.5 w-3.5 text-amber-400" />
               <span className="text-sm font-semibold text-foreground">
                 {aggregate.bestReturn.name}
               </span>
-              <Badge className={cn("text-[10px] py-0 px-1", pnlBg(aggregate.bestReturn.totalPnlPct))}>
+              <Badge className={cn("text-xs py-0 px-1", pnlBg(aggregate.bestReturn.totalPnlPct))}>
                 {fmtPct(aggregate.bestReturn.totalPnlPct)}
               </Badge>
             </div>
           </div>
           <div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">Worst Account</p>
+            <p className="text-xs text-muted-foreground mb-0.5">Worst Account</p>
             <div className="flex items-center gap-1.5">
               <TrendingDown className="h-3.5 w-3.5 text-red-400" />
               <span className="text-sm font-semibold text-foreground">
                 {aggregate.worstReturn.name}
               </span>
-              <Badge className={cn("text-[10px] py-0 px-1", pnlBg(aggregate.worstReturn.totalPnlPct))}>
+              <Badge className={cn("text-xs py-0 px-1", pnlBg(aggregate.worstReturn.totalPnlPct))}>
                 {fmtPct(aggregate.worstReturn.totalPnlPct)}
               </Badge>
             </div>
@@ -1168,7 +1168,7 @@ export default function AccountsPage() {
                 <Card key={label} className="p-4 bg-card/60 border-border/50 flex items-center gap-3">
                   <Icon className={cn("h-5 w-5 shrink-0", color)} />
                   <div>
-                    <p className="text-[10px] text-muted-foreground">{label}</p>
+                    <p className="text-xs text-muted-foreground">{label}</p>
                     <p className="text-sm font-semibold text-foreground">{account.name}</p>
                   </div>
                 </Card>
@@ -1216,7 +1216,7 @@ export default function AccountsPage() {
                           <td className="py-2 pl-3 text-right">
                             <span
                               className={cn(
-                                "text-[10px] font-medium px-1.5 py-0.5 rounded",
+                                "text-xs font-medium px-1.5 py-0.5 rounded",
                                 acc.taxEfficiency >= 80
                                   ? "bg-emerald-500/15 text-emerald-400"
                                   : acc.taxEfficiency >= 50
@@ -1261,8 +1261,8 @@ export default function AccountsPage() {
                         return (
                           <div key={cls} className="flex items-center gap-1">
                             <span className={cn("h-1.5 w-1.5 rounded-full shrink-0", COLOR[cls])} />
-                            <span className="text-[10px] text-muted-foreground capitalize flex-1">{cls}</span>
-                            <span className="text-[10px] text-muted-foreground">
+                            <span className="text-xs text-muted-foreground capitalize flex-1">{cls}</span>
+                            <span className="text-xs text-muted-foreground">
                               {((totalV / totalAll) * 100).toFixed(0)}%
                             </span>
                           </div>
@@ -1342,7 +1342,7 @@ export default function AccountsPage() {
                       />
                     </div>
                     {transferFrom && (
-                      <p className="text-[10px] text-muted-foreground mt-1">
+                      <p className="text-xs text-muted-foreground mt-1">
                         Available: {fmtCompact(accounts.find((a) => a.id === transferFrom)?.balance ?? 0)}
                       </p>
                     )}
@@ -1379,7 +1379,7 @@ export default function AccountsPage() {
                           <p className="text-xs text-foreground">
                             {from} <ArrowRight className="h-2.5 w-2.5 inline" /> {to}
                           </p>
-                          <p className="text-[10px] text-muted-foreground">
+                          <p className="text-xs text-muted-foreground">
                             {t.date} &middot; {t.note}
                           </p>
                         </div>
@@ -1449,7 +1449,7 @@ export default function AccountsPage() {
                   },
                 ].map((rule) => (
                   <div key={rule.asset} className="flex gap-3 items-start">
-                    <span className={cn("text-[10px] font-medium px-2 py-1 rounded shrink-0", rule.bg, rule.color)}>
+                    <span className={cn("text-xs font-medium px-2 py-1 rounded shrink-0", rule.bg, rule.color)}>
                       {rule.target}
                     </span>
                     <div>
@@ -1477,19 +1477,19 @@ export default function AccountsPage() {
                         )}
                         <div>
                           <p className="text-xs text-foreground font-medium">{s.ticker}</p>
-                          <p className="text-[10px] text-muted-foreground">
+                          <p className="text-xs text-muted-foreground">
                             in {s.accountName}
                           </p>
                         </div>
                       </div>
                       {!s.isOptimal && (
                         <div className="text-right">
-                          <p className="text-[10px] text-amber-400">Move to</p>
-                          <p className="text-[10px] font-medium text-foreground">{s.idealAccName}</p>
+                          <p className="text-xs text-amber-400">Move to</p>
+                          <p className="text-xs font-medium text-foreground">{s.idealAccName}</p>
                         </div>
                       )}
                       {s.isOptimal && (
-                        <Badge className="text-[10px] py-0 bg-emerald-500/10 text-emerald-400">Optimal</Badge>
+                        <Badge className="text-xs py-0 bg-emerald-500/10 text-emerald-400">Optimal</Badge>
                       )}
                     </div>
                   ))}

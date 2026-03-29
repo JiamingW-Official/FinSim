@@ -49,7 +49,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
         </h3>
         <span
           className={cn(
-            "shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium",
+            "shrink-0 rounded px-1.5 py-0.5 text-xs font-medium",
             CATEGORY_COLORS[market.category],
           )}
         >
@@ -71,7 +71,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
             style={{ width: `${market.initialProbability}%` }}
           />
         </div>
-        <div className="mt-1 flex items-center justify-between text-[10px] text-muted-foreground">
+        <div className="mt-1 flex items-center justify-between text-xs text-muted-foreground">
           <span>{market.initialProbability}% Yes</span>
           <span>{100 - market.initialProbability}% No</span>
         </div>
@@ -89,7 +89,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
               )}
             />
           ))}
-          <span className="ml-1 text-[10px] text-muted-foreground">
+          <span className="ml-1 text-xs text-muted-foreground">
             {market.difficulty === 1
               ? "Easy"
               : market.difficulty === 2
@@ -97,7 +97,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
                 : "Hard"}
           </span>
         </div>
-        <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
+        <div className="flex items-center gap-1 text-xs text-muted-foreground">
           <Clock className="h-3 w-3" />
           <span>{market.expiresInDays}d</span>
         </div>
@@ -146,7 +146,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
 
           {/* Amount slider */}
           <div className="mb-3">
-            <div className="mb-1 flex items-center justify-between text-[10px] text-muted-foreground">
+            <div className="mb-1 flex items-center justify-between text-xs text-muted-foreground">
               <span>Amount</span>
               <span className="font-medium text-foreground">
                 {betAmount} pts
@@ -161,7 +161,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
               onChange={(e) => setBetAmount(Number(e.target.value))}
               className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-muted accent-primary"
             />
-            <div className="mt-0.5 flex justify-between text-[9px] text-muted-foreground">
+            <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground">
               <span>10</span>
               <span>{Math.min(100, insightPoints)}</span>
             </div>
@@ -169,7 +169,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
 
           {/* Probability slider */}
           <div className="mb-3">
-            <div className="mb-1 flex items-center justify-between text-[10px] text-muted-foreground">
+            <div className="mb-1 flex items-center justify-between text-xs text-muted-foreground">
               <span>Your probability estimate</span>
               <span className="font-medium text-foreground">
                 {betProbability}%
@@ -184,7 +184,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
               onChange={(e) => setBetProbability(Number(e.target.value))}
               className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-muted accent-primary"
             />
-            <div className="mt-0.5 flex justify-between text-[9px] text-muted-foreground">
+            <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground">
               <span>1%</span>
               <span>99%</span>
             </div>
@@ -236,7 +236,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
             {market.relatedConcepts.map((concept) => (
               <span
                 key={concept}
-                className="rounded bg-muted px-1.5 py-0.5 text-[9px] font-medium text-foreground/60"
+                className="rounded bg-muted px-1.5 py-0.5 text-[11px] font-medium text-foreground/60"
               >
                 {concept}
               </span>
@@ -267,7 +267,7 @@ function ExistingBetBadge({
         <div className="flex items-center gap-1.5">
           <span
             className={cn(
-              "rounded px-1.5 py-0.5 text-[10px] font-semibold",
+              "rounded px-1.5 py-0.5 text-xs font-semibold",
               bet.position === "yes"
                 ? "bg-emerald-500/10 text-emerald-400"
                 : "bg-red-500/10 text-red-400",

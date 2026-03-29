@@ -70,7 +70,7 @@ export function LevelUpOverlay() {
               <Sparkles className="h-4 w-4 text-amber-400" />
             </motion.div>
 
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-primary">
+            <span className="text-xs font-semibold text-primary">
               Level Up!
             </span>
 
@@ -81,19 +81,19 @@ export function LevelUpOverlay() {
               className="flex items-center gap-2"
             >
               <Shield className="h-8 w-8 text-primary" />
-              <span className="text-3xl font-black tabular-nums text-foreground">
+              <span className="text-3xl font-bold tabular-nums text-foreground">
                 {levelNum}
               </span>
             </motion.div>
 
             <span className={cn(
               "text-sm font-semibold",
-              "bg-gradient-to-r from-primary to-emerald-300 bg-clip-text text-transparent",
+              "text-primary",
             )}>
               {title}
             </span>
 
-            <p className="text-[10px] text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Keep trading to unlock new titles!
             </p>
           </motion.div>

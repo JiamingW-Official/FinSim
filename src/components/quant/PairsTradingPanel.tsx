@@ -113,7 +113,7 @@ function SignalBadge({ signal }: { signal: PairAnalysis["signal"] }) {
   };
   const c = config[signal];
   return (
-    <span className={cn("text-[10px] px-1.5 py-0.5 rounded font-medium", c.className)}>
+    <span className={cn("text-xs px-1.5 py-0.5 rounded font-medium", c.className)}>
       {c.text}
     </span>
   );
@@ -235,7 +235,7 @@ export function PairsTradingPanel() {
             <span className="text-xs font-medium">
               Spread: {selected.ticker1}/{selected.ticker2}
             </span>
-            <span className="text-[10px] text-muted-foreground">
+            <span className="text-xs text-muted-foreground">
               Half-life: {selected.halfLife > 0 ? `${selected.halfLife} bars` : "N/A"}
             </span>
           </div>

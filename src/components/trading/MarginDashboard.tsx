@@ -284,7 +284,7 @@ function AccountBar({
           />
         )}
       </div>
-      <div className="flex items-center gap-3 text-[9px] text-muted-foreground">
+      <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
         <span className="flex items-center gap-1">
           <span className="inline-block h-2 w-2 rounded-sm bg-[#10b981]/70" />
           Equity
@@ -600,17 +600,17 @@ export function MarginDashboard() {
             <motion.span
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 1.2 }}
-              className="rounded bg-[#ef4444] px-1.5 py-0.5 text-[9px] font-bold text-white"
+              className="rounded bg-[#ef4444] px-1.5 py-0.5 text-[11px] font-bold text-white"
             >
               MARGIN CALL
             </motion.span>
           )}
           {isMarginWarning && (
-            <span className="rounded bg-[#f59e0b]/20 px-1.5 py-0.5 text-[9px] font-semibold text-[#f59e0b]">
+            <span className="rounded bg-[#f59e0b]/20 px-1.5 py-0.5 text-[11px] font-semibold text-[#f59e0b]">
               WARN
             </span>
           )}
-          <span className="text-[10px] text-muted-foreground">
+          <span className="text-xs text-muted-foreground">
             {currentLeverage.toFixed(2)}x leverage
           </span>
         </div>
@@ -639,7 +639,7 @@ export function MarginDashboard() {
               <div className="px-3 pb-3 space-y-3">
                 {/* Margin Call alert */}
                 {isMarginCall && (
-                  <div className="flex items-start gap-1.5 rounded-md bg-[#ef4444]/10 border border-[#ef4444]/30 px-2 py-2 text-[10px] text-[#ef4444]">
+                  <div className="flex items-start gap-1.5 rounded-md bg-[#ef4444]/10 border border-[#ef4444]/30 px-2 py-2 text-xs text-[#ef4444]">
                     <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
                     <span>
                       Equity ({formatCurrency(equity)}) is below 25%
@@ -671,36 +671,36 @@ export function MarginDashboard() {
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Buying Power (RegT 2×)
                     </span>
-                    <span className="tabular-nums text-[10px] text-[#10b981]">
+                    <span className="tabular-nums text-xs text-[#10b981]">
                       {formatCurrency(buyingPowerRegT)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Portfolio Margin (6×)
                     </span>
-                    <span className="tabular-nums text-[10px] text-[#a855f7]">
+                    <span className="tabular-nums text-xs text-[#a855f7]">
                       {formatCurrency(buyingPowerPortfolio)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Margin Used
                     </span>
-                    <span className="tabular-nums text-[10px]">
+                    <span className="tabular-nums text-xs">
                       {formatCurrency(marginUsed)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Maint. Req (25%)
                     </span>
                     <span
                       className={cn(
-                        "tabular-nums text-[10px]",
+                        "tabular-nums text-xs",
                         isMarginCall ? "text-[#ef4444]" : "text-muted-foreground",
                       )}
                     >
@@ -708,26 +708,26 @@ export function MarginDashboard() {
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Buying Power Left
                     </span>
-                    <span className="tabular-nums text-[10px] text-[#10b981]">
+                    <span className="tabular-nums text-xs text-[#10b981]">
                       {formatCurrency(buyingPowerRemaining)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Daily Interest (8% APR)
                     </span>
-                    <span className="tabular-nums text-[10px] text-[#f59e0b]">
+                    <span className="tabular-nums text-xs text-[#f59e0b]">
                       {formatCurrency(dailyInterest)}/day
                     </span>
                   </div>
                   <div className="flex items-center justify-between col-span-2">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Cash Available
                     </span>
-                    <span className="tabular-nums text-[10px]">
+                    <span className="tabular-nums text-xs">
                       {formatCurrency(cash)}
                     </span>
                   </div>
@@ -738,7 +738,7 @@ export function MarginDashboard() {
                   <button
                     type="button"
                     onClick={accrueMarginInterest}
-                    className="w-full rounded border border-border/40 py-1 text-[10px] font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                    className="w-full rounded border border-border/40 py-1 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                   >
                     Simulate 1-Day Interest Accrual (
                     {formatCurrency(dailyInterest)})
@@ -773,13 +773,13 @@ export function MarginDashboard() {
               <div className="px-3 pb-3 space-y-3">
                 {/* Active short positions */}
                 {shortPositions.length === 0 ? (
-                  <p className="text-[10px] text-muted-foreground italic">
+                  <p className="text-xs text-muted-foreground italic">
                     No short positions open. Use "Sell Short" in Order Entry to
                     borrow and sell shares.
                   </p>
                 ) : (
                   <div className="space-y-2">
-                    <div className="text-[10px] font-medium text-muted-foreground">
+                    <div className="text-xs font-medium text-muted-foreground">
                       Active Short Positions
                     </div>
                     {perPositionInterest.map((p) => {
@@ -800,7 +800,7 @@ export function MarginDashboard() {
                             </span>
                             <RiskMeter score={squeezeScore} />
                           </div>
-                          <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-[10px]">
+                          <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
                             <div className="flex justify-between">
                               <span className="text-muted-foreground">
                                 Shares
@@ -895,11 +895,11 @@ export function MarginDashboard() {
 
                 {/* Borrow rate table for all tickers */}
                 <div>
-                  <div className="text-[10px] font-medium text-muted-foreground mb-1.5">
+                  <div className="text-xs font-medium text-muted-foreground mb-1.5">
                     Market Borrow Rates
                   </div>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-[10px] border-collapse">
+                    <table className="w-full text-xs border-collapse">
                       <thead>
                         <tr className="border-b border-border/30">
                           <th className="text-left py-0.5 text-muted-foreground font-normal">
@@ -986,7 +986,7 @@ export function MarginDashboard() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="text-[9px] text-muted-foreground/60 mt-1 italic">
+                  <p className="text-[11px] text-muted-foreground/60 mt-1 italic">
                     DTC = Days-to-Cover. Squeeze score 0–10 (higher = more risk
                     of short squeeze).
                   </p>
@@ -1038,28 +1038,28 @@ export function MarginDashboard() {
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Total Exposure
                     </span>
-                    <span className="tabular-nums text-[10px]">
+                    <span className="tabular-nums text-xs">
                       {formatCurrency(totalExposure)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Net Equity
                     </span>
-                    <span className="tabular-nums text-[10px]">
+                    <span className="tabular-nums text-xs">
                       {formatCurrency(equity)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Risk-Adj Return
                     </span>
                     <span
                       className={cn(
-                        "tabular-nums text-[10px]",
+                        "tabular-nums text-xs",
                         riskAdjReturn >= 0 ? "text-[#10b981]" : "text-[#ef4444]",
                       )}
                     >
@@ -1067,12 +1067,12 @@ export function MarginDashboard() {
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-[10px]">
+                    <span className="text-muted-foreground text-xs">
                       Total Return
                     </span>
                     <span
                       className={cn(
-                        "tabular-nums text-[10px]",
+                        "tabular-nums text-xs",
                         returnPct >= 0 ? "text-[#10b981]" : "text-[#ef4444]",
                       )}
                     >
@@ -1083,10 +1083,10 @@ export function MarginDashboard() {
 
                 {/* Kelly Criterion */}
                 <div className="rounded-md bg-muted/30 border border-border/30 p-2 space-y-1.5">
-                  <div className="text-[10px] font-semibold text-muted-foreground">
+                  <div className="text-xs font-semibold text-muted-foreground">
                     Kelly Criterion — Optimal Leverage
                   </div>
-                  <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-[10px]">
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">
                         Full Kelly (f = μ/σ²)
@@ -1114,7 +1114,7 @@ export function MarginDashboard() {
                       <span className="tabular-nums">18%</span>
                     </div>
                   </div>
-                  <p className="text-[9px] text-muted-foreground/70 leading-snug">
+                  <p className="text-[11px] text-muted-foreground/70 leading-snug">
                     Kelly formula: f = μ/σ² where μ is expected return and σ is
                     volatility. Quarter-Kelly is safer — full Kelly is
                     theoretically optimal but maximizes drawdown risk.
@@ -1123,7 +1123,7 @@ export function MarginDashboard() {
 
                 {/* 30-day leverage chart */}
                 <div>
-                  <div className="text-[10px] font-medium text-muted-foreground mb-1">
+                  <div className="text-xs font-medium text-muted-foreground mb-1">
                     30-Day Leverage History
                   </div>
                   <LeverageChart data={leverageHistory} />
@@ -1183,7 +1183,7 @@ export function MarginDashboard() {
                     onChange={(e) => setShockPct(Number(e.target.value))}
                     className="w-full accent-primary"
                   />
-                  <div className="flex justify-between text-[9px] text-muted-foreground/60">
+                  <div className="flex justify-between text-[11px] text-muted-foreground/60">
                     <span>-50% crash</span>
                     <span>0% no change</span>
                   </div>
@@ -1223,7 +1223,7 @@ export function MarginDashboard() {
                       <span className="text-muted-foreground">Status</span>
                       <span
                         className={cn(
-                          "text-[10px] font-semibold px-1.5 py-0.5 rounded",
+                          "text-xs font-semibold px-1.5 py-0.5 rounded",
                           correctedShockedEquity < maintenanceReq
                             ? "bg-[#ef4444]/20 text-[#ef4444]"
                             : correctedShockedEquity < maintenanceReq * 1.5
@@ -1243,7 +1243,7 @@ export function MarginDashboard() {
 
                 {/* Margin call trigger drop */}
                 {marginCallDrop !== null && (
-                  <div className="rounded-md bg-[#ef4444]/10 border border-[#ef4444]/30 px-2 py-2 text-[10px] text-[#ef4444]">
+                  <div className="rounded-md bg-[#ef4444]/10 border border-[#ef4444]/30 px-2 py-2 text-xs text-[#ef4444]">
                     <AlertTriangle className="inline h-3 w-3 mr-1" />
                     Margin call triggers at approximately{" "}
                     <span className="font-bold">
@@ -1256,14 +1256,14 @@ export function MarginDashboard() {
                 {/* Liquidation cascade */}
                 {liquidationOrder.length > 0 && (
                   <div>
-                    <div className="text-[10px] font-medium text-muted-foreground mb-1">
+                    <div className="text-xs font-medium text-muted-foreground mb-1">
                       Liquidation Order (largest first)
                     </div>
                     <div className="space-y-1">
                       {liquidationOrder.map((p, i) => (
                         <div
                           key={`liq-${p.ticker}-${i}`}
-                          className="flex items-center justify-between rounded bg-muted/30 px-2 py-1 text-[10px]"
+                          className="flex items-center justify-between rounded bg-muted/30 px-2 py-1 text-xs"
                         >
                           <span className="text-muted-foreground">
                             #{i + 1}
@@ -1292,14 +1292,14 @@ export function MarginDashboard() {
 
                 {/* Historical margin call examples */}
                 <div>
-                  <div className="text-[10px] font-medium text-muted-foreground mb-1.5">
+                  <div className="text-xs font-medium text-muted-foreground mb-1.5">
                     Historical Margin Events
                   </div>
                   <div className="space-y-1.5">
                     {SHOCK_SCENARIOS.map((s) => (
                       <div
                         key={s.year}
-                        className="rounded-md border border-border/30 bg-muted/20 p-2 text-[10px]"
+                        className="rounded-md border border-border/30 bg-muted/20 p-2 text-xs"
                       >
                         <div className="flex items-center justify-between mb-0.5">
                           <span className="font-semibold text-foreground">
@@ -1342,7 +1342,7 @@ export function MarginDashboard() {
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="px-3 pb-3 space-y-3 text-[10px]">
+              <div className="px-3 pb-3 space-y-3 text-xs">
                 {/* How short selling works */}
                 <div className="space-y-1.5">
                   <div className="font-semibold text-xs text-foreground">
@@ -1449,7 +1449,7 @@ export function MarginDashboard() {
                     returned <span className="text-[#10b981] font-bold">489%</span> — a
                     $700M profit on a $1B fund.
                   </p>
-                  <div className="flex gap-2 text-[9px]">
+                  <div className="flex gap-2 text-[11px]">
                     <span className="rounded bg-muted/40 px-1.5 py-0.5 text-muted-foreground">
                       Instrument: CDS on MBS tranches
                     </span>

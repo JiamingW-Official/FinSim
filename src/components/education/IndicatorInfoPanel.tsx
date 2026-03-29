@@ -41,19 +41,19 @@ export function IndicatorInfoPanel() {
                   <span className="text-xs font-semibold text-primary">
                     {explanation.name}
                   </span>
-                  <span className="text-[10px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     {explanation.shortDesc}
                   </span>
                 </div>
-                <p className="text-[10px] leading-relaxed text-muted-foreground">
+                <p className="text-xs leading-relaxed text-muted-foreground">
                   {explanation.howToRead}
                 </p>
                 <div className="flex items-center gap-4">
-                  <span className="inline-flex items-center gap-1 text-[10px] text-[#10b981]">
+                  <span className="inline-flex items-center gap-1 text-xs text-[#10b981]">
                     <TrendingUp className="h-2.5 w-2.5" />
                     {explanation.bullSignal}
                   </span>
-                  <span className="inline-flex items-center gap-1 text-[10px] text-[#ef4444]">
+                  <span className="inline-flex items-center gap-1 text-xs text-[#ef4444]">
                     <TrendingDown className="h-2.5 w-2.5" />
                     {explanation.bearSignal}
                   </span>
@@ -63,7 +63,7 @@ export function IndicatorInfoPanel() {
                 <button
                   type="button"
                   onClick={() => setShowAdvanced((v) => !v)}
-                  className="inline-flex items-center gap-1 text-[10px] text-primary/70 hover:text-primary transition-colors pt-0.5"
+                  className="inline-flex items-center gap-1 text-xs text-primary/70 hover:text-primary transition-colors pt-0.5"
                 >
                   {showAdvanced ? (
                     <ChevronUp className="h-2.5 w-2.5" />
@@ -98,10 +98,10 @@ export function IndicatorInfoPanel() {
                     <div className="flex items-start gap-2">
                       <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0 text-amber-400" />
                       <div>
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-amber-400">
+                        <span className="text-[11px] font-bold text-amber-400">
                           Common mistake
                         </span>
-                        <p className="text-[10px] leading-relaxed text-muted-foreground">
+                        <p className="text-xs leading-relaxed text-muted-foreground">
                           {explanation.commonMistakes}
                         </p>
                       </div>
@@ -111,10 +111,10 @@ export function IndicatorInfoPanel() {
                     <div className="flex items-start gap-2">
                       <Star className="mt-0.5 h-3 w-3 shrink-0 text-primary" />
                       <div>
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-primary">
+                        <span className="text-[11px] font-bold text-primary">
                           Pro tip
                         </span>
-                        <p className="text-[10px] leading-relaxed text-muted-foreground">
+                        <p className="text-xs leading-relaxed text-muted-foreground">
                           {explanation.proTip}
                         </p>
                       </div>
@@ -122,10 +122,10 @@ export function IndicatorInfoPanel() {
 
                     {/* Example scenario */}
                     <div className="rounded-md bg-muted/30 border border-border/40 px-2 py-1.5">
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-foreground/50">
+                      <span className="text-[11px] font-bold text-foreground/50">
                         Example
                       </span>
-                      <p className="text-[10px] leading-relaxed text-muted-foreground mt-0.5">
+                      <p className="text-xs leading-relaxed text-muted-foreground mt-0.5">
                         {explanation.exampleScenario}
                       </p>
                     </div>

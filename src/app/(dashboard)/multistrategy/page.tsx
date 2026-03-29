@@ -590,7 +590,7 @@ function StrategyAllocationTab() {
               { rule: "PM Departure", action: "Book wound down over 10 days; replacement PM onboarded within 60 days" },
             ].map((r) => (
               <div key={r.rule} className="flex gap-2 text-xs">
-                <Badge variant="outline" className="shrink-0 text-indigo-300 border-indigo-800 bg-indigo-900/20 h-5 text-[10px]">{r.rule}</Badge>
+                <Badge variant="outline" className="shrink-0 text-indigo-300 border-indigo-800 bg-indigo-900/20 h-5 text-xs">{r.rule}</Badge>
                 <span className="text-zinc-400">{r.action}</span>
               </div>
             ))}

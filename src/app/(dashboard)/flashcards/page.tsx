@@ -136,7 +136,7 @@ function BrowseTab() {
                     {cat && (
                       <span
                         className={cn(
-                          "text-[9px] font-bold uppercase tracking-widest",
+                          "text-[11px] font-bold",
                           cat.color,
                         )}
                       >
@@ -164,7 +164,7 @@ function BrowseTab() {
                   <p className="text-xs font-semibold leading-snug whitespace-pre-line">
                     {card.front}
                   </p>
-                  <p className="text-[9px] text-muted-foreground">Click to reveal</p>
+                  <p className="text-[11px] text-muted-foreground">Click to reveal</p>
                 </div>
 
                 {/* Back */}
@@ -172,7 +172,7 @@ function BrowseTab() {
                   {cat && (
                     <span
                       className={cn(
-                        "text-[9px] font-bold uppercase tracking-widest",
+                        "text-[11px] font-bold",
                         cat.color,
                       )}
                     >
@@ -183,7 +183,7 @@ function BrowseTab() {
                     {card.back}
                   </p>
                   {card.hint && (
-                    <p className="text-[9px] text-muted-foreground italic border-t border-border/40 pt-1.5">
+                    <p className="text-[11px] text-muted-foreground italic border-t border-border/40 pt-1.5">
                       {card.hint}
                     </p>
                   )}
@@ -327,13 +327,13 @@ function StatsTab() {
 
       {/* Cards due */}
       <div className="rounded-lg border border-border/50 bg-card px-4 py-3">
-        <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+        <p className="text-xs font-bold text-muted-foreground">
           Cards due for review
         </p>
-        <p className="mt-1 text-2xl font-black tabular-nums text-foreground">
+        <p className="mt-1 text-2xl font-bold tabular-nums text-foreground">
           {dueCount}
         </p>
-        <p className="text-[10px] text-muted-foreground">unseen cards remaining</p>
+        <p className="text-xs text-muted-foreground">unseen cards remaining</p>
       </div>
 
       {/* 30-day heatmap */}
@@ -351,7 +351,7 @@ function StatsTab() {
             />
           ))}
         </div>
-        <div className="mt-2 flex items-center gap-1.5 text-[9px] text-muted-foreground">
+        <div className="mt-2 flex items-center gap-1.5 text-[11px] text-muted-foreground">
           <span>Less</span>
           <div className="flex gap-0.5">
             {["bg-muted/30", "bg-primary/20", "bg-primary/40", "bg-primary/60", "bg-primary/90"].map(
@@ -410,13 +410,13 @@ function StatCard({
 }) {
   return (
     <div className="flex flex-col gap-0.5 rounded-lg border border-border/50 bg-card px-3 py-2.5">
-      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+      <span className="text-[11px] font-bold text-muted-foreground">
         {label}
       </span>
-      <span className={cn("text-sm font-black tabular-nums", valueColor)}>
+      <span className={cn("text-sm font-bold tabular-nums", valueColor)}>
         {value}
       </span>
-      <span className="text-[9px] text-muted-foreground">{sub}</span>
+      <span className="text-[11px] text-muted-foreground">{sub}</span>
     </div>
   );
 }

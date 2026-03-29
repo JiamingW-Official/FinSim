@@ -304,9 +304,9 @@ function ExpandableSection({ title, children, defaultOpen = false, accent = "#63
 function InfoPill({ label, value, sub, color = "text-zinc-200" }: { label: string; value: string; sub?: string; color?: string }) {
   return (
     <div className="flex flex-col items-center bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 min-w-[90px]">
-      <span className="text-[10px] text-zinc-500 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-zinc-500 uppercase tracking-wide">{label}</span>
       <span className={cn("text-sm font-bold", color)}>{value}</span>
-      {sub && <span className="text-[10px] text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
     </div>
   );
 }
@@ -1034,7 +1034,7 @@ export default function VolTradingPage() {
                 <p>Short VIX futures captures roll yield when VIX futures trade above spot VIX (contango). As time passes, futures converge down to spot — the short position profits from this convergence.</p>
                 <div className="bg-zinc-900 rounded p-3 space-y-1">
                   <p className="font-semibold text-zinc-300">Annualized roll yield approx:</p>
-                  <p className="font-mono text-[10px]">(VIX_futures - VIX_spot) / VIX_spot x 252/DTE</p>
+                  <p className="font-mono text-xs">(VIX_futures - VIX_spot) / VIX_spot x 252/DTE</p>
                 </div>
                 <p className="text-amber-400 font-medium">Risk: VIX spot can spike above futures during stress, destroying the trade instantly with unlimited theoretical loss.</p>
               </div>
@@ -1202,7 +1202,7 @@ export default function VolTradingPage() {
                   ].map((item) => (
                     <div key={item.pair} className="flex items-center justify-between gap-2">
                       <span className="text-zinc-400 flex-1 text-[11px]">{item.pair}</span>
-                      <Badge className="bg-violet-900/40 text-violet-300 border-violet-700 text-[10px]">{item.corr}</Badge>
+                      <Badge className="bg-violet-900/40 text-violet-300 border-violet-700 text-xs">{item.corr}</Badge>
                     </div>
                   ))}
                 </div>

@@ -205,7 +205,7 @@ function NavLink({
 
       {/* Shortcut hint — expanded, visible on hover (hidden when badgeText shown) */}
       {!collapsed && shortcut && !item.badgeText && (
-        <span className="ml-auto hidden text-[9px] tabular-nums tracking-wide text-muted-foreground/40 group-hover:inline">
+        <span className="ml-auto hidden text-[11px] tabular-nums tracking-wide text-muted-foreground/40 group-hover:inline">
           {shortcut}
         </span>
       )}
@@ -281,7 +281,7 @@ function SectionToggle({
       <Icon className="h-4 w-4 shrink-0" />
       {!sidebarCollapsed && (
         <>
-          <span className="flex-1 text-left text-[11px] font-semibold uppercase tracking-wider leading-none">
+          <span className="flex-1 text-left text-[11px] font-semibold leading-none">
             {label}
           </span>
           <ChevronDown
@@ -384,7 +384,7 @@ export function Sidebar() {
           collapsed ? "h-8 w-8" : "mx-2.5 h-8 gap-2 px-2",
         )}
       >
-        <span className="text-[13px] font-black tracking-tight text-primary select-none">
+        <span className="text-[13px] font-bold tracking-tight text-primary select-none">
           FS
         </span>
         {!collapsed && (
@@ -480,7 +480,7 @@ export function Sidebar() {
               <div key={cat.label} className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
                 {!collapsed && (
                   <div className="mb-0.5 mt-2 px-1">
-                    <span className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground/30 select-none">
+                    <span className="text-[11px] font-semibold text-muted-foreground/30 select-none">
                       {cat.label}
                     </span>
                   </div>
@@ -502,7 +502,7 @@ export function Sidebar() {
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground/40 select-none">
+              <span className="text-[11px] font-semibold text-muted-foreground/40 select-none">
                 Learn
               </span>
             </div>
@@ -519,7 +519,7 @@ export function Sidebar() {
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground/40 select-none">
+              <span className="text-[11px] font-semibold text-muted-foreground/40 select-none">
                 Social
               </span>
             </div>

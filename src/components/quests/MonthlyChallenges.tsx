@@ -117,7 +117,7 @@ export function MonthlyChallenges() {
         </div>
         <div className="flex items-center gap-1.5 shrink-0">
           <span className="text-[11px] font-bold tabular-nums text-zinc-300">{daysRemaining}d</span>
-          <span className="text-[10px] text-zinc-600">remaining</span>
+          <span className="text-xs text-zinc-600">remaining</span>
         </div>
       </motion.div>
 
@@ -165,7 +165,7 @@ export function MonthlyChallenges() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <h3
                       className={cn(
-                        "text-sm font-black",
+                        "text-sm font-bold",
                         isClaimed ? "text-green-300" : "text-zinc-100",
                       )}
                     >
@@ -174,7 +174,7 @@ export function MonthlyChallenges() {
                     {/* EPIC badge */}
                     <span
                       className={cn(
-                        "rounded px-1.5 py-0.5 text-[9px] font-black tracking-widest uppercase shrink-0",
+                        "rounded px-1.5 py-0.5 text-[11px] font-bold tracking-widest uppercase shrink-0",
                         isClaimed
                           ? "bg-green-500/15 text-green-400"
                           : "bg-amber-500/15 text-amber-400",
@@ -183,7 +183,7 @@ export function MonthlyChallenges() {
                       EPIC
                     </span>
                     {isClaimed && (
-                      <span className="text-[10px] font-bold text-green-400 shrink-0">CLAIMED</span>
+                      <span className="text-xs font-bold text-green-400 shrink-0">CLAIMED</span>
                     )}
                   </div>
                   <p className="mt-1 text-[11px] leading-relaxed text-zinc-500 line-clamp-2">
@@ -201,7 +201,7 @@ export function MonthlyChallenges() {
                   <Star className={cn("h-3 w-3", isClaimed ? "text-green-400" : "text-amber-400")} />
                   <span
                     className={cn(
-                      "text-[11px] font-black tabular-nums",
+                      "text-[11px] font-bold tabular-nums",
                       isClaimed ? "text-green-400" : "text-amber-400",
                     )}
                   >
@@ -258,7 +258,7 @@ export function MonthlyChallenges() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => handleClaim(challenge.id, challenge.xpReward)}
-                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 py-2 text-sm font-black text-black shadow-lg shadow-amber-500/20 transition-colors hover:bg-amber-400"
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 py-2 text-sm font-bold text-black shadow-sm transition-colors hover:bg-amber-400"
                 >
                   <Gift className="h-4 w-4" />
                   Claim {challenge.xpReward.toLocaleString()} XP Reward

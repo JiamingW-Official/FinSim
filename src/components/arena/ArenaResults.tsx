@@ -79,11 +79,11 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
       >
         <motion.span
           className={cn(
-            "text-5xl font-black tracking-tight",
+            "text-5xl font-bold tracking-tight",
             result.playerWon ? "text-emerald-400" : "text-red-400",
           )}
-          animate={result.playerWon ? { textShadow: ["0 0 20px rgba(16,185,129,0)", "0 0 40px rgba(16,185,129,0.3)", "0 0 20px rgba(16,185,129,0)"] } : {}}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={{}}
+          transition={{}}
         >
           {result.playerWon ? "VICTORY!" : "DEFEAT"}
         </motion.span>
@@ -108,7 +108,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
         >
           <span className="text-xs text-zinc-500">You</span>
           <span className={cn(
-            "text-4xl font-black tabular-nums",
+            "text-4xl font-bold tabular-nums",
             result.playerWon ? "text-emerald-400" : "text-zinc-300",
           )}>
             {playerScoreAnim}
@@ -132,7 +132,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
         >
           <span className="text-xs text-zinc-500">{result.opponentName}</span>
           <span className={cn(
-            "text-4xl font-black tabular-nums",
+            "text-4xl font-bold tabular-nums",
             !result.playerWon ? "text-red-400" : "text-zinc-500",
           )}>
             {oppScoreAnim}
@@ -165,7 +165,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
                 transition={{ delay: 0.7 + i * 0.1, duration: 0.6, ease: "easeOut" }}
               />
             </div>
-            <span className="text-[10px] font-bold tabular-nums text-zinc-400 w-8 text-right">
+            <span className="text-xs font-bold tabular-nums text-zinc-400 w-8 text-right">
               {Math.round(cat.value)}
             </span>
           </motion.div>
@@ -222,7 +222,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.9 }}
             className={cn(
-              "flex items-center gap-1 text-lg font-black tabular-nums",
+              "flex items-center gap-1 text-lg font-bold tabular-nums",
               result.eloChange >= 0 ? "text-emerald-400" : "text-red-400",
             )}
           >
@@ -247,7 +247,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
               initial={{ scale: 0, rotate: -10 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 1.1, type: "spring", stiffness: 400 }}
-              className="text-xs font-black text-amber-400 flex items-center gap-1"
+              className="text-xs font-bold text-amber-400 flex items-center gap-1"
             >
               <Trophy className="h-3 w-3" />
               RANK UP!
@@ -281,7 +281,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           onClick={onPlayAgain}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-1.5 rounded-lg bg-red-500 px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-red-500/20 transition-colors hover:bg-red-400"
+          className="flex items-center gap-1.5 rounded-lg bg-red-500 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-red-400"
         >
           <Crosshair className="h-3.5 w-3.5" />
           Play Again
@@ -321,7 +321,7 @@ function StatRow({
       <span className="text-[11px] text-zinc-400 flex-1">{label}</span>
       <span className={cn("text-xs font-bold tabular-nums", valueColor)}>{value}</span>
       {opponent && (
-        <span className={cn("text-[10px] tabular-nums", opponentColor ?? "text-zinc-600")}>
+        <span className={cn("text-xs tabular-nums", opponentColor ?? "text-zinc-600")}>
           vs {opponent}
         </span>
       )}

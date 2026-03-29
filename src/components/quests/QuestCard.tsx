@@ -73,7 +73,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
         isClaimed
           ? "border-emerald-500/20 bg-emerald-500/5"
           : isComplete
-            ? "border-violet-500/30 bg-violet-500/5 shadow-lg shadow-violet-500/5"
+            ? "border-violet-500/30 bg-violet-500/5"
             : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]",
       )}
     >
@@ -109,7 +109,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               <motion.span
                 initial={{ opacity: 0, x: -4 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-0.5 text-[10px] font-bold text-emerald-400 shrink-0"
+                className="flex items-center gap-0.5 text-xs font-bold text-emerald-400 shrink-0"
               >
                 <Check className="h-2.5 w-2.5" />
                 CLAIMED
@@ -169,7 +169,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
             isClaimed ? "bg-emerald-500/10" : "bg-amber-500/10",
           )}>
             <Star className={cn("h-3 w-3", isClaimed ? "text-emerald-400" : "text-amber-400")} />
-            <span className={cn("text-[10px] font-bold", isClaimed ? "text-emerald-400" : "text-amber-400")}>
+            <span className={cn("text-xs font-bold", isClaimed ? "text-emerald-400" : "text-amber-400")}>
               {isClaimed ? "" : "+"}{quest.xpReward} XP
             </span>
           </div>
@@ -183,7 +183,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleClaim}
-              className="quest-claim flex items-center gap-1 rounded-lg bg-violet-500 px-3 py-1.5 text-xs font-bold text-white shadow-lg shadow-violet-500/25 transition-colors hover:bg-violet-400"
+              className="quest-claim flex items-center gap-1 rounded-lg bg-violet-500 px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-violet-400"
             >
               <Gift className="h-3 w-3" />
               Claim
@@ -200,7 +200,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               whileHover={{ scale: 1.05, x: 2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => router.push(quest.route!)}
-              className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold text-zinc-400 transition-all hover:bg-white/10 hover:text-zinc-200"
+              className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-zinc-400 transition-all hover:bg-white/10 hover:text-zinc-200"
             >
               {routeLabel}
               <ArrowRight className="h-3 w-3" />

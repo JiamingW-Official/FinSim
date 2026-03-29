@@ -55,7 +55,7 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
 
         {/* Tags */}
         <div>
-          <p className="mb-1 text-[9px] font-bold uppercase tracking-wider text-muted-foreground/60">
+          <p className="mb-1 text-[11px] font-bold text-muted-foreground/60">
             Tags
           </p>
           <div className="flex flex-wrap gap-1">
@@ -67,7 +67,7 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
                   type="button"
                   onClick={() => toggleTag(tag)}
                   className={cn(
-                    "rounded-full border px-2 py-0.5 text-[10px] font-medium transition-colors",
+                    "rounded-full border px-2 py-0.5 text-xs font-medium transition-colors",
                     isActive
                       ? "border-primary/30 bg-primary/15 text-primary"
                       : "border-border bg-muted/30 text-muted-foreground hover:bg-muted/50",
@@ -85,14 +85,14 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-lg px-2.5 py-1 text-[10px] font-bold text-muted-foreground hover:bg-accent"
+            className="rounded-lg px-2.5 py-1 text-xs font-bold text-muted-foreground hover:bg-accent"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={() => onSave(notes, tags)}
-            className="rounded-lg bg-primary/10 px-2.5 py-1 text-[10px] font-bold text-primary hover:bg-primary/20"
+            className="rounded-lg bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary hover:bg-primary/20"
           >
             Save
           </button>

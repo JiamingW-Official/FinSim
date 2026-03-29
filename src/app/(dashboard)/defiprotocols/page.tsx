@@ -166,14 +166,6 @@ function fmtPct(n: number, decimals = 1): string {
   return `${n.toFixed(decimals)}%`;
 }
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
-const stagger = {
-  visible: { transition: { staggerChildren: 0.07 } },
-};
 
 const severityColors: Record<string, string> = {
   Critical: "text-red-400 border-red-500/40 bg-red-500/10",
@@ -241,9 +233,9 @@ function AMMTab() {
   }, [plotW]);
 
   return (
-    <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-6">
+    <div className="space-y-6">
       {/* Header cards */}
-      <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Constant Product", value: "x × y = k", sub: "Invariant formula" },
           { label: "Price Impact", value: fmtPct(Math.abs(priceImpact)), sub: `Trade size ${tradeSize}%` },
@@ -258,11 +250,11 @@ function AMMTab() {
             </CardContent>
           </Card>
         ))}
-      </motion.div>
+      </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Liquidity curve SVG */}
-        <motion.div variants={fadeUp}>
+        <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
@@ -329,10 +321,10 @@ function AMMTab() {
               </svg>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Price impact calculator */}
-        <motion.div variants={fadeUp}>
+        <div>
           <Card className="bg-card border-border h-full">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -395,11 +387,11 @@ function AMMTab() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
 
       {/* Formula explainer */}
-      <motion.div variants={fadeUp}>
+      <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -438,8 +430,8 @@ function AMMTab() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -490,9 +482,9 @@ function LendingTab() {
   const isAtRisk = safeHealthFactor < 1.1;
 
   return (
-    <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-6">
+    <div className="space-y-6">
       {/* Stats */}
-      <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Supply APY", value: fmtPct(currentRate), sub: `at ${utilization}% utilization` },
           { label: "Borrow APY", value: fmtPct(borrowRate), sub: "Variable rate" },
@@ -507,11 +499,11 @@ function LendingTab() {
             </CardContent>
           </Card>
         ))}
-      </motion.div>
+      </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Interest rate curve */}
-        <motion.div variants={fadeUp}>
+        <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -591,10 +583,10 @@ function LendingTab() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Collateral & health factor */}
-        <motion.div variants={fadeUp}>
+        <div>
           <Card className="bg-card border-border h-full">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -653,11 +645,11 @@ function LendingTab() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
 
       {/* Protocol comparison */}
-      <motion.div variants={fadeUp}>
+      <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -708,8 +700,8 @@ function LendingTab() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -759,8 +751,8 @@ function YieldTab() {
   const compoundBonus = apyFinalValue - aprFinalValue;
 
   return (
-    <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-6">
-      <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "APR", value: fmtPct(apr), sub: "No compounding" },
           { label: "APY", value: fmtPct(apy, 2), sub: `${compoundsPerYear}x/year` },
@@ -775,11 +767,11 @@ function YieldTab() {
             </CardContent>
           </Card>
         ))}
-      </motion.div>
+      </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Compound growth SVG */}
-        <motion.div variants={fadeUp}>
+        <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -833,10 +825,10 @@ function YieldTab() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Vault strategies */}
-        <motion.div variants={fadeUp} className="space-y-3">
+        <div className="space-y-3">
           {VAULT_STRATEGIES.map((vs) => (
             <Card key={vs.name} className="bg-card border-border">
               <CardContent className="pt-4 pb-4">
@@ -865,11 +857,11 @@ function YieldTab() {
               </CardContent>
             </Card>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Auto-compound math */}
-      <motion.div variants={fadeUp}>
+      <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -920,8 +912,8 @@ function YieldTab() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -973,8 +965,8 @@ function LiquidityMiningTab() {
   const maxEmission = Math.max(...emissionsData);
 
   return (
-    <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-6">
-      <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Price Change", value: fmtPct(priceChange), sub: "Token price vs entry" },
           { label: "Impermanent Loss", value: fmtPct(Math.abs(ilPct), 2), sub: "vs HODL" },
@@ -989,11 +981,11 @@ function LiquidityMiningTab() {
             </CardContent>
           </Card>
         ))}
-      </motion.div>
+      </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* IL curve */}
-        <motion.div variants={fadeUp}>
+        <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -1049,10 +1041,10 @@ function LiquidityMiningTab() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Token emissions schedule */}
-        <motion.div variants={fadeUp}>
+        <div>
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -1107,11 +1099,11 @@ function LiquidityMiningTab() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
 
       {/* Liquidity bootstrapping explanation */}
-      <motion.div variants={fadeUp}>
+      <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -1156,8 +1148,8 @@ function LiquidityMiningTab() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -1169,9 +1161,9 @@ function RiskTab() {
   const totalTVL = PROTOCOLS.reduce((sum, p) => sum + p.tvl, 0);
 
   return (
-    <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-6">
+    <div className="space-y-6">
       {/* Risk stats */}
-      <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "DeFi Hacks (2023)", value: "$1.8B", sub: "Total funds lost" },
           { label: "Oracle Attacks", value: "34%", sub: "Of all exploits" },
@@ -1186,10 +1178,10 @@ function RiskTab() {
             </CardContent>
           </Card>
         ))}
-      </motion.div>
+      </div>
 
       {/* Risk factors list */}
-      <motion.div variants={fadeUp}>
+      <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -1237,10 +1229,10 @@ function RiskTab() {
             ))}
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
 
       {/* Protocol audit scores */}
-      <motion.div variants={fadeUp}>
+      <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -1295,10 +1287,10 @@ function RiskTab() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
 
       {/* Rug pull checklist */}
-      <motion.div variants={fadeUp}>
+      <div>
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
@@ -1369,8 +1361,8 @@ function RiskTab() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -1380,10 +1372,7 @@ export default function DeFiProtocolsPage() {
   return (
     <div className="flex flex-col h-full min-h-0 bg-background">
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+      <div
         className="flex-shrink-0 px-6 pt-6 pb-4 border-b border-border"
       >
         <div className="flex items-center justify-between">
@@ -1407,7 +1396,7 @@ export default function DeFiProtocolsPage() {
             </Badge>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Tabs */}
       <div className="flex-1 min-h-0 overflow-y-auto">

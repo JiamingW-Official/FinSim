@@ -92,7 +92,7 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
             <div className="text-center">
               <p className="text-lg font-bold text-zinc-200">Finding Opponent...</p>
               <p className="text-xs text-zinc-500 mt-1">Searching near {elo} ELO</p>
-              <p className="text-[10px] text-zinc-600 mt-0.5">{config.name} · {config.timeLimitSeconds}s</p>
+              <p className="text-xs text-zinc-600 mt-0.5">{config.name} · {config.timeLimitSeconds}s</p>
             </div>
 
             <motion.button
@@ -104,7 +104,7 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
             >
               <X className="h-3 w-3" />
               Cancel
-              <span className="text-[9px] text-zinc-600 ml-1">(Esc)</span>
+              <span className="text-[11px] text-zinc-600 ml-1">(Esc)</span>
             </motion.button>
           </motion.div>
         )}
@@ -140,7 +140,7 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
             className="flex flex-col items-center gap-6"
           >
             <motion.p
-              className="text-sm font-bold text-red-400 uppercase tracking-widest"
+              className="text-sm font-bold text-red-400"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -168,7 +168,7 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
                 initial={{ scale: 0, rotate: -30 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 300, damping: 15 }}
-                className="text-3xl font-black text-red-500"
+                className="text-3xl font-bold text-red-500"
               >
                 VS
               </motion.div>
@@ -215,7 +215,7 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
                 exit={{ scale: 0.5, opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 className={cn(
-                  "text-7xl font-black",
+                  "text-7xl font-bold",
                   countdown > 0 ? "text-red-400" : "text-emerald-400",
                 )}
               >

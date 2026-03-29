@@ -80,7 +80,7 @@ function ToggleButton({
     <button
       onClick={onClick}
       className={cn(
-        "rounded px-2 py-1 text-[10px] font-medium transition-colors",
+        "rounded px-2 py-1 text-xs font-medium transition-colors",
         active
           ? "border border-orange-500/30 bg-orange-500/15 text-orange-400"
           : "text-muted-foreground hover:text-foreground",
@@ -135,7 +135,7 @@ function CopyIcon({ className }: { className?: string }) {
 function OrderTypeBadge({ orderType }: { orderType: UnusualActivityItem["orderType"] }) {
   if (orderType === "floor") {
     return (
-      <span className="rounded bg-amber-500/15 px-1 py-0.5 text-[9px] font-semibold text-amber-400">
+      <span className="rounded bg-amber-500/15 px-1 py-0.5 text-[11px] font-semibold text-amber-400">
         FLOOR
       </span>
     );
@@ -143,14 +143,14 @@ function OrderTypeBadge({ orderType }: { orderType: UnusualActivityItem["orderTy
   if (orderType === "sweep") {
     // SWEEP = split across exchanges (orange)
     return (
-      <span className="rounded bg-orange-500/15 px-1 py-0.5 text-[9px] font-semibold text-orange-400">
+      <span className="rounded bg-orange-500/15 px-1 py-0.5 text-[11px] font-semibold text-orange-400">
         SWEEP
       </span>
     );
   }
   // Normal → check if large single-venue (BLOCK = purple)
   return (
-    <span className="rounded bg-purple-500/15 px-1 py-0.5 text-[9px] font-semibold text-purple-400">
+    <span className="rounded bg-orange-500/15 px-1 py-0.5 text-[11px] font-semibold text-orange-400">
       BLOCK
     </span>
   );
@@ -221,7 +221,7 @@ export function UnusualActivityFeed({
             </ToggleButton>
           ))}
         </div>
-        <span className="ml-auto text-[10px] text-muted-foreground">
+        <span className="ml-auto text-xs text-muted-foreground">
           {filtered.length} alerts
         </span>
       </div>
@@ -257,7 +257,7 @@ export function UnusualActivityFeed({
                 ].map((col, i) => (
                   <th
                     key={`${col}-${i}`}
-                    className="px-2 py-1.5 text-left text-[9px] font-semibold text-muted-foreground/70"
+                    className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70"
                   >
                     {col}
                   </th>
@@ -284,32 +284,32 @@ export function UnusualActivityFeed({
                     )}
                   >
                     {/* Time */}
-                    <td className="px-2 py-1.5 text-[10px] text-muted-foreground">
+                    <td className="px-2 py-1.5 text-xs text-muted-foreground">
                       {relTime(item.timestamp)}
                     </td>
 
                     {/* Ticker */}
-                    <td className="px-2 py-1.5 text-[10px] font-semibold">
+                    <td className="px-2 py-1.5 text-xs font-semibold">
                       {item.ticker}
                     </td>
 
                     {/* Exp */}
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">
+                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">
                       {item.expiry.slice(5)}
                     </td>
 
                     {/* DTE */}
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">
+                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">
                       {item.dte}D
                     </td>
 
                     {/* Strike */}
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums">
+                    <td className="px-2 py-1.5 text-xs tabular-nums">
                       ${item.strike}
                     </td>
 
                     {/* C/P */}
-                    <td className="px-2 py-1.5 text-[10px] font-semibold tabular-nums">
+                    <td className="px-2 py-1.5 text-xs font-semibold tabular-nums">
                       <span
                         className={
                           item.type === "call" ? "text-emerald-400" : "text-red-400"
@@ -320,7 +320,7 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Side */}
-                    <td className="px-2 py-1.5 text-[10px] font-medium">
+                    <td className="px-2 py-1.5 text-xs font-medium">
                       {item.side === "ask" ? (
                         <span className="text-orange-400">Ask</span>
                       ) : (
@@ -329,7 +329,7 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Sentiment badge */}
-                    <td className="px-2 py-1.5 text-[10px]">
+                    <td className="px-2 py-1.5 text-xs">
                       {isBullish ? (
                         <span className="text-emerald-400">
                           <span className="mr-0.5 text-[8px]">●</span>Bullish
@@ -346,14 +346,14 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Order type badge (SWEEP / BLOCK / FLOOR) */}
-                    <td className="px-2 py-1.5 text-[10px]">
+                    <td className="px-2 py-1.5 text-xs">
                       <OrderTypeBadge orderType={item.orderType} />
                     </td>
 
                     {/* Size */}
                     <td
                       className={cn(
-                        "px-2 py-1.5 text-[10px] tabular-nums",
+                        "px-2 py-1.5 text-xs tabular-nums",
                         isBullish
                           ? "text-emerald-400"
                           : isBearish
@@ -365,17 +365,17 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Price */}
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums">
+                    <td className="px-2 py-1.5 text-xs tabular-nums">
                       ${item.price.toFixed(2)}
                     </td>
 
                     {/* Premium */}
-                    <td className="px-2 py-1.5 text-[10px] font-medium tabular-nums text-orange-400">
+                    <td className="px-2 py-1.5 text-xs font-medium tabular-nums text-orange-400">
                       {formatPremium(item.premium)}
                     </td>
 
                     {/* Prem/OI ratio */}
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums">
+                    <td className="px-2 py-1.5 text-xs tabular-nums">
                       <span
                         className={cn(
                           "font-medium",
@@ -390,22 +390,22 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Bid */}
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">
+                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">
                       {item.bid.toFixed(2)}
                     </td>
 
                     {/* Ask */}
-                    <td className="px-2 py-1.5 text-[10px] tabular-nums text-muted-foreground">
+                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">
                       {item.ask.toFixed(2)}
                     </td>
 
                     {/* Copy Alert button */}
-                    <td className="px-2 py-1.5 text-[10px]">
+                    <td className="px-2 py-1.5 text-xs">
                       <button
                         onClick={(e) => handleCopyAlert(e, item)}
                         title="Copy alert to clipboard"
                         className={cn(
-                          "flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-medium transition-colors",
+                          "flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
                           copiedId === item.id
                             ? "bg-emerald-500/20 text-emerald-400"
                             : "bg-muted/30 text-muted-foreground hover:bg-muted/60 hover:text-foreground",

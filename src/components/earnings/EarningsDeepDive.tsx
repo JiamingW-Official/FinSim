@@ -354,7 +354,7 @@ function MomentumBadge({ score }: { score: number }) {
       : "text-amber-400 bg-amber-500/10 border-amber-500/30";
   const label = score >= 30 ? "Strong Up" : score <= -30 ? "Strong Down" : "Neutral";
   return (
-    <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-semibold border", color)}>
+    <span className={cn("px-1.5 py-0.5 rounded text-xs font-semibold border", color)}>
       {label}
     </span>
   );
@@ -523,7 +523,7 @@ function EarningsQualitySection() {
             <div className={cn("text-2xl font-bold", scoreColor(company.overallScore))}>
               {company.overallScore}
             </div>
-            <div className="text-[10px] text-muted-foreground">/ 100</div>
+            <div className="text-xs text-muted-foreground">/ 100</div>
           </div>
         </div>
 
@@ -597,7 +597,7 @@ function EarningsQualitySection() {
             },
           ].map(({ label, value, good, suffix }) => (
             <div key={label} className="text-center">
-              <div className="text-[10px] text-muted-foreground mb-0.5">{label}</div>
+              <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
               <div className={cn("text-sm font-bold font-mono", good ? "text-emerald-400" : "text-red-400")}>
                 {value}{suffix}
               </div>
@@ -756,7 +756,7 @@ function PEADSection() {
           <div key={label} className="bg-card border border-border rounded-lg p-3">
             <div className="text-xs text-muted-foreground mb-1">{label}</div>
             <div className={cn("text-xl font-bold", color)}>{value}</div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">{sub}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>
           </div>
         ))}
       </div>
@@ -927,7 +927,7 @@ function EstimateRevisionsSection() {
             </div>
           </div>
           <div className="text-right">
-            <div className="text-[10px] text-muted-foreground">Current Est.</div>
+            <div className="text-xs text-muted-foreground">Current Est.</div>
             <div className="text-lg font-bold font-mono text-foreground">${company.currentEst.toFixed(2)}</div>
             <div className={cn("text-xs font-semibold", isUpward ? "text-emerald-400" : "text-red-400")}>
               {isUpward ? "+" : ""}{((company.currentEst - company.est12w) / company.est12w * 100).toFixed(1)}% vs 12w ago
@@ -983,7 +983,7 @@ function EstimateRevisionsSection() {
           <span className={cn("font-mono font-semibold", company.dispersion > 0.2 ? "text-red-400" : company.dispersion > 0.1 ? "text-amber-400" : "text-emerald-400")}>
             {(company.dispersion * 100).toFixed(0)}%
           </span>
-          <span className="text-muted-foreground text-[10px]">
+          <span className="text-muted-foreground text-xs">
             {company.dispersion > 0.2 ? "High uncertainty" : company.dispersion > 0.1 ? "Moderate" : "Low disagreement"}
           </span>
         </div>
@@ -1098,7 +1098,7 @@ function SectorEarningsSection() {
           <div key={label} className="bg-card border border-border rounded-lg p-3">
             <div className="text-xs text-muted-foreground mb-1">{label}</div>
             <div className={cn("text-xl font-bold", color)}>{value}</div>
-            <div className="text-[10px] text-muted-foreground mt-0.5">{sub}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>
           </div>
         ))}
       </div>
@@ -1266,7 +1266,7 @@ function EarningsOptionsSection() {
           {selected && (
             <button
               onClick={() => setSelected(null)}
-              className="text-[10px] text-muted-foreground hover:text-foreground"
+              className="text-xs text-muted-foreground hover:text-foreground"
             >
               Clear selection
             </button>
@@ -1318,7 +1318,7 @@ function EarningsOptionsSection() {
                       </div>
                     </td>
                     <td className="px-3 py-2 text-right">
-                      <span className={cn("px-1.5 py-0.5 rounded border text-[10px] font-semibold", strategyColor(d.strategyType))}>
+                      <span className={cn("px-1.5 py-0.5 rounded border text-xs font-semibold", strategyColor(d.strategyType))}>
                         {d.strategyType === "sell" ? "Sell Vol" : d.strategyType === "buy" ? "Buy Vol" : "Neutral"}
                       </span>
                     </td>
@@ -1346,7 +1346,7 @@ function EarningsOptionsSection() {
               { label: "IV Rank", value: `${company.ivRank}`, color: company.ivRank >= 70 ? "text-red-400" : company.ivRank >= 40 ? "text-amber-400" : "text-emerald-400" },
             ].map(({ label, value, color }) => (
               <div key={label} className="bg-muted/30 rounded-lg p-2">
-                <div className="text-[10px] text-muted-foreground mb-0.5">{label}</div>
+                <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
                 <div className={cn("text-base font-bold font-mono", color)}>{value}</div>
               </div>
             ))}
@@ -1362,12 +1362,12 @@ function EarningsOptionsSection() {
                 : `IV is ${((1 - company.impliedMove / company.historicalAvgMove) * 100).toFixed(0)}% below historical average. The market is under-pricing expected volatility. Buying straddles or strangles could profit if the move exceeds the implied range.`}
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[10px] font-semibold text-muted-foreground">Recommended:</span>
-              <span className={cn("px-2 py-0.5 rounded border text-[10px] font-semibold", strategyColor(company.strategyType))}>
+              <span className="text-xs font-semibold text-muted-foreground">Recommended:</span>
+              <span className={cn("px-2 py-0.5 rounded border text-xs font-semibold", strategyColor(company.strategyType))}>
                 {company.strategy}
               </span>
-              <span className="text-[10px] text-muted-foreground ml-2">Exp. Value:</span>
-              <span className={cn("text-[10px] font-bold font-mono", company.expectedValue > 0 ? "text-emerald-400" : "text-red-400")}>
+              <span className="text-xs text-muted-foreground ml-2">Exp. Value:</span>
+              <span className={cn("text-xs font-bold font-mono", company.expectedValue > 0 ? "text-emerald-400" : "text-red-400")}>
                 {company.expectedValue > 0 ? "+" : ""}${company.expectedValue} / contract
               </span>
             </div>

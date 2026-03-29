@@ -527,7 +527,7 @@ function EcosystemTab() {
     <div className="space-y-6">
       {/* Hero stat */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-gradient-to-br from-emerald-950/60 to-zinc-900 border-emerald-800/40">
+        <Card className="bg-card border-border">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row md:items-center gap-6">
               <div className="flex-1">
@@ -915,7 +915,7 @@ function TNFDTab() {
             >
               <div className="flex items-center gap-3 mb-3">
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-xl font-black"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold"
                   style={{ backgroundColor: leapSteps[activeLeap].color + "22", color: leapSteps[activeLeap].color }}
                 >
                   {leapSteps[activeLeap].letter}

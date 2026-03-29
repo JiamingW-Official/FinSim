@@ -68,7 +68,7 @@ function StatCard({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -390,7 +390,7 @@ function ClientSegmentationTab() {
                 <span className="font-semibold text-white">{b.bias}</span>
                 <Badge
                   className={cn(
-                    "text-[10px] px-1.5 py-0",
+                    "text-xs px-1.5 py-0",
                     b.color === "rose"
                       ? "bg-rose-500/20 text-rose-300"
                       : b.color === "amber"
@@ -643,7 +643,7 @@ function FinancialPlanningTab() {
             {CFP_STEPS.map((step) => (
               <div key={step.step} className="flex gap-2 text-xs">
                 <span
-                  className="w-5 h-5 rounded-full flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0"
+                  className="w-5 h-5 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
                   style={{ backgroundColor: step.color }}
                 >
                   {step.step}
@@ -1292,7 +1292,7 @@ function FeeModelsTab() {
                       <span className="text-zinc-400">{m.typical}</span>
                       <Badge
                         className={cn(
-                          "text-[10px] px-1 py-0",
+                          "text-xs px-1 py-0",
                           m.fiduciary
                             ? "bg-emerald-500/20 text-emerald-300"
                             : "bg-rose-500/20 text-rose-300"

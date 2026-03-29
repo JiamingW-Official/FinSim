@@ -322,7 +322,7 @@ function BreakingNewsTicker({ headlines, onSelect }: {
     <div className="bg-card border border-border/60 rounded-lg overflow-hidden">
       <div className="flex items-stretch">
         <div className="flex-shrink-0 bg-red-600 px-3 flex items-center">
-          <span className="text-[10px] font-bold text-white uppercase tracking-widest whitespace-nowrap">Breaking</span>
+          <span className="text-xs font-bold text-white whitespace-nowrap">Breaking</span>
         </div>
         <div className="flex-1 overflow-hidden py-2">
           <div
@@ -417,15 +417,15 @@ function ArticleCard({ article }: { article: Article }) {
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <span className={cn("text-[10px] font-semibold border px-1.5 py-0.5 rounded", categoryColor[article.category])}>
+            <span className={cn("text-xs font-semibold border px-1.5 py-0.5 rounded", categoryColor[article.category])}>
               {article.category}
             </span>
-            <span className="text-[10px] text-muted-foreground">{article.source}</span>
-            <span className="text-[10px] text-muted-foreground">{article.minutesAgo}m ago</span>
+            <span className="text-xs text-muted-foreground">{article.source}</span>
+            <span className="text-xs text-muted-foreground">{article.minutesAgo}m ago</span>
           </div>
           <h3 className="text-sm font-semibold text-foreground leading-snug">{article.title}</h3>
         </div>
-        <div className={cn("flex-shrink-0 flex items-center gap-1 border px-2 py-1 rounded text-[10px] font-medium", sentimentConfig.bg, sentimentConfig.color)}>
+        <div className={cn("flex-shrink-0 flex items-center gap-1 border px-2 py-1 rounded text-xs font-medium", sentimentConfig.bg, sentimentConfig.color)}>
           <SentimentIcon className="w-3 h-3" />
           <span className="capitalize">{article.sentiment}</span>
         </div>
@@ -450,14 +450,14 @@ function ArticleCard({ article }: { article: Article }) {
       <div className="flex items-center justify-between pt-1">
         <div className="flex flex-wrap gap-1">
           {article.tickers.map((t) => (
-            <span key={t} className="text-[10px] font-mono bg-muted/50 text-foreground px-1.5 py-0.5 rounded border border-border/40 cursor-pointer hover:bg-muted transition-colors">
+            <span key={t} className="text-xs font-mono bg-muted/50 text-foreground px-1.5 py-0.5 rounded border border-border/40 cursor-pointer hover:bg-muted transition-colors">
               ${t}
             </span>
           ))}
         </div>
         <button
           onClick={() => setExpanded((v) => !v)}
-          className="flex items-center gap-1 text-[10px] text-primary hover:text-primary/80 transition-colors"
+          className="flex items-center gap-1 text-xs text-primary hover:text-primary/80 transition-colors"
         >
           {expanded ? <><ChevronUp className="w-3 h-3" /> Less</> : <><ChevronDown className="w-3 h-3" /> Read more</>}
         </button>
@@ -519,14 +519,14 @@ function EarningsCalendar({ entries }: { entries: EarningsEntry[] }) {
               <div className="flex items-center gap-3 min-w-0">
                 <div className="flex-shrink-0">
                   <p className="text-xs font-bold text-foreground font-mono">{e.ticker}</p>
-                  <p className="text-[10px] text-muted-foreground truncate max-w-[100px]">{e.company}</p>
+                  <p className="text-xs text-muted-foreground truncate max-w-[100px]">{e.company}</p>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
                     <Calendar className="w-3 h-3" />{e.date}
                   </span>
                   <span className={cn(
-                    "text-[10px] font-medium px-1.5 py-0.5 rounded",
+                    "text-xs font-medium px-1.5 py-0.5 rounded",
                     e.time === "AMC" ? "bg-indigo-500/15 text-indigo-400" : "bg-amber-500/15 text-amber-400"
                   )}>
                     {e.time}
@@ -543,15 +543,15 @@ function EarningsCalendar({ entries }: { entries: EarningsEntry[] }) {
               </div>
               <div className="flex items-center gap-4 text-right flex-shrink-0">
                 <div>
-                  <p className="text-[10px] text-muted-foreground">Est EPS</p>
+                  <p className="text-xs text-muted-foreground">Est EPS</p>
                   <p className="text-xs font-mono font-semibold text-foreground">${e.epsEst}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-muted-foreground">Prior</p>
+                  <p className="text-xs text-muted-foreground">Prior</p>
                   <p className="text-xs font-mono text-muted-foreground">${e.epsPrior}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-muted-foreground">Impl Move</p>
+                  <p className="text-xs text-muted-foreground">Impl Move</p>
                   <p className="text-xs font-mono font-semibold text-amber-400">±{e.impliedMove}%</p>
                 </div>
                 <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", selected === e.id && "rotate-180")} />
@@ -567,11 +567,11 @@ function EarningsCalendar({ entries }: { entries: EarningsEntry[] }) {
                 className="overflow-hidden"
               >
                 <div className="border border-t-0 border-border/60 rounded-b-lg bg-muted/20 p-3">
-                  <p className="text-[10px] text-muted-foreground mb-1">Historical EPS Surprise (last 8 quarters %)</p>
+                  <p className="text-xs text-muted-foreground mb-1">Historical EPS Surprise (last 8 quarters %)</p>
                   <EarningsSurpriseChart data={e.historicalSurprises} />
                   <div className="flex gap-3 mt-2">
                     {e.historicalSurprises.map((v, i) => (
-                      <span key={i} className={cn("text-[10px] font-mono", v >= 0 ? "text-green-400" : "text-red-400")}>
+                      <span key={i} className={cn("text-xs font-mono", v >= 0 ? "text-green-400" : "text-red-400")}>
                         {v > 0 ? "+" : ""}{v}%
                       </span>
                     ))}
@@ -606,7 +606,7 @@ function EconomicCalendar({ releases }: { releases: EconRelease[] }) {
             <p className="text-xs text-foreground mt-0.5">{nextHigh.name}</p>
           </div>
           <div className="ml-auto text-right">
-            <p className="text-[10px] text-muted-foreground">Countdown</p>
+            <p className="text-xs text-muted-foreground">Countdown</p>
             <p className="text-xs font-mono font-bold text-red-400">
               {nextHigh.daysFromNow === 0 ? `${nextHigh.hoursFromNow}h` : `${nextHigh.daysFromNow}d ${nextHigh.hoursFromNow % 24}h`}
             </p>
@@ -619,7 +619,7 @@ function EconomicCalendar({ releases }: { releases: EconRelease[] }) {
           <thead>
             <tr className="border-b border-border/60">
               {["Date", "Release", "Priority", "Prior", "Consensus", "Actual", "Affects"].map((h) => (
-                <th key={h} className="text-left text-[10px] text-muted-foreground font-medium px-3 py-2 uppercase tracking-wider whitespace-nowrap">{h}</th>
+                <th key={h} className="text-left text-xs text-muted-foreground font-medium px-3 py-2 whitespace-nowrap">{h}</th>
               ))}
             </tr>
           </thead>
@@ -635,7 +635,7 @@ function EconomicCalendar({ releases }: { releases: EconRelease[] }) {
                 <td className="px-3 py-2 font-mono text-muted-foreground whitespace-nowrap">{r.date}</td>
                 <td className="px-3 py-2 font-medium text-foreground whitespace-nowrap">{r.name}</td>
                 <td className="px-3 py-2">
-                  <span className={cn("text-[10px] border px-1.5 py-0.5 rounded font-medium", priorityConfig[r.priority])}>
+                  <span className={cn("text-xs border px-1.5 py-0.5 rounded font-medium", priorityConfig[r.priority])}>
                     {r.priority}
                   </span>
                 </td>
@@ -653,7 +653,7 @@ function EconomicCalendar({ releases }: { releases: EconRelease[] }) {
                 <td className="px-3 py-2">
                   <div className="flex gap-1 flex-wrap">
                     {r.affectedAssets.map((a) => (
-                      <span key={a} className="text-[9px] bg-muted/50 text-muted-foreground px-1 py-0.5 rounded">{a}</span>
+                      <span key={a} className="text-[11px] bg-muted/50 text-muted-foreground px-1 py-0.5 rounded">{a}</span>
                     ))}
                   </div>
                 </td>
@@ -693,7 +693,7 @@ function AnalystRatings({ ratings }: { ratings: AnalystRating[] }) {
               key={f}
               variant={filter === f ? "default" : "outline"}
               size="sm"
-              className="h-6 text-[10px] px-2"
+              className="h-6 text-xs px-2"
               onClick={() => setFilter(f)}
             >
               {f}
@@ -703,7 +703,7 @@ function AnalystRatings({ ratings }: { ratings: AnalystRating[] }) {
         <select
           value={sectorFilter}
           onChange={(e) => setSectorFilter(e.target.value)}
-          className="text-[10px] bg-card border border-border/60 rounded px-2 h-6 text-foreground cursor-pointer"
+          className="text-xs bg-card border border-border/60 rounded px-2 h-6 text-foreground cursor-pointer"
         >
           <option value="All">All Sectors</option>
           {SECTORS.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -715,7 +715,7 @@ function AnalystRatings({ ratings }: { ratings: AnalystRating[] }) {
           <thead>
             <tr className="border-b border-border/60">
               {["Firm", "Ticker", "Action", "Old Rating", "New Rating", "Old PT", "New PT", "Reaction", "Accuracy"].map((h) => (
-                <th key={h} className="text-left text-[10px] text-muted-foreground font-medium px-3 py-2 uppercase tracking-wider whitespace-nowrap">{h}</th>
+                <th key={h} className="text-left text-xs text-muted-foreground font-medium px-3 py-2 whitespace-nowrap">{h}</th>
               ))}
             </tr>
           </thead>
@@ -752,7 +752,7 @@ function AnalystRatings({ ratings }: { ratings: AnalystRating[] }) {
                         style={{ width: `${r.accuracy}%` }}
                       />
                     </div>
-                    <span className="text-[10px] text-muted-foreground">{r.accuracy}%</span>
+                    <span className="text-xs text-muted-foreground">{r.accuracy}%</span>
                   </div>
                 </td>
               </motion.tr>
@@ -820,11 +820,11 @@ function SocialSentimentPulse({ data }: { data: SocialTicker[] }) {
       <div className="flex items-center gap-4 mb-3">
         <div className="flex items-center gap-1.5">
           <div className="w-6 h-0.5 bg-blue-500" />
-          <span className="text-[10px] text-muted-foreground">Price</span>
+          <span className="text-xs text-muted-foreground">Price</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-6 h-0.5 bg-purple-500 border-dashed border-t" style={{ borderStyle: "dashed" }} />
-          <span className="text-[10px] text-muted-foreground">Social Sentiment</span>
+          <span className="text-xs text-muted-foreground">Social Sentiment</span>
         </div>
       </div>
 
@@ -841,11 +841,11 @@ function SocialSentimentPulse({ data }: { data: SocialTicker[] }) {
               <div className="flex items-center gap-1.5">
                 <p className="text-xs font-bold font-mono text-foreground">{d.ticker}</p>
                 {d.memeAlert && (
-                  <span className="text-[9px] bg-orange-500/15 text-orange-400 border border-orange-500/30 px-1 py-0.5 rounded font-bold uppercase tracking-wide">Meme</span>
+                  <span className="text-[11px] bg-orange-500/15 text-orange-400 border border-orange-500/30 px-1 py-0.5 rounded font-bold uppercase tracking-wide">Meme</span>
                 )}
               </div>
               <div className={cn(
-                "flex items-center gap-0.5 text-[10px] font-medium mt-0.5",
+                "flex items-center gap-0.5 text-xs font-medium mt-0.5",
                 d.trend === "rising" ? "text-green-400" : d.trend === "falling" ? "text-red-400" : "text-muted-foreground"
               )}>
                 {d.trend === "rising" && <TrendingUp className="w-3 h-3" />}
@@ -857,32 +857,32 @@ function SocialSentimentPulse({ data }: { data: SocialTicker[] }) {
 
             <div className="flex-1 min-w-0 space-y-1">
               <SentimentBar bull={d.bullishPct} bear={d.bearishPct} />
-              <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="text-green-400">{d.bullishPct}% Bull</span>
                 <span className="text-red-400">{d.bearishPct}% Bear</span>
               </div>
             </div>
 
             <div className="flex-shrink-0 text-right">
-              <p className="text-[10px] text-muted-foreground">Mentions</p>
+              <p className="text-xs text-muted-foreground">Mentions</p>
               <p className={cn(
                 "text-xs font-mono font-semibold",
                 mentionRatios[i] > 2 ? "text-orange-400" : mentionRatios[i] > 1.2 ? "text-amber-400" : "text-foreground"
               )}>
                 {d.mentions >= 1000 ? `${(d.mentions / 1000).toFixed(1)}K` : d.mentions}
               </p>
-              <p className="text-[9px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground">
                 {mentionRatios[i].toFixed(1)}x avg
               </p>
             </div>
 
             <div className="flex-shrink-0">
-              <p className="text-[10px] text-muted-foreground mb-0.5">vs Price</p>
+              <p className="text-xs text-muted-foreground mb-0.5">vs Price</p>
               <CorrelationSparkline price={sparklines[i].price} sentiment={sparklines[i].sent} />
             </div>
 
             {mentionRatios[i] > 2 && (
-              <div className="flex items-center gap-1 text-[10px] text-orange-400 font-semibold">
+              <div className="flex items-center gap-1 text-xs text-orange-400 font-semibold">
                 <Flame className="w-3 h-3" />
                 <span>{mentionRatios[i].toFixed(1)}x spike</span>
               </div>
@@ -918,7 +918,7 @@ export default function FinancialNewsFeed() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
           </span>
-          <span className="text-[10px] text-muted-foreground">Live</span>
+          <span className="text-xs text-muted-foreground">Simulated</span>
         </div>
       </div>
 

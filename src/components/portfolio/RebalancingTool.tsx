@@ -653,10 +653,10 @@ export function RebalancingTool() {
                       className="rounded-md border border-border bg-background/50 p-2.5 text-left hover:border-primary/50 hover:bg-primary/5 transition-colors"
                     >
                       <p className="text-[11px] font-semibold">{preset.label}</p>
-                      <p className="text-[10px] text-muted-foreground mt-0.5">{preset.description}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{preset.description}</p>
                       <div className="mt-1.5 flex gap-1 flex-wrap">
-                        <span className="rounded bg-blue-500/15 px-1 text-[9px] text-blue-400">{preset.usStocks}% US</span>
-                        <span className="rounded bg-emerald-500/15 px-1 text-[9px] text-emerald-400">{preset.bonds}% Bond</span>
+                        <span className="rounded bg-blue-500/15 px-1 text-[11px] text-blue-400">{preset.usStocks}% US</span>
+                        <span className="rounded bg-emerald-500/15 px-1 text-[11px] text-emerald-400">{preset.bonds}% Bond</span>
                       </div>
                     </button>
                   )
@@ -703,7 +703,7 @@ export function RebalancingTool() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[10px]",
+                        "text-xs",
                         Math.abs(assetSum - 100) < 1 ? "border-emerald-500/30 text-emerald-400" : "border-red-500/30 text-red-400",
                       )}
                     >
@@ -741,7 +741,7 @@ export function RebalancingTool() {
                         <span className="text-[11px] font-semibold tabular-nums" style={{ color: ASSET_CLASS_COLORS[key] }}>
                           {assetTargets[key]}%
                         </span>
-                        <span className="text-[10px] text-muted-foreground">
+                        <span className="text-xs text-muted-foreground">
                           {formatCurrency((assetTargets[key] / 100) * portfolioValue)}
                         </span>
                       </div>
@@ -766,7 +766,7 @@ export function RebalancingTool() {
               <CardHeader className="pb-2 pt-3 px-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-xs font-semibold">Ticker Targets</CardTitle>
-                  <Button variant="outline" size="sm" onClick={applyProRata} className="h-6 text-[10px]">
+                  <Button variant="outline" size="sm" onClick={applyProRata} className="h-6 text-xs">
                     Pro-rata
                   </Button>
                 </div>
@@ -807,7 +807,7 @@ export function RebalancingTool() {
                   </div>
                 ))}
                 <div className="pt-1 border-t border-border/40">
-                  <p className="text-[10px] text-muted-foreground">
+                  <p className="text-xs text-muted-foreground">
                     Total: {initializedTickerTargets.reduce((s, t) => s + t.target, 0).toFixed(1)}%
                     {Math.abs(initializedTickerTargets.reduce((s, t) => s + t.target, 0) - 100) > 1 && (
                       <span className="ml-1 text-amber-400">(must sum to 100%)</span>
@@ -839,12 +839,12 @@ export function RebalancingTool() {
                 onValueChange={([v]) => setDriftThreshold(v)}
               />
               <div className="rounded-md bg-blue-500/8 border border-blue-500/20 p-2.5 space-y-1">
-                <p className="text-[10px] font-medium text-blue-400">Threshold vs Calendar Rebalancing</p>
-                <p className="text-[10px] text-muted-foreground leading-relaxed">
+                <p className="text-xs font-medium text-blue-400">Threshold vs Calendar Rebalancing</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Threshold (5%)</strong> — only rebalance when a position drifts more than 5% from target.
                   Reduces over-trading and tax events. Research shows 5% threshold achieves ~85% of the benefit with ~40% fewer trades.
                 </p>
-                <p className="text-[10px] text-muted-foreground leading-relaxed">
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Calendar (quarterly)</strong> — rebalance on a fixed schedule regardless of drift.
                   Simpler but may trigger unnecessary trades in calm markets.
                 </p>
@@ -873,13 +873,13 @@ export function RebalancingTool() {
               <p className={cn("text-[11px] font-semibold", needsRebalancing ? "text-red-400" : "text-emerald-400")}>
                 {needsRebalancing ? "Rebalancing Recommended" : "Portfolio On Target"}
               </p>
-              <p className="text-[10px] text-muted-foreground">
+              <p className="text-xs text-muted-foreground">
                 Average drift: {driftScore.toFixed(1)}% — threshold: {driftThreshold}%
               </p>
             </div>
             <Badge
               variant="outline"
-              className={cn("text-[10px] shrink-0", needsRebalancing ? "border-red-500/30 text-red-400" : "border-emerald-500/30 text-emerald-400")}
+              className={cn("text-xs shrink-0", needsRebalancing ? "border-red-500/30 text-red-400" : "border-emerald-500/30 text-emerald-400")}
             >
               Drift: {driftScore.toFixed(1)}%
             </Badge>
@@ -913,17 +913,17 @@ export function RebalancingTool() {
                         </td>
                         <td className="px-3 py-2 text-right">
                           {row.action === "hold" ? (
-                            <Badge variant="outline" className="text-[9px] border-muted-foreground/30 text-muted-foreground">
+                            <Badge variant="outline" className="text-[11px] border-muted-foreground/30 text-muted-foreground">
                               <Minus className="h-2.5 w-2.5 mr-0.5" />
                               Hold
                             </Badge>
                           ) : row.action === "buy" ? (
-                            <Badge variant="outline" className="text-[9px] border-emerald-500/30 text-emerald-400">
+                            <Badge variant="outline" className="text-[11px] border-emerald-500/30 text-emerald-400">
                               <TrendingUp className="h-2.5 w-2.5 mr-0.5" />
                               Buy {formatCurrency(Math.abs(row.dollarDiff))}
                             </Badge>
                           ) : (
-                            <Badge variant="outline" className="text-[9px] border-red-500/30 text-red-400">
+                            <Badge variant="outline" className="text-[11px] border-red-500/30 text-red-400">
                               <TrendingDown className="h-2.5 w-2.5 mr-0.5" />
                               Sell {formatCurrency(Math.abs(row.dollarDiff))}
                             </Badge>
@@ -971,8 +971,8 @@ export function RebalancingTool() {
             ].map((item) => (
               <div key={item.label} className={cn("rounded-lg border p-2.5 text-center", item.className.split(" ").slice(0, 2).join(" "))}>
                 <p className={cn("text-xl font-bold tabular-nums", item.className.split(" ").slice(2).join(" "))}>{item.count}</p>
-                <p className="text-[10px] text-muted-foreground mt-0.5">{item.label}</p>
-                <p className="text-[9px] text-muted-foreground/60">
+                <p className="text-xs text-muted-foreground mt-0.5">{item.label}</p>
+                <p className="text-[11px] text-muted-foreground/60">
                   {item.label === "On Target" ? "<2%" : item.label === "Minor Drift" ? "2–5%" : ">5%"}
                 </p>
               </div>
@@ -987,15 +987,15 @@ export function RebalancingTool() {
           {/* Summary */}
           <div className="grid grid-cols-3 gap-2">
             <div className="rounded-lg border border-border bg-card/50 p-2.5">
-              <p className="text-[10px] text-muted-foreground">Trades Needed</p>
+              <p className="text-xs text-muted-foreground">Trades Needed</p>
               <p className="text-base font-bold tabular-nums">{totalTrades}</p>
             </div>
             <div className="rounded-lg border border-border bg-card/50 p-2.5">
-              <p className="text-[10px] text-muted-foreground">Est. Cost</p>
+              <p className="text-xs text-muted-foreground">Est. Cost</p>
               <p className="text-base font-bold tabular-nums">{formatCurrency(estimatedCost)}</p>
             </div>
             <div className="rounded-lg border border-border bg-card/50 p-2.5">
-              <p className="text-[10px] text-muted-foreground">Drift Score</p>
+              <p className="text-xs text-muted-foreground">Drift Score</p>
               <p className={cn("text-base font-bold tabular-nums", getDriftColor(driftScore - 0))}>
                 {driftScore.toFixed(1)}%
               </p>
@@ -1006,7 +1006,7 @@ export function RebalancingTool() {
             <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/8 p-4 text-center">
               <CheckCircle className="mx-auto mb-2 h-6 w-6 text-emerald-400" />
               <p className="text-[11px] font-semibold text-emerald-400">No rebalancing needed</p>
-              <p className="text-[10px] text-muted-foreground mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 All positions are within the {driftThreshold}% threshold
               </p>
             </div>
@@ -1014,11 +1014,11 @@ export function RebalancingTool() {
             <div className="space-y-2">
               {/* Tax efficiency note */}
               <div className="rounded-md bg-amber-500/8 border border-amber-500/20 p-2.5">
-                <p className="text-[10px] font-medium text-amber-400 flex items-center gap-1">
+                <p className="text-xs font-medium text-amber-400 flex items-center gap-1">
                   <Info className="h-3 w-3" />
                   Tax Efficiency Order
                 </p>
-                <p className="text-[10px] text-muted-foreground mt-0.5">
+                <p className="text-xs text-muted-foreground mt-0.5">
                   Sells are ordered: losing positions first (harvest losses), then winners. Positions held &lt;1 year flagged for short-term tax rates.
                 </p>
               </div>
@@ -1039,7 +1039,7 @@ export function RebalancingTool() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-[9px] font-bold",
+                          "text-[11px] font-bold",
                           trade.action === "sell"
                             ? "border-red-500/30 text-red-400"
                             : "border-emerald-500/30 text-emerald-400",
@@ -1049,12 +1049,12 @@ export function RebalancingTool() {
                       </Badge>
                       <span className="text-[12px] font-bold">{trade.ticker}</span>
                       {trade.isLosser && trade.action === "sell" && (
-                        <Badge variant="outline" className="text-[9px] border-blue-500/30 text-blue-400">
+                        <Badge variant="outline" className="text-[11px] border-blue-500/30 text-blue-400">
                           Tax Loss
                         </Badge>
                       )}
                       {trade.heldLessThanYear && trade.action === "sell" && (
-                        <Badge variant="outline" className="text-[9px] border-amber-500/30 text-amber-400">
+                        <Badge variant="outline" className="text-[11px] border-amber-500/30 text-amber-400">
                           ST Tax
                         </Badge>
                       )}
@@ -1066,7 +1066,7 @@ export function RebalancingTool() {
                       {trade.action === "sell" ? "-" : "+"}{formatCurrency(trade.dollarAmount)}
                     </span>
                   </div>
-                  <div className="flex gap-3 text-[10px] text-muted-foreground">
+                  <div className="flex gap-3 text-xs text-muted-foreground">
                     <span>Current: {formatCurrency(trade.currentValue)}</span>
                     <span>Target: {formatCurrency(trade.targetValue)}</span>
                     <span>~{trade.estimatedShares} shares @ {formatCurrency(trade.currentPrice)}</span>
@@ -1075,7 +1075,7 @@ export function RebalancingTool() {
               ))}
 
               {/* Priority legend */}
-              <div className="rounded-md bg-card/60 border border-border/40 p-2.5 text-[10px] text-muted-foreground">
+              <div className="rounded-md bg-card/60 border border-border/40 p-2.5 text-xs text-muted-foreground">
                 <p className="font-medium text-foreground mb-1">Execution Order</p>
                 <ol className="list-decimal list-inside space-y-0.5">
                   <li>Sell losing positions (realize tax losses first)</li>
@@ -1102,13 +1102,13 @@ export function RebalancingTool() {
                 {holdingRows
                   .filter((r) => r.action === "buy" && r.ticker !== "CASH")
                   .map((r) => (
-                    <div key={r.ticker} className="flex items-center justify-between text-[10px]">
+                    <div key={r.ticker} className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground">Direct next purchase to <strong className="text-foreground">{r.ticker}</strong></span>
                       <span className="text-emerald-400">{formatCurrency(Math.abs(r.dollarDiff))} needed</span>
                     </div>
                   ))}
                 {holdingRows.filter((r) => r.action === "buy" && r.ticker !== "CASH").length === 0 && (
-                  <p className="text-[10px] text-muted-foreground/60 italic">No underweight positions requiring DCA</p>
+                  <p className="text-xs text-muted-foreground/60 italic">No underweight positions requiring DCA</p>
                 )}
               </div>
             </CardContent>
@@ -1122,14 +1122,14 @@ export function RebalancingTool() {
           {/* Expected benefit */}
           <div className="grid grid-cols-2 gap-2">
             <div className="rounded-lg border border-border bg-card/50 p-3">
-              <p className="text-[10px] text-muted-foreground mb-1">Expected Annual Benefit</p>
+              <p className="text-xs text-muted-foreground mb-1">Expected Annual Benefit</p>
               <p className="text-sm font-bold text-emerald-400">+0.25–0.50%</p>
-              <p className="text-[10px] text-muted-foreground">Higher returns via reduced variance drag</p>
+              <p className="text-xs text-muted-foreground">Higher returns via reduced variance drag</p>
             </div>
             <div className="rounded-lg border border-border bg-card/50 p-3">
-              <p className="text-[10px] text-muted-foreground mb-1">Tax Drag (est.)</p>
+              <p className="text-xs text-muted-foreground mb-1">Tax Drag (est.)</p>
               <p className="text-sm font-bold text-amber-400">−0.10–0.30%</p>
-              <p className="text-[10px] text-muted-foreground">From selling appreciated positions annually</p>
+              <p className="text-xs text-muted-foreground">From selling appreciated positions annually</p>
             </div>
           </div>
 
@@ -1143,7 +1143,7 @@ export function RebalancingTool() {
             </CardHeader>
             <CardContent className="px-3 pb-3">
               <DriftChart history={rebalancingHistory} currentDrift={driftScore} />
-              <div className="mt-1 flex gap-3 text-[10px] text-muted-foreground">
+              <div className="mt-1 flex gap-3 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 bg-blue-500 rounded" />Drift level</span>
                 <span className="flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />Rebalance event</span>
                 <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 bg-red-500 rounded" />5% threshold</span>
@@ -1206,7 +1206,7 @@ export function RebalancingTool() {
             </CardHeader>
             {showSimulator && (
               <CardContent className="px-3 pb-3 pt-2 space-y-3">
-                <p className="text-[10px] text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   Simulate market moves to see projected drift and when the threshold would be triggered.
                 </p>
 
@@ -1250,7 +1250,7 @@ export function RebalancingTool() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[10px]",
+                        "text-xs",
                         simDrift > driftThreshold
                           ? "border-red-500/30 text-red-400"
                           : "border-emerald-500/30 text-emerald-400",
@@ -1267,7 +1267,7 @@ export function RebalancingTool() {
                     const simWeight = simTotal > 0 ? (r.simValue / simTotal) * 100 : 0;
                     const simDev = simWeight - r.targetWeight;
                     return (
-                      <div key={r.ticker} className="flex items-center gap-2 text-[10px]">
+                      <div key={r.ticker} className="flex items-center gap-2 text-xs">
                         <span className="w-12 shrink-0 font-semibold">{r.ticker}</span>
                         <span className="text-muted-foreground">{simWeight.toFixed(1)}%</span>
                         <span className="text-muted-foreground">→ tgt {r.targetWeight.toFixed(1)}%</span>

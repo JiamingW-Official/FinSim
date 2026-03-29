@@ -100,14 +100,14 @@ export function AlertsPanel() {
           <Bell className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm font-semibold">Price Alerts</span>
           {activeAlerts.length > 0 && (
-            <span className="text-[10px] font-mono tabular-nums bg-muted/50 px-1.5 py-0.5 rounded">
+            <span className="text-xs font-mono tabular-nums bg-muted/50 px-1.5 py-0.5 rounded">
               {activeAlerts.length}
             </span>
           )}
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="flex items-center gap-1 text-[10px] font-medium text-primary hover:text-primary/80 transition-colors"
+          className="flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
         >
           <Plus className="h-3 w-3" />
           Add
@@ -118,7 +118,7 @@ export function AlertsPanel() {
       {showForm && (
         <div className="border border-border rounded-lg p-3 bg-muted/20 space-y-2">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-muted-foreground font-medium shrink-0">
+            <span className="text-xs text-muted-foreground font-medium shrink-0">
               {ticker}
             </span>
             <select
@@ -150,7 +150,7 @@ export function AlertsPanel() {
             <button
               onClick={handleAdd}
               disabled={!value || isNaN(parseFloat(value))}
-              className="text-[10px] font-medium px-3 py-1 rounded bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="text-xs font-medium px-3 py-1 rounded bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               Set
             </button>
@@ -181,7 +181,7 @@ export function AlertsPanel() {
               <span className="text-muted-foreground">
                 {getConditionIcon(alert.condition.type)}
               </span>
-              <span className="text-[10px] font-medium text-muted-foreground">
+              <span className="text-xs font-medium text-muted-foreground">
                 {alert.ticker}
               </span>
               <span className="flex-1 text-[11px] font-medium truncate">
@@ -203,7 +203,7 @@ export function AlertsPanel() {
         <div className="space-y-1">
           <button
             onClick={() => setShowTriggered(!showTriggered)}
-            className="flex items-center gap-1.5 text-[10px] font-medium text-amber-400 w-full"
+            className="flex items-center gap-1.5 text-xs font-medium text-amber-400 w-full"
           >
             <BellRing className="h-3 w-3" />
             Triggered ({triggeredAlerts.length})
@@ -225,7 +225,7 @@ export function AlertsPanel() {
                   <span className="flex-1 text-[11px] text-amber-300 truncate">
                     {alert.message || formatAlertCondition(alert.condition)}
                   </span>
-                  <span className="text-[9px] text-muted-foreground font-mono tabular-nums shrink-0">
+                  <span className="text-[11px] text-muted-foreground font-mono tabular-nums shrink-0">
                     {alert.triggeredAt
                       ? new Date(alert.triggeredAt).toLocaleTimeString(
                           "en-US",
@@ -237,7 +237,7 @@ export function AlertsPanel() {
               ))}
               <button
                 onClick={clearTriggered}
-                className="flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors mx-auto pt-1"
+                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors mx-auto pt-1"
               >
                 <Trash2 className="h-3 w-3" />
                 Clear all

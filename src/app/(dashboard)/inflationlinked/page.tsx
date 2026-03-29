@@ -206,7 +206,7 @@ function StatChip({
   };
   return (
     <div className={cn("rounded-lg border px-3 py-2 text-center", colors[color])}>
-      <p className="text-[10px] text-slate-500 mb-0.5">{label}</p>
+      <p className="text-xs text-slate-500 mb-0.5">{label}</p>
       <p className="text-sm font-semibold">{value}</p>
     </div>
   );
@@ -450,7 +450,7 @@ function TipsMechanicsTab() {
             );
           })()}
         </svg>
-        <p className="text-[10px] text-slate-500 mt-1">
+        <p className="text-xs text-slate-500 mt-1">
           Starting par ${par.toLocaleString()} accretes to ~${accretionData[10].principal.toLocaleString()} over 10 years at 2.5% annual CPI. Coupon payments also rise proportionally.
         </p>
       </SectionCard>
@@ -495,7 +495,7 @@ function TipsMechanicsTab() {
             </tbody>
           </table>
         </div>
-        <p className="text-[10px] text-slate-500 mt-2">Real yields and breakevens as of simulated data. UK linkers index to RPI (not CPI).</p>
+        <p className="text-xs text-slate-500 mt-2">Real yields and breakevens as of simulated data. UK linkers index to RPI (not CPI).</p>
       </SectionCard>
     </div>
   );
@@ -755,7 +755,7 @@ function RealYieldsTab() {
             );
           })()}
         </svg>
-        <p className="text-[10px] text-slate-500 mt-1">
+        <p className="text-xs text-slate-500 mt-1">
           Shaded red region = negative real yields (2010–2022 era of ZIRP/QE). TIPS offer a real floor.
         </p>
       </SectionCard>
@@ -946,7 +946,7 @@ function DurationRiskTab() {
             );
           })}
         </svg>
-        <p className="text-[10px] text-slate-500 mt-2">
+        <p className="text-xs text-slate-500 mt-2">
           TIPS show low/negative correlation to equities and slightly positive to nominal bonds — a useful diversifier.
         </p>
       </SectionCard>
@@ -1031,12 +1031,12 @@ function InflationHedgingTab() {
               )}
             >
               <span className="font-semibold">{r.label}</span>
-              <span className="text-[9px] opacity-70 mt-0.5">{r.range}</span>
+              <span className="text-[11px] opacity-70 mt-0.5">{r.range}</span>
               {r.active && <span className="text-[8px] mt-1 font-bold uppercase tracking-wide">CURRENT</span>}
             </div>
           ))}
         </div>
-        <p className="text-[10px] text-slate-500">
+        <p className="text-xs text-slate-500">
           Current regime: Mild overshoot (2–3%). Breakeven inflation at 2.35% suggests market expects modest price pressures to persist. TIPS modestly attractive vs nominals at current levels.
         </p>
       </SectionCard>
@@ -1100,7 +1100,7 @@ function InflationHedgingTab() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
-            className="text-[10px] text-slate-400 mt-2"
+            className="text-xs text-slate-400 mt-2"
           >
             {scenarioDesc[selectedScenario]}
           </motion.p>
@@ -1174,7 +1174,7 @@ function InflationHedgingTab() {
             );
           })}
         </svg>
-        <p className="text-[10px] text-slate-500 mt-1">Simulated annualized expected returns under each inflation scenario. TIPS are the most consistent across regimes.</p>
+        <p className="text-xs text-slate-500 mt-1">Simulated annualized expected returns under each inflation scenario. TIPS are the most consistent across regimes.</p>
       </SectionCard>
 
       {/* Portfolio allocation recommendations */}
@@ -1214,7 +1214,7 @@ function InflationHedgingTab() {
               const val = currentRec[key as keyof typeof currentRec] as number;
               return (
                 <div key={key} className="rounded-lg border border-white/8 bg-white/3 p-2 text-center">
-                  <div className="text-[9px] text-slate-500 mb-1">{label}</div>
+                  <div className="text-[11px] text-slate-500 mb-1">{label}</div>
                   <div className="text-lg font-bold" style={{ color }}>{val}%</div>
                   <div className="w-full bg-white/5 rounded-full h-1.5 mt-1">
                     <div className="h-1.5 rounded-full" style={{ width: `${val}%`, backgroundColor: color, opacity: 0.8 }} />
@@ -1224,7 +1224,7 @@ function InflationHedgingTab() {
             })}
           </motion.div>
         </AnimatePresence>
-        <p className="text-[10px] text-slate-500 mt-3">
+        <p className="text-xs text-slate-500 mt-3">
           Allocations are illustrative. In stagflation, avoid long-duration nominals; overweight real assets, gold, and short-duration TIPS. In low inflation, trim TIPS and overweight equities.
         </p>
       </SectionCard>
@@ -1313,7 +1313,7 @@ export default function InflationLinkedPage() {
         {/* Footer disclaimer */}
         <div className="mt-8 p-3 rounded-lg border border-white/6 bg-white/2 flex items-start gap-2">
           <Info className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
-          <p className="text-[10px] text-slate-500">
+          <p className="text-xs text-slate-500">
             All yield data, breakevens, and returns are simulated for educational purposes. TIPS returns depend on actual realized CPI vs breakeven at purchase. Real past performance varies; consult a financial advisor before investing in inflation-linked securities.
           </p>
         </div>

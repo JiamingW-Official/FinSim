@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type {
   OptionChainExpiry,
@@ -30,19 +29,19 @@ const SENTIMENTS: {
   {
     value: "very_bullish",
     label: "Very Bullish",
-    activeClass: "bg-emerald-500/15 border-emerald-500/30 text-emerald-400",
+    activeClass: "bg-emerald-500/15 border-emerald-500/30 text-emerald-500",
     icon: "↑↑",
   },
   {
     value: "bullish",
     label: "Bullish",
-    activeClass: "bg-green-500/15 border-green-500/30 text-green-400",
+    activeClass: "bg-emerald-500/10 border-emerald-500/20 text-emerald-500",
     icon: "↑",
   },
   {
     value: "neutral",
     label: "Neutral",
-    activeClass: "bg-gray-500/15 border-gray-500/30 text-gray-300",
+    activeClass: "bg-muted border-border text-muted-foreground",
     icon: "→",
   },
   {
@@ -54,13 +53,13 @@ const SENTIMENTS: {
   {
     value: "bearish",
     label: "Bearish",
-    activeClass: "bg-rose-500/15 border-rose-500/30 text-rose-400",
+    activeClass: "bg-red-500/10 border-red-500/20 text-red-500",
     icon: "↓",
   },
   {
     value: "very_bearish",
     label: "Very Bearish",
-    activeClass: "bg-red-500/15 border-red-500/30 text-red-400",
+    activeClass: "bg-red-500/15 border-red-500/30 text-red-500",
     icon: "↓↓",
   },
 ];
@@ -100,12 +99,12 @@ export function StrategyBuilderV2({
     <div className="flex flex-col h-full overflow-hidden">
       {/* Sentiment selection */}
       <div className="px-4 pt-3 pb-3 border-b border-border/50 shrink-0">
-        <p className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+        <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide mb-2">
           What&apos;s your market outlook?
         </p>
         <div className="grid grid-cols-3 gap-1.5">
           {SENTIMENTS.map((s) => (
-            <motion.button
+            <button
               key={s.value}
               onClick={() => setSentiment(sentiment === s.value ? null : s.value)}
               className={cn(
@@ -114,12 +113,10 @@ export function StrategyBuilderV2({
                   ? s.activeClass
                   : "border-border/50 text-muted-foreground hover:text-foreground hover:border-border",
               )}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.96 }}
             >
               <span className="text-base font-bold leading-none">{s.icon}</span>
               <span className="text-[8px] font-semibold leading-tight">{s.label}</span>
-            </motion.button>
+            </button>
           ))}
         </div>
       </div>
@@ -169,7 +166,7 @@ export function StrategyBuilderV2({
             <p className="text-[11px] font-semibold text-muted-foreground">
               Select your market outlook above
             </p>
-            <p className="text-[9px] text-muted-foreground/60 mt-1">
+            <p className="text-[11px] text-muted-foreground/60 mt-1">
               We&apos;ll recommend the best strategies for your view
             </p>
           </div>
@@ -181,7 +178,7 @@ export function StrategyBuilderV2({
       ) : (
         <div className="flex-1 overflow-auto p-3">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wide">
+            <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
               Recommended Strategies
             </p>
             <span className="text-[8px] text-muted-foreground bg-accent/30 rounded px-1.5 py-0.5">

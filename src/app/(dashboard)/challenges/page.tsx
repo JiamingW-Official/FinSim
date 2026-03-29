@@ -212,7 +212,7 @@ function useSundayCountdown(): string {
 function DifficultyBadge({ difficulty }: { difficulty: "Easy" | "Medium" | "Hard" }) {
   return (
     <span className={cn(
-      "rounded-md px-2 py-0.5 text-[9px] font-black uppercase tracking-wide",
+      "rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide",
       difficulty === "Easy" && "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400",
       difficulty === "Medium" && "bg-amber-500/10 border border-amber-500/20 text-amber-400",
       difficulty === "Hard" && "bg-red-500/10 border border-red-500/20 text-red-400",
@@ -235,7 +235,7 @@ function WeeklyTab() {
           <Clock className="h-3.5 w-3.5 text-muted-foreground" />
           <span className="text-[11px] text-muted-foreground">Resets Sunday</span>
         </div>
-        <span className="text-[11px] font-black tabular-nums text-primary">{weeklyCountdown} left</span>
+        <span className="text-[11px] font-bold tabular-nums text-primary">{weeklyCountdown} left</span>
       </div>
 
       {WEEKLY_CHALLENGES.map((challenge, i) => (
@@ -255,23 +255,23 @@ function WeeklyTab() {
 
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap mb-1">
-                <span className="text-sm font-black">{challenge.title}</span>
+                <span className="text-sm font-bold">{challenge.title}</span>
                 <DifficultyBadge difficulty={challenge.difficulty} />
               </div>
               <p className="text-[11px] text-muted-foreground leading-relaxed">{challenge.description}</p>
             </div>
 
             <div className="shrink-0 text-right">
-              <div className="text-sm font-black text-primary">+{challenge.xpReward}</div>
-              <div className="text-[9px] text-muted-foreground">XP</div>
+              <div className="text-sm font-bold text-primary">+{challenge.xpReward}</div>
+              <div className="text-[11px] text-muted-foreground">XP</div>
             </div>
           </div>
 
           {/* Progress */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] text-muted-foreground">Target: {challenge.target}</span>
-              <span className="text-[10px] font-bold tabular-nums">{challenge.progress}%</span>
+              <span className="text-xs text-muted-foreground">Target: {challenge.target}</span>
+              <span className="text-xs font-bold tabular-nums">{challenge.progress}%</span>
             </div>
             <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
               <motion.div
@@ -304,12 +304,12 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
       <div className="flex items-center justify-between px-4 py-3 border-b border-primary/10">
         <div className="flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          <span className="text-xs font-black text-primary uppercase tracking-wide">Special Event</span>
+          <span className="text-xs font-bold text-primary uppercase tracking-wide">Special Event</span>
           {event.isNew && (
-            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[8px] font-black text-primary-foreground">NEW</span>
+            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[8px] font-bold text-primary-foreground">NEW</span>
           )}
         </div>
-        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <Clock className="h-3 w-3" />
           <span className="font-bold">{remaining}</span>
         </div>
@@ -317,19 +317,19 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
       <div className="p-4 space-y-3">
         <div>
-          <h3 className="text-base font-black">{event.title}</h3>
-          <p className="text-[10px] text-muted-foreground">{event.subtitle}</p>
+          <h3 className="text-base font-bold">{event.title}</h3>
+          <p className="text-xs text-muted-foreground">{event.subtitle}</p>
         </div>
 
         <p className="text-[11px] text-muted-foreground leading-relaxed">{event.description}</p>
 
         {/* Rules */}
         <div className="rounded-lg border border-border/50 bg-card/50 p-3 space-y-1.5">
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Rules</span>
+          <span className="text-[11px] font-bold text-muted-foreground">Rules</span>
           {event.rules.map((rule, i) => (
             <div key={i} className="flex items-start gap-2">
               <CheckCircle2 className="h-3 w-3 text-primary/60 shrink-0 mt-0.5" />
-              <span className="text-[10px] text-muted-foreground">{rule}</span>
+              <span className="text-xs text-muted-foreground">{rule}</span>
             </div>
           ))}
         </div>
@@ -338,12 +338,12 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Trophy className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-black text-amber-400">+{event.xpReward} XP</span>
-            <span className="text-[10px] text-muted-foreground">+ &quot;{event.badge}&quot; badge</span>
+            <span className="text-[11px] font-bold text-amber-400">+{event.xpReward} XP</span>
+            <span className="text-xs text-muted-foreground">+ &quot;{event.badge}&quot; badge</span>
           </div>
           <button
             type="button"
-            className="rounded-lg bg-primary px-3 py-1.5 text-[10px] font-black text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             Join Event
           </button>
@@ -358,7 +358,7 @@ function SpecialEventsTab() {
     <div className="space-y-4">
       <div className="flex items-start gap-2 rounded-lg border border-border/50 bg-card/30 px-3 py-2.5">
         <Sparkles className="h-3.5 w-3.5 text-primary/50 mt-0.5 shrink-0" />
-        <p className="text-[10px] text-muted-foreground leading-relaxed">
+        <p className="text-xs text-muted-foreground leading-relaxed">
           Special events are limited-time competitions with unique rules. Complete them before they expire to earn exclusive badges and bonus XP.
         </p>
       </div>
@@ -389,27 +389,27 @@ function HistoryTab() {
       {/* Summary */}
       <div className="grid grid-cols-3 gap-3">
         <div className="rounded-xl border border-border bg-card/50 p-3 text-center">
-          <div className="text-xl font-black tabular-nums text-primary">{history.length}</div>
-          <div className="text-[9px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">Completed</div>
+          <div className="text-xl font-bold tabular-nums text-primary">{history.length}</div>
+          <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">Completed</div>
         </div>
         <div className="rounded-xl border border-border bg-card/50 p-3 text-center">
-          <div className="text-xl font-black tabular-nums text-emerald-400">{successCount}</div>
-          <div className="text-[9px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">Full Clear</div>
+          <div className="text-xl font-bold tabular-nums text-emerald-400">{successCount}</div>
+          <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">Full Clear</div>
         </div>
         <div className="rounded-xl border border-border bg-card/50 p-3 text-center">
-          <div className="text-xl font-black tabular-nums text-amber-400">+{totalXP}</div>
-          <div className="text-[9px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">XP Earned</div>
+          <div className="text-xl font-bold tabular-nums text-amber-400">+{totalXP}</div>
+          <div className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mt-0.5">XP Earned</div>
         </div>
       </div>
 
       {/* History table */}
       <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
         <div className="grid grid-cols-[1fr_4rem_4rem_3rem_3rem] gap-2 px-3 py-2 border-b border-border/50">
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Challenge</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Date</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-right">XP</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">Score</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground text-center">Result</span>
+          <span className="text-[11px] font-bold text-muted-foreground">Challenge</span>
+          <span className="text-[11px] font-bold text-muted-foreground">Date</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-right">XP</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-center">Score</span>
+          <span className="text-[11px] font-bold text-muted-foreground text-center">Result</span>
         </div>
 
         {history.map((entry, i) => (
@@ -427,7 +427,7 @@ function HistoryTab() {
             <div className="min-w-0">
               <span className="text-[11px] font-bold truncate block">{entry.name}</span>
               <span className={cn(
-                "text-[9px] font-bold uppercase",
+                "text-[11px] font-bold uppercase",
                 entry.type === "daily" && "text-primary/70",
                 entry.type === "weekly" && "text-amber-400/70",
                 entry.type === "event" && "text-purple-400/70",
@@ -437,10 +437,10 @@ function HistoryTab() {
               </span>
             </div>
 
-            <span className="text-[10px] text-muted-foreground tabular-nums">{entry.date.slice(5)}</span>
+            <span className="text-xs text-muted-foreground tabular-nums">{entry.date.slice(5)}</span>
 
             <span className={cn(
-              "text-[11px] font-black tabular-nums text-right",
+              "text-[11px] font-bold tabular-nums text-right",
               entry.xpEarned > 0 ? "text-primary" : "text-muted-foreground/50",
             )}>
               {entry.xpEarned > 0 ? `+${entry.xpEarned}` : "—"}
@@ -544,7 +544,7 @@ export default function ChallengesPage() {
             <Swords className="h-5 w-5 text-rose-400" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-black">Challenges</h1>
+            <h1 className="text-lg font-bold">Challenges</h1>
             <p className="text-[11px] text-muted-foreground">
               Test your skills &amp; earn rewards
             </p>
@@ -557,7 +557,7 @@ export default function ChallengesPage() {
             transition={{ delay: 0.3, type: "spring", stiffness: 400, damping: 15 }}
           >
             <Zap className="h-3 w-3 text-primary" />
-            <span className="text-[10px] font-black text-primary">
+            <span className="text-xs font-bold text-primary">
               {totalDailyCompleted + scenariosCompleted} total
             </span>
           </motion.div>
@@ -572,8 +572,8 @@ export default function ChallengesPage() {
             transition={{ delay: 0.1 }}
           >
             <Calendar className="h-3.5 w-3.5 text-primary" />
-            <span className="text-[11px] font-black tabular-nums text-primary">{totalDailyCompleted}</span>
-            <span className="text-[10px] text-muted-foreground">daily</span>
+            <span className="text-[11px] font-bold tabular-nums text-primary">{totalDailyCompleted}</span>
+            <span className="text-xs text-muted-foreground">daily</span>
           </motion.div>
 
           <motion.div
@@ -583,8 +583,8 @@ export default function ChallengesPage() {
             transition={{ delay: 0.15 }}
           >
             <Scroll className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-black tabular-nums text-amber-400">{scenariosCompleted}/8</span>
-            <span className="text-[10px] text-muted-foreground">scenarios</span>
+            <span className="text-[11px] font-bold tabular-nums text-amber-400">{scenariosCompleted}/8</span>
+            <span className="text-xs text-muted-foreground">scenarios</span>
           </motion.div>
 
           {sRankCount > 0 && (
@@ -595,14 +595,14 @@ export default function ChallengesPage() {
               transition={{ delay: 0.2, type: "spring", stiffness: 400, damping: 15 }}
             >
               <Star className="h-3 w-3 text-amber-400" />
-              <span className="text-amber-400 text-[11px] font-black">S x{sRankCount}</span>
+              <span className="text-amber-400 text-[11px] font-bold">S x{sRankCount}</span>
             </motion.div>
           )}
 
           {/* Daily reset countdown (only show on daily tab) */}
           {tab === "daily" && (
             <motion.div
-              className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground"
+              className="ml-auto flex items-center gap-1 text-xs text-muted-foreground"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >

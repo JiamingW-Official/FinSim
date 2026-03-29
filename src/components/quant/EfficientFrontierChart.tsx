@@ -144,7 +144,7 @@ export default function EfficientFrontierChart({ result }: EfficientFrontierChar
             y={yScale(v)}
             textAnchor="end"
             dominantBaseline="middle"
-            className="fill-muted-foreground text-[10px] font-mono"
+            className="fill-muted-foreground text-xs font-mono"
           >
             {formatPct(v)}
           </text>
@@ -155,7 +155,7 @@ export default function EfficientFrontierChart({ result }: EfficientFrontierChar
             x={xScale(v)}
             y={CHART_H - PAD.bottom + 18}
             textAnchor="middle"
-            className="fill-muted-foreground text-[10px] font-mono"
+            className="fill-muted-foreground text-xs font-mono"
           >
             {formatPct(v)}
           </text>
@@ -279,7 +279,7 @@ function SpecialPoint({
         x={x}
         y={y - 12}
         textAnchor="middle"
-        className="text-[9px] font-semibold"
+        className="text-[11px] font-semibold"
         fill={color}
       >
         {label}
@@ -323,7 +323,7 @@ function PortfolioCard({
           </div>
         </div>
       </div>
-      <div className="text-[10px] text-muted-foreground truncate">
+      <div className="text-xs text-muted-foreground truncate">
         {topWeights(point.weights)}
       </div>
     </div>

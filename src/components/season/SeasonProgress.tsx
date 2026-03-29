@@ -23,14 +23,14 @@ export function SeasonProgress() {
     : 100;
 
   return (
-    <div className="card-hover-glow rounded-xl border border-amber-500/20 bg-gradient-to-r from-amber-500/5 to-card p-3">
+    <div className="rounded-xl border border-amber-500/20 bg-card p-3">
       {/* Header */}
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
           <Crown className="h-3.5 w-3.5 text-amber-400" />
           <span className="text-xs font-bold text-amber-300">{season.name}</span>
         </div>
-        <span className="text-[10px] font-bold tabular-nums text-muted-foreground">
+        <span className="text-xs font-bold tabular-nums text-muted-foreground">
           Tier {currentTier}/{totalTiers}
         </span>
       </div>
@@ -38,7 +38,7 @@ export function SeasonProgress() {
       {/* Progress bar to next tier */}
       <div className="mb-1 h-2 overflow-hidden rounded-full bg-muted/20">
         <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-amber-500 to-amber-400"
+          className="h-full rounded-full bg-amber-500"
           initial={{ width: 0 }}
           animate={{ width: `${Math.min(tierProgress, 100)}%` }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -46,7 +46,7 @@ export function SeasonProgress() {
       </div>
 
       {/* XP text */}
-      <div className="mb-2 flex items-center justify-between text-[9px] tabular-nums">
+      <div className="mb-2 flex items-center justify-between text-[11px] tabular-nums">
         <span className="text-amber-400/70">{progress.seasonXP} XP</span>
         {nextTier ? (
           <span className="text-muted-foreground">

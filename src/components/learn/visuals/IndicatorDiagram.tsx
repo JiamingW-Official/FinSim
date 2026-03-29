@@ -54,7 +54,7 @@ export function IndicatorDiagram() {
           transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
         />
       </svg>
-      <div className="flex items-center gap-4 text-[10px]">
+      <div className="flex items-center gap-4 text-xs">
         <span className="flex items-center gap-1">
           <span className="inline-block h-0.5 w-4 bg-[#10b981]" /> Price
         </span>

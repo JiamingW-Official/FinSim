@@ -525,7 +525,7 @@ function MarketSentimentHeatmap({
             <div className="mb-1 flex">
               <div className="w-14 shrink-0" />
               {TIME_PERIODS.map((p) => (
-                <div key={p} className="flex-1 text-center text-[10px] font-medium text-muted-foreground">
+                <div key={p} className="flex-1 text-center text-xs font-medium text-muted-foreground">
                   {p}
                 </div>
               ))}
@@ -542,7 +542,7 @@ function MarketSentimentHeatmap({
                     onClick={() => setSelected(selected?.ticker === cell.ticker && selected?.period === cell.period ? null : cell)}
                     title={`${cell.ticker} ${cell.period}: ${cell.score > 0 ? "+" : ""}${cell.score.toFixed(2)}`}
                     className={cn(
-                      "flex-1 rounded-sm py-2 text-[9px] font-bold transition-all hover:ring-1 hover:ring-white/30",
+                      "flex-1 rounded-sm py-2 text-[11px] font-bold transition-all hover:ring-1 hover:ring-white/30",
                       sentimentColor(cell.score),
                       selected?.ticker === cell.ticker && selected?.period === cell.period && "ring-2 ring-white"
                     )}
@@ -557,7 +557,7 @@ function MarketSentimentHeatmap({
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <span>Legend:</span>
           {[
             { label: "Very Bullish", cls: "bg-emerald-600" },
@@ -582,7 +582,7 @@ function MarketSentimentHeatmap({
               </span>
               <span
                 className={cn(
-                  "rounded-full px-2 py-0.5 text-[10px] font-medium",
+                  "rounded-full px-2 py-0.5 text-xs font-medium",
                   sentimentColor(selected.score)
                 )}
               >
@@ -637,7 +637,7 @@ function TopStoryAnalysis({ stories }: { stories: TopStory[] }) {
                 key={t}
                 onClick={() => setFilterImpact(t)}
                 className={cn(
-                  "rounded-full px-2 py-0.5 text-[10px] font-medium transition-colors",
+                  "rounded-full px-2 py-0.5 text-xs font-medium transition-colors",
                   filterImpact === t
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -652,7 +652,7 @@ function TopStoryAnalysis({ stories }: { stories: TopStory[] }) {
                 key={s}
                 onClick={() => setFilterSent(s)}
                 className={cn(
-                  "rounded-full px-2 py-0.5 text-[10px] font-medium transition-colors",
+                  "rounded-full px-2 py-0.5 text-xs font-medium transition-colors",
                   filterSent === s
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -695,23 +695,23 @@ function TopStoryAnalysis({ stories }: { stories: TopStory[] }) {
                 />
                 <div className="min-w-0 flex-1">
                   <div className="mb-1 flex flex-wrap items-center gap-1.5">
-                    <Badge variant="outline" className="text-[9px] px-1.5 py-0">
+                    <Badge variant="outline" className="text-[11px] px-1.5 py-0">
                       {story.impactType}
                     </Badge>
                     {story.tickers.map((tk) => (
-                      <span key={tk} className="rounded bg-primary/10 px-1 text-[10px] font-semibold text-primary">
+                      <span key={tk} className="rounded bg-primary/10 px-1 text-xs font-semibold text-primary">
                         {tk}
                       </span>
                     ))}
-                    <span className="text-[10px] text-muted-foreground">{story.source}</span>
-                    <span className="text-[10px] text-muted-foreground">{story.publishedAgo}</span>
+                    <span className="text-xs text-muted-foreground">{story.source}</span>
+                    <span className="text-xs text-muted-foreground">{story.publishedAgo}</span>
                   </div>
                   <p className="text-xs font-medium leading-snug">{story.headline}</p>
                 </div>
                 <div className="flex shrink-0 flex-col items-end gap-1">
                   <span
                     className={cn(
-                      "rounded-full px-1.5 py-0.5 text-[10px] font-bold",
+                      "rounded-full px-1.5 py-0.5 text-xs font-bold",
                       sentimentColor(story.sentimentScore)
                     )}
                   >
@@ -734,7 +734,7 @@ function TopStoryAnalysis({ stories }: { stories: TopStory[] }) {
                       <span
                         key={tk}
                         className={cn(
-                          "flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[10px] font-medium",
+                          "flex items-center gap-0.5 rounded-full px-2 py-0.5 text-xs font-medium",
                           move >= 0
                             ? "bg-emerald-500/15 text-emerald-400"
                             : "bg-red-500/15 text-red-400"
@@ -804,22 +804,22 @@ function EarningsCommentary({ calls }: { calls: EarningsCall[] }) {
             {/* Header */}
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs font-semibold">{call.company}</span>
-              <span className="rounded bg-primary/10 px-1.5 text-[10px] font-bold text-primary">{call.ticker}</span>
-              <span className="text-[10px] text-muted-foreground">{call.date}</span>
-              <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-medium", toneColor[call.managementTone])}>
+              <span className="rounded bg-primary/10 px-1.5 text-xs font-bold text-primary">{call.ticker}</span>
+              <span className="text-xs text-muted-foreground">{call.date}</span>
+              <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium", toneColor[call.managementTone])}>
                 Mgmt: {call.managementTone}
               </span>
-              <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-medium", guidanceColor[call.guidanceAction])}>
+              <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium", guidanceColor[call.guidanceAction])}>
                 Guidance {call.guidanceAction}
               </span>
-              <span className={cn("ml-auto text-[10px] font-medium", qaColor[call.qaTone])}>
+              <span className={cn("ml-auto text-xs font-medium", qaColor[call.qaTone])}>
                 Q&A: {call.qaTone}
               </span>
             </div>
 
             {/* Keyword frequency */}
             <div className="space-y-1">
-              <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                 Keyword Frequency
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -835,7 +835,7 @@ function EarningsCommentary({ calls }: { calls: EarningsCall[] }) {
                     <span
                       key={key}
                       className={cn(
-                        "rounded px-1.5 py-0.5 text-[10px] font-medium",
+                        "rounded px-1.5 py-0.5 text-xs font-medium",
                         neg === true
                           ? "bg-red-500/15 text-red-400"
                           : neg === false
@@ -880,7 +880,7 @@ function EarningsCommentary({ calls }: { calls: EarningsCall[] }) {
                   {call.stockReaction.toFixed(2)}%
                 </span>
               </span>
-              <span className="ml-auto text-[10px] text-muted-foreground">
+              <span className="ml-auto text-xs text-muted-foreground">
                 Correlation:{" "}
                 <span className="font-medium text-foreground">
                   {call.sentimentScore * call.stockReaction > 0 ? "Aligned" : "Diverged"}
@@ -892,7 +892,7 @@ function EarningsCommentary({ calls }: { calls: EarningsCall[] }) {
 
         {/* Scatter: sentiment vs stock reaction */}
         <div>
-          <p className="mb-1 text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="mb-1 text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Sentiment Score vs. D+1 Stock Reaction
           </p>
           <svg width={W} height={H} className="overflow-visible">
@@ -993,7 +993,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
                 <span className="font-semibold">{d.ticker}</span>
                 <span
                   className={cn(
-                    "text-[10px]",
+                    "text-xs",
                     d.bullishPct > 50 ? "text-emerald-400" : d.bearishPct > 40 ? "text-red-400" : "text-muted-foreground"
                   )}
                 >
@@ -1016,7 +1016,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
             <div className="flex items-center gap-3 flex-wrap">
               <span className="text-sm font-semibold">{selected.ticker}</span>
               {isViral && (
-                <Badge className="bg-orange-500 text-white text-[10px]">
+                <Badge className="bg-orange-500 text-white text-xs">
                   <Flame className="mr-0.5 h-2.5 w-2.5" />
                   VIRAL — {((selected.twitterVolume / selected.sevenDayAvgVolume) * 100 - 100).toFixed(0)}% above 7d avg
                 </Badge>
@@ -1042,7 +1042,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
                 { label: "Bullish/Bear/Neutral", value: `${selected.bullishPct}/${selected.bearishPct}/${selected.neutralPct}%` },
               ].map((s) => (
                 <div key={s.label} className="rounded bg-muted/50 p-2">
-                  <p className="text-[9px] text-muted-foreground">{s.label}</p>
+                  <p className="text-[11px] text-muted-foreground">{s.label}</p>
                   <p className="text-xs font-semibold">{s.value}</p>
                 </div>
               ))}
@@ -1050,13 +1050,13 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
 
             {/* Sentiment bar */}
             <div>
-              <p className="mb-1 text-[10px] text-muted-foreground">Sentiment distribution</p>
+              <p className="mb-1 text-xs text-muted-foreground">Sentiment distribution</p>
               <div className="flex h-3 overflow-hidden rounded-full">
                 <div className="bg-emerald-500" style={{ width: `${selected.bullishPct}%` }} />
                 <div className="bg-muted" style={{ width: `${selected.neutralPct}%` }} />
                 <div className="bg-red-500" style={{ width: `${selected.bearishPct}%` }} />
               </div>
-              <div className="mt-0.5 flex justify-between text-[9px] text-muted-foreground">
+              <div className="mt-0.5 flex justify-between text-[11px] text-muted-foreground">
                 <span className="text-emerald-400">{selected.bullishPct}% Bullish</span>
                 <span>{selected.neutralPct}% Neutral</span>
                 <span className="text-red-400">{selected.bearishPct}% Bearish</span>
@@ -1065,7 +1065,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
 
             {/* 24h SVG chart */}
             <div>
-              <p className="mb-1 text-[10px] text-muted-foreground">24h Mention Volume + Sentiment</p>
+              <p className="mb-1 text-xs text-muted-foreground">24h Mention Volume + Sentiment</p>
               <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
                 {/* Volume area */}
                 <polyline
@@ -1165,7 +1165,7 @@ function MacroEventImpact({
               key={i}
               onClick={() => setSelectedEvent(i)}
               className={cn(
-                "rounded-full px-2.5 py-1 text-[10px] font-medium transition-colors",
+                "rounded-full px-2.5 py-1 text-xs font-medium transition-colors",
                 selectedEvent === i
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -1184,7 +1184,7 @@ function MacroEventImpact({
             { label: "Avg Dollar", value: ev.avgDollarMove, suffix: "%" },
           ].map((m) => (
             <div key={m.label} className="rounded-lg border border-border p-2 text-center">
-              <p className="text-[10px] text-muted-foreground">{m.label}</p>
+              <p className="text-xs text-muted-foreground">{m.label}</p>
               <p
                 className={cn(
                   "text-sm font-bold",
@@ -1207,7 +1207,7 @@ function MacroEventImpact({
 
         {/* Scatter plot */}
         <div>
-          <p className="mb-1 text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="mb-1 text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Surprise Magnitude vs. Market Reaction (historical)
           </p>
           <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
@@ -1256,7 +1256,7 @@ function MacroEventImpact({
 
         {/* Surprise index chips */}
         <div>
-          <p className="mb-1.5 text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="mb-1.5 text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Surprise Index — Current Economic Releases
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -1271,7 +1271,7 @@ function MacroEventImpact({
               <span
                 key={item.label}
                 className={cn(
-                  "flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[10px] font-medium",
+                  "flex items-center gap-0.5 rounded-full px-2 py-0.5 text-xs font-medium",
                   item.dir === "up"
                     ? "bg-emerald-500/15 text-emerald-400"
                     : "bg-red-500/15 text-red-400"
@@ -1286,7 +1286,7 @@ function MacroEventImpact({
 
         {/* Upcoming events playbook */}
         <div>
-          <p className="mb-2 text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="mb-2 text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Upcoming Event Playbook
           </p>
           <div className="space-y-2">
@@ -1294,21 +1294,21 @@ function MacroEventImpact({
               <div key={i} className="rounded-lg border border-border bg-background/50 p-3 space-y-1.5">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs font-semibold">{ev.event}</span>
-                  <Badge variant="outline" className="text-[9px] px-1.5 py-0">
+                  <Badge variant="outline" className="text-[11px] px-1.5 py-0">
                     {ev.date}
                   </Badge>
-                  <span className="text-[10px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     Consensus: <span className="font-medium text-foreground">{ev.consensus}</span>
                   </span>
-                  <span className="text-[10px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     Previous: <span className="font-medium text-foreground">{ev.previous}</span>
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
                   {ev.playbook.map((pb) => (
                     <div key={pb.asset} className="rounded bg-muted/40 p-1.5">
-                      <p className="text-[9px] text-muted-foreground">{pb.asset}</p>
-                      <p className={cn("text-[10px] font-medium", dirColor(pb.direction))}>
+                      <p className="text-[11px] text-muted-foreground">{pb.asset}</p>
+                      <p className={cn("text-xs font-medium", dirColor(pb.direction))}>
                         {pb.avgMove}
                       </p>
                     </div>

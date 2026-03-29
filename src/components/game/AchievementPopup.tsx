@@ -72,7 +72,7 @@ export function AchievementPopup() {
             <div>
               <div className="flex items-center gap-1.5">
                 <Trophy className="h-3 w-3 text-amber-500" />
-                <span className="text-[10px] font-medium uppercase tracking-wider text-amber-500">
+                <span className="text-xs font-medium text-amber-500">
                   Achievement Unlocked
                 </span>
               </div>
@@ -83,7 +83,7 @@ export function AchievementPopup() {
                 <span className="text-xs text-muted-foreground">
                   {current.description}
                 </span>
-                <span className="rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-amber-400">
+                <span className="rounded bg-amber-500/10 px-1.5 py-0.5 text-xs font-medium tabular-nums text-amber-400">
                   {achievements.length}/12
                 </span>
               </div>

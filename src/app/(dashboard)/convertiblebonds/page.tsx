@@ -521,7 +521,7 @@ export default function ConvertibleBondsPage() {
                         <td className="py-2.5 pr-3 font-mono text-white/70">{fmt2(d.parity)}</td>
                         <td className="py-2.5 pr-3 font-mono text-white/70">{fmt2(d.investmentValue)}</td>
                         <td className="py-2.5">
-                          <Badge className={cn("text-[10px] border", classBadge(d.classification))}>
+                          <Badge className={cn("text-xs border", classBadge(d.classification))}>
                             {d.classification}
                           </Badge>
                         </td>

@@ -119,7 +119,7 @@ export function QuestMap() {
           <div>
             <p className="text-xs font-bold text-cyan-300">Next milestone</p>
             <p className="text-[11px] text-zinc-400 mt-0.5">{activeNode.nextHint}</p>
-            <p className="text-[10px] text-zinc-600 mt-0.5">
+            <p className="text-xs text-zinc-600 mt-0.5">
               {nextNode.sublabel} to reach <span className="text-zinc-400 font-semibold">{nextNode.label}</span>
             </p>
           </div>
@@ -196,7 +196,7 @@ export function QuestMap() {
                   >
                     <span
                       className={cn(
-                        "text-[10px] font-bold leading-tight",
+                        "text-xs font-bold leading-tight",
                         unlocked
                           ? isCurrent
                             ? "text-zinc-200"
@@ -206,7 +206,7 @@ export function QuestMap() {
                     >
                       {node.label}
                     </span>
-                    <span className="text-[9px] text-zinc-700 leading-tight">
+                    <span className="text-[11px] text-zinc-700 leading-tight">
                       {node.sublabel}
                     </span>
                   </motion.div>
@@ -226,9 +226,9 @@ export function QuestMap() {
       >
         <span className="text-xs text-zinc-500">Total quests completed</span>
         <div className="flex items-center gap-2">
-          <span className="text-sm font-black tabular-nums text-zinc-200">{totalCompleted}</span>
+          <span className="text-sm font-bold tabular-nums text-zinc-200">{totalCompleted}</span>
           {nextNode && (
-            <span className="text-[10px] text-zinc-600">
+            <span className="text-xs text-zinc-600">
               / {nextNode.requiredQuests} for {nextNode.label}
             </span>
           )}

@@ -1296,7 +1296,7 @@ function PatternStatsTab() {
       </Card>
 
       {/* Best patterns recommendation */}
-      <Card className="p-5 bg-gradient-to-br from-indigo-950/50 to-zinc-900/60 border-indigo-900/40">
+      <Card className="p-5 bg-card border-border">
         <div className="flex items-center gap-2 mb-4">
           <Star className="h-4 w-4 text-amber-400" />
           <h3 className="text-sm font-semibold text-zinc-200">Best Patterns for {condition}</h3>
