@@ -1415,7 +1415,7 @@ export default function SectorRotationPage() {
   return (
     <div className="space-y-6 p-6">
       {/* Page header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div>
           <h1 className="text-xl font-bold text-foreground">Sector Rotation Strategy</h1>
           <p className="text-sm text-muted-foreground mt-1">

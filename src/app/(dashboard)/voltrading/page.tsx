@@ -631,7 +631,7 @@ export default function VolTradingPage() {
             <Activity className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Volatility Trading</h1>
+            <h1 className="text-xl font-bold text-foreground">Volatility Trading</h1>
             <p className="text-sm text-muted-foreground">
               Vol surface dynamics, long/short vol strategies, and dispersion trading
             </p>

@@ -1684,8 +1684,8 @@ export default function CurrencyOverlayPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <div className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
+      {/* HERO Header */}
+      <div className="border-b border-border border-l-4 border-l-primary bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">

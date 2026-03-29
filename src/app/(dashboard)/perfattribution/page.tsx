@@ -450,9 +450,9 @@ function BHBTab() {
       </div>
 
       {/* Waterfall SVG */}
-      <Card className="border-border bg-card/60">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-foreground">
+      <Card className="border-border bg-card/60 border-l-4 border-l-primary">
+        <CardHeader className="pb-2 p-6">
+          <CardTitle className="text-lg font-semibold text-foreground">
             Return Decomposition — Waterfall
           </CardTitle>
         </CardHeader>

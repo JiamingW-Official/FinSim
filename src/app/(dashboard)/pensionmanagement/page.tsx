@@ -793,9 +793,9 @@ export default function PensionManagementPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
             {/* DB vs DC Comparison */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <Card className="bg-card border-border">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-primary flex items-center gap-2">
+              <Card className="bg-card border-border border-l-4 border-l-primary">
+                <CardHeader className="pb-2 p-6">
+                  <CardTitle className="text-lg text-primary flex items-center gap-2">
                     <DollarSign className="w-4 h-4" />Defined Benefit (DB)
                   </CardTitle>
                 </CardHeader>

@@ -587,15 +587,16 @@ export default function CryptoStakingPage() {
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
-      {/* Header */}
+      {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
+        className="border-l-4 border-l-primary rounded-xl bg-card p-6"
       >
         <div className="flex items-start justify-between flex-wrap gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
               <Layers className="w-6 h-6 text-primary" />
               Crypto Staking & Validator Economics
             </h1>

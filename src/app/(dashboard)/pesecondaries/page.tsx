@@ -1675,7 +1675,7 @@ export default function PESecondariesPage() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="rounded-xl border border-border bg-muted/30 p-4 mb-6"
+        className="rounded-xl border border-border border-l-4 border-l-primary bg-muted/30 p-6 mb-6"
       >
         <div className="flex items-start gap-2">
           <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />

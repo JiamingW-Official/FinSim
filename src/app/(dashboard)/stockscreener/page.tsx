@@ -1303,7 +1303,7 @@ export default function StockScreenerPage() {
           <div className="w-8 h-8 rounded-lg bg-primary/30 border border-border flex items-center justify-center">
             <BarChart3 size={16} className="text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Stock Screener</h1>
+          <h1 className="text-xl font-bold text-foreground">Stock Screener</h1>
         </div>
         <p className="text-sm text-foreground/40 ml-11">
           Fundamental + technical filters across 25 synthetic stocks in 8 sectors

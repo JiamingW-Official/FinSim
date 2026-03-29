@@ -557,7 +557,7 @@ export function PortfolioAttribution() {
 
   if (positions.length === 0) {
     return (
-      <div className="rounded-lg border border-border bg-card p-4">
+      <div className="rounded-lg border border-border/40 bg-card p-4">
         <p className="text-sm font-semibold mb-1">Attribution Analysis</p>
         <p className="text-xs text-muted-foreground py-8 text-center">
           No open positions. Buy stocks to see BHB attribution analysis.
@@ -575,7 +575,7 @@ export function PortfolioAttribution() {
   ];
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

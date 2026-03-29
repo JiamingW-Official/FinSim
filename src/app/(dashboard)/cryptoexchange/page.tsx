@@ -690,8 +690,8 @@ export default function CryptoExchangePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      {/* HERO Header */}
+      <div className="flex items-center justify-between mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
             <Activity className="w-4 h-4 text-amber-400" />

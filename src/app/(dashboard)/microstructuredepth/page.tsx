@@ -596,8 +596,14 @@ export default function MicrostructureDepthPage() {
         </div>
       </motion.div>
 
+      {/* Hero */}
+      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <h2 className="text-lg font-medium text-foreground mb-1">Microstructure Deep Dive</h2>
+        <p className="text-sm text-muted-foreground">Bid-ask decomposition, adverse selection models, inventory risk, Kyle lambda, and optimal execution strategies.</p>
+      </div>
+
       {/* Tabs */}
-      <Tabs defaultValue="spread" className="w-full">
+      <Tabs defaultValue="spread" className="w-full mt-8">
         <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1 mb-4">
           <TabsTrigger value="spread" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />Spread Analysis

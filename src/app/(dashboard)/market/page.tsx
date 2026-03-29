@@ -1272,8 +1272,8 @@ export default function MarketIntelligencePage() {
 
   return (
     <div className="flex flex-col gap-0 max-w-[1400px] mx-auto">
-      {/* Top bar */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between px-4 pt-4 pb-3 border-b border-border/40">
+      {/* Top bar — Hero */}
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between px-4 pt-4 pb-3 border-b border-border/40 border-l-4 border-l-primary">
         <div>
           <h1 className="text-lg font-medium">Market Terminal</h1>
           <p className="text-xs text-muted-foreground">

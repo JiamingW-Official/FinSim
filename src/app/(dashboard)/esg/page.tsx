@@ -565,9 +565,9 @@ export default function EsgPage() {
   return (
     <div className="p-4 md:p-6 space-y-4 min-h-screen bg-background text-foreground">
       {/* Header */}
-      <motion.div {...fadeUp} className="flex items-start justify-between flex-wrap gap-2">
+      <motion.div {...fadeUp} className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start justify-between flex-wrap gap-2">
         <div>
-          <h1 className="text-2xl font-bold flex items-center gap-2">
+          <h1 className="text-xl font-bold flex items-center gap-2">
             <Leaf className="w-6 h-6 text-emerald-400" />
             ESG & Sustainable Investing
           </h1>
@@ -593,7 +593,7 @@ export default function EsgPage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+        className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3"
       >
         {[
           { icon: <Leaf className="w-4 h-4 text-emerald-400" />, label: "Avg E Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.eScore, 0) / COMPANIES.length) },

@@ -1461,7 +1461,7 @@ export default function SpacInvestingPage() {
               <Building2 className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">SPAC Investing</h1>
+              <h1 className="text-xl font-bold text-foreground">SPAC Investing</h1>
               <p className="text-sm text-muted-foreground">Special Purpose Acquisition Companies — mechanics, analysis & strategy</p>
             </div>
           </div>

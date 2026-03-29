@@ -103,7 +103,7 @@ function TargetAllocationSetup({
   };
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
         <h4 className="text-xs font-semibold">Target Allocation</h4>
         <span
@@ -125,7 +125,7 @@ function TargetAllocationSetup({
             <select
               value={row.ticker}
               onChange={(e) => updateTicker(i, e.target.value)}
-              className="h-7 w-20 rounded border border-border bg-background px-1.5 text-[11px] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="h-7 w-20 rounded border border-border/40 bg-background px-1.5 text-[11px] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {availableForRow(i).map((t) => (
                 <option key={t} value={t}>
@@ -142,7 +142,7 @@ function TargetAllocationSetup({
               step={0.5}
               value={row.weight}
               onChange={(e) => updateWeight(i, e.target.value)}
-              className="h-7 w-20 rounded border border-border bg-background px-2 text-[11px] tabular-nums text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="h-7 w-20 rounded border border-border/40 bg-background px-2 text-[11px] tabular-nums text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <span className="text-xs text-muted-foreground">%</span>
 
@@ -321,7 +321,7 @@ function DriftBadge({ drift }: { drift: number }) {
 
 function DriftAnalysis({ entries }: { entries: DriftEntry[] }) {
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
       <h4 className="text-xs font-semibold">Drift Analysis</h4>
 
       {entries.length === 0 ? (
@@ -417,7 +417,7 @@ function RebalancingOrders({
   const actionOrders = orders.filter((o) => o.action !== "Hold");
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
         <h4 className="text-xs font-semibold">Rebalancing Orders</h4>
         {actionOrders.length > 0 && (
@@ -551,7 +551,7 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
   }
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
         <h4 className="text-xs font-semibold">Tax Loss Harvesting Scanner</h4>
         <span className="text-xs text-muted-foreground">22% short-term rate</span>
@@ -712,7 +712,7 @@ const REBALANCE_HISTORY = [
 
 function RebalancingHistory() {
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
       <div className="flex items-center gap-1.5">
         <History className="h-3.5 w-3.5 text-muted-foreground" />
         <h4 className="text-xs font-semibold">Rebalancing History</h4>

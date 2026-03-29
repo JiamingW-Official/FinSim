@@ -1274,14 +1274,14 @@ export default function EquityLongShortPage() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
             <Scale className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-medium text-foreground">Equity Long/Short Strategies</h1>
+            <h1 className="text-lg font-medium text-foreground">Equity Long/Short Strategies</h1>
             <p className="text-xs text-muted-foreground">
               Fundamental L/S · Pairs Trading · Short Selling · Hedge Fund Alpha Economics
             </p>
@@ -1306,7 +1306,7 @@ export default function EquityLongShortPage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
         <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1 mb-6">
           {[
             { value: "portfolio", label: "L/S Portfolio Structure", icon: Layers },

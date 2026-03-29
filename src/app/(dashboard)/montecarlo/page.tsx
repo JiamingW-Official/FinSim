@@ -638,12 +638,12 @@ export default function MonteCarloPage() {
         </div>
       </motion.div>
 
-      {/* Key Metrics */}
+      {/* Key Metrics — Hero */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6"
       >
         <StatCard
           title="Median Final Value"

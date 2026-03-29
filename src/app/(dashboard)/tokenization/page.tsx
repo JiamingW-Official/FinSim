@@ -752,7 +752,7 @@ export default function TokenizationPage() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <Coins className="w-6 h-6 text-primary" />
-                <h1 className="text-2xl font-bold text-foreground">Tokenization of Real-World Assets</h1>
+                <h1 className="text-xl font-bold text-foreground">Tokenization of Real-World Assets</h1>
               </div>
               <p className="text-muted-foreground text-sm max-w-2xl">
                 Blockchain-based tokenization is digitizing trillions in real-world assets — from US Treasuries and

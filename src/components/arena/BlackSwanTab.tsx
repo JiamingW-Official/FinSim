@@ -329,7 +329,7 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
     Catastrophic: "text-red-400 bg-red-500/10 border-red-500/20",
     Extreme: "text-orange-400 bg-orange-500/10 border-orange-500/20",
     Sudden: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-    Prolonged: "text-primary bg-primary/10 border-border",
+    Prolonged: "text-primary bg-primary/10 border-border/40",
   };
 
   return (
@@ -345,7 +345,7 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
           <div className="text-sm font-bold text-foreground">{scenario.name}</div>
           <div className="text-xs text-muted-foreground mt-0.5">{scenario.subtitle}</div>
         </div>
-        <span className={cn("rounded-full border px-2 py-0.5 text-[11px] font-bold shrink-0 mt-0.5", severityColor[scenario.severity] ?? "text-muted-foreground bg-muted border-border")}>
+        <span className={cn("rounded-full border px-2 py-0.5 text-[11px] font-bold shrink-0 mt-0.5", severityColor[scenario.severity] ?? "text-muted-foreground bg-muted border-border/40")}>
           {scenario.severity}
         </span>
       </div>

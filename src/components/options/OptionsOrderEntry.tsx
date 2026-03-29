@@ -106,12 +106,12 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
       {/* Header */}
       <div className="flex items-center gap-2">
         <Activity className="h-4 w-4 text-orange-400" />
-        <span className="text-sm font-bold">Order Entry</span>
+        <span className="text-sm font-medium">Order Entry</span>
       </div>
 
       {/* Strategy name */}
       {activeStrategy && (
-        <div className="rounded-md bg-orange-500/10 px-2 py-1 text-center text-xs font-bold text-orange-400">
+        <div className="rounded-md bg-orange-500/10 px-2 py-1 text-center text-xs font-medium text-orange-400">
           {activeStrategy}
         </div>
       )}
@@ -206,7 +206,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
             </div>
             <div className="divider-glow" />
             <div className="flex items-center justify-between text-[11px]">
-              <span className="font-bold">Total</span>
+              <span className="font-medium">Total</span>
               <span
                 className={cn(
                   "font-bold",
@@ -231,7 +231,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           <div className="flex gap-2">
             <motion.button
               onClick={clearLegs}
-              className="flex items-center gap-1 rounded-lg border border-border/40 px-3 py-2 text-xs font-bold text-muted-foreground hover:bg-accent"
+              className="flex items-center gap-1 rounded-lg border border-border/40 px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -242,7 +242,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
               onClick={handleExecute}
               disabled={!canAfford}
               className={cn(
-                "flex-1 rounded-lg px-3 py-2 text-[11px] font-bold transition-colors",
+                "flex-1 rounded-lg px-3 py-2 text-[11px] font-medium transition-colors",
                 canAfford
                   ? "bg-orange-500 text-primary-foreground hover:bg-orange-600 active:bg-orange-700"
                   : "cursor-not-allowed bg-orange-500/30 text-orange-400/50",

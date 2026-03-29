@@ -268,7 +268,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
   const barH = Math.max(4, chartH / rows.length - 2);
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
       <SectionHeader
         title="Section 1 — Brinson-Hood-Beebower Attribution"
         subtitle="Decomposes active return into allocation, selection, and interaction effects by GICS sector"
@@ -370,7 +370,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
               </tr>
             ))}
             {/* Totals row */}
-            <tr className="border-t border-border bg-muted/20">
+            <tr className="border-t border-border/40 bg-muted/20">
               <td className="py-1 px-1 font-semibold">Total</td>
               <td colSpan={4} />
               <td className={cn("py-1 px-1 text-right tabular-nums font-semibold", effectColor(totals.allocationEffect))}>{pct(totals.allocationEffect, 2)}</td>
@@ -402,7 +402,7 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
   const totalR2 = Math.min(0.97, factors.reduce((s, f) => s + Math.abs(f.contribution) * 0.8, 0));
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
       <SectionHeader
         title="Section 2 — Factor Exposure (Fama-French + Momentum)"
         subtitle="Portfolio factor loadings, active tilts vs benchmark, and factor return contribution"
@@ -548,7 +548,7 @@ function RollingPerformanceSection({ points }: { points: RollingPoint[] }) {
   const activeColor = metrics.find((m) => m.key === activeMetric)?.color ?? "#34d399";
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
       <SectionHeader
         title="Section 3 — Rolling Performance (90-day window)"
         subtitle="3-month rolling alpha, beta, Sharpe ratio, and information ratio over 252 trading days"
@@ -649,7 +649,7 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
   const maxVaR = Math.max(...varPositions.map((p) => p.componentVaR));
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
       <SectionHeader
         title="Section 4 — Risk Attribution (Component VaR)"
         subtitle="1-day 95% VaR decomposed by position; marginal VaR shows incremental risk of adding 1 more share"
@@ -761,7 +761,7 @@ export function AttributionAnalysis() {
   return (
     <div className="space-y-4">
       {/* Header banner */}
-      <div className="rounded-lg border border-border bg-primary/5 p-3">
+      <div className="rounded-lg border border-border/40 bg-primary/5 p-3">
         <div className="flex items-start gap-2">
           <Info className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
           <div>

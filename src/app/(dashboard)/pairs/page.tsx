@@ -496,10 +496,10 @@ export default function PairsPage() {
   return (
     <div className="flex flex-col h-full bg-background">
       {/* Header */}
-      <div className="flex items-center gap-3 px-6 py-4 border-b border-border/50 shrink-0">
+      <div className="flex items-center gap-3 px-6 py-6 border-b border-border/50 border-l-4 border-l-primary shrink-0">
         <GitCompare className="h-5 w-5 text-primary" />
         <div>
-          <h1 className="text-base font-semibold">Pairs Trading</h1>
+          <h1 className="text-lg font-semibold">Pairs Trading</h1>
           <p className="text-xs text-muted-foreground">Statistical arbitrage via mean-reverting spreads</p>
         </div>
       </div>

@@ -1291,11 +1291,17 @@ export default function MacroTradingPage() {
           </div>
         </div>
 
+        {/* Hero */}
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <h2 className="text-lg font-medium text-foreground mb-1">Macro Trading Playbook</h2>
+          <p className="text-sm text-muted-foreground">Economic regime analysis, rate cycle playbook, leading indicators, and cross-asset signal generation.</p>
+        </div>
+
         {/* Tabs */}
         <Tabs
           value={activeTab}
           onValueChange={(v) => setActiveTab(v as TabValue)}
-          className="w-full"
+          className="w-full mt-8"
         >
           <TabsList className="flex w-full overflow-x-auto gap-1 bg-card/60 border border-border/50 p-1 rounded-xl h-auto">
             {TABS.map(({ value, label, icon: Icon }) => (

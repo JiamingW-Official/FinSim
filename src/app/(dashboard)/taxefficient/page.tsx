@@ -1238,7 +1238,7 @@ export default function TaxEfficientPage() {
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="space-y-1"
+        className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-500/10 border border-green-500/20">

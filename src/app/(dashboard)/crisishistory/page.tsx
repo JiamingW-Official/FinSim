@@ -650,14 +650,14 @@ export default function CrisisHistoryPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* HERO Header */}
+      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
             <AlertTriangle className="w-5 h-5 text-red-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Financial Crises: History &amp; Anatomy</h1>
+            <h1 className="text-xl font-semibold text-foreground">Financial Crises: History &amp; Anatomy</h1>
             <p className="text-sm text-muted-foreground">Study the crashes, understand the patterns, avoid repeating history</p>
           </div>
         </div>

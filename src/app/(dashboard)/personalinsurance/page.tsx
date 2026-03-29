@@ -306,8 +306,8 @@ function InsuranceNeedsTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sliders */}
-        <div className="rounded-xl border border-border bg-card p-5 space-y-5">
-          <div className="text-sm font-medium text-foreground mb-1">Your Financial Profile</div>
+        <div className="rounded-xl border border-border border-l-4 border-l-primary bg-card p-6 space-y-5">
+          <div className="text-lg font-medium text-foreground mb-1">Your Financial Profile</div>
           <SliderInput
             label="Annual Income"
             value={annualIncome}

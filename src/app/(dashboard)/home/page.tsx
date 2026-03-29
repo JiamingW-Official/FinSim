@@ -237,8 +237,7 @@ export default function HomePage() {
     `${marketPulse.regime} regime detected \u2014 VIX at ${marketPulse.vix}, bias ${marketPulse.fg > 50 ? "bullish" : "cautious"}.`,
     `${topOpportunity.ticker} showing ${topOpportunity.direction} signal with ${topOpportunity.confidence}% confidence. ${topOpportunity.reason}.`,
     marketBrief.split(".")[0] + ".",
-    todayFocus,
-  ], [marketPulse, topOpportunity, marketBrief, todayFocus]);
+  ], [marketPulse, topOpportunity, marketBrief]);
 
   const yesterdaySummary = useMemo(() => {
     const cutoff = Date.now() - 24 * 3600000;
@@ -367,33 +366,27 @@ export default function HomePage() {
                 ))}
               </ul>
 
-              {/* TODAY'S FOCUS -- largest text in the hero */}
-              <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 px-6 py-5">
-                <p className="text-xl font-medium leading-snug text-foreground">{todayFocus}</p>
+              {/* TODAY'S FOCUS */}
+              <div className="mt-6 border-l-2 border-primary/30 pl-4">
+                <p className="text-sm font-medium leading-relaxed text-foreground/80">{todayFocus}</p>
               </div>
 
-              {/* Full-width CTA button */}
+              {/* CTA — subtle, not a giant green banner */}
               <div className="mt-6">
                 {completedLessons.length === 0 ? (
-                  <Link href="/learn" className="block">
-                    <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
-                      <span className="text-base font-medium">Start your first lesson</span>
-                      <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
-                    </div>
+                  <Link href="/learn" className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                    Start your first lesson
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 ) : stats.totalTrades === 0 ? (
-                  <Link href="/trade" className="block">
-                    <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
-                      <span className="text-base font-medium">Place your first practice trade</span>
-                      <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
-                    </div>
+                  <Link href="/trade" className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                    Place your first practice trade
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 ) : (
-                  <Link href="/trade" className="block">
-                    <div className="group flex items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 text-primary-foreground transition-colors hover:bg-primary/90">
-                      <span className="text-base font-medium">Open trading terminal</span>
-                      <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />
-                    </div>
+                  <Link href="/trade" className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                    Open trading terminal
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 )}
               </div>

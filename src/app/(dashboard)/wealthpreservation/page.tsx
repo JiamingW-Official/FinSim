@@ -882,14 +882,14 @@ export default function WealthPreservationPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+          className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div className="rounded-xl p-2.5 bg-indigo-500/10">
                 <Shield className="w-6 h-6 text-indigo-400" />
               </div>
-              <h1 className="text-2xl font-bold text-foreground">Wealth Preservation Strategies</h1>
+              <h1 className="text-xl font-bold text-foreground">Wealth Preservation Strategies</h1>
             </div>
             <p className="text-muted-foreground text-sm ml-14">
               Advanced frameworks for protecting, growing, and transferring high-net-worth portfolios

@@ -1203,14 +1203,14 @@ export default function ExportCreditPage() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="mb-8"
+          className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
               <Globe size={24} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Export Credit Agencies & Trade Finance</h1>
+              <h1 className="text-xl font-bold text-foreground">Export Credit Agencies & Trade Finance</h1>
               <p className="text-sm text-muted-foreground">
                 ECA-backed financing, OECD Consensus, political risk insurance, and deal structuring
               </p>
@@ -1232,7 +1232,7 @@ export default function ExportCreditPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="overview" className="w-full">
+        <Tabs defaultValue="overview" className="w-full mt-8">
           <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-muted/30 p-1 rounded-lg">
             <TabsTrigger value="overview" className="flex items-center gap-1.5 text-xs">
               <Globe size={13} /> ECA Overview

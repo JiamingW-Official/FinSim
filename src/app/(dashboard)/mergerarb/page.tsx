@@ -976,11 +976,13 @@ export default function MergerArbPage() {
         </Badge>
       </div>
 
-      {/* Summary stats */}
-      <SummaryStats deals={DEALS} />
+      {/* Summary stats — Hero */}
+      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <SummaryStats deals={DEALS} />
+      </div>
 
       {/* Main tabs */}
-      <Tabs defaultValue="dashboard">
+      <Tabs defaultValue="dashboard" className="mt-8">
         <TabsList className="bg-card border border-border">
           <TabsTrigger value="dashboard" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Deal Dashboard

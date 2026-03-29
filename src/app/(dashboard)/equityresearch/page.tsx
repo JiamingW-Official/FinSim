@@ -1616,12 +1616,13 @@ export default function EquityResearchPage() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
+          className="border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <BookOpen size={20} className="text-indigo-400" />
-                <h1 className="text-xl font-medium text-foreground">Equity Research</h1>
+                <h1 className="text-lg font-medium text-foreground">Equity Research</h1>
               </div>
               <p className="text-sm text-muted-foreground">
                 Process, financial modeling, valuation methodology, and analyst dynamics —
@@ -1637,7 +1638,7 @@ export default function EquityResearchPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="process">
+        <Tabs defaultValue="process" className="mt-8">
           <TabsList className="bg-muted/60 border border-border/50 flex flex-wrap h-auto gap-1 p-1">
             {[
               { value: "process", label: "Research Process", icon: <Search size={13} /> },

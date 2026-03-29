@@ -1241,8 +1241,8 @@ export default function FamilyWealthPage() {
           </div>
         </div>
 
-        {/* Summary Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {/* Summary Stats — Hero */}
+        <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3">
           <StatChip label="UHNW Families (US)" value="~180,000" color="blue" />
           <StatChip label="Avg Gen-3 Wealth Retained" value="~10%" color="red" />
           <StatChip label="Families with Wealth Plan" value="33%" color="amber" />

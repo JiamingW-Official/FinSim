@@ -434,7 +434,7 @@ export function LivePnLDashboard() {
 
   if (positions.length === 0 && tradeHistory.filter((t) => t.realizedPnL !== 0).length === 0) {
     return (
-      <div className="rounded-lg border border-border bg-card p-4">
+      <div className="rounded-lg border border-border/40 bg-card p-4">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-3">
           <Activity className="h-3.5 w-3.5 text-primary" />
           Live P&L Dashboard
@@ -449,7 +449,7 @@ export function LivePnLDashboard() {
   // ─────────────────────────────────────────────────────────────────────────────
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-5">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-5">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">

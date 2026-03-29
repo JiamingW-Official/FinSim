@@ -1261,7 +1261,7 @@ export default function StrategyLab() {
             <div className="flex flex-wrap gap-2">
               {PRESETS.map(p => (
                 <button key={p.id} onClick={() => handleLoadPreset(p)}
-                  className="rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
+                  className="rounded-full border border-border/40 bg-card px-3 py-1 text-xs text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
                   title={p.description}
                 >
                   {p.name}
@@ -1277,7 +1277,7 @@ export default function StrategyLab() {
               <input
                 value={strategy.name}
                 onChange={e => setStrategy(s => ({ ...s, name: e.target.value }))}
-                className="w-full max-w-xs rounded-md border border-border bg-card px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-violet-500"
+                className="w-full max-w-xs rounded-md border border-border/40 bg-card px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-violet-500"
               />
             </div>
             <Button
@@ -1374,7 +1374,7 @@ export default function StrategyLab() {
                     type="number"
                     value={strategy.sizingValue}
                     onChange={e => setStrategy(s => ({ ...s, sizingValue: parseFloat(e.target.value) || 0 }))}
-                    className="w-full rounded-md border border-border bg-muted px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-violet-500"
+                    className="w-full rounded-md border border-border/40 bg-muted px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-violet-500"
                   />
                 </div>
               )}
@@ -1393,7 +1393,7 @@ export default function StrategyLab() {
                       onChange={e => setStrategy(s => ({
                         ...s, riskRules: { ...s.riskRules, [key]: parseFloat(e.target.value) || 0 },
                       }))}
-                      className="w-full rounded border border-border bg-muted px-2 py-1 text-xs text-foreground outline-none focus:ring-1 focus:ring-violet-500"
+                      className="w-full rounded border border-border/40 bg-muted px-2 py-1 text-xs text-foreground outline-none focus:ring-1 focus:ring-violet-500"
                     />
                   </div>
                 ))}
@@ -1515,7 +1515,7 @@ export default function StrategyLab() {
               <div>
                 <label className="mb-1 block text-xs text-muted-foreground">Parameter A (rows)</label>
                 <select value={optParamA} onChange={e => setOptParamA(e.target.value as typeof optParamA)}
-                  className="w-full rounded-md border border-border bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none">
+                  className="w-full rounded-md border border-border/40 bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none">
                   <option value="rsi_period">RSI Threshold (10–30)</option>
                   <option value="volume_mult">Volume Multiplier (1.2–3.0)</option>
                   <option value="profit_target">Profit Target % (4–12)</option>
@@ -1524,7 +1524,7 @@ export default function StrategyLab() {
               <div>
                 <label className="mb-1 block text-xs text-muted-foreground">Parameter B (columns)</label>
                 <select value={optParamB} onChange={e => setOptParamB(e.target.value as typeof optParamB)}
-                  className="w-full rounded-md border border-border bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none">
+                  className="w-full rounded-md border border-border/40 bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none">
                   <option value="stop_loss">Stop Loss % (2–6)</option>
                   <option value="time_exit">Time Exit Bars (10–40)</option>
                   <option value="ma_period">MA Period (20–200)</option>

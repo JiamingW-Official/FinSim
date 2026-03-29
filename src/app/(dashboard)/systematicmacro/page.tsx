@@ -456,10 +456,10 @@ export default function SystematicMacroPage() {
   return (
     <div className="p-4 md:p-6 space-y-6 min-h-screen bg-background text-foreground">
       {/* Header */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <h1 className="text-xl font-bold tracking-tight flex items-center gap-2">
               <Globe className="w-6 h-6 text-primary" />
               Systematic Macro Trading
             </h1>

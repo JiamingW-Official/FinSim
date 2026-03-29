@@ -586,14 +586,14 @@ export default function CryptoPortfolioPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
-      {/* Header */}
+      {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-4 border-l-primary rounded-xl bg-card p-6"
       >
         <div>
-          <h1 className="text-2xl font-bold flex items-center gap-2">
+          <h1 className="text-xl font-semibold flex items-center gap-2">
             <Bitcoin className="w-6 h-6 text-orange-400" />
             Crypto Portfolio
           </h1>

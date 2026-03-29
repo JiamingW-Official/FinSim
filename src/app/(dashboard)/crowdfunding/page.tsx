@@ -1516,13 +1516,13 @@ function PortfolioTab() {
 export default function CrowdfundingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* HERO Header */}
+      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
             <Users className="w-4 h-4 text-primary" />
           </div>
-          <h1 className="text-xl font-medium text-foreground">Equity Crowdfunding & Alternative Financing</h1>
+          <h1 className="text-xl font-semibold text-foreground">Equity Crowdfunding & Alternative Financing</h1>
         </div>
         <p className="text-sm text-muted-foreground ml-11">
           Reg CF / Reg A+ / Reg D mechanics, platform economics, SAFE deal analysis, and portfolio construction for private company investing.

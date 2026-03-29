@@ -1067,8 +1067,14 @@ export default function LeveragedLoansPage() {
           </div>
         </motion.div>
 
+        {/* Hero */}
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <h2 className="text-lg font-medium text-foreground mb-1">Leveraged Loan &amp; CLO Analytics</h2>
+          <p className="text-sm text-muted-foreground">Loan structure, syndication mechanics, CLO waterfall analysis, and credit market dynamics.</p>
+        </div>
+
         {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
           <TabsList className="grid grid-cols-4 mb-6 bg-card border border-border h-auto p-1 gap-1">
             {tabItems.map((tab) => (
               <TabsTrigger

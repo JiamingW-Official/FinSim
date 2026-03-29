@@ -2441,7 +2441,7 @@ export default function TradeFinancePage() {
               <Globe className="w-5 h-5 text-sky-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Trade Finance</h1>
+              <h1 className="text-xl font-bold text-foreground">Trade Finance</h1>
               <p className="text-sm text-foreground/40">
                 Letters of credit, supply chain finance, documentary collections
                 &amp; digital trade

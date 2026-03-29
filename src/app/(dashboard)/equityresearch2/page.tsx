@@ -1780,13 +1780,14 @@ export default function EquityResearch2Page() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
+          className="border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-1">
             <div className="w-9 h-9 rounded-lg bg-primary/15 border border-border flex items-center justify-center">
               <Search className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">
+              <h1 className="text-xl font-bold text-foreground">
                 Equity Research Deep Dive
               </h1>
               <p className="text-sm text-foreground/45">
@@ -1816,7 +1817,7 @@ export default function EquityResearch2Page() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="process" className="w-full">
+        <Tabs defaultValue="process" className="w-full mt-8">
           <TabsList className="grid grid-cols-4 w-full bg-foreground/5 border border-border rounded-lg h-10">
             <TabsTrigger
               value="process"

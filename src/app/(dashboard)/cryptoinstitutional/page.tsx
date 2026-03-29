@@ -1702,14 +1702,14 @@ function Tab4OnchainContent() {
 export default function CryptoInstitutionalPage() {
   return (
     <div className="p-6 space-y-6 max-w-5xl mx-auto">
-      {/* Header */}
-      <div className="space-y-1">
+      {/* HERO Header */}
+      <div className="border-l-4 border-l-primary rounded-xl bg-card p-6 space-y-1">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-indigo-500/15 rounded-lg border border-indigo-500/25">
             <Bitcoin className="w-6 h-6 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Institutional Crypto</h1>
+            <h1 className="text-xl font-semibold text-foreground">Institutional Crypto</h1>
             <p className="text-sm text-muted-foreground">
               Bitcoin ETFs · Stablecoin Ecosystem · Crypto Prime Brokerage · On-Chain Analytics
             </p>

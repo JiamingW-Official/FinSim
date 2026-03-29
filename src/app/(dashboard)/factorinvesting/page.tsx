@@ -1060,8 +1060,8 @@ export default function FactorInvestingPage() {
         </div>
       </div>
 
-      {/* Overview stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* Overview stats — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="border-border bg-foreground/5">
           <CardContent className="p-4">
             <div className="flex items-center gap-2 mb-1">

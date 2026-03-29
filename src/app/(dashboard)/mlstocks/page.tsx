@@ -748,8 +748,14 @@ export default function MLStocksPage() {
         </div>
       </motion.div>
 
+      {/* Hero */}
+      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <h2 className="text-lg font-medium text-foreground mb-1">ML Stock Selection Engine</h2>
+        <p className="text-sm text-muted-foreground">Factor models, feature engineering, model architectures, backtesting framework, and live signal generation.</p>
+      </div>
+
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
         <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="features" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
             <Database className="w-3 h-3 mr-1" />Feature Engineering

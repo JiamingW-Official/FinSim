@@ -43,7 +43,7 @@ const TIER_BG: Record<EloTier, string> = {
   Silver:   "bg-muted-foreground/10 border-muted-foreground/20",
   Gold:     "bg-yellow-400/10 border-yellow-400/25",
   Platinum: "bg-cyan-300/10 border-cyan-300/25",
-  Diamond:  "bg-primary/10 border-border",
+  Diamond:  "bg-primary/10 border-border/40",
 };
 
 // Win probability: P(win) = 1 / (1 + 10^((oppElo - myElo)/400))

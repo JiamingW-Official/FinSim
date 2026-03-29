@@ -1392,7 +1392,7 @@ export default function PatternsPage() {
   return (
     <div className="p-6 space-y-6 min-h-full bg-background">
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <BarChart2 className="h-5 w-5 text-indigo-400" />
@@ -1414,7 +1414,7 @@ export default function PatternsPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="library">
+      <Tabs defaultValue="library" className="mt-8">
         <TabsList className="bg-card border border-border">
           <TabsTrigger value="library" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
             <BookOpen className="h-3.5 w-3.5 mr-1.5" />

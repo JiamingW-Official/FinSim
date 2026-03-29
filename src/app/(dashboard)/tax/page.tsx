@@ -1365,7 +1365,7 @@ export default function TaxPage() {
           className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
         >
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Tax Optimization & Planning</h1>
+            <h1 className="text-xl font-bold text-foreground">Tax Optimization & Planning</h1>
             <p className="text-sm text-muted-foreground mt-1">
               2024 US federal tax reference — brackets, capital gains, harvesting, and estate planning
             </p>

@@ -582,19 +582,19 @@ export default function CreditDerivativesPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
+      {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
             <Shield className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Credit Derivatives</h1>
+            <h1 className="text-xl font-semibold text-foreground">Credit Derivatives</h1>
             <p className="text-muted-foreground text-sm">CDS mechanics, CDX indices, credit-linked notes, TRS, and structured credit</p>
           </div>
         </div>

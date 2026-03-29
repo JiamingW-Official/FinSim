@@ -1158,8 +1158,8 @@ export default function EstatePlanningPage() {
         </p>
       </div>
 
-      {/* Summary chips */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      {/* Summary chips — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-5 gap-3">
         <StatChip label="2024 Estate Tax Exemption" value="$13.61M" color="green" />
         <StatChip label="Annual Gift Exclusion" value="$18,000" color="blue" />
         <StatChip label="Top Estate Tax Rate" value="40%" color="red" />
@@ -1168,7 +1168,7 @@ export default function EstatePlanningPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="basics" className="flex-1">
+      <Tabs defaultValue="basics" className="flex-1 mt-8">
         <TabsList className="grid w-full grid-cols-5 mb-4">
           {TABS.map((t) => (
             <TabsTrigger key={t.id} value={t.id} className="flex items-center gap-1.5 text-xs">

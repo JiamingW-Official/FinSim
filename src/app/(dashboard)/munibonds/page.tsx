@@ -988,8 +988,8 @@ export default function MuniBondsPage() {
         </div>
       </div>
 
-      {/* Stats Row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      {/* Stats Row — Hero */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
         {[
           { label: "Avg Muni Yield", value: "3.94%", sub: "across 8 bonds", icon: TrendingUp, color: "text-emerald-400" },
           { label: "Avg TEY (37%)", value: "6.45%", sub: "vs equivalent taxable", icon: Calculator, color: "text-indigo-400" },

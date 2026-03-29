@@ -1028,10 +1028,10 @@ export default function PerformancePage() {
         {/* ── TAB 1: OVERVIEW ───────────────────────────────────────────────── */}
         <TabsContent value="overview" className="space-y-4 data-[state=inactive]:hidden">
           {/* Hero */}
-          <Card className="p-5">
+          <Card className="p-6 border-l-4 border-l-primary">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Total Return</p>
+                <p className="text-lg text-muted-foreground mb-1">Total Return</p>
                 <div className="flex items-end gap-3">
                   <span
                     className={cn(

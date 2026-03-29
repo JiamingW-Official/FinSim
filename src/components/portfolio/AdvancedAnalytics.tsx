@@ -777,7 +777,7 @@ function DrawdownSection() {
         </table>
       </div>
 
-      <div className="flex items-start gap-1.5 rounded-md border border-border bg-primary/8 px-3 py-2 text-xs text-muted-foreground">
+      <div className="flex items-start gap-1.5 rounded-md border border-border/40 bg-primary/8 px-3 py-2 text-xs text-muted-foreground">
         <span className="text-primary font-medium shrink-0">DD Correlation {ddCorrelation.toFixed(2)}:</span>
         <span>{ddCorrelation > 0.6 ? "Portfolio drawdowns are highly correlated with market drawdowns — limited diversification benefit in crises." : "Portfolio shows some independence from market drawdowns — provides diversification in stress."}</span>
       </div>
@@ -1093,7 +1093,7 @@ export default function AdvancedAnalytics() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="rounded-lg border border-border bg-card p-4"
+          className="rounded-lg border border-border/40 bg-card p-4"
         >
           <div className="flex items-center gap-2 mb-4">
             <span className={cn("h-1.5 w-1.5 rounded-full inline-block", activeTabMeta.color.replace("text-", "bg-"))} />

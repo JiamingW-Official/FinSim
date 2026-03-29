@@ -436,10 +436,12 @@ export default function ESGIntegrationPage() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
+        <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}
+          className="border-l-4 border-l-primary rounded-lg bg-card p-6"
+        >
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+              <h1 className="text-xl font-semibold tracking-tight flex items-center gap-2">
                 <Leaf className="w-6 h-6 text-emerald-400" />
                 ESG Portfolio Integration
               </h1>
@@ -457,7 +459,7 @@ export default function ESGIntegrationPage() {
         </motion.div>
 
         {/* Summary stats */}
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.35 }}>
+        <motion.div className="mt-8" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.35 }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: "Portfolio ESG Score", value: (COMPANIES.reduce((s, c) => s + c.total, 0) / COMPANIES.length).toFixed(1), icon: Award, color: "text-emerald-400" },

@@ -800,7 +800,7 @@ export default function SmartBetaPage() {
                   <Layers className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold tracking-tight">Smart Beta & Factor ETFs</h1>
+                  <h1 className="text-xl font-bold tracking-tight">Smart Beta & Factor ETFs</h1>
                   <p className="text-sm text-muted-foreground mt-0.5">
                     Rules-based systematic exposure to return premia — between passive and active
                   </p>

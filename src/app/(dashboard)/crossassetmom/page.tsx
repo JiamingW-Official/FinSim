@@ -997,19 +997,19 @@ export default function CrossAssetMomPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-6">
-      {/* Header */}
+      {/* HERO Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="mb-6"
+        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-indigo-900/40 border border-indigo-700/40">
             <TrendingUp size={22} className="text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Cross-Asset Momentum</h1>
+            <h1 className="text-xl font-semibold text-foreground">Cross-Asset Momentum</h1>
             <p className="text-sm text-muted-foreground">
               Time-series momentum, cross-sectional signals, trend following &amp; AQR evidence
             </p>

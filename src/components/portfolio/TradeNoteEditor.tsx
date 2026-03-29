@@ -48,7 +48,7 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           rows={3}
-          className="w-full resize-none rounded-lg border border-border bg-background px-2.5 py-1.5 text-xs outline-none placeholder:text-muted-foreground/50 focus:ring-1 focus:ring-primary"
+          className="w-full resize-none rounded-lg border border-border/40 bg-background px-2.5 py-1.5 text-xs outline-none placeholder:text-muted-foreground/50 focus:ring-1 focus:ring-primary"
           placeholder="Add notes about this trade..."
           autoFocus
         />
@@ -70,7 +70,7 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
                     "rounded-full border px-2 py-0.5 text-xs font-medium transition-colors",
                     isActive
                       ? "border-primary/30 bg-primary/15 text-primary"
-                      : "border-border bg-muted/30 text-muted-foreground hover:bg-muted/50",
+                      : "border-border/40 bg-muted/30 text-muted-foreground hover:bg-muted/50",
                   )}
                 >
                   {tag}

@@ -92,7 +92,7 @@ const TOURNAMENTS: TournamentDef[] = [
     icon: <BarChart2 className="h-4 w-4" />,
     color: "text-primary",
     bgColor: "bg-primary/10",
-    borderColor: "border-border",
+    borderColor: "border-border/40",
     inviteOnly: false,
   },
   {
@@ -108,7 +108,7 @@ const TOURNAMENTS: TournamentDef[] = [
     icon: <Target className="h-4 w-4" />,
     color: "text-primary",
     bgColor: "bg-primary/10",
-    borderColor: "border-border",
+    borderColor: "border-border/40",
     inviteOnly: false,
   },
   {

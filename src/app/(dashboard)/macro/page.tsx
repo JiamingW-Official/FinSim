@@ -605,12 +605,12 @@ export default function MacroDashboardPage() {
         </div>
       </motion.div>
 
-      {/* Summary Row */}
+      {/* Summary Row — Hero */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-3 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6"
       >
         <StatChip label="US Real GDP Growth" value={2.5} delta={0.2} unit="%" icon={<TrendingUp size={13} />} />
         <StatChip label="CPI (YoY)" value={2.8} delta={-0.1} unit="%" icon={<Activity size={13} />} />

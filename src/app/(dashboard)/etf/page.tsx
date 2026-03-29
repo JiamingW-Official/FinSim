@@ -1391,17 +1391,17 @@ export default function ETFPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border/50 px-6 py-4">
+      <div className="flex items-center gap-3 border-b border-border/50 border-l-4 border-l-primary px-6 py-4">
         <PieChart className="h-5 w-5 text-primary" />
         <div>
-          <h1 className="text-base font-medium leading-none">ETF Analysis</h1>
+          <h1 className="text-lg font-medium leading-none">ETF Analysis</h1>
           <p className="mt-1 text-xs text-muted-foreground">
             Explore, compare, and screen 15 major ETFs across all asset classes
           </p>
         </div>
       </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0 mt-8">
         <TabsList className="shrink-0 mx-6 mt-3 w-fit">
           <TabsTrigger value="explorer" className="text-xs gap-1.5">
             <Search className="h-3.5 w-3.5" />

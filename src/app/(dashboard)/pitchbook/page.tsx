@@ -444,8 +444,8 @@ function PitchStructureTab() {
   return (
     <div className="space-y-6">
       {/* Deal header card */}
-      <Card className="bg-card border-border">
-        <CardContent className="pt-4 pb-4">
+      <Card className="bg-card border-border border-l-4 border-l-primary">
+        <CardContent className="p-6">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
@@ -453,7 +453,7 @@ function PitchStructureTab() {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Transaction</p>
-                <p className="text-sm font-semibold text-foreground">NXTS Acquires STRD</p>
+                <p className="text-lg font-semibold text-foreground">NXTS Acquires STRD</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-3 ml-auto">

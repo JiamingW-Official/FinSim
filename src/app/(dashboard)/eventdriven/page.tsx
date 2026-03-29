@@ -1142,14 +1142,14 @@ function DistressedSPACTab() {
 export default function EventDrivenPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* Header — Hero */}
+      <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-indigo-900/40 border border-indigo-800/50">
             <Zap className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Event-Driven Investment Strategies</h1>
+            <h1 className="text-lg font-bold text-foreground">Event-Driven Investment Strategies</h1>
             <p className="text-sm text-muted-foreground">Merger arb · Activism · Spin-offs · Distressed · SPACs</p>
           </div>
         </div>
@@ -1168,7 +1168,7 @@ export default function EventDrivenPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="merger" className="w-full">
+      <Tabs defaultValue="merger" className="w-full mt-8">
         <TabsList className="grid grid-cols-2 gap-1 sm:grid-cols-4 bg-card border border-border rounded-lg p-1 h-auto mb-6">
           {[
             { value: "merger", label: "Merger Arb", icon: TrendingUp },

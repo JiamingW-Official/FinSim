@@ -369,7 +369,7 @@ function SectionCard({
   className?: string;
 }) {
   return (
-    <div className={cn("rounded-xl border border-border bg-card p-4", className)}>
+    <div className={cn("rounded-xl border border-border/40 bg-card p-4", className)}>
       <div className="mb-3 flex items-center gap-2">
         <span className="text-primary">{icon}</span>
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
@@ -391,7 +391,7 @@ function MetricChip({
   valueClass?: string;
 }) {
   return (
-    <div className="flex flex-col items-center rounded-lg border border-border bg-background px-3 py-2">
+    <div className="flex flex-col items-center rounded-lg border border-border/40 bg-background px-3 py-2">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("mt-0.5 text-sm font-bold tabular-nums", valueClass ?? "text-foreground")}>
         {value}
@@ -418,23 +418,23 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
     <div className="space-y-4">
       {/* Totals bar */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-lg border border-border bg-background p-3">
+        <div className="rounded-lg border border-border/40 bg-background p-3">
           <div className="text-xs text-muted-foreground">Total Value</div>
           <div className="mt-1 text-lg font-bold text-foreground">
             <AnimatedCounter value={totalValue} formatter={(v) => fmt$(v)} />
           </div>
         </div>
-        <div className="rounded-lg border border-border bg-background p-3">
+        <div className="rounded-lg border border-border/40 bg-background p-3">
           <div className="text-xs text-muted-foreground">Total Cost</div>
           <div className="mt-1 text-lg font-bold text-foreground">{fmt$(totalCost)}</div>
         </div>
-        <div className="rounded-lg border border-border bg-background p-3">
+        <div className="rounded-lg border border-border/40 bg-background p-3">
           <div className="text-xs text-muted-foreground">Unrealized P&L</div>
           <div className={cn("mt-1 text-lg font-bold tabular-nums", pctColor(totalPnL))}>
             <AnimatedCounter value={totalPnL} formatter={(v) => fmt$(v, true)} />
           </div>
         </div>
-        <div className="rounded-lg border border-border bg-background p-3">
+        <div className="rounded-lg border border-border/40 bg-background p-3">
           <div className="text-xs text-muted-foreground">Overall Return</div>
           <div className={cn("mt-1 text-lg font-bold tabular-nums", pctColor(totalReturn))}>
             <AnimatedCounter value={totalReturn} formatter={(v) => fmtPct(v, true)} />
@@ -443,9 +443,9 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
       </div>
 
       {/* Positions table */}
-      <div className="overflow-x-auto rounded-lg border border-border">
+      <div className="overflow-x-auto rounded-lg border border-border/40">
         <table className="w-full text-xs">
-          <thead className="border-b border-border bg-muted/30">
+          <thead className="border-b border-border/40 bg-muted/30">
             <tr>
               {["Symbol", "Shares", "Cost", "Price", "Value", "P&L $", "P&L %", "Weight"].map((h) => (
                 <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
@@ -593,7 +593,7 @@ function AssetAllocationMonitor({ classes }: { classes: AssetClass[] }) {
               </div>
             );
           })}
-          <div className="mt-3 rounded-lg border border-border bg-background p-2 text-xs text-muted-foreground">
+          <div className="mt-3 rounded-lg border border-border/40 bg-background p-2 text-xs text-muted-foreground">
             <span className="font-semibold text-foreground">Next review:</span> in {daysUntilReview} days. Rebalance triggers when drift &gt; 5%.
           </div>
         </div>
@@ -649,7 +649,7 @@ function RiskDashboard({
         </h4>
         <div className="space-y-2">
           {clusters.map((cl) => (
-            <div key={cl.label} className="flex items-center justify-between rounded-lg border border-border bg-background px-3 py-2">
+            <div key={cl.label} className="flex items-center justify-between rounded-lg border border-border/40 bg-background px-3 py-2">
               <div className="flex items-center gap-2">
                 <Shield size={13} className="text-amber-400" />
                 <span className="text-xs font-semibold text-foreground">{cl.label}</span>
@@ -732,7 +732,7 @@ function PerformanceAttribution() {
         </h4>
         <div className="space-y-1.5">
           {attribution.map((a) => (
-            <div key={a.name} className="flex items-center justify-between rounded-lg border border-border bg-background px-3 py-2">
+            <div key={a.name} className="flex items-center justify-between rounded-lg border border-border/40 bg-background px-3 py-2">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full" style={{ backgroundColor: a.color }} />
                 <span className="text-xs text-muted-foreground">{a.name}</span>
@@ -752,7 +752,7 @@ function PerformanceAttribution() {
         </h4>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {factors.map((f) => (
-            <div key={f.name} className="rounded-lg border border-border bg-background px-2 py-1.5">
+            <div key={f.name} className="rounded-lg border border-border/40 bg-background px-2 py-1.5">
               <div className="text-xs text-muted-foreground">{f.name}</div>
               <div className={cn("text-xs font-bold tabular-nums", pctColor(f.loading))}>
                 {f.loading >= 0 ? "+" : ""}{f.loading}
@@ -906,7 +906,7 @@ function TradeSuggestions({
 
   return (
     <div className="space-y-3">
-      <div className="rounded-lg border border-border bg-background p-2.5 text-xs text-muted-foreground">
+      <div className="rounded-lg border border-border/40 bg-background p-2.5 text-xs text-muted-foreground">
         <Info size={12} className="mr-1.5 inline text-primary" />
         Suggestions ordered by priority: tax-loss harvests first, then rebalancing trades.
       </div>
@@ -921,7 +921,7 @@ function TradeSuggestions({
             "rounded-xl border p-3",
             t.priority === "tax-loss"
               ? "border-emerald-500/30 bg-emerald-500/10"
-              : "border-border bg-card"
+              : "border-border/40 bg-card"
           )}
         >
           <div className="flex items-start justify-between gap-2">
@@ -1068,7 +1068,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
   return (
     <div className="space-y-2">
       {groups.map((g) => (
-        <div key={g.key} className="rounded-xl border border-border overflow-hidden">
+        <div key={g.key} className="rounded-xl border border-border/40 overflow-hidden">
           <button
             onClick={() => setExpanded(expanded === g.key ? null : g.key)}
             className="flex w-full items-center justify-between bg-card px-4 py-2.5 text-left hover:bg-muted/30 transition-colors"
@@ -1095,7 +1095,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
                 transition={{ duration: 0.2 }}
                 className="overflow-hidden"
               >
-                <div className="divide-y divide-border border-t border-border">
+                <div className="divide-y divide-border border-t border-border/40">
                   {g.alerts.map((a) => (
                     <div
                       key={a.id}
@@ -1188,7 +1188,7 @@ export default function PortfolioMonitor() {
           )}
           <button
             onClick={handleRefresh}
-            className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50 transition-colors"
+            className="flex items-center gap-1.5 rounded-lg border border-border/40 bg-card px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50 transition-colors"
           >
             <RefreshCw size={12} />
             Refresh

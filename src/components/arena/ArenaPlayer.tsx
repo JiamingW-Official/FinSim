@@ -275,7 +275,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
             {mm > 0 ? `${mm}:${String(ss).padStart(2, "0")}` : `${ss}s`}
           </motion.div>
 
-          <div className="flex items-center gap-1.5 rounded-lg border border-border bg-muted/10 px-2 py-1">
+          <div className="flex items-center gap-1.5 rounded-lg border border-border/40 bg-muted/10 px-2 py-1">
             <Zap className={cn("h-3 w-3", config.color)} />
             <span className={cn("text-xs font-bold", config.color)}>{config.name}</span>
           </div>
@@ -296,7 +296,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           </div>
 
           {/* Position badge */}
-          <div className="flex items-center gap-1 rounded-lg border border-border bg-muted/10 px-2 py-1">
+          <div className="flex items-center gap-1 rounded-lg border border-border/40 bg-muted/10 px-2 py-1">
             {sim.position ? (
               <>
                 {sim.position.side === "long"
@@ -312,7 +312,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           </div>
 
           {/* Trades count */}
-          <div className="rounded-lg border border-border bg-muted/10 px-2 py-1 text-center">
+          <div className="rounded-lg border border-border/40 bg-muted/10 px-2 py-1 text-center">
             <div className="text-xs font-bold tabular-nums text-muted-foreground">{sim.trades.length}</div>
             <div className="text-[11px] text-muted-foreground/70">trades</div>
           </div>

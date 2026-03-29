@@ -451,7 +451,12 @@ export default function MomentumBuilderPage() {
         </div>
       </div>
 
-      <Tabs defaultValue="builder" className="w-full">
+      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <h2 className="text-lg font-medium text-foreground mb-1">Momentum Strategy Lab</h2>
+        <p className="text-sm text-muted-foreground">Quantitative momentum construction, signal analysis, backtesting, decay dynamics, and crash behavior.</p>
+      </div>
+
+      <Tabs defaultValue="builder" className="w-full mt-8">
         <TabsList className="grid w-full grid-cols-5 mb-4">
           <TabsTrigger value="builder" className="text-xs">
             <SlidersHorizontal className="w-3 h-3 mr-1" />Signal Builder

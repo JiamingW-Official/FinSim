@@ -1036,8 +1036,14 @@ export default function MultiStrategyPage() {
           </div>
         </motion.div>
 
+        {/* Hero */}
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <h2 className="text-lg font-medium text-foreground mb-1">Multi-Strategy Architecture</h2>
+          <p className="text-sm text-muted-foreground">Pod structure, strategy allocation, centralized risk management, and fund economics of the Millennium/Citadel model.</p>
+        </div>
+
         {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
           <TabsList className="bg-card border border-border mb-6">
             <TabsTrigger value="pods" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
               <Users className="h-3.5 w-3.5 mr-1.5" />Pod Structure

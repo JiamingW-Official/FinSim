@@ -354,13 +354,13 @@ export default function TaxLossHarvestingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
-      <motion.div {...fadeUp(0)} className="space-y-1">
+      <motion.div {...fadeUp(0)} className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/20">
             <Scissors className="w-5 h-5 text-green-500" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Tax Loss Harvesting</h1>
+            <h1 className="text-xl font-bold tracking-tight">Tax Loss Harvesting</h1>
             <p className="text-sm text-muted-foreground">
               Strategically realize losses to offset gains and reduce your tax bill
             </p>

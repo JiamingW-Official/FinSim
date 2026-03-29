@@ -1512,7 +1512,7 @@ export default function VentureDebtPage() {
                   Alternative Finance
                 </Badge>
               </div>
-              <h1 className="text-2xl font-bold text-foreground">
+              <h1 className="text-xl font-bold text-foreground">
                 Venture Debt &amp; Growth Financing
               </h1>
               <p className="mt-2 text-muted-foreground max-w-2xl">

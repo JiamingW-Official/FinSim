@@ -1481,13 +1481,13 @@ export default function EquityResearch3Page() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
-        {/* Header */}
-        <div>
+        {/* Header — Hero */}
+        <div className="border-l-4 border-l-primary rounded-lg bg-card p-6">
           <div className="flex items-center gap-2 mb-1">
             <Microscope className="w-5 h-5 text-primary" />
             <span className="text-xs font-medium text-primary">Advanced Equity Research</span>
           </div>
-          <h1 className="text-2xl font-bold text-foreground">
+          <h1 className="text-xl font-bold text-foreground">
             SOTP · Primary Research · Forensic Accounting · Thesis Construction
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
@@ -1496,7 +1496,7 @@ export default function EquityResearch3Page() {
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="sotp" className="w-full">
+        <Tabs defaultValue="sotp" className="w-full mt-8">
           <TabsList className="grid grid-cols-4 w-full bg-muted border border-border rounded-xl p-1 h-auto">
             {[
               { value: "sotp", label: "SOTP & Conglomerates", icon: <PieChart className="w-3.5 h-3.5" /> },

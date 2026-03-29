@@ -1196,7 +1196,7 @@ export default function SukukPage() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="mb-8"
+          className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 rounded-xl bg-emerald-900/30 border border-emerald-700/40">

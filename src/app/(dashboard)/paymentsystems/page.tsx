@@ -1018,9 +1018,9 @@ export default function PaymentSystemsPage() {
         <TabsContent value="rails" className="data-[state=inactive]:hidden space-y-4 mt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Rails table */}
-            <Card className="bg-card border-border">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
+            <Card className="bg-card border-border border-l-4 border-l-primary">
+              <CardHeader className="pb-2 p-6">
+                <CardTitle className="text-lg flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-primary" />
                   Global Payment Rails Comparison
                 </CardTitle>

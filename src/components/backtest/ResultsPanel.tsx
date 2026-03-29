@@ -39,7 +39,7 @@ const GRADE_CONFIG = {
   S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", icon: Trophy, label: "Outstanding!" },
   A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", icon: Star, label: "Excellent!" },
   B: { color: "text-primary", bg: "bg-primary/10", border: "border-primary/30", icon: ThumbsUp, label: "Good job!" },
-  C: { color: "text-muted-foreground", bg: "bg-muted/50", border: "border-border", icon: Dumbbell, label: "Keep trying!" },
+  C: { color: "text-muted-foreground", bg: "bg-muted/50", border: "border-border/40", icon: Dumbbell, label: "Keep trying!" },
 } as const;
 
 type Tab = "overview" | "analytics" | "montecarlo" | "trades" | "compare";
@@ -251,7 +251,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
         <button onClick={onSave} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">
           <Save className="h-3.5 w-3.5" /> Save
         </button>
-        <button onClick={onRerun} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-muted/50 py-2 text-xs font-medium text-foreground transition-colors hover:bg-muted">
+        <button onClick={onRerun} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border/40 bg-muted/50 py-2 text-xs font-medium text-foreground transition-colors hover:bg-muted">
           <RefreshCw className="h-3.5 w-3.5" /> Rerun
         </button>
       </div>

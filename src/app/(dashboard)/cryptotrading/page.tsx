@@ -1159,13 +1159,13 @@ export default function CryptoTradingPage() {
   return (
     <div className="h-full overflow-y-auto bg-card">
       <div className="max-w-5xl mx-auto px-4 py-6">
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
+        {/* HERO Header */}
+        <div className="flex items-center gap-3 mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
           <div className="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/20">
             <Bitcoin className="w-6 h-6 text-amber-400" />
           </div>
           <div>
-            <h1 className="text-xl font-medium text-foreground">Advanced Crypto Trading</h1>
+            <h1 className="text-xl font-semibold text-foreground">Advanced Crypto Trading</h1>
             <p className="text-sm text-muted-foreground">
               On-chain analytics · Derivatives · Cycle indicators · Portfolio strategies
             </p>

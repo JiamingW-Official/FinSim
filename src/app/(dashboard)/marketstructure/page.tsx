@@ -1330,12 +1330,12 @@ export default function MarketStructurePage() {
         </div>
       </motion.div>
 
-      {/* Stat pills */}
+      {/* Stat pills — Hero */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.08 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-3 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6"
       >
         {[
           { label: "Daily US Equity Volume", value: "$420B+", sub: "avg notional traded", icon: Activity, color: "#3b82f6" },

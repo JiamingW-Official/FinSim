@@ -648,12 +648,12 @@ export default function ETFArbPage() {
         </div>
       </motion.div>
 
-      {/* Key Metrics */}
+      {/* Key Metrics — Hero */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-3"
+        className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3"
       >
         <MetricCard
           icon={BarChart3}
@@ -690,6 +690,7 @@ export default function ETFArbPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
+        className="mt-8"
       >
         <Tabs defaultValue="flow">
           <TabsList className="mb-4 flex flex-wrap h-auto gap-1 bg-muted/30">

@@ -1962,11 +1962,11 @@ export default function CryptoPage() {
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      {/* Header */}
-      <div className="shrink-0 border-b border-border/50 bg-background px-4 pt-4 pb-0">
+      {/* HERO Header */}
+      <div className="shrink-0 border-b border-border/50 border-l-4 border-l-primary bg-background px-4 pt-4 pb-0">
         <div className="flex items-center gap-2 mb-3">
           <Bitcoin className="h-5 w-5 text-primary" />
-          <h1 className="text-base font-medium">Crypto &amp; DeFi</h1>
+          <h1 className="text-lg font-semibold">Crypto &amp; DeFi</h1>
         </div>
 
         {/* Tab bar */}

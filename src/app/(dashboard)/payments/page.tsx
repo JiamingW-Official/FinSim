@@ -229,9 +229,9 @@ function PaymentRailsTab() {
   return (
     <div className="space-y-6">
       {/* SVG Flow Diagram */}
-      <Card className="bg-card border-border">
-        <CardHeader>
-          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
+      <Card className="bg-card border-border border-l-4 border-l-primary">
+        <CardHeader className="p-6">
+          <CardTitle className="text-lg text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
             Card Transaction Flow
           </CardTitle>

@@ -1049,8 +1049,14 @@ export default function MicrofinancepagePage() {
           </div>
         </motion.div>
 
+        {/* Hero */}
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <h2 className="text-lg font-medium text-foreground mb-1">Microfinance Research Hub</h2>
+          <p className="text-sm text-muted-foreground">Microloan models, MFI financial health analysis, impact evidence, and mobile money innovation.</p>
+        </div>
+
         {/* Tabs */}
-        <Tabs defaultValue="models">
+        <Tabs defaultValue="models" className="mt-8">
           <TabsList className="bg-card border border-border flex flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="models" className="text-xs data-[state=active]:bg-muted">
               Microfinance Models

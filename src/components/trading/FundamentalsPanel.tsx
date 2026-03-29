@@ -206,7 +206,7 @@ export function FundamentalsPanel() {
         {!isETF && (
           <div className="rounded-lg bg-card border border-border/40 p-3 space-y-1.5 text-xs">
             <div className="flex items-center justify-between">
-              <span className={cn("rounded border px-2 py-0.5 text-xs font-bold", ratingColor(data.analystRating))}>
+              <span className={cn("rounded border px-2 py-0.5 text-xs font-medium", ratingColor(data.analystRating))}>
                 {data.analystRating}
               </span>
               <span className="text-[10px] text-muted-foreground uppercase tracking-wide">{data.analystCount} analysts</span>
@@ -221,7 +221,7 @@ export function FundamentalsPanel() {
                   label="Analyst Price Target Range"
                 />
                 {targetUpside != null && (
-                  <div className={cn("text-right text-[11px] font-bold", pctColor(targetUpside))}>
+                  <div className={cn("text-right text-[11px] font-medium", pctColor(targetUpside))}>
                     Consensus PT ${data.priceTarget} → {targetUpside > 0 ? "+" : ""}{targetUpside}% upside
                   </div>
                 )}
@@ -257,7 +257,7 @@ export function FundamentalsPanel() {
               <div className="flex-1">
                 <div className="flex justify-between text-[11px] mb-0.5">
                   <span className="text-muted-foreground">Sector avg</span>
-                  <span className="text-foreground font-bold">{fmt(data.sectorAvgPE)}×</span>
+                  <span className="text-foreground font-medium">{fmt(data.sectorAvgPE)}×</span>
                 </div>
                 <div className="h-1 rounded-full bg-muted/40">
                   <div className="h-1 rounded-full bg-muted-foreground/40" style={{ width: "100%" }} />
@@ -363,13 +363,13 @@ export function FundamentalsPanel() {
             <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Earnings</div>
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Next earnings</span>
-              <span className="rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-xs font-bold text-primary">
+              <span className="rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-xs font-medium text-primary">
                 {data.nextEarningsDate}
               </span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Last result</span>
-              <span className={cn("flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-bold", earningsColor(data.lastEarningsResult))}>
+              <span className={cn("flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium", earningsColor(data.lastEarningsResult))}>
                 {data.lastEarningsResult === "beat" ? (
                   <TrendingUp className="h-2.5 w-2.5" />
                 ) : data.lastEarningsResult === "miss" ? (
@@ -396,7 +396,7 @@ export function FundamentalsPanel() {
               <MetricTooltip metric="shortFloat">
                 <span className="text-xs text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Short Float</span>
               </MetricTooltip>
-              <span className={cn("text-[11px] font-bold", data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-emerald-400")}>
+              <span className={cn("text-[11px] font-medium", data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-emerald-400")}>
                 {fmt(data.shortFloat, 1)}%
               </span>
             </div>

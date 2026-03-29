@@ -1239,14 +1239,14 @@ export default function FamilyOfficePage() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      {/* Header */}
-      <div className="mb-6">
+      {/* Header — Hero */}
+      <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/20">
             <Building2 className="h-5 w-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-medium text-foreground">
+            <h1 className="text-lg font-medium text-foreground">
               Family Office & UHNW Wealth Management
             </h1>
             <p className="text-sm text-muted-foreground">

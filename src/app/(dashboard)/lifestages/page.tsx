@@ -1358,8 +1358,8 @@ export default function LifeStagesPage() {
           </p>
         </div>
 
-        {/* Stage overview strip */}
-        <div className="grid grid-cols-5 gap-2">
+        {/* Stage overview strip — Hero */}
+        <div className="grid grid-cols-5 gap-2 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
           {TABS.map((t, i) => (
             <button
               key={t.value}

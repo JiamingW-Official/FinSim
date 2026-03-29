@@ -798,7 +798,7 @@ export function EfficientFrontier() {
   return (
     <div className="space-y-4">
       {/* ── Controls ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
         <h3 className="text-sm font-semibold">Efficient Frontier Optimizer</h3>
 
         {/* Asset Universe */}
@@ -819,7 +819,7 @@ export function EfficientFrontier() {
                     "flex flex-col items-center rounded-md border px-2.5 py-1.5 text-xs font-semibold transition-colors",
                     selected
                       ? "border-primary/50 bg-primary/10 text-primary"
-                      : "border-border bg-background text-muted-foreground hover:border-primary/30",
+                      : "border-border/40 bg-background text-muted-foreground hover:border-primary/30",
                   )}
                 >
                   <span>{ticker}</span>
@@ -933,7 +933,7 @@ export function EfficientFrontier() {
       </div>
 
       {/* ── Efficient Frontier Chart ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
         <div className="flex items-center justify-between">
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
             Efficient Frontier — {scatterPoints.length} random portfolios
@@ -979,7 +979,7 @@ export function EfficientFrontier() {
       </div>
 
       {/* ── Optimal Portfolio Results ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
         <h4 className="text-sm font-semibold">Optimal Portfolio Results</h4>
 
         {/* Stats comparison */}
@@ -1085,7 +1085,7 @@ export function EfficientFrontier() {
       </div>
 
       {/* ── Correlation Matrix ── */}
-      <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
         <div className="flex items-center justify-between">
           <h4 className="text-sm font-semibold">Correlation Matrix</h4>
           <span className="text-xs text-muted-foreground">

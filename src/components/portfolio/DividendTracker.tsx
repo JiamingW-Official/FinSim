@@ -279,7 +279,7 @@ export function DividendTracker() {
   const selectedStock = DIVIDEND_STOCKS.find((s) => s.ticker === selectedTicker) ?? DIVIDEND_STOCKS[0];
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 space-y-5">
+    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-5">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">Dividend Tracker</h3>
         <span className="text-xs text-muted-foreground">Income Portfolio</span>
@@ -346,7 +346,7 @@ export function DividendTracker() {
       </div>
 
       {/* Compounding calculator */}
-      <div className="rounded-lg border border-border bg-muted/20 p-3">
+      <div className="rounded-lg border border-border/40 bg-muted/20 p-3">
         <CompoundingCalc
           annualIncome={totalAnnualIncome}
           totalMarketValue={totalMarketValue}

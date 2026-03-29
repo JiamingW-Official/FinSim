@@ -434,9 +434,9 @@ function DBvsDCTab() {
       </div>
 
       {/* Comparison Matrix */}
-      <Card className="bg-muted/60 border-border">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-base text-foreground flex items-center gap-2">
+      <Card className="bg-muted/60 border-border border-l-4 border-l-primary">
+        <CardHeader className="pb-3 p-6">
+          <CardTitle className="text-lg text-foreground flex items-center gap-2">
             <Users className="w-4 h-4 text-primary" />
             DB vs DC Plan Comparison (10 Dimensions)
           </CardTitle>

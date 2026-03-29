@@ -699,10 +699,10 @@ export default function CryptoTrading2Page() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      {/* HERO Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-xl bg-card p-6">
         <div>
-          <h1 className="text-2xl font-bold flex items-center gap-2">
+          <h1 className="text-xl font-semibold flex items-center gap-2">
             <Bitcoin className="h-6 w-6 text-amber-400" />
             Crypto Advanced Trading
           </h1>

@@ -1221,8 +1221,8 @@ export default function MarketMakingPage() {
             </div>
           </div>
 
-          {/* Key metrics strip */}
-          <div className="grid grid-cols-5 gap-2 mt-4">
+          {/* Key metrics strip — Hero */}
+          <div className="grid grid-cols-5 gap-2 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
             {[
               { label: "Citadel MM Volume", val: "~25%", sub: "US equities", color: "text-primary" },
               { label: "Typical Spread", val: "1–5 bps", sub: "liquid stocks", color: "text-amber-400" },

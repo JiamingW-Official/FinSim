@@ -488,8 +488,8 @@ export default function LoanSyndPage() {
         </p>
       </div>
 
-      {/* KPI strip */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+      {/* KPI strip — Hero */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
         {[
           { label: "US LL Market Size", value: "$1.4T", sub: "Outstanding notional", icon: DollarSign, color: "text-indigo-400" },
           { label: "CLO Share of Demand", value: "65%", sub: "Primary market buyers", icon: Users, color: "text-muted-foreground" },

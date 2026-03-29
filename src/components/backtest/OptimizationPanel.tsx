@@ -247,7 +247,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
         <div className="space-y-3">
           {/* Best parameters callout */}
           {bestCell && (
-            <div className="rounded-lg border border-border bg-primary/5 px-4 py-2.5">
+            <div className="rounded-lg border border-border/40 bg-primary/5 px-4 py-2.5">
               <div className="text-xs text-primary font-semibold">Best Parameters Found</div>
               <div className="mt-1 flex gap-4 text-xs">
                 <span className="text-muted-foreground">

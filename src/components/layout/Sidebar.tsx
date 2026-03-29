@@ -377,20 +377,17 @@ export function Sidebar() {
         collapsed ? "w-14 items-center" : "w-[200px] items-stretch",
       )}
     >
-      {/* Logo mark */}
+      {/* Logo mark — minimal */}
       <div
         className={cn(
-          "mb-2 flex shrink-0 items-center justify-center rounded-md bg-primary/5",
-          collapsed ? "h-8 w-8" : "mx-2.5 h-8 gap-1.5 px-2",
+          "mb-1 flex shrink-0 items-center",
+          collapsed ? "justify-center h-6" : "mx-3 h-6",
         )}
       >
-        <span className="text-[13px] font-semibold tracking-tight text-primary/80 select-none">
-          FS
-        </span>
-        {!collapsed && (
-          <span className="text-[13px] font-medium tracking-wide text-foreground/50 select-none">
-            FinSim
-          </span>
+        {collapsed ? (
+          <span className="text-[10px] font-medium text-muted-foreground/40 select-none">FS</span>
+        ) : (
+          <span className="text-xs font-medium tracking-tight text-muted-foreground/50 select-none">FinSim</span>
         )}
       </div>
 

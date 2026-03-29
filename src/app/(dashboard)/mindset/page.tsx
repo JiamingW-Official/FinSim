@@ -2009,8 +2009,14 @@ export default function MindsetPage() {
           </p>
         </motion.div>
 
+        {/* Hero */}
+        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <h2 className="text-lg font-medium text-foreground mb-1">Trading Psychology Toolkit</h2>
+          <p className="text-sm text-muted-foreground">Bias assessment, decision frameworks, emotional intelligence, process vs outcome thinking, and mental models for better trading.</p>
+        </div>
+
         {/* Tabs */}
-        <Tabs defaultValue="bias" className="space-y-6">
+        <Tabs defaultValue="bias" className="space-y-6 mt-8">
           <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
             {[
               { value: "bias", label: "Bias Assessment", icon: Brain },

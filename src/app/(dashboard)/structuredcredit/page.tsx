@@ -771,7 +771,7 @@ export default function StructuredCreditPage() {
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-xl font-bold flex items-center gap-2">
+            <h1 className="text-xl font-medium flex items-center gap-2">
               <Layers className="w-6 h-6 text-primary" />
               Structured Credit & CLOs
             </h1>

@@ -1405,11 +1405,11 @@ export default function FactorTimingPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-1">
           <Layers className="w-6 h-6 text-primary" />
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">Factor Timing</h1>
+          <h1 className="text-xl font-bold tracking-tight text-foreground">Factor Timing</h1>
           <Badge className="bg-primary/20 text-primary border-border text-xs ml-2">Quant</Badge>
         </div>
         <p className="text-sm text-muted-foreground">
@@ -1418,7 +1418,7 @@ export default function FactorTimingPage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mt-8">
         <TabsList className="bg-card border border-border flex flex-wrap h-auto gap-1 p-1 mb-6">
           {tabs.map((t) => (
             <TabsTrigger

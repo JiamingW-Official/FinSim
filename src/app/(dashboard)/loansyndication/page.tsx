@@ -1288,8 +1288,8 @@ export default function LoanSyndicationPage() {
         </p>
       </div>
 
-      {/* Top KPIs */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      {/* Top KPIs — Hero */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
         <StatCard icon={DollarSign} label="Pipeline Value" value="$8.1B" sub="5 active deals" color="text-primary" />
         <StatCard icon={TrendingUp} label="Avg Leverage" value="4.3x" sub="blended portfolio" color="text-amber-400" />
         <StatCard icon={RefreshCw} label="Book Coverage" value="2.1x" sub="avg oversubscription" color="text-emerald-400" />
