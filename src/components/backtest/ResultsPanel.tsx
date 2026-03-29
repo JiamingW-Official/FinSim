@@ -38,7 +38,7 @@ import RiskReturnScatter from "./RiskReturnScatter";
 const GRADE_CONFIG = {
   S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", glow: "", icon: Trophy, label: "Outstanding!" },
   A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", glow: "", icon: Star, label: "Excellent!" },
-  B: { color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/30", glow: "", icon: ThumbsUp, label: "Good job!" },
+  B: { color: "text-orange-400", bg: "bg-orange-400/10", border: "border-orange-400/30", glow: "", icon: ThumbsUp, label: "Good job!" },
   C: { color: "text-zinc-400", bg: "bg-zinc-400/10", border: "border-zinc-400/30", glow: "", icon: Dumbbell, label: "Keep trying!" },
 } as const;
 
@@ -76,7 +76,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
             onClick={() => setTab(t.id)}
             className={`flex flex-1 items-center justify-center gap-1 py-2.5 text-xs font-medium transition-all ${
               tab === t.id
-                ? "border-b-2 border-violet-500 text-violet-300"
+                ? "border-b-2 border-primary text-orange-400"
                 : "text-zinc-500 hover:text-zinc-300"
             }`}
           >
@@ -100,7 +100,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
               <GradeIcon className={`h-8 w-8 ${config.color}`} />
               <div className={`text-3xl font-bold ${config.color}`}>{grade}</div>
               <div className="text-xs text-zinc-400">{config.label}</div>
-              <div className="mt-1 rounded-full bg-violet-500/20 px-3 py-1 text-xs font-semibold text-violet-300">
+              <div className="mt-1 rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-orange-300">
                 +{xpEarned} XP
               </div>
             </motion.div>
@@ -250,7 +250,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
 
       {/* Actions (always visible) */}
       <div className="flex gap-2 border-t border-white/5 p-3">
-        <button onClick={onSave} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-violet-500/30 bg-violet-500/10 py-2 text-xs font-medium text-violet-300 transition-colors hover:bg-violet-500/20">
+        <button onClick={onSave} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 py-2 text-xs font-medium text-orange-300 transition-colors hover:bg-primary/20">
           <Save className="h-3.5 w-3.5" /> Save
         </button>
         <button onClick={onRerun} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 py-2 text-xs font-medium text-zinc-300 transition-colors hover:bg-white/10">

@@ -993,9 +993,10 @@ export function WatchlistPanel() {
       {/* Ticker list */}
       <div className="flex-1 overflow-y-auto min-h-0">
         {activeWatchlist.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-2 px-4 py-8 text-center">
-            <Bell className="h-6 w-6 text-muted-foreground/30" />
-            <p className="text-xs text-muted-foreground">Add tickers to track</p>
+          <div className="flex flex-col items-center justify-center py-12 text-center">
+            <LayoutList className="h-8 w-8 text-muted-foreground/40 mb-3" />
+            <p className="text-sm font-medium text-muted-foreground">Watchlist empty</p>
+            <p className="text-xs text-muted-foreground/70 mt-1">Use the + button above to add tickers you want to track</p>
           </div>
         ) : groupedSections ? (
           groupedSections.map((section) => (

@@ -33,12 +33,12 @@ import { PersonalizedCoach } from "@/components/ai/PersonalizedCoach";
 type Mode = "trade" | "review" | "brief" | "ideas" | "scan" | "personalized";
 
 const MODES: { value: Mode; label: string; desc: string }[] = [
-  { value: "trade", label: "Analyze", desc: "Analyze current chart setup" },
-  { value: "review", label: "Review", desc: "Review your last trade" },
-  { value: "brief", label: "Brief", desc: "Market context for current ticker" },
-  { value: "ideas", label: "Ideas", desc: "Top trade ideas across all tickers" },
-  { value: "scan", label: "Scan", desc: "Opportunity scanner — top 5 by score" },
-  { value: "personalized", label: "Coach", desc: "Personalized coaching with adaptive learning" },
+  { value: "trade", label: "Analyze", desc: "Technical signal analysis for current chart" },
+  { value: "review", label: "Review", desc: "Grade and review your last completed trade" },
+  { value: "brief", label: "Market Brief", desc: "Sector context and key levels for this ticker" },
+  { value: "ideas", label: "Ideas", desc: "Top trade setups across all tickers" },
+  { value: "scan", label: "Scan", desc: "Ranked opportunities by signal strength" },
+  { value: "personalized", label: "Coach", desc: "Adaptive tips based on your trading patterns" },
 ];
 
 // ─── Inline Sub-Components ───────────────────────────────────────────────────
@@ -166,7 +166,7 @@ function ScoreGauge({ score, bias }: { score: number; bias: string }) {
       {/* Label + context */}
       <div className="flex-1 min-w-0 space-y-0.5">
         <div className={cn("text-[11px] font-bold leading-none", textColor)}>{label}</div>
-        <div className="text-[8.5px] text-muted-foreground">Signal score: {score > 0 ? "+" : ""}{score} / 100</div>
+        <div className="text-[10px] text-muted-foreground">Composite: {score > 0 ? "+" : ""}{score} / 100</div>
       </div>
     </div>
   );
@@ -200,7 +200,7 @@ function SignalChips({
             onClick={() => onSelect(selectedId === s.id ? null : s.id)}
             title={s.description}
             className={cn(
-              "shrink-0 rounded border px-1.5 py-0.5 text-[8px] font-bold leading-none whitespace-nowrap transition-all",
+              "shrink-0 rounded border px-1.5 py-0.5 text-[10px] font-bold leading-none whitespace-nowrap transition-all",
               s.direction === "bullish"
                 ? selectedId === s.id
                   ? "bg-emerald-500/30 text-emerald-300 border-emerald-400/60 ring-1 ring-emerald-400/40"
@@ -642,7 +642,10 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
       className="rounded-md border border-border/40 bg-muted/30 px-2 py-2 space-y-1"
     >
       <div className="text-[11px] font-bold text-foreground/50">
-        Trade Plan
+        Suggested Plan
+      </div>
+      <div className="text-[9px] text-muted-foreground/50 -mt-0.5">
+        Based on detected technical signals
       </div>
       <div className="flex justify-between text-[11px]">
         <span className="text-muted-foreground">Entry Zone</span>
@@ -1106,8 +1109,10 @@ export function AICoachPanel() {
       >
         <div className="flex items-center gap-1.5 flex-wrap">
           <AlphaBotFace loading={loading} bias={result?.bias} conviction={result?.conviction} />
-          <span className="font-bold">AlphaBot</span>
-          <span className="text-[9px] text-muted-foreground/70 font-normal">Rules-based</span>
+          <span className="font-bold">Market Analysis</span>
+          {expanded && (
+            <span className="text-[9px] text-muted-foreground/70 font-normal">Rules-based</span>
+          )}
           {result && !expanded && (
             <>
               <SmallBadge label={result.regime.label} cls={regimeCls} />

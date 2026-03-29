@@ -15,7 +15,6 @@ import {
   History,
   Search,
   Trophy,
-  ChevronRight,
   BarChart2,
   PieChart,
   Globe,
@@ -27,8 +26,6 @@ import {
   BarChart,
   Clock,
   Star,
-  Filter,
-  LineChart,
   ArrowRight,
   Lightbulb,
   CheckCircle2,
@@ -238,172 +235,159 @@ export default function LearnPage() {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
-        <div className="mx-auto max-w-md space-y-4">
+        <div className="mx-auto max-w-2xl space-y-4">
 
           {/* ============ LEARNING PATH TAB ============ */}
           {activeTab === "path" && (
             <>
-              {/* Progress Overview Card */}
-              <div className="rounded-lg border border-border bg-card p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold">Overall Progress</span>
-                  <span className="text-xs text-muted-foreground">
-                    {completedCount}/{totalLessons} lessons
-                  </span>
-                </div>
-                <div className="h-2 w-full rounded-full bg-muted/30 mb-3">
-                  <div
-                    className="h-full rounded-full bg-primary transition-all"
-                    style={{ width: `${totalLessons > 0 ? (completedCount / totalLessons) * 100 : 0}%` }}
-                  />
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <div className="flex flex-col items-center gap-1 rounded-md bg-muted/20 py-2">
-                    <Zap className="h-3.5 w-3.5 text-primary" />
-                    <span className="text-[11px] font-bold">{xp.toLocaleString()}</span>
-                    <span className="text-[11px] text-muted-foreground">Total XP</span>
+              {/* Hero: Up Next / Begin Your Journey */}
+              {recommendedLesson ? (
+                <div className="rounded-lg border-l-4 border-primary bg-card p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[11px] font-bold text-primary uppercase tracking-wide">Up Next</span>
                   </div>
-                  <div className="flex flex-col items-center gap-1 rounded-md bg-muted/20 py-2">
-                    <Flame className="h-3.5 w-3.5 text-amber-400" />
-                    <span className="text-[11px] font-bold">{learningStreak}</span>
-                    <span className="text-[11px] text-muted-foreground">Day Streak</span>
+                  <p className="text-base font-bold mb-1">{recommendedLesson.lesson.title}</p>
+                  <div className="flex items-center gap-3 text-[11px] text-muted-foreground mb-4">
+                    <span>{recommendedLesson.unit.title}</span>
+                    <span className="flex items-center gap-1"><Clock className="h-2.5 w-2.5" />{recommendedLesson.lesson.duration ?? 10} min</span>
+                    <span className="flex items-center gap-1 text-primary font-semibold"><Zap className="h-2.5 w-2.5" />+{recommendedLesson.lesson.xpReward} XP</span>
                   </div>
-                  <div className="flex flex-col items-center gap-1 rounded-md bg-muted/20 py-2">
-                    <Trophy className="h-3.5 w-3.5 text-amber-400" />
-                    <span className="text-[11px] font-bold">{completedCount}</span>
-                    <span className="text-[11px] text-muted-foreground">Completed</span>
-                  </div>
+                  <Link
+                    href="/learn"
+                    className="flex items-center justify-center gap-1.5 w-full rounded-md bg-primary py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                  >
+                    {completedCount > 0 ? "Continue Learning" : "Begin Your Journey"}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
-              </div>
+              ) : (
+                <div className="rounded-lg border-l-4 border-emerald-500 bg-card p-6 text-center">
+                  <CheckCircle2 className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
+                  <p className="text-sm font-bold mb-1">All Lessons Complete</p>
+                  <p className="text-[11px] text-muted-foreground">You have finished every lesson. Try a practice trade to reinforce your skills.</p>
+                </div>
+              )}
 
-              {/* Your Learning Journey — Learn → Practice → Review loop */}
+              {/* Compact Learning Journey — 3 connected steps */}
               {(() => {
                 const progressPct = totalLessons > 0 ? completedCount / totalLessons : 0;
-                // Step 0 = Learn (< 10% done), 1 = Practice (10-80%), 2 = Review (80%+)
                 const currentStep = progressPct >= 0.8 ? 2 : progressPct >= 0.1 ? 1 : 0;
                 const steps = [
-                  { label: "Learn", icon: BookOpen, href: "/learn", desc: "Complete lessons" },
-                  { label: "Practice", icon: LineChart, href: "/trade", desc: "Try a trade" },
-                  { label: "Review", icon: CheckCircle2, href: "/portfolio", desc: "Check results" },
+                  { label: "Learn", href: "/learn" },
+                  { label: "Practice", href: "/trade" },
+                  { label: "Review", href: "/portfolio" },
                 ];
                 return (
-                  <div className="rounded-lg border border-border bg-card p-4">
-                    <span className="text-xs font-semibold mb-3 block">Your Learning Journey</span>
-                    <div className="flex items-center justify-between">
-                      {steps.map((step, idx) => {
-                        const StepIcon = step.icon;
-                        const isActive = idx === currentStep;
-                        const isDone = idx < currentStep;
-                        return (
-                          <div key={step.label} className="flex items-center gap-0">
-                            <Link
-                              href={step.href}
-                              className={`flex flex-col items-center gap-1.5 rounded-lg px-3 py-2 transition-colors ${
-                                isActive
-                                  ? "bg-primary/10 border border-primary/30"
-                                  : isDone
-                                  ? "bg-emerald-400/10 border border-emerald-400/20"
-                                  : "bg-muted/20 border border-border/40"
-                              }`}
-                            >
-                              <StepIcon className={`h-4 w-4 ${
-                                isActive ? "text-primary" : isDone ? "text-emerald-400" : "text-muted-foreground"
-                              }`} />
-                              <span className={`text-[11px] font-semibold ${
-                                isActive ? "text-primary" : isDone ? "text-emerald-400" : "text-muted-foreground"
-                              }`}>{step.label}</span>
-                              <span className="text-[10px] text-muted-foreground">{step.desc}</span>
-                            </Link>
-                            {idx < steps.length - 1 && (
-                              <ArrowRight className={`h-3 w-3 mx-1 shrink-0 ${
-                                idx < currentStep ? "text-emerald-400" : "text-muted-foreground/40"
-                              }`} />
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
+                  <div className="flex items-center justify-center gap-0 py-1">
+                    {steps.map((step, idx) => {
+                      const isActive = idx === currentStep;
+                      const isDone = idx < currentStep;
+                      return (
+                        <div key={step.label} className="flex items-center gap-0">
+                          <Link href={step.href} className="flex items-center gap-1.5">
+                            <div className={`h-2.5 w-2.5 rounded-full border-2 ${
+                              isActive ? "border-primary bg-primary" : isDone ? "border-emerald-400 bg-emerald-400" : "border-muted-foreground/30 bg-transparent"
+                            }`} />
+                            <span className={`text-[11px] font-medium ${
+                              isActive ? "text-primary" : isDone ? "text-emerald-400" : "text-muted-foreground"
+                            }`}>{step.label}</span>
+                          </Link>
+                          {idx < steps.length - 1 && (
+                            <div className={`w-8 h-px mx-2 ${
+                              idx < currentStep ? "bg-emerald-400" : "bg-muted-foreground/20"
+                            }`} />
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 );
               })()}
 
-              {/* Recommended next lesson — prominent CTA */}
-              {recommendedLesson && (
-                <div className="rounded-lg border-2 border-primary/40 bg-primary/5 p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary/15 border border-primary/30">
-                      <ChevronRight className="h-3.5 w-3.5 text-primary" />
-                    </div>
-                    <span className="text-xs font-bold text-primary uppercase tracking-wide">Up Next</span>
-                    <div className="ml-auto flex items-center gap-1">
-                      <Zap className="h-3 w-3 text-primary" />
-                      <span className="text-xs font-bold text-primary">+{recommendedLesson.lesson.xpReward} XP</span>
-                    </div>
-                  </div>
-                  <p className="text-sm font-semibold mb-0.5">{recommendedLesson.lesson.title}</p>
-                  <p className="text-[11px] text-muted-foreground mb-3">{recommendedLesson.unit.title} &middot; {recommendedLesson.lesson.duration ?? 10} min</p>
-                  <Link
-                    href="/learn"
-                    className="flex items-center justify-center gap-1.5 w-full rounded-md bg-primary py-2 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-                  >
-                    Start Lesson
-                    <ArrowRight className="h-3 w-3" />
-                  </Link>
+              {/* Compact stats row */}
+              <div className="flex items-center justify-between rounded-md bg-muted/30 px-4 py-2.5">
+                <div className="flex items-center gap-1.5">
+                  <Zap className="h-3 w-3 text-primary" />
+                  <span className="text-[11px] font-bold">{xp.toLocaleString()}</span>
+                  <span className="text-[11px] text-muted-foreground">XP</span>
                 </div>
-              )}
+                <div className="flex items-center gap-1.5">
+                  <Flame className="h-3 w-3 text-amber-400" />
+                  <span className="text-[11px] font-bold">{learningStreak}</span>
+                  <span className="text-[11px] text-muted-foreground">day streak</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Trophy className="h-3 w-3 text-amber-400" />
+                  <span className="text-[11px] font-bold">{completedCount}/{totalLessons}</span>
+                  <span className="text-[11px] text-muted-foreground">done</span>
+                </div>
+              </div>
 
               {/* Learning path sections */}
-              {LEARNING_PATHS.map((path) => {
-                const pathUnits = UNITS.filter((u) => path.unitIds.includes(u.id));
-                const pathLessons = pathUnits.flatMap((u) => u.lessons);
-                const pathCompleted = pathLessons.filter((l) => completedLessons.includes(l.id)).length;
-                const colorMap: Record<string, string> = {
-                  emerald: "text-emerald-500 border-emerald-500/30 bg-emerald-500/5",
-                  amber: "text-amber-500 border-amber-500/30 bg-amber-500/5",
-                  red: "text-red-500 border-red-500/30 bg-red-500/5",
-                };
-                const barColorMap: Record<string, string> = {
-                  emerald: "bg-emerald-500",
-                  amber: "bg-amber-500",
-                  red: "bg-red-500",
-                };
-                return (
-                  <div key={path.label} className={`rounded-lg border p-3 ${colorMap[path.color]}`}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[11px] font-bold">{path.label}</span>
-                      <span className="text-[11px] font-medium">
-                        {pathCompleted}/{pathLessons.length}
-                      </span>
+              {(() => {
+                let foundNextIncomplete = false;
+                return LEARNING_PATHS.map((path) => {
+                  const pathUnits = UNITS.filter((u) => path.unitIds.includes(u.id));
+                  const pathLessons = pathUnits.flatMap((u) => u.lessons);
+                  const pathCompleted = pathLessons.filter((l) => completedLessons.includes(l.id)).length;
+                  const pathDone = pathCompleted === pathLessons.length && pathLessons.length > 0;
+                  const isNextIncomplete = !pathDone && !foundNextIncomplete;
+                  if (isNextIncomplete) foundNextIncomplete = true;
+                  const pathPct = pathLessons.length > 0 ? Math.round((pathCompleted / pathLessons.length) * 100) : 0;
+                  const barColorMap: Record<string, string> = {
+                    emerald: "bg-emerald-500",
+                    amber: "bg-amber-500",
+                    red: "bg-red-500",
+                  };
+                  return (
+                    <div key={path.label} className={`rounded-lg border bg-card p-4 transition-colors ${
+                      isNextIncomplete ? "border-primary hover:border-primary/80" : pathDone ? "border-emerald-500/30" : "border-border hover:border-primary/50"
+                    }`}>
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-2">
+                          {pathDone && <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />}
+                          <span className="text-xs font-bold">{path.label}</span>
+                          {isNextIncomplete && <span className="text-[10px] font-semibold text-primary bg-primary/10 px-1.5 py-0.5 rounded">Current</span>}
+                        </div>
+                        <span className="text-xs font-bold tabular-nums">
+                          {pathPct}%
+                        </span>
+                      </div>
+                      <div className="h-2 w-full rounded-full bg-muted/20 mb-1">
+                        <div
+                          className={`h-full rounded-full transition-all ${barColorMap[path.color]}`}
+                          style={{ width: `${pathPct}%` }}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[11px] text-muted-foreground">{pathCompleted}/{pathLessons.length} lessons</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {pathUnits.map((u) => {
+                          const unitCompleted = u.lessons.filter((l) => completedLessons.includes(l.id)).length;
+                          const unitDone = unitCompleted === u.lessons.length;
+                          const UnitIconComp = getUnitIcon(u.icon);
+                          return (
+                            <div
+                              key={u.id}
+                              className={`flex items-center gap-1 rounded-md border px-2 py-1 ${
+                                unitDone ? "border-emerald-400/30 bg-emerald-400/5" : "border-border/40 bg-card/60"
+                              }`}
+                            >
+                              {unitDone ? (
+                                <Check className="h-2.5 w-2.5 text-emerald-400" />
+                              ) : (
+                                <UnitIconComp className="h-2.5 w-2.5 text-muted-foreground" />
+                              )}
+                              <span className={`text-[11px] ${unitDone ? "text-emerald-400" : "text-muted-foreground"}`}>{u.title}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
-                    <div className="h-1.5 w-full rounded-full bg-muted/20 mb-2">
-                      <div
-                        className={`h-full rounded-full transition-all ${barColorMap[path.color]}`}
-                        style={{ width: `${pathLessons.length > 0 ? (pathCompleted / pathLessons.length) * 100 : 0}%` }}
-                      />
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {pathUnits.map((u) => {
-                        const unitCompleted = u.lessons.filter((l) => completedLessons.includes(l.id)).length;
-                        const unitDone = unitCompleted === u.lessons.length;
-                        const UnitIconComp = getUnitIcon(u.icon);
-                        return (
-                          <div
-                            key={u.id}
-                            className="flex items-center gap-1 rounded-md border border-border/40 bg-card/60 px-2 py-1"
-                          >
-                            {unitDone ? (
-                              <Check className="h-2.5 w-2.5 text-emerald-400" />
-                            ) : (
-                              <UnitIconComp className="h-2.5 w-2.5 text-muted-foreground" />
-                            )}
-                            <span className="text-[11px] text-muted-foreground">{u.title}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                });
+              })()}
 
               {/* Recently Completed */}
               {recentlyCompleted.length > 0 && (
@@ -415,7 +399,7 @@ export default function LearnPage() {
                   {recentlyCompleted.map(({ lesson, unit, score }) => (
                     <div
                       key={lesson.id}
-                      className="flex items-center justify-between rounded-lg border border-border/60 bg-card/50 px-3 py-2"
+                      className="flex items-center justify-between rounded-md border border-border/30 px-3 py-2"
                     >
                       <div className="flex items-center gap-2">
                         <div className="flex h-6 w-6 items-center justify-center rounded-md bg-emerald-400/10 border border-emerald-400/20">
@@ -568,27 +552,24 @@ export default function LearnPage() {
           {/* ============ ALL UNITS TAB ============ */}
           {activeTab === "units" && (
             <>
-              {/* Search */}
-              <div className="relative">
-                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-                <input
-                  type="text"
-                  placeholder="Search lessons and units..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full rounded-lg border border-border bg-card pl-8 pr-3 py-2 text-[12px] placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
-                />
-              </div>
-
-              {/* Difficulty filter */}
-              <div className="flex items-center gap-1.5">
-                <Filter className="h-3 w-3 text-muted-foreground shrink-0" />
+              {/* Search + filter row */}
+              <div className="flex items-center gap-2">
+                <div className="relative flex-1">
+                  <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full rounded-lg border border-border bg-card pl-8 pr-3 py-1.5 text-[12px] placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  />
+                </div>
                 {(["all", "beginner", "intermediate", "advanced"] as DifficultyFilter[]).map((d) => (
                   <button
                     key={d}
                     type="button"
                     onClick={() => setDifficultyFilter(d)}
-                    className={`rounded-full px-2.5 py-0.5 text-xs font-medium border transition-colors capitalize ${
+                    className={`rounded-full px-2 py-0.5 text-[10px] font-medium border transition-colors capitalize shrink-0 ${
                       difficultyFilter === d
                         ? d === "all"
                           ? "bg-primary/15 text-primary border-primary/30"
@@ -596,144 +577,84 @@ export default function LearnPage() {
                         : "bg-muted/10 text-muted-foreground border-border hover:bg-muted/20"
                     }`}
                   >
-                    {d}
+                    {d === "all" ? "All" : d.slice(0, 3)}
                   </button>
                 ))}
               </div>
 
-              {/* Unit cards */}
-              <div className="space-y-3">
-                {filteredUnits.length === 0 ? (
-                  <div className="rounded-lg border border-border bg-card/50 px-4 py-8 text-center">
-                    <Search className="h-6 w-6 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-xs text-muted-foreground">No units match your search</p>
-                  </div>
-                ) : (
-                  filteredUnits.map((unit, i) => {
+              {/* Compact unit grid */}
+              {filteredUnits.length === 0 ? (
+                <div className="rounded-lg border border-border bg-card/50 px-4 py-6 text-center">
+                  <Search className="h-5 w-5 text-muted-foreground mx-auto mb-1.5" />
+                  <p className="text-[11px] text-muted-foreground">No units match</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {filteredUnits.map((unit, i) => {
                     const isUnlocked = i === 0 || UNITS.slice(0, UNITS.indexOf(unit)).every((u) =>
                       u.lessons.every((l) => completedLessons.includes(l.id))
                     );
                     const unitCompletedCount = unit.lessons.filter((l) => completedLessons.includes(l.id)).length;
                     const isComplete = unitCompletedCount === unit.lessons.length;
-                    const isInProgress = unitCompletedCount > 0 && !isComplete;
-                    const totalDuration = unit.lessons.reduce((acc, l) => acc + (l.duration ?? 10), 0);
-                    const totalXP = unit.lessons.reduce((acc, l) => acc + l.xpReward, 0);
-
-                    // Get primary difficulty from lessons
-                    const difficulties = unit.lessons.map((l) => l.difficulty ?? "beginner");
-                    const primaryDifficulty = difficulties.includes("advanced")
-                      ? "advanced"
-                      : difficulties.includes("intermediate")
-                      ? "intermediate"
-                      : "beginner";
-
+                    const unitPct = unit.lessons.length > 0 ? Math.round((unitCompletedCount / unit.lessons.length) * 100) : 0;
                     const UnitIconComp = getUnitIcon(unit.icon);
 
                     return (
-                      <motion.div
+                      <div
                         key={unit.id}
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.04 }}
-                        className={`rounded-lg border bg-card p-3 ${
-                          isUnlocked ? "border-border" : "border-border/40 opacity-60"
+                        className={`rounded-lg border bg-card p-4 transition-colors cursor-pointer ${
+                          isUnlocked ? "border-border hover:border-primary/50" : "border-border/40 opacity-50"
                         }`}
                       >
-                        {/* Unit header */}
-                        <div className="flex items-start gap-3 mb-3">
+                        <div className="flex items-center gap-2 mb-2">
                           <div
-                            className="flex h-9 w-9 items-center justify-center rounded-lg shrink-0"
+                            className="flex h-7 w-7 items-center justify-center rounded-md shrink-0"
                             style={{ background: `${unit.color}15`, border: `1px solid ${unit.color}30` }}
                           >
-                            <UnitIconComp className="h-4 w-4" style={{ color: unit.color }} />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 flex-wrap mb-0.5">
-                              <span className="text-xs font-semibold truncate">{unit.title}</span>
-                              <span className={`text-[11px] font-medium px-1.5 py-0.5 rounded-full border capitalize ${DIFFICULTY_COLORS[primaryDifficulty]}`}>
-                                {primaryDifficulty}
-                              </span>
-                              {isComplete && (
-                                <span className="text-[11px] font-medium px-1.5 py-0.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 text-emerald-400">
-                                  Complete
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-[11px] text-muted-foreground line-clamp-1">{unit.description}</p>
-                          </div>
-                        </div>
-
-                        {/* Progress bar */}
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="flex-1 h-1.5 rounded-full bg-muted/30 overflow-hidden">
-                            <div
-                              className="h-full rounded-full bg-primary transition-all"
-                              style={{ width: `${unit.lessons.length > 0 ? (unitCompletedCount / unit.lessons.length) * 100 : 0}%` }}
-                            />
-                          </div>
-                          <span className="text-[11px] tabular-nums text-muted-foreground">
-                            {unitCompletedCount}/{unit.lessons.length}
-                          </span>
-                        </div>
-
-                        {/* Meta row */}
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                            <Clock className="h-2.5 w-2.5" />
-                            <span>{totalDuration}m</span>
-                          </div>
-                          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                            <Zap className="h-2.5 w-2.5" />
-                            <span>{totalXP} XP</span>
-                          </div>
-                          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                            <BookOpen className="h-2.5 w-2.5" />
-                            <span>{unit.lessons.length} lessons</span>
-                          </div>
-                          <div className="ml-auto">
-                            {!isUnlocked ? (
-                              <span className="text-[11px] text-muted-foreground">Locked</span>
-                            ) : isComplete ? (
-                              <span className="rounded-md bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-[11px] font-semibold px-2 py-0.5">
-                                Review
-                              </span>
-                            ) : isInProgress ? (
-                              <span className="rounded-md bg-primary/10 border border-primary/20 text-primary text-[11px] font-semibold px-2 py-0.5">
-                                Continue
-                              </span>
+                            {isComplete ? (
+                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
                             ) : (
-                              <span className="rounded-md bg-muted/20 border border-border text-muted-foreground text-[11px] font-semibold px-2 py-0.5">
-                                Start
-                              </span>
+                              <UnitIconComp className="h-3.5 w-3.5" style={{ color: unit.color }} />
                             )}
                           </div>
+                          <div className="flex-1 min-w-0">
+                            <span className="text-[11px] font-semibold truncate block">{unit.title}</span>
+                            <span className="text-[10px] text-muted-foreground">{unit.lessons.length} lessons</span>
+                          </div>
                         </div>
-
-                        {/* Practice prompt for completed units */}
-                        {isComplete && (
-                          <Link
-                            href="/trade"
-                            className="flex items-center gap-1 mt-2 pt-2 border-t border-border/40 text-[11px] font-medium text-primary hover:text-primary/80 transition-colors"
-                          >
-                            <LineChart className="h-3 w-3" />
-                            Practice this in a trade
-                            <ArrowRight className="h-2.5 w-2.5" />
-                          </Link>
-                        )}
-                      </motion.div>
+                        {/* Small progress indicator */}
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 h-1 rounded-full bg-muted/30 overflow-hidden">
+                            <div
+                              className="h-full rounded-full transition-all"
+                              style={{ width: `${unitPct}%`, background: isComplete ? "#34d399" : unit.color }}
+                            />
+                          </div>
+                          <span className="text-[10px] tabular-nums text-muted-foreground w-7 text-right">{unitPct}%</span>
+                        </div>
+                      </div>
                     );
-                  })
-                )}
-              </div>
+                  })}
+                </div>
+              )}
             </>
           )}
 
           {/* ============ MY PROGRESS TAB ============ */}
           {activeTab === "progress" && (
             <>
+              {/* Empty state when nothing completed */}
+              {completedCount === 0 && (
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                  <GraduationCap className="h-8 w-8 text-muted-foreground/40 mb-3" />
+                  <p className="text-sm font-medium text-muted-foreground">No progress yet</p>
+                  <p className="text-xs text-muted-foreground/70 mt-1">Complete your first lesson to start tracking progress</p>
+                </div>
+              )}
+
               {/* Stats grid */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-lg border border-border bg-card p-3">
+                <div className="rounded-md bg-muted/30 p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Trophy className="h-4 w-4 text-amber-400" />
                     <span className="text-[11px] font-semibold">Lessons</span>
@@ -741,7 +662,7 @@ export default function LearnPage() {
                   <p className="text-xl font-bold">{completedCount}</p>
                   <p className="text-[11px] text-muted-foreground">of {totalLessons} completed</p>
                 </div>
-                <div className="rounded-lg border border-border bg-card p-3">
+                <div className="rounded-md bg-muted/30 p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Zap className="h-4 w-4 text-primary" />
                     <span className="text-[11px] font-semibold">XP Earned</span>
@@ -749,7 +670,7 @@ export default function LearnPage() {
                   <p className="text-xl font-bold">{xp.toLocaleString()}</p>
                   <p className="text-[11px] text-muted-foreground">total experience</p>
                 </div>
-                <div className="rounded-lg border border-border bg-card p-3">
+                <div className="rounded-md bg-muted/30 p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Flame className="h-4 w-4 text-amber-500" />
                     <span className="text-[11px] font-semibold">Streak</span>
@@ -757,7 +678,7 @@ export default function LearnPage() {
                   <p className="text-xl font-bold">{learningStreak}</p>
                   <p className="text-[11px] text-muted-foreground">days in a row</p>
                 </div>
-                <div className="rounded-lg border border-border bg-card p-3">
+                <div className="rounded-md bg-muted/30 p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Brain className="h-4 w-4 text-orange-400" />
                     <span className="text-[11px] font-semibold">Mastery</span>
@@ -778,7 +699,7 @@ export default function LearnPage() {
                   const pct = unit.lessons.length > 0 ? Math.round((done / unit.lessons.length) * 100) : 0;
                   const UnitIconComp = getUnitIcon(unit.icon);
                   return (
-                    <div key={unit.id} className="flex items-center gap-3 rounded-lg border border-border/60 bg-card/50 px-3 py-2">
+                    <div key={unit.id} className="flex items-center gap-3 rounded-md border border-border/30 px-3 py-2">
                       <div
                         className="flex h-7 w-7 items-center justify-center rounded-md shrink-0"
                         style={{ background: `${unit.color}12`, border: `1px solid ${unit.color}25` }}

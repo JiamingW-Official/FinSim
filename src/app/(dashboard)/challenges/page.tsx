@@ -430,7 +430,7 @@ function HistoryTab() {
                 "text-[11px] font-bold uppercase",
                 entry.type === "daily" && "text-primary/70",
                 entry.type === "weekly" && "text-amber-400/70",
-                entry.type === "event" && "text-purple-400/70",
+                entry.type === "event" && "text-orange-400/70",
                 entry.type === "scenario" && "text-cyan-400/70",
               )}>
                 {TYPE_LABELS[entry.type]}

@@ -142,7 +142,7 @@ export default function PortfolioPage() {
 
         {/* Quick Stats Row */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="rounded-lg border border-border bg-card/50 p-3">
+          <div className="rounded-md bg-muted/30 p-3">
             <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
               <Wallet className="h-3 w-3" />
               Portfolio Value
@@ -151,7 +151,7 @@ export default function PortfolioPage() {
               {formatCurrency(portfolioValue)}
             </p>
           </div>
-          <div className="rounded-lg border border-border bg-card/50 p-3">
+          <div className="rounded-md bg-muted/30 p-3">
             <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
               {totalPnL >= 0 ? (
                 <TrendingUp className="h-3 w-3 text-emerald-400" />
@@ -181,7 +181,7 @@ export default function PortfolioPage() {
               {totalPnLPct.toFixed(2)}%
             </p>
           </div>
-          <div className="rounded-lg border border-border bg-card/50 p-3">
+          <div className="rounded-md bg-muted/30 p-3">
             <div className="text-xs font-medium text-muted-foreground mb-1">
               Positions
             </div>
@@ -319,7 +319,7 @@ export default function PortfolioPage() {
             <TabsContent value="overview" className="space-y-4">
               <LivePnLDashboard />
 
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="border-l-4 border-primary bg-card p-6 rounded-lg">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <BarChart3 className="h-3.5 w-3.5" />
                   Equity Curve
@@ -328,14 +328,14 @@ export default function PortfolioPage() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="rounded-lg border border-border bg-card p-3">
+                <div className="rounded-md border border-border/30 p-3">
                   <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                     <Target className="h-3.5 w-3.5" />
                     Win Rate (Rolling 10)
                   </div>
                   <WinRateChart />
                 </div>
-                <div className="rounded-lg border border-border bg-card p-3">
+                <div className="rounded-md border border-border/30 p-3">
                   <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                     <Calendar className="h-3.5 w-3.5" />
                     Trade Calendar
@@ -375,7 +375,7 @@ export default function PortfolioPage() {
                 <QuantDashboard />
               </div>
 
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <TrendingUp className="h-3.5 w-3.5" />
                   Rolling Sharpe Ratio (30-trade window)
@@ -383,7 +383,7 @@ export default function PortfolioPage() {
                 <RollingSharpeChart />
               </div>
 
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Target className="h-3.5 w-3.5" />
                   Rolling Win Rate (20-trade window)
@@ -448,7 +448,7 @@ export default function PortfolioPage() {
             <TabsContent value="journal" className="space-y-3">
               <RecentTradesPreview />
 
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <BookOpen className="h-3.5 w-3.5" />
                   Trade Journal
@@ -468,7 +468,7 @@ export default function PortfolioPage() {
 
             {/* ── Achievements tab ── */}
             <TabsContent value="achievements">
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Award className="h-3.5 w-3.5" />
                   Achievements
@@ -521,7 +521,7 @@ export default function PortfolioPage() {
 
             {/* ── Deep Analytics tab ── */}
             <TabsContent value="deep" className="space-y-4">
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <BarChart3 className="h-3.5 w-3.5" />
                   Trade Distribution
@@ -529,7 +529,7 @@ export default function PortfolioPage() {
                 <WinLossDistribution />
               </div>
 
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Calendar className="h-3.5 w-3.5" />
                   Holding Period Analysis
@@ -537,7 +537,7 @@ export default function PortfolioPage() {
                 <HoldingPeriodAnalysis />
               </div>
 
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Activity className="h-3.5 w-3.5" />
                   Day-of-Week Heatmap
@@ -545,7 +545,7 @@ export default function PortfolioPage() {
                 <TradeHeatmap />
               </div>
 
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <FlaskConical className="h-3.5 w-3.5" />
                   MAE/MFE Scatter &mdash; Trade Efficiency
@@ -553,7 +553,7 @@ export default function PortfolioPage() {
                 <MAEMFEScatter />
               </div>
 
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-md border border-border/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <TrendingUp className="h-3.5 w-3.5" />
                   Streak Analysis
@@ -603,7 +603,7 @@ function LearningProgress({
   );
 
   return (
-    <div className="rounded-lg border border-border bg-card/50 p-3">
+    <div className="rounded-md bg-muted/30 p-3">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <GraduationCap className="h-3.5 w-3.5" />
@@ -694,10 +694,30 @@ function RecentTradesPreview() {
     .filter((t) => t.realizedPnL !== 0)
     .slice(0, 5);
 
-  if (closedTrades.length === 0) return null;
+  if (closedTrades.length === 0) {
+    return (
+      <div className="rounded-md border border-border/30 p-3">
+        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+          <BookOpen className="h-3.5 w-3.5" />
+          Recent Trades
+        </div>
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <BarChart3 className="h-8 w-8 text-muted-foreground/50 mb-3" />
+          <p className="text-sm font-medium text-muted-foreground">No closed trades yet</p>
+          <p className="text-xs text-muted-foreground/70 mt-1">Your completed trades will appear here for review</p>
+          <Link href="/trade" className="mt-3">
+            <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium hover:bg-accent transition-colors">
+              Start trading
+              <ArrowRight className="h-3 w-3" />
+            </span>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="rounded-lg border border-border bg-card p-3">
+    <div className="rounded-md border border-border/30 p-3">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <BookOpen className="h-3.5 w-3.5" />

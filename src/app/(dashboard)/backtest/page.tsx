@@ -192,13 +192,13 @@ export default function BacktestPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="flex items-center gap-3 border-b border-white/5 bg-black/30 px-6 py-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15">
-          <FlaskConical className="h-4 w-4 text-violet-400" />
+      <div className="flex items-center gap-3 border-b border-border bg-card/60 px-6 py-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
+          <FlaskConical className="h-4 w-4 text-primary" />
         </div>
         <div>
-          <h1 className="text-sm font-bold text-zinc-100">Strategy Backtester</h1>
-          <p className="text-xs text-zinc-500">Build, test, and optimize trading strategies</p>
+          <h1 className="text-sm font-semibold text-zinc-100">Strategy Backtester</h1>
+          <p className="text-xs text-muted-foreground">Build, test, and optimize on simulated market data</p>
         </div>
         {store.totalBacktestsRun > 0 && (
           <div className="ml-auto flex items-center gap-4 text-xs text-zinc-500">
@@ -216,7 +216,7 @@ export default function BacktestPage() {
             onClick={() => setActiveTab(tab.id)}
             className={`px-5 py-2.5 text-xs font-medium transition-colors ${
               activeTab === tab.id
-                ? "border-b-2 border-blue-500 text-blue-300"
+                ? "border-b-2 border-primary text-orange-400"
                 : "text-zinc-500 hover:text-zinc-300"
             }`}
           >
@@ -397,7 +397,7 @@ function EarningsTickerSelect({
     <select
       value={selected}
       onChange={(e) => onSelect(e.target.value)}
-      className="appearance-none rounded-md border border-white/10 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      className="appearance-none rounded-md border border-white/10 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-primary"
     >
       {tickers.map((t) => (
         <option key={t} value={t}>{t}</option>

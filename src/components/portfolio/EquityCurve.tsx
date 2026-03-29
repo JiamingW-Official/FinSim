@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { BarChart3 } from "lucide-react";
 import { useTradingStore } from "@/stores/trading-store";
 import {
   createChart,
@@ -90,8 +91,10 @@ export function EquityCurve() {
 
   if (equityHistory.length === 0) {
     return (
-      <div className="flex h-64 items-center justify-center text-sm text-muted-foreground">
-        Start trading to see your equity curve
+      <div className="flex h-64 flex-col items-center justify-center py-12 text-center">
+        <BarChart3 className="h-8 w-8 text-muted-foreground/50 mb-3" />
+        <p className="text-sm font-medium text-muted-foreground">No equity data yet</p>
+        <p className="text-xs text-muted-foreground/70 mt-1">Complete your first trade to start tracking performance</p>
       </div>
     );
   }

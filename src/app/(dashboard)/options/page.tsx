@@ -28,6 +28,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Activity, Loader2 } from "lucide-react";
 import type { OptionContract, ChainFilters } from "@/types/options";
 
+const TAB_TRIGGER_CLASS =
+  "h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary";
+const SUB_TAB_TRIGGER_CLASS =
+  "h-6 rounded-sm px-3 text-[11px] data-[state=active]:bg-muted data-[state=active]:text-foreground";
+
 export default function OptionsPage() {
   const { isLoading } = useMarketData();
   const { chain, spotPrice, historicalVolatility: hv } = useOptionsChain();
@@ -46,6 +51,9 @@ export default function OptionsPage() {
     moneynessFilter: "all",
   });
   const [activeTab, setActiveTab] = useState("chains");
+  const [greeksSubTab, setGreeksSubTab] = useState("greeks-lab");
+  const [flowSubTab, setFlowSubTab] = useState("unusual");
+  const [analysisSubTab, setAnalysisSubTab] = useState("charts");
 
   const { analytics, smile, termStructure, oiVol, unusualActivity } = useOptionsAnalytics(
     chain,
@@ -111,68 +119,30 @@ export default function OptionsPage() {
         className="flex flex-1 flex-col overflow-hidden"
       >
         <TabsList className="h-8 w-full shrink-0 justify-start rounded-none border-b border-border bg-card px-2 gap-0">
-          <TabsTrigger
-            value="chains"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
+          <TabsTrigger value="chains" className={TAB_TRIGGER_CLASS}>
             Chains
           </TabsTrigger>
-          <TabsTrigger
-            value="strategy"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
-            Strategy Builder
+          <TabsTrigger value="strategy" className={TAB_TRIGGER_CLASS}>
+            Strategy
           </TabsTrigger>
-          <TabsTrigger
-            value="analysis"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
+          <TabsTrigger value="analysis" className={TAB_TRIGGER_CLASS}>
             Analysis
           </TabsTrigger>
-          <TabsTrigger
-            value="unusual"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
-            Unusual Activity (Simulated)
+          <TabsTrigger value="greeks" className={TAB_TRIGGER_CLASS}>
+            Greeks
           </TabsTrigger>
-          <TabsTrigger
-            value="greeks-lab"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
-            Greeks Lab
-          </TabsTrigger>
-          <TabsTrigger
-            value="greeks-monitor"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
-            Greeks Monitor
-          </TabsTrigger>
-          <TabsTrigger
-            value="margin-calc"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
-            Margin Calc
-          </TabsTrigger>
-          <TabsTrigger
-            value="vol-surface"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
-            Vol Surface
-          </TabsTrigger>
-          <TabsTrigger
-            value="flow-analysis"
-            className="h-7 rounded-none border-b-2 border-transparent px-4 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent data-[state=active]:text-orange-400"
-          >
-            Flow Analysis
+          <TabsTrigger value="flow" className={TAB_TRIGGER_CLASS}>
+            Flow
           </TabsTrigger>
         </TabsList>
 
         <div className="flex flex-1 overflow-hidden">
           {/* Main content area */}
           <div className="flex flex-1 flex-col overflow-hidden">
-            {/* Chains tab */}
+            {/* Tab content */}
             {chain.length > 0 ? (
               <>
+                {/* Chains */}
                 <TabsContent value="chains" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
                   <ChainFiltersBar
                     filters={filters}
@@ -201,13 +171,13 @@ export default function OptionsPage() {
                       <TabsList className="h-7 w-full justify-start rounded-none border-b border-border bg-card px-2">
                         <TabsTrigger
                           value="payoff"
-                          className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent"
+                          className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
                         >
                           Payoff Diagram
                         </TabsTrigger>
                         <TabsTrigger
                           value="positions"
-                          className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-orange-400 data-[state=active]:bg-transparent"
+                          className="h-6 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
                         >
                           Positions
                           {positions.length > 0 && ` (${positions.length})`}
@@ -223,7 +193,7 @@ export default function OptionsPage() {
                   </div>
                 </TabsContent>
 
-                {/* Strategy Builder tab */}
+                {/* Strategy */}
                 <TabsContent value="strategy" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden">
                   <StrategyBuilderV2
                     chain={chain}
@@ -234,96 +204,143 @@ export default function OptionsPage() {
                   />
                 </TabsContent>
 
-                {/* Analysis tab */}
-                <TabsContent value="analysis" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
-                  <AnalysisPanel
-                    analytics={analytics}
-                    smile={smile}
-                    termStructure={termStructure}
-                    oiVol={oiVol}
-                    chain={chain}
-                    spotPrice={spotPrice}
-                  />
-                </TabsContent>
-
-                {/* Unusual Activity tab */}
-                <TabsContent value="unusual" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
-                  <div className="flex flex-col gap-0">
-                    {/* Feed takes natural height */}
-                    <div className="min-h-[260px]">
-                      <UnusualActivityFeed
-                        items={unusualActivity}
-                        onSelectContract={handleSelectContract}
+                {/* Analysis — charts + vol surface + margin calc */}
+                <TabsContent value="analysis" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
+                  <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
+                    <button
+                      onClick={() => setAnalysisSubTab("charts")}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "charts" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      Charts
+                    </button>
+                    <button
+                      onClick={() => setAnalysisSubTab("vol-surface")}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "vol-surface" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      Vol Surface
+                    </button>
+                    <button
+                      onClick={() => setAnalysisSubTab("margin-calc")}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "margin-calc" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      Margin Calc
+                    </button>
+                  </div>
+                  <div className="flex-1 overflow-auto">
+                    {analysisSubTab === "charts" && (
+                      <AnalysisPanel
+                        analytics={analytics}
+                        smile={smile}
+                        termStructure={termStructure}
+                        oiVol={oiVol}
+                        chain={chain}
+                        spotPrice={spotPrice}
                       />
-                    </div>
-
-                    {/* Flow Heatmap section */}
-                    <div className="border-t border-border/50 px-3 py-3">
-                      <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
-                        Options Flow Heatmap
-                      </h3>
-                      <p className="mb-3 text-xs text-muted-foreground">
-                        Net call/put dollar flow per ticker and expiry. Green = net call buying, Red = net put buying. Cell size proportional to volume.
-                      </p>
-                      <FlowHeatmap items={unusualActivity} />
-                    </div>
-
-                    {/* Dark Pool Flow section */}
-                    <div className="border-t border-border/50 px-3 py-3">
-                      <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
-                        Simulated Institutional Flow
-                      </h3>
-                      <p className="mb-3 text-xs text-muted-foreground">
-                        Simulated institutional dark pool executions. Above Ask = aggressive buyer. Below Bid = aggressive seller.
-                      </p>
-                      <DarkPoolFlow seed={darkPoolSeed} />
-                    </div>
+                    )}
+                    {analysisSubTab === "vol-surface" && (
+                      <VolSurface
+                        spotPrice={spotPrice}
+                        hv={hv}
+                        ivRank={analytics.ivRank}
+                      />
+                    )}
+                    {analysisSubTab === "margin-calc" && (
+                      <PortfolioMarginCalc />
+                    )}
                   </div>
                 </TabsContent>
 
-                {/* Greeks Lab tab */}
-                <TabsContent value="greeks-lab" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
-                  <GreeksLab
-                    positions={positions}
-                    spotPrice={spotPrice}
-                    analytics={analytics}
-                    smile={smile}
-                    chain={chain}
-                  />
+                {/* Greeks — Lab + Monitor sub-tabs */}
+                <TabsContent value="greeks" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
+                  <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
+                    <button
+                      onClick={() => setGreeksSubTab("greeks-lab")}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${greeksSubTab === "greeks-lab" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      Greeks Lab
+                    </button>
+                    <button
+                      onClick={() => setGreeksSubTab("greeks-monitor")}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${greeksSubTab === "greeks-monitor" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      Greeks Monitor
+                    </button>
+                  </div>
+                  <div className="flex-1 overflow-auto">
+                    {greeksSubTab === "greeks-lab" && (
+                      <GreeksLab
+                        positions={positions}
+                        spotPrice={spotPrice}
+                        analytics={analytics}
+                        smile={smile}
+                        chain={chain}
+                      />
+                    )}
+                    {greeksSubTab === "greeks-monitor" && (
+                      <GreeksMonitor
+                        positions={positions}
+                        spotPrice={spotPrice}
+                        analytics={analytics}
+                        chain={chain}
+                      />
+                    )}
+                  </div>
                 </TabsContent>
 
-                {/* Greeks Monitor tab */}
-                <TabsContent value="greeks-monitor" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
-                  <GreeksMonitor
-                    positions={positions}
-                    spotPrice={spotPrice}
-                    analytics={analytics}
-                    chain={chain}
-                  />
-                </TabsContent>
-
-                {/* Margin Calc tab */}
-                <TabsContent value="margin-calc" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
-                  <PortfolioMarginCalc />
-                </TabsContent>
-
-                {/* Vol Surface tab */}
-                <TabsContent value="vol-surface" className="mt-0 flex-1 overflow-hidden data-[state=inactive]:hidden">
-                  <VolSurface
-                    spotPrice={spotPrice}
-                    hv={hv}
-                    ivRank={analytics.ivRank}
-                  />
-                </TabsContent>
-
-                {/* Flow Analysis tab */}
-                <TabsContent value="flow-analysis" className="mt-0 flex-1 overflow-auto data-[state=inactive]:hidden">
-                  <FlowAnalysis />
+                {/* Flow — Unusual Activity + Flow Analysis sub-tabs */}
+                <TabsContent value="flow" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
+                  <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
+                    <button
+                      onClick={() => setFlowSubTab("unusual")}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${flowSubTab === "unusual" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      Unusual Activity
+                    </button>
+                    <button
+                      onClick={() => setFlowSubTab("flow-analysis")}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${flowSubTab === "flow-analysis" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      Flow Analysis
+                    </button>
+                  </div>
+                  <div className="flex-1 overflow-auto">
+                    {flowSubTab === "unusual" && (
+                      <div className="flex flex-col gap-0">
+                        <div className="min-h-[260px]">
+                          <UnusualActivityFeed
+                            items={unusualActivity}
+                            onSelectContract={handleSelectContract}
+                          />
+                        </div>
+                        <div className="border-t border-border/50 px-3 py-3">
+                          <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
+                            Options Flow Heatmap
+                          </h3>
+                          <p className="mb-3 text-xs text-muted-foreground">
+                            Net call/put dollar flow per ticker and expiry. Green = net call buying, Red = net put buying.
+                          </p>
+                          <FlowHeatmap items={unusualActivity} />
+                        </div>
+                        <div className="border-t border-border/50 px-3 py-3">
+                          <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
+                            Simulated Institutional Flow
+                          </h3>
+                          <p className="mb-3 text-xs text-muted-foreground">
+                            Simulated dark pool executions. Above Ask = aggressive buyer. Below Bid = aggressive seller.
+                          </p>
+                          <DarkPoolFlow seed={darkPoolSeed} />
+                        </div>
+                      </div>
+                    )}
+                    {flowSubTab === "flow-analysis" && (
+                      <FlowAnalysis />
+                    )}
+                  </div>
                 </TabsContent>
               </>
             ) : (
               <div className="flex flex-1 items-center justify-center">
-                <Loader2 className="h-6 w-6 animate-spin text-orange-400" />
+                <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
               </div>
             )}
           </div>
@@ -337,7 +354,7 @@ export default function OptionsPage() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: 72, opacity: 0 }}
                 transition={{ type: "spring", damping: 22, stiffness: 280 }}
-                className="hidden md:block w-72 shrink-0 overflow-y-auto border-l border-border bg-card"
+                className="hidden md:block w-72 shrink-0 overflow-y-auto border-l border-border"
               >
                 <ContractDetail
                   contract={selectedContract}
@@ -354,9 +371,9 @@ export default function OptionsPage() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="hidden md:block w-64 shrink-0 overflow-y-auto border-l border-border bg-card"
+                className="hidden md:block w-64 shrink-0 overflow-y-auto border-l border-border"
               >
-                <div className="flex items-center gap-2 border-b border-border bg-card px-3 py-2">
+                <div className="flex items-center gap-2 border-b border-border px-3 py-2">
                   <motion.div
                     className="flex h-6 w-6 items-center justify-center rounded-lg bg-orange-500/10"
                     initial={{ scale: 0 }}

@@ -20,6 +20,8 @@ import {
   Clock,
   ChevronLeft,
   HelpCircle,
+  Users,
+  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -107,6 +109,11 @@ function getMarketVolume(m: PredictionMarket): number {
 function getMarketActivity(m: PredictionMarket): number {
   const rand = mulberry32(hashStr(m.id + "act"));
   return Math.round(rand() * 200 + 1);
+}
+
+function getMarketTraders(m: PredictionMarket): number {
+  const rand = mulberry32(hashStr(m.id + "traders"));
+  return Math.round(rand() * 400 + 50);
 }
 
 function getPriceHistory(m: PredictionMarket): number[] {
@@ -852,6 +859,13 @@ export function PredictionsPageClient() {
     return markets;
   }, [activeFilter, sortMode, searchQuery]);
 
+  // Featured market: first "Closing Soon" market, or highest volume
+  const featuredMarket = useMemo(() => {
+    const closingSoon = PREDICTION_MARKETS.find((m) => m.expiresInDays <= 3);
+    if (closingSoon) return closingSoon;
+    return [...PREDICTION_MARKETS].sort((a, b) => getMarketVolume(b) - getMarketVolume(a))[0] ?? null;
+  }, []);
+
   const handleSelectMarket = useCallback((m: PredictionMarket) => {
     setSelectedMarket(m);
   }, []);
@@ -1012,8 +1026,82 @@ export function PredictionsPageClient() {
                   </div>
                 </div>
 
-                {/* Market grid */}
+                {/* Featured Market + Market grid */}
                 <div className="flex-1 overflow-y-auto p-4">
+                  {/* Featured Market hero */}
+                  {featuredMarket && !searchQuery.trim() && activeFilter === "all" && (
+                    <div className="mb-4">
+                      <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
+                        <Zap className="h-3 w-3 text-primary" />
+                        Featured Market
+                      </div>
+                      <button
+                        onClick={() => handleSelectMarket(featuredMarket)}
+                        className="group w-full rounded-lg border-l-4 border-primary bg-card p-6 text-left transition-colors hover:bg-muted/10"
+                      >
+                        <div className="mb-1 flex items-center gap-2">
+                          <span className={cn("shrink-0 rounded px-1.5 py-0.5 text-[11px] font-medium", CATEGORY_COLORS[featuredMarket.category])}>
+                            {CATEGORY_LABELS[featuredMarket.category]}
+                          </span>
+                          {featuredMarket.expiresInDays <= 3 && (
+                            <span className="flex items-center gap-0.5 rounded bg-amber-500/10 px-1.5 py-0.5 text-[11px] font-semibold text-amber-500">
+                              <Clock className="h-3 w-3" />
+                              Closing soon
+                            </span>
+                          )}
+                        </div>
+                        <p className="mb-3 text-lg font-medium leading-snug text-foreground">
+                          {featuredMarket.question}
+                        </p>
+
+                        {/* Large YES/NO probability bars */}
+                        <div className="mb-3">
+                          <div className="mb-1.5 flex justify-between text-sm">
+                            <span className="font-semibold text-emerald-500">YES {featuredMarket.initialProbability}%</span>
+                            <span className="text-red-400/80">NO {100 - featuredMarket.initialProbability}%</span>
+                          </div>
+                          <div className="h-3 w-full overflow-hidden rounded-full bg-red-500/15">
+                            <div className="h-full rounded-full bg-emerald-500/60 transition-all" style={{ width: `${featuredMarket.initialProbability}%` }} />
+                          </div>
+                        </div>
+
+                        {/* Stats row */}
+                        <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">
+                          <span className="flex items-center gap-1 font-mono tabular-nums">
+                            <BarChart3 className="h-3 w-3" />
+                            ${getMarketVolume(featuredMarket).toLocaleString()} vol
+                          </span>
+                          <span className="flex items-center gap-1 font-mono tabular-nums">
+                            <Users className="h-3 w-3" />
+                            {getMarketTraders(featuredMarket).toLocaleString()} traders
+                          </span>
+                          <span className="flex items-center gap-1 font-mono tabular-nums">
+                            <Clock className="h-3 w-3" />
+                            {featuredMarket.expiresInDays}d left
+                          </span>
+                        </div>
+
+                        {/* CTA */}
+                        <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors group-hover:bg-primary/90">
+                          Make Your Prediction
+                          <ChevronRight className="h-3 w-3" />
+                        </span>
+                      </button>
+
+                      {/* Educational one-liner */}
+                      <p className="mt-3 text-center text-xs text-muted-foreground">
+                        Prediction markets train you to think in probabilities — a core skill for trading and investing.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* All Markets heading */}
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-xs font-semibold text-muted-foreground">
+                      All Markets ({filteredMarkets.length})
+                    </span>
+                  </div>
+
                   {filteredMarkets.length > 0 ? (
                     <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
                       {filteredMarkets.map((market) => (

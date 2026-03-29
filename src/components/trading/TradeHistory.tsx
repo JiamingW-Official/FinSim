@@ -10,14 +10,10 @@ export function TradeHistory() {
 
   if (tradeHistory.length === 0) {
     return (
-      <div className="flex h-24 flex-col items-center justify-center gap-1.5">
-        <BarChart3 className="h-5 w-5 text-muted-foreground/40" />
-        <span className="text-xs font-medium text-muted-foreground">
-          No trades yet
-        </span>
-        <span className="text-xs text-muted-foreground/60">
-          Your completed trades will appear here
-        </span>
+      <div className="flex flex-col items-center justify-center py-12 text-center">
+        <BarChart3 className="h-8 w-8 text-muted-foreground/40 mb-3" />
+        <p className="text-sm font-medium text-muted-foreground">No trades yet</p>
+        <p className="text-xs text-muted-foreground/70 mt-1">Place your first practice trade to see history here</p>
       </div>
     );
   }

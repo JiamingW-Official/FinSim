@@ -107,6 +107,104 @@ export default function LandingPage() {
         >
           100% free&nbsp;&nbsp;•&nbsp;&nbsp;No real money&nbsp;&nbsp;•&nbsp;&nbsp;No sign-up required
         </motion.p>
+
+        {/* Product Preview */}
+        <motion.div
+          className="mt-14 mx-auto max-w-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45, duration: 0.5 }}
+        >
+          <div className="rounded-lg border border-border bg-card overflow-hidden shadow-lg">
+            {/* Browser chrome */}
+            <div className="flex items-center gap-1.5 px-4 py-2.5 bg-muted/50 border-b border-border">
+              <div className="h-2.5 w-2.5 rounded-full bg-red-400/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-yellow-400/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-green-400/60" />
+              <div className="ml-3 flex-1 h-5 rounded bg-muted/80 flex items-center justify-center">
+                <span className="text-[10px] text-muted-foreground/60">finsim.app/trade</span>
+              </div>
+            </div>
+
+            {/* App content */}
+            <div className="flex">
+              {/* Chart area */}
+              <div className="flex-1 p-4">
+                {/* Ticker bar */}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-xs font-bold">AAPL</span>
+                  <span className="text-xs text-emerald-400 font-medium">$192.15</span>
+                  <span className="text-[10px] text-emerald-400/80">+0.23%</span>
+                </div>
+                {/* SVG Chart */}
+                <svg viewBox="0 0 400 120" className="w-full h-auto" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
+                      <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  {/* Grid lines */}
+                  <line x1="0" y1="30" x2="400" y2="30" stroke="hsl(var(--border))" strokeWidth="0.5" />
+                  <line x1="0" y1="60" x2="400" y2="60" stroke="hsl(var(--border))" strokeWidth="0.5" />
+                  <line x1="0" y1="90" x2="400" y2="90" stroke="hsl(var(--border))" strokeWidth="0.5" />
+                  {/* Area fill */}
+                  <path
+                    d="M0,85 C30,80 60,75 90,70 C120,65 140,60 170,50 C200,40 220,55 250,45 C280,35 310,30 340,25 C360,22 380,20 400,18 L400,120 L0,120 Z"
+                    fill="url(#chartGrad)"
+                  />
+                  {/* Line */}
+                  <path
+                    d="M0,85 C30,80 60,75 90,70 C120,65 140,60 170,50 C200,40 220,55 250,45 C280,35 310,30 340,25 C360,22 380,20 400,18"
+                    fill="none"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth="2"
+                  />
+                </svg>
+                {/* Time labels */}
+                <div className="flex justify-between mt-1">
+                  <span className="text-[9px] text-muted-foreground/50">9:30</span>
+                  <span className="text-[9px] text-muted-foreground/50">11:00</span>
+                  <span className="text-[9px] text-muted-foreground/50">12:30</span>
+                  <span className="text-[9px] text-muted-foreground/50">14:00</span>
+                  <span className="text-[9px] text-muted-foreground/50">15:30</span>
+                </div>
+              </div>
+
+              {/* Order entry panel */}
+              <div className="w-40 border-l border-border p-3 flex flex-col gap-2">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Order Entry</div>
+                <div className="flex gap-1">
+                  <div className="flex-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold text-center py-1">Buy</div>
+                  <div className="flex-1 rounded bg-muted text-muted-foreground text-[10px] font-medium text-center py-1">Sell</div>
+                </div>
+                <div className="space-y-1.5">
+                  <div>
+                    <div className="text-[9px] text-muted-foreground mb-0.5">Shares</div>
+                    <div className="rounded border border-border bg-background px-2 py-1 text-[10px]">100</div>
+                  </div>
+                  <div>
+                    <div className="text-[9px] text-muted-foreground mb-0.5">Type</div>
+                    <div className="rounded border border-border bg-background px-2 py-1 text-[10px]">Market</div>
+                  </div>
+                </div>
+                <div className="mt-auto rounded bg-primary py-1.5 text-center text-[10px] font-semibold text-primary-foreground">
+                  Place Order
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom status bar */}
+            <div className="flex items-center justify-between px-4 py-1.5 bg-muted/30 border-t border-border text-[10px] text-muted-foreground">
+              <span>AAPL $192.15 <span className="text-emerald-400">+0.23%</span></span>
+              <span>Portfolio: $100,000.00</span>
+            </div>
+          </div>
+
+          <p className="mt-4 text-sm text-muted-foreground">
+            No downloads. No sign-up. Start in your browser.
+          </p>
+        </motion.div>
       </section>
 
       {/* Feature grid */}
