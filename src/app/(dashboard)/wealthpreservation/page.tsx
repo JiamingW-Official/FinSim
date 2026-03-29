@@ -441,7 +441,7 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
   const riskColor = {
     Low: "bg-green-500/10 text-green-400 border-green-500/20",
     Medium: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    High: "bg-red-500/10 text-red-400 border-red-500/20",
+    High: "bg-red-500/5 text-red-400 border-red-500/20",
   }[strategy.riskLevel];
 
   const catColor: Record<string, string> = {
@@ -717,7 +717,7 @@ function TaxStrategyPanel() {
                           ? "bg-green-500/10 text-green-400 border-green-500/20"
                           : s.complexity === "Medium"
                           ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
-                          : "bg-red-500/10 text-red-400 border-red-500/20"
+                          : "bg-red-500/5 text-red-400 border-red-500/20"
                       )}
                     >
                       {s.complexity}
@@ -825,7 +825,7 @@ function InflationHedgesPanel() {
                         ? "bg-green-500/10 text-green-400 border-green-500/20"
                         : h.liquidity.startsWith("Low–")
                         ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
-                        : "bg-red-500/10 text-red-400 border-red-500/20"
+                        : "bg-red-500/5 text-red-400 border-red-500/20"
                     )}
                   >
                     {h.liquidity}
@@ -899,7 +899,7 @@ export default function WealthPreservationPage() {
             <Badge variant="outline" className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20">
               HNW Focus
             </Badge>
-            <Badge variant="outline" className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
+            <Badge variant="outline" className="bg-emerald-500/5 text-emerald-400 border-emerald-500/20">
               $5M+ AUM
             </Badge>
           </div>
@@ -912,7 +912,7 @@ export default function WealthPreservationPage() {
             label="Real Return Target"
             value="4.5%"
             sub="After inflation & taxes"
-            color="bg-emerald-500/10"
+            color="bg-emerald-500/5"
           />
           <MetricCard
             icon={<Shield className="w-4 h-4 text-amber-400" />}

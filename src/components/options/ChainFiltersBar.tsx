@@ -46,7 +46,7 @@ function ToggleButton({
     <button
       onClick={onClick}
       className={cn(
-        "rounded px-2 py-1 text-xs font-medium transition-colors",
+        "rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
         active
           ? "border border-orange-500/30 bg-orange-500/15 text-orange-400"
           : "text-muted-foreground hover:text-foreground",
@@ -65,7 +65,7 @@ export function ChainFiltersBar({
   onSelectExpiry,
 }: ChainFiltersBarProps) {
   return (
-    <div className="flex shrink-0 items-center gap-3 border-b border-border/50 bg-card/50 px-3 py-1.5 overflow-x-auto">
+    <div className="flex shrink-0 items-center gap-2 border-b border-border/50 bg-card/50 px-2 py-1 overflow-x-auto">
       {/* Type filter */}
       <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
         {TYPE_OPTIONS.map((opt) => (
@@ -103,14 +103,14 @@ export function ChainFiltersBar({
             key={exp.expiry}
             onClick={() => onSelectExpiry(exp.expiry)}
             className={cn(
-              "rounded px-2 py-0.5 text-[11px] font-medium transition-colors",
+              "rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
               selectedExpiry === exp.expiry
                 ? "border border-orange-500/40 bg-orange-500/12 text-orange-400"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >
             {formatDTE(exp.daysToExpiry)}
-            <span className="ml-0.5 text-[11px] opacity-60">
+            <span className="ml-0.5 text-[10px] opacity-60">
               {exp.daysToExpiry}d
             </span>
           </button>

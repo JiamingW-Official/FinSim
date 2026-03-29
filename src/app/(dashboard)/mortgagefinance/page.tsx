@@ -528,7 +528,7 @@ export default function MortgageFinancePage() {
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
-            <Home className="w-5 h-5 text-primary" />
+            <Home className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Mortgage &amp; Real Estate Finance</h1>
@@ -587,7 +587,7 @@ export default function MortgageFinancePage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     30-Year Amortization Schedule
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -712,7 +712,7 @@ export default function MortgageFinancePage() {
                       <div className="text-xs text-muted-foreground mt-1">Future home value</div>
                       <div className="font-medium text-xs text-emerald-400">{fmtK(bvr.futureHomeValue)}</div>
                     </div>
-                    <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
+                    <div className="bg-emerald-500/5 border border-emerald-500/20 rounded p-2">
                       <div className="text-xs text-emerald-300 font-medium mb-1">Rent</div>
                       <div className="text-xs text-muted-foreground">Monthly</div>
                       <div className="font-medium text-sm">{fmtUSD(bvr.totalMonthlyRent)}</div>
@@ -723,7 +723,7 @@ export default function MortgageFinancePage() {
 
                   <div className={cn(
                     "rounded p-2 text-center text-sm font-medium",
-                    bvr.npvDiff > 0 ? "bg-primary/10 text-primary" : "bg-emerald-500/10 text-emerald-300"
+                    bvr.npvDiff > 0 ? "bg-primary/10 text-primary" : "bg-emerald-500/5 text-emerald-300"
                   )}>
                     {bvr.npvDiff > 0
                       ? `Buying favored by ${fmtK(Math.abs(bvr.npvDiff))} NPV over ${horizonYears}yr`
@@ -765,7 +765,7 @@ export default function MortgageFinancePage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                     MBS Securitization Structure
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -787,7 +787,7 @@ export default function MortgageFinancePage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-primary" />
+                    <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Agency &amp; Non-Agency MBS
                   </CardTitle>
                 </CardHeader>
@@ -876,7 +876,7 @@ export default function MortgageFinancePage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-primary" />
+                    <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Price-to-Income Ratio 2000–2024
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">
@@ -1053,7 +1053,7 @@ export default function MortgageFinancePage() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4 text-primary" />
+                  <RefreshCw className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Negative Convexity &amp; Extension Risk
                 </CardTitle>
               </CardHeader>

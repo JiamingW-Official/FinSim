@@ -1365,7 +1365,7 @@ function FactorInvestingTab() {
               {
                 title: "Turnover Costs",
                 desc: "Momentum requires ~100% annual turnover. At 5bps/trade × 2 sides, that's 10bps drag per year.",
-                color: "bg-red-500/10 border-red-500/30",
+                color: "bg-red-500/5 border-red-500/30",
                 icon: ArrowDownRight,
                 iconColor: "text-red-400",
               },

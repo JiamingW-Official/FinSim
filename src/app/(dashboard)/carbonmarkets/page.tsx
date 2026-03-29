@@ -1091,7 +1091,7 @@ export default function CarbonMarketsPage() {
     <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2 flex-wrap">
-          <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+          <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
             <Leaf className="w-6 h-6 text-emerald-400" />
           </div>
           <div>

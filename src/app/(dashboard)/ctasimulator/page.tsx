@@ -587,7 +587,7 @@ export default function CTASimulatorPage() {
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+          <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
             <Sigma className="w-5 h-5 text-emerald-400" />
           </div>
           <div>
@@ -595,7 +595,7 @@ export default function CTASimulatorPage() {
             <p className="text-sm text-muted-foreground">Systematic macro & commodity trading advisor strategies</p>
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 text-xs">Managed Futures</Badge>
+            <Badge className="bg-emerald-500/5 text-emerald-400 border-emerald-500/20 text-xs">Managed Futures</Badge>
             <Badge className="bg-primary/10 text-primary border-border text-xs">Live Signals</Badge>
           </div>
         </div>
@@ -736,7 +736,7 @@ export default function CTASimulatorPage() {
                 <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
-                      <Activity className="w-4 h-4 text-primary" />
+                      <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Signal Strength by Market
                     </CardTitle>
                   </CardHeader>
@@ -748,7 +748,7 @@ export default function CTASimulatorPage() {
                 <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
-                      <SlidersHorizontal className="w-4 h-4 text-primary" />
+                      <SlidersHorizontal className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Signal Table
                     </CardTitle>
                   </CardHeader>
@@ -844,7 +844,7 @@ export default function CTASimulatorPage() {
               <Card className="mb-4 bg-card/60 border-border/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
-                    <Gauge className="w-4 h-4 text-primary" />
+                    <Gauge className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Volatility Target: {volTarget}%
                   </CardTitle>
                 </CardHeader>
@@ -903,7 +903,7 @@ export default function CTASimulatorPage() {
                 <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
-                      <Layers className="w-4 h-4 text-primary" />
+                      <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Equal Risk Contribution
                     </CardTitle>
                   </CardHeader>
@@ -970,7 +970,7 @@ export default function CTASimulatorPage() {
                 <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
-                      <BarChart3 className="w-4 h-4 text-primary" />
+                      <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Annual Returns
                     </CardTitle>
                   </CardHeader>
@@ -1045,7 +1045,7 @@ export default function CTASimulatorPage() {
               <Card className="mb-4 bg-card/60 border-border/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
-                    <GitBranch className="w-4 h-4 text-primary" />
+                    <GitBranch className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Correlation by Market Regime
                   </CardTitle>
                 </CardHeader>

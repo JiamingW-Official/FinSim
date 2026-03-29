@@ -418,7 +418,7 @@ function BusinessCycleClock() {
       {/* Header */}
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
-          <Clock className="w-5 h-5 text-primary" />
+          <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h2 className="text-base font-semibold text-foreground">Business Cycle Clock</h2>
@@ -992,7 +992,7 @@ function FactorRotation() {
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
-          <Layers className="w-5 h-5 text-primary" />
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h2 className="text-base font-medium text-foreground">Factor Rotation by Business Cycle</h2>
@@ -1125,7 +1125,7 @@ function FactorRotation() {
                     <p className="text-xs text-green-400 font-medium mb-0.5">Best Phase</p>
                     <p className="text-xs text-foreground">{factor.bestPhase}</p>
                   </div>
-                  <div className="rounded p-2 bg-red-500/10 border border-red-500/20">
+                  <div className="rounded p-2 bg-red-500/5 border border-red-500/20">
                     <p className="text-xs text-red-400 font-medium mb-0.5">Worst Phase</p>
                     <p className="text-xs text-foreground">{factor.worstPhase}</p>
                   </div>
@@ -1426,7 +1426,7 @@ export default function SectorRotationPage() {
           <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30 text-sm px-3 py-1">
             Phase: {CURRENT_PHASE}
           </Badge>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-red-500/10 border border-red-500/30">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-red-500/5 border border-red-500/30">
             <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
             <span className="text-xs text-red-400 font-medium">3 Bearish Signals</span>
           </div>

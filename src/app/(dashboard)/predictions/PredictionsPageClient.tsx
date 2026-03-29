@@ -2,25 +2,12 @@
 
 import { useState, useMemo, useCallback } from "react";
 import {
-  TrendingUp,
-  Target,
-  BarChart3,
-  Coins,
-  Info,
   ArrowUpDown,
-  Briefcase,
-  Trophy,
-  Calculator,
-  BookOpen,
   Search,
   X,
   ChevronRight,
-  CheckCircle2,
-  XCircle,
-  Clock,
   ChevronLeft,
   HelpCircle,
-  Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -51,11 +38,11 @@ type PageTab = "markets" | "bets" | "leaderboard" | "tools";
 type FilterTab = "all" | MarketCategory;
 type SortMode = "volume" | "closing" | "probability" | "activity";
 
-const PAGE_TABS: { value: PageTab; label: string; icon: React.ReactNode }[] = [
-  { value: "markets", label: "Markets", icon: <TrendingUp className="h-3 w-3" /> },
-  { value: "bets", label: "My Bets", icon: <Briefcase className="h-3 w-3" /> },
-  { value: "leaderboard", label: "Leaderboard", icon: <Trophy className="h-3 w-3" /> },
-  { value: "tools", label: "Tools", icon: <Calculator className="h-3 w-3" /> },
+const PAGE_TABS: { value: PageTab; label: string }[] = [
+  { value: "markets", label: "Markets" },
+  { value: "bets", label: "My Bets" },
+  { value: "leaderboard", label: "Leaderboard" },
+  { value: "tools", label: "Tools" },
 ];
 
 const FILTER_TABS: { value: FilterTab; label: string }[] = [
@@ -108,11 +95,6 @@ function getMarketVolume(m: PredictionMarket): number {
 function getMarketActivity(m: PredictionMarket): number {
   const rand = mulberry32(hashStr(m.id + "act"));
   return Math.round(rand() * 200 + 1);
-}
-
-function getMarketTraders(m: PredictionMarket): number {
-  const rand = mulberry32(hashStr(m.id + "traders"));
-  return Math.round(rand() * 400 + 50);
 }
 
 function getPriceHistory(m: PredictionMarket): number[] {
@@ -190,13 +172,13 @@ function MarketRow({
 
       {/* Bet indicator */}
       {bet && (
-        <span className={cn("shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-medium leading-none", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500")}>
+        <span className={cn("shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-medium leading-none", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500/80" : "bg-red-500/5 text-red-500/80")}>
           {bet.position}
         </span>
       )}
 
       {/* YES odds */}
-      <span className="shrink-0 w-10 text-right font-mono tabular-nums text-xs font-medium text-emerald-500">
+      <span className="shrink-0 w-10 text-right font-mono tabular-nums text-xs font-medium text-emerald-500/80">
         {market.initialProbability}%
       </span>
 
@@ -249,7 +231,7 @@ function PriceHistoryChart({ data, title }: { data: number[]; title: string }) {
     <div className="bg-transparent p-0">
       <div className="mb-1.5 flex items-center justify-between">
         <span className="text-xs font-medium text-muted-foreground">{title}</span>
-        <span className={cn("font-mono tabular-nums text-xs font-medium", delta >= 0 ? "text-emerald-500" : "text-red-500")}>
+        <span className={cn("font-mono tabular-nums text-xs font-medium", delta >= 0 ? "text-emerald-500/80" : "text-red-500/80")}>
           {delta >= 0 ? "+" : ""}{delta.toFixed(0)}pp
         </span>
       </div>
@@ -331,8 +313,8 @@ function MarketDetailDrawer({
         Back to markets
       </button>
 
-      {/* Header — HERO card */}
-      <div className="mb-4 border-l-4 border-l-primary rounded-lg bg-card p-6">
+      {/* Header */}
+      <div className="mb-4 border-l-2 border-l-primary/30 rounded-lg bg-card p-4">
         <div className="mb-2 flex items-center gap-1.5 flex-wrap">
           <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-medium", CATEGORY_COLORS[market.category])}>
             {CATEGORY_LABELS[market.category]}
@@ -380,10 +362,10 @@ function MarketDetailDrawer({
             <button
               onClick={() => setOrderSide("yes")}
               className={cn(
-                "rounded-lg py-2 text-xs font-medium transition-all duration-100 active:scale-95",
+                "rounded py-1.5 text-xs font-medium transition-colors",
                 orderSide === "yes"
-                  ? "bg-emerald-500/20 text-emerald-500 ring-1 ring-emerald-500/30"
-                  : "bg-emerald-500/8 text-emerald-500/60 hover:bg-emerald-500/12",
+                  ? "bg-emerald-500/15 text-emerald-500/80 ring-1 ring-emerald-500/20"
+                  : "bg-muted/30 text-muted-foreground hover:bg-muted/50",
               )}
             >
               YES {market.initialProbability}%
@@ -391,10 +373,10 @@ function MarketDetailDrawer({
             <button
               onClick={() => setOrderSide("no")}
               className={cn(
-                "rounded-lg py-2 text-xs font-medium transition-all duration-100 active:scale-95",
+                "rounded py-1.5 text-xs font-medium transition-colors",
                 orderSide === "no"
-                  ? "bg-red-500/20 text-red-500 ring-1 ring-red-500/30"
-                  : "bg-red-500/8 text-red-500/60 hover:bg-red-500/12",
+                  ? "bg-red-500/15 text-red-500/80 ring-1 ring-red-500/20"
+                  : "bg-muted/30 text-muted-foreground hover:bg-muted/50",
               )}
             >
               NO {100 - market.initialProbability}%
@@ -445,9 +427,9 @@ function MarketDetailDrawer({
           <div className="mb-3 flex items-center gap-2.5 text-xs px-1 flex-wrap">
             <span className="text-muted-foreground">Stake <span className="font-medium text-foreground">{betAmount} pts</span></span>
             <span className="text-border/30">·</span>
-            <span className="text-muted-foreground">Payout <span className="font-medium text-emerald-500">{expectedPayout} pts</span></span>
+            <span className="text-muted-foreground">Payout <span className="font-medium text-emerald-500/80">{expectedPayout} pts</span></span>
             <span className="text-border/30">·</span>
-            <span className="text-muted-foreground">Profit <span className="font-medium text-emerald-500">+{expectedPayout - betAmount} pts</span></span>
+            <span className="text-muted-foreground">Profit <span className="font-medium text-emerald-500/80">+{expectedPayout - betAmount} pts</span></span>
           </div>
 
           <button
@@ -462,7 +444,7 @@ function MarketDetailDrawer({
         <div className="mb-4 rounded-lg border border-border bg-muted/20 px-3 py-3">
           <div className="mb-1 text-xs font-medium text-muted-foreground">Your Bet</div>
           <div className="flex items-center gap-2 text-[11px]">
-            <span className={cn("rounded-sm px-1.5 py-0.5 font-medium text-[10px]", existingBet.position === "yes" ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500")}>
+            <span className={cn("rounded-sm px-1.5 py-0.5 font-medium text-[10px]", existingBet.position === "yes" ? "bg-emerald-500/5 text-emerald-500/80" : "bg-red-500/5 text-red-500/80")}>
               {existingBet.position.toUpperCase()}
             </span>
             <span className="text-muted-foreground">{existingBet.amount} pts at {Math.round(existingBet.probability * 100)}%</span>
@@ -477,7 +459,7 @@ function MarketDetailDrawer({
           {recentTrades.map((trade, i) => (
             <div key={i} className="flex items-center justify-between py-1.5 text-[11px]">
               <div className="flex items-center gap-2">
-                <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", trade.side === "YES" ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500")}>
+                <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", trade.side === "YES" ? "bg-emerald-500/5 text-emerald-500/80" : "bg-red-500/5 text-red-500/80")}>
                   {trade.side}
                 </span>
                 <span className="font-mono tabular-nums text-muted-foreground">{trade.price}%</span>
@@ -525,10 +507,9 @@ function MyBetsTab() {
 
   if (bets.length === 0) {
     return (
-      <div className="flex h-64 flex-col items-center justify-center gap-2 rounded-lg border border-border bg-card text-center">
-        <Briefcase className="h-8 w-8 text-muted-foreground/30" />
-        <p className="text-sm font-medium text-muted-foreground">No bets placed yet</p>
-        <p className="max-w-xs text-xs text-muted-foreground/60">Switch to the Markets tab to browse open prediction markets and place your first bet.</p>
+      <div className="flex h-40 flex-col items-center justify-center gap-1 text-center">
+        <p className="text-xs font-medium text-muted-foreground">No bets placed yet</p>
+        <p className="max-w-xs text-xs text-muted-foreground/60">Browse open markets and place your first bet.</p>
       </div>
     );
   }
@@ -539,13 +520,13 @@ function MyBetsTab() {
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs px-1">
         <span className="text-muted-foreground">Staked <span className="font-mono tabular-nums font-medium text-foreground">{totalStaked} pts</span></span>
         <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">Won <span className="font-mono tabular-nums font-medium text-emerald-500">+{totalWon} pts</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">Lost <span className="font-mono tabular-nums font-medium text-red-500">-{totalLost} pts</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">Net P&L <span className={cn("font-mono tabular-nums font-medium", netPnl >= 0 ? "text-emerald-500" : "text-red-500")}>{netPnl >= 0 ? "+" : ""}{netPnl} pts</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">ROI <span className={cn("font-mono tabular-nums font-medium", roi >= 0 ? "text-emerald-500" : "text-red-500")}>{roi >= 0 ? "+" : ""}{roi.toFixed(1)}%</span></span>
+        <span className="text-muted-foreground">Won <span className="font-mono tabular-nums font-medium text-emerald-500/80">+{totalWon} pts</span></span>
+        <span className="text-border/30">&middot;</span>
+        <span className="text-muted-foreground">Lost <span className="font-mono tabular-nums font-medium text-red-500/80">-{totalLost} pts</span></span>
+        <span className="text-border/30">&middot;</span>
+        <span className="text-muted-foreground">Net P&L <span className={cn("font-mono tabular-nums font-medium", netPnl >= 0 ? "text-emerald-500/80" : "text-red-500/80")}>{netPnl >= 0 ? "+" : ""}{netPnl} pts</span></span>
+        <span className="text-border/30">&middot;</span>
+        <span className="text-muted-foreground">ROI <span className={cn("font-mono tabular-nums font-medium", roi >= 0 ? "text-emerald-500/80" : "text-red-500/80")}>{roi >= 0 ? "+" : ""}{roi.toFixed(1)}%</span></span>
       </div>
 
       {/* Accuracy tracker */}
@@ -583,14 +564,14 @@ function MyBetsTab() {
                         {(market?.question.length ?? 0) > 40 ? "…" : ""}
                       </td>
                       <td className="px-3 py-2 text-center">
-                        <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500" : "bg-red-500/5 text-red-500")}>
+                        <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500/80" : "bg-red-500/5 text-red-500/80")}>
                           {bet.position.toUpperCase()}
                         </span>
                       </td>
                       <td className="px-3 py-2 text-right font-mono tabular-nums text-foreground">{bet.amount} pts</td>
                       <td className="px-3 py-2 text-right font-mono tabular-nums text-foreground">
                         {estPayout} pts
-                        <span className="ml-1 text-emerald-500/80">(+{estPnl})</span>
+                        <span className="ml-1 text-emerald-500/60">(+{estPnl})</span>
                       </td>
                       <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
                         {Math.round(prob * 100)}%
@@ -617,14 +598,14 @@ function MyBetsTab() {
               const pnl = (bet.payout ?? 0) - bet.amount;
               return (
                 <div key={bet.marketId + bet.timestamp} className="flex items-center gap-2 py-0.5 text-[11px] text-muted-foreground">
-                  <span className={cn("shrink-0", isCorrect ? "text-emerald-500/70" : "text-red-500/70")}>
+                  <span className={cn("shrink-0", isCorrect ? "text-emerald-500/60" : "text-red-500/60")}>
                     {isCorrect ? "+" : "-"}
                   </span>
                   <span className="min-w-0 flex-1 truncate">
                     {market?.question.slice(0, 50) ?? bet.marketId}
                   </span>
                   <span className="shrink-0 text-[10px] font-medium">{bet.position}</span>
-                  <span className={cn("shrink-0 font-mono tabular-nums text-[10px]", pnl >= 0 ? "text-emerald-500/70" : "text-red-500/70")}>
+                  <span className={cn("shrink-0 font-mono tabular-nums text-[10px]", pnl >= 0 ? "text-emerald-500/60" : "text-red-500/60")}>
                     {pnl >= 0 ? "+" : ""}{pnl}
                   </span>
                 </div>
@@ -799,13 +780,6 @@ export function PredictionsPageClient() {
     return markets;
   }, [activeFilter, sortMode, searchQuery]);
 
-  // Featured market: first "Closing Soon" market, or highest volume
-  const featuredMarket = useMemo(() => {
-    const closingSoon = PREDICTION_MARKETS.find((m) => m.expiresInDays <= 3);
-    if (closingSoon) return closingSoon;
-    return [...PREDICTION_MARKETS].sort((a, b) => getMarketVolume(b) - getMarketVolume(a))[0] ?? null;
-  }, []);
-
   const handleSelectMarket = useCallback((m: PredictionMarket) => {
     setSelectedMarket(m);
   }, []);
@@ -821,25 +795,22 @@ export function PredictionsPageClient() {
       {/* Header */}
       <div className="border-b border-border/50 px-4 pt-4 pb-0">
         <div className="flex items-center gap-3 pb-3">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-muted">
-            <TrendingUp className="h-4 w-4 text-foreground" />
-          </div>
           <div className="min-w-0">
-            <h1 className="text-sm font-medium">Practice Prediction Markets</h1>
+            <h1 className="text-sm font-medium">Prediction Markets</h1>
             <p className="text-xs text-muted-foreground">
-              Test your probability thinking with {PREDICTION_MARKETS.length} simulated markets — no real money involved
+              {PREDICTION_MARKETS.length} markets — {insightPoints.toLocaleString()} pts available
             </p>
           </div>
           <div className="flex-1" />
           <Tooltip>
             <TooltipTrigger asChild>
-              <button className="flex shrink-0 items-center gap-1 rounded-md border border-border px-2 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground">
+              <button className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground">
                 <HelpCircle className="h-3 w-3" />
-                How it works
+                <span>How it works</span>
               </button>
             </TooltipTrigger>
             <TooltipContent side="bottom" align="end" className="max-w-72 text-xs leading-relaxed">
-              <p className="mb-1.5 font-medium text-foreground">How Practice Markets Work</p>
+              <p className="mb-1.5 font-medium text-foreground">How prediction markets work</p>
               <ol className="list-decimal space-y-1 pl-3.5 text-muted-foreground">
                 <li>Browse markets and estimate the probability of each outcome.</li>
                 <li>Place a YES or NO bet using your Insight Points.</li>
@@ -848,12 +819,6 @@ export function PredictionsPageClient() {
               </ol>
             </TooltipContent>
           </Tooltip>
-          <div className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1">
-            <Coins className="h-3.5 w-3.5 text-amber-500" />
-            <span className="font-mono tabular-nums text-xs font-medium text-foreground">
-              {insightPoints.toLocaleString()}
-            </span>
-          </div>
         </div>
 
         {/* Page-level tabs */}
@@ -869,7 +834,6 @@ export function PredictionsPageClient() {
                   : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
-              {tab.icon}
               {tab.label}
               {tab.value === "bets" && activeBetCount > 0 && (
                 <span className="rounded-full bg-primary/20 px-1 text-[11px] font-medium text-primary">{activeBetCount}</span>
@@ -882,18 +846,14 @@ export function PredictionsPageClient() {
       {/* Stats row (Markets tab only) */}
       {pageTab === "markets" && (
         <div className="border-b border-border/50 px-4 py-2">
-          <div className="flex flex-wrap items-center gap-3">
-            <StatChip icon={<BarChart3 className="h-3 w-3" />} label="Bets" value={String(bets.length)} />
-            <StatChip icon={<Target className="h-3 w-3" />} label="Accuracy" value={totalResolved > 0 ? `${accuracy}%` : "--"} />
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+            <span className="text-muted-foreground">Bets <span className="font-mono tabular-nums font-medium text-foreground">{bets.length}</span></span>
+            <span className="text-border/30">&middot;</span>
+            <span className="text-muted-foreground">Accuracy <span className="font-mono tabular-nums font-medium text-foreground">{totalResolved > 0 ? `${accuracy}%` : "--"}</span></span>
+            <span className="text-border/30">&middot;</span>
             <Tooltip>
               <TooltipTrigger asChild>
-                <div className="flex cursor-help items-center gap-1.5 rounded bg-muted/50 px-2 py-1">
-                  <span className="text-xs text-muted-foreground">Brier</span>
-                  <span className="font-mono tabular-nums text-xs font-medium text-foreground">
-                    {totalResolved > 0 ? brierScore.toFixed(3) : "--"}
-                  </span>
-                  <Info className="h-3 w-3 text-muted-foreground" />
-                </div>
+                <span className="cursor-help text-muted-foreground">Brier <span className="font-mono tabular-nums font-medium text-foreground">{totalResolved > 0 ? brierScore.toFixed(3) : "--"}</span></span>
               </TooltipTrigger>
               <TooltipContent side="bottom" className="max-w-64 text-xs">
                 Brier Score measures calibration (0 = perfect, 1 = worst). Below 0.25 is well-calibrated.
@@ -966,95 +926,12 @@ export function PredictionsPageClient() {
                   </div>
                 </div>
 
-                {/* Featured Market + Compact market list */}
+                {/* Market list */}
                 <div className="flex-1 overflow-y-auto p-4">
-                  {/* ── FEATURED MARKET — dominant hero ── */}
-                  {featuredMarket && !searchQuery.trim() && activeFilter === "all" && (
-                    <div className="mb-8">
-                      <button
-                        onClick={() => handleSelectMarket(featuredMarket)}
-                        className="group w-full border-l-4 border-l-primary rounded-lg bg-card p-6 sm:p-8 text-left transition-colors hover:bg-muted/10"
-                      >
-                        {/* Top meta */}
-                        <div className="mb-3 flex items-center gap-2">
-                          <span className="text-[11px] font-medium text-primary">Featured market</span>
-                          <span className={cn("ml-1 rounded px-1.5 py-0.5 text-[10px] font-medium", CATEGORY_COLORS[featuredMarket.category])}>
-                            {CATEGORY_LABELS[featuredMarket.category]}
-                          </span>
-                          {featuredMarket.expiresInDays <= 3 && (
-                            <span className="flex items-center gap-0.5 rounded-sm bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium text-amber-500">
-                              <Clock className="h-3 w-3" />
-                              Closing soon
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Large question */}
-                        <p className="mb-5 text-lg font-medium leading-snug text-foreground sm:text-xl">
-                          {featuredMarket.question}
-                        </p>
-
-                        {/* Description */}
-                        <p className="mb-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                          {featuredMarket.description}
-                        </p>
-
-                        {/* Massive YES / NO buttons */}
-                        <div className="mb-5 grid grid-cols-2 gap-3">
-                          <div className="flex h-12 items-center justify-center rounded-lg bg-emerald-500/12 text-sm font-medium font-mono tabular-nums text-emerald-500 ring-1 ring-emerald-500/20">
-                            YES {featuredMarket.initialProbability}%
-                          </div>
-                          <div className="flex h-12 items-center justify-center rounded-lg bg-red-500/12 text-sm font-medium font-mono tabular-nums text-red-500 ring-1 ring-red-500/20">
-                            NO {100 - featuredMarket.initialProbability}%
-                          </div>
-                        </div>
-
-                        {/* Probability bar */}
-                        <div className="mb-5">
-                          <div className="h-2.5 w-full overflow-hidden rounded-full bg-red-500/15">
-                            <div className="h-full rounded-full bg-emerald-500/60 transition-all" style={{ width: `${featuredMarket.initialProbability}%` }} />
-                          </div>
-                        </div>
-
-                        {/* Stats row */}
-                        <div className="mb-5 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-                          <span className="flex items-center gap-1 font-mono tabular-nums">
-                            <BarChart3 className="h-3 w-3" />
-                            ${getMarketVolume(featuredMarket).toLocaleString()} vol
-                          </span>
-                          <span className="flex items-center gap-1 font-mono tabular-nums">
-                            <Users className="h-3 w-3" />
-                            {getMarketTraders(featuredMarket).toLocaleString()} traders
-                          </span>
-                          <span className="flex items-center gap-1 font-mono tabular-nums">
-                            <Clock className="h-3 w-3" />
-                            {featuredMarket.expiresInDays}d left
-                          </span>
-                          <span className="text-muted-foreground/30">|</span>
-                          <span className="font-mono tabular-nums">
-                            Odds: {featuredMarket.initialProbability > 50 ? (featuredMarket.initialProbability / (100 - featuredMarket.initialProbability)).toFixed(1) : ((100 - featuredMarket.initialProbability) / featuredMarket.initialProbability).toFixed(1)}:1
-                          </span>
-                        </div>
-
-                        {/* Sparkline + CTA */}
-                        <div className="flex items-end justify-between">
-                          <Sparkline data={getPriceHistory(featuredMarket)} width={120} height={32} />
-                          <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-medium text-primary-foreground transition-colors group-hover:bg-primary/90">
-                            Make Your Prediction
-                            <ChevronRight className="h-3 w-3" />
-                          </span>
-                        </div>
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Buffer between featured hero and list — large breathing room */}
-                  <div className="mt-10" />
-
-                  {/* ── ALL MARKETS — compact list ── */}
+                  {/* Market count */}
                   <div className="mb-2">
                     <span className="text-xs text-muted-foreground/50">
-                      All Markets ({filteredMarkets.length})
+                      {filteredMarkets.length} markets
                     </span>
                   </div>
 
@@ -1104,23 +981,22 @@ export function PredictionsPageClient() {
             <div className="flex items-center gap-0.5 overflow-x-auto">
               {(
                 [
-                  { value: "kelly", label: "Kelly Calculator", icon: <Calculator className="h-3 w-3" /> },
-                  { value: "depth", label: "Market Depth", icon: <BarChart3 className="h-3 w-3" /> },
-                  { value: "calibration", label: "Calibration", icon: <Target className="h-3 w-3" /> },
-                  { value: "tips", label: "Forecaster Tips", icon: <BookOpen className="h-3 w-3" /> },
-                ] as { value: ToolTab; label: string; icon: React.ReactNode }[]
+                  { value: "kelly", label: "Kelly Calculator" },
+                  { value: "depth", label: "Market Depth" },
+                  { value: "calibration", label: "Calibration" },
+                  { value: "tips", label: "Forecaster Tips" },
+                ] as { value: ToolTab; label: string }[]
               ).map((t) => (
                 <button
                   key={t.value}
                   onClick={() => setToolTab(t.value)}
                   className={cn(
-                    "flex shrink-0 items-center gap-1.5 border-b-2 px-3 py-2.5 text-[11px] font-medium transition-colors",
+                    "shrink-0 border-b-2 px-3 py-2.5 text-[11px] font-medium transition-colors",
                     toolTab === t.value
                       ? "border-primary text-primary"
                       : "border-transparent text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  {t.icon}
                   {t.label}
                 </button>
               ))}
@@ -1192,14 +1068,3 @@ export function PredictionsPageClient() {
   );
 }
 
-// ── Sub-components ─────────────────────────────────────────────────────────────
-
-function StatChip({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div className="flex items-center gap-1.5 rounded bg-muted/50 px-2 py-1">
-      <span className="text-muted-foreground">{icon}</span>
-      <span className="text-xs text-muted-foreground">{label}</span>
-      <span className="font-mono tabular-nums text-xs font-medium text-foreground">{value}</span>
-    </div>
-  );
-}

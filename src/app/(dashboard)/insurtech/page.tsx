@@ -960,7 +960,7 @@ function AIDataTab() {
   const categoryColor: Record<MLInput["category"], string> = {
     telematics: "text-primary bg-primary/10 border-border",
     social: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-    iot: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    iot: "text-emerald-400 bg-emerald-500/5 border-emerald-500/20",
     claims: "text-primary bg-primary/10 border-border",
   };
 

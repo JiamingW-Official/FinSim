@@ -467,7 +467,7 @@ export default function PortfolioOptimizerPage() {
               <Card className="lg:col-span-2 border-border/50 border-l-4 border-l-primary">
                 <CardHeader className="pb-2 p-4">
                   <CardTitle className="text-lg flex items-center gap-2">
-                    <TrendingUp size={16} className="text-primary" />
+                    <TrendingUp size={16} className="text-muted-foreground/50" />
                     Efficient Frontier — 200 Random Portfolios
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Each dot is a randomly generated long-only portfolio. The curve traces the efficient frontier.</p>
@@ -638,7 +638,7 @@ export default function PortfolioOptimizerPage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <BarChart3 size={16} className="text-primary" />
+                    <BarChart3 size={16} className="text-muted-foreground/50" />
                     Asset Parameters
                   </CardTitle>
                 </CardHeader>
@@ -711,7 +711,7 @@ export default function PortfolioOptimizerPage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <Activity size={16} className="text-primary" />
+                    <Activity size={16} className="text-muted-foreground/50" />
                     Pairwise Correlation Matrix
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Blue = positive correlation · Red = negative correlation</p>
@@ -845,7 +845,7 @@ export default function PortfolioOptimizerPage() {
             <Card className="border-border/50">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <PieChart size={16} className="text-primary" />
+                  <PieChart size={16} className="text-muted-foreground/50" />
                   Portfolio Comparison
                 </CardTitle>
               </CardHeader>
@@ -1015,7 +1015,7 @@ export default function PortfolioOptimizerPage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <Shield size={16} className="text-primary" />
+                    <Shield size={16} className="text-muted-foreground/50" />
                     Constraint Controls
                   </CardTitle>
                 </CardHeader>
@@ -1203,7 +1203,7 @@ export default function PortfolioOptimizerPage() {
               <Card className="border-border/50">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <RefreshCw size={16} className="text-primary" />
+                    <RefreshCw size={16} className="text-muted-foreground/50" />
                     Resampled Efficient Frontier
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Shows parameter uncertainty: each curve = one bootstrap resample of returns</p>
@@ -1377,7 +1377,7 @@ export default function PortfolioOptimizerPage() {
             <Card className="border-border/50">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <BookOpen size={16} className="text-primary" />
+                  <BookOpen size={16} className="text-muted-foreground/50" />
                   Black-Litterman Model — Overview
                 </CardTitle>
               </CardHeader>

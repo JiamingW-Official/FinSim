@@ -585,7 +585,7 @@ function EcosystemTab() {
           <Card className="bg-card border-border/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-base text-foreground flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-primary" />
+                <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Nature Dependency by Sector
               </CardTitle>
               <p className="text-xs text-muted-foreground">Score 0–100: extent of direct reliance on ecosystem services</p>
@@ -846,7 +846,7 @@ function TNFDTab() {
         <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <FileText className="w-4 h-4 text-primary" />
+              <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
               TNFD Framework — Four Pillars
             </CardTitle>
             <p className="text-xs text-muted-foreground">Taskforce on Nature-related Financial Disclosures — 14 disclosure recommendations published September 2023</p>
@@ -947,7 +947,7 @@ function TNFDTab() {
         <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <Info className="w-4 h-4 text-primary" />
+              <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
               TNFD vs TCFD Comparison
             </CardTitle>
           </CardHeader>
@@ -1308,7 +1308,7 @@ function BiodiversityCreditsTab() {
         <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
             <CardTitle className="text-base text-foreground flex items-center gap-2">
-              <Shield className="w-4 h-4 text-primary" />
+              <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
               High-Integrity Credit Standards & Additionality Requirements
             </CardTitle>
           </CardHeader>

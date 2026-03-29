@@ -329,7 +329,7 @@ function GlobalDemographicsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Users className="w-4 h-4 text-primary" />
+            <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
             Population Age Structure by Country
           </CardTitle>
         </CardHeader>
@@ -460,7 +460,7 @@ function GlobalDemographicsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Median Age by Country
           </CardTitle>
         </CardHeader>
@@ -737,7 +737,7 @@ function AgingTrendsTab() {
               icon={TrendingDown}
               title="Sovereign Bond Implication"
               body="Countries with large unfunded pension liabilities face long-term fiscal pressure, potentially leading to monetization (inflation) or benefit cuts. Watch spreads carefully."
-              accent="bg-red-500/10 border border-red-500/30 text-red-300"
+              accent="bg-red-500/5 border border-red-500/30 text-red-300"
             />
           </div>
         </CardContent>
@@ -779,7 +779,7 @@ function InvestmentImplicationsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Sector Impact Matrix — Demographic Aging
           </CardTitle>
         </CardHeader>
@@ -1026,7 +1026,7 @@ function JapanCaseStudyTab() {
             title: "Lost Decades (1990–2012)",
             body: "Japan's Nikkei fell 80% from its 1989 peak. Demographics were not the only cause, but an aging society suppressed consumer spending, real estate, and long-term growth expectations for 20+ years.",
             icon: TrendingDown,
-            accent: "bg-red-500/10 border border-red-500/30 text-red-300",
+            accent: "bg-red-500/5 border border-red-500/30 text-red-300",
           },
           {
             title: "Abenomics (2013–2019)",
@@ -1206,7 +1206,7 @@ function EmergingMarketTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Users className="w-4 h-4 text-primary" />
+            <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
             Working-Age Population Index (2020 = 100)
           </CardTitle>
         </CardHeader>
@@ -1352,7 +1352,7 @@ function EmergingMarketTab() {
               icon={AlertTriangle}
               title="Key Risks to Monitor"
               body="Political stability (Thailand, Myanmar), climate vulnerability (Vietnam delta), commodity dependence, and the risk of aging before reaching high-income status (Malaysia, Thailand) are the primary investment risks."
-              accent="bg-red-500/10 border border-red-500/30 text-red-300"
+              accent="bg-red-500/5 border border-red-500/30 text-red-300"
             />
           </div>
         </CardContent>

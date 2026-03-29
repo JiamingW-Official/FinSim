@@ -863,7 +863,7 @@ function YieldCurveAnalysis() {
             className={cn(
               "flex items-center justify-between rounded-lg border p-3",
               item.inverted
-                ? "border-red-500/40 bg-red-500/10 animate-pulse"
+                ? "border-red-500/40 bg-red-500/5 animate-pulse"
                 : "border-border/40 bg-card/60",
             )}
           >
@@ -1541,7 +1541,7 @@ export default function CentralBankPage() {
             </p>
           </div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="rounded-full bg-red-500/10 px-2 py-0.5 font-medium text-red-400">
+            <span className="rounded-full bg-red-500/5 px-2 py-0.5 font-medium text-red-400">
               Fed Funds: 5.25–5.50%
             </span>
             <span className="rounded-full bg-amber-500/10 px-2 py-0.5 font-medium text-amber-400">

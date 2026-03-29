@@ -566,8 +566,8 @@ export default function QuantRiskPage() {
         {[
           { label: "99% 1D VaR", value: fmtUSD(varData[1].var99), icon: <TrendingDown className="w-4 h-4 text-red-500" />, sub: "Historical" },
           { label: "Expected Shortfall", value: fmtUSD(parametricES), icon: <AlertTriangle className="w-4 h-4 text-amber-500" />, sub: `ES at ${confLabels[confidenceIdx]}` },
-          { label: "Backtest Exceptions", value: `${exceptions}/250`, icon: <Activity className="w-4 h-4 text-primary" />, sub: trafficLight === "green" ? "Green zone" : trafficLight === "amber" ? "Amber zone" : "Red zone" },
-          { label: "Dominant Risk", value: riskFactors[0].name, icon: <PieChart className="w-4 h-4 text-primary" />, sub: `${riskFactors[0].contribution.toFixed(0)}% of VaR` },
+          { label: "Backtest Exceptions", value: `${exceptions}/250`, icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />, sub: trafficLight === "green" ? "Green zone" : trafficLight === "amber" ? "Amber zone" : "Red zone" },
+          { label: "Dominant Risk", value: riskFactors[0].name, icon: <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />, sub: `${riskFactors[0].contribution.toFixed(0)}% of VaR` },
         ].map((kpi) => (
           <Card key={kpi.label} className="border-border bg-card">
             <CardContent className="p-4">
@@ -701,7 +701,7 @@ export default function QuantRiskPage() {
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-primary" />
+                <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 P&amp;L Distribution with VaR Threshold
               </CardTitle>
             </CardHeader>
@@ -791,7 +791,7 @@ export default function QuantRiskPage() {
                   </div>
                 </div>
                 {/* Traffic light */}
-                <div className={`p-3 rounded-lg border text-xs flex items-center gap-2 ${trafficLight === "green" ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400" : trafficLight === "amber" ? "border-amber-500/40 bg-amber-500/10 text-amber-400" : "border-red-500/40 bg-red-500/10 text-red-400"}`}>
+                <div className={`p-3 rounded-lg border text-xs flex items-center gap-2 ${trafficLight === "green" ? "border-emerald-500/40 bg-emerald-500/5 text-emerald-400" : trafficLight === "amber" ? "border-amber-500/40 bg-amber-500/10 text-amber-400" : "border-red-500/40 bg-red-500/5 text-red-400"}`}>
                   {trafficLight === "green" ? <CheckCircle className="w-4 h-4" /> : trafficLight === "amber" ? <AlertTriangle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
                   <div>
                     <span className="font-medium capitalize">{trafficLight} zone</span>
@@ -1025,7 +1025,7 @@ export default function QuantRiskPage() {
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-primary" />
+                <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Component VaR — Position Level
               </CardTitle>
             </CardHeader>

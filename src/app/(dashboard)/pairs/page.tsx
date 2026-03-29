@@ -137,7 +137,7 @@ function zColor(z: number) {
 
 function zBg(z: number) {
   const abs = Math.abs(z);
-  if (abs >= 2) return z > 0 ? "bg-green-500/10 border-green-500/30" : "bg-red-500/10 border-red-500/30";
+  if (abs >= 2) return z > 0 ? "bg-green-500/10 border-green-500/30" : "bg-red-500/5 border-red-500/30";
   if (abs < 0.5) return "bg-muted/30 border-border/30";
   return "bg-amber-500/10 border-amber-500/30";
 }

@@ -1174,7 +1174,7 @@ function Tab4PnlAttribution() {
 
       {/* Net P&L summary */}
       <div className="flex items-center gap-3 rounded-lg border border-border/50 bg-muted/20 p-3">
-        <Target className="h-5 w-5 text-primary shrink-0" />
+        <Target className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0" />
         <div className="flex-1 min-w-0">
           <p className="text-xs text-muted-foreground">30-Day Net P&L</p>
           <p className={cn("text-lg font-bold tabular-nums", total >= 0 ? "text-green-400" : "text-red-400")}>
@@ -1398,7 +1398,7 @@ function Tab5RegulationRisk() {
       <div className="rounded-lg border border-red-500/30 bg-red-500/5 overflow-hidden">
         <button
           onClick={() => setCaseStudyOpen((v) => !v)}
-          className="w-full flex items-center justify-between p-4 hover:bg-red-500/10 transition-colors"
+          className="w-full flex items-center justify-between p-4 hover:bg-red-500/5 transition-colors"
         >
           <div className="flex items-center gap-2">
             <AlertTriangle className="h-4 w-4 text-red-400" />

@@ -57,7 +57,7 @@ function InfoBox({
   const colors = {
     sky: "bg-sky-500/10 border-sky-500/20 text-sky-300",
     amber: "bg-amber-500/10 border-amber-500/20 text-amber-300",
-    emerald: "bg-emerald-500/10 border-emerald-500/20 text-emerald-300",
+    emerald: "bg-emerald-500/5 border-emerald-500/20 text-emerald-300",
     violet: "bg-primary/10 border-border text-primary",
   };
   return (

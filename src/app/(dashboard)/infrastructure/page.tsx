@@ -698,7 +698,7 @@ export default function InfrastructurePage() {
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary/10">
-            <Building2 size={24} className="text-primary" />
+            <Building2 size={24} className="text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">
@@ -961,7 +961,7 @@ export default function InfrastructurePage() {
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <BarChart3 size={16} className="text-primary" />
+                        <BarChart3 size={16} className="text-muted-foreground/50" />
                         <span className="font-semibold text-foreground">{vm.name}</span>
                       </div>
                       <Badge variant="outline" className="text-xs text-muted-foreground font-mono">{vm.shortName}</Badge>

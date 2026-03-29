@@ -753,7 +753,7 @@ export default function VolatilityArbPage() {
               <Card className="bg-primary/5 border-border">
                 <CardContent className="pt-4">
                   <div className="flex items-start gap-2">
-                    <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                    <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
                     <div className="text-xs text-muted-foreground space-y-1">
                       <p><span className="text-foreground font-medium">Gamma Scalping Mechanics:</span> When you sell a straddle, you are short gamma. Each day the stock moves, you re-hedge your delta — this costs money (gamma drag). However, you collect theta (time decay) every day. If IV{">"} realized vol, theta income exceeds gamma drag and you profit.</p>
                       <p><span className="text-foreground font-medium">Key formula:</span> Daily P&L ≈ Theta×dt − ½×Gamma×(ΔS)². The arb edge is positive when IV−RV{">"} 0.</p>

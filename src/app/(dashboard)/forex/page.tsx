@@ -1528,7 +1528,7 @@ export default function ForexPage() {
       >
         <div>
           <h1 className="text-lg font-bold text-foreground flex items-center gap-2">
-            <Globe className="w-5 h-5 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             Foreign Exchange
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">

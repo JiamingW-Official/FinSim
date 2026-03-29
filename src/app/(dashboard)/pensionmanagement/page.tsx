@@ -745,7 +745,7 @@ export default function PensionManagementPage() {
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="w-10 h-10 rounded-md bg-primary/20 border border-border flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-primary" />
+            <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-medium text-foreground">Pension Fund Management</h1>
@@ -851,7 +851,7 @@ export default function PensionManagementPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                    <Target className="w-4 h-4 text-primary" />Funded Ratio Calculator
+                    <Target className="w-3.5 h-3.5 text-muted-foreground/50" />Funded Ratio Calculator
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -902,7 +902,7 @@ export default function PensionManagementPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-primary" />Top 10 US Public Pension Funds
+                  <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />Top 10 US Public Pension Funds
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -1022,7 +1022,7 @@ export default function PensionManagementPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />Key Rate Duration Bucketing
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />Key Rate Duration Bucketing
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -1173,7 +1173,7 @@ export default function PensionManagementPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     {selectedScenario.name}
                   </CardTitle>
                 </CardHeader>
@@ -1596,7 +1596,7 @@ export default function PensionManagementPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                    <Users className="w-4 h-4 text-primary" />Proxy Voting Principles
+                    <Users className="w-3.5 h-3.5 text-muted-foreground/50" />Proxy Voting Principles
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-xs text-muted-foreground space-y-2">

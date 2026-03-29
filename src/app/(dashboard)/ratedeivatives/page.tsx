@@ -1545,7 +1545,7 @@ export default function RateDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-primary" />
+                  <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Swaption Builder
                 </CardTitle>
               </CardHeader>

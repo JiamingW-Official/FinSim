@@ -680,7 +680,7 @@ function OUFormulaCard() {
     <Card className="bg-card border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-          <Activity className="w-4 h-4 text-primary" />
+          <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
           Ornstein-Uhlenbeck Spread Model
         </CardTitle>
       </CardHeader>
@@ -741,7 +741,7 @@ function StatArbTab() {
       <Card className="bg-card border-border border-l-4 border-l-primary">
         <CardHeader className="pb-2 p-4">
           <CardTitle className="text-lg text-muted-foreground flex items-center gap-2">
-            <Shuffle className="w-4 h-4 text-primary" />
+            <Shuffle className="w-3.5 h-3.5 text-muted-foreground/50" />
             Spread Z-Score — Entry &amp; Exit Signals
           </CardTitle>
         </CardHeader>
@@ -948,7 +948,7 @@ function MLFinanceTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Brain className="w-4 h-4 text-primary" />
+            <Brain className="w-3.5 h-3.5 text-muted-foreground/50" />
             Feature Importance — Mean |SHAP| Values
           </CardTitle>
         </CardHeader>
@@ -1221,7 +1221,7 @@ function HFTMarketMakingTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             Inventory Position Over Time — Mean Reversion Control
           </CardTitle>
         </CardHeader>
@@ -1435,7 +1435,7 @@ function ExecutionTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             Implementation Shortfall Decomposition
           </CardTitle>
         </CardHeader>

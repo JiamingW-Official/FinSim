@@ -1479,7 +1479,7 @@ function SynthesisTab() {
       ? { label: "Hold", color: "text-amber-400", bg: "bg-amber-400/10" }
       : mos > -20
       ? { label: "Sell", color: "text-red-400", bg: "bg-red-400/10" }
-      : { label: "Strong Sell", color: "text-red-500", bg: "bg-red-500/10" };
+      : { label: "Strong Sell", color: "text-red-500", bg: "bg-red-500/5" };
 
   const updateWeight = useCallback((idx: number, val: number) => {
     setRanges((prev) => {
@@ -1759,7 +1759,7 @@ export default function ValuationPage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 rounded-md bg-primary/10">
-              <Scale className="w-5 h-5 text-primary" />
+              <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-medium">Stock Valuation Methodologies</h1>

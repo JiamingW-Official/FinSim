@@ -98,7 +98,7 @@ function InfoBox({
   const colors = {
     blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
-    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+    emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
   };
   return (
@@ -916,7 +916,7 @@ function Tab3RegulatoryFramework() {
               className={cn(
                 "rounded-lg border p-3 cursor-pointer transition-colors",
                 evt.impact === "positive"
-                  ? "border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10"
+                  ? "border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/5"
                   : evt.impact === "negative"
                   ? "border-rose-500/20 bg-rose-500/5 hover:bg-rose-500/10"
                   : "border-border bg-foreground/5 hover:bg-muted/40"

@@ -1448,7 +1448,7 @@ export default function IPOPricingPage() {
         >
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 rounded-md bg-primary/20 border border-border flex items-center justify-center">
-              <DollarSign className="w-5 h-5 text-primary" />
+              <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-foreground">IPO Pricing & Aftermarket</h1>

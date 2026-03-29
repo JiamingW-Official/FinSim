@@ -384,7 +384,7 @@ export default function TaxLossHarvestingPage() {
             value: formatCurrency(metrics.harvestedLossesYTD),
             icon: TrendingDown,
             color: "text-red-400",
-            bg: "bg-red-500/10",
+            bg: "bg-red-500/5",
             border: "border-red-500/20",
           },
           {
@@ -611,7 +611,7 @@ export default function TaxLossHarvestingPage() {
                 {
                   icon: AlertTriangle,
                   color: "text-red-400",
-                  bg: "bg-red-500/10",
+                  bg: "bg-red-500/5",
                   border: "border-red-500/20",
                   title: "Wash Sale Triggers",
                   items: [

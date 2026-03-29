@@ -1030,7 +1030,7 @@ export default function CryptoPortfolioPage() {
             <h3 className="font-medium text-sm flex items-center gap-2"><TrendingDown className="w-4 h-4 text-red-400" />BTC Historical Drawdowns — Bubble Size = Severity</h3>
             <DrawdownBubbleChart />
             <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
-              <div className="rounded bg-red-500/10 border border-red-500/20 p-2 text-center">
+              <div className="rounded bg-red-500/5 border border-red-500/20 p-2 text-center">
                 <div className="text-red-400 font-medium">-90%+ Events</div>
                 <div className="text-muted-foreground">Typical bear mkt</div>
               </div>
@@ -1199,7 +1199,7 @@ export default function CryptoPortfolioPage() {
             <div className="rounded-md border border-emerald-500/30 bg-emerald-500/5 p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2 text-emerald-400"><Info className="w-4 h-4" />Wash Sale Rules — Crypto Opportunity</h3>
               <div className="space-y-2 text-sm">
-                <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3">
+                <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/20 p-3">
                   <div className="font-medium text-emerald-300 mb-1">Current Law: Crypto NOT Subject to Wash Sale</div>
                   <p className="text-xs text-muted-foreground">
                     Wash sale rules (IRC §1091) apply to "securities." Crypto is currently classified as property, not securities — meaning you can sell BTC at a loss, immediately rebuy, and still claim the tax loss.

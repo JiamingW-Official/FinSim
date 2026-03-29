@@ -1394,7 +1394,7 @@ export default function RegtechPage() {
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="w-10 h-10 rounded-md bg-primary/20 border border-primary/40 flex items-center justify-center">
-            <ShieldCheck className="w-5 h-5 text-primary" />
+            <ShieldCheck className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-foreground">RegTech & Compliance Automation</h1>

@@ -437,7 +437,7 @@ export default function MomentumBuilderPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <TrendingUp className="w-5 h-5 text-primary" />
+            <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
             <h1 className="text-xl font-semibold tracking-tight">Momentum Builder</h1>
           </div>
           <p className="text-sm text-muted-foreground">Quantitative momentum strategy construction, backtesting &amp; signal analysis</p>
@@ -482,7 +482,7 @@ export default function MomentumBuilderPage() {
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <SlidersHorizontal className="w-4 h-4 text-primary" />
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Strategy Parameters
                 </CardTitle>
               </CardHeader>
@@ -660,7 +660,7 @@ export default function MomentumBuilderPage() {
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     30-Stock Universe — Momentum Ranking
                   </CardTitle>
                 </CardHeader>
@@ -892,7 +892,7 @@ export default function MomentumBuilderPage() {
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Information Coefficient by Holding Period
                 </CardTitle>
               </CardHeader>

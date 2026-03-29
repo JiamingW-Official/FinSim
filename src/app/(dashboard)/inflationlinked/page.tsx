@@ -199,8 +199,8 @@ function StatChip({
 }) {
   const colors = {
     default: "bg-foreground/5 text-muted-foreground border-border",
-    green: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    red: "bg-red-500/10 text-red-400 border-red-500/20",
+    green: "bg-emerald-500/5 text-emerald-400 border-emerald-500/20",
+    red: "bg-red-500/5 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
     blue: "bg-primary/10 text-primary border-border",
   };
@@ -963,7 +963,7 @@ function InflationHedgingTab() {
     if (score >= 8) return "bg-emerald-500/25 text-emerald-300 border-emerald-500/30";
     if (score >= 6) return "bg-emerald-500/12 text-emerald-400/80 border-emerald-500/15";
     if (score >= 4) return "bg-amber-500/12 text-amber-400 border-amber-500/20";
-    if (score >= 2) return "bg-red-500/10 text-red-400 border-red-500/15";
+    if (score >= 2) return "bg-red-500/5 text-red-400 border-red-500/15";
     return "bg-red-500/20 text-red-300 border-red-500/30";
   };
 
@@ -1013,7 +1013,7 @@ function InflationHedgingTab() {
     { label: "Mild Overshoot", range: "2–3%", active: true, color: "text-emerald-400 bg-emerald-500/15 border-emerald-400/30" },
     { label: "Elevated", range: "3–5%", active: false, color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
     { label: "High Inflation", range: "5–8%", active: false, color: "text-orange-400 bg-orange-500/10 border-orange-500/20" },
-    { label: "Hyperinflation", range: ">8%", active: false, color: "text-red-400 bg-red-500/10 border-red-500/20" },
+    { label: "Hyperinflation", range: ">8%", active: false, color: "text-red-400 bg-red-500/5 border-red-500/20" },
   ];
 
   return (
@@ -1247,7 +1247,7 @@ export default function InflationLinkedPage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 rounded-lg bg-primary/15 border border-border">
-              <Flame className="w-5 h-5 text-primary" />
+              <Flame className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-medium text-foreground">Inflation-Linked Bonds</h1>

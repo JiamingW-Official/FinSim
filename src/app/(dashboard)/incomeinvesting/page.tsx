@@ -715,7 +715,7 @@ function DividendAnalysisTab() {
       {/* Ex-Dividend Calendar */}
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-primary" /> Ex-Dividend Calendar (Next 10)
+          <Calendar className="w-3.5 h-3.5 text-muted-foreground/50" /> Ex-Dividend Calendar (Next 10)
         </h3>
         <ExDivCalendar />
       </div>
@@ -723,7 +723,7 @@ function DividendAnalysisTab() {
       {/* DRIP Simulator */}
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-          <RefreshCw className="w-4 h-4 text-primary" /> DRIP Simulator
+          <RefreshCw className="w-3.5 h-3.5 text-muted-foreground/50" /> DRIP Simulator
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
           {[
@@ -862,7 +862,7 @@ function FixedIncomeTab() {
       {/* Bond Ladder Builder */}
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
-          <Layers className="w-4 h-4 text-primary" /> Bond Ladder Builder — $100,000
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" /> Bond Ladder Builder — $100,000
         </h3>
         <p className="text-xs text-muted-foreground mb-3">Spread capital across 5 maturities to reduce reinvestment risk and maintain liquidity.</p>
         <BondLadderSVG rungs={bondLadder} />
@@ -1001,7 +1001,7 @@ function AltIncomeTab() {
       {/* REIT Types */}
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-          <Building2 className="w-4 h-4 text-primary" /> REIT Income: mREIT vs eREIT
+          <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" /> REIT Income: mREIT vs eREIT
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-muted rounded-lg p-4">
@@ -1075,7 +1075,7 @@ function AltIncomeTab() {
       {/* Covered Calls Explainer */}
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-          <Target className="w-4 h-4 text-primary" /> Options Income Strategies
+          <Target className="w-3.5 h-3.5 text-muted-foreground/50" /> Options Income Strategies
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-muted rounded-lg p-4 border border-border">
@@ -1507,7 +1507,7 @@ function IncomeLadderingTab() {
       {/* Bucket Strategy */}
       <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-          <Layers className="w-4 h-4 text-primary" /> Bucket Strategy
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" /> Bucket Strategy
         </h3>
         <BucketSVG />
         <div className="mt-3 grid grid-cols-3 gap-3 text-xs text-muted-foreground">

@@ -436,7 +436,7 @@ export default function RiskParityPage() {
                   <p className="text-xs text-muted-foreground">{m.label}</p>
                   <p className="text-lg font-medium font-mono mt-0.5">{m.value}</p>
                 </div>
-                <m.icon className="w-5 h-5 text-primary mt-0.5" />
+                <m.icon className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5" />
               </div>
               <p className="text-xs text-muted-foreground mt-1.5 leading-tight">{m.description}</p>
             </CardContent>

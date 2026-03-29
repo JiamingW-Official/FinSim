@@ -1287,7 +1287,7 @@ export default function WealthPlatformPage() {
                   const pct = Math.min(100, (goal.current / goal.target) * 100);
                   const priorityColor =
                     goal.priority === "high"
-                      ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
+                      ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/5"
                       : goal.priority === "medium"
                       ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
                       : "text-muted-foreground border-border/30 bg-muted/10";
@@ -1399,8 +1399,8 @@ export default function WealthPlatformPage() {
                       className={cn(
                         "text-xs text-muted-foreground w-12 justify-center",
                         trade.action === "Buy"
-                          ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/10"
-                          : "border-red-500/40 text-red-400 bg-red-500/10"
+                          ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/5"
+                          : "border-red-500/40 text-red-400 bg-red-500/5"
                       )}
                     >
                       {trade.action}

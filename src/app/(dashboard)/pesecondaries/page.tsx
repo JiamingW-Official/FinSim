@@ -1653,7 +1653,7 @@ export default function PESecondariesPage() {
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-muted/60 border border-border">
-            <Repeat className="w-5 h-5 text-primary" />
+            <Repeat className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-medium text-foreground">Private Equity Secondaries</h1>
@@ -1678,7 +1678,7 @@ export default function PESecondariesPage() {
         className="rounded-md border border-border border-l-4 border-l-primary bg-muted/30 p-6 mb-6"
       >
         <div className="flex items-start gap-2">
-          <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+          <Info className="w-3.5 h-3.5 text-muted-foreground/50 flex-shrink-0 mt-0.5" />
           <div className="text-xs text-muted-foreground space-y-1">
             <p>
               The <strong className="text-foreground">private equity secondary market</strong> allows investors to buy and sell existing PE fund interests before the fund lifecycle ends. Originally a niche liquidity solution, the market has grown to $130B+ annually and now includes LP-led sales, GP-led continuation vehicles, NAV financing, and preferred equity structures.

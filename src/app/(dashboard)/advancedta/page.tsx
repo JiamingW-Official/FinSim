@@ -1194,7 +1194,7 @@ export default function AdvancedTAPage() {
               <Card className="p-4 border-border/50">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary shrink-0" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
                     <h3 className="font-medium text-sm">{concept.title}</h3>
                   </div>
                   <Badge className={cn("text-xs text-muted-foreground shrink-0", concept.badgeColor)}>{concept.badge}</Badge>

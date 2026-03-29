@@ -550,7 +550,7 @@ export default function CurrencyMarketsPage() {
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-10 h-10 rounded-md bg-primary/20 flex items-center justify-center">
-            <Globe className="w-5 h-5 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-semibold text-foreground">Currency Markets Deep Dive</h1>
@@ -604,7 +604,7 @@ export default function CurrencyMarketsPage() {
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-foreground text-base flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-primary" />
+                    <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Major Currency Pairs
                   </CardTitle>
                 </CardHeader>
@@ -642,7 +642,7 @@ export default function CurrencyMarketsPage() {
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-foreground text-base flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-primary" />
+                    <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Trading Sessions (UTC)
                   </CardTitle>
                 </CardHeader>
@@ -790,12 +790,12 @@ export default function CurrencyMarketsPage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                    <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3">
                       <div className="text-muted-foreground text-xs mb-1">Long ({selectedCarryPair.longCcy})</div>
                       <div className="text-emerald-400 font-mono font-medium text-xl">{selectedCarryPair.longRate}%</div>
                       <div className="text-muted-foreground text-xs">Policy rate</div>
                     </div>
-                    <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                    <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-3">
                       <div className="text-muted-foreground text-xs mb-1">Short ({selectedCarryPair.shortCcy})</div>
                       <div className="text-red-400 font-mono font-medium text-xl">{selectedCarryPair.shortRate}%</div>
                       <div className="text-muted-foreground text-xs">Policy rate</div>
@@ -854,7 +854,7 @@ export default function CurrencyMarketsPage() {
                     <div className="font-mono font-medium text-xl text-red-400">{leveragedDD}%</div>
                   </div>
                   {parseFloat(leveragedDD) < -20 && (
-                    <div className="col-span-2 flex items-center gap-2 text-xs text-red-400 bg-red-500/10 rounded-lg p-2">
+                    <div className="col-span-2 flex items-center gap-2 text-xs text-red-400 bg-red-500/5 rounded-lg p-2">
                       <AlertTriangle className="w-3 h-3 flex-shrink-0" />
                       High leverage risk: potential margin call / account wipeout
                     </div>
@@ -984,7 +984,7 @@ export default function CurrencyMarketsPage() {
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-foreground text-sm flex items-center gap-2">
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Uncovered Interest Parity (UIP) — Why It Fails
                 </CardTitle>
               </CardHeader>
@@ -1021,7 +1021,7 @@ export default function CurrencyMarketsPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3">
                   <div className="font-mono text-emerald-300 text-xs text-center mb-1">Taylor Rule:</div>
                   <div className="font-mono text-foreground text-xs text-center">r = r* + π + 0.5(π−π*) + 0.5·output_gap</div>
                   <div className="text-muted-foreground text-xs text-center mt-1">Central bank rate setting framework</div>
@@ -1053,7 +1053,7 @@ export default function CurrencyMarketsPage() {
           <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-foreground text-base flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-primary" />
+                <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Real Effective Exchange Rate (REER) — Major Currencies
               </CardTitle>
             </CardHeader>
@@ -1185,7 +1185,7 @@ export default function CurrencyMarketsPage() {
           <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-foreground text-base flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-primary" />
+                <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Anatomy of a Currency Crisis
               </CardTitle>
             </CardHeader>

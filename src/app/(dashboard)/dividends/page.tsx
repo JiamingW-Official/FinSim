@@ -772,7 +772,7 @@ function DividendGrowthTab() {
     score >= 8 ? "bg-green-500/10 border-green-500/30" :
     score >= 6 ? "bg-cyan-500/10 border-cyan-500/30" :
     score >= 4 ? "bg-amber-500/10 border-amber-500/30" :
-    "bg-red-500/10 border-red-500/30";
+    "bg-red-500/5 border-red-500/30";
 
   return (
     <div className="space-y-5">

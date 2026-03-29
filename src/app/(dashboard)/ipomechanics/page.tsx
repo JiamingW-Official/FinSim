@@ -413,7 +413,7 @@ function StatChip({
     green: "bg-green-500/10 border-green-500/30 text-green-400",
     purple: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-400",
-    red: "bg-red-500/10 border-red-500/30 text-red-400",
+    red: "bg-red-500/5 border-red-500/30 text-red-400",
     cyan: "bg-cyan-500/10 border-cyan-500/30 text-muted-foreground",
   };
   return (
@@ -599,7 +599,7 @@ function IPOTimelineTab() {
           className="flex items-center justify-between w-full text-sm font-medium text-foreground/80"
         >
           <span className="flex items-center gap-2">
-            <FileText className="w-4 h-4 text-primary" />
+            <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
             S-1 Registration Statement — Key Sections Explainer
           </span>
           <ChevronDown className={cn("w-4 h-4 text-foreground/40 transition-transform", showS1 && "rotate-180")} />
@@ -1457,7 +1457,7 @@ function AlternativesTab() {
       {/* SPAC Structure SVG */}
       <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground/80 mb-4 flex items-center gap-2">
-          <Layers className="w-4 h-4 text-primary" />
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           SPAC Structure & De-SPAC Transaction
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1633,7 +1633,7 @@ export default function IPOMechanicsPage() {
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-9 h-9 rounded-md bg-primary/20 border border-border flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-primary" />
+            <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-medium text-foreground">IPO Mechanics Deep Dive</h1>

@@ -756,7 +756,7 @@ function FraudDetectionTab() {
       {/* Graph Neural Network callout */}
       <Card className="border-border bg-primary/5">
         <div className="flex items-start gap-3">
-          <Layers className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50 flex-shrink-0 mt-0.5" />
           <div>
             <div className="text-sm font-semibold text-primary mb-1">Graph Neural Networks for Fraud Rings</div>
             <p className="text-xs text-muted-foreground">

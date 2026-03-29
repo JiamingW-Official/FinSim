@@ -432,7 +432,7 @@ function ProviderCorrelationScatter() {
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-foreground flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-primary" />
+          <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           Provider Rating Disagreement (Avg Correlation: 0.61)
         </CardTitle>
         <p className="text-xs text-muted-foreground">
@@ -716,7 +716,7 @@ function DoubleMaterialityCard() {
               performance, cash flows, and enterprise value. Used by TCFD, SASB, ISSB.
             </p>
           </div>
-          <div className="flex-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
+          <div className="flex-1 rounded-lg bg-emerald-500/5 border border-emerald-500/30 p-3">
             <div className="text-xs font-medium text-emerald-300 mb-1">Impact Materiality</div>
             <p className="text-xs text-muted-foreground">
               How the company's activities impact people, the environment, and society — regardless
@@ -942,7 +942,7 @@ function ImpactVsESGWashing() {
             </p>
             <div className="text-xs text-muted-foreground">Examples: DWS, Goldman ESG fund allegations</div>
           </div>
-          <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
+          <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/30 p-3">
             <div className="text-xs font-medium text-emerald-300 mb-2">Impact Washing</div>
             <p className="text-xs text-muted-foreground mb-2">
               Claiming measurable positive real-world outcomes (additionality) that cannot be evidenced or attributed.
@@ -1019,7 +1019,7 @@ function SectorMaterialityMatrix() {
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-foreground flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-primary" />
+          <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           ESG Materiality by Sector (SASB Matrix)
         </CardTitle>
       </CardHeader>
@@ -1076,7 +1076,7 @@ function PRIGrowthChart() {
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-foreground flex items-center gap-2">
-          <Globe className="w-4 h-4 text-primary" />
+          <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
           UN PRI Signatory Growth (2006–2024)
         </CardTitle>
         <p className="text-xs text-muted-foreground">100 signatories / $6.5T AUM → 7,000 signatories / $120T AUM</p>
@@ -1135,7 +1135,7 @@ function ActiveOwnershipCard() {
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-base text-foreground flex items-center gap-2">
-          <Users className="w-4 h-4 text-primary" />
+          <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
           Active Ownership: Engagement & Proxy Voting
         </CardTitle>
       </CardHeader>
@@ -1254,7 +1254,7 @@ export default function ESGDataPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Info className="w-4 h-4 text-primary" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Rating Revision Frequency & Lag
                 </CardTitle>
               </CardHeader>
@@ -1392,7 +1392,7 @@ export default function ESGDataPage() {
                   <div className="font-medium text-primary mb-1">Limited Assurance</div>
                   <p className="text-muted-foreground">Negative assurance — nothing came to attention indicating material error. Lower cost; required initially under CSRD (2025–2027).</p>
                 </div>
-                <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3">
+                <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/30 p-3">
                   <div className="font-medium text-emerald-300 mb-1">Reasonable Assurance</div>
                   <p className="text-muted-foreground">Positive assurance — auditor concludes information is free from material misstatement. Equivalent to financial audit standard. Required under CSRD by 2028.</p>
                 </div>
@@ -1425,7 +1425,7 @@ export default function ESGDataPage() {
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-primary" />
+                  <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
                   SEC ESG Fund Naming Rules (2023)
                 </CardTitle>
               </CardHeader>
@@ -1506,11 +1506,11 @@ export default function ESGDataPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-xs text-muted-foreground space-y-3">
-                <div className="rounded bg-emerald-500/10 border border-emerald-500/30 p-2">
+                <div className="rounded bg-emerald-500/5 border border-emerald-500/30 p-2">
                   <span className="font-medium text-emerald-300">Bull case:</span>
                   <span className="text-muted-foreground ml-1">Lower tail risk, fewer regulatory/litigation surprises, better governance improves capital allocation → superior risk-adjusted returns</span>
                 </div>
-                <div className="rounded bg-red-500/10 border border-red-500/30 p-2">
+                <div className="rounded bg-red-500/5 border border-red-500/30 p-2">
                   <span className="font-medium text-red-300">Bear case:</span>
                   <span className="text-muted-foreground ml-1">High-ESG stocks re-rate as demand grows, front-running effect diminishes. Returns = quality + low-vol factor beta, not ESG alpha</span>
                 </div>

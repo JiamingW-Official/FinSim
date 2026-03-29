@@ -783,7 +783,7 @@ function ScenarioBuilderTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
-              <Activity className="w-4 h-4 text-primary" />
+              <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
               Macro Parameters
             </CardTitle>
           </CardHeader>
@@ -846,7 +846,7 @@ function ScenarioBuilderTab() {
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-primary" />
+                <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 12-Month Return Estimates
               </CardTitle>
               <div className="flex gap-1">
@@ -1715,7 +1715,7 @@ export default function ScenarioAnalysisPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-xl font-medium text-foreground flex items-center gap-2">
-              <Activity className="w-5 h-5 text-primary" />
+              <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
               Scenario Analysis
             </h1>
             <p className="text-sm text-muted-foreground mt-1 max-w-xl leading-relaxed">

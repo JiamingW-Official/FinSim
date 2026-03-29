@@ -355,7 +355,7 @@ function TaxLossHarvestingTab() {
             <p className="text-lg font-medium text-green-400">{formatCurrency(stats.totalGains)}</p>
           </CardContent>
         </Card>
-        <Card className="bg-red-500/10 border-red-500/30">
+        <Card className="bg-red-500/5 border-red-500/30">
           <CardContent className="pt-4 pb-3">
             <p className="text-xs text-muted-foreground">Selected Losses</p>
             <p className="text-lg font-medium text-red-400">{formatCurrency(stats.selectedLosses)}</p>
@@ -540,7 +540,7 @@ function TaxLossHarvestingTab() {
           <div
             className={`rounded-lg p-3 text-xs text-muted-foreground flex items-start gap-2 ${
               washSaleDay < 31
-                ? "bg-red-500/10 border border-red-500/30"
+                ? "bg-red-500/5 border border-red-500/30"
                 : "bg-green-500/10 border border-green-500/30"
             }`}
           >
@@ -692,7 +692,7 @@ function AccountOptimizerTab() {
               <Slider min={0.005} max={0.08} step={0.005} value={[dividendYield]} onValueChange={([v]) => setDividendYield(v)} />
             </div>
           </div>
-          <div className="rounded-lg bg-red-500/10 border border-red-500/30 p-4 space-y-2">
+          <div className="rounded-lg bg-red-500/5 border border-red-500/30 p-4 space-y-2">
             <p className="text-xs text-muted-foreground">Annual Tax Drag Formula</p>
             <p className="font-mono text-sm">
               {formatCurrency(taxableBalance)} × {formatPct(dividendYield)} × {formatPct(cgRate)}{" "}
@@ -1020,7 +1020,7 @@ function EstateGiftTab() {
             <p className="text-xs text-muted-foreground">Federal 2024 (sunsets 2026)</p>
           </CardContent>
         </Card>
-        <Card className="bg-red-500/10 border-red-500/30">
+        <Card className="bg-red-500/5 border-red-500/30">
           <CardContent className="pt-4 pb-3">
             <div className="flex items-center gap-1.5 mb-1">
               <AlertTriangle className="h-3.5 w-3.5 text-red-400" />
@@ -1128,14 +1128,14 @@ function EstateGiftTab() {
                 {formatCurrency(Math.min(estateValue, ESTATE_EXEMPTION))}
               </p>
             </div>
-            <div className={`rounded-lg p-3 text-center ${taxableEstate > 0 ? "bg-red-500/10" : "bg-muted/30"}`}>
+            <div className={`rounded-lg p-3 text-center ${taxableEstate > 0 ? "bg-red-500/5" : "bg-muted/30"}`}>
               <p className="text-xs text-muted-foreground">Taxable Estate</p>
               <p className={`text-sm font-medium ${taxableEstate > 0 ? "text-red-400" : "text-green-400"}`}>
                 {formatCurrency(taxableEstate)}
               </p>
             </div>
             <div
-              className={`rounded-lg p-3 text-center ${estateTax > 0 ? "bg-red-500/10 border border-red-500/30" : "bg-green-500/10"}`}
+              className={`rounded-lg p-3 text-center ${estateTax > 0 ? "bg-red-500/5 border border-red-500/30" : "bg-green-500/10"}`}
             >
               <p className="text-xs text-muted-foreground">Estate Tax (40%)</p>
               <p className={`text-sm font-medium ${estateTax > 0 ? "text-red-400" : "text-green-400"}`}>
@@ -1188,7 +1188,7 @@ function EstateGiftTab() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-red-500/10 border border-red-500/30 p-4">
+            <div className="rounded-lg bg-red-500/5 border border-red-500/30 p-4">
               <p className="text-xs font-medium text-red-400 mb-2">Without Step-Up (You Sell Now)</p>
               <div className="space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">

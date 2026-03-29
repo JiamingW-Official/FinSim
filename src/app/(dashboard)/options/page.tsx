@@ -25,7 +25,7 @@ import { PortfolioMarginCalc } from "@/components/options/PortfolioMarginCalc";
 import { VolSurface } from "@/components/options/VolSurface";
 import { FlowAnalysis } from "@/components/options/FlowAnalysis";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Activity, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import type { OptionContract, ChainFilters } from "@/types/options";
 
 const TAB_TRIGGER_CLASS =
@@ -112,9 +112,6 @@ export default function OptionsPage() {
       {/* Stats bar */}
       <ChainStatsBar analytics={analytics} spotPrice={spotPrice} isLoading={isLoading} />
 
-      {/* Buffer zone — breathing room between stats bar (dense) and tabs */}
-      <div className="h-2 shrink-0" />
-
       {/* 4-tab layout */}
       <Tabs
         value={activeTab}
@@ -165,8 +162,6 @@ export default function OptionsPage() {
                       selectedContract={selectedContract}
                     />
                   </div>
-                  {/* Buffer before bottom panel */}
-                  <div className="h-1.5 shrink-0" />
                   {/* Bottom panel */}
                   <div className="h-52 shrink-0 border-t border-border/40">
                     <Tabs
@@ -311,28 +306,18 @@ export default function OptionsPage() {
                   <div className="flex-1 overflow-auto">
                     {flowSubTab === "unusual" && (
                       <div className="flex flex-col gap-0">
-                        <div className="min-h-[260px]">
+                        <div className="min-h-[220px]">
                           <UnusualActivityFeed
                             items={unusualActivity}
                             onSelectContract={handleSelectContract}
                           />
                         </div>
-                        <div className="border-t border-border/50 px-3 pt-4 pb-3">
-                          <h3 className="mb-1.5 text-[11px] font-medium text-muted-foreground">
-                            Options Flow Heatmap
-                          </h3>
-                          <p className="mb-2 text-xs text-muted-foreground">
-                            Net call/put dollar flow per ticker and expiry. Green = net call buying, Red = net put buying.
-                          </p>
+                        <div className="border-t border-border/50 px-3 pt-2 pb-2">
+                          <p className="mb-1.5 text-[10px] text-muted-foreground/60 uppercase">Flow Heatmap</p>
                           <FlowHeatmap items={unusualActivity} />
                         </div>
-                        <div className="border-t border-border/50 px-3 pt-3 pb-4">
-                          <h3 className="mb-2 text-[11px] font-medium text-muted-foreground">
-                            Simulated Institutional Flow
-                          </h3>
-                          <p className="mb-3 text-xs text-muted-foreground">
-                            Simulated dark pool executions. Above Ask = aggressive buyer. Below Bid = aggressive seller.
-                          </p>
+                        <div className="border-t border-border/50 px-3 pt-2 pb-2">
+                          <p className="mb-1.5 text-[10px] text-muted-foreground/60 uppercase">Institutional Flow</p>
                           <DarkPoolFlow seed={darkPoolSeed} />
                         </div>
                       </div>
@@ -359,7 +344,7 @@ export default function OptionsPage() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: 72, opacity: 0 }}
                 transition={{ type: "spring", damping: 22, stiffness: 280 }}
-                className="hidden md:block w-72 shrink-0 overflow-y-auto border-l-4 border-l-primary bg-card"
+                className="hidden md:block w-56 shrink-0 overflow-y-auto border-l border-border/40 bg-card"
               >
                 <ContractDetail
                   contract={selectedContract}
@@ -376,23 +361,11 @@ export default function OptionsPage() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="hidden md:block w-64 shrink-0 overflow-y-auto border-l border-border/40 bg-card"
+                className="hidden md:block w-56 shrink-0 overflow-y-auto border-l border-border/40 bg-card"
               >
-                <div className="flex items-center gap-2 border-b border-border px-3 py-2">
-                  <motion.div
-                    className="flex h-6 w-6 items-center justify-center rounded-lg bg-orange-500/10"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <Activity className="h-3.5 w-3.5 text-orange-400" />
-                  </motion.div>
-                  <div>
-                    <h1 className="text-xs font-medium">{currentTicker} Options <span className="font-normal text-muted-foreground">(Simulated)</span></h1>
-                    <p className="text-[11px] text-muted-foreground">
-                      Spot: ${spotPrice.toFixed(2)}
-                    </p>
-                  </div>
+                <div className="flex items-center justify-between border-b border-border/40 px-2.5 py-1.5">
+                  <span className="text-[11px] font-medium">{currentTicker} Options</span>
+                  <span className="text-[10px] tabular-nums text-muted-foreground">${spotPrice.toFixed(2)}</span>
                 </div>
                 <OptionsOrderEntry spotPrice={spotPrice} analytics={analytics} />
               </motion.div>
@@ -404,8 +377,8 @@ export default function OptionsPage() {
       <div className="md:hidden shrink-0 border-t border-border">
         <OptionsOrderEntry spotPrice={spotPrice} analytics={analytics} />
       </div>
-      <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60">
-        For educational purposes only. Not financial advice. All data is simulated.
+      <p className="shrink-0 border-t border-border/20 px-3 py-1 text-center text-[10px] text-muted-foreground/40">
+        Simulated data — for educational purposes only.
       </p>
     </div>
   );

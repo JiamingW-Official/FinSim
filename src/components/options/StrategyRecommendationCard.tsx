@@ -11,8 +11,8 @@ interface StrategyRecommendationCardProps {
 }
 
 const SENTIMENT_STYLES = {
-  bullish: "bg-emerald-500/10 text-emerald-400",
-  bearish: "bg-red-500/10 text-red-400",
+  bullish: "bg-emerald-500/5 text-emerald-400",
+  bearish: "bg-red-500/5 text-red-400",
   neutral: "bg-muted-foreground/10 text-muted-foreground",
   volatile: "bg-orange-500/10 text-orange-400",
 } as const;

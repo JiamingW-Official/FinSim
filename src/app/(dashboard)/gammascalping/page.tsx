@@ -165,7 +165,7 @@ function DeltaHedgingTab() {
       {/* Header */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-          <ArrowUpDown className="w-5 h-5 text-primary" />
+          <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground/50" />
           Delta Hedging Fundamentals
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -564,7 +564,7 @@ function VolArbitrageTab() {
       {/* Strategy selector */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-primary" />
+          <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
           Volatility Arbitrage Strategies
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -751,7 +751,7 @@ function MMRiskTab() {
       {/* Book overview */}
       <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-primary" />
+          <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
           Market Maker Book Management
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

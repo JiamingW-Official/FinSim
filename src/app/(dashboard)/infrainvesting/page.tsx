@@ -103,7 +103,7 @@ function InfoBox({
     variant === "amber"
       ? "border-amber-500/30 bg-amber-500/10 text-amber-200"
       : variant === "emerald"
-      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-200"
+      ? "border-emerald-500/30 bg-emerald-500/5 text-emerald-200"
       : variant === "purple"
       ? "border-border bg-primary/10 text-primary"
       : "border-border bg-primary/10 text-primary";

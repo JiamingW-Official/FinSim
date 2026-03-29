@@ -1097,7 +1097,7 @@ function Tab50s() {
                 key={row.age}
                 className={cn(
                   "flex items-center gap-3 p-2.5 rounded-lg border",
-                  ssAge === row.age ? "border-emerald-500/50 bg-emerald-500/10" : "border-border"
+                  ssAge === row.age ? "border-emerald-500/50 bg-emerald-500/5" : "border-border"
                 )}
               >
                 <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">

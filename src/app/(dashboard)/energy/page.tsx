@@ -76,7 +76,7 @@ function InfoBox({
   const colors: Record<string, string> = {
     blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
-    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+    emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
   };
   return (
@@ -907,7 +907,7 @@ function Tab3() {
               cf: "40–55%",
               trend: "Rapidly declining — scale + supply chain",
               color: "#3b82f6",
-              icon: <Droplets className="w-5 h-5 text-primary" />,
+              icon: <Droplets className="w-3.5 h-3.5 text-muted-foreground/50" />,
             },
           ].map((w) => (
             <Card key={w.type} className="flex flex-col gap-3">

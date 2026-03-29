@@ -448,7 +448,7 @@ export default function RebalancingPage() {
         {[
           { label: "Positions Over Threshold", value: String(drifts.filter(d => d.driftAbs >= driftThreshold).length), icon: <AlertTriangle className="w-4 h-4 text-amber-400" />, sub: `of ${HOLDINGS.length} holdings` },
           { label: "Max Drift", value: fmtPct(maxAbsDrift), icon: <TrendingUp className="w-4 h-4 text-red-400" />, sub: "NVDA +5.6pp over-weight" },
-          { label: "Est. Tax Impact", value: fmt$(taxImpact), icon: <DollarSign className="w-4 h-4 text-primary" />, sub: `at ${taxRate}% rate` },
+          { label: "Est. Tax Impact", value: fmt$(taxImpact), icon: <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />, sub: `at ${taxRate}% rate` },
           { label: "Location Score", value: `${locationScore}/100`, icon: <Shield className="w-4 h-4 text-emerald-400" />, sub: "Good — 2 improvements avail." },
         ].map((kpi, i) => (
           <Card key={i} className="bg-muted/50 border-border">
@@ -609,7 +609,7 @@ export default function RebalancingPage() {
                 <Card className="bg-muted/50 border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                      <Target className="w-4 h-4 text-primary" />
+                      <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Rebalancing Method
                     </CardTitle>
                   </CardHeader>
@@ -738,7 +738,7 @@ export default function RebalancingPage() {
               <Card className="bg-muted/50 border-border lg:col-span-2">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                    <ArrowRightLeft className="w-4 h-4 text-primary" />
+                    <ArrowRightLeft className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Trades Required ({trades.length})
                   </CardTitle>
                 </CardHeader>
@@ -1098,7 +1098,7 @@ export default function RebalancingPage() {
                 <Card className="bg-muted/50 border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                      <BarChart3 className="w-4 h-4 text-primary" />
+                      <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                       12-Month Drift Stats
                     </CardTitle>
                   </CardHeader>

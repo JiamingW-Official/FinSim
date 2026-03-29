@@ -1293,7 +1293,7 @@ export default function EquityLongShortPage() {
           <Badge variant="outline" className="text-xs border-indigo-500/30 text-indigo-400 bg-indigo-500/10">
             130/30 · Market Neutral · Long-Biased
           </Badge>
-          <Badge variant="outline" className="text-xs border-emerald-500/30 text-emerald-400 bg-emerald-500/10">
+          <Badge variant="outline" className="text-xs border-emerald-500/30 text-emerald-400 bg-emerald-500/5">
             Net Beta Management
           </Badge>
           <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-400 bg-amber-500/10">

@@ -1045,7 +1045,7 @@ export default function LeveragedLoansPage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 rounded-lg bg-muted/60 border border-border">
-              <Layers className="w-5 h-5 text-primary" />
+              <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">Leveraged Loans &amp; CLOs</h1>

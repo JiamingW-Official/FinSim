@@ -462,7 +462,7 @@ export default function OptionsFlowPage() {
         >
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10 border border-border">
-              <Eye className="w-5 h-5 text-primary" />
+              <Eye className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight">
@@ -922,7 +922,7 @@ export default function OptionsFlowPage() {
               <Card className="border-border bg-card">
                 <CardHeader className="pb-2 pt-4">
                   <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Sector Options Flow Heatmap
                   </CardTitle>
                 </CardHeader>

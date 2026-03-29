@@ -18,7 +18,7 @@ function SentimentDot({ headline }: { headline: string }) {
   return (
     <span
       className={cn(
-        "inline-block w-1.5 h-1.5 rounded-full shrink-0 mr-1.5 align-middle",
+        "inline-block w-1 h-1 rounded-full shrink-0 mr-1 align-middle",
         label === "Bullish" && "bg-emerald-400",
         label === "Bearish" && "bg-red-400",
         label === "Neutral" && "bg-muted-foreground/50"
@@ -65,11 +65,11 @@ export function NewsTicker() {
   const scrollDuration = Math.max(20, Math.min(60, totalChars / 8));
 
   return (
-    <div className="flex h-6 items-center gap-2 overflow-hidden border-t border-border/50 bg-card/50 px-3">
-      <Newspaper className="h-3 w-3 shrink-0 text-muted-foreground/60" />
+    <div className="flex h-5 items-center gap-1.5 overflow-hidden border-t border-border/20 px-3">
+      <Newspaper className="h-2.5 w-2.5 shrink-0 text-muted-foreground/40" />
       <div className="relative flex-1 overflow-hidden">
         <motion.div
-          className="flex gap-8 whitespace-nowrap"
+          className="flex gap-6 whitespace-nowrap"
           animate={{ x: [0, -1600] }}
           transition={{
             x: {
@@ -80,15 +80,14 @@ export function NewsTicker() {
             },
           }}
         >
-          {/* Duplicate for seamless loop */}
           {[...headlines, ...headlines].map((item, i) => (
             <span
               key={`${item.id}-${i}`}
               className={cn(
-                "text-xs font-medium inline-flex items-center",
-                item.sentiment === "bullish" && "text-emerald-400/80",
-                item.sentiment === "bearish" && "text-red-400/80",
-                item.sentiment === "neutral" && "text-muted-foreground/60"
+                "text-[10px] inline-flex items-center",
+                item.sentiment === "bullish" && "text-muted-foreground/60",
+                item.sentiment === "bearish" && "text-muted-foreground/60",
+                item.sentiment === "neutral" && "text-muted-foreground/40"
               )}
             >
               <SentimentDot headline={item.headline} />

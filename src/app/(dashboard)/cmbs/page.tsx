@@ -529,7 +529,7 @@ function LoanAnalysisTab() {
                 ? "border-green-500/40 bg-green-500/10"
                 : sector.trend === "neutral"
                 ? "border-amber-500/40 bg-amber-500/10"
-                : "border-red-500/40 bg-red-500/10";
+                : "border-red-500/40 bg-red-500/5";
             const trendColor =
               sector.trend === "bullish" ? "text-green-400" : sector.trend === "neutral" ? "text-amber-400" : "text-red-400";
             return (

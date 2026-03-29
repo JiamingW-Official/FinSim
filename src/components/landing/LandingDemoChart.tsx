@@ -211,19 +211,7 @@ export function LandingDemoChart() {
   }, [initChart]);
 
   return (
-    <div className="rounded-md border border-border/30 bg-card overflow-hidden">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-1.5 px-4 py-2 bg-muted/20 border-b border-border/20">
-        <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
-        <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
-        <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
-        <div className="ml-3 flex-1 h-5 rounded-md bg-muted/60 flex items-center justify-center">
-          <span className="text-[10px] text-muted-foreground/50 font-mono">
-            finsim.app/trade
-          </span>
-        </div>
-      </div>
-
+    <div className="rounded-lg border border-border/30 bg-card overflow-hidden">
       {/* App content */}
       <div className="flex">
         {/* Chart area */}
@@ -231,7 +219,7 @@ export function LandingDemoChart() {
           {/* Ticker bar */}
           <div className="flex items-center gap-3 px-3 pt-3 pb-1 sm:px-4">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold tracking-tight">AAPL</span>
+              <span className="text-xs font-semibold tracking-tight">AAPL</span>
               <span className="text-xs font-semibold tabular-nums text-foreground">
                 ${displayPrice.toFixed(2)}
               </span>
@@ -256,7 +244,7 @@ export function LandingDemoChart() {
                   key={t}
                   className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${
                     t === "5m"
-                      ? "bg-primary/15 text-primary"
+                      ? "bg-foreground/10 text-foreground"
                       : "text-muted-foreground/40"
                   }`}
                 >
@@ -271,8 +259,8 @@ export function LandingDemoChart() {
         </div>
 
         {/* Order entry panel */}
-        <div className="hidden sm:flex w-44 border-l border-border/20 p-3 flex-col gap-2">
-          <div className="text-[10px] font-medium text-muted-foreground tracking-wide">
+        <div className="hidden sm:flex w-44 border-l border-border/10 p-3 flex-col gap-2">
+          <div className="text-[10px] font-medium text-muted-foreground">
             Order Entry
           </div>
           <div className="flex gap-1">
@@ -303,7 +291,7 @@ export function LandingDemoChart() {
               </div>
             </div>
           </div>
-          <div className="mt-auto rounded-md bg-primary/90 py-1.5 text-center text-[10px] font-medium text-primary-foreground cursor-pointer hover:bg-primary/80 transition-colors active:scale-[0.98]">
+          <div className="mt-auto rounded-md bg-foreground/90 py-1.5 text-center text-[10px] font-medium text-background cursor-pointer hover:bg-foreground/80 transition-colors active:scale-[0.98]">
             Place Order
           </div>
         </div>

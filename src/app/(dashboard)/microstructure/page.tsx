@@ -835,7 +835,7 @@ export default function MicrostructurePage() {
                         <span className="text-center text-red-400 font-semibold">${a.price.toFixed(2)}</span>
                         <div className="relative">
                           <div
-                            className="absolute top-0 left-0 h-full bg-red-500/10 rounded-sm"
+                            className="absolute top-0 left-0 h-full bg-red-500/5 rounded-sm"
                             style={{ width: `${clamp((a.size / 5000) * 100, 5, 100)}%` }}
                           />
                           <span className="relative text-right block text-red-300">{a.size.toLocaleString()}</span>
@@ -873,7 +873,7 @@ export default function MicrostructurePage() {
             <Card className="border-border/50 border-border bg-primary/5">
               <CardContent className="pt-4 pb-3">
                 <div className="flex gap-3">
-                  <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
                   <div className="text-sm text-muted-foreground space-y-1">
                     <p className="font-medium text-foreground">National Best Bid and Offer (NBBO)</p>
                     <p>

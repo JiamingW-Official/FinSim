@@ -522,7 +522,7 @@ function buildSensitivityTable(): SensCell[] {
 const colorMap: Record<string, string> = {
   blue: "bg-primary/10 border-border text-primary",
   purple: "bg-primary/10 border-border text-primary",
-  emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-400",
+  emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-400",
   orange: "bg-orange-500/10 border-orange-500/30 text-orange-400",
   cyan: "bg-cyan-500/10 border-cyan-500/30 text-muted-foreground",
   rose: "bg-rose-500/10 border-rose-500/30 text-rose-400",
@@ -1677,7 +1677,7 @@ function BuyVsSellSideTab() {
                         {stage.skills.map((sk) => (
                           <span
                             key={sk}
-                            className="text-xs bg-emerald-500/10 text-emerald-300/70 rounded px-1.5 py-0.5"
+                            className="text-xs bg-emerald-500/5 text-emerald-300/70 rounded px-1.5 py-0.5"
                           >
                             {sk}
                           </span>
@@ -1732,7 +1732,7 @@ function BuyVsSellSideTab() {
 
         <div className="rounded-md border border-border bg-primary/5 p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Eye className="w-4 h-4 text-primary" />
+            <Eye className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-sm font-medium text-primary">
               Consensus vs. Variant Perception
             </span>
@@ -1784,7 +1784,7 @@ export default function EquityResearch2Page() {
         >
           <div className="flex items-center gap-3 mb-1">
             <div className="w-9 h-9 rounded-lg bg-primary/15 border border-border flex items-center justify-center">
-              <Search className="w-5 h-5 text-primary" />
+              <Search className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">

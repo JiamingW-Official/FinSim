@@ -349,7 +349,7 @@ function DebtOverviewTab() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                <CreditCard className="w-4 h-4 text-primary" />
+                <CreditCard className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Debt Portfolio Builder
               </CardTitle>
             </CardHeader>
@@ -651,7 +651,7 @@ function PayoffStrategiesTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Target className="w-4 h-4 text-primary" />
+            <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
             Debt Payoff Calculator
           </CardTitle>
         </CardHeader>
@@ -770,7 +770,7 @@ function PayoffStrategiesTab() {
                 </span>
               </div>
             </div>
-            <div className={cn("flex items-center gap-2 p-2 rounded-lg text-xs", btSavings > 0 ? "bg-green-500/10 border border-green-500/20 text-green-300" : "bg-red-500/10 border border-red-500/20 text-red-300")}>
+            <div className={cn("flex items-center gap-2 p-2 rounded-lg text-xs", btSavings > 0 ? "bg-green-500/10 border border-green-500/20 text-green-300" : "bg-red-500/5 border border-red-500/20 text-red-300")}>
               {btSavings > 0 ? <CheckCircle className="w-3 h-3 shrink-0" /> : <AlertTriangle className="w-3 h-3 shrink-0" />}
               {btSavings > 0
                 ? `Worth it — pay off ${fmtK(balance + feeAmount)} within ${transferMonths} months to avoid revert rate.`
@@ -783,7 +783,7 @@ function PayoffStrategiesTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-              <Shield className="w-4 h-4 text-primary" />
+              <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
               Debt Consolidation Analysis
             </CardTitle>
           </CardHeader>
@@ -910,7 +910,7 @@ function MortgageOptimizationTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Home className="w-4 h-4 text-primary" />
+            <Home className="w-3.5 h-3.5 text-muted-foreground/50" />
             15 vs 30-Year Mortgage Comparison
           </CardTitle>
         </CardHeader>
@@ -1059,7 +1059,7 @@ function MortgageOptimizationTab() {
                   {breakEvenMonths === Infinity ? "Never" : `${breakEvenMonths} months (${(breakEvenMonths / 12).toFixed(1)} yrs)`}
                 </span>
               </div>
-              <div className={cn("flex items-center gap-2 p-2 rounded-lg text-xs", breakEvenMonths < 36 ? "bg-green-500/10 border border-green-500/20 text-green-300" : breakEvenMonths < 60 ? "bg-amber-500/10 border border-amber-500/20 text-amber-300" : "bg-red-500/10 border border-red-500/20 text-red-300")}>
+              <div className={cn("flex items-center gap-2 p-2 rounded-lg text-xs", breakEvenMonths < 36 ? "bg-green-500/10 border border-green-500/20 text-green-300" : breakEvenMonths < 60 ? "bg-amber-500/10 border border-amber-500/20 text-amber-300" : "bg-red-500/5 border border-red-500/20 text-red-300")}>
                 {breakEvenMonths < 36
                   ? <CheckCircle className="w-3 h-3 shrink-0" />
                   : <AlertTriangle className="w-3 h-3 shrink-0" />}
@@ -1226,7 +1226,7 @@ function CreditBehavioralTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-              <PieChart className="w-4 h-4 text-primary" />
+              <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
               Credit Score Components
             </CardTitle>
           </CardHeader>
@@ -1414,7 +1414,7 @@ function CreditBehavioralTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-              <Shield className="w-4 h-4 text-primary" />
+              <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
               Debt Psychology — Snowball Science
             </CardTitle>
           </CardHeader>
@@ -1568,7 +1568,7 @@ export default function DebtManagementPage() {
         className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20">
+          <div className="p-2 rounded-lg bg-red-500/5 border border-red-500/20">
             <TrendingDown className="w-5 h-5 text-red-400" />
           </div>
           <div>

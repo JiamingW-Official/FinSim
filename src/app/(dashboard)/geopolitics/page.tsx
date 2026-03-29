@@ -920,7 +920,7 @@ function SanctionsTradeTab() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                    <Cpu className="w-4 h-4 text-primary" />
+                    <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
                     US–China Technology Decoupling Timeline
                   </CardTitle>
                 </CardHeader>
@@ -1084,7 +1084,7 @@ function RiskPremiumTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Anchor className="w-4 h-4 text-primary" />
+              <Anchor className="w-3.5 h-3.5 text-muted-foreground/50" />
               Safe Haven Asset Performance During Geo-Events
             </CardTitle>
           </CardHeader>
@@ -1110,7 +1110,7 @@ function RiskPremiumTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             Sector Impact by Geopolitical Scenario (Standard Deviations from Normal)
           </CardTitle>
         </CardHeader>
@@ -1152,7 +1152,7 @@ function RiskPremiumTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Geopolitical Risk Pricing Across Asset Classes
           </CardTitle>
         </CardHeader>
@@ -1353,7 +1353,7 @@ function PortfolioPositioningTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Globe className="w-4 h-4 text-primary" />
+              <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
               Geopolitical Diversification Metrics
             </CardTitle>
           </CardHeader>

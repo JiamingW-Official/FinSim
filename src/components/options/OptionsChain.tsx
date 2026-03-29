@@ -76,17 +76,17 @@ export function OptionsChain({
               <th
                 colSpan={CALL_COLS.length}
                 scope="col"
-                className="px-2 py-1.5 text-center text-[11px] font-medium text-emerald-500 whitespace-nowrap"
+                className="px-1.5 py-0.5 text-center text-[10px] font-medium text-emerald-500 whitespace-nowrap"
               >
                 CALLS
               </th>
             )}
-            <th scope="col" className="px-2 py-1.5 text-center text-[11px] font-medium text-muted-foreground whitespace-nowrap">Strike</th>
+            <th scope="col" className="px-1.5 py-0.5 text-center text-[10px] font-medium text-muted-foreground whitespace-nowrap">Strike</th>
             {showPuts && (
               <th
                 colSpan={PUT_COLS.length}
                 scope="col"
-                className="px-2 py-1.5 text-center text-[11px] font-medium text-red-500 whitespace-nowrap"
+                className="px-1.5 py-0.5 text-center text-[10px] font-medium text-red-500 whitespace-nowrap"
               >
                 PUTS
               </th>
@@ -95,14 +95,14 @@ export function OptionsChain({
           <tr className="border-b border-border/50">
             {showCalls &&
               CALL_COLS.map((col) => (
-                <th key={`call-${col}`} scope="col" className="px-2 py-1.5 text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">
+                <th key={`call-${col}`} scope="col" className="px-1.5 py-0.5 text-right text-[10px] font-medium text-muted-foreground whitespace-nowrap">
                   {col}
                 </th>
               ))}
-            <th scope="col" className="px-2 py-1.5 text-center text-[11px] font-medium text-muted-foreground whitespace-nowrap">$</th>
+            <th scope="col" className="px-1.5 py-0.5 text-center text-[10px] font-medium text-muted-foreground whitespace-nowrap">$</th>
             {showPuts &&
               PUT_COLS.map((col) => (
-                <th key={`put-${col}`} scope="col" className="px-2 py-1.5 text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">
+                <th key={`put-${col}`} scope="col" className="px-1.5 py-0.5 text-right text-[10px] font-medium text-muted-foreground whitespace-nowrap">
                   {col}
                 </th>
               ))}
@@ -125,13 +125,13 @@ export function OptionsChain({
 
             const callCellCn = (extra?: string) =>
               cn(
-                "px-2 py-1.5 text-right font-mono tabular-nums cursor-pointer transition-colors",
+                "px-1.5 py-1 text-right font-mono tabular-nums text-[11px] cursor-pointer transition-colors",
                 isCallSelected && "bg-muted/50",
                 extra,
               );
             const putCellCn = (extra?: string) =>
               cn(
-                "px-2 py-1.5 text-right font-mono tabular-nums cursor-pointer transition-colors",
+                "px-1.5 py-1 text-right font-mono tabular-nums text-[11px] cursor-pointer transition-colors",
                 isPutSelected && "bg-muted/50",
                 extra,
               );
@@ -198,7 +198,7 @@ export function OptionsChain({
                 {/* Strike */}
                 <td
                   className={cn(
-                    "px-2 py-1.5 text-center font-mono tabular-nums font-medium",
+                    "px-1.5 py-1 text-center font-mono tabular-nums text-[11px] font-medium",
                     isAtm && "text-orange-400",
                   )}
                 >

@@ -486,7 +486,7 @@ export default function RealAssets2Page() {
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2 rounded-lg bg-emerald-500/10">
+          <div className="p-2 rounded-lg bg-emerald-500/5">
             <Layers className="w-6 h-6 text-emerald-400" />
           </div>
           <div>
@@ -496,7 +496,7 @@ export default function RealAssets2Page() {
         </div>
         <div className="flex gap-2 mt-3 flex-wrap">
           {[
-            { label: "Timberland Avg Return", value: "8–10% p.a.", color: "bg-emerald-500/10 text-emerald-400" },
+            { label: "Timberland Avg Return", value: "8–10% p.a.", color: "bg-emerald-500/5 text-emerald-400" },
             { label: "US Farmland CAGR (2010–24)", value: "+4.8%", color: "bg-amber-500/10 text-amber-400" },
             { label: "Mei Moses Art Real Return", value: "5–7%", color: "bg-pink-500/10 text-pink-400" },
             { label: "Music Royalty Market", value: "$30B+", color: "bg-primary/10 text-primary" },
@@ -754,13 +754,13 @@ export default function RealAssets2Page() {
                 badgeColor: "text-amber-400 bg-amber-500/10",
               },
               {
-                icon: <Globe className="w-4 h-4 text-primary" />,
+                icon: <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />,
                 title: "NFTs / Digital Art",
                 index: "NFT Market Cap",
                 return: "−80% from 2021 peak",
                 note: "Beeple's 'Everydays' sold for $69M at Christie's (March 2021). NFT market peaked at $25B monthly volume (Jan 2022), crashed to ~$400M by 2023. Authentication risk replaced by smart contract provenance — but speculative bubble dynamics dominated.",
                 badge: "High Risk",
-                badgeColor: "text-red-400 bg-red-500/10",
+                badgeColor: "text-red-400 bg-red-500/5",
               },
               {
                 icon: <ShieldCheck className="w-4 h-4 text-emerald-400" />,
@@ -769,7 +769,7 @@ export default function RealAssets2Page() {
                 return: "6–8% lender yield",
                 note: "Art-secured lending ($20B+ market). Lenders advance 40–50% LTV against appraised value. Athena Art Finance and Sotheby's Financial Services are major players. Art is held as collateral; owner retains economic upside.",
                 badge: "Credit Product",
-                badgeColor: "text-emerald-400 bg-emerald-500/10",
+                badgeColor: "text-emerald-400 bg-emerald-500/5",
               },
               {
                 icon: <Package className="w-4 h-4 text-orange-400" />,
@@ -833,7 +833,7 @@ export default function RealAssets2Page() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Music className="w-4 h-4 text-primary" />
+                  <Music className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Music Publishing Revenue Streams
                 </CardTitle>
               </CardHeader>
@@ -903,7 +903,7 @@ export default function RealAssets2Page() {
                 color: "amber",
               },
               {
-                icon: <ShieldCheck className="w-4 h-4 text-primary" />,
+                icon: <ShieldCheck className="w-3.5 h-3.5 text-muted-foreground/50" />,
                 title: "Technology Licensing",
                 model: "Patent Portfolio Monetization",
                 content: "Technology companies monetize patent portfolios through cross-licensing agreements, patent assertion entities (PAEs), and standard-essential patents (SEPs). QUALCOMM earns ~30% of revenues from licensing its CDMA/LTE patents. InterDigital, VIA Technologies specialize in wireless patent licensing. Royalty rate setting governed by FRAND principles for SEPs.",
@@ -953,7 +953,7 @@ export default function RealAssets2Page() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Info className="w-4 h-4 text-primary" />
+                <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Royalty vs Working Interest — Key Distinction
               </CardTitle>
             </CardHeader>
@@ -996,7 +996,7 @@ export default function RealAssets2Page() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Layers className="w-4 h-4 text-primary" />
+                <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Real Assets Comparison Matrix (7 Dimensions × 6 Asset Types)
               </CardTitle>
             </CardHeader>
@@ -1009,7 +1009,7 @@ export default function RealAssets2Page() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Real Asset Liquidity Spectrum
               </CardTitle>
             </CardHeader>
@@ -1037,7 +1037,7 @@ export default function RealAssets2Page() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-primary" />
+                  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Correlation Matrix with Traditional Assets
                 </CardTitle>
               </CardHeader>

@@ -1332,7 +1332,7 @@ function InvestmentFramework() {
       </Card>
 
       {/* Risk warning */}
-      <Card className="bg-red-500/10 border-red-500/20">
+      <Card className="bg-red-500/5 border-red-500/20">
         <CardContent className="pt-4">
           <div className="flex gap-3">
             <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
@@ -1370,7 +1370,7 @@ export default function NFTPage() {
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
-                <Image className="w-4 h-4 text-primary" />
+                <Image className="w-3.5 h-3.5 text-muted-foreground/50" />
               </div>
               <h1 className="text-lg font-medium text-foreground">NFT Markets</h1>
             </div>

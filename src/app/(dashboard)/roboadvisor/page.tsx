@@ -1087,7 +1087,7 @@ function AIAndFuture() {
       {/* Robo vs Human Performance Insight */}
       <Card className="p-5 bg-card border-border">
         <div className="flex items-start gap-3">
-          <Info className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+          <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 flex-shrink-0" />
           <div>
             <h3 className="text-sm font-medium text-foreground mb-2">Research Insight: Do Robos Outperform?</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">

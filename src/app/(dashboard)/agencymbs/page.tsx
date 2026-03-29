@@ -428,9 +428,9 @@ function SectionCard({ title, icon, children, className }: {
 function InfoChip({ label, value, color = "blue" }: { label: string; value: string; color?: string }) {
   const colors: Record<string, string> = {
     blue: "bg-primary/10 text-primary border-border",
-    green: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
+    green: "bg-emerald-500/5 text-emerald-300 border-emerald-500/20",
     amber: "bg-amber-500/10 text-amber-300 border-amber-500/20",
-    red: "bg-red-500/10 text-red-300 border-red-500/20",
+    red: "bg-red-500/5 text-red-300 border-red-500/20",
     purple: "bg-primary/10 text-primary border-border",
   };
   return (
@@ -1725,7 +1725,7 @@ export default function AgencyMBSPage() {
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-9 h-9 rounded-md bg-primary/15 border border-border flex items-center justify-center">
-            <Building2 size={18} className="text-primary" />
+            <Building2 size={18} className="text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-foreground">Agency MBS</h1>

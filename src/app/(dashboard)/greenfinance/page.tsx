@@ -548,7 +548,7 @@ export default function GreenFinancePage() {
     >
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-2">
+        <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/30 p-2">
           <Leaf className="text-emerald-400" size={20} />
         </div>
         <div>
@@ -604,7 +604,7 @@ export default function GreenFinancePage() {
                     className={cn(
                       "w-full text-left rounded-lg border p-3 transition-all",
                       selectedBond === bond
-                        ? "border-emerald-500/60 bg-emerald-500/10"
+                        ? "border-emerald-500/60 bg-emerald-500/5"
                         : "border-border bg-foreground/5 hover:border-border"
                     )}
                   >
@@ -735,7 +735,7 @@ export default function GreenFinancePage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                <Globe size={16} className="text-primary" />
+                <Globe size={16} className="text-muted-foreground/50" />
                 EU Green Taxonomy — 6 Environmental Objectives
               </CardTitle>
               <p className="text-xs text-muted-foreground">
@@ -905,7 +905,7 @@ export default function GreenFinancePage() {
                       orange: "text-orange-400",
                     };
                     const bgMap: Record<string, string> = {
-                      emerald: "bg-emerald-500/10",
+                      emerald: "bg-emerald-500/5",
                       blue: "bg-primary/10",
                       violet: "bg-primary/10",
                       amber: "bg-amber-500/10",
@@ -961,7 +961,7 @@ export default function GreenFinancePage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
-                <Shield size={16} className="text-primary" />
+                <Shield size={16} className="text-muted-foreground/50" />
                 SFDR Fund Classification — Paris Alignment Funnel
               </CardTitle>
               <p className="text-xs text-muted-foreground">

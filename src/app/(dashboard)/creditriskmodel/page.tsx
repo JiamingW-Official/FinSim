@@ -763,7 +763,7 @@ export default function CreditRiskModelPage() {
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-primary/10 rounded-lg border border-border">
-            <Shield className="w-5 h-5 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-semibold text-foreground">Credit Risk Modeling</h1>

@@ -12,7 +12,6 @@ import {
   Target, Compass, MoreHorizontal,
 } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
-import { SearchTrigger } from "@/components/search/GlobalSearch";
 import { ThemeCustomizerTrigger } from "@/components/ui/ThemeCustomizer";
 import { useUIStore } from "@/stores/ui-store";
 import { useNotificationStore } from "@/stores/notification-store";
@@ -177,23 +176,23 @@ function NavLink({
       className={cn(
         "group relative flex items-center rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/30",
         collapsed
-          ? "h-9 w-10 justify-center"
-          : "h-8 w-full gap-2 px-2.5",
+          ? "h-8 w-8 justify-center"
+          : "h-7 w-full gap-2 px-2",
         isActive
-          ? "bg-primary/8 text-foreground font-medium"
-          : "text-muted-foreground/50 hover:bg-muted/20 hover:text-muted-foreground/80",
+          ? "bg-muted/20 text-foreground"
+          : "text-muted-foreground/50 hover:bg-muted/10 hover:text-muted-foreground/80",
       )}
     >
       {/* Left-edge active indicator */}
       {isActive && (
-        <span className="absolute -left-[9px] top-1/2 -translate-y-1/2 h-3.5 w-[2px] rounded-r-full bg-primary/70" />
+        <span className="absolute -left-[1px] top-1/2 -translate-y-1/2 h-3 w-[2px] rounded-r-full bg-foreground/30" />
       )}
 
-      <item.icon className="h-4 w-4 shrink-0" />
+      <item.icon className="h-3.5 w-3.5 shrink-0" />
 
       {/* Label — expanded only */}
       {!collapsed && (
-        <span className={cn("flex-1 text-[13px] leading-none", isActive ? "font-medium" : "font-normal")}>{item.label}</span>
+        <span className="flex-1 text-xs leading-none font-normal">{item.label}</span>
       )}
 
       {/* NEW badge text */}
@@ -271,8 +270,8 @@ function SectionToggle({
       className={cn(
         "group flex w-full items-center rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/30",
         sidebarCollapsed
-          ? "h-9 w-10 justify-center"
-          : "h-7 gap-2 px-2.5",
+          ? "h-8 w-8 justify-center"
+          : "h-6 gap-2 px-2",
         hasActiveChild
           ? "text-muted-foreground/60"
           : "text-muted-foreground/40 hover:text-muted-foreground/60",
@@ -373,8 +372,8 @@ export function Sidebar() {
   return (
     <div
       className={cn(
-        "relative hidden md:flex flex-col border-r border-border/30 bg-sidebar py-3 transition-[width] duration-200 ease-in-out overflow-hidden",
-        collapsed ? "w-14 items-center" : "w-[200px] items-stretch",
+        "relative hidden md:flex flex-col border-r border-border/40 bg-sidebar py-2 transition-[width] duration-200 ease-in-out overflow-hidden",
+        collapsed ? "w-12 items-center" : "w-52 items-stretch",
       )}
     >
       {/* Logo mark — minimal */}
@@ -391,20 +390,6 @@ export function Sidebar() {
         )}
       </div>
 
-      {/* Search trigger */}
-      {collapsed ? (
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <SearchTrigger className="mb-2 h-9 w-10 justify-center" />
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={10} className="text-xs font-medium">
-            Search (⌘K)
-          </TooltipContent>
-        </Tooltip>
-      ) : (
-        <SearchTrigger className="mb-2 mx-2.5 h-8 w-auto justify-start gap-2 px-2.5" />
-      )}
-
       {/* Nav sections */}
       <nav
         aria-label="Main navigation"
@@ -420,9 +405,9 @@ export function Sidebar() {
 
         {/* ── Separator ────────────────────────────────────────────────── */}
         {collapsed ? (
-          <div className="my-3 h-px w-5 bg-border/10" />
+          <div className="my-3 h-px w-5 bg-border/15" />
         ) : (
-          <div className="my-3 border-t border-border/10" />
+          <div className="my-3 border-t border-border/15" />
         )}
 
         {/* ── EXPLORE: Collapsible secondary tools ─────────────────────── */}
@@ -450,9 +435,9 @@ export function Sidebar() {
 
         {/* ── Separator ────────────────────────────────────────────────── */}
         {collapsed ? (
-          <div className="my-3 h-px w-5 bg-border/10" />
+          <div className="my-3 h-px w-5 bg-border/15" />
         ) : (
-          <div className="my-3 border-t border-border/10" />
+          <div className="my-3 border-t border-border/15" />
         )}
 
         {/* ── ADVANCED: Collapsed by default, all remaining pages ──────── */}
@@ -491,9 +476,9 @@ export function Sidebar() {
 
         {/* ── Separator ────────────────────────────────────────────────── */}
         {collapsed ? (
-          <div className="my-3 h-px w-5 bg-border/10" />
+          <div className="my-3 h-px w-5 bg-border/15" />
         ) : (
-          <div className="my-3 border-t border-border/10" />
+          <div className="my-3 border-t border-border/15" />
         )}
 
         {/* ── LEARN & SOCIAL (always visible, compact) ─────────────────── */}
@@ -509,9 +494,9 @@ export function Sidebar() {
         </div>
 
         {collapsed ? (
-          <div className="my-3 h-px w-5 bg-border/10" />
+          <div className="my-3 h-px w-5 bg-border/15" />
         ) : (
-          <div className="my-3 border-t border-border/10" />
+          <div className="my-3 border-t border-border/15" />
         )}
 
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
@@ -576,10 +561,10 @@ export function Sidebar() {
               <button
                 type="button"
                 onClick={toggleCollapsed}
-                className="flex h-9 w-10 items-center justify-center rounded-md text-muted-foreground/30 transition-colors hover:bg-muted/20 hover:text-muted-foreground/60"
+                className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground/30 transition-colors hover:bg-muted/10 hover:text-muted-foreground/60"
                 aria-label="Expand sidebar"
               >
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-3.5 w-3.5" />
               </button>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={10} className="text-xs font-medium">
@@ -590,10 +575,10 @@ export function Sidebar() {
           <button
             type="button"
             onClick={toggleCollapsed}
-            className="flex h-8 w-full items-center gap-2 rounded-md px-2.5 text-muted-foreground/30 transition-colors hover:bg-muted/20 hover:text-muted-foreground/60"
+            className="flex h-7 w-full items-center gap-2 rounded-md px-2 text-muted-foreground/30 transition-colors hover:bg-muted/10 hover:text-muted-foreground/60"
             aria-label="Collapse sidebar"
           >
-            <ChevronLeft className="h-4 w-4 shrink-0" />
+            <ChevronLeft className="h-3.5 w-3.5 shrink-0" />
             <span className="text-xs font-medium">Collapse</span>
           </button>
         )}

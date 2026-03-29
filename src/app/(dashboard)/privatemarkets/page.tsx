@@ -471,7 +471,7 @@ function StatChip({
 }) {
   const cls = {
     green: "bg-green-500/10 text-green-400 border-green-500/20",
-    red: "bg-red-500/10 text-red-400 border-red-500/20",
+    red: "bg-red-500/5 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
     blue: "bg-primary/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
@@ -1946,7 +1946,7 @@ function DDAccordion() {
           className={cn(
             "text-xs text-muted-foreground px-3 py-1.5 rounded-lg border transition-colors",
             showRedFlags
-              ? "bg-red-500/10 border-red-500/30 text-red-400"
+              ? "bg-red-500/5 border-red-500/30 text-red-400"
               : "border-border text-muted-foreground hover:text-foreground"
           )}
         >
@@ -2133,7 +2133,7 @@ export default function PrivateMarketsPage() {
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-md bg-primary/10">
-            <Layers className="w-5 h-5 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-medium text-foreground">Private Markets & Alternatives</h1>

@@ -838,7 +838,7 @@ interface PriceCardProps {
 }
 
 function PriceCard({ title, price, color, icon }: PriceCardProps) {
-  const bg = color === "emerald" ? "bg-emerald-500/10 border-emerald-500/20" : "bg-rose-500/10 border-rose-500/20";
+  const bg = color === "emerald" ? "bg-emerald-500/5 border-emerald-500/20" : "bg-rose-500/10 border-rose-500/20";
   const text = color === "emerald" ? "text-emerald-400" : "text-rose-400";
   return (
     <Card className={`${bg} border`}>

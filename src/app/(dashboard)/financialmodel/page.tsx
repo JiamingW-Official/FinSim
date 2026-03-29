@@ -571,8 +571,8 @@ function MonteCarloChart({
 function StatChip({ label, value, color = "blue" }: { label: string; value: string; color?: string }) {
   const colorMap: Record<string, string> = {
     blue: "bg-primary/10 border-border text-primary",
-    green: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
-    red: "bg-red-500/10 border-red-500/20 text-red-400",
+    green: "bg-emerald-500/5 border-emerald-500/20 text-emerald-400",
+    red: "bg-red-500/5 border-red-500/20 text-red-400",
     amber: "bg-amber-500/10 border-amber-500/20 text-amber-400",
     purple: "bg-primary/10 border-border text-primary",
   };
@@ -932,7 +932,7 @@ export default function FinancialModelPage() {
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-lg font-medium tracking-tight flex items-center gap-2">
-              <Calculator className="w-5 h-5 text-primary" />
+              <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
               Financial Model Builder
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">3-Statement Model · DCF · Comps · Scenario Analysis</p>
@@ -1131,8 +1131,8 @@ export default function FinancialModelPage() {
               <div className={cn(
                 "mb-4 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border",
                 bsData.balanced
-                  ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
-                  : "bg-red-500/10 border-red-500/20 text-red-400"
+                  ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-400"
+                  : "bg-red-500/5 border-red-500/20 text-red-400"
               )}>
                 <Info className="w-4 h-4 shrink-0" />
                 {bsData.balanced
@@ -1561,9 +1561,9 @@ export default function FinancialModelPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 {scenarioResults.map((sc) => {
                   const colors = {
-                    bull: { bg: "bg-emerald-500/10", border: "border-emerald-500/20", text: "text-emerald-400", badge: "bg-emerald-500/20 text-emerald-300" },
+                    bull: { bg: "bg-emerald-500/5", border: "border-emerald-500/20", text: "text-emerald-400", badge: "bg-emerald-500/20 text-emerald-300" },
                     base: { bg: "bg-primary/10", border: "border-border", text: "text-primary", badge: "bg-primary/20 text-primary" },
-                    bear: { bg: "bg-red-500/10", border: "border-red-500/20", text: "text-red-400", badge: "bg-red-500/20 text-red-300" },
+                    bear: { bg: "bg-red-500/5", border: "border-red-500/20", text: "text-red-400", badge: "bg-red-500/20 text-red-300" },
                   };
                   const c = colors[sc.scenario];
                   const upside = (sc.impliedPrice / companyData.currentPrice - 1) * 100;
@@ -1658,8 +1658,8 @@ export default function FinancialModelPage() {
                   <div className={cn(
                     "px-4 py-3 rounded-lg border text-sm font-medium",
                     isAssumptions.revenueGrowth >= parseFloat(breakEvenGrowth)
-                      ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
-                      : "bg-red-500/10 border-red-500/30 text-red-400"
+                      ? "bg-emerald-500/5 border-emerald-500/30 text-emerald-400"
+                      : "bg-red-500/5 border-red-500/30 text-red-400"
                   )}>
                     {isAssumptions.revenueGrowth >= parseFloat(breakEvenGrowth)
                       ? "Your growth forecast exceeds break-even — stock may be undervalued"

@@ -46,13 +46,13 @@ export default function DashboardLayout({
             Skip to content
           </a>
 
-          <div className={cn("flex h-screen flex-col overflow-hidden", colorblindMode && "colorblind-mode")}>
+          <div className={cn("flex h-screen flex-col overflow-hidden bg-background", colorblindMode && "colorblind-mode")}>
             <TopBar />
             <div className="flex flex-1 overflow-hidden">
               <Sidebar />
               <main
                 id="main-content"
-                className="relative flex-1 overflow-hidden pb-16 md:pb-0"
+                className="relative flex-1 overflow-hidden bg-background pb-16 md:pb-0"
               >
                 <PageTransition>{children}</PageTransition>
               </main>

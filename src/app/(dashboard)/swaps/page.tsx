@@ -950,7 +950,7 @@ function CDSPricer() {
       <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>CDX Index Snapshot</SectionTitle>
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3 space-y-1">
+          <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3 space-y-1">
             <div className="text-xs text-foreground/40 uppercase">CDX.NA.IG (125 names)</div>
             <div className="text-2xl font-bold text-emerald-400">108 bps</div>
             <div className="text-xs text-foreground/50">Investment Grade — avg per-name: 0.86 bps</div>

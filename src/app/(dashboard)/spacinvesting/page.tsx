@@ -411,7 +411,7 @@ function MechanicsTab() {
         {/* Warrants */}
         <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Zap className="w-4 h-4 text-primary" />
+            <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-sm font-medium text-foreground">Warrants</span>
           </div>
           <p className="text-xs text-muted-foreground mb-3">
@@ -438,7 +438,7 @@ function MechanicsTab() {
       {/* Redemption Rights Explainer */}
       <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Shield className="w-4 h-4 text-primary" />
+          <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="text-sm font-medium text-foreground">Redemption Rights — The NAV Floor</span>
         </div>
         <p className="text-xs text-muted-foreground mb-4">
@@ -1195,7 +1195,7 @@ function InvestorStrategyTab() {
       title: "Pre-Announcement Arbitrage",
       icon: Lock,
       color: "text-emerald-400",
-      bgColor: "bg-emerald-500/10",
+      bgColor: "bg-emerald-500/5",
       borderColor: "border-emerald-500/30",
       risk: "Low",
       return: "+1–4% annualized",
@@ -1251,7 +1251,7 @@ function InvestorStrategyTab() {
       title: "Post-Merger Short",
       icon: TrendingDown,
       color: "text-red-400",
-      bgColor: "bg-red-500/10",
+      bgColor: "bg-red-500/5",
       borderColor: "border-red-500/30",
       risk: "High",
       return: "+20–60% over 3–12 months",
@@ -1458,7 +1458,7 @@ export default function SpacInvestingPage() {
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="w-9 h-9 rounded-md bg-primary/15 flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-primary" />
+              <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">SPAC Investing</h1>

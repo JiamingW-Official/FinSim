@@ -1766,7 +1766,7 @@ function DocumentaryCollectionsTab() {
       <div>
         <SectionTitle>Political Risk vs Commercial Risk</SectionTitle>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-red-500/10 border border-red-500/20 rounded-md p-4">
+          <div className="bg-red-500/5 border border-red-500/20 rounded-md p-4">
             <div className="flex items-center gap-2 mb-3">
               <Globe className="w-4 h-4 text-red-400" />
               <span className="text-sm font-medium text-red-300">

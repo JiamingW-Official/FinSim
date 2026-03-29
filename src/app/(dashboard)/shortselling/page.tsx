@@ -1003,7 +1003,7 @@ export default function ShortSellingPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2 text-base">
-                      <Target className="w-4 h-4 text-primary" />
+                      <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Interactive Conviction Scorer
                     </CardTitle>
                     <div className={`px-3 py-1.5 rounded-lg border text-sm font-medium ${conviction.bg} ${conviction.color}`}>

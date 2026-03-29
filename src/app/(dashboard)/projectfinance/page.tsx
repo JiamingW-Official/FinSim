@@ -98,7 +98,7 @@ function InfoBox({
   const colors = {
     blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
-    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+    emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     violet: "bg-primary/10 border-border text-primary",
   };
   return (

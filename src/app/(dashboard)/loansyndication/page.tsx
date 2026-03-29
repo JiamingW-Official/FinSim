@@ -1053,7 +1053,7 @@ function CovenantTab() {
       <Card className="bg-card border-border border-l-4 border-l-blue-500">
         <CardContent className="pt-4 pb-4">
           <div className="flex gap-3">
-            <BookOpen className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+            <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-medium text-foreground">What is Cov-Lite?</p>
               <p className="text-xs text-muted-foreground mt-1">
@@ -1279,7 +1279,7 @@ export default function LoanSyndicationPage() {
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-primary/10">
-            <Briefcase className="w-5 h-5 text-primary" />
+            <Briefcase className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <h1 className="text-lg font-medium text-foreground">Loan Syndication & Leveraged Finance</h1>
         </div>

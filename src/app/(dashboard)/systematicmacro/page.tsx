@@ -580,7 +580,7 @@ export default function SystematicMacroPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Target className="w-4 h-4 text-primary" />
+                  <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Position Sizing Table
                 </CardTitle>
               </CardHeader>
@@ -652,7 +652,7 @@ export default function SystematicMacroPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Equity Curve — Systematic Macro vs Buy &amp; Hold (1 Year)
                 </CardTitle>
               </CardHeader>
@@ -723,7 +723,7 @@ export default function SystematicMacroPage() {
             <Card className="bg-card border-border mt-4">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Strategy Overview
                 </CardTitle>
               </CardHeader>

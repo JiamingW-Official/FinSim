@@ -10,8 +10,6 @@ import { formatCurrency, formatPercent, formatDate } from "@/lib/utils";
 import { usePriceFlash, useAnimatedNumber } from "@/hooks/usePriceFlash";
 import { cn } from "@/lib/utils";
 import {
-  TrendingUp,
-  TrendingDown,
   Volume2,
   VolumeX,
   BookOpen,
@@ -28,7 +26,6 @@ import { useGameStore } from "@/stores/game-store";
 import { getXPForNextLevel, LEVEL_THRESHOLDS } from "@/types/game";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
-import { SearchTrigger } from "@/components/search/GlobalSearch";
 import { HeartsDisplay } from "@/components/learn/HeartsDisplay";
 import { usePathname } from "next/navigation";
 import { INITIAL_CAPITAL } from "@/types/trading";
@@ -347,28 +344,20 @@ export function TopBar() {
   const [tickerQuery, setTickerQuery] = useState("");
 
   return (
-    <div className="relative flex h-9 items-center justify-between px-4 border-b border-border/20 bg-background/90 backdrop-blur-sm">
+    <div className="relative flex h-9 items-center justify-between px-4 border-b border-border/40 bg-background">
       {/* ── Left ── */}
-      <div className="flex items-center gap-4">
-        {/* Logo */}
-        <span className="text-xs font-medium tracking-tight text-muted-foreground/50 select-none">FinSim</span>
-
-        <div className="h-3.5 w-px bg-border/20" />
-
+      <div className="flex items-center gap-3">
         {/* Ticker — clickable to open search */}
         <div className="relative">
           <button
             type="button"
             onClick={() => setTickerOpen((v) => !v)}
-            className="flex items-center gap-2 rounded-md px-1 py-0.5 text-sm hover:bg-muted/30/50 transition-colors"
+            className="flex items-center gap-1.5 rounded px-1 py-0.5 hover:bg-muted/10 transition-colors"
           >
-            <span className="font-medium text-xs">{currentTicker}</span>
-            <span className="hidden text-muted-foreground sm:inline">
-              {stockInfo?.name ?? ""}
-            </span>
+            <span className="text-xs font-medium">{currentTicker}</span>
             <span
               className={cn(
-                "text-xs font-medium tabular-nums transition-colors duration-300",
+                "text-xs tabular-nums transition-colors duration-300",
                 priceFlash === "up" && "price-flash-up",
                 priceFlash === "down" && "price-flash-down",
               )}
@@ -378,21 +367,16 @@ export function TopBar() {
             {currentBar && (
               <span
                 className={cn(
-                  "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-medium",
+                  "text-xs tabular-nums",
                   dayChange >= 0
-                    ? "bg-emerald-500/5 text-emerald-500"
-                    : "bg-red-500/5 text-red-500",
+                    ? "text-emerald-500"
+                    : "text-red-500",
                 )}
               >
-                {dayChange >= 0 ? (
-                  <TrendingUp className="h-3 w-3" />
-                ) : (
-                  <TrendingDown className="h-3 w-3" />
-                )}
-                {formatPercent(dayChange)}
+                {dayChange >= 0 ? "+" : ""}{formatPercent(dayChange)}
               </span>
             )}
-            <ChevronDown className="h-3 w-3 text-muted-foreground" />
+            <ChevronDown className="h-2.5 w-2.5 text-muted-foreground/50" />
           </button>
 
           <TickerDropdown
@@ -402,74 +386,60 @@ export function TopBar() {
             onQueryChange={setTickerQuery}
           />
         </div>
+
+        <div className="h-3 w-px bg-border/20" />
+
+        {/* Market status */}
+        <MarketStatusPill />
       </div>
 
       {/* ── Right ── */}
-      <div className="flex items-center gap-3 text-sm">
+      <div className="flex items-center gap-2.5">
         {/* XP + streaks */}
         <XPProgressBar />
         <StreakBadge />
         <LearnStreakBadge />
         {pathname?.startsWith("/learn") && <HeartsDisplay compact />}
 
-        <div className="h-3.5 w-px bg-border/20" />
+        <div className="h-3 w-px bg-border/20" />
 
-        {/* Market status */}
-        <MarketStatusPill />
+        {/* Simulated date */}
+        {currentBar && (
+          <span className="text-xs tabular-nums text-muted-foreground">
+            {formatDate(currentBar.timestamp)}
+          </span>
+        )}
 
-        <div className="h-3.5 w-px bg-border/20" />
+        <div className="h-3 w-px bg-border/20" />
+
+        {/* Portfolio value + P&L */}
+        <div className="flex items-center gap-1.5" data-tutorial="portfolio">
+          <span className="text-xs tabular-nums text-muted-foreground">
+            {formatCurrency(animatedPortfolio)}
+          </span>
+          <span
+            className={cn(
+              "text-xs tabular-nums",
+              totalPnL >= 0 ? "text-emerald-500" : "text-red-500",
+            )}
+          >
+            {totalPnL >= 0 ? "+" : ""}{totalPnLPct.toFixed(1)}%
+          </span>
+        </div>
+
+        <div className="h-3 w-px bg-border/20" />
 
         {/* Actions cluster */}
-        <SearchTrigger />
         <ShortcutsButton />
         <ErrorBoundary name="NotificationCenter"><NotificationCenter /></ErrorBoundary>
         <SoundToggle />
         <QuickActionsMenu />
 
-        <div className="h-3.5 w-px bg-border/20" />
-
-        {/* Simulated date */}
-        {currentBar && (
-          <span className="text-xs text-muted-foreground">
-            {formatDate(currentBar.timestamp)}
-          </span>
-        )}
-
-        <div className="h-3.5 w-px bg-border/20" />
-
-        {/* Portfolio value + P&L badge */}
-        <div className="flex items-center gap-2" data-tutorial="portfolio">
-          <span className="text-xs text-muted-foreground">Portfolio</span>
-          <span
-            className={cn(
-              "text-xs font-medium tabular-nums",
-              totalPnL >= 0 ? "text-emerald-500" : "text-red-500",
-            )}
-          >
-            {formatCurrency(animatedPortfolio)}
-          </span>
-          <span
-            className={cn(
-              "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-medium tabular-nums",
-              totalPnL >= 0
-                ? "bg-emerald-500/5 text-emerald-500"
-                : "bg-red-500/5 text-red-500",
-            )}
-          >
-            {totalPnL >= 0 ? "+" : ""}
-            {formatCurrency(totalPnL)}
-            {" ("}
-            {totalPnL >= 0 ? "+" : ""}
-            {totalPnLPct.toFixed(1)}
-            {"%)"}
-          </span>
-        </div>
-
         {/* LIVE indicator */}
         {isPlaying && (
           <div className="flex items-center gap-1">
-            <div className="pulse-dot h-2 w-2 rounded-full bg-emerald-500" />
-            <span className="text-xs text-emerald-500">LIVE</span>
+            <div className="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="text-[10px] text-emerald-500">LIVE</span>
           </div>
         )}
       </div>

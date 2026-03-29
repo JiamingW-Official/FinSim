@@ -1484,7 +1484,7 @@ export default function EquityResearch3Page() {
         {/* Header — Hero */}
         <div className="border-l-4 border-l-primary rounded-lg bg-card p-6">
           <div className="flex items-center gap-2 mb-1">
-            <Microscope className="w-5 h-5 text-primary" />
+            <Microscope className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-xs font-medium text-primary">Advanced Equity Research</span>
           </div>
           <h1 className="text-xl font-bold text-foreground">

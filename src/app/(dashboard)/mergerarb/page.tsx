@@ -310,7 +310,7 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
     <Card className="bg-card border-border">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-primary" />
+          <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           Spread Decomposition — {deal.targetTicker}
         </CardTitle>
       </CardHeader>
@@ -397,7 +397,7 @@ function DealRiskMatrix({ deals }: { deals: Deal[] }) {
     <Card className="bg-card border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-          <Activity className="w-4 h-4 text-primary" />
+          <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
           Deal Risk Matrix
           <span className="text-xs text-muted-foreground font-normal ml-1">(bubble size = deal size $B)</span>
         </CardTitle>
@@ -755,7 +755,7 @@ function ArbitrageCalculator() {
     <Card className="bg-card border-border">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-          <Calculator className="w-4 h-4 text-primary" />
+          <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
           Arbitrage Calculator
         </CardTitle>
       </CardHeader>
@@ -1003,7 +1003,7 @@ export default function MergerArbPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <Activity className="w-4 h-4 text-primary" />
+                <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Active Deals
                 <span className="text-xs text-muted-foreground font-normal ml-1">
                   — click a row to analyze spread
@@ -1041,7 +1041,7 @@ export default function MergerArbPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-primary" />
+                <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Deal Metrics Summary
               </CardTitle>
             </CardHeader>
@@ -1093,7 +1093,7 @@ export default function MergerArbPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <Info className="w-4 h-4 text-primary" />
+                <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Merger Arbitrage Education
               </CardTitle>
             </CardHeader>

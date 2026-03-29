@@ -169,7 +169,7 @@ function StatChip({
     green: "bg-green-500/10 border-green-500/20 text-green-400",
     amber: "bg-amber-500/10 border-amber-500/20 text-amber-400",
     blue: "bg-primary/10 border-border text-primary",
-    red: "bg-red-500/10 border-red-500/20 text-red-400",
+    red: "bg-red-500/5 border-red-500/20 text-red-400",
     teal: "bg-teal-500/10 border-teal-500/20 text-emerald-400",
   };
   return (
@@ -324,7 +324,7 @@ function ConvertibleMechanicsTab() {
           },
           {
             title: "Bond Floor & Investment Value",
-            icon: <DollarSign size={16} className="text-primary" />,
+            icon: <DollarSign size={16} className="text-muted-foreground/50" />,
             body: `The bond floor ($${metrics.bondFloor.toFixed(0)}) is the straight-debt value — what the bond is worth ignoring conversion. It uses a yield of ${metrics.ytm.toFixed(2)}% (risk-free ${params.riskFreeRate}% + spread ${params.creditSpread}%). This provides downside protection: the convertible should rarely trade below this floor.`,
           },
           {
@@ -631,7 +631,7 @@ function MarketOverviewTab() {
                     <span className={cn("px-2 py-0.5 rounded text-xs text-muted-foreground font-medium",
                       iss.rating.startsWith("BB") ? "bg-amber-500/10 text-amber-400" :
                       iss.rating.startsWith("B+") || iss.rating === "B" ? "bg-orange-500/10 text-orange-400" :
-                      "bg-red-500/10 text-red-400"
+                      "bg-red-500/5 text-red-400"
                     )}>{iss.rating}</span>
                   </td>
                 </tr>

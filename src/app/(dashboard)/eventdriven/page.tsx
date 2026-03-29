@@ -452,7 +452,7 @@ function ActivismTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Zap className="w-4 h-4 text-primary" />
+            <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
             Activist Investor Playbook
           </CardTitle>
         </CardHeader>
@@ -774,7 +774,7 @@ function SpinoffsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <FileText className="w-4 h-4 text-primary" />
+            <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
             Morris Trust & Reverse Morris Trust
           </CardTitle>
         </CardHeader>

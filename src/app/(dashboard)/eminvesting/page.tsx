@@ -632,7 +632,7 @@ export default function EMInvestingPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Layers className="w-4 h-4 text-primary" />EM Factor Premiums (vs DM)
+                <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />EM Factor Premiums (vs DM)
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -671,7 +671,7 @@ export default function EMInvestingPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <DollarSign className="w-4 h-4 text-primary" />Hard Currency vs Local Currency EM Debt
+                <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" />Hard Currency vs Local Currency EM Debt
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -771,7 +771,7 @@ export default function EMInvestingPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Landmark className="w-4 h-4 text-primary" />Dedicated EM Debt Managers
+                  <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />Dedicated EM Debt Managers
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -875,7 +875,7 @@ export default function EMInvestingPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Landmark className="w-4 h-4 text-primary" />Debt Sustainability Analysis (DSA) & IMF Programmes
+                <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />Debt Sustainability Analysis (DSA) & IMF Programmes
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -1059,7 +1059,7 @@ export default function EMInvestingPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <ShieldAlert className="w-4 h-4 text-primary" />FX Reserve Adequacy Metrics
+                  <ShieldAlert className="w-3.5 h-3.5 text-muted-foreground/50" />FX Reserve Adequacy Metrics
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -1083,7 +1083,7 @@ export default function EMInvestingPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                <Globe className="w-4 h-4 text-primary" />CBDCs in Emerging Markets & Digital Finance
+                <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />CBDCs in Emerging Markets & Digital Finance
               </CardTitle>
             </CardHeader>
             <CardContent>

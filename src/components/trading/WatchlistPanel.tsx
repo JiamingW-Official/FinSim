@@ -403,18 +403,12 @@ function WatchlistRow({
     (item.alertBelow !== undefined && item.alertBelowEnabled !== false);
   const hasAlert = activeAlertCount > 0 || hasLegacyAlert;
 
-  const perf = useMemo(
-    () => (showPerformance ? getPerformanceStats(item.ticker) : null),
-    [item.ticker, showPerformance],
-  );
-
   return (
     <div className="group">
       <div
         className={cn(
-          "flex items-center gap-0.5 px-2 py-1.5 hover:bg-muted/10 transition-colors",
-          isActive && "bg-primary/5 border-l-2 border-primary",
-          !isActive && "border-l-2 border-transparent",
+          "flex items-center gap-0.5 px-2 py-1 hover:bg-muted/10 transition-colors",
+          isActive && "bg-muted/20",
         )}
       >
         {/* Up/Down arrows */}
@@ -448,73 +442,36 @@ function WatchlistRow({
             <div className="flex items-center gap-1">
               <span
                 className={cn(
-                  "text-xs font-semibold leading-none",
-                  isActive ? "text-primary" : "text-foreground",
+                  "text-xs leading-none",
+                  isActive ? "text-foreground font-medium" : "text-foreground",
                 )}
               >
                 {item.ticker}
               </span>
-              <TAChip signal={taSignal} />
               {activeAlertCount > 0 && (
-                <span className="rounded-full bg-primary/20 px-1 text-[11px] font-medium text-primary leading-3 py-0.5">
+                <span className="rounded-full bg-muted px-1 text-[10px] text-muted-foreground leading-3 py-0.5">
                   {activeAlertCount}
                 </span>
               )}
-              <ChevronRight className="h-2.5 w-2.5 text-muted-foreground/40 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-
-            {/* Note display */}
-            {item.notes && !isNoteEditorOpen && (
-              <p className="text-[11px] italic text-muted-foreground/70 mt-0.5 truncate">
-                {item.notes}
-              </p>
-            )}
-
-            {!showPerformance && (
-              <div
-                className={cn(
-                  "text-xs font-mono tabular-nums mt-0.5",
-                  changePct > 0
-                    ? "text-green-500"
-                    : changePct < 0
-                      ? "text-red-500"
-                      : "text-muted-foreground",
-                )}
-              >
-                {changePct >= 0 ? "+" : ""}
-                {changePct.toFixed(2)}%
-              </div>
-            )}
-
-            {showPerformance && perf && (
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className={cn("text-[11px] font-mono tabular-nums", perf.w1 >= 0 ? "text-green-500" : "text-red-500")}>
-                  1W {perf.w1 >= 0 ? "+" : ""}{perf.w1.toFixed(1)}%
-                </span>
-                <span className={cn("text-[11px] font-mono tabular-nums", perf.m1 >= 0 ? "text-green-500" : "text-red-500")}>
-                  1M {perf.m1 >= 0 ? "+" : ""}{perf.m1.toFixed(1)}%
-                </span>
-              </div>
-            )}
           </div>
 
-          <div className="flex flex-col items-end gap-0.5 shrink-0">
-            {!showPerformance && <MiniSparkline values={sparkValues} />}
-            {!showPerformance && (
-              <div className="text-xs font-mono tabular-nums text-foreground">
-                ${price.toFixed(2)}
-              </div>
-            )}
-            {showPerformance && perf && (
-              <div className="flex flex-col items-end gap-0.5">
-                <span className={cn("text-[11px] font-mono tabular-nums", perf.ytd >= 0 ? "text-green-500" : "text-red-500")}>
-                  YTD {perf.ytd >= 0 ? "+" : ""}{perf.ytd.toFixed(1)}%
-                </span>
-                <span className={cn("text-[11px] font-mono tabular-nums", perf.sharpe >= 1 ? "text-green-500" : perf.sharpe >= 0 ? "text-muted-foreground" : "text-red-500")}>
-                  SR {perf.sharpe.toFixed(2)}
-                </span>
-              </div>
-            )}
+          <div className="flex items-center gap-1.5 shrink-0">
+            <span className="text-xs tabular-nums text-foreground">
+              ${price.toFixed(2)}
+            </span>
+            <span
+              className={cn(
+                "text-xs tabular-nums",
+                changePct > 0
+                  ? "text-emerald-500"
+                  : changePct < 0
+                    ? "text-red-500"
+                    : "text-muted-foreground",
+              )}
+            >
+              {changePct >= 0 ? "+" : ""}{changePct.toFixed(2)}%
+            </span>
           </div>
         </button>
 
@@ -821,26 +778,13 @@ export function WatchlistPanel() {
     <div className="flex flex-col bg-card overflow-hidden" style={{ height: "100%" }}>
       {/* Header row 1: label + count + mode toggles */}
       <div className="flex items-center justify-between border-b border-border/40 px-3 py-2 shrink-0">
-        <span className="text-xs font-medium text-muted-foreground">
+        <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground/50">
           Watchlist
         </span>
         <div className="flex items-center gap-1">
           <span className="text-xs text-muted-foreground/60">
             {activeWatchlist.length}
           </span>
-          {/* Performance mode toggle */}
-          <button
-            onClick={() => setShowPerformance((p) => !p)}
-            title={showPerformance ? "Show current prices" : "Show performance stats"}
-            className={cn(
-              "rounded p-0.5 transition-colors",
-              showPerformance
-                ? "text-primary"
-                : "text-muted-foreground/50 hover:text-muted-foreground",
-            )}
-          >
-            <BarChart2 className="h-3 w-3" />
-          </button>
           {/* Group-by selector */}
           <div className="relative">
             <select

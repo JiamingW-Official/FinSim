@@ -277,7 +277,7 @@ function MetricCard({
             )}
           </div>
           <div className="rounded-md bg-primary/10 p-2">
-            <Icon className="w-5 h-5 text-primary" />
+            <Icon className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
         </div>
       </CardContent>

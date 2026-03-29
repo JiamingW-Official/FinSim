@@ -1259,7 +1259,7 @@ export default function GlobalEquityPage() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Globe className="w-5 h-5 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             <h1 className="text-xl font-medium text-foreground">Global Equity Markets</h1>
           </div>
           <p className="text-sm text-muted-foreground">

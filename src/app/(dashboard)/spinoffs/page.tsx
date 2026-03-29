@@ -250,7 +250,7 @@ function SpinoffMechanicsTab() {
       icon: <DollarSign className="w-4 h-4" />,
       color: "text-emerald-400",
       borderColor: "border-emerald-500/40",
-      bgColor: "bg-emerald-500/10",
+      bgColor: "bg-emerald-500/5",
       description:
         "Parent sells a minority stake (typically 15–25%) in subsidiary via IPO. Parent retains majority control. Often precedes a full spinoff.",
       taxTreatment: "Taxable event — IPO proceeds taxed as capital gain",
@@ -799,7 +799,7 @@ function SOTPSummaryChart({
           <div className="text-xs text-foreground/40 mb-1">SOTP EV</div>
           <div className="text-base font-bold text-foreground">${(totalSotpEV / 1000).toFixed(1)}B</div>
         </div>
-        <div className="rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-center">
+        <div className="rounded-lg bg-red-500/5 border border-red-500/20 p-3 text-center">
           <div className="text-xs text-red-400 mb-1">Cong. Discount (15%)</div>
           <div className="text-base font-medium text-red-400">−${(conglomerateDiscountEV / 1000).toFixed(1)}B</div>
         </div>
@@ -807,7 +807,7 @@ function SOTPSummaryChart({
           <div className="text-xs text-foreground/40 mb-1">SOTP / Share</div>
           <div className="text-base font-medium text-emerald-400">${sotpPerShare.toFixed(2)}</div>
         </div>
-        <div className={cn("rounded-lg p-3 text-center border", upliftPct > 0 ? "bg-emerald-500/10 border-emerald-500/20" : "bg-red-500/10 border-red-500/20")}>
+        <div className={cn("rounded-lg p-3 text-center border", upliftPct > 0 ? "bg-emerald-500/5 border-emerald-500/20" : "bg-red-500/5 border-red-500/20")}>
           <div className={cn("text-xs mb-1", upliftPct > 0 ? "text-emerald-400" : "text-red-400")}>Uplift Potential</div>
           <div className={cn("text-base font-medium", upliftPct > 0 ? "text-emerald-400" : "text-red-400")}>
             {upliftPct > 0 ? "+" : ""}{upliftPct.toFixed(1)}%
@@ -890,7 +890,7 @@ function HistoricalPerformanceTab() {
 
       {/* Summary chips */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-md border border-emerald-500/30 bg-emerald-500/10 p-4 text-center">
+        <div className="rounded-md border border-emerald-500/30 bg-emerald-500/5 p-4 text-center">
           <div className="text-xs text-emerald-400 mb-1">Avg SpinCo 1Y Return</div>
           <div className="text-2xl font-bold text-emerald-400">+{avgSpinoff1Y.toFixed(1)}%</div>
         </div>
@@ -1282,7 +1282,7 @@ export default function SpinoffsPage() {
         <div className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-9 h-9 rounded-md bg-primary/20 border border-border flex items-center justify-center">
-              <Scissors className="w-5 h-5 text-primary" />
+              <Scissors className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">Corporate Spinoffs & Restructuring</h1>

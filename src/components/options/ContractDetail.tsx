@@ -105,8 +105,8 @@ export function ContractDetail({
       className="flex flex-col h-full bg-card border-l border-border/40 text-sm"
     >
       {/* Section 1 - Header */}
-      <div className="px-3 py-2 border-b border-border/40 flex items-center justify-between">
-        <span className="font-bold text-sm text-foreground">
+      <div className="px-2.5 py-1.5 border-b border-border/40 flex items-center justify-between">
+        <span className="font-medium text-[11px] text-foreground">
           {contract.ticker} {contract.expiry.slice(5)} ${contract.strike}
           {contract.type[0].toUpperCase()}
         </span>
@@ -121,60 +121,56 @@ export function ContractDetail({
       </div>
 
       {/* Section 2 - Price block */}
-      <div className="px-3 py-2 border-b border-border/40 flex items-center gap-2">
-        <span className="text-2xl font-bold tabular-nums text-foreground">
+      <div className="px-2.5 py-1.5 border-b border-border/40 flex items-center gap-1.5">
+        <span className="text-sm font-bold tabular-nums text-foreground">
           ${contract.mid.toFixed(2)}
         </span>
         <span
           className={cn(
-            "text-xs font-semibold px-1.5 py-0.5 rounded",
-            changePositive
-              ? "bg-emerald-500/5 text-emerald-400"
-              : "bg-red-500/5 text-red-400",
+            "text-[10px] font-medium tabular-nums",
+            changePositive ? "text-emerald-400" : "text-red-400",
           )}
         >
-          {changePositive ? "+" : ""}${synthChg.toFixed(2)} ({changePositive ? "+" : ""}
-          {synthChgPct.toFixed(1)}%)
+          {changePositive ? "+" : ""}{synthChgPct.toFixed(1)}%
         </span>
-        {contract.inTheMoney ? (
-          <span className="text-[11px] px-1.5 py-0.5 rounded bg-emerald-500/5 text-emerald-400 border border-emerald-500/20">
-            ITM
-          </span>
-        ) : (
-          <span className="text-[11px] px-1.5 py-0.5 rounded bg-muted/20 text-muted-foreground border border-border/40">
-            OTM
-          </span>
-        )}
+        <span className={cn(
+          "text-[10px] px-1 py-px rounded",
+          contract.inTheMoney
+            ? "bg-emerald-500/5 text-emerald-400"
+            : "text-muted-foreground",
+        )}>
+          {contract.inTheMoney ? "ITM" : "OTM"}
+        </span>
       </div>
 
       {/* Section 3 - Greeks 2x3 grid */}
-      <div className="px-3 py-2 border-b border-border/40">
-        <p className="text-[11px] text-muted-foreground font-semibold uppercase mb-1.5">Greeks</p>
-        <div className="grid grid-cols-3 gap-1.5">
+      <div className="px-2.5 py-1.5 border-b border-border/40">
+        <p className="text-[10px] text-muted-foreground/70 uppercase mb-1">Greeks</p>
+        <div className="grid grid-cols-3 gap-1">
           {greekRows.map((g) => (
             <div
               key={g.label}
-              className="rounded bg-background border border-border/50 p-1.5 flex flex-col"
+              className="rounded bg-background/50 border border-border/30 px-1.5 py-1 flex flex-col"
             >
-              <span className={cn("text-xs font-medium", g.color)}>{g.symbol}</span>
-              <span className="text-[11px] font-bold tabular-nums text-foreground">{g.value}</span>
+              <span className={cn("text-[10px] font-medium", g.color)}>{g.symbol}</span>
+              <span className="text-[10px] font-medium tabular-nums text-foreground">{g.value}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Section 4 - Contract stats */}
-      <div className="px-3 py-2 border-b border-border/40">
-        <div className="grid grid-cols-2 gap-1.5">
+      <div className="px-2.5 py-1.5 border-b border-border/40">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-0.5">
           {[
             { label: "IV", value: `${(contract.iv * 100).toFixed(1)}%` },
-            { label: "Volume", value: contract.volume.toLocaleString() },
-            { label: "Open Int", value: contract.openInterest.toLocaleString() },
+            { label: "Vol", value: contract.volume.toLocaleString() },
+            { label: "OI", value: contract.openInterest.toLocaleString() },
             { label: "Last", value: `$${contract.last.toFixed(2)}` },
           ].map((stat) => (
-            <div key={stat.label} className="flex flex-col">
-              <span className="text-[11px] text-muted-foreground">{stat.label}</span>
-              <span className="text-[11px] font-semibold tabular-nums text-foreground">
+            <div key={stat.label} className="flex items-center justify-between">
+              <span className="text-[10px] text-muted-foreground/70">{stat.label}</span>
+              <span className="text-[10px] font-medium tabular-nums text-foreground">
                 {stat.value}
               </span>
             </div>
@@ -183,11 +179,10 @@ export function ContractDetail({
       </div>
 
       {/* Section 5 - Bid/Ask visual */}
-      <div className="px-3 py-2 border-b border-border/40">
-        <p className="text-[11px] text-muted-foreground uppercase mb-1.5">Bid/Ask</p>
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-[11px] font-bold text-emerald-400 tabular-nums">
-            ${contract.bid.toFixed(2)}
+      <div className="px-2.5 py-1.5 border-b border-border/40">
+        <div className="flex items-center gap-1.5 mb-0.5">
+          <span className="text-[10px] font-medium text-emerald-400 tabular-nums">
+            {contract.bid.toFixed(2)}
           </span>
           <div className="relative flex-1 h-2 bg-muted/30 rounded-full overflow-hidden">
             {/* Green bid fill from left */}
@@ -212,21 +207,21 @@ export function ContractDetail({
               }}
             />
           </div>
-          <span className="text-[11px] font-bold text-red-400 tabular-nums">
-            ${contract.ask.toFixed(2)}
+          <span className="text-[10px] font-medium text-red-400 tabular-nums">
+            {contract.ask.toFixed(2)}
           </span>
         </div>
-        <p className="text-[11px] text-muted-foreground text-center">
-          Mid ${contract.mid.toFixed(2)}
+        <p className="text-[10px] text-muted-foreground/60 text-center">
+          mid {contract.mid.toFixed(2)}
         </p>
       </div>
 
       {/* Section 6 - Mini sparkline */}
-      <div className="px-3 py-2 border-b border-border/40">
+      <div className="px-2.5 py-1 border-b border-border/40">
         <svg
           width="100%"
-          height="40"
-          viewBox="0 0 200 40"
+          height="28"
+          viewBox="0 0 200 28"
           preserveAspectRatio="none"
           className="overflow-visible"
         >
@@ -242,15 +237,15 @@ export function ContractDetail({
       </div>
 
       {/* Section 7 - Probability */}
-      <div className="px-3 py-2 border-b border-border/40">
-        <p className="text-[11px] text-muted-foreground uppercase mb-2">Probability</p>
-        <div className="flex flex-col gap-2">
+      <div className="px-2.5 py-1.5 border-b border-border/40">
+        <p className="text-[10px] text-muted-foreground/70 uppercase mb-1">Probability</p>
+        <div className="flex flex-col gap-1.5">
           <div>
-            <div className="flex justify-between mb-0.5">
-              <span className="text-[11px] text-muted-foreground">Prob of Profit</span>
-              <span className="text-[11px] font-bold text-emerald-400">{pop.toFixed(0)}%</span>
+            <div className="flex justify-between mb-px">
+              <span className="text-[10px] text-muted-foreground">PoP</span>
+              <span className="text-[10px] font-medium text-emerald-400">{pop.toFixed(0)}%</span>
             </div>
-            <div className="w-full h-1.5 bg-muted/30 rounded overflow-hidden">
+            <div className="w-full h-1 bg-muted/30 rounded overflow-hidden">
               <div
                 className="h-full bg-emerald-500 rounded transition-all"
                 style={{ width: `${Math.min(100, Math.max(0, pop))}%` }}
@@ -258,13 +253,13 @@ export function ContractDetail({
             </div>
           </div>
           <div>
-            <div className="flex justify-between mb-0.5">
-              <span className="text-[11px] text-muted-foreground">Prob ITM</span>
-              <span className="text-[11px] font-bold text-orange-400">
+            <div className="flex justify-between mb-px">
+              <span className="text-[10px] text-muted-foreground">ITM</span>
+              <span className="text-[10px] font-medium text-orange-400">
                 {Math.max(0, probITM).toFixed(0)}%
               </span>
             </div>
-            <div className="w-full h-1.5 bg-muted/30 rounded overflow-hidden">
+            <div className="w-full h-1 bg-muted/30 rounded overflow-hidden">
               <div
                 className="h-full bg-orange-500 rounded transition-all"
                 style={{ width: `${Math.min(100, Math.max(0, probITM))}%` }}
@@ -272,13 +267,13 @@ export function ContractDetail({
             </div>
           </div>
         </div>
-        <p className="text-[11px] text-muted-foreground mt-2">
-          Exp Move &plusmn;${analytics.expectedMove1SD.toFixed(2)} (&plusmn;{expMovePct.toFixed(1)}%)
+        <p className="text-[10px] text-muted-foreground/60 mt-1">
+          Exp &plusmn;${analytics.expectedMove1SD.toFixed(2)} ({expMovePct.toFixed(1)}%)
         </p>
       </div>
 
       {/* Section 8 - Action buttons */}
-      <div className="px-3 py-3 mt-auto space-y-1.5">
+      <div className="px-2.5 py-2 mt-auto space-y-1">
         <Button
           variant="default"
           size="sm"
@@ -293,9 +288,9 @@ export function ContractDetail({
               greeks: contract.greeks,
             })
           }
-          className="w-full text-[11px] font-bold"
+          className="w-full h-7 text-[10px] font-medium"
         >
-          Buy {contract.type.toUpperCase()} @ ${contract.ask.toFixed(2)}
+          Buy {contract.type.toUpperCase()} @ {contract.ask.toFixed(2)}
         </Button>
         <Button
           variant="destructive"
@@ -311,9 +306,9 @@ export function ContractDetail({
               greeks: contract.greeks,
             })
           }
-          className="w-full text-[11px] font-bold"
+          className="w-full h-7 text-[10px] font-medium"
         >
-          Sell {contract.type.toUpperCase()} @ ${contract.bid.toFixed(2)}
+          Sell {contract.type.toUpperCase()} @ {contract.bid.toFixed(2)}
         </Button>
       </div>
     </motion.div>

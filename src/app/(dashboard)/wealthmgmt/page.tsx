@@ -84,7 +84,7 @@ function InfoBox({
   const colors = {
     blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
-    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+    emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     violet: "bg-primary/10 border-border text-primary",
   };
   return (
@@ -673,7 +673,7 @@ function FinancialPlanningTab() {
                 <div className="text-primary font-medium">Median</div>
                 <div className="text-muted-foreground">Base case</div>
               </div>
-              <div className="rounded bg-emerald-500/10 border border-emerald-500/20 p-1.5">
+              <div className="rounded bg-emerald-500/5 border border-emerald-500/20 p-1.5">
                 <div className="text-emerald-400 font-medium">90th Pct</div>
                 <div className="text-muted-foreground">Bull scenario</div>
               </div>
@@ -1045,7 +1045,7 @@ function AssetAllocationTab() {
                   ? "border-border bg-primary/10"
                   : m.color === "amber"
                   ? "border-amber-500/30 bg-amber-500/10"
-                  : "border-emerald-500/30 bg-emerald-500/10"
+                  : "border-emerald-500/30 bg-emerald-500/5"
               )}
             >
               <div className="font-medium text-foreground mb-1">{m.method} Rebalancing</div>

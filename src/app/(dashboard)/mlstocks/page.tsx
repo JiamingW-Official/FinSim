@@ -297,7 +297,7 @@ function signalBadgeVariant(sig: StockSignal["signal"]): "default" | "secondary"
 }
 
 function severityColor(s: Pitfall["severity"]): string {
-  if (s === "high") return "text-red-400 bg-red-500/10 border-red-500/30";
+  if (s === "high") return "text-red-400 bg-red-500/5 border-red-500/30";
   if (s === "medium") return "text-amber-400 bg-amber-500/10 border-amber-500/30";
   return "text-green-400 bg-green-500/10 border-green-500/30";
 }
@@ -726,7 +726,7 @@ export default function MLStocksPage() {
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
-            <Brain className="w-5 h-5 text-primary" />
+            <Brain className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-semibold text-foreground">Machine Learning in Stock Selection</h1>
@@ -739,7 +739,7 @@ export default function MLStocksPage() {
           {[
             { label: `${totalFeatures} Features`, color: "text-primary bg-primary/10 border-border" },
             { label: "8 Model Types", color: "text-primary bg-primary/10 border-border" },
-            { label: "5 Pitfalls", color: "text-red-400 bg-red-500/10 border-red-500/20" },
+            { label: "5 Pitfalls", color: "text-red-400 bg-red-500/5 border-red-500/20" },
             { label: "IC/ICIR Framework", color: "text-green-400 bg-green-500/10 border-green-500/20" },
             { label: "10-Stock Ranking", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
           ].map(chip => (

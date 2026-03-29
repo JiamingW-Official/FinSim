@@ -153,15 +153,6 @@
 }
 
 /* ============================================
-   BADGE STYLES
-   ============================================ */
-
-.badge-premium {
-  background: rgba(16, 185, 129, 0.06);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-/* ============================================
    PRICE & TRADE FLASH ANIMATIONS
    ============================================ */
 
@@ -224,19 +215,6 @@
 }
 
 /* ============================================
-   PULSING DOT (live/playing state)
-   ============================================ */
-
-.pulse-dot {
-  animation: pulse-glow 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-/* ============================================
    CHART TICKER TRANSITION
    ============================================ */
 
@@ -247,19 +225,6 @@
 @keyframes chart-fade {
   0% { opacity: 1; }
   100% { opacity: 0; }
-}
-
-/* ============================================
-   PROXIMITY WARNING PULSE
-   ============================================ */
-
-.proximity-pulse {
-  animation: prox-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes prox-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
 }
 
 /* ============================================
@@ -348,19 +313,6 @@
   background: rgba(245, 158, 11, 0.1);
   border-color: rgba(245, 158, 11, 0.25);
   color: #fbbf24;
-}
-
-/* ============================================
-   LEARNING UI — Gold Shimmer
-   ============================================ */
-
-@keyframes shimmer-gold {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1; }
-}
-
-.shimmer-gold {
-  animation: shimmer-gold 3s ease-in-out infinite;
 }
 
 /* ============================================
@@ -469,33 +421,6 @@
   animation: prediction-wrong-shake 0.5s ease-out;
 }
 
-/* ============================================
-   STREAK FIRE
-   ============================================ */
-
-@keyframes streak-fire-glow {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.15); }
-}
-.streak-fire {
-  animation: streak-fire-glow 1.5s ease-in-out infinite;
-}
-
-/* ============================================
-   BACKTEST ANIMATIONS
-   ============================================ */
-
-@keyframes backtest-border-pulse {
-  0%, 100% { border-color: rgba(139, 92, 246, 0.15); }
-  50% { border-color: rgba(139, 92, 246, 0.5); }
-}
-
-.backtest-running {
-  animation: backtest-border-pulse 1.5s ease-in-out infinite;
-  border: 2px solid rgba(139, 92, 246, 0.3);
-  border-radius: 0.75rem;
-}
-
 @keyframes grade-scale {
   0% { transform: scale(0) rotate(-10deg); }
   60% { transform: scale(1.15) rotate(3deg); }
@@ -552,15 +477,6 @@
   border-radius: 0.375rem;
 }
 
-@keyframes medal-shimmer {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.15); }
-}
-
-.medal-shimmer {
-  animation: medal-shimmer 3s ease-in-out infinite;
-}
-
 /* ============================================
    CUSTOM SCROLLBAR
    ============================================ */
@@ -598,28 +514,6 @@
   transition: all 0.3s ease;
 }
 
-.matchmaking-radar {
-  position: relative;
-  overflow: hidden;
-}
-
-.matchmaking-radar::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.6), transparent);
-  transform-origin: left center;
-  animation: radar-sweep 2s linear infinite;
-}
-
-@keyframes radar-sweep {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
 .season-tier-unlock:not(:disabled):hover {
   background: rgba(245, 158, 11, 0.08);
 }
@@ -631,4 +525,43 @@
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ============================================
+   STATIC STUBS (replaced animated versions)
+   ============================================ */
+
+.badge-premium {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.pulse-dot {
+  opacity: 1;
+}
+
+.proximity-pulse {
+  opacity: 1;
+}
+
+.shimmer-gold {
+  /* no-op: removed shimmer animation */
+}
+
+.streak-fire {
+  /* no-op: removed glow animation */
+}
+
+.medal-shimmer {
+  /* no-op: removed shimmer animation */
+}
+
+.backtest-running {
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 0.75rem;
+}
+
+.matchmaking-radar {
+  position: relative;
+  overflow: hidden;
 }

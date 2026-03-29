@@ -571,7 +571,7 @@ export default function PensionFundPage() {
       <motion.div {...fadeIn} className="space-y-1">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
-            <Shield className="w-5 h-5 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Pension Fund Management</h1>
@@ -600,7 +600,7 @@ export default function PensionFundPage() {
             sub: `Asset: ${ASSET_DURATION}y | Liab: ${LIABILITY_DURATION}y`,
             icon: <Activity className="w-4 h-4" />,
             color: "text-red-400",
-            bg: "bg-red-500/10 border-red-500/20",
+            bg: "bg-red-500/5 border-red-500/20",
             trend: { dir: "up" as const, val: "+0.3y vs prior yr" },
           },
           {

@@ -1861,7 +1861,7 @@ export default function OptionsStrategiesPage() {
         >
           <div className="flex items-center gap-3 mb-1">
             <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-              <BarChart2 className="w-4 h-4 text-primary" />
+              <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <h1 className="text-xl font-medium text-foreground">Options Strategies</h1>
           </div>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { BookOpen, Activity, Target, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const LandingDemoChart = dynamic(
   () => import("@/components/landing/LandingDemoChart").then((m) => m.LandingDemoChart),
@@ -25,17 +25,14 @@ const fadeUp = {
 
 const FEATURES = [
   {
-    icon: BookOpen,
     title: "Trading Academy",
     desc: "650+ bite-sized lessons across stocks, options, crypto, and macro. Master concepts, then practice them live.",
   },
   {
-    icon: Activity,
     title: "Market Simulator",
     desc: "Real chart patterns, 20+ indicators, and simulated execution. Build intuition with zero downside.",
   },
   {
-    icon: Target,
     title: "Prediction Markets",
     desc: "Bet on Fed decisions, earnings, and sector trends. Sharpen your probability thinking and calibration.",
   },
@@ -68,14 +65,14 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-28 sm:pt-32 pb-16 text-center">
+      <section className="max-w-5xl mx-auto px-6 pt-28 sm:pt-36 pb-24 text-center">
         <motion.p
-          className="text-xs text-muted-foreground/60 tracking-wide uppercase mb-6"
+          className="text-xs text-muted-foreground/50 mb-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          Free &middot; No sign-up &middot; No real money
+          Free. No sign-up. No real money.
         </motion.p>
 
         <motion.h1
@@ -86,8 +83,7 @@ export default function LandingPage() {
         >
           Learn to trade
           <br className="hidden sm:block" />
-          without risking{" "}
-          <span className="text-primary">a dollar</span>
+          without risking a dollar
         </motion.h1>
 
         <motion.p
@@ -108,7 +104,7 @@ export default function LandingPage() {
         >
           <Link
             href="/home"
-            className="inline-flex items-center justify-center gap-2 rounded-md bg-primary h-10 px-7 text-sm font-medium text-primary-foreground transition-all duration-150 hover:bg-primary/90 active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-foreground h-10 px-7 text-sm font-medium text-background transition-all duration-150 hover:bg-foreground/90 active:scale-[0.98]"
           >
             Start Learning
             <ArrowRight className="h-3.5 w-3.5" />
@@ -121,9 +117,9 @@ export default function LandingPage() {
           </Link>
         </motion.div>
 
-        {/* Product Preview — interactive chart */}
+        {/* Product Preview */}
         <motion.div
-          className="mt-16 mx-auto max-w-3xl"
+          className="mt-20 mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
@@ -134,7 +130,7 @@ export default function LandingPage() {
 
       {/* Stats strip */}
       <section className="border-y border-border/15">
-        <div className="max-w-5xl mx-auto px-6 py-5">
+        <div className="max-w-5xl mx-auto px-6 py-3">
           <div className="flex items-center justify-center gap-8 sm:gap-12 text-center">
             {STATS.map((s) => (
               <div key={s.label} className="flex items-baseline gap-1.5">
@@ -151,7 +147,7 @@ export default function LandingPage() {
       </section>
 
       {/* Feature grid */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
+      <section className="max-w-5xl mx-auto px-6 pt-14 pb-16">
         <motion.div
           className="text-center mb-10"
           initial="hidden"
@@ -160,7 +156,7 @@ export default function LandingPage() {
           variants={fadeUp}
           custom={0}
         >
-          <h2 className="text-xl sm:text-2xl font-medium tracking-tight">
+          <h2 className="text-lg sm:text-xl font-medium tracking-tight">
             Everything you need to learn markets
           </h2>
           <p className="mt-2 text-xs text-muted-foreground max-w-sm mx-auto">
@@ -172,15 +168,14 @@ export default function LandingPage() {
           {FEATURES.map((f, i) => (
             <motion.div
               key={f.title}
-              className="bg-card p-6 sm:p-7"
+              className="bg-card px-5 py-5"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
               variants={fadeUp}
               custom={i + 1}
             >
-              <f.icon className="h-4 w-4 text-muted-foreground/50 mb-4" />
-              <h3 className="text-sm font-medium mb-2">
+              <h3 className="text-sm font-medium mb-1.5">
                 {f.title}
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -193,9 +188,9 @@ export default function LandingPage() {
 
       {/* How it works */}
       <section className="border-y border-border/15">
-        <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="max-w-5xl mx-auto px-6 py-20">
           <motion.h2
-            className="text-xl sm:text-2xl font-medium text-center mb-10 tracking-tight"
+            className="text-lg sm:text-xl font-medium text-center mb-14 tracking-tight"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
@@ -205,20 +200,20 @@ export default function LandingPage() {
             Three steps to market fluency
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-16">
             {[
               {
-                step: "01",
+                step: "1",
                 title: "Learn",
                 desc: "Structured lessons on stocks, options, crypto, and macro — at your own pace.",
               },
               {
-                step: "02",
+                step: "2",
                 title: "Practice",
                 desc: "Trade on a simulator with real chart patterns and 20+ indicators. Zero consequences.",
               },
               {
-                step: "03",
+                step: "3",
                 title: "Review",
                 desc: "Track performance, review trades with the AI coach, and sharpen your edge.",
               },
@@ -232,7 +227,7 @@ export default function LandingPage() {
                 variants={fadeUp}
                 custom={i + 1}
               >
-                <div className="text-[10px] font-medium text-muted-foreground/40 mb-2 tracking-widest font-mono">
+                <div className="text-xs text-muted-foreground/40 mb-2 tabular-nums">
                   {s.step}
                 </div>
                 <h3 className="text-sm font-medium mb-1.5">{s.title}</h3>
@@ -248,40 +243,30 @@ export default function LandingPage() {
       {/* Final CTA */}
       <section className="max-w-5xl mx-auto px-6 py-20">
         <motion.div
-          className="text-center py-8"
+          className="text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-xl sm:text-2xl font-medium mb-3 tracking-tight">
-            Your portfolio is waiting
-          </h2>
-          <p className="text-sm text-muted-foreground max-w-xs mx-auto mb-6 leading-relaxed">
+          <p className="text-sm text-muted-foreground mb-4">
             $100,000 in simulated capital. Zero risk.
           </p>
           <Link
             href="/home"
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-all duration-150 hover:bg-primary/90 active:scale-[0.98]"
+            className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors duration-150 hover:text-primary"
           >
-            Start Now
+            Start Learning
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
-          <p className="mt-3 text-[11px] text-muted-foreground/60">
-            No account needed. Works in your browser.
-          </p>
         </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/15 py-6">
-        <div className="max-w-5xl mx-auto px-6 flex items-center justify-between">
-          <span className="text-xs text-muted-foreground/50">FinSim</span>
-          <p className="text-[11px] text-muted-foreground/40">
-            Educational only &middot; Simulated data &middot; &copy;{" "}
-            {new Date().getFullYear()}
-          </p>
-        </div>
+      <footer className="border-t border-border/15 py-5">
+        <p className="text-center text-[11px] text-muted-foreground/40">
+          FinSim &middot; Educational only &middot; Simulated data &middot; {new Date().getFullYear()}
+        </p>
       </footer>
     </div>
   );

@@ -1033,7 +1033,7 @@ export default function EquityDerivativesPage() {
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
-            <Layers className="w-5 h-5 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-foreground">
@@ -1097,7 +1097,7 @@ export default function EquityDerivativesPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                    <Target className="w-4 h-4 text-primary" />
+                    <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Single-Stock vs Index Options
                   </CardTitle>
                 </CardHeader>
@@ -1440,7 +1440,7 @@ export default function EquityDerivativesPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-primary" />
+                  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   VIX Regime Chart (2020–2024)
                 </CardTitle>
               </CardHeader>
@@ -1535,7 +1535,7 @@ export default function EquityDerivativesPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-primary" />
+                    <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
                     CB Anatomy & Pricing
                   </CardTitle>
                 </CardHeader>

@@ -1292,7 +1292,7 @@ export default function CorpTreasuryPage() {
         <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-l-4 border-l-primary rounded-md bg-card p-6">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Building2 className="w-5 h-5 text-primary" />
+              <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
               <h1 className="text-xl font-semibold tracking-tight">Corporate Treasury Management</h1>
             </div>
             <p className="text-sm text-muted-foreground max-w-2xl">

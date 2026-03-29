@@ -843,7 +843,7 @@ function ValuationMonitor() {
       <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             International P/E Comparison
           </CardTitle>
         </CardHeader>
@@ -876,7 +876,7 @@ function ValuationMonitor() {
       <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Layers className="w-4 h-4 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             Sector Valuation Heatmap (Relative to Own History)
           </CardTitle>
         </CardHeader>
@@ -1072,7 +1072,7 @@ function EconCalendar() {
       <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Target className="w-4 h-4 text-primary" />
+            <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
             Fed SEP Projections (Dot Plot Summary)
           </CardTitle>
         </CardHeader>
@@ -1411,7 +1411,7 @@ function DataLibrary() {
       <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             Market Indicators &amp; Sentiment
           </CardTitle>
         </CardHeader>

@@ -175,7 +175,7 @@ function WithdrawalStrategiesTab() {
     <div className="space-y-4">
       <div className="flex items-start gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
-          <TrendingUp className="w-5 h-5 text-primary" />
+          <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-foreground">
@@ -974,7 +974,7 @@ function SocialSecurityTab() {
     <div className="space-y-4">
       <div className="flex items-start gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
-          <Landmark className="w-5 h-5 text-primary" />
+          <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h2 className="text-lg font-medium text-foreground">
@@ -1401,7 +1401,7 @@ function IncomeFlooringTab() {
     <div className="space-y-4">
       <div className="flex items-start gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
-          <Umbrella className="w-5 h-5 text-primary" />
+          <Umbrella className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h2 className="text-lg font-medium text-foreground">

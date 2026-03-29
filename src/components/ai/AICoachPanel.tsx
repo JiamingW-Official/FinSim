@@ -204,10 +204,10 @@ function SignalChips({
               s.direction === "bullish"
                 ? selectedId === s.id
                   ? "bg-emerald-500/20 text-emerald-400/90 border-emerald-500/40 ring-1 ring-emerald-500/30"
-                  : "bg-emerald-500/10 text-emerald-400/80 border-emerald-500/25 hover:bg-emerald-500/15"
+                  : "bg-emerald-500/5 text-emerald-400/80 border-emerald-500/25 hover:bg-emerald-500/15"
                 : selectedId === s.id
                 ? "bg-red-500/20 text-red-400/90 border-red-500/40 ring-1 ring-red-500/30"
-                : "bg-red-500/10 text-red-400/80 border-red-500/25 hover:bg-red-500/15",
+                : "bg-red-500/5 text-red-400/80 border-red-500/25 hover:bg-red-500/15",
             )}
           >
             {s.direction === "bullish" ? "↑" : "↓"} {s.shortLabel}
@@ -356,11 +356,11 @@ function ProfileCard({ profile }: { profile: AnalysisResult["traderProfile"] }) 
 
 function GradeBadge({ grade }: { grade: string }) {
   const cls =
-    grade === "A" ? "bg-emerald-500/10 text-emerald-500/80 border-emerald-500/25"
+    grade === "A" ? "bg-emerald-500/5 text-emerald-500/80 border-emerald-500/25"
     : grade === "B" ? "bg-emerald-500/5 text-emerald-500/80 border-emerald-500/20"
     : grade === "C" ? "bg-amber-500/10 text-amber-500/80 border-amber-500/25"
     : grade === "D" ? "bg-orange-500/10 text-orange-400/80 border-orange-500/25"
-    : "bg-red-500/10 text-red-500/80 border-red-500/25";
+    : "bg-red-500/5 text-red-500/80 border-red-500/25";
 
   return (
     <div className={cn("rounded border px-3 py-2 text-center", cls)}>
@@ -406,10 +406,10 @@ function SmallBadge({ label, cls }: { label: string; cls: { bg: string; text: st
 }
 
 const REGIME_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
-  strong_bull: { bg: "bg-emerald-500/10", text: "text-emerald-500/80", border: "border-emerald-500/25" },
+  strong_bull: { bg: "bg-emerald-500/5", text: "text-emerald-500/80", border: "border-emerald-500/25" },
   bull:        { bg: "bg-emerald-500/5",  text: "text-emerald-500/80", border: "border-emerald-500/20" },
   ranging:     { bg: "bg-amber-500/10",   text: "text-amber-500/80",   border: "border-amber-500/25" },
-  bear:        { bg: "bg-red-500/10",     text: "text-red-500/80",     border: "border-red-500/25" },
+  bear:        { bg: "bg-red-500/5",     text: "text-red-500/80",     border: "border-red-500/25" },
   strong_bear: { bg: "bg-red-500/15",     text: "text-red-500/80",     border: "border-red-500/30" },
 };
 

@@ -642,7 +642,7 @@ function DistressedTab() {
         <div className="space-y-3">
           {opCredit.map((s) => (
             <div key={s.type} className="flex items-start gap-3 rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
-              <ArrowRight className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <p className="text-xs font-medium text-foreground">{s.type}</p>
@@ -908,7 +908,7 @@ export default function PrivateCreditPage() {
       <div className="border-b border-border border-l-4 border-l-primary bg-card/60 backdrop-blur px-6 py-6">
         <div className="max-w-6xl mx-auto flex items-start gap-4">
           <div className="rounded-md bg-primary/20 p-2.5 border border-border">
-            <Briefcase className="w-5 h-5 text-primary" />
+            <Briefcase className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-medium text-foreground">Private Credit Markets</h1>

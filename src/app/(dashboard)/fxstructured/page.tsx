@@ -933,11 +933,11 @@ function AccumulatorsTab() {
                   "text-left p-3 rounded-lg border transition-all",
                   activeScenario === i
                     ? s.color === "emerald"
-                      ? "bg-emerald-500/10 border-emerald-500/50"
+                      ? "bg-emerald-500/5 border-emerald-500/50"
                       : s.color === "blue"
                         ? "bg-primary/10 border-primary/50"
                         : s.color === "red"
-                          ? "bg-red-500/10 border-red-500/50"
+                          ? "bg-red-500/5 border-red-500/50"
                           : "bg-amber-500/10 border-amber-500/50"
                     : "bg-muted/30 border-border hover:border-border",
                 )}
@@ -1694,7 +1694,7 @@ export default function FXStructuredPage() {
       <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-primary/10 rounded-lg border border-border">
-            <Globe className="w-5 h-5 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-lg font-semibold text-foreground">FX Structured Products</h1>

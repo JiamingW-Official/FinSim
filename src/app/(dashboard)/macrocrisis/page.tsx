@@ -585,7 +585,7 @@ function CrisisAnatomyTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <TrendingDown className="w-4 h-4 text-primary" />
+            <TrendingDown className="w-3.5 h-3.5 text-muted-foreground/50" />
             Credit Boom-to-Bust Cycle
           </CardTitle>
         </CardHeader>
@@ -832,7 +832,7 @@ function CurrencyCrisesTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             6 Historical Case Studies
           </CardTitle>
         </CardHeader>
@@ -1190,7 +1190,7 @@ function SovereignDebtTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <Clock className="w-4 h-4 text-primary" />
+            <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
             Debt Restructuring Process
           </CardTitle>
         </CardHeader>

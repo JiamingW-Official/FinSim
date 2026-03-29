@@ -388,7 +388,7 @@ function PaymentRailsTab() {
         {[
           { icon: <Zap className="w-4 h-4 text-yellow-400" />, title: "RTP Growth", body: "Real-Time Payments volume grew 40%+ YoY in 2024. FedNow added 900+ institutions in its first year.", color: "yellow" },
           { icon: <Globe className="w-4 h-4 text-emerald-400" />, title: "SWIFT gpi", body: "SWIFT's global payments initiative enables same-day cross-border transfers for 50%+ of transactions.", color: "teal" },
-          { icon: <Shield className="w-4 h-4 text-primary" />, title: "Fedwire RTGS", body: "Fedwire settles $4+ trillion daily — the backbone of US large-value payments since 1918.", color: "blue" },
+          { icon: <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />, title: "Fedwire RTGS", body: "Fedwire settles $4+ trillion daily — the backbone of US large-value payments since 1918.", color: "blue" },
         ].map((card) => (
           <Card key={card.title} className="bg-card border-border">
             <CardContent className="pt-4">
@@ -1104,7 +1104,7 @@ function PaymentStocksTab() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
           {
-            icon: <Shield className="w-4 h-4 text-primary" />,
+            icon: <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />,
             title: "Visa / Mastercard",
             subtitle: "Pure networks",
             body: "Asset-light model. Don't take credit risk — just pass transactions between banks. ~80%+ operating margins. Volume-driven revenue.",

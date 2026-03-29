@@ -794,14 +794,14 @@ function FlipSimulator({ ipo }: { ipo: RecentIPO }) {
       <p className="text-sm font-medium text-foreground">{ipo.company} ({ipo.ticker})</p>
       <p className="text-xs text-muted-foreground">Assume {sharesCount} shares at offer price ${ipo.offerPrice}</p>
       <div className="grid grid-cols-2 gap-3">
-        <div className={cn("rounded-lg p-3 border", day1Pnl >= 0 ? "bg-green-500/10 border-green-500/20" : "bg-red-500/10 border-red-500/20")}>
+        <div className={cn("rounded-lg p-3 border", day1Pnl >= 0 ? "bg-green-500/10 border-green-500/20" : "bg-red-500/5 border-red-500/20")}>
           <p className="text-xs text-muted-foreground mb-1">Sold on Day 1</p>
           <p className="font-bold text-foreground">${day1Value.toFixed(0)}</p>
           <p className={cn("text-sm font-medium", day1Pnl >= 0 ? "text-green-400" : "text-red-400")}>
             {day1Pnl >= 0 ? "+" : ""}${day1Pnl.toFixed(0)} ({ipo.firstDayReturn >= 0 ? "+" : ""}{ipo.firstDayReturn.toFixed(1)}%)
           </p>
         </div>
-        <div className={cn("rounded-lg p-3 border", holdPnl >= 0 ? "bg-green-500/10 border-green-500/20" : "bg-red-500/10 border-red-500/20")}>
+        <div className={cn("rounded-lg p-3 border", holdPnl >= 0 ? "bg-green-500/10 border-green-500/20" : "bg-red-500/5 border-red-500/20")}>
           <p className="text-xs text-muted-foreground mb-1">Held to Today</p>
           <p className="font-medium text-foreground">${holdValue.toFixed(0)}</p>
           <p className={cn("text-sm font-medium", holdPnl >= 0 ? "text-green-400" : "text-red-400")}>
@@ -1153,7 +1153,7 @@ export default function IPOPage() {
                         gradeResult.score >= 78 ? "border-green-500 bg-green-500/10 text-green-400" :
                         gradeResult.score >= 55 ? "border-primary bg-primary/10 text-primary" :
                         gradeResult.score >= 38 ? "border-amber-500 bg-amber-500/10 text-amber-400" :
-                        "border-red-500 bg-red-500/10 text-red-400"
+                        "border-red-500 bg-red-500/5 text-red-400"
                       )}>
                         {gradeResult.grade}
                       </div>

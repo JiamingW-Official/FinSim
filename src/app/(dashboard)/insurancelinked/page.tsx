@@ -810,7 +810,7 @@ export default function InsuranceLinkedPage() {
                           const pct = (e.ilsLoss / e.totalLoss) * 100;
                           const impact = pct < 1 ? { label: "Minimal", cls: "bg-green-500/10 text-green-400 border-green-500/20" }
                             : pct < 3 ? { label: "Moderate", cls: "bg-amber-500/10 text-amber-400 border-amber-500/20" }
-                            : { label: "Significant", cls: "bg-red-500/10 text-red-400 border-red-500/20" };
+                            : { label: "Significant", cls: "bg-red-500/5 text-red-400 border-red-500/20" };
                           return (
                             <tr key={`${e.year}-${e.event}`} className={cn("border-b border-border/50 hover:bg-muted/30 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
                               <td className="px-4 py-2.5 text-muted-foreground">{e.year}</td>

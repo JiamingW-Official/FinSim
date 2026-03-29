@@ -1256,7 +1256,7 @@ function HedgedReturnsTab() {
     <div className="space-y-4">
       {/* Info panel */}
       <div className="bg-primary/10 border border-border rounded-lg p-4 flex gap-3">
-        <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+        <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
         <div className="text-xs text-primary space-y-1">
           <p className="font-medium text-primary">Currency Hedging in Fixed Income</p>
           <p>
@@ -1812,7 +1812,7 @@ function EMBondsTab() {
                 "Benefits from EM currency appreciation",
                 "Preferred when USD weakens",
               ],
-              color: "border-emerald-500/40 bg-emerald-500/10",
+              color: "border-emerald-500/40 bg-emerald-500/5",
               textColor: "text-emerald-300",
             },
           ].map((panel) => (
@@ -2093,7 +2093,7 @@ function CentralBankTab() {
               diff: `+${(5.375 - 0.5).toFixed(2)}%`,
               desc: "Large carry trade dynamic. Yen suppression pressure eases as BoJ normalizes rates toward 0.75–1%.",
               color: "text-red-400",
-              bg: "bg-red-500/10 border-red-500/20",
+              bg: "bg-red-500/5 border-red-500/20",
             },
             {
               title: "Global Easing Cycle",
@@ -2165,7 +2165,7 @@ export default function GlobalBondsPage() {
           <div>
             <div className="flex items-center gap-2.5 mb-1">
               <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
-                <Globe className="w-4 h-4 text-primary" />
+                <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
               </div>
               <h1 className="text-lg font-medium text-foreground">
                 Global Bond Markets

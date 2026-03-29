@@ -982,7 +982,7 @@ function BuildingEdgeTab() {
       text: "IC Decay: Average alt data IC decays 50% within 12 months as market microstructure adapts. Continuous refresh needed.",
     },
     {
-      icon: <Users className="w-4 h-4 text-primary shrink-0" />,
+      icon: <Users className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />,
       text: "Academic-to-Production Gap: Academic papers use survivorship-free data; production pipelines face universe changes, revised data, and capacity constraints.",
     },
   ];

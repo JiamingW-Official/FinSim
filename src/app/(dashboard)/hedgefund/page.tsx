@@ -1881,7 +1881,7 @@ export default function HedgeFundPage() {
         {/* Hero */}
         <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <div className="flex items-center gap-3 mb-2">
-            <Layers className="w-5 h-5 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
             <h2 className="text-lg font-medium text-foreground">Strategy Explorer &amp; Simulators</h2>
           </div>
           <p className="text-sm text-muted-foreground">

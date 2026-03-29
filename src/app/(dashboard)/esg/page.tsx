@@ -597,8 +597,8 @@ export default function EsgPage() {
       >
         {[
           { icon: <Leaf className="w-4 h-4 text-emerald-400" />, label: "Avg E Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.eScore, 0) / COMPANIES.length) },
-          { icon: <Users className="w-4 h-4 text-primary" />, label: "Avg S Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.sScore, 0) / COMPANIES.length) },
-          { icon: <Shield className="w-4 h-4 text-primary" />, label: "Avg G Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.gScore, 0) / COMPANIES.length) },
+          { icon: <Users className="w-3.5 h-3.5 text-muted-foreground/50" />, label: "Avg S Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.sScore, 0) / COMPANIES.length) },
+          { icon: <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />, label: "Avg G Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.gScore, 0) / COMPANIES.length) },
           { icon: <BarChart2 className="w-4 h-4 text-amber-400" />, label: "Avg ESG Total", value: Math.round(COMPANIES.reduce((a, c) => a + c.total, 0) / COMPANIES.length) },
         ].map((item, i) => (
           <Card key={i} className="bg-card border-border">
@@ -993,7 +993,7 @@ export default function EsgPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Droplets className="w-4 h-4 text-primary" />
+                    <Droplets className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Water Usage (ML per $M revenue)
                   </CardTitle>
                 </CardHeader>
@@ -1021,7 +1021,7 @@ export default function EsgPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Users className="w-4 h-4 text-primary" />
+                    <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Board Diversity (% women &amp; minorities)
                   </CardTitle>
                 </CardHeader>
@@ -1231,7 +1231,7 @@ export default function EsgPage() {
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <Globe className="w-4 h-4 text-primary" />
+                      <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Thematic ESG ETFs &amp; SDG Alignment
                     </CardTitle>
                   </CardHeader>

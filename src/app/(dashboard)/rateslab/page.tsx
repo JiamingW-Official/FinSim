@@ -513,8 +513,8 @@ function SwapPricerTab() {
                   key={`nf-${i}`}
                   className={`rounded p-1.5 text-center ${
                     net >= 0
-                      ? "bg-emerald-500/10 border border-emerald-500/20"
-                      : "bg-red-500/10 border border-red-500/20"
+                      ? "bg-emerald-500/5 border border-emerald-500/20"
+                      : "bg-red-500/5 border border-red-500/20"
                   }`}
                 >
                   <div className="text-[11px] text-foreground/40">{`Q${i + 1}`}</div>
@@ -1189,8 +1189,8 @@ function CrossCurrencyTab() {
                   key={`cf-${i}`}
                   className={`rounded p-1.5 ${
                     net >= 0
-                      ? "bg-emerald-500/10 border border-emerald-500/20"
-                      : "bg-red-500/10 border border-red-500/20"
+                      ? "bg-emerald-500/5 border border-emerald-500/20"
+                      : "bg-red-500/5 border border-red-500/20"
                   }`}
                 >
                   <div className="text-[11px] text-foreground/40">{`Y${t.toFixed(1)}`}</div>

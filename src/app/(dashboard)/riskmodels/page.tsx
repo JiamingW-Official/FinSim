@@ -750,7 +750,7 @@ export default function RiskModelsPage() {
     <div className="p-4 space-y-4 max-w-6xl mx-auto">
       {/* Header */}
       <div className="flex items-start gap-4">
-        <div className="p-3 rounded-md bg-red-500/10 border border-red-500/20">
+        <div className="p-3 rounded-md bg-red-500/5 border border-red-500/20">
           <ShieldAlert className="w-7 h-7 text-red-400" />
         </div>
         <div>

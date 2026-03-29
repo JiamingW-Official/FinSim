@@ -256,36 +256,31 @@ export default function BacktestPage() {
 
   return (
     <div className="flex h-full flex-col">
-      {/* Header — quiet zone */}
-      <div className="flex items-center gap-3 border-b border-border bg-card/60 px-5 py-4">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
-          <FlaskConical className="h-3.5 w-3.5 text-muted-foreground/50" />
-        </div>
+      {/* Header */}
+      <div className="flex items-center gap-3 border-b border-border px-5 py-3">
+        <FlaskConical className="h-4 w-4 text-muted-foreground" />
         <div>
           <h1 className="text-sm font-medium text-foreground">Strategy Backtester</h1>
-          <p className="text-xs text-muted-foreground">Build, test, and optimize on simulated market data</p>
+          <p className="text-[11px] text-muted-foreground">Build, test, and optimize on simulated market data</p>
         </div>
-        <span className="ml-4 rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">
-          Simulated historical data
-        </span>
         {store.totalBacktestsRun > 0 && (
-          <div className="ml-auto flex items-center gap-4 text-xs text-muted-foreground">
-            <span>{store.totalBacktestsRun} backtests run</span>
+          <div className="ml-auto flex items-center gap-4 text-[11px] text-muted-foreground">
+            <span>{store.totalBacktestsRun} runs</span>
             <span>{store.savedStrategies.length} saved</span>
           </div>
         )}
       </div>
 
       {/* Tab Bar */}
-      <div className="flex border-b border-border/60 bg-card/30">
+      <div className="flex border-b border-border">
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-5 py-2.5 text-xs font-medium transition-colors ${
+            className={`px-4 py-2 text-xs font-medium transition-colors ${
               activeTab === tab.id
-                ? "border-b-2 border-primary text-primary"
-                : "text-muted-foreground hover:text-muted-foreground"
+                ? "border-b-2 border-primary text-foreground"
+                : "border-b-2 border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
             {tab.label}
@@ -356,24 +351,10 @@ export default function BacktestPage() {
 
             {/* Main content area — switches between builder-first and results-first */}
             {hasResult ? (
-              /* ── Results-dominant layout ─────────────────────────────── */
-              <>
-              {/* Buffer between summary bar and results */}
-              <div className="h-6" />
+              /* ── Results layout: chart dominant, results panel as companion ── */
               <div className="flex flex-1 overflow-hidden">
-                {/* Results panel takes the hero position (left, wider) */}
+                {/* Chart takes the hero position (left, wider) */}
                 <div className="flex-1 overflow-hidden">
-                  <ResultsPanel
-                    result={store.currentResult!}
-                    monteCarloResult={store.monteCarloResult}
-                    xpEarned={xpEarned}
-                    onSave={handleSave}
-                    onRerun={handleRerun}
-                  />
-                </div>
-
-                {/* Chart as companion on the right */}
-                <div className="w-[420px] flex-shrink-0 border-l border-border/40">
                   <BacktestChart
                     bars={chartBars}
                     trades={chartTrades}
@@ -382,13 +363,23 @@ export default function BacktestPage() {
                     onRegenerate={handleRegenerate}
                   />
                 </div>
+
+                {/* Results panel as companion on the right */}
+                <div className="w-[400px] flex-shrink-0 border-l border-border overflow-hidden">
+                  <ResultsPanel
+                    result={store.currentResult!}
+                    monteCarloResult={store.monteCarloResult}
+                    xpEarned={xpEarned}
+                    onSave={handleSave}
+                    onRerun={handleRerun}
+                  />
+                </div>
               </div>
-              </>
             ) : (
               /* ── Builder-first layout (no results) ──────────────────── */
               <div className="flex flex-1 overflow-hidden">
-                {/* Left: Strategy Panel — front and center */}
-                <div className="flex flex-col overflow-hidden">
+                {/* Left: Strategy Panel — compact, left-aligned */}
+                <div className="w-[340px] flex-shrink-0 overflow-y-auto border-r border-border">
                   <StrategyPanel
                     onRun={handleRun}
                     isRunning={isRunning}
@@ -401,20 +392,9 @@ export default function BacktestPage() {
                   />
                 </div>
 
-                {/* Center: Chart + Visual Builder stacked */}
+                {/* Right: Chart (dominant) + Visual Builder below */}
                 <div className="flex flex-1 flex-col overflow-hidden">
-                  {/* Visual Strategy Builder at top */}
-                  <div className="border-b border-border/40 overflow-y-auto" style={{ maxHeight: "50%" }}>
-                    <div className="p-4">
-                      <VisualStrategyBuilder
-                        savedStrategies={visualSavedStrategies}
-                        onSaveStrategy={handleSaveVisualStrategy}
-                        onRunCustomBacktest={handleRunCustomBacktest}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Chart below */}
+                  {/* Chart takes the hero space */}
                   <div className="flex-1 overflow-hidden">
                     <BacktestChart
                       bars={chartBars}
@@ -424,21 +404,32 @@ export default function BacktestPage() {
                       onRegenerate={handleRegenerate}
                     />
                   </div>
+
+                  {/* Visual Strategy Builder below chart */}
+                  <div className="border-t border-border overflow-y-auto" style={{ maxHeight: "40%" }}>
+                    <div className="p-3">
+                      <VisualStrategyBuilder
+                        savedStrategies={visualSavedStrategies}
+                        onSaveStrategy={handleSaveVisualStrategy}
+                        onRunCustomBacktest={handleRunCustomBacktest}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
           </div>
         )}
 
-        {/* Tab 2: Event Analysis — hero tier */}
+        {/* Tab 2: Event Analysis */}
         {activeTab === "earnings" && (
           <div className="flex flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-5">
-              <div className="mx-auto max-w-4xl space-y-5">
+            <div className="flex-1 overflow-y-auto p-4">
+              <div className="mx-auto max-w-4xl space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-sm font-medium text-foreground">Earnings Event Analysis</h2>
-                    <p className="text-xs text-muted-foreground">Historical earnings reactions and pattern detection</p>
+                    <p className="text-[11px] text-muted-foreground">Historical earnings reactions and pattern detection</p>
                   </div>
                   <EarningsTickerSelect
                     tickers={tickerOptions}
@@ -457,7 +448,7 @@ export default function BacktestPage() {
         {/* Tab 3: Monte Carlo */}
         {activeTab === "montecarlo" && (
           <div className="flex flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-5">
+            <div className="flex-1 overflow-y-auto p-4">
               <div className="mx-auto max-w-3xl">
                 <MonteCarloPanelV2
                   result={store.monteCarloResult}
@@ -471,11 +462,11 @@ export default function BacktestPage() {
         {/* Tab 4: Walk-Forward */}
         {activeTab === "walkforward" && (
           <div className="flex flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-5">
+            <div className="flex-1 overflow-y-auto p-4">
               <div className="mx-auto max-w-3xl space-y-3">
-                <div className="mb-6">
+                <div className="mb-4">
                   <h2 className="text-sm font-medium text-foreground">Walk-Forward Analysis</h2>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-[11px] text-muted-foreground">
                     Measures how well in-sample performance translates to out-of-sample results across multiple folds
                   </p>
                 </div>
@@ -488,11 +479,11 @@ export default function BacktestPage() {
         {/* Tab 5: Optimization */}
         {activeTab === "optimization" && (
           <div className="flex flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-5">
+            <div className="flex-1 overflow-y-auto p-4">
               <div className="mx-auto max-w-4xl space-y-3">
-                <div className="mb-6">
+                <div className="mb-4">
                   <h2 className="text-sm font-medium text-foreground">Parameter Optimization</h2>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-[11px] text-muted-foreground">
                     Grid search over parameter combinations to find the highest Sharpe ratio
                   </p>
                 </div>

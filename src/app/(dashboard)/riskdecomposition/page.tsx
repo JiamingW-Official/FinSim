@@ -1076,7 +1076,7 @@ function RiskBudgetingTab() {
         <Card className="bg-card border-border">
           <CardContent className="pt-5">
             <div className="flex items-center gap-2 mb-2">
-              <PieChart className="w-4 h-4 text-primary" />
+              <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
               <span className="text-sm font-medium text-muted-foreground">Risk Parity Concept</span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed mb-3">

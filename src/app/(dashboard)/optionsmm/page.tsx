@@ -580,7 +580,7 @@ function InventoryTab() {
             { label: "Net Delta", value: fmt2(last.delta), unit: "Δ", color: "text-primary", bgColor: "bg-primary/10 border-border" },
             { label: "Net Gamma", value: fmt2(last.gamma), unit: "Γ", color: "text-amber-400", bgColor: "bg-amber-500/10 border-amber-800" },
             { label: "Net Vega", value: fmt2(last.vega), unit: "ν", color: "text-primary", bgColor: "bg-primary/10 border-border" },
-            { label: "Net Theta", value: fmt2(last.theta), unit: "Θ", color: "text-emerald-400", bgColor: "bg-emerald-500/10 border-emerald-800" },
+            { label: "Net Theta", value: fmt2(last.theta), unit: "Θ", color: "text-emerald-400", bgColor: "bg-emerald-500/5 border-emerald-800" },
           ].map((g) => (
             <div key={g.label} className={cn("rounded-md border p-3", g.bgColor)}>
               <div className="text-xs text-muted-foreground mb-1">{g.label}</div>

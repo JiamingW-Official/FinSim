@@ -490,7 +490,7 @@ function MacroRegimeTab() {
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
         <div className="flex items-center gap-2">
-          <Globe className="w-5 h-5 text-primary" />
+          <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="text-sm font-semibold text-foreground">Global Growth/Inflation Matrix</span>
         </div>
         <Badge
@@ -568,7 +568,7 @@ function MacroRegimeTab() {
         {[
           { label: "Global PMI Composite", value: "51.3", sub: "Expansion", icon: <Activity className="w-4 h-4 text-green-400" />, up: true },
           { label: "Global CPI (avg)", value: "3.8%", sub: "Above target", icon: <TrendingUp className="w-4 h-4 text-red-400" />, up: false },
-          { label: "G7 GDP Growth", value: "2.1%", sub: "Steady", icon: <BarChart2 className="w-4 h-4 text-primary" />, up: true },
+          { label: "G7 GDP Growth", value: "2.1%", sub: "Steady", icon: <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />, up: true },
           { label: "USD Index (DXY)", value: "104.6", sub: "-0.3% MTD", icon: <DollarSign className="w-4 h-4 text-yellow-400" />, up: false },
         ].map((m, i) => (
           <Card key={i} className="bg-card/60 border-border">
@@ -596,7 +596,7 @@ function CentralBanksTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <Target className="w-5 h-5 text-primary" />
+        <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
         <span className="text-sm font-semibold text-foreground">Central Bank Policy Tracker</span>
       </div>
 

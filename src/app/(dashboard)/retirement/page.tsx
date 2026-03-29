@@ -507,7 +507,7 @@ function AccountsTab() {
               </div>
               <Slider min={0} max={37} step={1} value={[retireRate]} onValueChange={([v]) => setRetireRate(v)} />
             </div>
-            <div className={cn("rounded-lg p-3 text-sm", rothBetter ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-primary/10 border border-border")}>
+            <div className={cn("rounded-lg p-3 text-sm", rothBetter ? "bg-emerald-500/5 border border-emerald-500/30" : "bg-primary/10 border border-border")}>
               {rothBetter ? (
                 <p><span className="font-medium text-emerald-400">Roth IRA is better</span> — you expect a higher tax rate in retirement. Pay taxes now at {nowRate}%, withdraw tax-free later.</p>
               ) : nowRate === retireRate ? (

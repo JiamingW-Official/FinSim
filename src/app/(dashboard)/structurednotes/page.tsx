@@ -980,7 +980,7 @@ export default function StructuredNotesPage() {
       <div className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10 border border-border">
-            <Layers className="w-5 h-5 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-semibold text-foreground">

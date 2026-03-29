@@ -398,7 +398,7 @@ const PITCH_SECTIONS = [
     title: "Strategic Alternatives",
     icon: Scale,
     color: "text-emerald-400",
-    bg: "bg-emerald-500/10 border-emerald-500/30",
+    bg: "bg-emerald-500/5 border-emerald-500/30",
     status: "in-progress",
     keyPoints: [
       "Status Quo: Organic growth path; risks missing revenue target; lowest long-term value",
@@ -449,7 +449,7 @@ function PitchStructureTab() {
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-primary" />
+                <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Transaction</p>
@@ -1477,10 +1477,10 @@ function FinancingStructureTab() {
             ].map((metric) => {
               const col =
                 metric.status === "ok"
-                  ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
+                  ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/5"
                   : metric.status === "warn"
                   ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
-                  : "text-red-400 border-red-500/30 bg-red-500/10";
+                  : "text-red-400 border-red-500/30 bg-red-500/5";
               return (
                 <div key={metric.label} className={`p-2 rounded-lg border ${col}`}>
                   <p className="text-xs text-muted-foreground">{metric.label}</p>
@@ -1523,7 +1523,7 @@ export default function PitchbookPage() {
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div className="w-9 h-9 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
-                <FileText className="w-5 h-5 text-primary" />
+                <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
               </div>
               <div>
                 <h1 className="text-xl font-medium text-foreground">Pitch Book Builder</h1>

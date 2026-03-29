@@ -57,7 +57,7 @@ function StatChip({
 }) {
   const cls = {
     green: "bg-green-500/10 text-green-400 border-green-500/20",
-    red: "bg-red-500/10 text-red-400 border-red-500/20",
+    red: "bg-red-500/5 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
     blue: "bg-primary/10 text-primary border-border",
     purple: "bg-primary/10 text-primary border-border",
@@ -567,7 +567,7 @@ function CatBondsTab() {
                 <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{t.desc}</p>
                 <div className="flex gap-2 flex-wrap">
                   <span className={cn("rounded px-2 py-0.5 text-xs text-muted-foreground border", colorCls?.badge)}>+ {t.pro}</span>
-                  <span className="rounded px-2 py-0.5 text-xs bg-red-500/10 text-red-400 border border-red-500/20">- {t.con}</span>
+                  <span className="rounded px-2 py-0.5 text-xs bg-red-500/5 text-red-400 border border-red-500/20">- {t.con}</span>
                 </div>
               </div>
             );
@@ -1012,7 +1012,7 @@ function CyclesTab() {
             const Icon = phase.icon;
             const cls = {
               green: { border: "border-green-500/20", bg: "bg-green-500/5", icon: "text-green-400", title: "text-green-400", badge: "bg-green-500/10 text-green-400 border-green-500/20" },
-              red: { border: "border-red-500/20", bg: "bg-red-500/5", icon: "text-red-400", title: "text-red-400", badge: "bg-red-500/10 text-red-400 border-red-500/20" },
+              red: { border: "border-red-500/20", bg: "bg-red-500/5", icon: "text-red-400", title: "text-red-400", badge: "bg-red-500/5 text-red-400 border-red-500/20" },
             }[phase.color];
             return (
               <div key={phase.phase} className={cn("rounded-lg border p-4", cls?.border, cls?.bg)}>

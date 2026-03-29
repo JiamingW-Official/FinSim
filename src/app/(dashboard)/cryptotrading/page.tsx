@@ -738,7 +738,7 @@ export default function CryptoTradingPage() {
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
-          <Globe className="w-5 h-5 text-primary" />
+          <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h2 className="text-base font-medium text-foreground">On-Chain Analytics</h2>
@@ -882,7 +882,7 @@ export default function CryptoTradingPage() {
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-lg bg-primary/10">
-          <Layers className="w-5 h-5 text-primary" />
+          <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h2 className="text-base font-medium text-foreground">Crypto Derivatives</h2>

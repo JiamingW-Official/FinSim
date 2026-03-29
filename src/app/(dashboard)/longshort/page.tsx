@@ -179,8 +179,8 @@ function StatChip({ label, value, variant = "default" }: { label: string; value:
   return (
     <div className={cn(
       "flex flex-col items-center px-3 py-2 rounded-lg border text-center",
-      variant === "green" && "border-emerald-500/30 bg-emerald-500/10",
-      variant === "red"   && "border-red-500/30 bg-red-500/10",
+      variant === "green" && "border-emerald-500/30 bg-emerald-500/5",
+      variant === "red"   && "border-red-500/30 bg-red-500/5",
       variant === "amber" && "border-amber-500/30 bg-amber-500/10",
       variant === "default" && "border-border bg-muted/30",
     )}>
@@ -519,7 +519,7 @@ export default function LongShortPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
-            <Scale className="w-5 h-5 text-primary" />
+            <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-semibold tracking-tight">Long/Short Portfolio</h1>

@@ -678,7 +678,7 @@ export default function LoanSyndPage() {
                   {
                     tier: "1st Lien",
                     color: "text-emerald-300",
-                    bg: "bg-emerald-500/10",
+                    bg: "bg-emerald-500/5",
                     items: ["All assets of borrower & guarantors", "Stock pledge (65% for foreign subs)", "IP/patents/trademarks", "Priority claim in bankruptcy"],
                   },
                   {
@@ -855,7 +855,7 @@ export default function LoanSyndPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-3 p-2 bg-emerald-500/10 rounded-lg">
+                <div className="mt-3 p-2 bg-emerald-500/5 rounded-lg">
                   <p className="text-emerald-300 font-medium">Lender-friendly: regular monitoring catch issues early</p>
                 </div>
               </div>

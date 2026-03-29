@@ -117,7 +117,7 @@ function InfoBox({
   const colors = {
     blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
-    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+    emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
   };
   return (
@@ -1347,7 +1347,7 @@ export default function BNPLLendingPage() {
         <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-9 h-9 rounded-md bg-primary/20 border border-border flex items-center justify-center">
-              <CreditCard size={18} className="text-primary" />
+              <CreditCard size={18} className="text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-semibold text-foreground">BNPL &amp; Digital Lending</h1>

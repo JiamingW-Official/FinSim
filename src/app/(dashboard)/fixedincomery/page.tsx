@@ -244,8 +244,8 @@ const signalColor = (sig: string) => {
 };
 
 const signalBg = (sig: string) => {
-  if (sig === "cheap" || sig === "buy") return "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
-  if (sig === "rich" || sig === "sell") return "bg-red-500/10 text-red-400 border border-red-500/20";
+  if (sig === "cheap" || sig === "buy") return "bg-emerald-500/5 text-emerald-400 border border-emerald-500/20";
+  if (sig === "rich" || sig === "sell") return "bg-red-500/5 text-red-400 border border-red-500/20";
   return "bg-muted/40 text-muted-foreground border border-border/30";
 };
 
@@ -736,7 +736,7 @@ export default function FixedIncomeRVPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
                     <span className="text-sm font-medium text-emerald-400">2s10s Steepener</span>
-                    <span className="ml-auto text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
+                    <span className="ml-auto text-xs bg-emerald-500/5 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
                       LONG 2Y / SHORT 10Y
                     </span>
                   </div>
@@ -776,7 +776,7 @@ export default function FixedIncomeRVPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingDown className="w-3.5 h-3.5 text-red-400" />
                     <span className="text-sm font-medium text-red-400">2s10s Flattener</span>
-                    <span className="ml-auto text-xs bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 rounded">
+                    <span className="ml-auto text-xs bg-red-500/5 text-red-400 border border-red-500/20 px-2 py-0.5 rounded">
                       SHORT 2Y / LONG 10Y
                     </span>
                   </div>
@@ -918,7 +918,7 @@ export default function FixedIncomeRVPage() {
                 </div>
                 <div className="text-2xl font-bold mb-1">118 <span className="text-sm text-muted-foreground font-normal">bps OAS</span></div>
                 <div className="text-xs text-muted-foreground mb-2">vs 10Y average: 125 bps</div>
-                <div className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded px-2 py-1">
+                <div className="text-xs text-red-400 bg-red-500/5 border border-red-500/20 rounded px-2 py-1">
                   Slightly RICH to history — limited upside from spread compression
                 </div>
               </div>
@@ -929,7 +929,7 @@ export default function FixedIncomeRVPage() {
                 </div>
                 <div className="text-lg font-medium mb-1">382 <span className="text-sm text-muted-foreground font-normal">bps OAS</span></div>
                 <div className="text-xs text-muted-foreground mb-2">vs 10Y average: 420 bps</div>
-                <div className="text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded px-2 py-1">
+                <div className="text-xs text-emerald-400 bg-emerald-500/5 border border-emerald-500/20 rounded px-2 py-1">
                   FAIR value — select issuer opportunities in BB-rated
                 </div>
               </div>

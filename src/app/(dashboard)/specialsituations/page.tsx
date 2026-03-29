@@ -714,7 +714,7 @@ function StubCalculator() {
       </div>
 
       {impliedStub < 0 && (
-        <div className="flex items-start gap-2 bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+        <div className="flex items-start gap-2 bg-red-500/5 border border-red-500/20 rounded-lg p-3">
           <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
           <p className="text-xs text-red-300">
             Negative stub: parent trades below the value of its subsidiary stake alone — classic stub trade setup. Buy parent, short subsidiary.
@@ -843,7 +843,7 @@ function ActivistTab() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
           {[
             { phase: "13D Filing", note: "Share price typically +5–15% on day of filing", icon: <FileText className="w-4 h-4 text-indigo-400" /> },
-            { phase: "Public Letter", note: "Detailed demands; management responds within 30 days", icon: <BookOpen className="w-4 h-4 text-primary" /> },
+            { phase: "Public Letter", note: "Detailed demands; management responds within 30 days", icon: <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" /> },
             { phase: "Proxy Fight", note: "Costly; ~60% of contested elections settle before vote", icon: <Users className="w-4 h-4 text-fuchsia-400" /> },
             { phase: "Resolution", note: "Board seat, strategic review, or sale announcement", icon: <CheckCircle2 className="w-4 h-4 text-pink-400" /> },
           ].map(({ phase, note, icon }) => (
@@ -967,7 +967,7 @@ function ActivistTab() {
                   ))}
                 </div>
               </div>
-              <div className="mt-3 bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+              <div className="mt-3 bg-red-500/5 border border-red-500/20 rounded-lg p-3">
                 <p className="text-xs text-red-300">
                   Legal risk: Allegations must be factually grounded. Coordinating with other short sellers or trading on material non-public information constitutes market manipulation.
                 </p>
@@ -1011,13 +1011,13 @@ function PostReorgTab() {
   const keyInsights = [
     {
       title: "Fresh-Start Accounting",
-      icon: <RefreshCw className="w-4 h-4 text-primary" />,
+      icon: <RefreshCw className="w-3.5 h-3.5 text-muted-foreground/50" />,
       description:
         "Assets re-valued to fair value on emergence. Goodwill written off. New entity = clean balance sheet with no legacy write-downs.",
     },
     {
       title: "Capital Structure Analysis",
-      icon: <BarChart2 className="w-4 h-4 text-primary" />,
+      icon: <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />,
       description:
         "New equity issued to former creditors (often at 6–8× EBITDA). Management gets 5–10% equity kicker. Debt load reduced 60–80%.",
     },
@@ -1335,7 +1335,7 @@ export default function SpecialSituationsPage() {
           {[
             { label: "Avg Merger Arb Spread", value: "3–6%", sub: "Annualized", icon: <Activity className="w-4 h-4 text-indigo-400" /> },
             { label: "Post-Reorg 3yr Median", value: "+128%", sub: "vs market +38%", icon: <TrendingUp className="w-4 h-4 text-emerald-400" /> },
-            { label: "Activist Success Rate", value: "66%", sub: "Demand met", icon: <Target className="w-4 h-4 text-primary" /> },
+            { label: "Activist Success Rate", value: "66%", sub: "Demand met", icon: <Target className="w-3.5 h-3.5 text-muted-foreground/50" /> },
             { label: "Stub Avg Entry Discount", value: "−38%", sub: "To fair value", icon: <DollarSign className="w-4 h-4 text-pink-400" /> },
           ].map(({ label, value, sub, icon }) => (
             <div key={label} className="bg-card border border-border rounded-md p-3">

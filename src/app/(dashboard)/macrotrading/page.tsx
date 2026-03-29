@@ -540,7 +540,7 @@ function RegimeDashboard() {
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Asset Class Returns by Regime (Historical Avg)
           </CardTitle>
         </CardHeader>
@@ -859,7 +859,7 @@ function RateCyclePlaybook() {
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart2 className="w-4 h-4 text-primary" />
+            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Historical Asset Performance per Rate Cycle Phase
           </CardTitle>
         </CardHeader>
@@ -1190,7 +1190,7 @@ function TradeIdeas() {
       <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Target className="w-4 h-4 text-primary" />
+            <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
             Conviction Distribution
           </CardTitle>
         </CardHeader>

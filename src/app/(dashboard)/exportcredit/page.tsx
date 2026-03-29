@@ -1128,7 +1128,7 @@ function DealStructuringTab() {
           onClick={() => setShowCaseStudy((v) => !v)}
         >
           <div className="flex items-center gap-3">
-            <Info size={16} className="text-primary" />
+            <Info size={16} className="text-muted-foreground/50" />
             <span className="font-medium text-sm text-foreground">Case Study: Large Infrastructure Deal</span>
           </div>
           {showCaseStudy ? <ChevronUp size={16} className="text-muted-foreground" /> : <ChevronDown size={16} className="text-muted-foreground" />}

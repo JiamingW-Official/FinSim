@@ -555,7 +555,7 @@ export default function ESGIntegrationPage() {
                       <div className="flex-1 space-y-3 w-full">
                         <div className="grid grid-cols-3 gap-3 text-center">
                           {[
-                            { label: "Environmental", value: selectedCompany.eScore, color: "text-emerald-400", bg: "bg-emerald-500/10" },
+                            { label: "Environmental", value: selectedCompany.eScore, color: "text-emerald-400", bg: "bg-emerald-500/5" },
                             { label: "Social", value: selectedCompany.sScore, color: "text-primary", bg: "bg-primary/10" },
                             { label: "Governance", value: selectedCompany.gScore, color: "text-primary", bg: "bg-primary/10" },
                           ].map((dim) => (
@@ -647,7 +647,7 @@ export default function ESGIntegrationPage() {
                 <Card className="border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <Filter className="w-4 h-4 text-primary" />
+                      <Filter className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Negative Screening
                     </CardTitle>
                   </CardHeader>
@@ -788,7 +788,7 @@ export default function ESGIntegrationPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Wind className="w-4 h-4 text-primary" />
+                    <Wind className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Carbon Footprint (tCO2e / $M revenue)
                   </CardTitle>
                 </CardHeader>
@@ -840,7 +840,7 @@ export default function ESGIntegrationPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Users className="w-4 h-4 text-primary" />
+                    <Users className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Gender Diversity (% women in workforce)
                   </CardTitle>
                 </CardHeader>
@@ -932,7 +932,7 @@ export default function ESGIntegrationPage() {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-primary" />
+                  <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
                   TCFD — Task Force on Climate-Related Financial Disclosures
                 </CardTitle>
               </CardHeader>
@@ -944,7 +944,7 @@ export default function ESGIntegrationPage() {
                   {tcfdPillars.map((pillar) => (
                     <div key={pillar.title} className="p-3 rounded-lg bg-muted/20 border border-border">
                       <div className="flex items-center gap-2 mb-2">
-                        <pillar.icon className="w-4 h-4 text-primary" />
+                        <pillar.icon className="w-3.5 h-3.5 text-muted-foreground/50" />
                         <p className="font-medium text-sm">{pillar.title}</p>
                       </div>
                       <ul className="space-y-1">
@@ -1009,7 +1009,7 @@ export default function ESGIntegrationPage() {
                   {priPrinciples.map((principle, idx) => (
                     <motion.div
                       key={idx}
-                      className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${priChecks[idx] ? "bg-emerald-500/10 border-emerald-500/30" : "bg-muted/10 border-border"}`}
+                      className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${priChecks[idx] ? "bg-emerald-500/5 border-emerald-500/30" : "bg-muted/10 border-border"}`}
                       onClick={() => togglePri(idx)}
                       whileHover={{ scale: 1.005 }}
                       whileTap={{ scale: 0.995 }}

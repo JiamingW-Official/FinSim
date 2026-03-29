@@ -256,7 +256,7 @@ function InfoBox({
   const styles = {
     info: "border-border bg-primary/10 text-primary",
     warn: "border-amber-500/30 bg-amber-500/10 text-amber-300",
-    success: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
+    success: "border-emerald-500/30 bg-emerald-500/5 text-emerald-300",
   };
   const IconComp =
     variant === "warn"

@@ -446,7 +446,7 @@ function InfoBox({
     variant === "warn"
       ? "border-amber-500/40 bg-amber-500/10 text-amber-200"
       : variant === "success"
-      ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-200"
+      ? "border-emerald-500/40 bg-emerald-500/5 text-emerald-200"
       : "border-primary/40 bg-primary/10 text-primary";
   return (
     <div className={cn("rounded-lg border p-3 text-sm", cls)}>
@@ -949,7 +949,7 @@ function TermSheetTab() {
       ? "border-rose-500/40 bg-rose-500/10"
       : risk === "medium"
       ? "border-amber-500/40 bg-amber-500/10"
-      : "border-emerald-500/40 bg-emerald-500/10";
+      : "border-emerald-500/40 bg-emerald-500/5";
 
   return (
     <div className="space-y-5">
@@ -1677,7 +1677,7 @@ export default function StartupFundingPage() {
 
           <TabsContent value="captable" className="data-[state=inactive]:hidden">
             <SectionTitle>
-              <PieChart className="w-5 h-5 text-primary" />
+              <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
               Cap Table Simulator
             </SectionTitle>
             <CapTableTab />

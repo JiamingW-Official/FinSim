@@ -241,7 +241,7 @@ function SectionHeader({
   return (
     <div className="flex items-start gap-3 mb-6">
       <div className="p-2 rounded-lg bg-primary/10 shrink-0">
-        <Icon className="w-5 h-5 text-primary" />
+        <Icon className="w-3.5 h-3.5 text-muted-foreground/50" />
       </div>
       <div>
         <h2 className="text-lg font-semibold text-foreground">{title}</h2>

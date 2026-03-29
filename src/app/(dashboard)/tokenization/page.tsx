@@ -940,7 +940,7 @@ export default function TokenizationPage() {
                     { icon: Layers, title: "Fractionalization", desc: "FOBXX min investment: $20. Traditional T-bills require $1,000+." },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-2">
-                      <item.icon className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                      <item.icon className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-xs font-medium text-foreground">{item.title}</p>
                         <p className="text-xs text-muted-foreground">{item.desc}</p>

@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion } from "framer-motion";
-import { Crosshair, Swords, AlertTriangle, LayoutGrid } from "lucide-react";
+import { Crosshair } from "lucide-react";
 import { ArenaLobby } from "@/components/arena/ArenaLobby";
 import { ArenaMatchmaking } from "@/components/arena/ArenaMatchmaking";
 import { ArenaPlayer } from "@/components/arena/ArenaPlayer";
@@ -23,12 +22,12 @@ import type { ArenaTypeConfig, ArenaNPC, ArenaMatchResult } from "@/types/arena"
 type Phase = "lobby" | "matchmaking" | "playing" | "results";
 type ActiveTab = "modes" | "duels" | "blackswan" | "tournament" | "tournaments";
 
-const TABS: { id: ActiveTab; label: string; icon: React.ReactNode }[] = [
-  { id: "modes",       label: "Arena Modes",  icon: <LayoutGrid className="h-3.5 w-3.5" /> },
-  { id: "duels",       label: "1v1 Duels",    icon: <Swords className="h-3.5 w-3.5" /> },
-  { id: "blackswan",   label: "Black Swan",   icon: <AlertTriangle className="h-3.5 w-3.5" /> },
-  { id: "tournament",  label: "Classic",      icon: <Crosshair className="h-3.5 w-3.5" /> },
-  { id: "tournaments", label: "Tournaments",  icon: <Crosshair className="h-3.5 w-3.5" /> },
+const TABS: { id: ActiveTab; label: string }[] = [
+  { id: "modes",       label: "Modes" },
+  { id: "duels",       label: "Head-to-Head" },
+  { id: "blackswan",   label: "Black Swan" },
+  { id: "tournament",  label: "Classic" },
+  { id: "tournaments", label: "Tournaments" },
 ];
 
 export default function ArenaPage() {
@@ -141,48 +140,28 @@ export default function ArenaPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="border-b border-border px-4 py-4">
+      <div className="border-b border-border px-4 py-3">
         <div className="flex items-center gap-3">
-          <motion.div
-            className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10"
-            initial={{ scale: 0, rotate: -15 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
-          >
-            <Crosshair className="h-4.5 w-4.5 text-primary" />
-          </motion.div>
+          <Crosshair className="h-4 w-4 text-muted-foreground" />
           <div>
             <h1 className="text-sm font-medium">Practice Arena</h1>
             <p className="text-[11px] text-muted-foreground">
-              Test your skills in simulated competitive challenges
+              Simulated competitive challenges to sharpen trading skills
             </p>
           </div>
           <div className="flex-1" />
-        </div>
-
-        {/* Hero — Current rank + educational framing */}
-        <div className="mt-3 border-l-4 border-l-primary bg-card rounded-lg p-5">
-          <div className="flex items-center gap-4 mb-2">
-            {totalMatches > 0 ? (
-              <>
-                <ArenaRankBadge rank={rank} size="sm" />
-                <div>
-                  <p className="text-sm font-medium font-mono tabular-nums">{elo} ELO</p>
-                  <p className="text-[11px] text-muted-foreground">{totalMatches} matches played</p>
-                </div>
-              </>
-            ) : (
-              <div>
-                <p className="text-sm font-medium text-foreground">Ready to compete?</p>
-                <p className="text-[11px] text-muted-foreground">Complete your first match to earn a rank</p>
+          {/* Rank + stats inline */}
+          {totalMatches > 0 ? (
+            <div className="flex items-center gap-3">
+              <ArenaRankBadge rank={rank} size="sm" />
+              <div className="text-right">
+                <p className="text-xs font-medium font-mono tabular-nums">{elo} ELO</p>
+                <p className="text-[11px] text-muted-foreground">{totalMatches} matches</p>
               </div>
-            )}
-          </div>
-          <p className="text-[11px] text-muted-foreground leading-relaxed">
-            Practice trading under pressure with simulated opponents. Arena matches help
-            sharpen your decision-making, risk management, and timing -- all with zero
-            real-world risk.
-          </p>
+            </div>
+          ) : (
+            <span className="text-[11px] text-muted-foreground">No matches yet</span>
+          )}
         </div>
       </div>
 
@@ -197,20 +176,19 @@ export default function ArenaPage() {
               if (tab.id !== "modes") setPhase("lobby");
             }}
             className={cn(
-              "flex flex-1 items-center justify-center gap-1.5 border-b-2 px-3 py-2.5 text-xs font-medium transition-colors",
+              "border-b-2 px-4 py-2 text-xs font-medium transition-colors",
               activeTab === tab.id
-                ? "border-primary text-primary"
+                ? "border-primary text-foreground"
                 : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >
-            {tab.icon}
             {tab.label}
           </button>
         ))}
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 pt-6 pb-4">
+      <div className="flex-1 overflow-y-auto px-4 pt-4 pb-4">
         {activeTab === "modes" && (
           <>
             <ArenaLobby onSelectType={handleSelectType} />

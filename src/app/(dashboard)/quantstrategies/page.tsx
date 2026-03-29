@@ -1265,7 +1265,7 @@ export default function QuantStrategiesPage() {
       >
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/15 rounded-lg">
-            <BarChart3 className="w-5 h-5 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-foreground">Quantitative Strategies</h1>

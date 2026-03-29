@@ -78,36 +78,20 @@ export function ChainStatsBar({ analytics, spotPrice, isLoading }: ChainStatsBar
   ];
 
   return (
-    <div className="flex shrink-0 items-center gap-5 overflow-x-auto border-b border-border/40 bg-card px-5 py-3">
-      {/* Ticker + spot price */}
-      <div className="flex shrink-0 items-center gap-2">
-        <span className="text-xs font-bold text-muted-foreground">
-          Spot
-        </span>
-        <span className="text-[11px] font-bold tabular-nums">
-          ${spotPrice.toFixed(2)}
-        </span>
-        {isLoading && (
-          <span className="text-[11px] text-muted-foreground/50 animate-pulse">
-            updating...
+    <div className="flex shrink-0 items-center gap-0 overflow-x-auto border-b border-border/40 bg-card px-3 py-1.5 text-[10px]">
+      <span className="shrink-0 text-muted-foreground">Spot</span>
+      <span className="ml-1 shrink-0 font-medium tabular-nums">${spotPrice.toFixed(2)}</span>
+      {isLoading && (
+        <span className="ml-1 text-muted-foreground/50 animate-pulse">...</span>
+      )}
+      {chips.map((chip) => (
+        <span key={chip.label} className="shrink-0 flex items-center">
+          <span className="mx-1.5 text-border">|</span>
+          <span className="text-muted-foreground/70">{chip.label}</span>
+          <span className={cn("ml-1 font-medium tabular-nums", chip.colorClass)}>
+            {chip.value}
           </span>
-        )}
-      </div>
-
-      <div className="h-4 w-px shrink-0 bg-border/50" />
-
-      {chips.map((chip, i) => (
-        <div key={chip.label} className="flex shrink-0 items-center gap-4">
-          <div className="flex flex-col">
-            <span className="text-[11px] text-muted-foreground/70">{chip.label}</span>
-            <span className={cn("text-[11px] font-bold tabular-nums", chip.colorClass)}>
-              {chip.value}
-            </span>
-          </div>
-          {i < chips.length - 1 && (
-            <div className="h-4 w-px shrink-0 bg-border/50" />
-          )}
-        </div>
+        </span>
       ))}
     </div>
   );

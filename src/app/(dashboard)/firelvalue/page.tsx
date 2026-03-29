@@ -1810,7 +1810,7 @@ export default function FIRelValuePage() {
       <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-muted/60 border border-border">
-            <Layers className="w-5 h-5 text-primary" />
+            <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-lg font-medium text-foreground">Fixed Income Relative Value</h1>

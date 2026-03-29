@@ -1060,7 +1060,7 @@ export default function REITsPage() {
       >
         <div>
           <h1 className="text-xl font-bold flex items-center gap-2">
-            <Building2 className="w-5 h-5 text-primary" />
+            <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             REIT Analysis & Portfolio
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">

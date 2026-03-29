@@ -1011,7 +1011,7 @@ export default function TransitionFinancePage() {
         className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
       >
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+          <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
             <Leaf className="w-5 h-5 text-emerald-400" />
           </div>
           <h1 className="text-xl font-semibold text-foreground">
@@ -1318,7 +1318,7 @@ export default function TransitionFinancePage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-primary" />
+                <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Carbon Price Forecasts 2030 — IEA Scenarios ($/tCO₂e)
               </CardTitle>
             </CardHeader>
@@ -1358,7 +1358,7 @@ export default function TransitionFinancePage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-primary" />
+                  <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Article 6 — Paris International Trading
                 </CardTitle>
               </CardHeader>
@@ -1434,7 +1434,7 @@ export default function TransitionFinancePage() {
                       {cat.type === "Acute" ? (
                         <Flame className="w-4 h-4 text-red-400" />
                       ) : (
-                        <Droplets className="w-4 h-4 text-primary" />
+                        <Droplets className="w-3.5 h-3.5 text-muted-foreground/50" />
                       )}
                       <span className={`text-sm font-medium ${cat.type === "Acute" ? "text-red-300" : "text-primary"}`}>
                         {cat.type} Risks
@@ -1701,7 +1701,7 @@ export default function TransitionFinancePage() {
                     <div
                       key={g.flag}
                       className={`flex items-center gap-3 rounded-lg px-3 py-2 text-xs text-muted-foreground ${
-                        high ? "bg-red-500/10 border border-red-500/20" : "bg-amber-500/10 border border-amber-500/20"
+                        high ? "bg-red-500/5 border border-red-500/20" : "bg-amber-500/10 border border-amber-500/20"
                       }`}
                     >
                       {high ? (

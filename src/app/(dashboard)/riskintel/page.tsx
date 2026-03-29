@@ -852,7 +852,7 @@ export default function RiskIntelPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2 bg-red-500/10 rounded-lg">
+          <div className="p-2 bg-red-500/5 rounded-lg">
             <Shield className="w-5 h-5 text-red-400" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight">Portfolio Risk Intelligence</h1>
@@ -1325,7 +1325,7 @@ export default function RiskIntelPage() {
                               }`}
                           </p>
                           {crisisMode && (
-                            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-2 text-xs text-red-300">
+                            <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-2 text-xs text-red-300">
                               During crisis: correlation spikes as all risk assets fall together. Safe havens (GLD, TLT) maintain or deepen negative correlations.
                             </div>
                           )}
@@ -1903,7 +1903,7 @@ export default function RiskIntelPage() {
                       Kelly = W × (G/L) − (1−W) = {winRate[0]}% × ({avgGain[0]}/{avgLoss[0]}) − {100 - winRate[0]}%
                     </div>
                     {kelly.raw <= 0 && (
-                      <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-2 text-xs text-red-400">
+                      <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-2 text-xs text-red-400">
                         Negative Kelly: expected value is negative with these parameters. Do not trade this setup.
                       </div>
                     )}
@@ -1954,7 +1954,7 @@ export default function RiskIntelPage() {
                               currentOk
                                 ? "bg-green-500/10 text-green-400 border-green-500/20"
                                 : p.weight / 100 > cappedSize
-                                ? "bg-red-500/10 text-red-400 border-red-500/20"
+                                ? "bg-red-500/5 text-red-400 border-red-500/20"
                                 : "bg-primary/10 text-primary border-border"
                             }`}
                           >

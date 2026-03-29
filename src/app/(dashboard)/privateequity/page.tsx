@@ -104,7 +104,7 @@ function InfoBox({
   const colors = {
     blue: "bg-primary/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
-    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+    emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     violet: "bg-primary/10 border-border text-primary",
   };
   return (
@@ -992,7 +992,7 @@ function ValueCreation() {
               className={cn(
                 "rounded-md border p-4",
                 opt.highlight
-                  ? "border-emerald-500/40 bg-emerald-500/10"
+                  ? "border-emerald-500/40 bg-emerald-500/5"
                   : "border-border bg-foreground/5"
               )}
             >
@@ -1464,7 +1464,7 @@ function DealSourcing() {
             {
               phase: "Days 71–100",
               title: "Scale",
-              color: "border-emerald-500/40 bg-emerald-500/10",
+              color: "border-emerald-500/40 bg-emerald-500/5",
               titleColor: "text-emerald-300",
               items: [
                 "Present full 5-year value creation plan to board",
@@ -1513,7 +1513,7 @@ export default function PrivateEquityPage() {
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-md bg-primary/20 border border-border flex items-center justify-center">
-              <Briefcase className="w-5 h-5 text-primary" />
+              <Briefcase className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-foreground">Private Equity &amp; LBO Analysis</h1>

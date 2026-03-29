@@ -1,42 +1,17 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PerformanceMetrics } from "@/components/portfolio/PerformanceMetrics";
 import { TradeJournal } from "@/components/portfolio/TradeJournal";
 import { QuantDashboard } from "@/components/portfolio/QuantDashboard";
-import { useGameStore } from "@/stores/game-store";
-import { useLearnStore } from "@/stores/learn-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
-import { UNITS } from "@/data/lessons";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import {
-  BarChart3,
-  BookOpen,
-  TrendingUp,
-  TrendingDown,
-  Briefcase,
-  Award,
-  Target,
-  Calendar,
-  Activity,
-  FlaskConical,
-  Flame,
-  ChevronDown,
-  MessageSquare,
-  RefreshCw,
-  Scissors,
-  LineChart,
-  DollarSign,
-  PieChart,
-  GraduationCap,
-  ArrowRight,
-} from "lucide-react";
-import { AchievementGallery } from "@/components/game/AchievementGallery";
+import { ArrowRight } from "lucide-react";
 import { ExportMenu } from "@/components/portfolio/ExportMenu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { WinLossDistribution } from "@/components/analytics/WinLossDistribution";
@@ -62,7 +37,7 @@ import { BlackLitterman } from "@/components/portfolio/BlackLitterman";
 import { RebalancingTool } from "@/components/portfolio/RebalancingTool";
 import { AttributionAnalysis } from "@/components/portfolio/AttributionAnalysis";
 
-function ChartSkeleton({ height = "h-[340px]" }: { height?: string }) {
+function ChartSkeleton({ height = "h-[200px]" }: { height?: string }) {
   return (
     <div className={`${height} flex flex-col gap-2 p-2`}>
       <div className="flex justify-between">
@@ -76,11 +51,6 @@ function ChartSkeleton({ height = "h-[340px]" }: { height?: string }) {
             className="flex-1 rounded-sm"
             style={{ height: `${30 + Math.sin(i * 0.5) * 25 + 20}%` }}
           />
-        ))}
-      </div>
-      <div className="flex justify-between">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Skeleton key={i} className="h-2.5 w-10" />
         ))}
       </div>
     </div>
@@ -112,22 +82,19 @@ const TradeCalendar = dynamic(
 );
 
 export default function PortfolioPage() {
-  const level = useGameStore((s) => s.level);
-  const title = useGameStore((s) => s.title);
-  const achievements = useGameStore((s) => s.achievements);
   const portfolioValue = useTradingStore((s) => s.portfolioValue);
   const cash = useTradingStore((s) => s.cash);
   const positions = useTradingStore((s) => s.positions);
   const tradeHistory = useTradingStore((s) => s.tradeHistory);
   const equityHistory = useTradingStore((s) => s.equityHistory);
-  const completedLessons = useLearnStore((s) => s.completedLessons);
   const totalPnL = portfolioValue - INITIAL_CAPITAL;
   const totalPnLPct = (totalPnL / INITIAL_CAPITAL) * 100;
 
   const hasTrades = tradeHistory.length > 0;
+  const hasPositions = positions.length > 0;
 
-  // Compute inline stats
-  const inlineStats = useMemo(() => {
+  // Compute stats
+  const stats = useMemo(() => {
     const sellTrades = tradeHistory.filter((t) => t.side === "sell");
     const winningTrades = sellTrades.filter((t) => t.realizedPnL > 0);
     const winRate =
@@ -135,7 +102,6 @@ export default function PortfolioPage() {
         ? (winningTrades.length / sellTrades.length) * 100
         : 0;
 
-    // Max drawdown
     let maxDrawdown = 0;
     let peak = INITIAL_CAPITAL;
     for (const snap of equityHistory) {
@@ -144,14 +110,11 @@ export default function PortfolioPage() {
       if (dd > maxDrawdown) maxDrawdown = dd;
     }
 
-    // Sharpe (annualized from daily returns approximation)
     const returns: number[] = [];
     for (let i = 1; i < equityHistory.length; i++) {
       const prev = equityHistory[i - 1].portfolioValue;
       if (prev > 0) {
-        returns.push(
-          (equityHistory[i].portfolioValue - prev) / prev,
-        );
+        returns.push((equityHistory[i].portfolioValue - prev) / prev);
       }
     }
     let sharpe = 0;
@@ -164,749 +127,434 @@ export default function PortfolioPage() {
       sharpe = std > 0 ? (mean / std) * Math.sqrt(252) : 0;
     }
 
-    return {
-      winRate,
-      sharpe,
-      maxDrawdown,
-      totalTrades: sellTrades.length,
-    };
+    return { winRate, sharpe, maxDrawdown, totalTrades: sellTrades.length };
   }, [tradeHistory, equityHistory]);
+
+  // Holdings with weight calculation
+  const holdings = useMemo(() => {
+    const totalMarketValue = positions.reduce(
+      (sum, p) => sum + p.currentPrice * p.quantity,
+      0,
+    );
+    return positions.map((p) => ({
+      ...p,
+      marketValue: p.currentPrice * p.quantity,
+      costBasis: p.avgPrice * p.quantity,
+      weight:
+        totalMarketValue > 0
+          ? ((p.currentPrice * p.quantity) / totalMarketValue) * 100
+          : 0,
+    }));
+  }, [positions]);
+
+  // ── EMPTY STATE ──
+  if (!hasTrades && !hasPositions) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center px-6">
+        <p className="text-sm text-muted-foreground mb-1">
+          No positions or trade history yet.
+        </p>
+        <Link
+          href="/trade"
+          className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
+        >
+          Make your first trade <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <div className="p-5 pb-0">
-        {/* Header — quiet zone, generous vertical space */}
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-2">
-            <h1 className="text-sm font-medium">Portfolio</h1>
-            <span className="text-xs text-muted-foreground">
-              Lv.{level} {title}
-            </span>
+      {/* ── HERO: Portfolio Value ── */}
+      <div className="px-5 pt-5 pb-3">
+        <div className="flex items-start justify-between mb-1">
+          <div>
+            <p className="text-[11px] font-medium text-muted-foreground mb-1 tracking-wide uppercase">
+              Total Portfolio Value
+            </p>
+            <p className="text-4xl font-semibold font-mono tabular-nums tracking-tight">
+              {formatCurrency(portfolioValue)}
+            </p>
           </div>
           <ExportMenu />
         </div>
 
-        {/* ── HERO: Equity Curve ── */}
-        {hasTrades ? (
-          <div className="border-l-4 border-primary rounded-lg bg-card p-8 mb-3">
-            {/* Value + P&L headline — MASSIVE */}
-            <div className="flex items-baseline gap-3 mb-6">
-              <span className="text-3xl font-bold font-mono tabular-nums">
-                {formatCurrency(portfolioValue)}
-              </span>
-              <span
-                className={cn(
-                  "text-sm font-normal font-mono tabular-nums",
-                  totalPnL >= 0 ? "text-emerald-400" : "text-red-400",
-                )}
-              >
-                {totalPnL >= 0 ? "+" : ""}
-                {formatCurrency(totalPnL)}
-              </span>
-              <span
-                className={cn(
-                  "text-sm font-medium font-mono tabular-nums",
-                  totalPnLPct >= 0 ? "text-emerald-400/70" : "text-red-400/70",
-                )}
-              >
-                ({totalPnLPct >= 0 ? "+" : ""}
-                {totalPnLPct.toFixed(2)}%)
-              </span>
-              <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground ml-1">
-                Simulated
-              </span>
-            </div>
-            {/* Chart — dominant, generous height */}
-            <div className="min-h-[380px]">
-              <EquityCurve />
-            </div>
-          </div>
-        ) : (
-          /* ── EMPTY STATE: dominant fill ── */
-          <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card/30 py-24 px-6 text-center mb-3">
-            <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-muted/40">
-              <BarChart3 className="h-12 w-12 text-muted-foreground/40" />
-            </div>
-            <p className="text-xl font-bold text-foreground mb-2">
-              Your portfolio story starts here
-            </p>
-            <p className="text-sm text-muted-foreground max-w-sm mb-6">
-              Place your first simulated trade and watch your equity curve grow.
-              Every win and loss will be tracked here.
-            </p>
-            <Link
-              href="/trade"
-              className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-            >
-              Start Trading
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </div>
-        )}
+        {/* Day change + Total return line */}
+        <div className="flex items-center gap-3 mt-1">
+          <span
+            className={cn(
+              "text-sm font-mono tabular-nums font-medium",
+              totalPnL >= 0 ? "text-emerald-500" : "text-red-500",
+            )}
+          >
+            {totalPnL >= 0 ? "+" : ""}
+            {formatCurrency(totalPnL)}
+          </span>
+          <span
+            className={cn(
+              "text-sm font-mono tabular-nums",
+              totalPnLPct >= 0 ? "text-emerald-500/80" : "text-red-500/80",
+            )}
+          >
+            ({totalPnLPct >= 0 ? "+" : ""}
+            {totalPnLPct.toFixed(2)}%)
+          </span>
+          <span className="text-[10px] text-muted-foreground/50 font-medium">
+            all time
+          </span>
+        </div>
 
-        {/* ── INLINE STATS LINE ── */}
+        {/* Quick stats row */}
         {hasTrades && (
-          <div className="flex items-center gap-1.5 text-[11px] font-normal text-muted-foreground/50 font-mono tabular-nums mb-8 px-1 flex-wrap">
+          <div className="flex items-center gap-4 mt-3 text-[11px] font-mono tabular-nums text-muted-foreground">
             <span>
-              Win Rate:{" "}
-              <span className="text-muted-foreground">
-                {inlineStats.winRate.toFixed(0)}%
-              </span>
-            </span>
-            <span className="text-border/40">·</span>
-            <span>
-              Sharpe:{" "}
-              <span className="text-muted-foreground">
-                {inlineStats.sharpe.toFixed(2)}
-              </span>
-            </span>
-            <span className="text-border/40">·</span>
-            <span>
-              Max DD:{" "}
-              <span className="text-muted-foreground">
-                -{inlineStats.maxDrawdown.toFixed(1)}%
-              </span>
-            </span>
-            <span className="text-border/40">·</span>
-            <span>
-              <span className="text-muted-foreground">
-                {inlineStats.totalTrades}
-              </span>{" "}
-              Trades
-            </span>
-            <span className="text-border/40">·</span>
-            <span>
-              Cash:{" "}
-              <span className="text-muted-foreground">
+              Cash{" "}
+              <span className="text-foreground/70">
                 {formatCurrency(cash)}
               </span>
             </span>
-            <span className="text-border/40">·</span>
             <span>
-              <span className="text-muted-foreground">
-                {positions.length}
-              </span>{" "}
-              Open
+              Win rate{" "}
+              <span className="text-foreground/70">
+                {stats.winRate.toFixed(0)}%
+              </span>
+            </span>
+            <span>
+              Sharpe{" "}
+              <span className="text-foreground/70">
+                {stats.sharpe.toFixed(2)}
+              </span>
+            </span>
+            <span>
+              Max DD{" "}
+              <span className="text-foreground/70">
+                -{stats.maxDrawdown.toFixed(1)}%
+              </span>
+            </span>
+            <span>
+              Trades{" "}
+              <span className="text-foreground/70">{stats.totalTrades}</span>
             </span>
           </div>
         )}
       </div>
 
-      {/* Quiet zone — breathing room between hero (dense) and tabs (moderate) */}
-      <div className="mb-10" />
-
-      {/* ── TABS: compact, subdued ── */}
-      <div className="px-4 pb-6">
+      {/* ── TABS ── */}
+      <div className="px-4 pb-6 flex-1">
         <Tabs defaultValue="overview">
-          <div className="mb-3 overflow-x-auto">
-            <TabsList className="flex h-6 min-w-max w-full gap-0.5 rounded-md bg-muted/20 p-0.5">
-              <TabsTrigger
-                value="overview"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Overview
-              </TabsTrigger>
-              <TabsTrigger
-                value="analytics"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Analytics
-              </TabsTrigger>
-              <TabsTrigger
-                value="rebalance"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Rebalance
-              </TabsTrigger>
-              <TabsTrigger
-                value="optimize"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Optimizer
-              </TabsTrigger>
-              <TabsTrigger
-                value="frontier"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Frontier
-              </TabsTrigger>
-              <TabsTrigger
-                value="income"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Income
-              </TabsTrigger>
-              <TabsTrigger
-                value="journal"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Journal
-              </TabsTrigger>
-              <TabsTrigger
-                value="achievements"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Awards
-              </TabsTrigger>
-              <TabsTrigger
-                value="deep"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Deep
-              </TabsTrigger>
-              <TabsTrigger
-                value="attribution"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Attribution
-              </TabsTrigger>
-              <TabsTrigger
-                value="advanced"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Analytics+
-              </TabsTrigger>
-              <TabsTrigger
-                value="stress"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Stress Test
-              </TabsTrigger>
-              <TabsTrigger
-                value="bl-optimizer"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                BL Optimizer
-              </TabsTrigger>
-              <TabsTrigger
-                value="rebalance-tool"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Rebalance+
-              </TabsTrigger>
-              <TabsTrigger
-                value="attribution-plus"
-                className="flex-1 rounded text-[10px] h-5 whitespace-nowrap transition-colors duration-150"
-              >
-                Attribution+
-              </TabsTrigger>
+          <div className="mb-3 border-b border-border/40">
+            <TabsList className="flex h-8 w-full gap-0 rounded-none bg-transparent p-0">
+              {["overview", "holdings", "performance", "analytics"].map(
+                (tab) => (
+                  <TabsTrigger
+                    key={tab}
+                    value={tab}
+                    className="rounded-none border-b-2 border-transparent px-3 pb-2 pt-1 text-xs font-medium capitalize text-muted-foreground data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                  >
+                    {tab}
+                  </TabsTrigger>
+                ),
+              )}
             </TabsList>
           </div>
 
           {/* ── Overview tab ── */}
-          <TabsContent value="overview" className="space-y-4">
+          <TabsContent value="overview" className="space-y-3 mt-0">
+            {/* Equity curve — contained */}
+            {hasTrades && (
+              <div className="rounded-lg border border-border/40 p-3">
+                <p className="text-[11px] font-medium text-muted-foreground mb-2">
+                  Equity Curve
+                </p>
+                <div className="h-[200px]">
+                  <EquityCurve />
+                </div>
+              </div>
+            )}
+
             <LivePnLDashboard />
 
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-2">
-              <div className="rounded-lg bg-muted/30 p-4 sm:col-span-3">
-                <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                  <Target className="h-3 w-3" />
+              <div className="rounded-lg border border-border/40 p-3 sm:col-span-3">
+                <p className="text-[11px] font-medium text-muted-foreground mb-1">
                   Win Rate (Rolling 10)
+                </p>
+                <div className="h-[160px]">
+                  <WinRateChart />
                 </div>
-                <WinRateChart />
               </div>
-              <div className="rounded-lg bg-muted/30 p-3 sm:col-span-2">
-                <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                  <Calendar className="h-3 w-3" />
+              <div className="rounded-lg border border-border/40 p-3 sm:col-span-2">
+                <p className="text-[11px] font-medium text-muted-foreground mb-1">
                   Trade Calendar
+                </p>
+                <div className="h-[160px]">
+                  <TradeCalendar />
                 </div>
-                <TradeCalendar />
               </div>
             </div>
 
-            {/* Breathing room before attribution */}
-            <div className="mt-5" />
-
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <PieChart className="h-3 w-3" />
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
                 Portfolio Attribution
-              </div>
+              </p>
               <PortfolioAttribution />
             </div>
 
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <TrendingUp className="h-3 w-3" />
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
                 Performance Metrics
-              </div>
+              </p>
               <PerformanceMetrics />
             </div>
 
             <WeeklyReview />
           </TabsContent>
 
-          {/* ── Analytics tab ── */}
-          <TabsContent value="analytics" className="space-y-5">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <Activity className="h-3 w-3" />
-                Quantitative Analytics
+          {/* ── Holdings tab ── */}
+          <TabsContent value="holdings" className="mt-0">
+            {hasPositions ? (
+              <div className="rounded-lg border border-border/40 overflow-hidden">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="border-b border-border/40 bg-muted/30 text-[11px] font-medium text-muted-foreground">
+                      <th className="text-left py-2 px-3">Ticker</th>
+                      <th className="text-right py-2 px-3">Shares</th>
+                      <th className="text-right py-2 px-3">Avg Cost</th>
+                      <th className="text-right py-2 px-3">Price</th>
+                      <th className="text-right py-2 px-3">P&L</th>
+                      <th className="text-right py-2 px-3">% Weight</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {holdings.map((h, i) => (
+                      <tr
+                        key={h.ticker}
+                        className={cn(
+                          "border-b border-border/20",
+                          i % 2 === 1 && "bg-muted/10",
+                        )}
+                      >
+                        <td className="py-2 px-3 font-medium">{h.ticker}</td>
+                        <td className="py-2 px-3 text-right font-mono tabular-nums">
+                          {h.quantity}
+                        </td>
+                        <td className="py-2 px-3 text-right font-mono tabular-nums">
+                          {formatCurrency(h.avgPrice)}
+                        </td>
+                        <td className="py-2 px-3 text-right font-mono tabular-nums">
+                          {formatCurrency(h.currentPrice)}
+                        </td>
+                        <td
+                          className={cn(
+                            "py-2 px-3 text-right font-mono tabular-nums font-medium",
+                            h.unrealizedPnL >= 0
+                              ? "text-emerald-500"
+                              : "text-red-500",
+                          )}
+                        >
+                          {h.unrealizedPnL >= 0 ? "+" : ""}
+                          {formatCurrency(h.unrealizedPnL)}
+                          <span className="text-[10px] ml-1 opacity-60">
+                            {h.unrealizedPnLPercent >= 0 ? "+" : ""}
+                            {h.unrealizedPnLPercent.toFixed(1)}%
+                          </span>
+                        </td>
+                        <td className="py-2 px-3 text-right font-mono tabular-nums text-muted-foreground">
+                          {h.weight.toFixed(1)}%
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr className="border-t border-border/40 bg-muted/20 text-[11px] font-medium">
+                      <td className="py-2 px-3 text-muted-foreground">
+                        {holdings.length} position{holdings.length !== 1 && "s"}
+                      </td>
+                      <td />
+                      <td />
+                      <td />
+                      <td
+                        className={cn(
+                          "py-2 px-3 text-right font-mono tabular-nums",
+                          totalPnL >= 0 ? "text-emerald-500" : "text-red-500",
+                        )}
+                      >
+                        {totalPnL >= 0 ? "+" : ""}
+                        {formatCurrency(
+                          holdings.reduce((s, h) => s + h.unrealizedPnL, 0),
+                        )}
+                      </td>
+                      <td className="py-2 px-3 text-right font-mono tabular-nums text-muted-foreground">
+                        100%
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
+            ) : (
+              <div className="py-10 text-center">
+                <p className="text-sm text-muted-foreground mb-1">
+                  No open positions.
+                </p>
+                <Link
+                  href="/trade"
+                  className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
+                >
+                  Make your first trade{" "}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            )}
+
+            {/* Trade journal below holdings */}
+            {hasTrades && (
+              <div className="mt-4 rounded-lg border border-border/40 p-3">
+                <p className="text-[11px] font-medium text-muted-foreground mb-2">
+                  Trade Journal
+                </p>
+                <TradeJournal />
+              </div>
+            )}
+
+            {/* Rebalancing & tax tools */}
+            {hasPositions && (
+              <div className="mt-3 space-y-3">
+                <div className="rounded-lg border border-border/40 p-3">
+                  <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                    Rebalancing
+                  </p>
+                  <RebalancingPanel />
+                </div>
+                <div className="rounded-lg border border-border/40 p-3">
+                  <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                    Tax Loss Harvesting
+                  </p>
+                  <TaxHarvestingPanel />
+                </div>
+              </div>
+            )}
+          </TabsContent>
+
+          {/* ── Performance tab ── */}
+          <TabsContent value="performance" className="space-y-3 mt-0">
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                Quantitative Dashboard
+              </p>
               <QuantDashboard />
             </div>
 
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <TrendingUp className="h-3 w-3" />
-                Rolling Sharpe Ratio (30-trade window)
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                Rolling Sharpe Ratio (30-trade)
+              </p>
+              <div className="h-[200px]">
+                <RollingSharpeChart />
               </div>
-              <RollingSharpeChart />
             </div>
 
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <Target className="h-3 w-3" />
-                Rolling Win Rate (20-trade window)
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                Rolling Win Rate (20-trade)
+              </p>
+              <div className="h-[200px]">
+                <RollingWinRateChart />
               </div>
-              <RollingWinRateChart />
-            </div>
-          </TabsContent>
-
-          {/* ── Rebalance tab ── */}
-          <TabsContent value="rebalance" className="space-y-4">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <RefreshCw className="h-3 w-3" />
-                Portfolio Rebalancing
-              </div>
-              <RebalancingPanel />
             </div>
 
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <Scissors className="h-3 w-3" />
-                Tax Loss Harvesting
-              </div>
-              <TaxHarvestingPanel />
-            </div>
-          </TabsContent>
-
-          {/* ── Optimize tab ── */}
-          <TabsContent value="optimize" className="space-y-3">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <LineChart className="h-3 w-3" />
-                Efficient Frontier &amp; MPT Optimizer
-              </div>
+            {/* Optimizer tools */}
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                MPT Optimizer
+              </p>
               <PortfolioOptimizer />
             </div>
-          </TabsContent>
 
-          {/* ── Frontier tab ── */}
-          <TabsContent value="frontier" className="space-y-3">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <LineChart className="h-3 w-3" />
-                Efficient Frontier &amp; Portfolio Optimizer
-              </div>
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                Efficient Frontier
+              </p>
               <EfficientFrontier />
             </div>
-          </TabsContent>
 
-          {/* ── Income tab ── */}
-          <TabsContent value="income" className="space-y-3">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <DollarSign className="h-3 w-3" />
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
                 Dividend Income Tracker
-              </div>
+              </p>
               <DividendTracker />
             </div>
-          </TabsContent>
 
-          {/* ── Journal tab ── */}
-          <TabsContent value="journal" className="space-y-4">
-            <RecentTradesPreview />
-
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <BookOpen className="h-3 w-3" />
-                Trade Journal
-              </div>
-              <TradeJournal />
-              <div className="mt-2 border-t border-border/40 pt-2">
-                <a
-                  href="/journal"
-                  className="flex items-center gap-1.5 text-[11px] font-medium text-primary hover:underline"
-                >
-                  View Full Journal
-                  <span className="text-muted-foreground">&rarr;</span>
-                </a>
-              </div>
-            </div>
-          </TabsContent>
-
-          {/* ── Achievements tab ── */}
-          <TabsContent value="achievements">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <Award className="h-3 w-3" />
-                Achievements
-              </div>
-              <AchievementGallery />
-            </div>
-          </TabsContent>
-
-          {/* ── Attribution tab ── */}
-          <TabsContent value="attribution" className="space-y-3">
-            <PortfolioAttribution />
-          </TabsContent>
-
-          {/* ── Analytics+ tab ── */}
-          <TabsContent value="advanced" className="space-y-3">
-            <AdvancedAnalytics />
-          </TabsContent>
-
-          {/* ── Stress Test tab ── */}
-          <TabsContent value="stress" className="space-y-3">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <Flame className="h-3 w-3" />
-                Portfolio Stress Testing &amp; Scenario Analysis
-              </div>
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                Stress Testing
+              </p>
               <StressTester />
             </div>
-          </TabsContent>
 
-          {/* ── BL Optimizer tab ── */}
-          <TabsContent value="bl-optimizer" className="space-y-3">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <Target className="h-3 w-3" />
-                Black-Litterman Portfolio Optimizer
-              </div>
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                Black-Litterman Optimizer
+              </p>
               <BlackLitterman />
             </div>
-          </TabsContent>
 
-          {/* ── Rebalance+ tab ── */}
-          <TabsContent value="rebalance-tool" className="space-y-3">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <RefreshCw className="h-3 w-3" />
-                Comprehensive Rebalancing Tool
-              </div>
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                Rebalancing Tool
+              </p>
               <RebalancingTool />
             </div>
           </TabsContent>
 
-          {/* ── Attribution+ tab ── */}
-          <TabsContent value="attribution-plus" className="space-y-3">
+          {/* ── Analytics tab ── */}
+          <TabsContent value="analytics" className="space-y-3 mt-0">
+            <AdvancedAnalytics />
+
             <AttributionAnalysis />
-          </TabsContent>
 
-          {/* ── Deep Analytics tab ── */}
-          <TabsContent value="deep" className="space-y-6">
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <BarChart3 className="h-3 w-3" />
-                Trade Distribution
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                Win/Loss Distribution
+              </p>
+              <div className="h-[200px]">
+                <WinLossDistribution />
               </div>
-              <WinLossDistribution />
             </div>
 
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <Calendar className="h-3 w-3" />
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
                 Holding Period Analysis
+              </p>
+              <div className="h-[200px]">
+                <HoldingPeriodAnalysis />
               </div>
-              <HoldingPeriodAnalysis />
             </div>
 
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <Activity className="h-3 w-3" />
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
                 Day-of-Week Heatmap
-              </div>
+              </p>
               <TradeHeatmap />
             </div>
 
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <FlaskConical className="h-3 w-3" />
-                MAE/MFE Scatter &mdash; Trade Efficiency
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
+                MAE/MFE Scatter
+              </p>
+              <div className="h-[200px]">
+                <MAEMFEScatter />
               </div>
-              <MAEMFEScatter />
             </div>
 
-            <div className="rounded-lg bg-muted/30 p-3">
-              <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-                <TrendingUp className="h-3 w-3" />
+            <div className="rounded-lg border border-border/40 p-3">
+              <p className="text-[11px] font-medium text-muted-foreground mb-1">
                 Streak Analysis
-              </div>
+              </p>
               <StreakAnalysis />
             </div>
           </TabsContent>
         </Tabs>
-
-        {/* Learning Progress — below tabs */}
-        <div className="mt-4">
-          <LearningProgress completedLessons={completedLessons} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── LearningProgress ──────────────────────────────────────────────────────────
-
-function LearningProgress({
-  completedLessons,
-}: {
-  completedLessons: string[];
-}) {
-  const progress = useMemo(() => {
-    const totalLessons = UNITS.reduce(
-      (sum, u) => sum + u.lessons.length,
-      0,
-    );
-    const completedCount = completedLessons.length;
-
-    const completedUnits = UNITS.filter((unit) =>
-      unit.lessons.every((l) => completedLessons.includes(l.id)),
-    );
-
-    const inProgressUnits = UNITS.filter((unit) => {
-      const done = unit.lessons.filter((l) =>
-        completedLessons.includes(l.id),
-      ).length;
-      return done > 0 && done < unit.lessons.length;
-    });
-
-    return { totalLessons, completedCount, completedUnits, inProgressUnits };
-  }, [completedLessons]);
-
-  if (progress.completedCount === 0) return null;
-
-  const pct = Math.round(
-    (progress.completedCount / progress.totalLessons) * 100,
-  );
-
-  return (
-    <div className="rounded-lg bg-muted/30 p-3">
-      <div className="mb-2 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-          <GraduationCap className="h-3.5 w-3.5" />
-          Learning Progress
-        </div>
-        <span className="text-[11px] font-mono tabular-nums text-muted-foreground">
-          {progress.completedCount}/{progress.totalLessons} lessons
-        </span>
-      </div>
-
-      {/* Progress bar */}
-      <div className="mb-2.5 h-1.5 rounded-full bg-muted">
-        <div
-          className="h-full rounded-full bg-primary transition-all"
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-
-      {/* Completed units */}
-      {progress.completedUnits.length > 0 && (
-        <div className="mb-1.5">
-          <p className="text-[11px] font-medium text-muted-foreground mb-1">
-            Completed units
-          </p>
-          <div className="flex flex-wrap gap-1">
-            {progress.completedUnits.slice(0, 6).map((unit) => (
-              <span
-                key={unit.id}
-                className="rounded-full bg-emerald-500/5 px-2 py-0.5 text-[10px] font-medium text-emerald-400"
-              >
-                {unit.title}
-              </span>
-            ))}
-            {progress.completedUnits.length > 6 && (
-              <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] text-muted-foreground">
-                +{progress.completedUnits.length - 6} more
-              </span>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* In-progress units */}
-      {progress.inProgressUnits.length > 0 && (
-        <div>
-          <p className="text-[11px] font-medium text-muted-foreground mb-1">
-            In progress
-          </p>
-          <div className="flex flex-wrap gap-1">
-            {progress.inProgressUnits.slice(0, 4).map((unit) => {
-              const done = unit.lessons.filter((l) =>
-                completedLessons.includes(l.id),
-              ).length;
-              return (
-                <span
-                  key={unit.id}
-                  className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary"
-                >
-                  {unit.title} ({done}/{unit.lessons.length})
-                </span>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Link to learn */}
-      <div className="mt-2 border-t border-border/40 pt-2">
-        <Link
-          href="/learn"
-          className="flex items-center gap-1 text-[11px] font-medium text-primary hover:underline"
-        >
-          Continue learning
-          <ArrowRight className="h-3 w-3" />
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-// ── RecentTradesPreview ──────────────────────────────────────────────────────
-
-function RecentTradesPreview() {
-  const tradeHistory = useTradingStore((s) => s.tradeHistory);
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-
-  const closedTrades = tradeHistory
-    .filter((t) => t.realizedPnL !== 0)
-    .slice(0, 5);
-
-  if (closedTrades.length === 0) {
-    return (
-      <div className="rounded-lg bg-muted/30 p-3">
-        <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-          <BookOpen className="h-3 w-3" />
-          Recent Trades
-        </div>
-        <div className="flex flex-col items-center justify-center py-8 text-center">
-          <BarChart3 className="h-6 w-6 text-muted-foreground/50 mb-2" />
-          <p className="text-xs font-medium text-muted-foreground">No closed trades yet</p>
-          <p className="text-[11px] text-muted-foreground/70 mt-1">Your completed trades will appear here</p>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="rounded-lg bg-muted/30 p-3">
-      <div className="mb-1 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-          <BookOpen className="h-3 w-3" />
-          Recent Trades
-        </div>
-        <span className="text-[11px] text-muted-foreground/60">
-          Last 5 closed
-        </span>
-      </div>
-
-      <div className="space-y-0.5">
-        {closedTrades.map((trade) => {
-          const isExpanded = expandedId === trade.id;
-          const hasNotes = !!(trade.notes && trade.notes.trim());
-          const tags = trade.tags ?? [];
-          const date = new Date(
-            trade.simulationDate,
-          ).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-          });
-
-          return (
-            <div
-              key={trade.id}
-              className="rounded border border-border/40 bg-background/50"
-            >
-              <button
-                type="button"
-                onClick={() =>
-                  setExpandedId(isExpanded ? null : trade.id)
-                }
-                className="flex w-full items-center gap-2 px-2.5 py-1.5 text-left text-[11px]"
-              >
-                <span className="font-medium w-10 shrink-0">
-                  {trade.ticker}
-                </span>
-                <span
-                  className={cn(
-                    "rounded-sm px-1.5 py-0.5 text-[10px] font-medium",
-                    trade.side === "sell"
-                      ? "bg-emerald-500/12 text-emerald-400"
-                      : "bg-red-500/12 text-red-400",
-                  )}
-                >
-                  {trade.side === "sell" ? "long" : "short"}
-                </span>
-                <span className="text-muted-foreground shrink-0">
-                  {date}
-                </span>
-                <span
-                  className={cn(
-                    "ml-auto font-medium font-mono tabular-nums shrink-0",
-                    trade.realizedPnL > 0
-                      ? "text-emerald-400"
-                      : trade.realizedPnL < 0
-                        ? "text-red-400"
-                        : "text-muted-foreground",
-                  )}
-                >
-                  {trade.realizedPnL > 0 ? "+" : ""}
-                  {formatCurrency(trade.realizedPnL)}
-                </span>
-                {hasNotes && (
-                  <MessageSquare className="h-3 w-3 shrink-0 text-muted-foreground/40" />
-                )}
-                {tags.length > 0 && (
-                  <div className="flex gap-1 shrink-0">
-                    {tags.slice(0, 2).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-primary/10 px-1.5 text-[11px] text-primary/70"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                <ChevronDown
-                  className={cn(
-                    "h-3 w-3 shrink-0 text-muted-foreground/40 transition-transform",
-                    isExpanded && "rotate-180",
-                  )}
-                />
-              </button>
-
-              {isExpanded && (
-                <div className="border-t border-border/30 px-2.5 py-1.5">
-                  {hasNotes ? (
-                    <p className="text-[11px] text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                      {trade.notes}
-                    </p>
-                  ) : (
-                    <p className="text-[11px] text-muted-foreground/50 italic">
-                      No notes for this trade.
-                    </p>
-                  )}
-                  {tags.length > 0 && (
-                    <div className="mt-1 flex flex-wrap gap-1">
-                      {tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] text-primary/70"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          );
-        })}
       </div>
     </div>
   );

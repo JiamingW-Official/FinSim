@@ -100,7 +100,7 @@ function InfoBox({
   const colors = {
     blue: "bg-primary/10 border-primary/30 text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
-    emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
+    emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     violet: "bg-orange-500/10 border-orange-500/30 text-orange-200",
   };
   return (
@@ -544,7 +544,7 @@ function SaasTab() {
         {/* Cohort Analysis */}
         <div>
           <SectionTitle>
-            <Activity className="w-4 h-4 text-primary" /> 2021 Cohort Revenue (Indexed to 100)
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" /> 2021 Cohort Revenue (Indexed to 100)
           </SectionTitle>
           <div className="rounded-md bg-foreground/5 border border-border p-3">
             <svg viewBox="0 0 360 180" className="w-full">
@@ -718,7 +718,7 @@ function AiInfraTab() {
         {/* AI Chip market share */}
         <div>
           <SectionTitle>
-            <Cpu className="w-4 h-4 text-primary" /> AI Chip Market Share
+            <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" /> AI Chip Market Share
           </SectionTitle>
           <div className="rounded-md bg-foreground/5 border border-border p-4">
             {/* Donut */}
@@ -762,7 +762,7 @@ function AiInfraTab() {
         {/* Cloud market share */}
         <div>
           <SectionTitle>
-            <Cloud className="w-4 h-4 text-primary" /> Cloud Market Share (IaaS/PaaS)
+            <Cloud className="w-3.5 h-3.5 text-muted-foreground/50" /> Cloud Market Share (IaaS/PaaS)
           </SectionTitle>
           <div className="rounded-md bg-foreground/5 border border-border p-4">
             <svg viewBox="0 0 200 200" className="w-40 h-40 mx-auto">
@@ -931,7 +931,7 @@ function SemiCycleTab() {
       {/* Semiconductor cycle phases */}
       <div>
         <SectionTitle>
-          <Activity className="w-4 h-4 text-primary" /> Semiconductor Cycle Phases
+          <Activity className="w-3.5 h-3.5 text-muted-foreground/50" /> Semiconductor Cycle Phases
         </SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           {SEMI_CYCLE_PHASES.map((phase, i) => (
@@ -940,7 +940,7 @@ function SemiCycleTab() {
               className={cn(
                 "rounded-md border p-3 flex flex-col gap-1",
                 i === 4
-                  ? "border-emerald-500/40 bg-emerald-500/10"
+                  ? "border-emerald-500/40 bg-emerald-500/5"
                   : i === 2
                   ? "border-rose-500/40 bg-rose-500/10"
                   : "border-border bg-foreground/5"
@@ -1446,7 +1446,7 @@ function FintechTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div>
           <SectionTitle>
-            <DollarSign className="w-4 h-4 text-primary" /> Payment Take Rates (% of GMV)
+            <DollarSign className="w-3.5 h-3.5 text-muted-foreground/50" /> Payment Take Rates (% of GMV)
           </SectionTitle>
           <div className="rounded-md bg-foreground/5 border border-border p-4">
             <div className="space-y-3">
@@ -1532,7 +1532,7 @@ export default function TechSectorPage() {
         >
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-md bg-primary/20 border border-primary/30 flex items-center justify-center">
-              <Cpu className="w-5 h-5 text-primary" />
+              <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-medium text-foreground">Technology Sector</h1>
